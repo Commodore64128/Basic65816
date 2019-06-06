@@ -14,7 +14,7 @@
 	+	- 										## additive operators
 
 [3]	
-	*		/		%							## multiply and divide, modulus, signed
+	*		/		mod							## multiply and divide, modulus, signed
 	>> 		<< 									## logical shift left and right, zeros shifted in
 
 

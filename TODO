@@ -1,0 +1,5 @@
+- expression evaluator.
+
+- allocating temp space, there is enough (initially as well for a$ = "hello")
+- allocating variable space, there's enough
+- expressions stack sizes and spacing and testing
