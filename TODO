@@ -1,10 +1,11 @@
 Outstanding
 -----------
-- definining variables and arrays in the pre-block and dumping them out. Don't forget fast vars.
+- dumping out variables. Don't forget fast vars.
 - accessing variables with auto-creation (not for arrays)
 
 Fixes
 -----
+- allocating temp space, even size.
 - allocating temp space, there is enough - do on allocation not reset.
 - allocating concrete space (a$ = "hello" would not do temp space !)
 - allocating variable space, there's enough

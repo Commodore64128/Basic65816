@@ -99,21 +99,76 @@ class Variable(object):
 	#
 	#		Import the given variable into the variable structure
 	#
-	def importVariables(self,varBlock):
+	def importVariable(self,varBlock):
 		tokenList = self.convertToTokens()										# convert to tokens.
 		#
-		if self.isFastVariable():												# Fast variables simpler.
+		if self.isFastVariable():												# Fast variables simpler.			
 			fvAddress = BasicBlock.FASTVARIABLES+varBlock.baseAddress 			# base address of fasts
 			fvAddress += ((ord(self.getIdentifier()[0].upper())-ord('A')) * 4)	# adjust it.
+			if varBlock.debug:
+				print("== Updating fast variable ==")
 			varBlock.writeWord(fvAddress,tokenList[0])							# Write LONG out.
 			varBlock.writeWord(fvAddress+2,tokenList[1])
 			return
 		#
 		self.memoryVariableCreated = True 										# no more code.
-		address = self.allocateLowMemory(len(tokenList)*2)						# allocate memory for new variable.
+		#
+		if varBlock.debug:
+			print("== allocating variable memory ==")
+		address = varBlock.allocateLowMemory(len(tokenList)*2)					# allocate memory for new variable.
+		#
+		if varBlock.debug:
+			print("== creating strings/identifiers ==")
 		for i in range(0,len(tokenList)):										# for each token.
-			pass																# copy, allocating if reqd.
-		# 	Patch into selected hash table.
+			if isinstance(tokenList[i],str):									# id/string tokens are stored
+				tokenList[i] = self.convertString(tokenList[i],varBlock)		# in high memory.
+		#				
+		if varBlock.debug:
+			print("== copying data in ==")
+		for i in range(0,len(tokenList)):										# for each token.
+			varBlock.writeWord(address+i*2,tokenList[i])
+		#
+		self.hashPointer = self.hashAddress(varBlock,tokenList[1])				# get the hash addr first token
+		#
+		if varBlock.debug:
+			print("== Linking in ==")
+		varBlock.writeWord(address+0,varBlock.readWord(self.hashPointer))		# Patch into list.
+		varBlock.writeWord(self.hashPointer,address)
+
+	#
+	#		Convert a string item - ID:x or ST:x to an identifier token or prefix string
+	#
+	def convertString(self,element,varBlock):
+		if element[:3] == "ID:":												# identifier.
+			if varBlock.debug:
+				print("== Identifier ==")
+			tokens = Variable.tokeniser.tokenise(element[3:])					# tokenise the name
+			address = varBlock.allocateHighMemory(len(tokens)*2)				# allocate mem for it.
+			for i in range(0,len(tokens)):										# copy it in.
+				varBlock.writeWord(address+i*2,tokens[i])
+			return address
+		#
+		if element[:3] == "ST:":												# string.
+			if varBlock.debug:
+				print("== String with length prefix ==")
+			string = [ord(c) for c in element[3:]]								# string as integers
+			string.insert(0,len(string)) 										# add length prefix.
+			if len(string) % 2 != 0:											# make even size.
+				string.append(0)
+			address = varBlock.allocateHighMemory(len(string))					# allocate and copy.
+			for i in range(0,len(string),2):
+				varBlock.writeWord(address+i*2,string[i]+string[i+1]*256)
+			return address
+
+		assert False
+	#
+	#		Get the hash address of a token given its first token.
+	#
+	def hashAddress(self,block,firstToken):
+		addr = block.baseAddress + BasicBlock.HASHTABLE							# Base of table
+		addr = addr + ((firstToken >> 11) & 3) * BasicBlock.HASHMASKENTRYSIZE*2	# Table for this type.
+		addr = addr + (firstToken & BasicBlock.HASHMASK) * 2					# offset in that table.
+		return addr
 
 Variable.usedIdentifiers = {}													# Stops duplicate identifiers
 Variable.tokeniser = None														# Shared tokeniser
@@ -145,6 +200,8 @@ class StringVariable(Variable):
 
 class Array(Variable):
 	def __init__(self,isString,highSub = None,name = None,defaultValue = None):
+		if highSub is None and defaultValue is not None:						# get length from data.
+			highSub = len(defaultValue)-1
 		highsub = highSub if highSub is not None else random.randint(2,6)		# allocate random size
 		self.highSubscript = highsub 											# store high subscript
 		Variable.__init__(self,isString,name,defaultValue)						# and initialise
@@ -181,14 +238,14 @@ class Array(Variable):
 #		Integer Array class
 #
 class IntegerArray(Array):
-	def __init__(self,highSub = None,name = None,defaultValue = None):
+	def __init__(self,name = None,defaultValue = None,highSub = None):
 		Array.__init__(self,False,highSub,name,defaultValue)
 
 #
 #		String Array class
 #
 class StringArray(Array):
-	def __init__(self,highSub = None,name = None,defaultValue = None):
+	def __init__(self,name = None,defaultValue = None,highSub = None):
 		Array.__init__(self,True,highSub,name,defaultValue)
 
 
@@ -204,14 +261,22 @@ class VariableBlock(BasicBlock):
 
 if __name__ == "__main__":
 	blk = VariableBlock(0x4000,0x8000)
-	random.seed(42)
+	random.seed(43)
 	blk.debug = True
-	#blk.addBASICLine(10,'((2+3)*(4+5)*2)+1')
-	#blk.export("temp/basic.bin")	
-	for i in range(0,2):
-		print()
-		v1 = IntegerVariable()
-		print(v1.toString())
-		print(v1.convertToTokens())
-		v1.importVariables(blk)
-
+	v1 = IntegerVariable("int1",42)
+	print(v1.toString(),v1.convertToTokens())
+	v1.importVariable(blk)
+	#
+	v1 = StringVariable("s1","Hello")
+	print(v1.toString(),v1.convertToTokens())
+	v1.importVariable(blk)
+	#
+	v1 = IntegerArray("array12",[4,5,8])
+	print(v1.toString(),v1.convertToTokens())
+	v1.importVariable(blk)
+	#
+	v1 = StringArray("strarr0",["I","like","chips"])
+	print(v1.toString(),v1.convertToTokens())
+	v1.importVariable(blk)
+	#
+	blk.export("temp/basic.bin")	
