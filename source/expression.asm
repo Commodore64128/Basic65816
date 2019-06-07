@@ -266,5 +266,3 @@ EvaluateNextString:
 		bcc 	ESType
 		rts
 
-VariableFindCreate:
-		rts

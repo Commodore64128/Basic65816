@@ -65,4 +65,3 @@ SwitchBasicInstance:
 		jsr 	Evaluate
 		nop
 		cop 	#2
-
