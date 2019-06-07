@@ -9,4 +9,5 @@ Fixes
 - allocating concrete space (a$ = "hello" would not do temp space !)
 - allocating variable space, there's enough
 - expressions stack sizes and spacing and testing
+- writing null strings all share the same one rather than concreting.
 - garbage collection.

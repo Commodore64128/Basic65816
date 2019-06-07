@@ -60,16 +60,7 @@ class BasicBlock(object):
 		self.writeWord(self.baseAddress+BasicBlock.LOWPTR,ptr+6)				# free memory starts here.
 		return ptr 																# return where next line goes
 	#
-	#	Overwrite fast variable A-Z
-	#
-	def setFastVariable(self,variable,value):
-		variable = variable.upper()
-		assert re.match("^[\\@A-Z]$",variable) is not None						# check is fast variable
-		value = value & 0xFFFFFFFF												# make 32 bit uint
-		self.writeWord(self.baseAddress+(ord(variable)-ord('@'))*4+BasicBlock.FASTVARIABLES,value & 0xFFFF)
-		self.writeWord(self.baseAddress+(ord(variable)-ord('@'))*4+BasicBlock.FASTVARIABLES+2,value >> 16)
-	#
-	#	Allocate low memory (e.g. from program end up)
+	#		Allocate low memory (e.g. from program end up)
 	#
 	def allocateLowMemory(self,count):
 		addr = self.readWord(self.baseAddress+BasicBlock.LOWPTR)				# address to use
@@ -77,7 +68,7 @@ class BasicBlock(object):
 		assert self.readWord(self.baseAddress+BasicBlock.LOWPTR) < self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
 		return addr 
 	#
-	#	Allocate high memory (e.g. from top down)
+	#		Allocate high memory (e.g. from top down)
 	#
 	def allocateHighMemory(self,count):
 		addr = self.readWord(self.baseAddress+BasicBlock.HIGHPTR) - count		# address to use
@@ -85,14 +76,14 @@ class BasicBlock(object):
 		assert self.readWord(self.baseAddress+BasicBlock.LOWPTR) < self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
 		return addr
 	#
-	#	Read a word from memory
+	#		Read a word from memory
 	#
 	def readWord(self,addr):
 		assert addr >= self.baseAddress and addr <= self.endAddress 			# validate
 		addr = addr - self.baseAddress 											# offset in data
 		return self.data[addr] + self.data[addr+1] * 256 						# return it
 	#
-	#	Write a word to memory
+	#		Write a word to memory
 	#
 	def writeWord(self,addr,data):
 		assert addr >= self.baseAddress and addr <= self.endAddress 			# validate it
@@ -102,7 +93,7 @@ class BasicBlock(object):
 		if self.debug:															# debug display
 			print("{0:04x} : {1:04x}".format(addr,data))
 	#
-	#	Read long as signed int
+	#		Read long as signed int
 	#
 	def readLong(self,addr):
 		val = self.readWord(addr)+(self.readWord(addr+2) << 16)					# read as 32 bit unsigned
