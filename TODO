@@ -1,11 +1,11 @@
-Outstanding
------------
-- dumping out variables. Don't forget fast vars.
-- accessing variables with auto-creation (not for arrays)
+Main
+----
+- accessing variables with auto-creation including arrays
+- assert, running, checking arithmetic etc. from random data.
 
 Fixes
 -----
-- allocating temp space, even size.
+- allocating temp space, even size so every address is even.
 - allocating temp space, there is enough - do on allocation not reset.
 - allocating concrete space (a$ = "hello" would not do temp space !)
 - allocating variable space, there's enough

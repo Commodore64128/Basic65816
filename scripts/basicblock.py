@@ -76,6 +76,12 @@ class BasicBlock(object):
 		assert self.readWord(self.baseAddress+BasicBlock.LOWPTR) < self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
 		return addr
 	#
+	#		Read a byte from memory
+	#
+	def readByte(self,addr):
+		assert addr >= self.baseAddress and addr <= self.endAddress 			# validate
+		return self.data[addr - self.baseAddress]								# offset in data
+	#
 	#		Read a word from memory
 	#
 	def readWord(self,addr):
@@ -140,8 +146,8 @@ class BasicBlock(object):
 BasicBlock.ID = "BASC"															# ID
 BasicBlock.FASTVARIABLES = 0x10 												# Fast Variable Base
 BasicBlock.HASHTABLE = 0x80 													# Hash Table Base
-BasicBlock.LOWPTR = 0x10 														# Low Memory Allocation
-BasicBlock.HIGHPTR = 0x12 														# High Memory Allocation
+BasicBlock.LOWPTR = 0x08 														# Low Memory Allocation
+BasicBlock.HIGHPTR = 0x0A 														# High Memory Allocation
 BasicBlock.PROGRAM = 0x100 														# First line of program
 BasicBlock.HASHMASK = 15 														# Hash mask (0,1,3,7,15)
 BasicBlock.HASHMASKENTRYSIZE = 16 												# Entries per table.

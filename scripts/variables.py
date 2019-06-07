@@ -100,6 +100,7 @@ class Variable(object):
 	#		Import the given variable into the variable structure
 	#
 	def importVariable(self,varBlock):
+		#print("IMPORTING: "+self.toString())
 		tokenList = self.convertToTokens()										# convert to tokens.
 		#
 		if self.isFastVariable():												# Fast variables simpler.			
@@ -128,7 +129,8 @@ class Variable(object):
 		for i in range(0,len(tokenList)):										# for each token.
 			varBlock.writeWord(address+i*2,tokenList[i])
 		#
-		self.hashPointer = self.hashAddress(varBlock,tokenList[1])				# get the hash addr first token
+		firstToken = varBlock.readWord(tokenList[1])							# get the first identifier token
+		self.hashPointer = self.hashAddress(varBlock,firstToken) 				# get the hash addr first token
 		#
 		if varBlock.debug:
 			print("== Linking in ==")
@@ -157,7 +159,7 @@ class Variable(object):
 				string.append(0)
 			address = varBlock.allocateHighMemory(len(string))					# allocate and copy.
 			for i in range(0,len(string),2):
-				varBlock.writeWord(address+i*2,string[i]+string[i+1]*256)
+				varBlock.writeWord(address+i,string[i]+string[i+1]*256)
 			return address
 
 		assert False
@@ -166,7 +168,7 @@ class Variable(object):
 	#
 	def hashAddress(self,block,firstToken):
 		addr = block.baseAddress + BasicBlock.HASHTABLE							# Base of table
-		addr = addr + ((firstToken >> 11) & 3) * BasicBlock.HASHMASKENTRYSIZE*2	# Table for this type.
+		addr = addr + ((firstToken >> 12) & 3) * BasicBlock.HASHMASKENTRYSIZE*2	# Table for this type.
 		addr = addr + (firstToken & BasicBlock.HASHMASK) * 2					# offset in that table.
 		return addr
 
@@ -262,16 +264,16 @@ class VariableBlock(BasicBlock):
 if __name__ == "__main__":
 	blk = VariableBlock(0x4000,0x8000)
 	random.seed(43)
-	blk.debug = True
-	v1 = IntegerVariable("int1",42)
+	#blk.debug = True
+	v1 = IntegerVariable("a1",42)
 	print(v1.toString(),v1.convertToTokens())
 	v1.importVariable(blk)
 	#
-	v1 = StringVariable("s1","Hello")
+	v1 = StringVariable("s14","Hello")
 	print(v1.toString(),v1.convertToTokens())
 	v1.importVariable(blk)
 	#
-	v1 = IntegerArray("array12",[4,5,8])
+	v1 = IntegerArray("arri12",[4,5,8])
 	print(v1.toString(),v1.convertToTokens())
 	v1.importVariable(blk)
 	#
