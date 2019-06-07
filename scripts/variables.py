@@ -281,4 +281,4 @@ if __name__ == "__main__":
 	print(v1.toString(),v1.convertToTokens())
 	v1.importVariable(blk)
 	#
-	blk.export("temp/basic.bin")	
+	blk.exportFile("temp/basic.bin")	

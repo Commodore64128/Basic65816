@@ -14,6 +14,7 @@ StartOfBasicCode:
 		.include "temp/tokens.inc"					; tokens include file (generated)
 		.include "data.asm" 						; data definition.
 		.include "expression.asm" 					; expression evaluation
+		.include "variable.asm"						; variable management
 		.include "utility.asm"						; utility stuff.
 		.include "stringutils.asm"					; string utility stuff.
 		

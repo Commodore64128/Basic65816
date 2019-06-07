@@ -127,7 +127,7 @@ void CPULoadBinary(char *fileName) {
 
 void CPUEndRun(void) {
 	FILE *f = fopen("basic.dump","wb");
-	for (LONG32 l = 0x23000;l < 0x2E000;l += 1024) {
+	for (LONG32 l = 0x24000;l < 0x2C000;l += 1024) {
 		fwrite(ramMemory+l,1,1024,f);
 	}
 	fclose(f);

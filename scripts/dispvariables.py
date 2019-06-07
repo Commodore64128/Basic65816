@@ -109,10 +109,11 @@ class ListableVariableBlock(VariableBlock):
 		return '"{0}"'.format(s)
 
 if __name__ == "__main__":
-	blk = ListableVariableBlock(0x4000,0x8000)
 	random.seed(43)
+	blk = ListableVariableBlock(0x4000,0x8000)
+	blk.addBASICLine(10,'((2+3)*(4+5)*2)+1')
 	#
-	if True:
+	if False:
 		for i in range(0,20):
 			IntegerVariable().importVariable(blk)
 			StringVariable().importVariable(blk)
@@ -120,28 +121,29 @@ if __name__ == "__main__":
 			StringArray().importVariable(blk)
 	else:
 		v1 = IntegerVariable("z",42)
-		print(v1.toString(),v1.convertToTokens())
+		print(v1.toString())
 		v1.importVariable(blk)
 
 		v1 = IntegerVariable("ix",-42)
-		print(v1.toString(),v1.convertToTokens())
+		print(v1.toString())
 		v1.importVariable(blk)
 		#
 		v1 = IntegerVariable("ix2",442)
-		print(v1.toString(),v1.convertToTokens())
+		print(v1.toString())
 		v1.importVariable(blk)
 		#
 		v1 = StringVariable("s1","Hello")
-		print(v1.toString(),v1.convertToTokens())
+		print(v1.toString())
 		v1.importVariable(blk)
 		#
 		#blk.debug = True
 		v1 = IntegerArray("array12",[4,5,8])
-		print(v1.toString(),v1.convertToTokens())
+		print(v1.toString())
 		v1.importVariable(blk)
 		#
 		v1 = StringArray("strarr0",["I","like","chips"])
-		print(v1.toString(),v1.convertToTokens())
+		print(v1.toString())
 		v1.importVariable(blk)
 		#
 	blk.listVariables()
+	blk.exportFile("temp/basic.bin")
