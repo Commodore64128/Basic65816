@@ -56,7 +56,7 @@ class Tokeniser(object):
 			if len(ident) % 2 != 0:									# pad out to even length using zero.
 				ident.append(0) 									# 000000 is padding character.
 			for i in range(0,len(ident)-1,2):
-				word = 0x2000  + ident[i] + ident[i+1] * 45
+				word = 0xC000  + ident[i] + ident[i+1] * 45
 				if i != len(ident)-2: 								# add continuation marker.
 					word = word + 0x0800
 				if m.group(3) == "(":								# add type markers.
@@ -113,6 +113,6 @@ Tokeniser.tokens = None
 
 if __name__ == "__main__":
 	tk = Tokeniser()
-	w = 'len(42) 32769 abcde zz ab ab$ ab( ab$( "abc" "" "abcd" '.split(" ")
+	w = '>> len(42) 32769 abcde zz ab ab$ ab( ab$( "abc" "" "abcd" '.split(" ")
 	for b in w:
 		tk.tokeniseDebug(b)

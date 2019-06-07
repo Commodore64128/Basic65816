@@ -157,7 +157,7 @@ BasicBlock.HASHMASKENTRYSIZE = 16 												# Entries per table.
 
 if __name__ == "__main__":
 	blk = BasicBlock(0x4000,0x8000)
-	blk.addBASICLine(10,'42')
+	blk.addBASICLine(10,'((2+3)*(4+5)*2)+1')
 	blk.export("temp/basic.bin")	
 	blk.exportConstants("temp/block.inc")
 

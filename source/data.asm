@@ -35,6 +35,8 @@ DTempStringPointer = DPBaseAddress + 22 	; memory allocated to temp string point
 DStartTempString = DPBaseAddress + 24 		; start of current temporary string
 DCurrentTempString = DPBaseAddress + 26 	; current position in temporary string.
 
+DConstantShift = DPBaseAddress + 28 		; constant shift store.
+
 ; ********************************************************************************
 ;
 ;			Expression Stack. There are three entries, low and high word

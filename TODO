@@ -1,5 +1,12 @@
-- expression evaluator.
+Outstanding
+-----------
+- definining variables and arrays in the pre-block and dumping them out. Don't forget fast vars.
+- accessing variables with auto-creation (not for arrays)
 
-- allocating temp space, there is enough (initially as well for a$ = "hello")
+Fixes
+-----
+- allocating temp space, there is enough - do on allocation not reset.
+- allocating concrete space (a$ = "hello" would not do temp space !)
 - allocating variable space, there's enough
 - expressions stack sizes and spacing and testing
+- garbage collection.

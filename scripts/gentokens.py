@@ -19,7 +19,7 @@ class Token(object):
 	def __init__(self,token,type,id):
 		self.name = token.strip().lower()
 		self.type = type
-		self.id = id + (type << 10) + 0x4000
+		self.id = id + (type << 9) + 0x2000
 		self.vector = "IllegalToken"
 		assert self.name != "" and len(self.name) < 15,"Name "+self.name
 		assert (type >= 0 and type <= 9) or (type >= 13 and type <= 15)

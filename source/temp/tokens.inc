@@ -3,97 +3,97 @@
 ;
 CommandJumpTable:
 	.word IllegalToken & $FFFF ; for the $0000 token.
-	.word Binary_And               & $FFFF ; token $4001 "and"
-	.word Binary_Or                & $FFFF ; token $4002 "or"
-	.word Binary_Xor               & $FFFF ; token $4003 "xor"
-	.word Binary_Less              & $FFFF ; token $4404 "<"
-	.word Binary_Greater           & $FFFF ; token $4405 ">"
-	.word Binary_Equals            & $FFFF ; token $4406 "="
-	.word Binary_LessEqual         & $FFFF ; token $4407 "<="
-	.word Binary_GreaterEqual      & $FFFF ; token $4408 ">="
-	.word Binary_NotEquals         & $FFFF ; token $4409 "<>"
-	.word Binary_Add               & $FFFF ; token $480a "+"
-	.word Binary_Subtract          & $FFFF ; token $480b "-"
-	.word Binary_Multiply          & $FFFF ; token $4c0c "*"
-	.word Binary_Divide            & $FFFF ; token $4c0d "/"
-	.word Binary_Modulus           & $FFFF ; token $4c0e "mod"
-	.word Binary_ShiftRight        & $FFFF ; token $4c0f ">>"
-	.word Binary_ShiftLeft         & $FFFF ; token $4c10 "<<"
-	.word Function_Random          & $FFFF ; token $6011 "rnd()"
-	.word Function_Sgn             & $FFFF ; token $6012 "sgn("
-	.word Function_Abs             & $FFFF ; token $6013 "abs("
-	.word Function_Len             & $FFFF ; token $6014 "len("
-	.word IllegalToken             & $FFFF ; token $6415 ","
-	.word IllegalToken             & $FFFF ; token $6416 ";"
-	.word IllegalToken             & $FFFF ; token $6417 ":"
-	.word IllegalToken             & $FFFF ; token $6418 "("
-	.word IllegalToken             & $FFFF ; token $6419 ")"
-	.word IllegalToken             & $FFFF ; token $7c1a "let"
-	.word IllegalToken             & $FFFF ; token $781b "while"
-	.word IllegalToken             & $FFFF ; token $741c "wend"
+	.word Binary_And               & $FFFF ; token $2001 "and"
+	.word Binary_Or                & $FFFF ; token $2002 "or"
+	.word Binary_Xor               & $FFFF ; token $2003 "xor"
+	.word Binary_Less              & $FFFF ; token $2204 "<"
+	.word Binary_Greater           & $FFFF ; token $2205 ">"
+	.word Binary_Equals            & $FFFF ; token $2206 "="
+	.word Binary_LessEqual         & $FFFF ; token $2207 "<="
+	.word Binary_GreaterEqual      & $FFFF ; token $2208 ">="
+	.word Binary_NotEquals         & $FFFF ; token $2209 "<>"
+	.word Binary_Add               & $FFFF ; token $240a "+"
+	.word Binary_Subtract          & $FFFF ; token $240b "-"
+	.word Binary_Multiply          & $FFFF ; token $260c "*"
+	.word Binary_Divide            & $FFFF ; token $260d "/"
+	.word Binary_Modulus           & $FFFF ; token $260e "mod"
+	.word Binary_ShiftRight        & $FFFF ; token $260f ">>"
+	.word Binary_ShiftLeft         & $FFFF ; token $2610 "<<"
+	.word Function_Random          & $FFFF ; token $3011 "rnd()"
+	.word Function_Sgn             & $FFFF ; token $3012 "sgn("
+	.word Function_Abs             & $FFFF ; token $3013 "abs("
+	.word Function_Len             & $FFFF ; token $3014 "len("
+	.word IllegalToken             & $FFFF ; token $3215 ","
+	.word IllegalToken             & $FFFF ; token $3216 ";"
+	.word IllegalToken             & $FFFF ; token $3217 ":"
+	.word IllegalToken             & $FFFF ; token $3218 "("
+	.word IllegalToken             & $FFFF ; token $3219 ")"
+	.word IllegalToken             & $FFFF ; token $3e1a "let"
+	.word IllegalToken             & $FFFF ; token $3c1b "while"
+	.word IllegalToken             & $FFFF ; token $3a1c "wend"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
 ;
 TokenText:
-	 .text $04,"and"      ; token $4001
-	 .text $03,"or"       ; token $4002
-	 .text $04,"xor"      ; token $4003
-	 .text $12,"<"        ; token $4404
-	 .text $12,">"        ; token $4405
-	 .text $12,"="        ; token $4406
-	 .text $13,"<="       ; token $4407
-	 .text $13,">="       ; token $4408
-	 .text $13,"<>"       ; token $4409
-	 .text $22,"+"        ; token $480a
-	 .text $22,"-"        ; token $480b
-	 .text $32,"*"        ; token $4c0c
-	 .text $32,"/"        ; token $4c0d
-	 .text $34,"mod"      ; token $4c0e
-	 .text $33,">>"       ; token $4c0f
-	 .text $33,"<<"       ; token $4c10
-	 .text $86,"rnd()"    ; token $6011
-	 .text $85,"sgn("     ; token $6012
-	 .text $85,"abs("     ; token $6013
-	 .text $85,"len("     ; token $6014
-	 .text $92,","        ; token $6415
-	 .text $92,";"        ; token $6416
-	 .text $92,":"        ; token $6417
-	 .text $92,"("        ; token $6418
-	 .text $92,")"        ; token $6419
-	 .text $f4,"let"      ; token $7c1a
-	 .text $e6,"while"    ; token $781b
-	 .text $d5,"wend"     ; token $741c
+	 .text $04,"and"      ; token $2001
+	 .text $03,"or"       ; token $2002
+	 .text $04,"xor"      ; token $2003
+	 .text $12,"<"        ; token $2204
+	 .text $12,">"        ; token $2205
+	 .text $12,"="        ; token $2206
+	 .text $13,"<="       ; token $2207
+	 .text $13,">="       ; token $2208
+	 .text $13,"<>"       ; token $2209
+	 .text $22,"+"        ; token $240a
+	 .text $22,"-"        ; token $240b
+	 .text $32,"*"        ; token $260c
+	 .text $32,"/"        ; token $260d
+	 .text $34,"mod"      ; token $260e
+	 .text $33,">>"       ; token $260f
+	 .text $33,"<<"       ; token $2610
+	 .text $86,"rnd()"    ; token $3011
+	 .text $85,"sgn("     ; token $3012
+	 .text $85,"abs("     ; token $3013
+	 .text $85,"len("     ; token $3014
+	 .text $92,","        ; token $3215
+	 .text $92,";"        ; token $3216
+	 .text $92,":"        ; token $3217
+	 .text $92,"("        ; token $3218
+	 .text $92,")"        ; token $3219
+	 .text $f4,"let"      ; token $3e1a
+	 .text $e6,"while"    ; token $3c1b
+	 .text $d5,"wend"     ; token $3a1c
 	.byte $00
 
 ;
 ;	Constants
 ;
-andTokenID                       = $4001
-orTokenID                        = $4002
-xorTokenID                       = $4003
-lessTokenID                      = $4404
-greaterTokenID                   = $4405
-equalTokenID                     = $4406
-lessequalTokenID                 = $4407
-greaterequalTokenID              = $4408
-lessgreaterTokenID               = $4409
-plusTokenID                      = $480a
-minusTokenID                     = $480b
-starTokenID                      = $4c0c
-slashTokenID                     = $4c0d
-modTokenID                       = $4c0e
-greatergreaterTokenID            = $4c0f
-lesslessTokenID                  = $4c10
-rndlparenrparenTokenID           = $6011
-sgnlparenTokenID                 = $6012
-abslparenTokenID                 = $6013
-lenlparenTokenID                 = $6014
-commaTokenID                     = $6415
-semicolonTokenID                 = $6416
-colonTokenID                     = $6417
-lparenTokenID                    = $6418
-rparenTokenID                    = $6419
-letTokenID                       = $7c1a
-whileTokenID                     = $781b
-wendTokenID                      = $741c
+andTokenID                       = $2001
+orTokenID                        = $2002
+xorTokenID                       = $2003
+lessTokenID                      = $2204
+greaterTokenID                   = $2205
+equalTokenID                     = $2206
+lessequalTokenID                 = $2207
+greaterequalTokenID              = $2208
+lessgreaterTokenID               = $2209
+plusTokenID                      = $240a
+minusTokenID                     = $240b
+starTokenID                      = $260c
+slashTokenID                     = $260d
+modTokenID                       = $260e
+greatergreaterTokenID            = $260f
+lesslessTokenID                  = $2610
+rndlparenrparenTokenID           = $3011
+sgnlparenTokenID                 = $3012
+abslparenTokenID                 = $3013
+lenlparenTokenID                 = $3014
+commaTokenID                     = $3215
+semicolonTokenID                 = $3216
+colonTokenID                     = $3217
+lparenTokenID                    = $3218
+rparenTokenID                    = $3219
+letTokenID                       = $3e1a
+whileTokenID                     = $3c1b
+wendTokenID                      = $3a1c
