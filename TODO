@@ -1,7 +1,9 @@
 Main
 ----
-- accessing variables with auto-creation including arrays
-- assert, running, checking arithmetic etc. from random data.
+- assert and running programs.
+- checking arithmetic etc. from random data (test)
+- assignment and assignment creation. Concrete strings (!)
+- array dimension.
 
 Fixes
 -----

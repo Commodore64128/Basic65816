@@ -135,7 +135,7 @@ _ELExit:lda 	EXSPrecType+0,x 			; type into carry
 		;
 _ELVariable:
 		asl 	EXSPrecType+0,x
-		jsr 	VariableFindCreate 			; this will be 'find variable, create if required', get value.
+		jsr 	VariableAccessExpression	; this will be 'find variable, error if failed', get value.
 		sta 	EXSValueL+0,x 				; save variable contents in stack
 		sty 	EXSValueH+0,x
 		ror 	EXSPrecType+0,x
