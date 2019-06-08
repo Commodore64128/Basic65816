@@ -139,8 +139,7 @@ class BasicBlock(object):
 		assert lineNumber > self.lastProgramLineNumber and lineNumber <= 32767 	# check line number
 		pos = self.resetLowMemory()												# where does it go
 		self.lastProgramLineNumber = lineNumber 								# remember last
-		if self.debug:
-			print("{0:5} {1}".format(lineNumber,code))
+		#print("{0:5} {1}".format(lineNumber,code))
 		codeLine = self.tokeniser.tokenise(code) 								# convert to tokens
 		codeLine.append(0)														# EOL
 		codeLine.insert(0,lineNumber) 											# insert line number
@@ -150,6 +149,7 @@ class BasicBlock(object):
 			self.writeWord(pos,t)  
 			pos += 2
 		self.resetLowMemory() 													# and reset low memory
+		self.check()
 	#
 	#		Export constants
 	#

@@ -1,8 +1,8 @@
 # *******************************************************************************************
 # *******************************************************************************************
 #
-#		Name : 		test_compare.py
-#		Purpose :	Create a pile of memory variables, check the comparison functions.
+#		Name : 		test_functions.py
+#		Purpose :	Create a pile of memory variables, check the unary functions
 #					Also checks assignment retrieval.
 #
 #		Date :		8th June 2019
@@ -15,7 +15,12 @@ import re,os,sys,random
 from dispvariables import *
 from variables import *
 
-def pickOne(varSet,operator,reqString):
+def sgn(x):
+	if x == 0:
+		return 0
+	return -1 if x < 0 else 1
+
+def pickOne(varSet,reqString):
 	done = False
 	while not done:
 		variable = varSet[random.randint(0,len(varSet)-1)]
@@ -28,21 +33,6 @@ def pickOne(varSet,operator,reqString):
 		v1[0] = v1[1]
 	return v1
 
-def calculate(op,a,b):
-	if op == ">":
-		return a > b
-	if op == "<":
-		return a < b
-	if op == "=":
-		return a == b
-	if op == ">=":
-		return a >= b
-	if op == "<=":
-		return a <= b
-	if op == "<>":
-		return a != b
-
-	assert False
 if __name__ == "__main__":
 	blk = ListableVariableBlock(0x4000,0x8000)
 	#
@@ -56,28 +46,22 @@ if __name__ == "__main__":
 	#
 	#		Create a pile of variable objects
 	#
-	operatorList = ["<","<=",">",">=","=","<>"]
-	#
 	variables = []
-	for i in range(0,24):
+	for i in range(0,100):
 		variables.append(IntegerVariable())
 		variables.append(StringVariable())
-		variables.append(IntegerArray())
-		variables.append(StringArray())
 	#
 	#		Generate code to check that the variable does equal the value.
 	#
-	for i in range(0,900):
-		operator = operatorList[random.randint(0,len(operatorList))-1]
-		reqString = random.randint(0,1) == 0
-		v1 = pickOne(variables,operator,reqString)
-		v2 = pickOne(variables,operator,reqString)
-		if random.randint(0,7) == 0:
-			v1 = v2
-		result = -1 if calculate(operator,v1[1],v2[1]) else 0
-		line = "assert ({0} {1} {2}) = {3}".format(v1[0],operator,v2[0],result)
-		blk.addBASICLine(None,line)
-		#print(line)
+	for i in range(0,400):
+		v1 = pickOne(variables,False)
+		v2 = pickOne(variables,True)
+		# 	abs(x)
+		blk.addBASICLine(None,"assert abs({0}) = {1}".format(v1[0],abs(v1[1])))
+		#   sgn(x)
+		blk.addBASICLine(None,"assert sgn({0}) = {1}".format(v1[0],sgn(v1[1])))
+		# 	len(x)
+		blk.addBASICLine(None,"assert len({0}) = {1}".format(v2[0],len(v2[1])-2))
 	#
 	#		Create variables in memory (done after program)
 	#

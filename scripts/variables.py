@@ -55,7 +55,7 @@ class Variable(object):
 	#
 	def defaultValue(self):
 		if self.isString:														# Random string
-			return "".join([chr(random.randint(65,90)) for x in range(0,random.randint(0,5))])
+			return "".join([chr(random.randint(65,90)) for x in range(0,random.randint(0,12))])
 		n = random.randint(-250000,250000)										# Random large integer
 		return n if random.randint(0,2) > 0 else random.randint(-100,100)		# reduce range often
 	#
