@@ -1,6 +1,6 @@
 Main
 ----
-- checking arithmetic, comparisons, functions etc. from random data (test)
+- comparisons,  functions etc. from random data (test)
 - assignment and assignment creation. Concrete strings on assignment (!)
 - array dimension.
 
@@ -13,3 +13,4 @@ Fixes
 - expressions stack sizes and spacing and testing
 - writing null strings all share the same one rather than concreting.
 - garbage collection.
+- modulus arithmetic error (test_math does not check %) sign issue.

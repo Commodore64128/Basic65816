@@ -231,6 +231,14 @@ class Array(Variable):
 		n = random.randint(0,len(self.getValue())-1)
 		return [self.getTokenIdentifier()+str(n)+")",self.getValue()[n]]
 	#
+	#		Generate a legal identifier name randomly.
+	#
+	def generateIdentifier(self):
+		s = Variable.generateIdentifier(self)
+		if Variable.tokeniser.findToken(s+"("):
+			return self.generateIdentifier()
+		return s
+	#
 	#		The token header has the array high subscript added as the third word.
 	#
 	def getTokenHeader(self):
