@@ -61,7 +61,6 @@ _SCCCopy:
 _SCCExit:
 		rts
 
-
 ; *******************************************************************************************
 ;
 ;						Make String at A concrete, return new string in A

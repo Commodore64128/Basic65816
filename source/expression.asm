@@ -269,4 +269,3 @@ EvaluateNextString:
 		jsr 	EvaluateNext
 		bcc 	ESType
 		rts
-

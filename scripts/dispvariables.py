@@ -111,8 +111,10 @@ class ListableVariableBlock(VariableBlock):
 if __name__ == "__main__":
 	random.seed(43)
 	blk = ListableVariableBlock(0x4000,0x8000)
-	blk.addBASICLine(10,'assert ("AA"<"AAX") = -1')
-	blk.addBASICLine(20,'assert 242')
+	blk.addBASICLine(10,'let s1$ = s1$+",world "+s1z$')
+	blk.addBASICLine(20,'let s1z$ = "42.44"')
+	blk.addBASICLine(30,'let c = len(s1$):d = len(s1z$)')
+	blk.addBASICLine(40,'array12(1) = 1011:strarr0$(1) = "Entry#2":let e = d*c')
 	#
 	if False:
 		for i in range(0,20):

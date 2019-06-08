@@ -1,16 +1,22 @@
 Main
 ----
-- assignment and assignment creation. Concrete strings on assignment (!)
+- assignment automatic creation (variables only)
 - test this works.
-- array dimension.
+- rewrite the test framework (no arrays yet) to generate BASIC code.
+- array dimension, memory allocation, update the test framework.
+- update the old dump memory code.
 
 Fixes
 -----
+- concreting null strings, use a space in the block for this which is always $00
+  so we don't end up with lots of NULL strings.
 - allocating temp space, even size so every address is even.
 - allocating temp space, there is enough - do on allocation not reset.
 - allocating concrete space (a$ = "hello" would not do temp space !)
 - allocating variable space, there's enough
 - expressions stack sizes and spacing and testing
 - writing null strings all share the same one rather than concreting.
-- garbage collection.
+- garbage collection (not the specialist NULL strings !)
 - modulus arithmetic error (test_math does not check %) sign issue.
+
+

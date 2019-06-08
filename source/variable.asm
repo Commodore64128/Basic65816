@@ -25,7 +25,7 @@ VariableAccessExpression:
 		;
 		lda 	(DCodePtr)					; get the first token, push on stack
 		pha 
-		jsr 	VariableFind 				; try to find the variable
+		jsr 	VariableFind 				; try to find the variables
 		sta 	DVariablePtr 				; store the result in DVariablePtr
 		bcc 	_VANError
 		;
@@ -33,37 +33,14 @@ VariableAccessExpression:
 		;
 		pla 								; get and save that first token
 		pha
+		tay 								; put first token in Y.
 		and 	#$1000 						; is it an array ?
 		beq 	_VANNotArray
 		;
 		;		Subscript it. If you do this DVariablePtr points to record+4 - the high subscript
 		;
-		lda 	DVariablePtr 				; push the variable address on the stack as well.
-		pha		
-		jsr		EvaluateNextInteger 		; get the subscript
-		jsr 	ExpectRightBracket 			; skip right bracket.
-		cpy 	#0 							; msword must be zero
-		bne 	_VANSubscript
-		cmp 	(DVariablePtr)				; the subscript is at +4, so check against that.
-		beq 	_VANSubOkay 				; fail if subscript > high subscript
-		bcs 	_VANSubscript
-_VANSubOkay:
-		asl 	a 							; double lsword
-		sta 	DTemp1	 					; 2 x subscript in DTemp1
-
-		pla 								; restore DVariablePtr
-		sta 	DVariablePtr
-
-		pla 								; get and save that first token
-		pha
-		and 	#$2000 						; is it a string ?
-		bne 	_VANNotString  				; if not, i.e. it is an integeer
-		asl 	DTemp1 						; double subscript again (32 bit word)
-_VANNotString
-		lda 	DVariablePtr 				; variable address
-		clc 								; add 2 to get it past the high subscript
-		adc 	#2
-		adc 	DTemp1 						; add the subscript
+		lda 	DVariablePtr 				; variable pointer into A,first token is in Y
+		jsr 	VariableSubscript			; index calculation
 		sta 	DVariablePtr 				; and write it back.
 		;
 		;		Get value and type.
@@ -84,8 +61,6 @@ _VANLoadLower:
 
 _VANError:
 		#error	"Variable unknown"
-_VANSubscript:
-		#error 	"Bad Array Subscript"
 
 ; *******************************************************************************************
 ;
@@ -184,9 +159,43 @@ _VFError:
 
 ; *******************************************************************************************
 ;
+;		Subscript an Array Entry. On entry Y is the first token of the array name (for 
+;		typing) and A points to the max-subscript for the index (record +4 for arrays)
+;
+;		On exit A points to the respective data element which can be 2 or 4 bytes 
+;		depending.
 ;
 ; *******************************************************************************************
 
-VariableCreate:
+VariableSubscript:
+		phy 								; save token on stack
+		pha		 							; save variable address on stack.
+		jsr		EvaluateNextInteger 		; get the subscript
+		jsr 	ExpectRightBracket 			; skip right bracket.
+		cpy 	#0 							; msword must be zero
+		bne 	_VANSubscript
+		cmp 	(DVariablePtr)				; the subscript is at +4, so check against that.
+		beq 	_VANSubOkay 				; fail if subscript > high subscript
+		bcs 	_VANSubscript
+_VANSubOkay:
+		asl 	a 							; double lsword
+		sta 	DTemp1	 					; 2 x subscript in DTemp1
+
+		pla 								; restore DVariablePtr
+		sta 	DVariablePtr
+
+		pla 								; get and save that first token
+		and 	#$2000 						; is it a string ?
+		bne 	_VANNotString  				; if not, i.e. it is an integeer
+		asl 	DTemp1 						; double subscript again (32 bit word)
+_VANNotString
+		lda 	DVariablePtr 				; variable address
+		clc 								; add 2 to get it past the high subscript
+		adc 	#2
+		adc 	DTemp1 						; add the subscript
 		rts
+
+_VANSubscript:
+		#error 	"Bad Array Subscript"
+
 
