@@ -1,9 +1,9 @@
 ; *******************************************************************************************
 ; *******************************************************************************************
 ;
-;		Name : 		utility.asm
+;		Name : 		miscellany.asm
 ;		Purpose : 	Things that don't belong anywhere else.
-;		Date :		6th June 2019
+;		Date :		8th June 2019
 ;		Author : 	paul@robsons.org.uk
 ;
 ; *******************************************************************************************
@@ -16,7 +16,6 @@
 ; *******************************************************************************************
 
 Function_ASSERT: ;; assert
-		nop
 		jsr 	EvaluateInteger 			; something that returns an integer.
 		sty 	DTemp1 						; check if result is zero.
 		ora 	Dtemp1

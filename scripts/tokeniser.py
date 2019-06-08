@@ -50,7 +50,7 @@ class Tokeniser(object):
 			self.buffer.append((value & 0x7FFF) + 0x4000)			# number token
 			return m.group(2)
 		#
-		m = re.match("^([a-z][a-z0-9]*)(\\$?)(\\(?)(.*)$",s.lower())# identifier with possible $ (
+		m = re.match("^([a-zA-Z][a-zA-Z0-9]*)(\\$?)(\\(?)(.*)$",s)	# identifier with possible $ (
 		if m is not None:
 			ident = [self.convert(x) for x in m.group(1).upper()]	# shift into range
 			if len(ident) % 2 != 0:									# pad out to even length using zero.
@@ -113,6 +113,6 @@ Tokeniser.tokens = None
 
 if __name__ == "__main__":
 	tk = Tokeniser()
-	w = '>> len(42) 32769 abcde zz z ab ab$ ab( ab$( "abc" "" "abcd" '.split(" ")
+	w = '>> len(42) 32769 abcde zz z ab ab$ ab( ab$( "abc" "" "abcd" "VW"'.split(" ")
 	for b in w:
 		tk.tokeniseDebug(b)

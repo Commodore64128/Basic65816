@@ -35,6 +35,20 @@ class BasicBlock(object):
 		self.variables = {}														# variable info
 		self.lastProgramLineNumber = 0
 	#
+	#		Check we haven't run out of space.
+	#
+	def check(self):
+		low = self.readWord(self.baseAddress+BasicBlock.LOWPTR)					# get low/high
+		high = self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
+		assert low+1024 < high," *** PROGRAM FULL ***"
+	#
+	#		Show memory status
+	#
+	def showStatus(self):
+		low = self.readWord(self.baseAddress+BasicBlock.LOWPTR)					# get low/high
+		high = self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
+		print("Low memory ${0:04x} High Memory ${1:04x} Free Memory ${2:04x}".format(low,high,high-low))
+	#
 	#	Write binary out
 	#
 	def importFile(self,fileName):
@@ -46,6 +60,7 @@ class BasicBlock(object):
 	#	Write binary out
 	#
 	def exportFile(self,fileName):
+		self.check()
 		h = open(fileName,"wb")													# write data as bytes
 		h.write(bytes(self.data))
 		h.close()
@@ -73,7 +88,7 @@ class BasicBlock(object):
 	def allocateLowMemory(self,count):
 		addr = self.readWord(self.baseAddress+BasicBlock.LOWPTR)				# address to use
 		self.writeWord(self.baseAddress+BasicBlock.LOWPTR,addr+count)			# update offset
-		assert self.readWord(self.baseAddress+BasicBlock.LOWPTR) < self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
+		self.check()
 		return addr 
 	#
 	#		Allocate high memory (e.g. from top down)
@@ -81,7 +96,7 @@ class BasicBlock(object):
 	def allocateHighMemory(self,count):
 		addr = self.readWord(self.baseAddress+BasicBlock.HIGHPTR) - count		# address to use
 		self.writeWord(self.baseAddress+BasicBlock.HIGHPTR,addr)				# update new high address
-		assert self.readWord(self.baseAddress+BasicBlock.LOWPTR) < self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
+		self.check()
 		return addr
 	#
 	#		Read a byte from memory

@@ -25,7 +25,7 @@ StartOfBasicCode:
 		.include "binary/multiply.asm"
 		.include "unary/simpleunary.asm" 			; unary functions.
 
-		.include "commands/utility.asm"				; commands
+		.include "commands/miscellany.asm"			; commands
 		.include "commands/let.asm"
 		.include "commands/run.asm"
 
@@ -58,5 +58,4 @@ SwitchBasicInstance:
 		plb
 		plb 
 
-		nop
 		jmp 	Function_RUN

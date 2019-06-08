@@ -44,6 +44,12 @@ class Variable(object):
 	def getValue(self):
 		return self.value
 	#
+	#		Return the name and value for a randomly chosen part of this variable.
+	#		(if it's not an array you have no choice, obviously)
+	#
+	def pickElement(self):
+		return [self.getFullIdentifier(),self.getValue()]
+	#
 	#		Get the default value for this object if none is provided
 	#
 	def defaultValue(self):
@@ -136,6 +142,7 @@ class Variable(object):
 			print("== Linking in ==")
 		varBlock.writeWord(address+0,varBlock.readWord(self.hashPointer))		# Patch into list.
 		varBlock.writeWord(self.hashPointer,address)
+		return self
 
 	#
 	#		Convert a string item - ID:x or ST:x to an identifier token or prefix string
@@ -214,6 +221,12 @@ class Array(Variable):
 		return Variable.getFullIdentifier(self)+"("+str(self.highSubscript)+")"
 	def getTokenIdentifier(self):
 		return Variable.getFullIdentifier(self)+"("
+	#
+	#		Return the name and value for a randomly chosen part of this array
+	#
+	def pickElement(self):
+		n = random.randint(0,len(self.getValue())-1)
+		return [self.getTokenIdentifier()+str(n)+")",self.getValue()[n]]
 	#
 	#		The token header has the array high subscript added as the third word.
 	#

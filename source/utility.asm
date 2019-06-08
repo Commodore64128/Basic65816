@@ -17,6 +17,7 @@
 	
 ErrorHandler:
 		rep 	#$30 						; in case we changed it.
+		plx 								; address of error message -1
 		nop
 _EH1:	bra 	_EH1
 

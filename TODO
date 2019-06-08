@@ -1,8 +1,7 @@
 Main
 ----
-- assert and running programs.
-- checking arithmetic etc. from random data (test)
-- assignment and assignment creation. Concrete strings (!)
+- checking arithmetic, comparisons, functions etc. from random data (test)
+- assignment and assignment creation. Concrete strings on assignment (!)
 - array dimension.
 
 Fixes
