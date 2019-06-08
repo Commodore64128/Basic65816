@@ -16,13 +16,20 @@ from variables import *
 
 
 if __name__ == "__main__":
-	random.seed(43)
 	blk = ListableVariableBlock(0x4000,0x8000)
+	#
+	#		Pick a random seed, but one we can retry if required.
+	#
+	random.seed()
+	seed = random.randint(0,65535)
+	#seed = 61564
+	print("***** ROOT SEED {0} *****".format(seed))
+	random.seed(seed)
 	#
 	#		Create a pile of variable objects
 	#
 	variables = []
-	for i in range(0,120):
+	for i in range(0,100):
 		variables.append(IntegerVariable())
 		variables.append(StringVariable())
 		variables.append(IntegerArray())
@@ -30,7 +37,7 @@ if __name__ == "__main__":
 	#
 	#		Generate code to check that the variable does equal the value.
 	#
-	for i in range(0,1000):
+	for i in range(0,800):
 		var = variables[random.randint(0,len(variables)-1)]
 		check = var.pickElement()
 		if var.isString:

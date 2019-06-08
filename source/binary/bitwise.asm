@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Binary_And: ;; and
+Binary_And: ;; &
 	jsr 	CheckBothNumeric 					; check both values are numeric
 	lda		EXSValueL+0,x
 	and 	EXSValueL+2,x
@@ -31,7 +31,7 @@ Binary_And: ;; and
 ;
 ; *******************************************************************************************
 
-Binary_Or: ;; or
+Binary_Or: ;; |
 	jsr 	CheckBothNumeric 					; check both values are numeric
 	lda		EXSValueL+0,x
 	ora 	EXSValueL+2,x
@@ -47,7 +47,7 @@ Binary_Or: ;; or
 ;
 ; *******************************************************************************************
 
-Binary_Xor: ;; xor 
+Binary_Xor: ;; ^
 	jsr 	CheckBothNumeric 					; check both values are numeric
 	lda		EXSValueL+0,x
 	eor 	EXSValueL+2,x

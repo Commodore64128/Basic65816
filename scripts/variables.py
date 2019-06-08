@@ -23,14 +23,15 @@ from basicblock import *
 class Variable(object):
 	#
 	def __init__(self,isString,name = None,defValue = None):
+		if Variable.tokeniser is None:											# create tokeniser shared.
+			Variable.tokeniser = Tokeniser()
+
 		self.name = name.lower() if name is not None else name 					# Set default values
 		self.isString = isString		 										
 		while self.name is None or self.name in Variable.usedIdentifiers:		# Generate unique name if required
 			self.name = self.generateIdentifier().lower()
 		Variable.usedIdentifiers[self.name] = True								# Mark as used
 		self.value = self.defaultValue() if defValue is None else defValue 		# Generate def value if required
-		if Variable.tokeniser is None:											# create tokeniser shared.
-			Variable.tokeniser = Tokeniser()
 	#
 	#		Get identifiers - name only, full description and one used to tokenise.
 	#
@@ -64,6 +65,8 @@ class Variable(object):
 		s1 = chr(random.randint(1,26)+96)										# first is A-Z
 		for n in range(0,random.randint(0,3)):									# add A-Z0-9 on.
 			s1 = s1 + chr(random.randint(1,26)+96 if random.randint(0,2) > 0 else random.randint(48,57))
+		if Variable.tokeniser.findToken(s1):
+			return self.generateIdentifier()
 		return s1
 	#
 	#		Convert to a displayable format.

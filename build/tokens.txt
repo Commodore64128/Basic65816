@@ -5,7 +5,7 @@
 ## ********************************************************************************
 
 [0]
-	and or xor									## bitwise operators.
+	&	|	^									## bitwise operators.
 
 [1]	
 	< 	> 	= 	<= 	>= 	<> 						## signed comparators
@@ -14,7 +14,7 @@
 	+	- 										## additive operators
 
 [3]	
-	*		/		mod							## multiply and divide, modulus, signed
+	*		/		%							## multiply and divide, modulus, signed
 	>> 		<< 									## logical shift left and right, zeros shifted in
 
 

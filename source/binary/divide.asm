@@ -99,7 +99,7 @@ Binary_DivNegate:
 ;
 ; *******************************************************************************************
 
-Binary_Modulus: ;; mod
+Binary_Modulus: ;; %
 	jsr 	Binary_Divide 						; do the divide
 	lda 	DTemp1+0 							; copy modulus into data area.
 	sta 	EXSValueL+0,x

@@ -3,9 +3,9 @@
 ;
 CommandJumpTable:
 	.word IllegalToken & $FFFF ; for the $0000 token.
-	.word Binary_And               & $FFFF ; token $2001 "and"
-	.word Binary_Or                & $FFFF ; token $2002 "or"
-	.word Binary_Xor               & $FFFF ; token $2003 "xor"
+	.word Binary_And               & $FFFF ; token $2001 "&"
+	.word Binary_Or                & $FFFF ; token $2002 "|"
+	.word Binary_Xor               & $FFFF ; token $2003 "^"
 	.word Binary_Less              & $FFFF ; token $2204 "<"
 	.word Binary_Greater           & $FFFF ; token $2205 ">"
 	.word Binary_Equals            & $FFFF ; token $2206 "="
@@ -16,7 +16,7 @@ CommandJumpTable:
 	.word Binary_Subtract          & $FFFF ; token $240b "-"
 	.word Binary_Multiply          & $FFFF ; token $260c "*"
 	.word Binary_Divide            & $FFFF ; token $260d "/"
-	.word Binary_Modulus           & $FFFF ; token $260e "mod"
+	.word Binary_Modulus           & $FFFF ; token $260e "%"
 	.word Binary_ShiftRight        & $FFFF ; token $260f ">>"
 	.word Binary_ShiftLeft         & $FFFF ; token $2610 "<<"
 	.word Function_Random          & $FFFF ; token $3011 "rnd()"
@@ -39,9 +39,9 @@ CommandJumpTable:
 ;	Token text table. Byte is typeID[7:4] length[3:0]
 ;
 TokenText:
-	 .text $04,"and"      ; token $2001
-	 .text $03,"or"       ; token $2002
-	 .text $04,"xor"      ; token $2003
+	 .text $02,"&"        ; token $2001
+	 .text $02,"|"        ; token $2002
+	 .text $02,"^"        ; token $2003
 	 .text $12,"<"        ; token $2204
 	 .text $12,">"        ; token $2205
 	 .text $12,"="        ; token $2206
@@ -52,7 +52,7 @@ TokenText:
 	 .text $22,"-"        ; token $240b
 	 .text $32,"*"        ; token $260c
 	 .text $32,"/"        ; token $260d
-	 .text $34,"mod"      ; token $260e
+	 .text $32,"%"        ; token $260e
 	 .text $33,">>"       ; token $260f
 	 .text $33,"<<"       ; token $2610
 	 .text $86,"rnd()"    ; token $3011
@@ -75,9 +75,9 @@ TokenText:
 ;
 ;	Constants
 ;
-andTokenID                       = $2001
-orTokenID                        = $2002
-xorTokenID                       = $2003
+ampersandTokenID                 = $2001
+barTokenID                       = $2002
+hatTokenID                       = $2003
 lessTokenID                      = $2204
 greaterTokenID                   = $2205
 equalTokenID                     = $2206
@@ -88,7 +88,7 @@ plusTokenID                      = $240a
 minusTokenID                     = $240b
 starTokenID                      = $260c
 slashTokenID                     = $260d
-modTokenID                       = $260e
+percentTokenID                   = $260e
 greatergreaterTokenID            = $260f
 lesslessTokenID                  = $2610
 rndlparenrparenTokenID           = $3011
