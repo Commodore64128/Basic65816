@@ -127,7 +127,7 @@ class BasicBlock(object):
 		print("{0:5} {1}".format(lineNumber,code))
 		codeLine = self.tokeniser.tokenise(code) 								# convert to tokens
 		codeLine.append(0)														# EOL
-		codeLine.insert(0,lineNumber|0x8000) 									# insert line number
+		codeLine.insert(0,lineNumber) 											# insert line number
 		codeLine.insert(0,len(codeLine)*2+2)									# skip
 		codeLine.append(0)														# final program end marker
 		for t in codeLine:														# write it out

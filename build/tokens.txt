@@ -26,7 +26,10 @@
 	, 	;	:	(	)
 
 [keyword]										
-	let  										## assignment	
+	let 										## assignment	
+	assert 										## debugging helper
+	end 										## end program
+	run 										## run program.
 
 [keyword+]
 	while

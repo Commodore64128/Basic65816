@@ -111,7 +111,8 @@ class ListableVariableBlock(VariableBlock):
 if __name__ == "__main__":
 	random.seed(43)
 	blk = ListableVariableBlock(0x4000,0x8000)
-	blk.addBASICLine(10,'"["+strarr0$(0)+"]"')
+	blk.addBASICLine(10,'assert 42:assert -42')
+	blk.addBASICLine(20,'assert 242')
 	#
 	if False:
 		for i in range(0,20):

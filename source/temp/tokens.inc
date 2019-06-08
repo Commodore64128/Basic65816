@@ -28,9 +28,12 @@ CommandJumpTable:
 	.word IllegalToken             & $FFFF ; token $3217 ":"
 	.word IllegalToken             & $FFFF ; token $3218 "("
 	.word IllegalToken             & $FFFF ; token $3219 ")"
-	.word IllegalToken             & $FFFF ; token $3e1a "let"
-	.word IllegalToken             & $FFFF ; token $3c1b "while"
-	.word IllegalToken             & $FFFF ; token $3a1c "wend"
+	.word Function_Let             & $FFFF ; token $3e1a "let"
+	.word Function_ASSERT          & $FFFF ; token $3e1b "assert"
+	.word Function_END             & $FFFF ; token $3e1c "end"
+	.word Function_RUN             & $FFFF ; token $3e1d "run"
+	.word IllegalToken             & $FFFF ; token $3c1e "while"
+	.word IllegalToken             & $FFFF ; token $3a1f "wend"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -62,8 +65,11 @@ TokenText:
 	 .text $92,"("        ; token $3218
 	 .text $92,")"        ; token $3219
 	 .text $f4,"let"      ; token $3e1a
-	 .text $e6,"while"    ; token $3c1b
-	 .text $d5,"wend"     ; token $3a1c
+	 .text $f7,"assert"   ; token $3e1b
+	 .text $f4,"end"      ; token $3e1c
+	 .text $f4,"run"      ; token $3e1d
+	 .text $e6,"while"    ; token $3c1e
+	 .text $d5,"wend"     ; token $3a1f
 	.byte $00
 
 ;
@@ -95,5 +101,8 @@ colonTokenID                     = $3217
 lparenTokenID                    = $3218
 rparenTokenID                    = $3219
 letTokenID                       = $3e1a
-whileTokenID                     = $3c1b
-wendTokenID                      = $3a1c
+assertTokenID                    = $3e1b
+endTokenID                       = $3e1c
+runTokenID                       = $3e1d
+whileTokenID                     = $3c1e
+wendTokenID                      = $3a1f

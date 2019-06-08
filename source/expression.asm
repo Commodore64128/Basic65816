@@ -65,6 +65,8 @@ _ELConstantShift:
 		;
 _ELConstant:
 		lda 	(DCodePtr)					; get the constant value
+		sec  								; shift it in the range 0-32767
+		sbc 	#$4000
 		asl 	a 							; shift it left, losing bit 15
 		lsr 	DConstantShift 				; shift constant right into carry.
 		ror 	a 							; rotate that into the constant value

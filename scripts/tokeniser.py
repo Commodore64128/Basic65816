@@ -47,7 +47,7 @@ class Tokeniser(object):
 			assert value < 32768 * 4096,"Out of range "+s 			# too big.
 			if value >= 32768: 										# constant shift ?
 				self.buffer.append((value >> 15) | 0x1000)
-			self.buffer.append((value & 0x7FFF) | 0x8000)			# number token
+			self.buffer.append((value & 0x7FFF) + 0x4000)			# number token
 			return m.group(2)
 		#
 		m = re.match("^([a-z][a-z0-9]*)(\\$?)(\\(?)(.*)$",s.lower())# identifier with possible $ (

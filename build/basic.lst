@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.53.1515? listing file
 ; tass64 --m65816 -f -q -o basic.bin -L basic.lst ../source/start.asm
-; Sat Jun  8 10:56:56 2019
+; Sat Jun  8 14:10:24 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -17,7 +17,7 @@
 .000c	a9 02 00	lda #$0002		lda 	#CodeSpace >> 16 						; put the page number in A ($2)
 .000f	a2 00 40	ldx #$4000		ldx 	#CodeSpace & $FFFF 						; and the base address in X ($4000)
 .0012	a0 00 c0	ldy #$c000		ldy 	#CodeEndSpace & $FFFF					; and the end address in Y ($C000)
-.0015	5c 00 07 01	jmp $010700		jmp 	SwitchBasicInstance
+.0015	5c 8d 07 01	jmp $01078d		jmp 	SwitchBasicInstance
 
 ;******  Processing file: ../source/basic.asm
 
@@ -39,65 +39,71 @@
 ;******  Processing file: ../source/temp/tokens.inc
 
 .010000					CommandJumpTable:
->010000	d7 02					.word IllegalToken & $FFFF ; for the $0000 token.
->010002	64 04					.word Binary_And               & $FFFF ; token $2001 "and"
->010004	74 04					.word Binary_Or                & $FFFF ; token $2002 "or"
->010006	84 04					.word Binary_Xor               & $FFFF ; token $2003 "xor"
->010008	c8 04					.word Binary_Less              & $FFFF ; token $2204 "<"
->01000a	2f 05					.word Binary_Greater           & $FFFF ; token $2205 ">"
->01000c	94 04					.word Binary_Equals            & $FFFF ; token $2206 "="
->01000e	11 05					.word Binary_LessEqual         & $FFFF ; token $2207 "<="
->010010	f3 04					.word Binary_GreaterEqual      & $FFFF ; token $2208 ">="
->010012	ae 04					.word Binary_NotEquals         & $FFFF ; token $2209 "<>"
->010014	ae 03					.word Binary_Add               & $FFFF ; token $240a "+"
->010016	2f 04					.word Binary_Subtract          & $FFFF ; token $240b "-"
->010018	3b 06					.word Binary_Multiply          & $FFFF ; token $260c "*"
->01001a	b8 05					.word Binary_Divide            & $FFFF ; token $260d "/"
->01001c	2f 06					.word Binary_Modulus           & $FFFF ; token $260e "mod"
->01001e	40 04					.word Binary_ShiftRight        & $FFFF ; token $260f ">>"
->010020	52 04					.word Binary_ShiftLeft         & $FFFF ; token $2610 "<<"
->010022	c9 06					.word Function_Random          & $FFFF ; token $3011 "rnd()"
->010024	a9 06					.word Function_Sgn             & $FFFF ; token $3012 "sgn("
->010026	85 06					.word Function_Abs             & $FFFF ; token $3013 "abs("
->010028	6f 06					.word Function_Len             & $FFFF ; token $3014 "len("
->01002a	d7 02					.word IllegalToken             & $FFFF ; token $3215 ","
->01002c	d7 02					.word IllegalToken             & $FFFF ; token $3216 ";"
->01002e	d7 02					.word IllegalToken             & $FFFF ; token $3217 ":"
->010030	d7 02					.word IllegalToken             & $FFFF ; token $3218 "("
->010032	d7 02					.word IllegalToken             & $FFFF ; token $3219 ")"
->010034	d7 02					.word IllegalToken             & $FFFF ; token $3e1a "let"
->010036	d7 02					.word IllegalToken             & $FFFF ; token $3c1b "while"
->010038	d7 02					.word IllegalToken             & $FFFF ; token $3a1c "wend"
-.01003a					TokenText:
->01003a	04 61 6e 64				 .text $04,"and"      ; token $2001
->01003e	03 6f 72				 .text $03,"or"       ; token $2002
->010041	04 78 6f 72				 .text $04,"xor"      ; token $2003
->010045	12 3c					 .text $12,"<"        ; token $2204
->010047	12 3e					 .text $12,">"        ; token $2205
->010049	12 3d					 .text $12,"="        ; token $2206
->01004b	13 3c 3d				 .text $13,"<="       ; token $2207
->01004e	13 3e 3d				 .text $13,">="       ; token $2208
->010051	13 3c 3e				 .text $13,"<>"       ; token $2209
->010054	22 2b					 .text $22,"+"        ; token $240a
->010056	22 2d					 .text $22,"-"        ; token $240b
->010058	32 2a					 .text $32,"*"        ; token $260c
->01005a	32 2f					 .text $32,"/"        ; token $260d
->01005c	34 6d 6f 64				 .text $34,"mod"      ; token $260e
->010060	33 3e 3e				 .text $33,">>"       ; token $260f
->010063	33 3c 3c				 .text $33,"<<"       ; token $2610
->010066	86 72 6e 64 28 29			 .text $86,"rnd()"    ; token $3011
->01006c	85 73 67 6e 28				 .text $85,"sgn("     ; token $3012
->010071	85 61 62 73 28				 .text $85,"abs("     ; token $3013
->010076	85 6c 65 6e 28				 .text $85,"len("     ; token $3014
->01007b	92 2c					 .text $92,","        ; token $3215
->01007d	92 3b					 .text $92,";"        ; token $3216
->01007f	92 3a					 .text $92,":"        ; token $3217
->010081	92 28					 .text $92,"("        ; token $3218
->010083	92 29					 .text $92,")"        ; token $3219
->010085	f4 6c 65 74				 .text $f4,"let"      ; token $3e1a
->010089	e6 77 68 69 6c 65			 .text $e6,"while"    ; token $3c1b
->01008f	d5 77 65 6e 64				 .text $d5,"wend"     ; token $3a1c
->010094	00					.byte $00
+>010000	f0 02					.word IllegalToken & $FFFF ; for the $0000 token.
+>010002	7d 04					.word Binary_And               & $FFFF ; token $2001 "and"
+>010004	8d 04					.word Binary_Or                & $FFFF ; token $2002 "or"
+>010006	9d 04					.word Binary_Xor               & $FFFF ; token $2003 "xor"
+>010008	e1 04					.word Binary_Less              & $FFFF ; token $2204 "<"
+>01000a	48 05					.word Binary_Greater           & $FFFF ; token $2205 ">"
+>01000c	ad 04					.word Binary_Equals            & $FFFF ; token $2206 "="
+>01000e	2a 05					.word Binary_LessEqual         & $FFFF ; token $2207 "<="
+>010010	0c 05					.word Binary_GreaterEqual      & $FFFF ; token $2208 ">="
+>010012	c7 04					.word Binary_NotEquals         & $FFFF ; token $2209 "<>"
+>010014	c7 03					.word Binary_Add               & $FFFF ; token $240a "+"
+>010016	48 04					.word Binary_Subtract          & $FFFF ; token $240b "-"
+>010018	54 06					.word Binary_Multiply          & $FFFF ; token $260c "*"
+>01001a	d1 05					.word Binary_Divide            & $FFFF ; token $260d "/"
+>01001c	48 06					.word Binary_Modulus           & $FFFF ; token $260e "mod"
+>01001e	59 04					.word Binary_ShiftRight        & $FFFF ; token $260f ">>"
+>010020	6b 04					.word Binary_ShiftLeft         & $FFFF ; token $2610 "<<"
+>010022	e2 06					.word Function_Random          & $FFFF ; token $3011 "rnd()"
+>010024	c2 06					.word Function_Sgn             & $FFFF ; token $3012 "sgn("
+>010026	9e 06					.word Function_Abs             & $FFFF ; token $3013 "abs("
+>010028	88 06					.word Function_Len             & $FFFF ; token $3014 "len("
+>01002a	f0 02					.word IllegalToken             & $FFFF ; token $3215 ","
+>01002c	f0 02					.word IllegalToken             & $FFFF ; token $3216 ";"
+>01002e	f0 02					.word IllegalToken             & $FFFF ; token $3217 ":"
+>010030	f0 02					.word IllegalToken             & $FFFF ; token $3218 "("
+>010032	f0 02					.word IllegalToken             & $FFFF ; token $3219 ")"
+>010034	35 07					.word Function_Let             & $FFFF ; token $3e1a "let"
+>010036	19 07					.word Function_ASSERT          & $FFFF ; token $3e1b "assert"
+>010038	36 07					.word Function_END             & $FFFF ; token $3e1c "end"
+>01003a	38 07					.word Function_RUN             & $FFFF ; token $3e1d "run"
+>01003c	f0 02					.word IllegalToken             & $FFFF ; token $3c1e "while"
+>01003e	f0 02					.word IllegalToken             & $FFFF ; token $3a1f "wend"
+.010040					TokenText:
+>010040	04 61 6e 64				 .text $04,"and"      ; token $2001
+>010044	03 6f 72				 .text $03,"or"       ; token $2002
+>010047	04 78 6f 72				 .text $04,"xor"      ; token $2003
+>01004b	12 3c					 .text $12,"<"        ; token $2204
+>01004d	12 3e					 .text $12,">"        ; token $2205
+>01004f	12 3d					 .text $12,"="        ; token $2206
+>010051	13 3c 3d				 .text $13,"<="       ; token $2207
+>010054	13 3e 3d				 .text $13,">="       ; token $2208
+>010057	13 3c 3e				 .text $13,"<>"       ; token $2209
+>01005a	22 2b					 .text $22,"+"        ; token $240a
+>01005c	22 2d					 .text $22,"-"        ; token $240b
+>01005e	32 2a					 .text $32,"*"        ; token $260c
+>010060	32 2f					 .text $32,"/"        ; token $260d
+>010062	34 6d 6f 64				 .text $34,"mod"      ; token $260e
+>010066	33 3e 3e				 .text $33,">>"       ; token $260f
+>010069	33 3c 3c				 .text $33,"<<"       ; token $2610
+>01006c	86 72 6e 64 28 29			 .text $86,"rnd()"    ; token $3011
+>010072	85 73 67 6e 28				 .text $85,"sgn("     ; token $3012
+>010077	85 61 62 73 28				 .text $85,"abs("     ; token $3013
+>01007c	85 6c 65 6e 28				 .text $85,"len("     ; token $3014
+>010081	92 2c					 .text $92,","        ; token $3215
+>010083	92 3b					 .text $92,";"        ; token $3216
+>010085	92 3a					 .text $92,":"        ; token $3217
+>010087	92 28					 .text $92,"("        ; token $3218
+>010089	92 29					 .text $92,")"        ; token $3219
+>01008b	f4 6c 65 74				 .text $f4,"let"      ; token $3e1a
+>01008f	f7 61 73 73 65 72 74			 .text $f7,"assert"   ; token $3e1b
+>010096	f4 65 6e 64				 .text $f4,"end"      ; token $3e1c
+>01009a	f4 72 75 6e				 .text $f4,"run"      ; token $3e1d
+>01009e	e6 77 68 69 6c 65			 .text $e6,"while"    ; token $3c1e
+>0100a4	d5 77 65 6e 64				 .text $d5,"wend"     ; token $3a1f
+>0100a9	00					.byte $00
 =$2001					andTokenID                       = $2001
 =$2002					orTokenID                        = $2002
 =$2003					xorTokenID                       = $2003
@@ -124,8 +130,11 @@
 =$3218					lparenTokenID                    = $3218
 =$3219					rparenTokenID                    = $3219
 =$3e1a					letTokenID                       = $3e1a
-=$3c1b					whileTokenID                     = $3c1b
-=$3a1c					wendTokenID                      = $3a1c
+=$3e1b					assertTokenID                    = $3e1b
+=$3e1c					endTokenID                       = $3e1c
+=$3e1d					runTokenID                       = $3e1d
+=$3c1e					whileTokenID                     = $3c1e
+=$3a1f					wendTokenID                      = $3a1f
 
 ;******  Return to file: ../source/basic.asm
 
@@ -147,6 +156,7 @@
 =28					DConstantShift = DPBaseAddress + 28 		; constant shift store.
 =30					DVariablePtr = DPBaseAddress + 30 			; address of found variable.
 =32					DHashTablePtr = DPBaseAddress + 32 			; address of hash entry of searched variable.
+=34					DLineNumber = DPBaseAddress + 34 			; current line number.
 =$100					EXSBase = $100 								; Initial value of X at lowest stack level.
 =0					EXSValueL = 0 								; Low word
 =16					EXSValueH = 16  							; High word
@@ -157,941 +167,1015 @@
 
 ;******  Processing file: ../source/expression.asm
 
-.010095					Evaluate:
-.010095	a2 00 01	ldx #$0100			ldx		#EXSBase 					; reset the stack
-.010098	a9 00 00	lda #$0000			lda 	#0<<9 						; start at the lowest precedence level.
-.01009b					EvaluateLevel:
-.01009b	29 ff 7f	and #$7fff			and 	#$7FFF 						; zero type bit.
-.01009e	95 20		sta $20,x			sta 	EXSPrecType+0,x 			; save precedence level.
-.0100a0	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the next token
-.0100a2	c9 00 c0	cmp #$c000			cmp 	#$C000 						; if $C000-$CFFF then variable.
-.0100a5	b0 75		bcs $01011c			bcs 	_ELVariable
-.0100a7	c9 00 40	cmp #$4000			cmp 	#$4000 						; if $4000-$BFFF then constant
-.0100aa	b0 16		bcs $0100c2			bcs 	_ELConstant
-.0100ac	c9 00 10	cmp #$1000			cmp 	#$1000 						; if $0000-$00FF then it's a end of line or string.
-.0100af	90 7b		bcc $01012c			bcc 	_ELStringConstant
-.0100b1	c9 00 20	cmp #$2000			cmp 	#$2000 						; if $1000-$1FFF then it's a constant shift
-.0100b4	90 03		bcc $0100b9			bcc 	_ELConstantShift
-.0100b6	82 90 00	brl $010149			brl 	_ELUnaryKeyword 			; if $2000-$3FFF then it's a unary operator/keyword
-.0100b9					_ELConstantShift:
-.0100b9	29 ff 0f	and #$0fff			and 	#$0FFF 						; mask out bits 11-0
-.0100bc	85 1c		sta $1c				sta 	DConstantShift 				; save in constant shift
-.0100be	e6 06		inc $06				inc 	DCodePtr 					; skip over the token.
-.0100c0	e6 06		inc $06				inc 	DCodePtr
-.0100c2					_ELConstant:
-.0100c2	b2 06		lda ($06)			lda 	(DCodePtr)					; get the constant value
-.0100c4	0a		asl a				asl 	a 							; shift it left, losing bit 15
-.0100c5	46 1c		lsr $1c				lsr 	DConstantShift 				; shift constant right into carry.
-.0100c7	6a		ror a				ror 	a 							; rotate that into the constant value
-.0100c8	95 00		sta $00,x			sta 	EXSValueL+0,x 				; save as low word
-.0100ca	a5 1c		lda $1c				lda 	DConstantShift 				; constant shift is high word.
-.0100cc	95 10		sta $10,x			sta 	EXSValueH+0,x
-.0100ce	64 1c		stz $1c				stz 	DConstantShift 				; clear the constant shift
-.0100d0	e6 06		inc $06				inc 	DCodePtr 					; skip over constant
-.0100d2	e6 06		inc $06				inc 	DCodePtr
-.0100d4					_ELGotAtom:
-.0100d4	b2 06		lda ($06)			lda 	(DCodePtr) 					; get code pointer.
-.0100d6	a8		tay				tay 								; save in Y
-.0100d7	29 00 f0	and #$f000			and 	#$F000 						; is it 0010 xxxk e.g. a binary operator.
-.0100da	c9 00 20	cmp #$2000			cmp 	#$2000 						; if not then exit
-.0100dd	d0 35		bne $010114			bne 	_ELExit
-.0100df	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; get precedence/type
-.0100e1	29 00 1e	and #$1e00			and 	#15 << 9 					; mask out the precedence bits.
-.0100e4	85 08		sta $08				sta 	DTemp1 						; save in temporary register
-.0100e6	98		tya				tya 								; get the keyword token back
-.0100e7	29 00 1e	and #$1e00			and 	#15 << 9 					; mask out the precedence bits.
-.0100ea	c5 08		cmp $08				cmp 	DTemp1 						; compare against precedence.
-.0100ec	90 26		bcc $010114			bcc 	_ELExit 					; precedence too low, then exit.
-.0100ee	5a		phy				phy 								; save the binary operator on the stack
-.0100ef	e6 06		inc $06				inc 	DCodePtr 					; skip over the binary operator.
-.0100f1	e6 06		inc $06				inc 	DCodePtr
-.0100f3	18		clc				clc 								; try the next level up
-.0100f4	69 00 02	adc #$0200			adc 	#1 << 9
-.0100f7	e8		inx				inx 								; calculate the RHS at the next stack level.
-.0100f8	e8		inx				inx
-.0100f9	20 9b 00	jsr $01009b			jsr 	EvaluateLevel
-.0100fc	ca		dex				dex
-.0100fd	ca		dex				dex
-.0100fe	7a		ply				ply 								; get operator token back into Y
-.0100ff					_ELExecuteY:
-.0100ff	98		tya				tya
-.010100	29 ff 01	and #$01ff			and 	#$01FF 						; keyword ID.
-.010103	0a		asl a				asl 	a 							; double it as keyword vector table is word data
-.010104	9b		txy				txy 								; save X in Y
-.010105	aa		tax				tax 								; double keyword ID in X
-.010106	bf 00 00 01	lda $010000,x			lda 	CommandJumpTable,x 			; this is the vector address
-.01010a	bb		tyx				tyx 								; restore X.
-.01010b	8f 10 01 01	sta $010110			sta 	_ELCallRoutine+1 			; Self modifying, will not work in ROM.
-.01010f					_ELCallRoutine:
-.01010f	20 0f 01	jsr $01010f			jsr 	_ELCallRoutine 				; call the new address *MODIFIED*
-.010112	80 c0		bra $0100d4			bra 	_ELGotAtom 					; go round operator level again.
-.010114	b5 20		lda $20,x	_ELExit:lda 	EXSPrecType+0,x 			; type into carry
-.010116	0a		asl a				asl 	a
-.010117	b5 00		lda $00,x			lda 	EXSValueL+0,x 				; put result into YA
-.010119	b4 10		ldy $10,x			ldy 	EXSValueH+0,x
-.01011b	60		rts				rts
-.01011c					_ELVariable:
-.01011c	16 20		asl $20,x			asl 	EXSPrecType+0,x
-.01011e	20 dd 01	jsr $0101dd			jsr 	VariableAccessExpression	; this will be 'find variable, error if failed', get value.
-.010121	95 00		sta $00,x			sta 	EXSValueL+0,x 				; save variable contents in stack
-.010123	94 10		sty $10,x			sty 	EXSValueH+0,x
-.010125	76 20		ror $20,x			ror 	EXSPrecType+0,x
-.010127	80 ab		bra $0100d4			bra 	_ELGotAtom
-.010129					_ELSyntax
-.010129	82 bc 01	brl $0102e8			brl 	SyntaxError
-.01012c					_ELStringConstant:
-.01012c	09 00 00	ora #$0000			ora 	#0000 						; if it is $0000 then we have an error, end of line.
-.01012f	f0 f8		beq $010129			beq 	_ELSyntax
-.010131	a5 06		lda $06				lda 	DCodePtr 					; get the code pointer and add 2, to point to the string
-.010133	1a		inc a				inc 	a
-.010134	1a		inc a				inc 	a
-.010135	95 00		sta $00,x			sta 	EXSValueL+0,x 				; this is the low word
-.010137	74 10		stz $10,x			stz 	EXSValueH+0,x 				; high word is zero.
-.010139	b2 06		lda ($06)			lda 	(DCodePtr)					; get length to skip
-.01013b	18		clc				clc 								; add to string constant.
-.01013c	65 06		adc $06				adc 	DCodePtr
-.01013e	85 06		sta $06				sta 	DCodePtr
-.010140	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; set type to string
-.010142	09 00 80	ora #$8000			ora 	#$8000
-.010145	95 20		sta $20,x			sta 	EXSPrecType+0,x
-.010147	80 8b		bra $0100d4			bra 	_ELGotAtom
-.010149					_ELUnaryKeyword:
-.010149	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the next token
-.01014b	a8		tay				tay 								; put the token in Y.
-.01014c	e6 06		inc $06				inc 	DCodePtr 					; skip over it
-.01014e	e6 06		inc $06				inc 	DCodePtr
-.010150	29 00 1e	and #$1e00			and 	#$1E00 						; mask out the keyword type.
-.010153	c9 00 10	cmp #$1000			cmp 	#$1000 						; if it is xxx1 000x then it's a unary function
-.010156	f0 a7		beq $0100ff			beq 	_ELExecuteY					; go back and execute it
-.010158	c0 18 32	cpy #$3218			cpy 	#lparenTokenID 				; is it an open bracket ?
-.01015b	d0 11		bne $01016e			bne 	_ELUnaryOperator 			; it not, try unary operators.
-.01015d	20 94 01	jsr $010194			jsr 	EvaluateNext 				; evaluate the expression
-.010160	20 12 03	jsr $010312			jsr 	ExpectRightBracket 			; consume the right bracket.
-.010163					_ELCopy:
-.010163	b5 02		lda $02,x			lda 	EXSValueL+2,x 				; just copy the value
-.010165	95 00		sta $00,x			sta 	EXSValueL+0,x
-.010167	b5 12		lda $12,x			lda 	EXSValueH+2,x
-.010169	95 10		sta $10,x			sta 	EXSValueH+0,x
-.01016b	82 66 ff	brl $0100d4			brl 	_ELGotAtom 					; and continue.
-.01016e					_ELUnaryOperator:
-.01016e	5a		phy				phy 								; save the operator on the stack.
-.01016f	e8		inx				inx 								; this is like evaluate next
-.010170	e8		inx				inx
-.010171	a9 00 0e	lda #$0e00			lda 	#7<<9 						; except we use a very high precedence to make it atomic
-.010174	20 9b 00	jsr $01009b			jsr 	EvaluateLevel
-.010177	ca		dex				dex 								; unwind the stack.
-.010178	ca		dex				dex
-.010179	68		pla				pla 								; restore the unary operator.
-.01017a	c9 0b 24	cmp #$240b			cmp 	#minusTokenID				; -xxx is unary negation
-.01017d	f0 03		beq $010182			beq 	_ELMinus
-.01017f	4c e8 02	jmp $0102e8			jmp 	SyntaxError
-.010182					_ELMinus:
-.010182	38		sec				sec 								; do the negation calculation.
-.010183	a9 00 00	lda #$0000			lda 	#0
-.010186	f5 02		sbc $02,x			sbc 	EXSValueL+2,x
-.010188	95 00		sta $00,x			sta 	EXSValueL+0,x
-.01018a	a9 00 00	lda #$0000			lda 	#0
-.01018d	f5 12		sbc $12,x			sbc 	EXSValueH+2,x
-.01018f	95 10		sta $10,x			sta 	EXSValueH+0,x
-.010191	82 40 ff	brl $0100d4			brl 	_ELGotAtom					; and continue.
-.010194					EvaluateNext:
-.010194	e8		inx				inx
-.010195	e8		inx				inx
-.010196	a9 00 00	lda #$0000			lda 	#0<<9
-.010199	20 9b 00	jsr $01009b			jsr 	EvaluateLevel
-.01019c	ca		dex				dex
-.01019d	ca		dex				dex
-.01019e	60		rts				rts
-.01019f					EvaluateInteger:
-.01019f	20 95 00	jsr $010095			jsr 	Evaluate
-.0101a2	b0 01		bcs $0101a5			bcs 	EIType
-.0101a4	60		rts				rts
-.0101a5					EIType:
-.0101a5	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0101a8	4e 75 6d 62 65 72 20 65				.text 	"Number expected",$00 								; with this message
->0101b0	78 70 65 63 74 65 64 00
-.0101b8					EvaluateNextInteger:
-.0101b8	20 94 01	jsr $010194			jsr 	EvaluateNext
-.0101bb	b0 e8		bcs $0101a5			bcs 	EIType
+.0100aa					Evaluate:
+.0100aa	a2 00 01	ldx #$0100			ldx		#EXSBase 					; reset the stack
+.0100ad	a9 00 00	lda #$0000			lda 	#0<<9 						; start at the lowest precedence level.
+.0100b0					EvaluateLevel:
+.0100b0	29 ff 7f	and #$7fff			and 	#$7FFF 						; zero type bit.
+.0100b3	95 20		sta $20,x			sta 	EXSPrecType+0,x 			; save precedence level.
+.0100b5	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the next token
+.0100b7	c9 00 c0	cmp #$c000			cmp 	#$C000 						; if $C000-$CFFF then variable.
+.0100ba	b0 79		bcs $010135			bcs 	_ELVariable
+.0100bc	c9 00 40	cmp #$4000			cmp 	#$4000 						; if $4000-$BFFF then constant
+.0100bf	b0 16		bcs $0100d7			bcs 	_ELConstant
+.0100c1	c9 00 10	cmp #$1000			cmp 	#$1000 						; if $0000-$00FF then it's a end of line or string.
+.0100c4	90 7f		bcc $010145			bcc 	_ELStringConstant
+.0100c6	c9 00 20	cmp #$2000			cmp 	#$2000 						; if $1000-$1FFF then it's a constant shift
+.0100c9	90 03		bcc $0100ce			bcc 	_ELConstantShift
+.0100cb	82 94 00	brl $010162			brl 	_ELUnaryKeyword 			; if $2000-$3FFF then it's a unary operator/keyword
+.0100ce					_ELConstantShift:
+.0100ce	29 ff 0f	and #$0fff			and 	#$0FFF 						; mask out bits 11-0
+.0100d1	85 1c		sta $1c				sta 	DConstantShift 				; save in constant shift
+.0100d3	e6 06		inc $06				inc 	DCodePtr 					; skip over the token.
+.0100d5	e6 06		inc $06				inc 	DCodePtr
+.0100d7					_ELConstant:
+.0100d7	b2 06		lda ($06)			lda 	(DCodePtr)					; get the constant value
+.0100d9	38		sec				sec  								; shift it in the range 0-32767
+.0100da	e9 00 40	sbc #$4000			sbc 	#$4000
+.0100dd	0a		asl a				asl 	a 							; shift it left, losing bit 15
+.0100de	46 1c		lsr $1c				lsr 	DConstantShift 				; shift constant right into carry.
+.0100e0	6a		ror a				ror 	a 							; rotate that into the constant value
+.0100e1	95 00		sta $00,x			sta 	EXSValueL+0,x 				; save as low word
+.0100e3	a5 1c		lda $1c				lda 	DConstantShift 				; constant shift is high word.
+.0100e5	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0100e7	64 1c		stz $1c				stz 	DConstantShift 				; clear the constant shift
+.0100e9	e6 06		inc $06				inc 	DCodePtr 					; skip over constant
+.0100eb	e6 06		inc $06				inc 	DCodePtr
+.0100ed					_ELGotAtom:
+.0100ed	b2 06		lda ($06)			lda 	(DCodePtr) 					; get code pointer.
+.0100ef	a8		tay				tay 								; save in Y
+.0100f0	29 00 f0	and #$f000			and 	#$F000 						; is it 0010 xxxk e.g. a binary operator.
+.0100f3	c9 00 20	cmp #$2000			cmp 	#$2000 						; if not then exit
+.0100f6	d0 35		bne $01012d			bne 	_ELExit
+.0100f8	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; get precedence/type
+.0100fa	29 00 1e	and #$1e00			and 	#15 << 9 					; mask out the precedence bits.
+.0100fd	85 08		sta $08				sta 	DTemp1 						; save in temporary register
+.0100ff	98		tya				tya 								; get the keyword token back
+.010100	29 00 1e	and #$1e00			and 	#15 << 9 					; mask out the precedence bits.
+.010103	c5 08		cmp $08				cmp 	DTemp1 						; compare against precedence.
+.010105	90 26		bcc $01012d			bcc 	_ELExit 					; precedence too low, then exit.
+.010107	5a		phy				phy 								; save the binary operator on the stack
+.010108	e6 06		inc $06				inc 	DCodePtr 					; skip over the binary operator.
+.01010a	e6 06		inc $06				inc 	DCodePtr
+.01010c	18		clc				clc 								; try the next level up
+.01010d	69 00 02	adc #$0200			adc 	#1 << 9
+.010110	e8		inx				inx 								; calculate the RHS at the next stack level.
+.010111	e8		inx				inx
+.010112	20 b0 00	jsr $0100b0			jsr 	EvaluateLevel
+.010115	ca		dex				dex
+.010116	ca		dex				dex
+.010117	7a		ply				ply 								; get operator token back into Y
+.010118					_ELExecuteY:
+.010118	98		tya				tya
+.010119	29 ff 01	and #$01ff			and 	#$01FF 						; keyword ID.
+.01011c	0a		asl a				asl 	a 							; double it as keyword vector table is word data
+.01011d	9b		txy				txy 								; save X in Y
+.01011e	aa		tax				tax 								; double keyword ID in X
+.01011f	bf 00 00 01	lda $010000,x			lda 	CommandJumpTable,x 			; this is the vector address
+.010123	bb		tyx				tyx 								; restore X.
+.010124	8f 29 01 01	sta $010129			sta 	_ELCallRoutine+1 			; Self modifying, will not work in ROM.
+.010128					_ELCallRoutine:
+.010128	20 28 01	jsr $010128			jsr 	_ELCallRoutine 				; call the new address *MODIFIED*
+.01012b	80 c0		bra $0100ed			bra 	_ELGotAtom 					; go round operator level again.
+.01012d	b5 20		lda $20,x	_ELExit:lda 	EXSPrecType+0,x 			; type into carry
+.01012f	0a		asl a				asl 	a
+.010130	b5 00		lda $00,x			lda 	EXSValueL+0,x 				; put result into YA
+.010132	b4 10		ldy $10,x			ldy 	EXSValueH+0,x
+.010134	60		rts				rts
+.010135					_ELVariable:
+.010135	16 20		asl $20,x			asl 	EXSPrecType+0,x
+.010137	20 f6 01	jsr $0101f6			jsr 	VariableAccessExpression	; this will be 'find variable, error if failed', get value.
+.01013a	95 00		sta $00,x			sta 	EXSValueL+0,x 				; save variable contents in stack
+.01013c	94 10		sty $10,x			sty 	EXSValueH+0,x
+.01013e	76 20		ror $20,x			ror 	EXSPrecType+0,x
+.010140	80 ab		bra $0100ed			bra 	_ELGotAtom
+.010142					_ELSyntax
+.010142	82 bc 01	brl $010301			brl 	SyntaxError
+.010145					_ELStringConstant:
+.010145	09 00 00	ora #$0000			ora 	#0000 						; if it is $0000 then we have an error, end of line.
+.010148	f0 f8		beq $010142			beq 	_ELSyntax
+.01014a	a5 06		lda $06				lda 	DCodePtr 					; get the code pointer and add 2, to point to the string
+.01014c	1a		inc a				inc 	a
+.01014d	1a		inc a				inc 	a
+.01014e	95 00		sta $00,x			sta 	EXSValueL+0,x 				; this is the low word
+.010150	74 10		stz $10,x			stz 	EXSValueH+0,x 				; high word is zero.
+.010152	b2 06		lda ($06)			lda 	(DCodePtr)					; get length to skip
+.010154	18		clc				clc 								; add to string constant.
+.010155	65 06		adc $06				adc 	DCodePtr
+.010157	85 06		sta $06				sta 	DCodePtr
+.010159	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; set type to string
+.01015b	09 00 80	ora #$8000			ora 	#$8000
+.01015e	95 20		sta $20,x			sta 	EXSPrecType+0,x
+.010160	80 8b		bra $0100ed			bra 	_ELGotAtom
+.010162					_ELUnaryKeyword:
+.010162	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the next token
+.010164	a8		tay				tay 								; put the token in Y.
+.010165	e6 06		inc $06				inc 	DCodePtr 					; skip over it
+.010167	e6 06		inc $06				inc 	DCodePtr
+.010169	29 00 1e	and #$1e00			and 	#$1E00 						; mask out the keyword type.
+.01016c	c9 00 10	cmp #$1000			cmp 	#$1000 						; if it is xxx1 000x then it's a unary function
+.01016f	f0 a7		beq $010118			beq 	_ELExecuteY					; go back and execute it
+.010171	c0 18 32	cpy #$3218			cpy 	#lparenTokenID 				; is it an open bracket ?
+.010174	d0 11		bne $010187			bne 	_ELUnaryOperator 			; it not, try unary operators.
+.010176	20 ad 01	jsr $0101ad			jsr 	EvaluateNext 				; evaluate the expression
+.010179	20 2b 03	jsr $01032b			jsr 	ExpectRightBracket 			; consume the right bracket.
+.01017c					_ELCopy:
+.01017c	b5 02		lda $02,x			lda 	EXSValueL+2,x 				; just copy the value
+.01017e	95 00		sta $00,x			sta 	EXSValueL+0,x
+.010180	b5 12		lda $12,x			lda 	EXSValueH+2,x
+.010182	95 10		sta $10,x			sta 	EXSValueH+0,x
+.010184	82 66 ff	brl $0100ed			brl 	_ELGotAtom 					; and continue.
+.010187					_ELUnaryOperator:
+.010187	5a		phy				phy 								; save the operator on the stack.
+.010188	e8		inx				inx 								; this is like evaluate next
+.010189	e8		inx				inx
+.01018a	a9 00 0e	lda #$0e00			lda 	#7<<9 						; except we use a very high precedence to make it atomic
+.01018d	20 b0 00	jsr $0100b0			jsr 	EvaluateLevel
+.010190	ca		dex				dex 								; unwind the stack.
+.010191	ca		dex				dex
+.010192	68		pla				pla 								; restore the unary operator.
+.010193	c9 0b 24	cmp #$240b			cmp 	#minusTokenID				; -xxx is unary negation
+.010196	f0 03		beq $01019b			beq 	_ELMinus
+.010198	4c 01 03	jmp $010301			jmp 	SyntaxError
+.01019b					_ELMinus:
+.01019b	38		sec				sec 								; do the negation calculation.
+.01019c	a9 00 00	lda #$0000			lda 	#0
+.01019f	f5 02		sbc $02,x			sbc 	EXSValueL+2,x
+.0101a1	95 00		sta $00,x			sta 	EXSValueL+0,x
+.0101a3	a9 00 00	lda #$0000			lda 	#0
+.0101a6	f5 12		sbc $12,x			sbc 	EXSValueH+2,x
+.0101a8	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0101aa	82 40 ff	brl $0100ed			brl 	_ELGotAtom					; and continue.
+.0101ad					EvaluateNext:
+.0101ad	e8		inx				inx
+.0101ae	e8		inx				inx
+.0101af	a9 00 00	lda #$0000			lda 	#0<<9
+.0101b2	20 b0 00	jsr $0100b0			jsr 	EvaluateLevel
+.0101b5	ca		dex				dex
+.0101b6	ca		dex				dex
+.0101b7	60		rts				rts
+.0101b8					EvaluateInteger:
+.0101b8	20 aa 00	jsr $0100aa			jsr 	Evaluate
+.0101bb	b0 01		bcs $0101be			bcs 	EIType
 .0101bd	60		rts				rts
-.0101be					EvaluateString:
-.0101be	20 95 00	jsr $010095			jsr 	Evaluate
-.0101c1	90 01		bcc $0101c4			bcc 	ESType
-.0101c3	60		rts				rts
-.0101c4					ESType:
-.0101c4	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0101c7	53 74 72 69 6e 67 20 65				.text 	"String expected",$00 								; with this message
->0101cf	78 70 65 63 74 65 64 00
-.0101d7					EvaluateNextString:
-.0101d7	20 94 01	jsr $010194			jsr 	EvaluateNext
-.0101da	90 e8		bcc $0101c4			bcc 	ESType
+.0101be					EIType:
+.0101be	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>0101c1	4e 75 6d 62 65 72 20 65				.text 	"Number expected",$00 								; with this message
+>0101c9	78 70 65 63 74 65 64 00
+.0101d1					EvaluateNextInteger:
+.0101d1	20 ad 01	jsr $0101ad			jsr 	EvaluateNext
+.0101d4	b0 e8		bcs $0101be			bcs 	EIType
+.0101d6	60		rts				rts
+.0101d7					EvaluateString:
+.0101d7	20 aa 00	jsr $0100aa			jsr 	Evaluate
+.0101da	90 01		bcc $0101dd			bcc 	ESType
 .0101dc	60		rts				rts
+.0101dd					ESType:
+.0101dd	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>0101e0	53 74 72 69 6e 67 20 65				.text 	"String expected",$00 								; with this message
+>0101e8	78 70 65 63 74 65 64 00
+.0101f0					EvaluateNextString:
+.0101f0	20 ad 01	jsr $0101ad			jsr 	EvaluateNext
+.0101f3	90 e8		bcc $0101dd			bcc 	ESType
+.0101f5	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/variable.asm
 
-.0101dd					VariableAccessExpression:
-.0101dd	b2 06		lda ($06)			lda 	(DCodePtr)					; get the first token, push on stack
-.0101df	48		pha				pha
-.0101e0	20 5a 02	jsr $01025a			jsr 	VariableFind 				; try to find the variable
-.0101e3	85 1e		sta $1e				sta 	DVariablePtr 				; store the result in DVariablePtr
-.0101e5	90 48		bcc $01022f			bcc 	_VANError
-.0101e7	68		pla				pla 								; get and save that first token
-.0101e8	48		pha				pha
-.0101e9	29 00 10	and #$1000			and 	#$1000 						; is it an array ?
-.0101ec	f0 2d		beq $01021b			beq 	_VANNotArray
-.0101ee	a5 1e		lda $1e				lda 	DVariablePtr 				; push the variable address on the stack as well.
-.0101f0	48		pha				pha
-.0101f1	20 b8 01	jsr $0101b8			jsr		EvaluateNextInteger 		; get the subscript
-.0101f4	20 12 03	jsr $010312			jsr 	ExpectRightBracket 			; skip right bracket.
-.0101f7	c0 00 00	cpy #$0000			cpy 	#0 							; msword must be zero
-.0101fa	d0 47		bne $010243			bne 	_VANSubscript
-.0101fc	d2 1e		cmp ($1e)			cmp 	(DVariablePtr)				; the subscript is at +4, so check against that.
-.0101fe	f0 02		beq $010202			beq 	_VANSubOkay 				; fail if subscript > high subscript
-.010200	b0 41		bcs $010243			bcs 	_VANSubscript
-.010202					_VANSubOkay:
-.010202	0a		asl a				asl 	a 							; double lsword
-.010203	85 08		sta $08				sta 	DTemp1	 					; 2 x subscript in DTemp1
-.010205	68		pla				pla 								; restore DVariablePtr
-.010206	85 1e		sta $1e				sta 	DVariablePtr
-.010208	68		pla				pla 								; get and save that first token
+.0101f6					VariableAccessExpression:
+.0101f6	b2 06		lda ($06)			lda 	(DCodePtr)					; get the first token, push on stack
+.0101f8	48		pha				pha
+.0101f9	20 73 02	jsr $010273			jsr 	VariableFind 				; try to find the variable
+.0101fc	85 1e		sta $1e				sta 	DVariablePtr 				; store the result in DVariablePtr
+.0101fe	90 48		bcc $010248			bcc 	_VANError
+.010200	68		pla				pla 								; get and save that first token
+.010201	48		pha				pha
+.010202	29 00 10	and #$1000			and 	#$1000 						; is it an array ?
+.010205	f0 2d		beq $010234			beq 	_VANNotArray
+.010207	a5 1e		lda $1e				lda 	DVariablePtr 				; push the variable address on the stack as well.
 .010209	48		pha				pha
-.01020a	29 00 20	and #$2000			and 	#$2000 						; is it a string ?
-.01020d	d0 02		bne $010211			bne 	_VANNotString  				; if not, i.e. it is an integeer
-.01020f	06 08		asl $08				asl 	DTemp1 						; double subscript again (32 bit word)
-.010211					_VANNotString
-.010211	a5 1e		lda $1e				lda 	DVariablePtr 				; variable address
-.010213	18		clc				clc 								; add 2 to get it past the high subscript
-.010214	69 02 00	adc #$0002			adc 	#2
-.010217	65 08		adc $08				adc 	DTemp1 						; add the subscript
-.010219	85 1e		sta $1e				sta 	DVariablePtr 				; and write it back.
-.01021b					_VANNotArray:
-.01021b	68		pla				pla 								; get the token back.
-.01021c	29 00 20	and #$2000			and 	#$2000 						; this is the integer/string bit. $2000 if string, $0000 if int
-.01021f	49 00 20	eor #$2000			eor 	#$2000 						; now $0000 if string, $2000 if integer.
-.010222	38		sec				sec 								; set up return string.
-.010223	f0 06		beq $01022b			beq 	_VANLoadLower 				; if zero, Y = 0 and just load the lower address with CS
-.010225	18		clc				clc 								; returning a number, read high data word
-.010226	a0 02 00	ldy #$0002			ldy 	#2
-.010229	b1 1e		lda ($1e),y			lda 	(DVariablePtr),y
-.01022b					_VANLoadLower:
-.01022b	a8		tay				tay 								; put A into Y (this is the high byte)
-.01022c	b2 1e		lda ($1e)			lda 	(DVariablePtr)				; read the low data word
-.01022e	60		rts				rts
-.01022f					_VANError:
-.01022f	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->010232	56 61 72 69 61 62 6c 65				.text 	"Variable unknown",$00 								; with this message
->01023a	20 75 6e 6b 6e 6f 77 6e 00
-.010243					_VANSubscript:
-.010243	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->010246	42 61 64 20 41 72 72 61				.text 	"Bad Array Subscript",$00 								; with this message
->01024e	79 20 53 75 62 73 63 72 69 70 74 00
-.01025a					VariableFind:
-.01025a	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the first token
-.01025c	c9 00 c0	cmp #$c000			cmp 	#$C000 						; must be $C000-$FFFF, an identifier.
-.01025f	90 5c		bcc $0102bd			bcc 	_VFError
-.010261	c9 1b c0	cmp #$c01b			cmp 	#$C01A+1					; C01A is identifier, no continuation Z
-.010264	b0 11		bcs $010277			bcs 	_VFSlowVariable 			; < this it is the fast variable A-Z
-.010266	29 1f 00	and #$001f			and 	#$001F 						; now it is 1-26.
-.010269	3a		dec a				dec 	a 							; now 0-25
-.01026a	0a		asl a				asl 	a 							; x 4 and clear carry
-.01026b	0a		asl a				asl 	a
-.01026c	69 10 00	adc #$0010			adc 	#Block_FastVariables 		; offset to fast variables
-.01026f	65 02		adc $02				adc 	DBaseAddress 				; now an actual address
-.010271	e6 06		inc $06				inc 	DCodePtr 					; skip over the token
-.010273	e6 06		inc $06				inc 	DCodePtr
-.010275	38		sec				sec 								; return with carry set.
-.010276	60		rts				rts
-.010277					_VFSlowVariable:
-.010277	b2 06		lda ($06)			lda 	(DCodePtr)					; get the token
-.010279	29 00 30	and #$3000			and 	#$3000 						; get the type bits out --xx ---- ---- ----
-.01027c	eb		xba				xba 								; now this is 0000 0000 00tt 0000 e.g. tt x 16
-.01027d	0a		asl a				asl 	a 							; there are 32 entries per table, also clc
-.01027e	69 80 00	adc #$0080			adc 	#Block_HashTable 			; now its the correct has table offset
-.010281	65 02		adc $02				adc 	DBaseAddress 				; now the actual address
-.010283	85 08		sta $08				sta 	DTemp1
-.010285	b2 06		lda ($06)			lda 	(DCodePtr) 					; get the token - building the hash code.
-.010287	29 0f 00	and #$000f			and 	#Block_HashMask 			; now a mask value.
-.01028a	0a		asl a				asl 	a 							; double (word entries) and clear carry
-.01028b	65 08		adc $08				adc 	DTemp1
-.01028d	85 20		sta $20				sta 	DHashTablePtr 				; save pointer for later
-.01028f	85 08		sta $08				sta 	DTemp1 						; save in DTemp1, which we will use to follow the chain.
-.010291					_VFNext:
-.010291	b2 08		lda ($08)			lda 	(DTemp1) 					; normally the link, first time will be the header.
-.010293	f0 26		beq $0102bb			beq 	_VFFail 					; if zero, then it's the end of the list.
-.010295	85 08		sta $08				sta 	DTemp1 						; this is the new variable record to check
-.010297	a8		tay				tay 								; read the address of the name at $0002,y
-.010298	b9 02 00	lda $0002,y			lda 	$0002,y
-.01029b	85 0c		sta $0c				sta 	DTemp2 						; save in DTemp2
-.01029d	a0 00 00	ldy #$0000			ldy 	#0 							; start matching lists of tokens
-.0102a0					_VFCompare:
-.0102a0	b1 0c		lda ($0c),y			lda 	(DTemp2),y 					; see if they match
-.0102a2	d1 06		cmp ($06),y			cmp 	(DCodePtr),y
-.0102a4	d0 eb		bne $010291			bne 	_VFNext 					; if not, go to the next one.
-.0102a6	c8		iny				iny 								; advance token pointer
-.0102a7	c8		iny				iny
-.0102a8	29 00 08	and #$0800			and 	#$0800 						; if continuation bit set, keep going
-.0102ab	d0 f3		bne $0102a0			bne 	_VFCompare
-.0102ad	98		tya				tya 								; this is the length of the word.
-.0102ae	18		clc				clc 								; so we add it to the code pointer
-.0102af	65 06		adc $06				adc 	DCodePtr
-.0102b1	85 06		sta $06				sta 	DCodePtr 					; now points to the following token.
-.0102b3	a5 08		lda $08				lda 	DTemp1 						; this is the variable record
-.0102b5	18		clc				clc 								; four on is the actual data
-.0102b6	69 04 00	adc #$0004			adc 	#4 							; or it's the index for indexes.
-.0102b9	38		sec				sec 								; return with CS indicating success
-.0102ba	60		rts				rts
-.0102bb					_VFFail:
-.0102bb	18		clc				clc
-.0102bc	60		rts				rts
-.0102bd					_VFError:
-.0102bd	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0102c0	4d 69 73 73 69 6e 67 20				.text 	"Missing variable",$00 								; with this message
->0102c8	76 61 72 69 61 62 6c 65 00
-.0102d1					VariableCreate:
-.0102d1	60		rts				rts
+.01020a	20 d1 01	jsr $0101d1			jsr		EvaluateNextInteger 		; get the subscript
+.01020d	20 2b 03	jsr $01032b			jsr 	ExpectRightBracket 			; skip right bracket.
+.010210	c0 00 00	cpy #$0000			cpy 	#0 							; msword must be zero
+.010213	d0 47		bne $01025c			bne 	_VANSubscript
+.010215	d2 1e		cmp ($1e)			cmp 	(DVariablePtr)				; the subscript is at +4, so check against that.
+.010217	f0 02		beq $01021b			beq 	_VANSubOkay 				; fail if subscript > high subscript
+.010219	b0 41		bcs $01025c			bcs 	_VANSubscript
+.01021b					_VANSubOkay:
+.01021b	0a		asl a				asl 	a 							; double lsword
+.01021c	85 08		sta $08				sta 	DTemp1	 					; 2 x subscript in DTemp1
+.01021e	68		pla				pla 								; restore DVariablePtr
+.01021f	85 1e		sta $1e				sta 	DVariablePtr
+.010221	68		pla				pla 								; get and save that first token
+.010222	48		pha				pha
+.010223	29 00 20	and #$2000			and 	#$2000 						; is it a string ?
+.010226	d0 02		bne $01022a			bne 	_VANNotString  				; if not, i.e. it is an integeer
+.010228	06 08		asl $08				asl 	DTemp1 						; double subscript again (32 bit word)
+.01022a					_VANNotString
+.01022a	a5 1e		lda $1e				lda 	DVariablePtr 				; variable address
+.01022c	18		clc				clc 								; add 2 to get it past the high subscript
+.01022d	69 02 00	adc #$0002			adc 	#2
+.010230	65 08		adc $08				adc 	DTemp1 						; add the subscript
+.010232	85 1e		sta $1e				sta 	DVariablePtr 				; and write it back.
+.010234					_VANNotArray:
+.010234	68		pla				pla 								; get the token back.
+.010235	29 00 20	and #$2000			and 	#$2000 						; this is the integer/string bit. $2000 if string, $0000 if int
+.010238	49 00 20	eor #$2000			eor 	#$2000 						; now $0000 if string, $2000 if integer.
+.01023b	38		sec				sec 								; set up return string.
+.01023c	f0 06		beq $010244			beq 	_VANLoadLower 				; if zero, Y = 0 and just load the lower address with CS
+.01023e	18		clc				clc 								; returning a number, read high data word
+.01023f	a0 02 00	ldy #$0002			ldy 	#2
+.010242	b1 1e		lda ($1e),y			lda 	(DVariablePtr),y
+.010244					_VANLoadLower:
+.010244	a8		tay				tay 								; put A into Y (this is the high byte)
+.010245	b2 1e		lda ($1e)			lda 	(DVariablePtr)				; read the low data word
+.010247	60		rts				rts
+.010248					_VANError:
+.010248	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>01024b	56 61 72 69 61 62 6c 65				.text 	"Variable unknown",$00 								; with this message
+>010253	20 75 6e 6b 6e 6f 77 6e 00
+.01025c					_VANSubscript:
+.01025c	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>01025f	42 61 64 20 41 72 72 61				.text 	"Bad Array Subscript",$00 								; with this message
+>010267	79 20 53 75 62 73 63 72 69 70 74 00
+.010273					VariableFind:
+.010273	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the first token
+.010275	c9 00 c0	cmp #$c000			cmp 	#$C000 						; must be $C000-$FFFF, an identifier.
+.010278	90 5c		bcc $0102d6			bcc 	_VFError
+.01027a	c9 1b c0	cmp #$c01b			cmp 	#$C01A+1					; C01A is identifier, no continuation Z
+.01027d	b0 11		bcs $010290			bcs 	_VFSlowVariable 			; < this it is the fast variable A-Z
+.01027f	29 1f 00	and #$001f			and 	#$001F 						; now it is 1-26.
+.010282	3a		dec a				dec 	a 							; now 0-25
+.010283	0a		asl a				asl 	a 							; x 4 and clear carry
+.010284	0a		asl a				asl 	a
+.010285	69 10 00	adc #$0010			adc 	#Block_FastVariables 		; offset to fast variables
+.010288	65 02		adc $02				adc 	DBaseAddress 				; now an actual address
+.01028a	e6 06		inc $06				inc 	DCodePtr 					; skip over the token
+.01028c	e6 06		inc $06				inc 	DCodePtr
+.01028e	38		sec				sec 								; return with carry set.
+.01028f	60		rts				rts
+.010290					_VFSlowVariable:
+.010290	b2 06		lda ($06)			lda 	(DCodePtr)					; get the token
+.010292	29 00 30	and #$3000			and 	#$3000 						; get the type bits out --xx ---- ---- ----
+.010295	eb		xba				xba 								; now this is 0000 0000 00tt 0000 e.g. tt x 16
+.010296	0a		asl a				asl 	a 							; there are 32 entries per table, also clc
+.010297	69 80 00	adc #$0080			adc 	#Block_HashTable 			; now its the correct has table offset
+.01029a	65 02		adc $02				adc 	DBaseAddress 				; now the actual address
+.01029c	85 08		sta $08				sta 	DTemp1
+.01029e	b2 06		lda ($06)			lda 	(DCodePtr) 					; get the token - building the hash code.
+.0102a0	29 0f 00	and #$000f			and 	#Block_HashMask 			; now a mask value.
+.0102a3	0a		asl a				asl 	a 							; double (word entries) and clear carry
+.0102a4	65 08		adc $08				adc 	DTemp1
+.0102a6	85 20		sta $20				sta 	DHashTablePtr 				; save pointer for later
+.0102a8	85 08		sta $08				sta 	DTemp1 						; save in DTemp1, which we will use to follow the chain.
+.0102aa					_VFNext:
+.0102aa	b2 08		lda ($08)			lda 	(DTemp1) 					; normally the link, first time will be the header.
+.0102ac	f0 26		beq $0102d4			beq 	_VFFail 					; if zero, then it's the end of the list.
+.0102ae	85 08		sta $08				sta 	DTemp1 						; this is the new variable record to check
+.0102b0	a8		tay				tay 								; read the address of the name at $0002,y
+.0102b1	b9 02 00	lda $0002,y			lda 	$0002,y
+.0102b4	85 0c		sta $0c				sta 	DTemp2 						; save in DTemp2
+.0102b6	a0 00 00	ldy #$0000			ldy 	#0 							; start matching lists of tokens
+.0102b9					_VFCompare:
+.0102b9	b1 0c		lda ($0c),y			lda 	(DTemp2),y 					; see if they match
+.0102bb	d1 06		cmp ($06),y			cmp 	(DCodePtr),y
+.0102bd	d0 eb		bne $0102aa			bne 	_VFNext 					; if not, go to the next one.
+.0102bf	c8		iny				iny 								; advance token pointer
+.0102c0	c8		iny				iny
+.0102c1	29 00 08	and #$0800			and 	#$0800 						; if continuation bit set, keep going
+.0102c4	d0 f3		bne $0102b9			bne 	_VFCompare
+.0102c6	98		tya				tya 								; this is the length of the word.
+.0102c7	18		clc				clc 								; so we add it to the code pointer
+.0102c8	65 06		adc $06				adc 	DCodePtr
+.0102ca	85 06		sta $06				sta 	DCodePtr 					; now points to the following token.
+.0102cc	a5 08		lda $08				lda 	DTemp1 						; this is the variable record
+.0102ce	18		clc				clc 								; four on is the actual data
+.0102cf	69 04 00	adc #$0004			adc 	#4 							; or it's the index for indexes.
+.0102d2	38		sec				sec 								; return with CS indicating success
+.0102d3	60		rts				rts
+.0102d4					_VFFail:
+.0102d4	18		clc				clc
+.0102d5	60		rts				rts
+.0102d6					_VFError:
+.0102d6	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>0102d9	4d 69 73 73 69 6e 67 20				.text 	"Missing variable",$00 								; with this message
+>0102e1	76 61 72 69 61 62 6c 65 00
+.0102ea					VariableCreate:
+.0102ea	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/utility.asm
 
-.0102d2					ErrorHandler:
-.0102d2	c2 30		rep #$30			rep 	#$30 						; in case we changed it.
-.0102d4	ea		nop				nop
-.0102d5	80 fe		bra $0102d5	_EH1:	bra 	_EH1
-.0102d7					IllegalToken:
-.0102d7	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0102da	49 6c 6c 65 67 61 6c 20				.text 	"Illegal Token",$00 								; with this message
->0102e2	54 6f 6b 65 6e 00
-.0102e8					SyntaxError:
-.0102e8	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0102eb	53 79 6e 74 61 78 20 45				.text 	"Syntax Error",$00 								; with this message
->0102f3	72 72 6f 72 00
-.0102f8					ExpectToken:
-.0102f8	d2 06		cmp ($06)			cmp 	(DCodePtr) 					; does it match the next token
-.0102fa	d0 05		bne $010301			bne 	_CTKError					; error if not
-.0102fc	e6 06		inc $06				inc 	DCodePtr 					; skip the token
-.0102fe	e6 06		inc $06				inc 	DCodePtr
-.010300	60		rts				rts
-.010301					_CTKError:
-.010301	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->010304	4d 69 73 73 69 6e 67 20				.text 	"Missing token",$00 								; with this message
->01030c	74 6f 6b 65 6e 00
-.010312					ExpectRightBracket:
-.010312	48		pha				pha
-.010313	a9 19 32	lda #$3219			lda 	#rparenTokenID
-.010316	20 f8 02	jsr $0102f8			jsr 	ExpectToken
-.010319	68		pla				pla
-.01031a	60		rts				rts
-.01031b					ExpectComma:
-.01031b	48		pha				pha
-.01031c	a9 15 32	lda #$3215			lda 	#commaTokenID 				; shorthand because comma is used a fair bit.
-.01031f	20 f8 02	jsr $0102f8			jsr 	ExpectToken
-.010322	68		pla				pla
-.010323	60		rts				rts
-.010324					CheckBothNumeric:
-.010324	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; OR together their prec/type
-.010326	15 22		ora $22,x			ora 	EXSPrecType+2,x
-.010328	30 01		bmi $01032b			bmi 	_CBNFail 					; need to both be zero in bit 15
-.01032a	60		rts				rts
-.01032b					_CBNFail:
-.01032b	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->01032e	4f 70 65 72 61 74 6f 72				.text 	"Operator integer only",$00 								; with this message
->010336	20 69 6e 74 65 67 65 72 20 6f 6e 6c 79 00
-.010344					ResetTypeInteger:
-.010344	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; clear bit 15
-.010346	29 ff 7f	and #$7fff			and 	#$7FFF
-.010349	95 20		sta $20,x			sta 	EXSPrecType+0,x
-.01034b	60		rts				rts
+.0102eb					ErrorHandler:
+.0102eb	c2 30		rep #$30			rep 	#$30 						; in case we changed it.
+.0102ed	ea		nop				nop
+.0102ee	80 fe		bra $0102ee	_EH1:	bra 	_EH1
+.0102f0					IllegalToken:
+.0102f0	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>0102f3	49 6c 6c 65 67 61 6c 20				.text 	"Illegal Token",$00 								; with this message
+>0102fb	54 6f 6b 65 6e 00
+.010301					SyntaxError:
+.010301	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>010304	53 79 6e 74 61 78 20 45				.text 	"Syntax Error",$00 								; with this message
+>01030c	72 72 6f 72 00
+.010311					ExpectToken:
+.010311	d2 06		cmp ($06)			cmp 	(DCodePtr) 					; does it match the next token
+.010313	d0 05		bne $01031a			bne 	_CTKError					; error if not
+.010315	e6 06		inc $06				inc 	DCodePtr 					; skip the token
+.010317	e6 06		inc $06				inc 	DCodePtr
+.010319	60		rts				rts
+.01031a					_CTKError:
+.01031a	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>01031d	4d 69 73 73 69 6e 67 20				.text 	"Missing token",$00 								; with this message
+>010325	74 6f 6b 65 6e 00
+.01032b					ExpectRightBracket:
+.01032b	48		pha				pha
+.01032c	a9 19 32	lda #$3219			lda 	#rparenTokenID
+.01032f	20 11 03	jsr $010311			jsr 	ExpectToken
+.010332	68		pla				pla
+.010333	60		rts				rts
+.010334					ExpectComma:
+.010334	48		pha				pha
+.010335	a9 15 32	lda #$3215			lda 	#commaTokenID 				; shorthand because comma is used a fair bit.
+.010338	20 11 03	jsr $010311			jsr 	ExpectToken
+.01033b	68		pla				pla
+.01033c	60		rts				rts
+.01033d					CheckBothNumeric:
+.01033d	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; OR together their prec/type
+.01033f	15 22		ora $22,x			ora 	EXSPrecType+2,x
+.010341	30 01		bmi $010344			bmi 	_CBNFail 					; need to both be zero in bit 15
+.010343	60		rts				rts
+.010344					_CBNFail:
+.010344	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>010347	4f 70 65 72 61 74 6f 72				.text 	"Operator integer only",$00 								; with this message
+>01034f	20 69 6e 74 65 67 65 72 20 6f 6e 6c 79 00
+.01035d					ResetTypeInteger:
+.01035d	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; clear bit 15
+.01035f	29 ff 7f	and #$7fff			and 	#$7FFF
+.010362	95 20		sta $20,x			sta 	EXSPrecType+0,x
+.010364	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/stringutils.asm
 
-.01034c					StringTempAllocate:
-.01034c	29 ff 00	and #$00ff			and 	#$00FF 						; check it's a byte size
-.01034f	49 ff ff	eor #$ffff			eor 	#$FFFF 						; 2's complement add to temporary pointer.
-.010352	18		clc				clc 								; this adds one, for the length.
-.010353	65 16		adc $16				adc 	DTempStringPointer
-.010355	85 16		sta $16				sta 	DTempStringPointer
-.010357	48		pha				pha
-.010358	a9 00 00	lda #$0000			lda 	#$0000
-.01035b	e2 20		sep #$20			sep 	#$20 						; zero the length of this new string.
-.01035d	92 16		sta ($16)			sta		(DTempStringPointer)
-.01035f	c2 20		rep #$20			rep 	#$20
-.010361	68		pla				pla
-.010362	85 18		sta $18				sta 	DStartTempString 			; start of temporary string.
-.010364	85 1a		sta $1a				sta 	DCurrentTempString 			; save current temporary string
-.010366	e6 1a		inc $1a				inc 	DCurrentTempString 			; step over length byte.
-.010368	60		rts				rts
-.010369					StringCreateCopy:
-.010369	a8		tay				tay 								; put pointer to string in Y
-.01036a	b9 00 00	lda $0000,y			lda 	$0000,y 					; read the first byte, the length.
-.01036d	29 ff 00	and #$00ff			and 	#$00FF 						; mask out the length byte.
-.010370	f0 17		beq $010389			beq 	_SCCExit 					; do nothing if length zero.
-.010372	da		phx				phx 								; save X and put the character count in X
-.010373	aa		tax				tax
-.010374	e2 20		sep #$20			sep 	#$20 						; switch to 8 bit mode.
-.010376					_SCCCopy:
-.010376	c8		iny				iny 								; advance and read (first time skips length)
-.010377	b9 00 00	lda $0000,y			lda 	$0000,y
-.01037a	92 1a		sta ($1a)			sta 	(DCurrentTempString) 		; write into target
-.01037c	e6 1a		inc $1a				inc 	DCurrentTempString 			; bump target pointer
-.01037e	b2 18		lda ($18)			lda 	(DStartTempString)			; one more character
-.010380	1a		inc a				inc 	a
-.010381	92 18		sta ($18)			sta 	(DStartTempString)
-.010383	ca		dex				dex 								; do X times
-.010384	d0 f0		bne $010376			bne 	_SCCCopy
-.010386	c2 20		rep #$20			rep 	#$20 						; switch back to 16 bit mode
-.010388	fa		plx				plx
-.010389					_SCCExit:
-.010389	60		rts				rts
-.01038a					StringMakeConcrete:
-.01038a	85 08		sta $08				sta 	DTemp1 						; source
-.01038c	b2 08		lda ($08)			lda 	(DTemp1)					; get length
-.01038e	29 ff 00	and #$00ff			and 	#$00FF
-.010391	48		pha				pha 								; save on stack.
-.010392	49 ff ff	eor #$ffff			eor 	#$FFFF 						; 2's complement with carry clear
-.010395	18		clc				clc
-.010396	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr 		; add to the high pointer to create space
-.010399	71 02		adc ($02),y			adc 	(DBaseAddress),y
-.01039b	91 02		sta ($02),y			sta 	(DBaseAddress),y
-.01039d	85 0c		sta $0c				sta 	DTemp2 						; target
-.01039f	7a		ply				ply 								; get length copy from here until Y goes -ve
-.0103a0	e2 20		sep #$20			sep 	#$20 						; 8 bit mode.
-.0103a2					_SMCLoop:
-.0103a2	b1 08		lda ($08),y			lda 	(DTemp1),y
-.0103a4	91 0c		sta ($0c),y			sta 	(DTemp2),y
-.0103a6	88		dey				dey
-.0103a7	10 f9		bpl $0103a2			bpl 	_SMCLoop
-.0103a9	c2 20		rep #$20			rep 	#$20 						; 16 bit mode.
-.0103ab	a5 0c		lda $0c				lda 	DTemp2 						; return new string address.
-.0103ad	60		rts				rts
+.010365					StringTempAllocate:
+.010365	29 ff 00	and #$00ff			and 	#$00FF 						; check it's a byte size
+.010368	49 ff ff	eor #$ffff			eor 	#$FFFF 						; 2's complement add to temporary pointer.
+.01036b	18		clc				clc 								; this adds one, for the length.
+.01036c	65 16		adc $16				adc 	DTempStringPointer
+.01036e	85 16		sta $16				sta 	DTempStringPointer
+.010370	48		pha				pha
+.010371	a9 00 00	lda #$0000			lda 	#$0000
+.010374	e2 20		sep #$20			sep 	#$20 						; zero the length of this new string.
+.010376	92 16		sta ($16)			sta		(DTempStringPointer)
+.010378	c2 20		rep #$20			rep 	#$20
+.01037a	68		pla				pla
+.01037b	85 18		sta $18				sta 	DStartTempString 			; start of temporary string.
+.01037d	85 1a		sta $1a				sta 	DCurrentTempString 			; save current temporary string
+.01037f	e6 1a		inc $1a				inc 	DCurrentTempString 			; step over length byte.
+.010381	60		rts				rts
+.010382					StringCreateCopy:
+.010382	a8		tay				tay 								; put pointer to string in Y
+.010383	b9 00 00	lda $0000,y			lda 	$0000,y 					; read the first byte, the length.
+.010386	29 ff 00	and #$00ff			and 	#$00FF 						; mask out the length byte.
+.010389	f0 17		beq $0103a2			beq 	_SCCExit 					; do nothing if length zero.
+.01038b	da		phx				phx 								; save X and put the character count in X
+.01038c	aa		tax				tax
+.01038d	e2 20		sep #$20			sep 	#$20 						; switch to 8 bit mode.
+.01038f					_SCCCopy:
+.01038f	c8		iny				iny 								; advance and read (first time skips length)
+.010390	b9 00 00	lda $0000,y			lda 	$0000,y
+.010393	92 1a		sta ($1a)			sta 	(DCurrentTempString) 		; write into target
+.010395	e6 1a		inc $1a				inc 	DCurrentTempString 			; bump target pointer
+.010397	b2 18		lda ($18)			lda 	(DStartTempString)			; one more character
+.010399	1a		inc a				inc 	a
+.01039a	92 18		sta ($18)			sta 	(DStartTempString)
+.01039c	ca		dex				dex 								; do X times
+.01039d	d0 f0		bne $01038f			bne 	_SCCCopy
+.01039f	c2 20		rep #$20			rep 	#$20 						; switch back to 16 bit mode
+.0103a1	fa		plx				plx
+.0103a2					_SCCExit:
+.0103a2	60		rts				rts
+.0103a3					StringMakeConcrete:
+.0103a3	85 08		sta $08				sta 	DTemp1 						; source
+.0103a5	b2 08		lda ($08)			lda 	(DTemp1)					; get length
+.0103a7	29 ff 00	and #$00ff			and 	#$00FF
+.0103aa	48		pha				pha 								; save on stack.
+.0103ab	49 ff ff	eor #$ffff			eor 	#$FFFF 						; 2's complement with carry clear
+.0103ae	18		clc				clc
+.0103af	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr 		; add to the high pointer to create space
+.0103b2	71 02		adc ($02),y			adc 	(DBaseAddress),y
+.0103b4	91 02		sta ($02),y			sta 	(DBaseAddress),y
+.0103b6	85 0c		sta $0c				sta 	DTemp2 						; target
+.0103b8	7a		ply				ply 								; get length copy from here until Y goes -ve
+.0103b9	e2 20		sep #$20			sep 	#$20 						; 8 bit mode.
+.0103bb					_SMCLoop:
+.0103bb	b1 08		lda ($08),y			lda 	(DTemp1),y
+.0103bd	91 0c		sta ($0c),y			sta 	(DTemp2),y
+.0103bf	88		dey				dey
+.0103c0	10 f9		bpl $0103bb			bpl 	_SMCLoop
+.0103c2	c2 20		rep #$20			rep 	#$20 						; 16 bit mode.
+.0103c4	a5 0c		lda $0c				lda 	DTemp2 						; return new string address.
+.0103c6	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/binary/arithmetic.asm
 
-.0103ae					Binary_Add:
-.0103ae	b5 20		lda $20,x		lda 	EXSPrecType+0,x 					; check both same type
-.0103b0	55 22		eor $22,x		eor 	EXSPrecType+2,x
-.0103b2	30 12		bmi $0103c6		bmi 	_BATypeError
-.0103b4	b5 20		lda $20,x		lda 	EXSPrecType+0,x 					; see if they are strings
-.0103b6	30 3f		bmi $0103f7		bmi 	_BAConcatenateString 				; if so , do the concatenation code.
-.0103b8	18		clc			clc
-.0103b9	b5 00		lda $00,x		lda		EXSValueL+0,x
-.0103bb	75 02		adc $02,x		adc 	EXSValueL+2,x
-.0103bd	95 00		sta $00,x		sta 	EXSValueL+0,x
-.0103bf	b5 10		lda $10,x		lda		EXSValueH+0,x
-.0103c1	75 12		adc $12,x		adc 	EXSValueH+2,x
-.0103c3	95 10		sta $10,x		sta 	EXSValueH+0,x
-.0103c5	60		rts			rts
-.0103c6					_BATypeError:
-.0103c6	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0103c9	2b 20 6f 70 65 72 61 74				.text 	"+ operator can't mix types",$00 								; with this message
->0103d1	6f 72 20 63 61 6e 27 74 20 6d 69 78 20 74 79 70
->0103e1	65 73 00
-.0103e4					_BALengthError:
-.0103e4	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0103e7	53 74 72 69 6e 67 20 74				.text 	"String too long",$00 								; with this message
->0103ef	6f 6f 20 6c 6f 6e 67 00
-.0103f7					_BAConcatenateString:
-.0103f7	b5 00		lda $00,x		lda 	EXSValueL+0,x 						; save pointers in DTemp1/DTemp2
-.0103f9	85 08		sta $08			sta 	DTemp1
-.0103fb	b5 02		lda $02,x		lda 	EXSValueL+2,x
-.0103fd	85 0c		sta $0c			sta 	DTemp2
-.0103ff	e2 20		sep #$20		sep 	#$20								; switch into byte mode.
-.010401	18		clc			clc 										; work out the total length
-.010402	b2 08		lda ($08)		lda 	(DTemp1)
-.010404	72 0c		adc ($0c)		adc 	(DTemp2)
-.010406	b0 14		bcs $01041c		bcs 	_BAConcatLengthError 				; string is too long.
-.010408	c2 20		rep #$20		rep 	#$20 								; back to 16 bit mode.
-.01040a	20 4c 03	jsr $01034c		jsr 	StringTempAllocate 					; allocate string of that size in temp memory.
-.01040d	95 00		sta $00,x		sta 	EXSValueL+0,x 						; update the address
-.01040f	74 10		stz $10,x		stz 	EXSValueH+0,x
-.010411	a5 08		lda $08			lda 	DTemp1 								; copy first string there.
-.010413	20 69 03	jsr $010369		jsr 	StringCreateCopy
-.010416	a5 0c		lda $0c			lda 	DTemp2 								; copy second string there.
-.010418	20 69 03	jsr $010369		jsr 	StringCreateCopy
-.01041b	60		rts			rts
-.01041c					_BAConcatLengthError:
-.01041c	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->01041f	53 74 72 69 6e 67 20 74				.text 	"String too long",$00 								; with this message
->010427	6f 6f 20 6c 6f 6e 67 00
-.01042f					Binary_Subtract:
-.01042f	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.010432	38		sec			sec
-.010433	b5 00		lda $00,x		lda		EXSValueL+0,x
-.010435	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.010437	95 00		sta $00,x		sta 	EXSValueL+0,x
-.010439	b5 10		lda $10,x		lda		EXSValueH+0,x
-.01043b	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
-.01043d	95 10		sta $10,x		sta 	EXSValueH+0,x
-.01043f	60		rts			rts
-.010440					Binary_ShiftRight:
-.010440	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.010443	b5 02		lda $02,x		lda 	EXSValueL+2,x
-.010445	29 3f 00	and #$003f		and 	#63
-.010448	f0 07		beq $010451		beq		_Binary_SRExit
-.01044a					_Binary_SRLoop:
-.01044a	56 10		lsr $10,x		lsr 	EXSValueH+0,x
-.01044c	76 00		ror $00,x		ror 	EXSValueL+0,x
-.01044e	3a		dec a			dec 	a
-.01044f	d0 f9		bne $01044a		bne 	_Binary_SRLoop
-.010451					_Binary_SRExit:
-.010451	60		rts			rts
-.010452					Binary_ShiftLeft:
-.010452	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.010455	b5 02		lda $02,x		lda 	EXSValueL+2,x
-.010457	29 3f 00	and #$003f		and 	#63
-.01045a	f0 07		beq $010463		beq		_Binary_SLExit
-.01045c					_Binary_SLLoop:
-.01045c	16 00		asl $00,x		asl 	EXSValueL+0,x
-.01045e	36 10		rol $10,x		rol 	EXSValueH+0,x
-.010460	3a		dec a			dec 	a
-.010461	d0 f9		bne $01045c		bne 	_Binary_SLLoop
-.010463					_Binary_SLExit:
-.010463	60		rts			rts
+.0103c7					Binary_Add:
+.0103c7	b5 20		lda $20,x		lda 	EXSPrecType+0,x 					; check both same type
+.0103c9	55 22		eor $22,x		eor 	EXSPrecType+2,x
+.0103cb	30 12		bmi $0103df		bmi 	_BATypeError
+.0103cd	b5 20		lda $20,x		lda 	EXSPrecType+0,x 					; see if they are strings
+.0103cf	30 3f		bmi $010410		bmi 	_BAConcatenateString 				; if so , do the concatenation code.
+.0103d1	18		clc			clc
+.0103d2	b5 00		lda $00,x		lda		EXSValueL+0,x
+.0103d4	75 02		adc $02,x		adc 	EXSValueL+2,x
+.0103d6	95 00		sta $00,x		sta 	EXSValueL+0,x
+.0103d8	b5 10		lda $10,x		lda		EXSValueH+0,x
+.0103da	75 12		adc $12,x		adc 	EXSValueH+2,x
+.0103dc	95 10		sta $10,x		sta 	EXSValueH+0,x
+.0103de	60		rts			rts
+.0103df					_BATypeError:
+.0103df	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>0103e2	2b 20 6f 70 65 72 61 74				.text 	"+ operator can't mix types",$00 								; with this message
+>0103ea	6f 72 20 63 61 6e 27 74 20 6d 69 78 20 74 79 70
+>0103fa	65 73 00
+.0103fd					_BALengthError:
+.0103fd	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>010400	53 74 72 69 6e 67 20 74				.text 	"String too long",$00 								; with this message
+>010408	6f 6f 20 6c 6f 6e 67 00
+.010410					_BAConcatenateString:
+.010410	b5 00		lda $00,x		lda 	EXSValueL+0,x 						; save pointers in DTemp1/DTemp2
+.010412	85 08		sta $08			sta 	DTemp1
+.010414	b5 02		lda $02,x		lda 	EXSValueL+2,x
+.010416	85 0c		sta $0c			sta 	DTemp2
+.010418	e2 20		sep #$20		sep 	#$20								; switch into byte mode.
+.01041a	18		clc			clc 										; work out the total length
+.01041b	b2 08		lda ($08)		lda 	(DTemp1)
+.01041d	72 0c		adc ($0c)		adc 	(DTemp2)
+.01041f	b0 14		bcs $010435		bcs 	_BAConcatLengthError 				; string is too long.
+.010421	c2 20		rep #$20		rep 	#$20 								; back to 16 bit mode.
+.010423	20 65 03	jsr $010365		jsr 	StringTempAllocate 					; allocate string of that size in temp memory.
+.010426	95 00		sta $00,x		sta 	EXSValueL+0,x 						; update the address
+.010428	74 10		stz $10,x		stz 	EXSValueH+0,x
+.01042a	a5 08		lda $08			lda 	DTemp1 								; copy first string there.
+.01042c	20 82 03	jsr $010382		jsr 	StringCreateCopy
+.01042f	a5 0c		lda $0c			lda 	DTemp2 								; copy second string there.
+.010431	20 82 03	jsr $010382		jsr 	StringCreateCopy
+.010434	60		rts			rts
+.010435					_BAConcatLengthError:
+.010435	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>010438	53 74 72 69 6e 67 20 74				.text 	"String too long",$00 								; with this message
+>010440	6f 6f 20 6c 6f 6e 67 00
+.010448					Binary_Subtract:
+.010448	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.01044b	38		sec			sec
+.01044c	b5 00		lda $00,x		lda		EXSValueL+0,x
+.01044e	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
+.010450	95 00		sta $00,x		sta 	EXSValueL+0,x
+.010452	b5 10		lda $10,x		lda		EXSValueH+0,x
+.010454	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.010456	95 10		sta $10,x		sta 	EXSValueH+0,x
+.010458	60		rts			rts
+.010459					Binary_ShiftRight:
+.010459	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.01045c	b5 02		lda $02,x		lda 	EXSValueL+2,x
+.01045e	29 3f 00	and #$003f		and 	#63
+.010461	f0 07		beq $01046a		beq		_Binary_SRExit
+.010463					_Binary_SRLoop:
+.010463	56 10		lsr $10,x		lsr 	EXSValueH+0,x
+.010465	76 00		ror $00,x		ror 	EXSValueL+0,x
+.010467	3a		dec a			dec 	a
+.010468	d0 f9		bne $010463		bne 	_Binary_SRLoop
+.01046a					_Binary_SRExit:
+.01046a	60		rts			rts
+.01046b					Binary_ShiftLeft:
+.01046b	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.01046e	b5 02		lda $02,x		lda 	EXSValueL+2,x
+.010470	29 3f 00	and #$003f		and 	#63
+.010473	f0 07		beq $01047c		beq		_Binary_SLExit
+.010475					_Binary_SLLoop:
+.010475	16 00		asl $00,x		asl 	EXSValueL+0,x
+.010477	36 10		rol $10,x		rol 	EXSValueH+0,x
+.010479	3a		dec a			dec 	a
+.01047a	d0 f9		bne $010475		bne 	_Binary_SLLoop
+.01047c					_Binary_SLExit:
+.01047c	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/binary/bitwise.asm
 
-.010464					Binary_And:
-.010464	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.010467	b5 00		lda $00,x		lda		EXSValueL+0,x
-.010469	35 02		and $02,x		and 	EXSValueL+2,x
-.01046b	95 00		sta $00,x		sta 	EXSValueL+0,x
-.01046d	b5 10		lda $10,x		lda		EXSValueH+0,x
-.01046f	35 12		and $12,x		and 	EXSValueH+2,x
-.010471	95 10		sta $10,x		sta 	EXSValueH+0,x
-.010473	60		rts			rts
-.010474					Binary_Or:
-.010474	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.010477	b5 00		lda $00,x		lda		EXSValueL+0,x
-.010479	15 02		ora $02,x		ora 	EXSValueL+2,x
-.01047b	95 00		sta $00,x		sta 	EXSValueL+0,x
-.01047d	b5 10		lda $10,x		lda		EXSValueH+0,x
-.01047f	15 12		ora $12,x		ora 	EXSValueH+2,x
-.010481	95 10		sta $10,x		sta 	EXSValueH+0,x
-.010483	60		rts			rts
-.010484					Binary_Xor:
-.010484	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.010487	b5 00		lda $00,x		lda		EXSValueL+0,x
-.010489	55 02		eor $02,x		eor 	EXSValueL+2,x
-.01048b	95 00		sta $00,x		sta 	EXSValueL+0,x
-.01048d	b5 10		lda $10,x		lda		EXSValueH+0,x
-.01048f	55 12		eor $12,x		eor 	EXSValueH+2,x
-.010491	95 10		sta $10,x		sta 	EXSValueH+0,x
-.010493	60		rts			rts
+.01047d					Binary_And:
+.01047d	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.010480	b5 00		lda $00,x		lda		EXSValueL+0,x
+.010482	35 02		and $02,x		and 	EXSValueL+2,x
+.010484	95 00		sta $00,x		sta 	EXSValueL+0,x
+.010486	b5 10		lda $10,x		lda		EXSValueH+0,x
+.010488	35 12		and $12,x		and 	EXSValueH+2,x
+.01048a	95 10		sta $10,x		sta 	EXSValueH+0,x
+.01048c	60		rts			rts
+.01048d					Binary_Or:
+.01048d	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.010490	b5 00		lda $00,x		lda		EXSValueL+0,x
+.010492	15 02		ora $02,x		ora 	EXSValueL+2,x
+.010494	95 00		sta $00,x		sta 	EXSValueL+0,x
+.010496	b5 10		lda $10,x		lda		EXSValueH+0,x
+.010498	15 12		ora $12,x		ora 	EXSValueH+2,x
+.01049a	95 10		sta $10,x		sta 	EXSValueH+0,x
+.01049c	60		rts			rts
+.01049d					Binary_Xor:
+.01049d	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.0104a0	b5 00		lda $00,x		lda		EXSValueL+0,x
+.0104a2	55 02		eor $02,x		eor 	EXSValueL+2,x
+.0104a4	95 00		sta $00,x		sta 	EXSValueL+0,x
+.0104a6	b5 10		lda $10,x		lda		EXSValueH+0,x
+.0104a8	55 12		eor $12,x		eor 	EXSValueH+2,x
+.0104aa	95 10		sta $10,x		sta 	EXSValueH+0,x
+.0104ac	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/binary/comparison.asm
 
-.010494					Binary_Equals:
-.010494	20 4d 05	jsr $01054d		jsr 	CompareTypeCheck 				; which types are we comparing ?
-.010497	b0 0e		bcs $0104a7		bcs 	_BEString
-.010499	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric comparison
-.01049b	d5 02		cmp $02,x		cmp 	EXSValueL+2,x
-.01049d	d0 4f		bne $0104ee		bne 	Compare_Fail
-.01049f	b5 10		lda $10,x		lda 	EXSValueH,x
-.0104a1	d5 12		cmp $12,x		cmp 	EXSValueH+2,x
-.0104a3	d0 49		bne $0104ee		bne 	Compare_Fail
-.0104a5	80 3f		bra $0104e6		bra 	Compare_Succeed
-.0104a7					_BEString:
-.0104a7	09 00 00	ora #$0000		ora 	#$0000
-.0104aa	f0 3a		beq $0104e6		beq 	Compare_Succeed
-.0104ac	80 40		bra $0104ee		bra 	Compare_Fail
-.0104ae					Binary_NotEquals:
-.0104ae	20 4d 05	jsr $01054d		jsr 	CompareTypeCheck 				; which types are we comparing ?
-.0104b1	b0 0e		bcs $0104c1		bcs 	_BNEString
-.0104b3	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric comparison
-.0104b5	d5 02		cmp $02,x		cmp 	EXSValueL+2,x
-.0104b7	d0 2d		bne $0104e6		bne 	Compare_Succeed
-.0104b9	b5 10		lda $10,x		lda 	EXSValueH,x
-.0104bb	d5 12		cmp $12,x		cmp 	EXSValueH+2,x
-.0104bd	d0 27		bne $0104e6		bne 	Compare_Succeed
-.0104bf	80 2d		bra $0104ee		bra 	Compare_Fail
-.0104c1					_BNEString:
-.0104c1	09 00 00	ora #$0000		ora 	#$0000
-.0104c4	d0 20		bne $0104e6		bne 	Compare_Succeed
-.0104c6	80 26		bra $0104ee		bra 	Compare_Fail
-.0104c8					Binary_Less:
-.0104c8	20 4d 05	jsr $01054d		jsr 	CompareTypeCheck 				; which types are we comparing ?
-.0104cb	b0 12		bcs $0104df		bcs 	_BLString
-.0104cd	38		sec			sec
-.0104ce	b5 00		lda $00,x		lda 	EXSValueL,x 					; signed numeric <
-.0104d0	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
+.0104ad					Binary_Equals:
+.0104ad	20 66 05	jsr $010566		jsr 	CompareTypeCheck 				; which types are we comparing ?
+.0104b0	b0 0e		bcs $0104c0		bcs 	_BEString
+.0104b2	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric comparison
+.0104b4	d5 02		cmp $02,x		cmp 	EXSValueL+2,x
+.0104b6	d0 4f		bne $010507		bne 	Compare_Fail
+.0104b8	b5 10		lda $10,x		lda 	EXSValueH,x
+.0104ba	d5 12		cmp $12,x		cmp 	EXSValueH+2,x
+.0104bc	d0 49		bne $010507		bne 	Compare_Fail
+.0104be	80 3f		bra $0104ff		bra 	Compare_Succeed
+.0104c0					_BEString:
+.0104c0	09 00 00	ora #$0000		ora 	#$0000
+.0104c3	f0 3a		beq $0104ff		beq 	Compare_Succeed
+.0104c5	80 40		bra $010507		bra 	Compare_Fail
+.0104c7					Binary_NotEquals:
+.0104c7	20 66 05	jsr $010566		jsr 	CompareTypeCheck 				; which types are we comparing ?
+.0104ca	b0 0e		bcs $0104da		bcs 	_BNEString
+.0104cc	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric comparison
+.0104ce	d5 02		cmp $02,x		cmp 	EXSValueL+2,x
+.0104d0	d0 2d		bne $0104ff		bne 	Compare_Succeed
 .0104d2	b5 10		lda $10,x		lda 	EXSValueH,x
-.0104d4	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
-.0104d6	50 03		bvc $0104db		bvc 	*+5
-.0104d8	49 00 80	eor #$8000		eor 	#$8000
-.0104db	30 09		bmi $0104e6		bmi 	Compare_Succeed
-.0104dd	80 0f		bra $0104ee		bra 	Compare_Fail
-.0104df					_BLString:
-.0104df	c9 ff ff	cmp #$ffff		cmp 	#$FFFF 							; string
-.0104e2	f0 02		beq $0104e6		beq 	Compare_Succeed
-.0104e4	80 08		bra $0104ee		bra 	Compare_Fail
-.0104e6					Compare_Succeed:
-.0104e6	a9 ff ff	lda #$ffff		lda 	#$FFFF
-.0104e9	95 00		sta $00,x		sta 	EXSValueL,x
-.0104eb	95 10		sta $10,x		sta 	EXSValueH,x
-.0104ed	60		rts			rts
-.0104ee					Compare_Fail:
-.0104ee	74 00		stz $00,x		stz 	EXSValueL,x
-.0104f0	74 10		stz $10,x		stz 	EXSValueH,x
-.0104f2	60		rts			rts
-.0104f3					Binary_GreaterEqual:
-.0104f3	20 4d 05	jsr $01054d		jsr 	CompareTypeCheck 				; which types are we comparing ?
-.0104f6	b0 12		bcs $01050a		bcs 	_BGEString
-.0104f8	38		sec			sec
-.0104f9	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric >= signed
-.0104fb	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.0104fd	b5 10		lda $10,x		lda 	EXSValueH,x
-.0104ff	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
-.010501	50 03		bvc $010506		bvc 	*+5
-.010503	49 00 80	eor #$8000		eor 	#$8000
-.010506	10 de		bpl $0104e6		bpl 	Compare_Succeed
-.010508	80 e4		bra $0104ee		bra 	Compare_Fail
-.01050a					_BGEString:
-.01050a	09 00 00	ora #$0000		ora 	#$0000
-.01050d	10 d7		bpl $0104e6		bpl 	Compare_Succeed
-.01050f	80 dd		bra $0104ee		bra 	Compare_Fail
-.010511					Binary_LessEqual:
-.010511	20 4d 05	jsr $01054d		jsr 	CompareTypeCheck 				; which types are we comparing ?
-.010514	b0 12		bcs $010528		bcs 	_BLEString
-.010516	18		clc			clc 									; numeric <= signed
-.010517	b5 00		lda $00,x		lda 	EXSValueL,x
-.010519	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.01051b	b5 10		lda $10,x		lda 	EXSValueH,x
-.01051d	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
-.01051f	50 03		bvc $010524		bvc 	*+5
-.010521	49 00 80	eor #$8000		eor 	#$8000
-.010524	30 c0		bmi $0104e6		bmi 	Compare_Succeed
-.010526	80 c6		bra $0104ee		bra 	Compare_Fail
-.010528					_BLEString:
-.010528	c9 01 00	cmp #$0001		cmp 	#$0001 							; string
-.01052b	d0 b9		bne $0104e6		bne 	Compare_Succeed
-.01052d	80 bf		bra $0104ee		bra 	Compare_Fail
-.01052f					Binary_Greater:
-.01052f	20 4d 05	jsr $01054d		jsr 	CompareTypeCheck 				; which types are we comparing ?
-.010532	b0 12		bcs $010546		bcs 	_BGString
-.010534	18		clc			clc 									; numeric > signed
-.010535	b5 00		lda $00,x		lda 	EXSValueL,x
-.010537	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.010539	b5 10		lda $10,x		lda 	EXSValueH,x
-.01053b	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
-.01053d	50 03		bvc $010542		bvc 	*+5
-.01053f	49 00 80	eor #$8000		eor 	#$8000
-.010542	10 a2		bpl $0104e6		bpl 	Compare_Succeed
-.010544	80 a8		bra $0104ee		bra 	Compare_Fail
-.010546					_BGString:
-.010546	c9 01 00	cmp #$0001		cmp 	#$0001
-.010549	f0 9b		beq $0104e6		beq 	Compare_Succeed
-.01054b	80 a1		bra $0104ee		bra 	Compare_Fail
-.01054d					CompareTypeCheck:
-.01054d	b5 20		lda $20,x		lda 	EXSPrecType+0,x 				; xor the type bits (bit 15)
-.01054f	55 22		eor $22,x		eor 	EXSPrecType+2,x
-.010551	30 06		bmi $010559		bmi 	_CTCFail 						; if different types cannot be compared, must be the same !
-.010553	b5 20		lda $20,x		lda 	EXSPrecType+0,x 				; get the type they (both) are.
-.010555	30 1c		bmi $010573		bmi 	_CTCStringCompare 				; if strings, do a string comparison.
-.010557	18		clc			clc 									; if numbers return with carry clear and calculate it.
-.010558	60		rts			rts
-.010559					_CTCFail:
-.010559	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->01055c	43 6f 6d 70 61 72 69 73				.text 	"Comparison mixed types",$00 								; with this message
->010564	6f 6e 20 6d 69 78 65 64 20 74 79 70 65 73 00
-.010573					_CTCStringCompare:
-.010573	20 44 03	jsr $010344		jsr 	ResetTypeInteger 				; two strings return integer not string.
-.010576	b5 00		lda $00,x		lda 	EXSValueL+0,x 					; copy address of string 1 -> DTemp1
-.010578	85 08		sta $08			sta 	DTemp1
-.01057a	b5 02		lda $02,x		lda 	EXSValueL+2,x 					; copy address of string 2 -> DTemp2
-.01057c	85 0c		sta $0c			sta 	DTemp2
-.01057e	a9 00 00	lda #$0000		lda 	#$0000 							; clear AY
-.010581	a8		tay			tay
-.010582	e2 20		sep #$20		sep 	#$20 							; 8 bit data mode.
-.010584	b2 08		lda ($08)		lda 	(DTemp1) 						; get the length of the shorter string
-.010586	d2 0c		cmp ($0c)		cmp 	(DTemp2)
-.010588	90 02		bcc $01058c		bcc 	_CTCSmallest
-.01058a	b2 0c		lda ($0c)		lda 	(DTemp2)
-.01058c					_CTCSmallest:
-.01058c	85 14		sta $14			sta		DSignCount 						; use this as a comparison count. Check to see they match fires
-.01058e					_CTCCompare:
-.01058e	c8		iny			iny 									; look at next character (done first, first char is size)
-.01058f	c6 14		dec $14			dec 	DSignCount 						; decrement counter
-.010591	30 16		bmi $0105a9		bmi 	_CTCEqualSoFar 					; if -ve the strings are the same as far as the shortest.
-.010593	b1 08		lda ($08),y		lda 	(DTemp1),y						; compare s1[y] - s2[y]
-.010595	d1 0c		cmp ($0c),y		cmp 	(DTemp2),y
-.010597	f0 f5		beq $01058e		beq 	_CTCCompare 					; if zero, try the next character.
-.010599	b0 07		bcs $0105a2		bcs 	_CTCGreater 					; Strings are different in their common length. Return -ve then s2 > s1
-.01059b					_CTCLess:
-.01059b	c2 20		rep #$20		rep 	#$20
-.01059d	a9 ff ff	lda #$ffff		lda 	#$FFFF
-.0105a0	80 14		bra $0105b6		bra 	_CTCExit
-.0105a2					_CTCGreater:
-.0105a2	c2 20		rep #$20		rep 	#$20
-.0105a4	a9 01 00	lda #$0001		lda 	#$0001 							; return +1 and CS
-.0105a7	80 0d		bra $0105b6		bra 	_CTCExit
-.0105a9					_CTCEqualSoFar:
-.0105a9	b2 08		lda ($08)		lda 	(DTemp1) 						; if len(s1) < len(s2) then s1 is the smaller
-.0105ab	d2 0c		cmp ($0c)		cmp 	(DTemp2)
-.0105ad	90 ec		bcc $01059b		bcc 	_CTCLess
-.0105af	d0 f1		bne $0105a2		bne 	_CTCGreater 					; if len(s1) > len(s2) then s2 is the smaller
-.0105b1	c2 20		rep #$20		rep 	#$20 	 						; if lengths are the same, then they're the same.
-.0105b3	a9 00 00	lda #$0000		lda 	#$0000
-.0105b6					_CTCExit:
-.0105b6	38		sec			sec 									; return with CS indicating string comparison.
-.0105b7	60		rts			rts
+.0104d4	d5 12		cmp $12,x		cmp 	EXSValueH+2,x
+.0104d6	d0 27		bne $0104ff		bne 	Compare_Succeed
+.0104d8	80 2d		bra $010507		bra 	Compare_Fail
+.0104da					_BNEString:
+.0104da	09 00 00	ora #$0000		ora 	#$0000
+.0104dd	d0 20		bne $0104ff		bne 	Compare_Succeed
+.0104df	80 26		bra $010507		bra 	Compare_Fail
+.0104e1					Binary_Less:
+.0104e1	20 66 05	jsr $010566		jsr 	CompareTypeCheck 				; which types are we comparing ?
+.0104e4	b0 12		bcs $0104f8		bcs 	_BLString
+.0104e6	38		sec			sec
+.0104e7	b5 00		lda $00,x		lda 	EXSValueL,x 					; signed numeric <
+.0104e9	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
+.0104eb	b5 10		lda $10,x		lda 	EXSValueH,x
+.0104ed	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.0104ef	50 03		bvc $0104f4		bvc 	*+5
+.0104f1	49 00 80	eor #$8000		eor 	#$8000
+.0104f4	30 09		bmi $0104ff		bmi 	Compare_Succeed
+.0104f6	80 0f		bra $010507		bra 	Compare_Fail
+.0104f8					_BLString:
+.0104f8	c9 ff ff	cmp #$ffff		cmp 	#$FFFF 							; string
+.0104fb	f0 02		beq $0104ff		beq 	Compare_Succeed
+.0104fd	80 08		bra $010507		bra 	Compare_Fail
+.0104ff					Compare_Succeed:
+.0104ff	a9 ff ff	lda #$ffff		lda 	#$FFFF
+.010502	95 00		sta $00,x		sta 	EXSValueL,x
+.010504	95 10		sta $10,x		sta 	EXSValueH,x
+.010506	60		rts			rts
+.010507					Compare_Fail:
+.010507	74 00		stz $00,x		stz 	EXSValueL,x
+.010509	74 10		stz $10,x		stz 	EXSValueH,x
+.01050b	60		rts			rts
+.01050c					Binary_GreaterEqual:
+.01050c	20 66 05	jsr $010566		jsr 	CompareTypeCheck 				; which types are we comparing ?
+.01050f	b0 12		bcs $010523		bcs 	_BGEString
+.010511	38		sec			sec
+.010512	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric >= signed
+.010514	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
+.010516	b5 10		lda $10,x		lda 	EXSValueH,x
+.010518	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.01051a	50 03		bvc $01051f		bvc 	*+5
+.01051c	49 00 80	eor #$8000		eor 	#$8000
+.01051f	10 de		bpl $0104ff		bpl 	Compare_Succeed
+.010521	80 e4		bra $010507		bra 	Compare_Fail
+.010523					_BGEString:
+.010523	09 00 00	ora #$0000		ora 	#$0000
+.010526	10 d7		bpl $0104ff		bpl 	Compare_Succeed
+.010528	80 dd		bra $010507		bra 	Compare_Fail
+.01052a					Binary_LessEqual:
+.01052a	20 66 05	jsr $010566		jsr 	CompareTypeCheck 				; which types are we comparing ?
+.01052d	b0 12		bcs $010541		bcs 	_BLEString
+.01052f	18		clc			clc 									; numeric <= signed
+.010530	b5 00		lda $00,x		lda 	EXSValueL,x
+.010532	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
+.010534	b5 10		lda $10,x		lda 	EXSValueH,x
+.010536	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.010538	50 03		bvc $01053d		bvc 	*+5
+.01053a	49 00 80	eor #$8000		eor 	#$8000
+.01053d	30 c0		bmi $0104ff		bmi 	Compare_Succeed
+.01053f	80 c6		bra $010507		bra 	Compare_Fail
+.010541					_BLEString:
+.010541	c9 01 00	cmp #$0001		cmp 	#$0001 							; string
+.010544	d0 b9		bne $0104ff		bne 	Compare_Succeed
+.010546	80 bf		bra $010507		bra 	Compare_Fail
+.010548					Binary_Greater:
+.010548	20 66 05	jsr $010566		jsr 	CompareTypeCheck 				; which types are we comparing ?
+.01054b	b0 12		bcs $01055f		bcs 	_BGString
+.01054d	18		clc			clc 									; numeric > signed
+.01054e	b5 00		lda $00,x		lda 	EXSValueL,x
+.010550	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
+.010552	b5 10		lda $10,x		lda 	EXSValueH,x
+.010554	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.010556	50 03		bvc $01055b		bvc 	*+5
+.010558	49 00 80	eor #$8000		eor 	#$8000
+.01055b	10 a2		bpl $0104ff		bpl 	Compare_Succeed
+.01055d	80 a8		bra $010507		bra 	Compare_Fail
+.01055f					_BGString:
+.01055f	c9 01 00	cmp #$0001		cmp 	#$0001
+.010562	f0 9b		beq $0104ff		beq 	Compare_Succeed
+.010564	80 a1		bra $010507		bra 	Compare_Fail
+.010566					CompareTypeCheck:
+.010566	b5 20		lda $20,x		lda 	EXSPrecType+0,x 				; xor the type bits (bit 15)
+.010568	55 22		eor $22,x		eor 	EXSPrecType+2,x
+.01056a	30 06		bmi $010572		bmi 	_CTCFail 						; if different types cannot be compared, must be the same !
+.01056c	b5 20		lda $20,x		lda 	EXSPrecType+0,x 				; get the type they (both) are.
+.01056e	30 1c		bmi $01058c		bmi 	_CTCStringCompare 				; if strings, do a string comparison.
+.010570	18		clc			clc 									; if numbers return with carry clear and calculate it.
+.010571	60		rts			rts
+.010572					_CTCFail:
+.010572	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>010575	43 6f 6d 70 61 72 69 73				.text 	"Comparison mixed types",$00 								; with this message
+>01057d	6f 6e 20 6d 69 78 65 64 20 74 79 70 65 73 00
+.01058c					_CTCStringCompare:
+.01058c	20 5d 03	jsr $01035d		jsr 	ResetTypeInteger 				; two strings return integer not string.
+.01058f	b5 00		lda $00,x		lda 	EXSValueL+0,x 					; copy address of string 1 -> DTemp1
+.010591	85 08		sta $08			sta 	DTemp1
+.010593	b5 02		lda $02,x		lda 	EXSValueL+2,x 					; copy address of string 2 -> DTemp2
+.010595	85 0c		sta $0c			sta 	DTemp2
+.010597	a9 00 00	lda #$0000		lda 	#$0000 							; clear AY
+.01059a	a8		tay			tay
+.01059b	e2 20		sep #$20		sep 	#$20 							; 8 bit data mode.
+.01059d	b2 08		lda ($08)		lda 	(DTemp1) 						; get the length of the shorter string
+.01059f	d2 0c		cmp ($0c)		cmp 	(DTemp2)
+.0105a1	90 02		bcc $0105a5		bcc 	_CTCSmallest
+.0105a3	b2 0c		lda ($0c)		lda 	(DTemp2)
+.0105a5					_CTCSmallest:
+.0105a5	85 14		sta $14			sta		DSignCount 						; use this as a comparison count. Check to see they match fires
+.0105a7					_CTCCompare:
+.0105a7	c8		iny			iny 									; look at next character (done first, first char is size)
+.0105a8	c6 14		dec $14			dec 	DSignCount 						; decrement counter
+.0105aa	30 16		bmi $0105c2		bmi 	_CTCEqualSoFar 					; if -ve the strings are the same as far as the shortest.
+.0105ac	b1 08		lda ($08),y		lda 	(DTemp1),y						; compare s1[y] - s2[y]
+.0105ae	d1 0c		cmp ($0c),y		cmp 	(DTemp2),y
+.0105b0	f0 f5		beq $0105a7		beq 	_CTCCompare 					; if zero, try the next character.
+.0105b2	b0 07		bcs $0105bb		bcs 	_CTCGreater 					; Strings are different in their common length. Return -ve then s2 > s1
+.0105b4					_CTCLess:
+.0105b4	c2 20		rep #$20		rep 	#$20
+.0105b6	a9 ff ff	lda #$ffff		lda 	#$FFFF
+.0105b9	80 14		bra $0105cf		bra 	_CTCExit
+.0105bb					_CTCGreater:
+.0105bb	c2 20		rep #$20		rep 	#$20
+.0105bd	a9 01 00	lda #$0001		lda 	#$0001 							; return +1 and CS
+.0105c0	80 0d		bra $0105cf		bra 	_CTCExit
+.0105c2					_CTCEqualSoFar:
+.0105c2	b2 08		lda ($08)		lda 	(DTemp1) 						; if len(s1) < len(s2) then s1 is the smaller
+.0105c4	d2 0c		cmp ($0c)		cmp 	(DTemp2)
+.0105c6	90 ec		bcc $0105b4		bcc 	_CTCLess
+.0105c8	d0 f1		bne $0105bb		bne 	_CTCGreater 					; if len(s1) > len(s2) then s2 is the smaller
+.0105ca	c2 20		rep #$20		rep 	#$20 	 						; if lengths are the same, then they're the same.
+.0105cc	a9 00 00	lda #$0000		lda 	#$0000
+.0105cf					_CTCExit:
+.0105cf	38		sec			sec 									; return with CS indicating string comparison.
+.0105d0	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/binary/divide.asm
 
-.0105b8					Binary_Divide:
-.0105b8	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.0105bb	b5 02		lda $02,x		lda 	EXSValueL+2,x						; check for division by zero
-.0105bd	15 12		ora $12,x		ora	 	EXSValueH+2,x
-.0105bf	d0 14		bne $0105d5		bne 	_BinaryDivide_Ok
-.0105c1	20 d2 02	jsr $0102d2			jsr 	ErrorHandler 						; call error routine
->0105c4	44 69 76 69 73 69 6f 6e				.text 	"Division by zero",$00 								; with this message
->0105cc	20 62 79 20 7a 65 72 6f 00
-.0105d5					_BinaryDivide_Ok:
-.0105d5	64 08		stz $08			stz 	DTemp1+0							; clear remainder (DTemp)
-.0105d7	64 0a		stz $0a			stz 	DTemp1+2
-.0105d9	64 14		stz $14			stz 	DSignCount  						; zero sign count.
-.0105db	5a		phy			phy 										; save Y (bit counter)
-.0105dc	b5 12		lda $12,x		lda 	EXSValueH+2,x 						; check sign of H+2 (right)
-.0105de	10 07		bpl $0105e7		bpl 	_BinaryDivide_RightDone
-.0105e0	e8		inx			inx
-.0105e1	e8		inx			inx
-.0105e2	20 1d 06	jsr $01061d		jsr 	Binary_DivNegate
-.0105e5	ca		dex			dex
-.0105e6	ca		dex			dex
-.0105e7					_BinaryDivide_RightDone:
-.0105e7	b5 10		lda $10,x		lda 	EXSValueH+0,x 				 		; check sign of H+0 (left)
-.0105e9	10 03		bpl $0105ee		bpl 	_BinaryDivide_LeftDone
-.0105eb	20 1d 06	jsr $01061d		jsr 	Binary_DivNegate
-.0105ee					_BinaryDivide_LeftDone:
-.0105ee	a0 20 00	ldy #$0020		ldy 	#32 								; number to do.
-.0105f1					_BinaryDivide_Loop:
-.0105f1	16 00		asl $00,x		asl 	EXSValueL+0,x 						; shift Q into carry
-.0105f3	36 10		rol $10,x		rol 	EXSValueH+0,x
-.0105f5	26 08		rol $08			rol 	DTemp1+0 							; rotate A left, with carry in
-.0105f7	26 0a		rol $0a			rol 	DTemp1+2
-.0105f9	38		sec			sec											; calculate A-M
-.0105fa	a5 08		lda $08			lda 	DTemp1+0 							; but don't save it.
-.0105fc	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.0105fe	85 0c		sta $0c			sta 	DTemp2
-.010600	a5 0a		lda $0a			lda 	DTemp1+2
-.010602	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
-.010604	90 08		bcc $01060e		bcc 	_Binary_NoSubract 					; if A < M skip this
-.010606	85 0a		sta $0a			sta 	DTemp1+2 							; save the calculated value.
-.010608	a5 0c		lda $0c			lda 	DTemp2
-.01060a	85 08		sta $08			sta 	DTemp1+0
-.01060c	f6 00		inc $00,x		inc 	EXSValueL+0,x						; set bit 0 of Q
-.01060e					_Binary_NoSubract:
-.01060e	88		dey			dey 										; do it 32 times.
-.01060f	d0 e0		bne $0105f1		bne 	_BinaryDivide_Loop
-.010611					_BinaryDivide_Exit:
-.010611	a5 14		lda $14			lda 	DSignCount 							; restore sign
-.010613	29 01 00	and #$0001		and 	#1
-.010616	f0 03		beq $01061b		beq 	_BinaryDivide_Exit2
-.010618	20 1d 06	jsr $01061d		jsr 	Binary_DivNegate
-.01061b					_BinaryDivide_Exit2:
-.01061b	7a		ply			ply 										; restore Y
-.01061c	60		rts			rts
-.01061d					Binary_DivNegate:
-.01061d	e6 14		inc $14			inc 	DSignCount 							; increment the count of signs.
-.01061f	38		sec			sec 										; negate the value at stack X.
-.010620	a9 00 00	lda #$0000		lda 	#$0000
-.010623	f5 00		sbc $00,x		sbc 	EXSValueL+0,x
-.010625	95 00		sta $00,x		sta 	EXSValueL+0,x
-.010627	a9 00 00	lda #$0000		lda 	#$0000
-.01062a	f5 10		sbc $10,x		sbc 	EXSValueH+0,x
-.01062c	95 10		sta $10,x		sta 	EXSValueH+0,x
-.01062e	60		rts			rts
-.01062f					Binary_Modulus:
-.01062f	20 b8 05	jsr $0105b8		jsr 	Binary_Divide 						; do the divide
-.010632	a5 08		lda $08			lda 	DTemp1+0 							; copy modulus into data area.
-.010634	95 00		sta $00,x		sta 	EXSValueL+0,x
-.010636	a5 0a		lda $0a			lda 	DTemp1+2
-.010638	95 10		sta $10,x		sta 	EXSValueH+0,x
-.01063a	60		rts			rts
+.0105d1					Binary_Divide:
+.0105d1	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.0105d4	b5 02		lda $02,x		lda 	EXSValueL+2,x						; check for division by zero
+.0105d6	15 12		ora $12,x		ora	 	EXSValueH+2,x
+.0105d8	d0 14		bne $0105ee		bne 	_BinaryDivide_Ok
+.0105da	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>0105dd	44 69 76 69 73 69 6f 6e				.text 	"Division by zero",$00 								; with this message
+>0105e5	20 62 79 20 7a 65 72 6f 00
+.0105ee					_BinaryDivide_Ok:
+.0105ee	64 08		stz $08			stz 	DTemp1+0							; clear remainder (DTemp)
+.0105f0	64 0a		stz $0a			stz 	DTemp1+2
+.0105f2	64 14		stz $14			stz 	DSignCount  						; zero sign count.
+.0105f4	5a		phy			phy 										; save Y (bit counter)
+.0105f5	b5 12		lda $12,x		lda 	EXSValueH+2,x 						; check sign of H+2 (right)
+.0105f7	10 07		bpl $010600		bpl 	_BinaryDivide_RightDone
+.0105f9	e8		inx			inx
+.0105fa	e8		inx			inx
+.0105fb	20 36 06	jsr $010636		jsr 	Binary_DivNegate
+.0105fe	ca		dex			dex
+.0105ff	ca		dex			dex
+.010600					_BinaryDivide_RightDone:
+.010600	b5 10		lda $10,x		lda 	EXSValueH+0,x 				 		; check sign of H+0 (left)
+.010602	10 03		bpl $010607		bpl 	_BinaryDivide_LeftDone
+.010604	20 36 06	jsr $010636		jsr 	Binary_DivNegate
+.010607					_BinaryDivide_LeftDone:
+.010607	a0 20 00	ldy #$0020		ldy 	#32 								; number to do.
+.01060a					_BinaryDivide_Loop:
+.01060a	16 00		asl $00,x		asl 	EXSValueL+0,x 						; shift Q into carry
+.01060c	36 10		rol $10,x		rol 	EXSValueH+0,x
+.01060e	26 08		rol $08			rol 	DTemp1+0 							; rotate A left, with carry in
+.010610	26 0a		rol $0a			rol 	DTemp1+2
+.010612	38		sec			sec											; calculate A-M
+.010613	a5 08		lda $08			lda 	DTemp1+0 							; but don't save it.
+.010615	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
+.010617	85 0c		sta $0c			sta 	DTemp2
+.010619	a5 0a		lda $0a			lda 	DTemp1+2
+.01061b	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.01061d	90 08		bcc $010627		bcc 	_Binary_NoSubract 					; if A < M skip this
+.01061f	85 0a		sta $0a			sta 	DTemp1+2 							; save the calculated value.
+.010621	a5 0c		lda $0c			lda 	DTemp2
+.010623	85 08		sta $08			sta 	DTemp1+0
+.010625	f6 00		inc $00,x		inc 	EXSValueL+0,x						; set bit 0 of Q
+.010627					_Binary_NoSubract:
+.010627	88		dey			dey 										; do it 32 times.
+.010628	d0 e0		bne $01060a		bne 	_BinaryDivide_Loop
+.01062a					_BinaryDivide_Exit:
+.01062a	a5 14		lda $14			lda 	DSignCount 							; restore sign
+.01062c	29 01 00	and #$0001		and 	#1
+.01062f	f0 03		beq $010634		beq 	_BinaryDivide_Exit2
+.010631	20 36 06	jsr $010636		jsr 	Binary_DivNegate
+.010634					_BinaryDivide_Exit2:
+.010634	7a		ply			ply 										; restore Y
+.010635	60		rts			rts
+.010636					Binary_DivNegate:
+.010636	e6 14		inc $14			inc 	DSignCount 							; increment the count of signs.
+.010638	38		sec			sec 										; negate the value at stack X.
+.010639	a9 00 00	lda #$0000		lda 	#$0000
+.01063c	f5 00		sbc $00,x		sbc 	EXSValueL+0,x
+.01063e	95 00		sta $00,x		sta 	EXSValueL+0,x
+.010640	a9 00 00	lda #$0000		lda 	#$0000
+.010643	f5 10		sbc $10,x		sbc 	EXSValueH+0,x
+.010645	95 10		sta $10,x		sta 	EXSValueH+0,x
+.010647	60		rts			rts
+.010648					Binary_Modulus:
+.010648	20 d1 05	jsr $0105d1		jsr 	Binary_Divide 						; do the divide
+.01064b	a5 08		lda $08			lda 	DTemp1+0 							; copy modulus into data area.
+.01064d	95 00		sta $00,x		sta 	EXSValueL+0,x
+.01064f	a5 0a		lda $0a			lda 	DTemp1+2
+.010651	95 10		sta $10,x		sta 	EXSValueH+0,x
+.010653	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/binary/multiply.asm
 
-.01063b					Binary_Multiply:
-.01063b	20 24 03	jsr $010324		jsr 	CheckBothNumeric 					; check both values are numeric
-.01063e	b5 00		lda $00,x		lda 	EXSValueL+0,x 						; multiplier to DTemp1, multiplicand in Value+2
-.010640	85 08		sta $08			sta 	DTemp1
-.010642	b5 10		lda $10,x		lda 	EXSValueH+0,x
-.010644	85 0a		sta $0a			sta		DTemp1+2
-.010646	74 00		stz $00,x		stz 	EXSValueL+0,x						; zero result
-.010648	74 10		stz $10,x		stz 	EXSValueH+0,x
-.01064a					_BinaryMultiply_Loop:
-.01064a	a5 08		lda $08			lda 	DTemp1 								; multiplier zero then exit
-.01064c	05 0a		ora $0a			ora 	DTemp1+2
-.01064e	f0 1e		beq $01066e		beq 	_BinaryMultiply_Exit
-.010650	a5 08		lda $08			lda 	DTemp1 								; check bit 0 of multiplier
-.010652	29 01 00	and #$0001		and 	#1
-.010655	f0 0d		beq $010664		beq 	_BinaryMultiply_NoAdd
-.010657	18		clc			clc 										; add multiplicand to result.
-.010658	b5 00		lda $00,x		lda 	EXSValueL+0,x
-.01065a	75 02		adc $02,x		adc 	EXSValueL+2,x
-.01065c	95 00		sta $00,x		sta 	EXSValueL+0,x
-.01065e	b5 10		lda $10,x		lda 	EXSValueH+0,x
-.010660	75 12		adc $12,x		adc 	EXSValueH+2,x
-.010662	95 10		sta $10,x		sta 	EXSValueH+0,x
-.010664					_BinaryMultiply_NoAdd:
-.010664	46 0a		lsr $0a			lsr 	DTemp1+2 							; halve multiplier
-.010666	66 08		ror $08			ror 	DTemp1
-.010668	16 02		asl $02,x		asl 	EXSValueL+2,x 						; double multiplicand
-.01066a	36 12		rol $12,x		rol 	EXSValueH+2,x
-.01066c	80 dc		bra $01064a		bra 	_BinaryMultiply_Loop 				; go round again.
-.01066e					_BinaryMultiply_Exit:
-.01066e	60		rts			rts
+.010654					Binary_Multiply:
+.010654	20 3d 03	jsr $01033d		jsr 	CheckBothNumeric 					; check both values are numeric
+.010657	b5 00		lda $00,x		lda 	EXSValueL+0,x 						; multiplier to DTemp1, multiplicand in Value+2
+.010659	85 08		sta $08			sta 	DTemp1
+.01065b	b5 10		lda $10,x		lda 	EXSValueH+0,x
+.01065d	85 0a		sta $0a			sta		DTemp1+2
+.01065f	74 00		stz $00,x		stz 	EXSValueL+0,x						; zero result
+.010661	74 10		stz $10,x		stz 	EXSValueH+0,x
+.010663					_BinaryMultiply_Loop:
+.010663	a5 08		lda $08			lda 	DTemp1 								; multiplier zero then exit
+.010665	05 0a		ora $0a			ora 	DTemp1+2
+.010667	f0 1e		beq $010687		beq 	_BinaryMultiply_Exit
+.010669	a5 08		lda $08			lda 	DTemp1 								; check bit 0 of multiplier
+.01066b	29 01 00	and #$0001		and 	#1
+.01066e	f0 0d		beq $01067d		beq 	_BinaryMultiply_NoAdd
+.010670	18		clc			clc 										; add multiplicand to result.
+.010671	b5 00		lda $00,x		lda 	EXSValueL+0,x
+.010673	75 02		adc $02,x		adc 	EXSValueL+2,x
+.010675	95 00		sta $00,x		sta 	EXSValueL+0,x
+.010677	b5 10		lda $10,x		lda 	EXSValueH+0,x
+.010679	75 12		adc $12,x		adc 	EXSValueH+2,x
+.01067b	95 10		sta $10,x		sta 	EXSValueH+0,x
+.01067d					_BinaryMultiply_NoAdd:
+.01067d	46 0a		lsr $0a			lsr 	DTemp1+2 							; halve multiplier
+.01067f	66 08		ror $08			ror 	DTemp1
+.010681	16 02		asl $02,x		asl 	EXSValueL+2,x 						; double multiplicand
+.010683	36 12		rol $12,x		rol 	EXSValueH+2,x
+.010685	80 dc		bra $010663		bra 	_BinaryMultiply_Loop 				; go round again.
+.010687					_BinaryMultiply_Exit:
+.010687	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/unary/simpleunary.asm
 
-.01066f					Function_Len:
-.01066f	20 44 03	jsr $010344			jsr 	ResetTypeInteger 			; returns an integer
-.010672	20 d7 01	jsr $0101d7			jsr 	EvaluateNextString 			; get the value you are absoluting
-.010675	20 12 03	jsr $010312			jsr 	ExpectRightBracket 			; check )
-.010678	b4 02		ldy $02,x			ldy 	EXSValueL+2,x 				; address of string.
-.01067a	b9 00 00	lda $0000,y			lda 	$0000,y 					; get the string length
-.01067d	29 ff 00	and #$00ff			and 	#$00FF 						; as a byte
-.010680	95 00		sta $00,x			sta 	EXSValueL+0,x 				; and return it
-.010682	74 10		stz $10,x			stz 	EXSValueH+0,x
-.010684	60		rts				rts
-.010685					Function_Abs:
-.010685	20 44 03	jsr $010344			jsr 	ResetTypeInteger 			; returns an integer
-.010688	20 b8 01	jsr $0101b8			jsr 	EvaluateNextInteger 		; get the value you are absoluting
-.01068b	20 12 03	jsr $010312			jsr 	ExpectRightBracket 			; check )
-.01068e	b5 12		lda $12,x			lda 	EXSValueH+2,x 				; get sign of result from the upper word.
-.010690	30 07		bmi $010699			bmi 	_FAbsNegative 				; negate it if negative
-.010692	95 10		sta $10,x			sta 	EXSValueH+0,x 				; otherwise just copy it.
-.010694	b5 02		lda $02,x			lda 	EXSValueL+2,x
-.010696	95 00		sta $00,x			sta 	EXSValueL+0,x
-.010698	60		rts				rts
-.010699					_FAbsNegative:
-.010699	38		sec				sec 								; copy 0 - 2nd stack => 1st stack.
-.01069a	a9 00 00	lda #$0000			lda 	#0
-.01069d	f5 02		sbc $02,x			sbc 	EXSValueL+2,x
-.01069f	95 00		sta $00,x			sta 	EXSValueL+0,x
-.0106a1	a9 00 00	lda #$0000			lda 	#0
-.0106a4	f5 12		sbc $12,x			sbc 	EXSValueH+2,x
-.0106a6	95 10		sta $10,x			sta 	EXSValueH+0,x
-.0106a8	60		rts				rts
-.0106a9					Function_Sgn:
-.0106a9	20 44 03	jsr $010344			jsr 	ResetTypeInteger 			; returns integer
-.0106ac	20 b8 01	jsr $0101b8			jsr 	EvaluateNextInteger 		; get an integer
-.0106af	20 12 03	jsr $010312			jsr 	ExpectRightBracket 			; check )
-.0106b2	74 00		stz $00,x			stz 	EXSValueL+0,x 				; zero the result
-.0106b4	74 10		stz $10,x			stz 	EXSValueH+0,x
-.0106b6	b5 12		lda $12,x			lda 	EXSValueH+2,x 				; get sign of result from high bit of upper word.
-.0106b8	30 07		bmi $0106c1			bmi 	_FSgnNegative 				; set to -1 if signed
-.0106ba	15 02		ora $02,x			ora 	EXSValueL+2,x 				; exit if zero as we already reset it.
-.0106bc	f0 02		beq $0106c0			beq 	_FSgnExit
-.0106be	f6 00		inc $00,x			inc 	EXSValueL+0,x 				; > 0 so make result 1 if positive and non-zero
-.0106c0					_FSgnExit:
-.0106c0	60		rts				rts
-.0106c1					_FSgnNegative:
-.0106c1	a9 ff ff	lda #$ffff			lda 	#$FFFF 						; set the return value to -1 as negative.
-.0106c4	95 00		sta $00,x			sta 	EXSValueL+0,x
-.0106c6	95 10		sta $10,x			sta 	EXSValueH+0,x
-.0106c8	60		rts				rts
-.0106c9					Function_Random:
-.0106c9	20 44 03	jsr $010344			jsr 	ResetTypeInteger
-.0106cc	a5 10		lda $10				lda 	DRandom 					; check for non-zero
-.0106ce	05 12		ora $12				ora 	DRandom+2 					; they don't like these :)
-.0106d0	d0 0a		bne $0106dc			bne 	_Rnd_NotZero
-.0106d2	a9 b5 00	lda #$00b5			lda 	#$B5 						; initialise it to the same value.
-.0106d5	85 10		sta $10				sta 	DRandom
-.0106d7	a9 ea 00	lda #$00ea			lda 	#$EA
-.0106da	85 12		sta $12				sta 	DRandom+2
-.0106dc					_Rnd_NotZero:
-.0106dc	20 e7 06	jsr $0106e7			jsr 	_Rnd_Process 				; call randomiser twice
+.010688					Function_Len:
+.010688	20 5d 03	jsr $01035d			jsr 	ResetTypeInteger 			; returns an integer
+.01068b	20 f0 01	jsr $0101f0			jsr 	EvaluateNextString 			; get the value you are absoluting
+.01068e	20 2b 03	jsr $01032b			jsr 	ExpectRightBracket 			; check )
+.010691	b4 02		ldy $02,x			ldy 	EXSValueL+2,x 				; address of string.
+.010693	b9 00 00	lda $0000,y			lda 	$0000,y 					; get the string length
+.010696	29 ff 00	and #$00ff			and 	#$00FF 						; as a byte
+.010699	95 00		sta $00,x			sta 	EXSValueL+0,x 				; and return it
+.01069b	74 10		stz $10,x			stz 	EXSValueH+0,x
+.01069d	60		rts				rts
+.01069e					Function_Abs:
+.01069e	20 5d 03	jsr $01035d			jsr 	ResetTypeInteger 			; returns an integer
+.0106a1	20 d1 01	jsr $0101d1			jsr 	EvaluateNextInteger 		; get the value you are absoluting
+.0106a4	20 2b 03	jsr $01032b			jsr 	ExpectRightBracket 			; check )
+.0106a7	b5 12		lda $12,x			lda 	EXSValueH+2,x 				; get sign of result from the upper word.
+.0106a9	30 07		bmi $0106b2			bmi 	_FAbsNegative 				; negate it if negative
+.0106ab	95 10		sta $10,x			sta 	EXSValueH+0,x 				; otherwise just copy it.
+.0106ad	b5 02		lda $02,x			lda 	EXSValueL+2,x
+.0106af	95 00		sta $00,x			sta 	EXSValueL+0,x
+.0106b1	60		rts				rts
+.0106b2					_FAbsNegative:
+.0106b2	38		sec				sec 								; copy 0 - 2nd stack => 1st stack.
+.0106b3	a9 00 00	lda #$0000			lda 	#0
+.0106b6	f5 02		sbc $02,x			sbc 	EXSValueL+2,x
+.0106b8	95 00		sta $00,x			sta 	EXSValueL+0,x
+.0106ba	a9 00 00	lda #$0000			lda 	#0
+.0106bd	f5 12		sbc $12,x			sbc 	EXSValueH+2,x
+.0106bf	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0106c1	60		rts				rts
+.0106c2					Function_Sgn:
+.0106c2	20 5d 03	jsr $01035d			jsr 	ResetTypeInteger 			; returns integer
+.0106c5	20 d1 01	jsr $0101d1			jsr 	EvaluateNextInteger 		; get an integer
+.0106c8	20 2b 03	jsr $01032b			jsr 	ExpectRightBracket 			; check )
+.0106cb	74 00		stz $00,x			stz 	EXSValueL+0,x 				; zero the result
+.0106cd	74 10		stz $10,x			stz 	EXSValueH+0,x
+.0106cf	b5 12		lda $12,x			lda 	EXSValueH+2,x 				; get sign of result from high bit of upper word.
+.0106d1	30 07		bmi $0106da			bmi 	_FSgnNegative 				; set to -1 if signed
+.0106d3	15 02		ora $02,x			ora 	EXSValueL+2,x 				; exit if zero as we already reset it.
+.0106d5	f0 02		beq $0106d9			beq 	_FSgnExit
+.0106d7	f6 00		inc $00,x			inc 	EXSValueL+0,x 				; > 0 so make result 1 if positive and non-zero
+.0106d9					_FSgnExit:
+.0106d9	60		rts				rts
+.0106da					_FSgnNegative:
+.0106da	a9 ff ff	lda #$ffff			lda 	#$FFFF 						; set the return value to -1 as negative.
+.0106dd	95 00		sta $00,x			sta 	EXSValueL+0,x
 .0106df	95 10		sta $10,x			sta 	EXSValueH+0,x
-.0106e1	20 e7 06	jsr $0106e7			jsr 	_Rnd_Process
-.0106e4	95 00		sta $00,x			sta 	EXSValueL+0,x
-.0106e6	60		rts				rts
-.0106e7					_Rnd_Process:
-.0106e7	06 10		asl $10				asl 	DRandom 					; shift right, exit
-.0106e9	26 12		rol $12				rol 	DRandom+2
-.0106eb	90 0e		bcc $0106fb			bcc 	_Rnd_Exit
-.0106ed	a5 10		lda $10				lda 	DRandom 					; taps effectively
-.0106ef	49 54 d4	eor #$d454			eor 	#$D454
-.0106f2	85 10		sta $10				sta 	DRandom
-.0106f4	a5 12		lda $12				lda 	DRandom+2
-.0106f6	49 d5 55	eor #$55d5			eor 	#$55D5
-.0106f9	85 12		sta $12				sta 	DRandom+2
-.0106fb					_Rnd_Exit:
-.0106fb	a5 10		lda $10				lda 	DRandom
-.0106fd	45 12		eor $12				eor 	DRandom+2
+.0106e1	60		rts				rts
+.0106e2					Function_Random:
+.0106e2	20 5d 03	jsr $01035d			jsr 	ResetTypeInteger
+.0106e5	a5 10		lda $10				lda 	DRandom 					; check for non-zero
+.0106e7	05 12		ora $12				ora 	DRandom+2 					; they don't like these :)
+.0106e9	d0 0a		bne $0106f5			bne 	_Rnd_NotZero
+.0106eb	a9 b5 00	lda #$00b5			lda 	#$B5 						; initialise it to the same value.
+.0106ee	85 10		sta $10				sta 	DRandom
+.0106f0	a9 ea 00	lda #$00ea			lda 	#$EA
+.0106f3	85 12		sta $12				sta 	DRandom+2
+.0106f5					_Rnd_NotZero:
+.0106f5	20 00 07	jsr $010700			jsr 	_Rnd_Process 				; call randomiser twice
+.0106f8	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0106fa	20 00 07	jsr $010700			jsr 	_Rnd_Process
+.0106fd	95 00		sta $00,x			sta 	EXSValueL+0,x
 .0106ff	60		rts				rts
+.010700					_Rnd_Process:
+.010700	06 10		asl $10				asl 	DRandom 					; shift right, exit
+.010702	26 12		rol $12				rol 	DRandom+2
+.010704	90 0e		bcc $010714			bcc 	_Rnd_Exit
+.010706	a5 10		lda $10				lda 	DRandom 					; taps effectively
+.010708	49 54 d4	eor #$d454			eor 	#$D454
+.01070b	85 10		sta $10				sta 	DRandom
+.01070d	a5 12		lda $12				lda 	DRandom+2
+.01070f	49 d5 55	eor #$55d5			eor 	#$55D5
+.010712	85 12		sta $12				sta 	DRandom+2
+.010714					_Rnd_Exit:
+.010714	a5 10		lda $10				lda 	DRandom
+.010716	45 12		eor $12				eor 	DRandom+2
+.010718	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
-.010700					SwitchBasicInstance:
-.010700	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
-.010702	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
-.010705	85 00		sta $00				sta 	DPageNumber 						; save page, base, high in RAM.
-.010707	86 02		stx $02				stx		DBaseAddress
-.010709	84 04		sty $04				sty 	DHighAddress
-.01070b	eb		xba				xba 										; put the page number (goes in the DBR) in B
-.01070c	48		pha				pha 										; then copy it into B.
-.01070d	ab		plb				plb
-.01070e	ab		plb				plb
-.01070f	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr 				; initialise temporary string below upper area
-.010712	b1 02		lda ($02),y			lda 	(DBaseAddress),y 					; with enough memory to concrete a string above.
-.010714	38		sec				sec
-.010715	e9 00 01	sbc #$0100			sbc 	#256
-.010718	85 16		sta $16				sta 	DTempStringPointer
-.01071a	a9 04 41	lda #$4104			lda 	#$4104
-.01071d	85 06		sta $06				sta 	DCodePtr
-.01071f	ea		nop				nop
-.010720	20 95 00	jsr $010095			jsr 	Evaluate
-.010723	ea		nop				nop
-.010724	02 02		cop #$02			cop 	#2
+
+;******  Processing file: ../source/commands/utility.asm
+
+.010719					Function_ASSERT:
+.010719	ea		nop				nop
+.01071a	20 b8 01	jsr $0101b8			jsr 	EvaluateInteger 			; something that returns an integer.
+.01071d	84 08		sty $08				sty 	DTemp1 						; check if result is zero.
+.01071f	05 08		ora $08				ora 	Dtemp1
+.010721	f0 01		beq $010724			beq 	_FAssFail
+.010723	60		rts				rts
+.010724					_FAssFail:
+.010724	20 eb 02	jsr $0102eb			jsr 	ErrorHandler 						; call error routine
+>010727	61 73 73 65 72 74 20 66				.text 	"assert failed",$00 								; with this message
+>01072f	61 69 6c 65 64 00
+
+;******  Return to file: ../source/basic.asm
+
+
+;******  Processing file: ../source/commands/let.asm
+
+.010735					Function_Let:
+.010735	ea		nop				nop
+
+;******  Return to file: ../source/basic.asm
+
+
+;******  Processing file: ../source/commands/run.asm
+
+.010736					Function_END:
+.010736	02 00		cop #$00			cop 	#0
+.010738					Function_RUN:
+.010738	a5 02		lda $02				lda 	DBaseAddress 				; work out the first instruction.
+.01073a	18		clc				clc
+.01073b	69 00 01	adc #$0100			adc 	#Block_ProgramStart 		; so run from here.
+.01073e					_FRun_NextLineNumber:
+.01073e	a8		tay				tay 								; put in Y
+.01073f	b9 00 00	lda $0000,y			lda 	$0000,y 					; read the link token.
+.010742	f0 f2		beq $010736			beq 	Function_END 				; if zero, off the end of the program
+.010744	b9 02 00	lda $0002,y			lda 	$0002,y 					; read the line number
+.010747	85 22		sta $22				sta 	DLineNumber 				; and save it.
+.010749	98		tya				tya 								; get address back
+.01074a	18		clc				clc 								; skip over the link/line number
+.01074b	69 04 00	adc #$0004			adc 	#4
+.01074e	85 06		sta $06				sta 	DCodePtr
+.010750					_FRun_NextInstruction:
+.010750	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr 		; initialise temporary string below upper area
+.010753	b1 02		lda ($02),y			lda 	(DBaseAddress),y 			; with enough memory to concrete a string above.
+.010755	38		sec				sec
+.010756	e9 00 01	sbc #$0100			sbc 	#256
+.010759	85 16		sta $16				sta 	DTempStringPointer
+.01075b	b2 06		lda ($06)			lda 	(DCodePtr)					; what's next
+.01075d	f0 28		beq $010787			beq 	_FRun_EndInstruction		; if end of this line, then go to next line.
+.01075f	c9 17 32	cmp #$3217			cmp 	#colonTokenID 				; colon then skip
+.010762	f0 18		beq $01077c			beq 	_FRun_Colon
+.010764	a8		tay				tay 								; save in Y
+.010765	29 00 e0	and #$e000			and 	#$E000 						; see if it is a keyword. 001x
+.010768	c9 00 20	cmp #$2000			cmp 	#$2000
+.01076b	d0 15		bne $010782			bne 	_FRun_TryLET 				; if not, try LET as a default.
+.01076d	98		tya				tya 								; get token back
+.01076e	29 ff 01	and #$01ff			and 	#$01FF 						; mask out keyword
+.010771	0a		asl a				asl 	a 							; double it into X
+.010772	aa		tax				tax
+.010773	e6 06		inc $06				inc 	DCodePtr 					; skip over token
+.010775	e6 06		inc $06				inc 	DCodePtr
+.010777	fc 00 00	jsr ($010000,x)			jsr 	(CommandJumpTable,x)		; and call that routine
+.01077a	80 d4		bra $010750			bra 	_FRun_NextInstruction 		; do the following instruction.
+.01077c					_FRun_Colon:
+.01077c	e6 06		inc $06				inc 	DCodePtr 					; skip over token
+.01077e	e6 06		inc $06				inc 	DCodePtr
+.010780	80 ce		bra $010750			bra 	_FRun_NextInstruction 		; do the following instruction.
+.010782					_FRun_TryLET:
+.010782	20 35 07	jsr $010735			jsr 	Function_LET 				; try as a LET.
+.010785	80 c9		bra $010750			bra 	_FRun_NextInstruction 		; if we get away with it, go to next instruction.
+.010787					_FRun_EndInstruction:
+.010787	a5 06		lda $06				lda 	DCodePtr 					; address of terminating NULL.
+.010789	1a		inc a				inc 	a 							; go to link for next line
+.01078a	1a		inc a				inc 	a
+.01078b	80 b1		bra $01073e			bra 	_FRun_NextLineNumber
+
+;******  Return to file: ../source/basic.asm
+
+.01078d					SwitchBasicInstance:
+.01078d	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
+.01078f	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
+.010792	85 00		sta $00				sta 	DPageNumber 						; save page, base, high in RAM.
+.010794	86 02		stx $02				stx		DBaseAddress
+.010796	84 04		sty $04				sty 	DHighAddress
+.010798	eb		xba				xba 										; put the page number (goes in the DBR) in B
+.010799	48		pha				pha 										; then copy it into B.
+.01079a	ab		plb				plb
+.01079b	ab		plb				plb
+.01079c	ea		nop				nop
+.01079d	4c 38 07	jmp $010738			jmp 	Function_RUN
 
 ;******  Return to file: ../source/start.asm
 
 .024000					CodeSpace:
 >024000	42 41 53 43 00 00 00 00			.binary "temp/basic.bin"
->024008	66 41 ce bf 00 00 00 00 00 00 00 00 00 00 00 00
+>024008	64 41 ce bf 00 00 00 00 00 00 00 00 00 00 00 00
 >024018	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ;	...repeated 4 times (64 bytes)...
 >024068	00 00 00 00 00 00 00 00 00 00 00 00 fc fe ff ff
->024078	00 00 00 00 00 00 00 00 00 00 2c 41 00 00 00 00
+>024078	00 00 00 00 00 00 00 00 00 00 2a 41 00 00 00 00
 >024088	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 >024098	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->0240a8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 41
+>0240a8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 3e 41
 >0240b8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 >0240c8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->0240d8	00 00 00 00 00 00 3a 41 00 00 00 00 00 00 00 00
->0240e8	00 00 00 00 00 00 5a 41 00 00 00 00 00 00 00 00
->0240f8	00 00 00 00 00 00 00 00 1e 00 0a 80 04 00 01 5b
->024108	0a 24 97 fb 3f f8 3c fb 1b f0 00 80 19 32 0a 24
->024118	04 00 01 5d 00 00 00 00 ee ee ee ee 00 00 fe bf
->024128	d6 ff ff ff 24 41 fa bf ba 01 00 00 00 00 f8 bf
->024138	f2 bf 34 41 ee bf ec bf 00 00 e4 bf 04 00 04 00
->024148	00 00 05 00 00 00 08 00 00 00 63 00 00 00 07 00
->024158	00 00 00 00 dc bf 02 00 da bf d4 bf ce bf 00 00
+>0240d8	00 00 00 00 00 00 38 41 00 00 00 00 00 00 00 00
+>0240e8	00 00 00 00 00 00 58 41 00 00 00 00 00 00 00 00
+>0240f8	00 00 00 00 00 00 00 00 12 00 0a 00 1b 3e 2a 40
+>024108	17 32 1b 3e 0b 24 2a 40 00 00 0a 00 14 00 1b 3e
+>024118	f2 40 00 00 00 00 ee ee ee ee 00 00 fe bf d6 ff
+>024128	ff ff 22 41 fa bf ba 01 00 00 00 00 f8 bf f2 bf
+>024138	32 41 ee bf ec bf 00 00 e4 bf 04 00 04 00 00 00
+>024148	05 00 00 00 08 00 00 00 63 00 00 00 07 00 00 00
+>024158	00 00 dc bf 02 00 da bf d4 bf ce bf 00 00 00 00
 >024168	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ;	...repeated 2021 times (32336 bytes)...
 >02bfc8	00 00 00 00 00 00 05 63 68 69 70 73 04 6c 69 6b

@@ -41,6 +41,8 @@ DVariablePtr = DPBaseAddress + 30 			; address of found variable.
 
 DHashTablePtr = DPBaseAddress + 32 			; address of hash entry of searched variable.
 
+DLineNumber = DPBaseAddress + 34 			; current line number.
+
 ; ********************************************************************************
 ;
 ;			Expression Stack. There are three entries, low and high word

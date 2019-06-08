@@ -25,6 +25,10 @@ StartOfBasicCode:
 		.include "binary/multiply.asm"
 		.include "unary/simpleunary.asm" 			; unary functions.
 
+		.include "commands/utility.asm"				; commands
+		.include "commands/let.asm"
+		.include "commands/run.asm"
+
 error	.macro
 		jsr 	ErrorHandler 						; call error routine
 		.text 	\1,$00 								; with this message
@@ -54,15 +58,5 @@ SwitchBasicInstance:
 		plb
 		plb 
 
-		ldy 	#Block_HighMemoryPtr 				; initialise temporary string below upper area
-		lda 	(DBaseAddress),y 					; with enough memory to concrete a string above.
-		sec
-		sbc 	#256
-		sta 	DTempStringPointer
-
-		lda 	#$4104
-		sta 	DCodePtr
 		nop
-		jsr 	Evaluate
-		nop
-		cop 	#2
+		jmp 	Function_RUN
