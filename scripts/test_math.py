@@ -79,7 +79,7 @@ if __name__ == "__main__":
 		reject = reject or (operator == "%" and v2[1] == 0)
 		if not reject:
 			line = "assert ({0} {1} {2}) = {3}".format(v1[0],operator,v2[0],result)
-			blk.addBASICLine(None,line)
+			blk.addBASICLine(line)
 			#print(line)
 	#
 	#		Create variables in memory (done after program)

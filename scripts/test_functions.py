@@ -57,11 +57,11 @@ if __name__ == "__main__":
 		v1 = pickOne(variables,False)
 		v2 = pickOne(variables,True)
 		# 	abs(x)
-		blk.addBASICLine(None,"assert abs({0}) = {1}".format(v1[0],abs(v1[1])))
+		blk.addBASICLine("assert abs({0}) = {1}".format(v1[0],abs(v1[1])))
 		#   sgn(x)
-		blk.addBASICLine(None,"assert sgn({0}) = {1}".format(v1[0],sgn(v1[1])))
+		blk.addBASICLine("assert sgn({0}) = {1}".format(v1[0],sgn(v1[1])))
 		# 	len(x)
-		blk.addBASICLine(None,"assert len({0}) = {1}".format(v2[0],len(v2[1])-2))
+		blk.addBASICLine("assert len({0}) = {1}".format(v2[0],len(v2[1])-2))
 	#
 	#		Create variables in memory (done after program)
 	#

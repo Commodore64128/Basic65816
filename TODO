@@ -1,22 +1,32 @@
 Main
 ----
-- assignment automatic creation (variables only)
+- VariableCreate routine
 - test this works.
-- rewrite the test framework (no arrays yet) to generate BASIC code.
+- rewrite the test framework (no arrays yet) to generate BASIC code not hard-write it in.
 - array dimension, memory allocation, update the test framework.
 - update the old dump memory code.
+- remove magic constants (?)
 
 Fixes
 -----
 - concreting null strings, use a space in the block for this which is always $00
-  so we don't end up with lots of NULL strings.
-- allocating temp space, even size so every address is even.
-- allocating temp space, there is enough - do on allocation not reset.
-- allocating concrete space (a$ = "hello" would not do temp space !)
-- allocating variable space, there's enough
-- expressions stack sizes and spacing and testing
-- writing null strings all share the same one rather than concreting.
-- garbage collection (not the specialist NULL strings !)
+  so we don't end up with lots of NULL strings to garbage collect.
 - modulus arithmetic error (test_math does not check %) sign issue.
+- expressions stack sizes and spacing and testing
+- garbage collection (not the specialist NULL strings !) 
+- allocating temp space, even size so every address is even (?)
+
+Memory Checks
+=============
+(all check LowMem vs HighMem)
+
+- allocating new variable (memory error)
+
+- when allocating space for temporary variables, check there isn't a collision (memory error)
+
+- when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
+  left.
+
+
 
 

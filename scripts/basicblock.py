@@ -132,7 +132,7 @@ class BasicBlock(object):
 	#
 	#		Add a line of BASIC
 	#
-	def addBASICLine(self,lineNumber,code):
+	def addBASICLine(self,code,lineNumber = None):
 		assert not self.memoryVariableCreated									# check not created variables
 		if lineNumber is None or lineNumber == 0:								# default line number
 			lineNumber = self.lastProgramLineNumber + 1
@@ -178,7 +178,7 @@ BasicBlock.HASHMASKENTRYSIZE = 16 												# Entries per table.
 
 if __name__ == "__main__":
 	blk = BasicBlock(0x4000,0x8000)
-	blk.addBASICLine(10,'((2+3)*(4+5)*2)+1')
+	blk.addBASICLine('((2+3)*(4+5)*2)+1',10)
 	blk.exportFile("temp/basic.bin")	
 	blk.exportConstants("temp/block.inc")
 

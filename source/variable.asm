@@ -198,4 +198,19 @@ _VANNotString
 _VANSubscript:
 		#error 	"Bad Array Subscript"
 
+; *******************************************************************************************
+;
+;		Create a new variable. VariableFind needs to have been called first so DHashPtr
+;		is set up.
+;
+;		A contains the number of data items. Y is the address of the token that is the 
+;		name of the variable. On exit A contains the address of the data part of the 
+;		record for non-arrays, or the largest index for arrays, e.g. the record address + 4
+;
+; *******************************************************************************************
 
+VariableCreate:			
+		nop
+		lda 	#$EEEE
+		rts
+		

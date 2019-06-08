@@ -44,7 +44,7 @@ if __name__ == "__main__":
 			line = "assert {0} = \"{1}\"".format(check[0],check[1])
 		else:
 			line = "assert {0} = {1}".format(check[0],check[1])
-		blk.addBASICLine(None,line)
+		blk.addBASICLine(line)
 	#
 	#		Create variables in memory (done after program)
 	#

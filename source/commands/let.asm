@@ -16,10 +16,24 @@ Function_Let: ;; let
 		sta 	DVariablePtr 				; save where it is.
 		bcs 	_FLetFound 					; skip if found.
 		;
-		;		TODO: Not found, autocreate if not array.
+		;		Couldn't find it, so create variable at this position
 		;
-_w1:	jmp 	_w1
-
+		pla 								; get and push the first token again.
+		pha
+		and 	#$1000 						; if it is an array, you can't autoinstantiate
+		bne 	_FLError					; arrays, so this causes an error.
+		;
+		ldy 	DCodePtr 					; Y is the address of the name
+		lda 	#1 							; A = 1 indicates we want one data element only, simple value.
+		jsr 	VariableCreate 				; create it.
+		sta 	DVariablePtr 				; save the data address.
+		;
+_FLSkipToken:
+		lda 	(DCodePtr) 					; skip over the token
+		inc 	DCodePtr
+		inc 	DCodePtr
+		and 	#$0800 						; if there is a continuation 
+		bne 	_FLSkipToken
 _FLetFound:	
 		;
 		;		Check to see if there is indexing by examining the first token.
@@ -73,3 +87,6 @@ _FLetString:
 		ply 								; get address		
 		sta 	$0000,y 					; save in variable low.
 		rts
+
+_FLError:	
+		#error 	"Undefined array"
