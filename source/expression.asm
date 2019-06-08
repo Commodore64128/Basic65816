@@ -134,9 +134,11 @@ _ELExit:lda 	EXSPrecType+0,x 			; type into carry
 		;		Variable code. Executed when found $C000-$FFFF as its an identifier.
 		;
 _ELVariable:
+		asl 	EXSPrecType+0,x
 		jsr 	VariableFindCreate 			; this will be 'find variable, create if required', get value.
 		sta 	EXSValueL+0,x 				; save variable contents in stack
 		sty 	EXSValueH+0,x
+		ror 	EXSPrecType+0,x
 		bra 	_ELGotAtom
 		;
 		;		Branch to syntax error

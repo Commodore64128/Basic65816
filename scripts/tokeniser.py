@@ -113,6 +113,6 @@ Tokeniser.tokens = None
 
 if __name__ == "__main__":
 	tk = Tokeniser()
-	w = '>> len(42) 32769 abcde zz ab ab$ ab( ab$( "abc" "" "abcd" '.split(" ")
+	w = '>> len(42) 32769 abcde zz z ab ab$ ab( ab$( "abc" "" "abcd" '.split(" ")
 	for b in w:
 		tk.tokeniseDebug(b)

@@ -111,7 +111,7 @@ class ListableVariableBlock(VariableBlock):
 if __name__ == "__main__":
 	random.seed(43)
 	blk = ListableVariableBlock(0x4000,0x8000)
-	blk.addBASICLine(10,'((2+3)*(4+5)*2)+1')
+	blk.addBASICLine(10,'s1$+",world"+s1z$')
 	#
 	if False:
 		for i in range(0,20):
@@ -120,7 +120,7 @@ if __name__ == "__main__":
 			IntegerArray().importVariable(blk)
 			StringArray().importVariable(blk)
 	else:
-		v1 = IntegerVariable("z",42)
+		v1 = IntegerVariable("z",-260)
 		print(v1.toString())
 		v1.importVariable(blk)
 
@@ -133,6 +133,9 @@ if __name__ == "__main__":
 		v1.importVariable(blk)
 		#
 		v1 = StringVariable("s1","Hello")
+		print(v1.toString())
+		v1.importVariable(blk)
+		v1 = StringVariable("s1z","!")
 		print(v1.toString())
 		v1.importVariable(blk)
 		#

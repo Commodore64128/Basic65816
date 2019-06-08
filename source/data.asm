@@ -37,6 +37,10 @@ DCurrentTempString = DPBaseAddress + 26 	; current position in temporary string.
 
 DConstantShift = DPBaseAddress + 28 		; constant shift store.
 
+DVariablePtr = DPBaseAddress + 30 			; address of found variable.
+
+DHashTablePtr = DPBaseAddress + 32 			; address of hash entry of searched variable.
+
 ; ********************************************************************************
 ;
 ;			Expression Stack. There are three entries, low and high word
