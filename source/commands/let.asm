@@ -24,7 +24,7 @@ Function_Let: ;; let
 		bne 	_FLError					; arrays, so this causes an error.
 		;
 		ldy 	DCodePtr 					; Y is the address of the name
-		lda 	#1 							; A = 1 indicates we want one data element only, simple value.
+		lda 	#0 							; A = 0 because it's not an array.
 		jsr 	VariableCreate 				; create it.
 		sta 	DVariablePtr 				; save the data address.
 		;

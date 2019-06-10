@@ -1,6 +1,5 @@
 Main
 ----
-- VariableCreate routine - test this works.
 - rewrite the test framework (no arrays yet) to generate BASIC code not hard-write it in.
 - update the old dump memory code.
 - array dimension, memory allocation, update the test framework.
@@ -26,5 +25,4 @@ Memory Checks
 
 - when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
   left.
-
 

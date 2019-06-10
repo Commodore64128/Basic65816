@@ -203,14 +203,80 @@ _VANSubscript:
 ;		Create a new variable. VariableFind needs to have been called first so DHashPtr
 ;		is set up.
 ;
-;		A contains the number of data items. Y is the address of the token that is the 
-;		name of the variable. On exit A contains the address of the data part of the 
-;		record for non-arrays, or the largest index for arrays, e.g. the record address + 4
+;		A contains the number of data items, or zero if the variable is a single item. 
+;		Y is the address of the token that is the  name of the variable. 
+;
+;		On exit A contains the address of the data part of the record for non-arrays, 
+;		or the largest index for arrays, e.g. the record address + 4
 ;
 ; *******************************************************************************************
 
 VariableCreate:			
-		nop
-		lda 	#$EEEE
-		rts
-		
+		pha 								; save count.
+		;
+		;		Work out space to allocate.
+		;
+		asl 	a 							; 2 x # items.
+		bne 	_VCNotSingle 				; if this is zero, then it is a single variable
+		lda 	#2 							; so we want 2 (1 items x 2)
+_VCNotSingle:
+		sta 	DTemp1 						; save temporarily
+		lda 	$0000,y 					; get first token.
+		pha 								; save on stack
+		and 	#$2000 						; check type
+		bne 	_VCString
+		asl 	DTemp1 						; if integer, then 4 x # items.
+_VCString:
+		pla 								; restore first token.
+		and 	#$1000 						; check array bit.
+		beq 	_VCNotArray
+		inc 	DTemp1 						; if set, add 2 to count.
+		inc 	DTemp1
+_VCNotArray:
+		phy 								; save address of token on stack.
+		;
+		;		Allocate space (in DTemp1) + 4
+		;
+		ldy 	#Block_LowMemoryPtr 		; get low memory
+		lda 	(DBaseAddress),y 			; save that on stack.
+		sta 	DTemp2 						; save in DTemp2
+		clc 								; add 4 for link and name.
+		adc 	#4
+		adc 	DTemp1 						; add memory required
+		sta 	(DBaseAddress),y 			; update low memory
+		;
+		;		Clear the data space.	
+		;
+		ldy 	DTemp2 						; put the address back in Y
+_VCErase:
+		lda 	#$0000 						; clear that word
+		sta 	$0004,y 					; data from +4 onwards
+		iny 						
+		iny
+		dec 	DTemp1 						; do it DTemp1 times.
+		dec 	DTemp1 						; this is the count of the data beyond link/name.
+		bne 	_VCErase
+		;
+		;		Now set it up.
+		;
+		ldy 	DTemp2 						; Y is the variable address
+		lda 	(DHashTablePtr)				; get the link to next.
+		sta 	$0000,y 					; save at offset +0
+		pla 								; restore the token address
+		sta 	$0002,y 					; save at offset +2
+		pla 								; restore count and store.
+		sta 	$0004,y
+		;
+_VCNotArray2:
+		tya 								; update the head link
+		sta 	(DHashTablePtr)
+		clc 								; advance pointer to the data bit.
+		adc 	#4
+		rts 								; and done.
+
+
+
+
+
+
+
