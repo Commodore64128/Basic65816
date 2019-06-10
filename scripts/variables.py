@@ -144,7 +144,7 @@ class EntityBucket(object):
 		count = 0
 		while True:
 			n = random.randint(0,len(self.bucket)-1)
-			if n.isString == requireString:
+			if self.bucket[n].isString == requireString:
 				return self.bucket[n]
 			count += 1
 			assert count < 9999

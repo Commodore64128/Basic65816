@@ -1,6 +1,6 @@
 Main
 ----
-- rewrite the test files.
+- clear variables (reset high/low, clear tables)
 - array dimension, memory allocation, update the test framework.
 - remove magic constants (?)
 
