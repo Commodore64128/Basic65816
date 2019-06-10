@@ -1,7 +1,6 @@
 Main
 ----
-- rewrite the test framework (no arrays yet) to generate BASIC code not hard-write it in.
-- update the old dump memory code.
+- rewrite the test files.
 - array dimension, memory allocation, update the test framework.
 - remove magic constants (?)
 

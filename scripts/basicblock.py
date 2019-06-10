@@ -130,6 +130,14 @@ class BasicBlock(object):
 			val = val - 0x100000000
 		return val
 	#
+	#		Add a program in BASIC from a source text file.
+	#
+	def loadProgram(self,fileName = "basic.bas"):
+		for l in [x.strip() for x in open(fileName).readlines()]:
+			m = re.match("^(\d*)(.*)$",l)
+			assert m is not None
+			self.addBASICLine(m.group(2),None if m.group(1) == "" else int(m.group(1)))
+	#
 	#		Add a line of BASIC
 	#
 	def addBASICLine(self,code,lineNumber = None):
@@ -181,4 +189,3 @@ if __name__ == "__main__":
 	blk.addBASICLine('((2+3)*(4+5)*2)+1',10)
 	blk.exportFile("temp/basic.bin")	
 	blk.exportConstants("temp/block.inc")
-
