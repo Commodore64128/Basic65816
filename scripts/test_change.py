@@ -15,7 +15,7 @@ from variables import *
 
 if __name__ == "__main__":
 	print("Change test code.")
-	eb = EntityBucket(100,100,100,10,10)
+	eb = EntityBucket(-1,100,100,10,10)
 	#
 	bs = BasicSource()
 	bs.append(eb.setupCode())

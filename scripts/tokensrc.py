@@ -44,7 +44,9 @@ class TokenSource(object):
 	assert 										## debugging helper
 	end 										## end program
 	run 										## run program.
-
+	clear 										## clear all variables.
+	dim 										## array dimension.
+		
 [keyword+]
 	while
 

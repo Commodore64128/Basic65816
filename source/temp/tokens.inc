@@ -32,8 +32,10 @@ CommandJumpTable:
 	.word Function_ASSERT          & $FFFF ; token $3e1b "assert"
 	.word Function_END             & $FFFF ; token $3e1c "end"
 	.word Function_RUN             & $FFFF ; token $3e1d "run"
-	.word IllegalToken             & $FFFF ; token $3c1e "while"
-	.word IllegalToken             & $FFFF ; token $3a1f "wend"
+	.word Function_CLEAR           & $FFFF ; token $3e1e "clear"
+	.word IllegalToken             & $FFFF ; token $3e1f "dim"
+	.word IllegalToken             & $FFFF ; token $3c20 "while"
+	.word IllegalToken             & $FFFF ; token $3a21 "wend"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -68,8 +70,10 @@ TokenText:
 	 .text $f7,"assert"   ; token $3e1b
 	 .text $f4,"end"      ; token $3e1c
 	 .text $f4,"run"      ; token $3e1d
-	 .text $e6,"while"    ; token $3c1e
-	 .text $d5,"wend"     ; token $3a1f
+	 .text $f6,"clear"    ; token $3e1e
+	 .text $f4,"dim"      ; token $3e1f
+	 .text $e6,"while"    ; token $3c20
+	 .text $d5,"wend"     ; token $3a21
 	.byte $00
 
 ;
@@ -104,5 +108,7 @@ letTokenID                       = $3e1a
 assertTokenID                    = $3e1b
 endTokenID                       = $3e1c
 runTokenID                       = $3e1d
-whileTokenID                     = $3c1e
-wendTokenID                      = $3a1f
+clearTokenID                     = $3e1e
+dimTokenID                       = $3e1f
+whileTokenID                     = $3c20
+wendTokenID                      = $3a21
