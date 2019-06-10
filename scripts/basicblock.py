@@ -137,6 +137,7 @@ class BasicBlock(object):
 			m = re.match("^(\d*)(.*)$",l)
 			assert m is not None
 			self.addBASICLine(m.group(2),None if m.group(1) == "" else int(m.group(1)))
+		self.showStatus()
 	#
 	#		Add a line of BASIC
 	#

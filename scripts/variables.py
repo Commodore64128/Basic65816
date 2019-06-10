@@ -58,7 +58,10 @@ class SimpleVariable(object):
 				c = random.randint(48,57)
 			s = s + chr(c).lower()													# build up
 		s = s + ("$" if self.isString else "")										# add type
-		return s if s not in SimpleVariable.usedIdentifiers else self.defaultIdentifier()	
+		if s in SimpleVariable.usedIdentifiers:										# check duplicate
+			s = self.defaultIdentifier()	
+		SimpleVariable.usedIdentifiers[s] = True 									# mark used.
+		return s
 	#	
 	#		Create a default value.
 	#
@@ -82,9 +85,7 @@ class SimpleVariable(object):
 	#		with the variable *or* the value, and the value and type
 	#
 	def pickOne(self):
-		if random.randint(0,1) == 0:
-			return self.selectOne()
-		return [self.getValue(),self.getValue(),isString]
+		return [self.getIdentifier() if random.randint(0,1) == 0 else self.getCodeValue(),self.getValue(),self.isString]
 
 SimpleVariable.usedIdentifiers = {}													# used identifiers
 
@@ -109,10 +110,10 @@ class StringVariable(SimpleVariable):
 # *******************************************************************************************
 
 class EntityBucket(object):
-	def __init__(self,randomSeed=-1,iCount=20,sCount=20,iaCount=4,isCount=4):
+	def __init__(self,randomSeed=-1,iCount=60,sCount=60,iaCount=10,isCount=10):
 		self.bucket = []
 		if randomSeed < 0:
-			random.seed(0)
+			random.seed()
 			randomSeed = random.randint(0,999999)
 			print("Using generated seed {0}".format(randomSeed))
 		random.seed(randomSeed)
@@ -128,15 +129,19 @@ class EntityBucket(object):
 		return self._selectOne(False).selectOne()
 	def selectOneString(self):
 		return self._selectOne(True).selectOne()
+	def selectOne(self):
+		return self.bucket[random.randint(0,len(self.bucket)-1)].selectOne()
 	def pickOneInteger(self):
 		return self._selectOne(False).pickOne()
 	def pickOneString(self):
 		return self._selectOne(True).pickOne()
+	def pickOne(self):
+		return self.bucket[random.randint(0,len(self.bucket)-1)].pickOne()
 
 	def _selectOne(self,requireString):
 		count = 0
 		while True:
-			n = random.randint(len(self.bucket))
+			n = random.randint(0,len(self.bucket)-1)
 			if n.isString == requireString:
 				return self.bucket[n]
 			count += 1
@@ -187,4 +192,4 @@ if __name__ == "__main__":
 	#
 	blk = BasicBlock(0x4000,0x8000)
 	blk.loadProgram()
-	blk.exportFile("basic.bin")	
+	blk.exportFile("temp/basic.bin")	

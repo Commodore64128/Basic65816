@@ -37,6 +37,7 @@ _FRun_NextLineNumber:
 		beq 	Function_END 				; if zero, off the end of the program
 		lda 	$0002,y 					; read the line number
 		sta 	DLineNumber 				; and save it.
+
 		tya 								; get address back
 		clc 								; skip over the link/line number
 		adc 	#4
