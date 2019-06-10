@@ -34,7 +34,7 @@ VariableAccessExpression:
 		pla 								; get and save that first token
 		pha
 		tay 								; put first token in Y.
-		and 	#$1000 						; is it an array ?
+		and 	#IDArrayMask 				; is it an array ?
 		beq 	_VANNotArray
 		;
 		;		Subscript it. If you do this DVariablePtr points to record+4 - the high subscript
@@ -47,8 +47,8 @@ VariableAccessExpression:
 		;
 _VANNotArray:
 		pla 								; get the token back.
-		and 	#$2000 						; this is the integer/string bit. $2000 if string, $0000 if int
-		eor 	#$2000 						; now $0000 if string, $2000 if integer.
+		and 	#IDTypeMask 				; this is the integer/string bit. $2000 if string, $0000 if int
+		eor 	#IDTypeMask 				; now $0000 if string, $2000 if integer.
 		sec 								; set up return string.
 		beq 	_VANLoadLower 				; if zero, Y = 0 and just load the lower address with CS
 		clc 								; returning a number, read high data word
@@ -102,7 +102,7 @@ _VFSlowVariable:
 		;		Figure out which hash table
 		;
 		lda 	(DCodePtr)					; get the token
-		and 	#$3000 						; get the type bits out --xx ---- ---- ----
+		and 	#(IDTypeMask+IDArrayMask) 	; get the type bits out --xx ---- ---- ----
 		xba 								; now this is 0000 0000 00tt 0000 e.g. tt x 16
 		asl 	a 							; there are 32 entries per table, also clc
 		adc 	#Block_HashTable 			; now its the correct has table offset
@@ -134,7 +134,7 @@ _VFCompare:
 		bne 	_VFNext 					; if not, go to the next one.
 		iny 								; advance token pointer
 		iny 
-		and 	#$0800 						; if continuation bit set, keep going
+		and 	#IDContMask 				; if continuation bit set, keep going
 		bne 	_VFCompare
 		;
 		;		Found it.
@@ -185,7 +185,7 @@ _VANSubOkay:
 		sta 	DVariablePtr
 
 		pla 								; get and save that first token
-		and 	#$2000 						; is it a string ?
+		and 	#IDTypeMask 				; is it a string ?
 		bne 	_VANNotString  				; if not, i.e. it is an integeer
 		asl 	DTemp1 						; double subscript again (32 bit word)
 _VANNotString
@@ -223,12 +223,12 @@ _VCNotSingle:
 		sta 	DTemp1 						; save temporarily
 		lda 	$0000,y 					; get first token.
 		pha 								; save on stack
-		and 	#$2000 						; check type
+		and 	#IDTypeMask 				; check type
 		bne 	_VCString
 		asl 	DTemp1 						; if integer, then 4 x # items.
 _VCString:
 		pla 								; restore first token.
-		and 	#$1000 						; check array bit.
+		and 	#IDArrayMask 				; check array bit.
 		beq 	_VCNotArray
 		inc 	DTemp1 						; if set, add 2 to count.
 		inc 	DTemp1

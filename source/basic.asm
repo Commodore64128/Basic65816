@@ -29,6 +29,13 @@ StartOfBasicCode:
 		.include "commands/let.asm"
 		.include "commands/run.asm"
 
+IDTypeMask = $2000 									; bit masks in identifier.
+IDArrayMask = $1000
+IDContMask = $0800
+
+UnaryFunction = 8 									; Unary function Token Type ID.
+TokenShift = 9										; Token shift to reach precedence.
+
 error	.macro
 		jsr 	ErrorHandler 						; call error routine
 		.text 	\1,$00 								; with this message

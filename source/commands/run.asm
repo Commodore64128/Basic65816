@@ -57,7 +57,7 @@ _FRun_NextInstruction:
 		beq 	_FRun_Colon
 
 		tay 								; save in Y
-		and 	#$E000 						; see if it is a keyword. 001x
+		and 	#$E000 						; see if it is a keyword. 111x
 		cmp 	#$2000 						
 		bne 	_FRun_TryLET 				; if not, try LET as a default.
 		;

@@ -23,7 +23,7 @@
 
 Evaluate:
 		ldx		#EXSBase 					; reset the stack
-		lda 	#0<<9 						; start at the lowest precedence level.
+		lda 	#0<<TokenShift 				; start at the lowest precedence level.
 											; fall through.
 
 ; *******************************************************************************************
@@ -87,11 +87,11 @@ _ELGotAtom:
 		bne 	_ELExit
 		;
 		lda 	EXSPrecType+0,x 			; get precedence/type
-		and 	#15 << 9 					; mask out the precedence bits.
+		and 	#15 << TokenShift 			; mask out the precedence bits.
 		sta 	DTemp1 						; save in temporary register
 		;
 		tya 								; get the keyword token back
-		and 	#15 << 9 					; mask out the precedence bits.
+		and 	#15 << TokenShift 			; mask out the precedence bits.
 		cmp 	DTemp1 						; compare against precedence.
 		bcc 	_ELExit 					; precedence too low, then exit.
 		;
@@ -101,7 +101,7 @@ _ELGotAtom:
 		inc 	DCodePtr 					; skip over the binary operator.
 		inc 	DCodePtr
 		clc 								; try the next level up
-		adc 	#1 << 9
+		adc 	#1 << TokenShift
 		inx 								; calculate the RHS at the next stack level.
 		inx
 		jsr 	EvaluateLevel 
@@ -175,8 +175,8 @@ _ELUnaryKeyword:
 		tay 								; put the token in Y.
 		inc 	DCodePtr 					; skip over it
 		inc 	DCodePtr
-		and 	#$1E00 						; mask out the keyword type.
-		cmp 	#$1000 						; if it is xxx1 000x then it's a unary function
+		and 	#15 << TokenShift			; mask out the keyword type.
+		cmp 	#UnaryFunction<<TokenShift 	; if it is xxx1 000x then it's a unary function
 		beq 	_ELExecuteY					; go back and execute it
 		;
 		;		Check parenthesised expression, then get the atom and do something with it :)
@@ -201,7 +201,7 @@ _ELUnaryOperator:
 		phy 								; save the operator on the stack.
 		inx 								; this is like evaluate next
 		inx
-		lda 	#7<<9 						; except we use a very high precedence to make it atomic
+		lda 	#7<<TokenShift 				; except we use a very high precedence to make it atomic
 		jsr 	EvaluateLevel 	
 		dex 								; unwind the stack.						
 		dex 		
@@ -232,7 +232,7 @@ _ELMinus:
 EvaluateNext:
 		inx
 		inx
-		lda 	#0<<9
+		lda 	#0<<TokenShift
 		jsr 	EvaluateLevel
 		dex
 		dex

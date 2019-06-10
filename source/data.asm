@@ -52,8 +52,10 @@ DLineNumber = DPBaseAddress + 34 			; current line number.
 
 EXSBase = $100 								; Initial value of X at lowest stack level.
 
+EXSStackElements = 8 						; depth of stack.
+
 											; offsets from stack base (each stack element = 2 bytes)
 EXSValueL = 0 								; Low word
-EXSValueH = 16  							; High word
-EXSPrecType = 32							; Precedence level / type is in bit 15, 1 = string.
+EXSValueH = EXSStackElements*2  			; High word
+EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 = string.
 

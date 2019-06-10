@@ -20,7 +20,7 @@ Function_Let: ;; let
 		;
 		pla 								; get and push the first token again.
 		pha
-		and 	#$1000 						; if it is an array, you can't autoinstantiate
+		and 	#IDArrayMask 				; if it is an array, you can't autoinstantiate
 		bne 	_FLError					; arrays, so this causes an error.
 		;
 		ldy 	DCodePtr 					; Y is the address of the name
@@ -32,7 +32,7 @@ _FLSkipToken:
 		lda 	(DCodePtr) 					; skip over the token
 		inc 	DCodePtr
 		inc 	DCodePtr
-		and 	#$0800 						; if there is a continuation 
+		and 	#IDContMask 				; if there is a continuation 
 		bne 	_FLSkipToken
 _FLetFound:	
 		;
@@ -44,7 +44,7 @@ _FLetFound:
 		pla 								; get and save the first token.
 		pha
 		tay 								; put it in Y
-		and 	#$1000						; is it an array ?
+		and 	#IDArrayMask				; is it an array ?
 		beq 	_FLetNotArray
 		;
 		;		Do the indexing
@@ -65,7 +65,7 @@ _FLetNotArray:
 		lda 	#equalTokenID 				; check the = and skip it.
 		jsr 	ExpectToken
 		pla 								; restore the first token.
-		and 	#$2000 						; check the type bit
+		and 	#IDTypeMask 				; check the type bit
 		bne 	_FLetString 				; skip if string.
 		;
 		;		Integer Assignment
@@ -90,3 +90,4 @@ _FLetString:
 
 _FLError:	
 		#error 	"Undefined array"
+		

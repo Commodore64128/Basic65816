@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.53.1515? listing file
 ; tass64 --m65816 -f -q -o basic.bin -L basic.lst ../source/start.asm
-; Mon Jun 10 08:26:47 2019
+; Mon Jun 10 09:02:11 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -158,9 +158,10 @@
 =32					DHashTablePtr = DPBaseAddress + 32 			; address of hash entry of searched variable.
 =34					DLineNumber = DPBaseAddress + 34 			; current line number.
 =$100					EXSBase = $100 								; Initial value of X at lowest stack level.
+=8					EXSStackElements = 8 						; depth of stack.
 =0					EXSValueL = 0 								; Low word
-=16					EXSValueH = 16  							; High word
-=32					EXSPrecType = 32							; Precedence level / type is in bit 15, 1 = string.
+=16					EXSValueH = EXSStackElements*2  			; High word
+=32					EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 = string.
 
 ;******  Return to file: ../source/basic.asm
 
@@ -169,7 +170,7 @@
 
 .0100a3					Evaluate:
 .0100a3	a2 00 01	ldx #$0100			ldx		#EXSBase 					; reset the stack
-.0100a6	a9 00 00	lda #$0000			lda 	#0<<9 						; start at the lowest precedence level.
+.0100a6	a9 00 00	lda #$0000			lda 	#0<<TokenShift 				; start at the lowest precedence level.
 .0100a9					EvaluateLevel:
 .0100a9	29 ff 7f	and #$7fff			and 	#$7FFF 						; zero type bit.
 .0100ac	95 20		sta $20,x			sta 	EXSPrecType+0,x 			; save precedence level.
@@ -208,17 +209,17 @@
 .0100ec	c9 00 20	cmp #$2000			cmp 	#$2000 						; if not then exit
 .0100ef	d0 35		bne $010126			bne 	_ELExit
 .0100f1	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; get precedence/type
-.0100f3	29 00 1e	and #$1e00			and 	#15 << 9 					; mask out the precedence bits.
+.0100f3	29 00 1e	and #$1e00			and 	#15 << TokenShift 			; mask out the precedence bits.
 .0100f6	85 08		sta $08				sta 	DTemp1 						; save in temporary register
 .0100f8	98		tya				tya 								; get the keyword token back
-.0100f9	29 00 1e	and #$1e00			and 	#15 << 9 					; mask out the precedence bits.
+.0100f9	29 00 1e	and #$1e00			and 	#15 << TokenShift 			; mask out the precedence bits.
 .0100fc	c5 08		cmp $08				cmp 	DTemp1 						; compare against precedence.
 .0100fe	90 26		bcc $010126			bcc 	_ELExit 					; precedence too low, then exit.
 .010100	5a		phy				phy 								; save the binary operator on the stack
 .010101	e6 06		inc $06				inc 	DCodePtr 					; skip over the binary operator.
 .010103	e6 06		inc $06				inc 	DCodePtr
 .010105	18		clc				clc 								; try the next level up
-.010106	69 00 02	adc #$0200			adc 	#1 << 9
+.010106	69 00 02	adc #$0200			adc 	#1 << TokenShift
 .010109	e8		inx				inx 								; calculate the RHS at the next stack level.
 .01010a	e8		inx				inx
 .01010b	20 a9 00	jsr $0100a9			jsr 	EvaluateLevel
@@ -272,8 +273,8 @@
 .01015d	a8		tay				tay 								; put the token in Y.
 .01015e	e6 06		inc $06				inc 	DCodePtr 					; skip over it
 .010160	e6 06		inc $06				inc 	DCodePtr
-.010162	29 00 1e	and #$1e00			and 	#$1E00 						; mask out the keyword type.
-.010165	c9 00 10	cmp #$1000			cmp 	#$1000 						; if it is xxx1 000x then it's a unary function
+.010162	29 00 1e	and #$1e00			and 	#15 << TokenShift			; mask out the keyword type.
+.010165	c9 00 10	cmp #$1000			cmp 	#UnaryFunction<<TokenShift 	; if it is xxx1 000x then it's a unary function
 .010168	f0 a7		beq $010111			beq 	_ELExecuteY					; go back and execute it
 .01016a	c0 18 32	cpy #$3218			cpy 	#lparenTokenID 				; is it an open bracket ?
 .01016d	d0 11		bne $010180			bne 	_ELUnaryOperator 			; it not, try unary operators.
@@ -289,7 +290,7 @@
 .010180	5a		phy				phy 								; save the operator on the stack.
 .010181	e8		inx				inx 								; this is like evaluate next
 .010182	e8		inx				inx
-.010183	a9 00 0e	lda #$0e00			lda 	#7<<9 						; except we use a very high precedence to make it atomic
+.010183	a9 00 0e	lda #$0e00			lda 	#7<<TokenShift 				; except we use a very high precedence to make it atomic
 .010186	20 a9 00	jsr $0100a9			jsr 	EvaluateLevel
 .010189	ca		dex				dex 								; unwind the stack.
 .01018a	ca		dex				dex
@@ -309,7 +310,7 @@
 .0101a6					EvaluateNext:
 .0101a6	e8		inx				inx
 .0101a7	e8		inx				inx
-.0101a8	a9 00 00	lda #$0000			lda 	#0<<9
+.0101a8	a9 00 00	lda #$0000			lda 	#0<<TokenShift
 .0101ab	20 a9 00	jsr $0100a9			jsr 	EvaluateLevel
 .0101ae	ca		dex				dex
 .0101af	ca		dex				dex
@@ -353,15 +354,15 @@
 .0101f9	68		pla				pla 								; get and save that first token
 .0101fa	48		pha				pha
 .0101fb	a8		tay				tay 								; put first token in Y.
-.0101fc	29 00 10	and #$1000			and 	#$1000 						; is it an array ?
+.0101fc	29 00 10	and #$1000			and 	#IDArrayMask 				; is it an array ?
 .0101ff	f0 07		beq $010208			beq 	_VANNotArray
 .010201	a5 1e		lda $1e				lda 	DVariablePtr 				; variable pointer into A,first token is in Y
 .010203	20 a7 02	jsr $0102a7			jsr 	VariableSubscript			; index calculation
 .010206	85 1e		sta $1e				sta 	DVariablePtr 				; and write it back.
 .010208					_VANNotArray:
 .010208	68		pla				pla 								; get the token back.
-.010209	29 00 20	and #$2000			and 	#$2000 						; this is the integer/string bit. $2000 if string, $0000 if int
-.01020c	49 00 20	eor #$2000			eor 	#$2000 						; now $0000 if string, $2000 if integer.
+.010209	29 00 20	and #$2000			and 	#IDTypeMask 				; this is the integer/string bit. $2000 if string, $0000 if int
+.01020c	49 00 20	eor #$2000			eor 	#IDTypeMask 				; now $0000 if string, $2000 if integer.
 .01020f	38		sec				sec 								; set up return string.
 .010210	f0 06		beq $010218			beq 	_VANLoadLower 				; if zero, Y = 0 and just load the lower address with CS
 .010212	18		clc				clc 								; returning a number, read high data word
@@ -393,7 +394,7 @@
 .01024c	60		rts				rts
 .01024d					_VFSlowVariable:
 .01024d	b2 06		lda ($06)			lda 	(DCodePtr)					; get the token
-.01024f	29 00 30	and #$3000			and 	#$3000 						; get the type bits out --xx ---- ---- ----
+.01024f	29 00 30	and #$3000			and 	#(IDTypeMask+IDArrayMask) 	; get the type bits out --xx ---- ---- ----
 .010252	eb		xba				xba 								; now this is 0000 0000 00tt 0000 e.g. tt x 16
 .010253	0a		asl a				asl 	a 							; there are 32 entries per table, also clc
 .010254	69 80 00	adc #$0080			adc 	#Block_HashTable 			; now its the correct has table offset
@@ -419,7 +420,7 @@
 .01027a	d0 eb		bne $010267			bne 	_VFNext 					; if not, go to the next one.
 .01027c	c8		iny				iny 								; advance token pointer
 .01027d	c8		iny				iny
-.01027e	29 00 08	and #$0800			and 	#$0800 						; if continuation bit set, keep going
+.01027e	29 00 08	and #$0800			and 	#IDContMask 				; if continuation bit set, keep going
 .010281	d0 f3		bne $010276			bne 	_VFCompare
 .010283	98		tya				tya 								; this is the length of the word.
 .010284	18		clc				clc 								; so we add it to the code pointer
@@ -453,7 +454,7 @@
 .0102bd	68		pla				pla 								; restore DVariablePtr
 .0102be	85 1e		sta $1e				sta 	DVariablePtr
 .0102c0	68		pla				pla 								; get and save that first token
-.0102c1	29 00 20	and #$2000			and 	#$2000 						; is it a string ?
+.0102c1	29 00 20	and #$2000			and 	#IDTypeMask 				; is it a string ?
 .0102c4	d0 02		bne $0102c8			bne 	_VANNotString  				; if not, i.e. it is an integeer
 .0102c6	06 08		asl $08				asl 	DTemp1 						; double subscript again (32 bit word)
 .0102c8					_VANNotString
@@ -475,12 +476,12 @@
 .0102ef	85 08		sta $08				sta 	DTemp1 						; save temporarily
 .0102f1	b9 00 00	lda $0000,y			lda 	$0000,y 					; get first token.
 .0102f4	48		pha				pha 								; save on stack
-.0102f5	29 00 20	and #$2000			and 	#$2000 						; check type
+.0102f5	29 00 20	and #$2000			and 	#IDTypeMask 				; check type
 .0102f8	d0 02		bne $0102fc			bne 	_VCString
 .0102fa	06 08		asl $08				asl 	DTemp1 						; if integer, then 4 x # items.
 .0102fc					_VCString:
 .0102fc	68		pla				pla 								; restore first token.
-.0102fd	29 00 10	and #$1000			and 	#$1000 						; check array bit.
+.0102fd	29 00 10	and #$1000			and 	#IDArrayMask 				; check array bit.
 .010300	f0 04		beq $010306			beq 	_VCNotArray
 .010302	e6 08		inc $08				inc 	DTemp1 						; if set, add 2 to count.
 .010304	e6 08		inc $08				inc 	DTemp1
@@ -1138,7 +1139,7 @@
 .01078f	b0 1c		bcs $0107ad			bcs 	_FLetFound 					; skip if found.
 .010791	68		pla				pla 								; get and push the first token again.
 .010792	48		pha				pha
-.010793	29 00 10	and #$1000			and 	#$1000 						; if it is an array, you can't autoinstantiate
+.010793	29 00 10	and #$1000			and 	#IDArrayMask 				; if it is an array, you can't autoinstantiate
 .010796	d0 51		bne $0107e9			bne 	_FLError					; arrays, so this causes an error.
 .010798	a4 06		ldy $06				ldy 	DCodePtr 					; Y is the address of the name
 .01079a	a9 00 00	lda #$0000			lda 	#0 							; A = 0 because it's not an array.
@@ -1148,13 +1149,13 @@
 .0107a2	b2 06		lda ($06)			lda 	(DCodePtr) 					; skip over the token
 .0107a4	e6 06		inc $06				inc 	DCodePtr
 .0107a6	e6 06		inc $06				inc 	DCodePtr
-.0107a8	29 00 08	and #$0800			and 	#$0800 						; if there is a continuation
+.0107a8	29 00 08	and #$0800			and 	#IDContMask 				; if there is a continuation
 .0107ab	d0 f5		bne $0107a2			bne 	_FLSkipToken
 .0107ad					_FLetFound:
 .0107ad	68		pla				pla 								; get and save the first token.
 .0107ae	48		pha				pha
 .0107af	a8		tay				tay 								; put it in Y
-.0107b0	29 00 10	and #$1000			and 	#$1000						; is it an array ?
+.0107b0	29 00 10	and #$1000			and 	#IDArrayMask				; is it an array ?
 .0107b3	f0 07		beq $0107bc			beq 	_FLetNotArray
 .0107b5	a5 1e		lda $1e				lda 	DVariablePtr 				; variable pointer into A, first token in A
 .0107b7	20 a7 02	jsr $0102a7			jsr 	VariableSubscript			; index calculation
@@ -1167,7 +1168,7 @@
 .0107c1	a9 06 22	lda #$2206			lda 	#equalTokenID 				; check the = and skip it.
 .0107c4	20 64 03	jsr $010364			jsr 	ExpectToken
 .0107c7	68		pla				pla 								; restore the first token.
-.0107c8	29 00 20	and #$2000			and 	#$2000 						; check the type bit
+.0107c8	29 00 20	and #$2000			and 	#IDTypeMask 				; check the type bit
 .0107cb	d0 0f		bne $0107dc			bne 	_FLetString 				; skip if string.
 .0107cd	20 b1 01	jsr $0101b1			jsr 	EvaluateInteger 			; get an integer
 .0107d0	7a		ply				ply 								; get address in Y
@@ -1220,7 +1221,7 @@
 .010825	c9 17 32	cmp #$3217			cmp 	#colonTokenID 				; colon then skip
 .010828	f0 18		beq $010842			beq 	_FRun_Colon
 .01082a	a8		tay				tay 								; save in Y
-.01082b	29 00 e0	and #$e000			and 	#$E000 						; see if it is a keyword. 001x
+.01082b	29 00 e0	and #$e000			and 	#$E000 						; see if it is a keyword. 111x
 .01082e	c9 00 20	cmp #$2000			cmp 	#$2000
 .010831	d0 15		bne $010848			bne 	_FRun_TryLET 				; if not, try LET as a default.
 .010833	98		tya				tya 								; get token back
@@ -1246,6 +1247,11 @@
 
 ;******  Return to file: ../source/basic.asm
 
+=$2000					IDTypeMask = $2000 									; bit masks in identifier.
+=$1000					IDArrayMask = $1000
+=$0800					IDContMask = $0800
+=8					UnaryFunction = 8 									; Unary function Token Type ID.
+=9					TokenShift = 9										; Token shift to reach precedence.
 .010853					SwitchBasicInstance:
 .010853	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
 .010855	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
