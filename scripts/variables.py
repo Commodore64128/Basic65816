@@ -23,9 +23,9 @@ class SimpleVariable(object):
 	def __init__(self,stringType,identifier = None,value = None):
 		self.isString = stringType													# set up.
 		self.identifier = self.defaultIdentifier() if identifier is None else identifier
-		self.value = self.defaultValue() if value is None else value
+		self.setValue(value)
 	#
-	#		Accessors
+	#		Accessors/Manipulators
 	#
 	def getIdentifier(self):
 		return self.identifier
@@ -33,6 +33,8 @@ class SimpleVariable(object):
 		return self.value
 	def getCodeValue(self):
 		return '"'+self.value+'"' if self.isString else str(self.value)
+	def setValue(self,value):
+		self.value = self.defaultValue() if value is None else value
 	#
 	#		Code to do initial setup, assign value, and check value still holds.
 	#
@@ -146,6 +148,9 @@ class EntityBucket(object):
 				return self.bucket[n]
 			count += 1
 			assert count < 9999
+
+	def randomChoice(self):
+		return self.bucket[random.randint(0,len(self.bucket)-1)]		
 
 	def toString(self):
 		return "\n".join([x.toString() for x in self.bucket])

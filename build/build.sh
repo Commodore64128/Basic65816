@@ -3,7 +3,8 @@ pushd ../scripts
 python gentokens.py
 #python test_creation.py
 #python test_comparison.py
-python test_maths.py
+#python test_maths.py
+#python test_change.py
 popd
 cp ../scripts/temp/* ../source/temp
 
