@@ -39,7 +39,7 @@ class Tokeniser(object):
 		#
 		m = re.match("^([a-zA-Z][a-zA-Z0-9]*)(\\$?)(\\(?)(.*)$",s)	# identifier with possible $ (
 		if m is not None:
-			t = self.findToken(s,True)								# is *whole* identifier a token ?
+			t = self.findToken(m.group(1)+m.group(2)+m.group(3),True) # is *whole* identifier a token ?
 			if t is not None:										# tokenise it rather than identifier
 				self.buffer.append(t.id)
 				return m.group(4)
@@ -119,6 +119,8 @@ Tokeniser.tokens = None
 
 if __name__ == "__main__":
 	tk = Tokeniser()
-	w = '>> len(42) 32769 abcde zz z ab ab$ ab( ab$( "abc" "" "abcd" let lets'.split(" ")
+	w = '>> len(42) 32769 abcde zz z ab ab$ ab( ab$( "abc" "" "abcd" let lets assert'.split(" ")
 	for b in w:
 		tk.tokeniseDebug(b)
+	tk.tokeniseDebug("assert -9 = -9")
+	tk.tokeniseDebug("assert abs(9) = -9")

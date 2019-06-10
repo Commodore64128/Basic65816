@@ -53,7 +53,7 @@ if __name__ == "__main__":
 	#
 	#		Generate code to check that the variable does equal the value.
 	#
-	for i in range(0,400):
+	for i in range(0,300):
 		v1 = pickOne(variables,False)
 		v2 = pickOne(variables,True)
 		# 	abs(x)
@@ -68,6 +68,7 @@ if __name__ == "__main__":
 	for v in variables:
 		v.importVariable(blk)
 	#
-	#blk.listVariables()
+	blk.listVariables()
 	blk.showStatus()
 	blk.exportFile("temp/basic.bin")
+

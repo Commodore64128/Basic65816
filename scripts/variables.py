@@ -65,7 +65,7 @@ class Variable(object):
 		s1 = chr(random.randint(1,26)+96)										# first is A-Z
 		for n in range(0,random.randint(0,3)):									# add A-Z0-9 on.
 			s1 = s1 + chr(random.randint(1,26)+96 if random.randint(0,2) > 0 else random.randint(48,57))
-		if Variable.tokeniser.findToken(s1):
+		if Variable.tokeniser.findToken(s1,True):
 			return self.generateIdentifier()
 		return s1
 	#
@@ -235,7 +235,7 @@ class Array(Variable):
 	#
 	def generateIdentifier(self):
 		s = Variable.generateIdentifier(self)
-		if Variable.tokeniser.findToken(s+"("):
+		if Variable.tokeniser.findToken(s+"(",True):
 			return self.generateIdentifier()
 		return s
 	#
