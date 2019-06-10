@@ -36,22 +36,13 @@ class Tokeniser(object):
 	#		Tokenise one item - a token, constant, identifier or quoted string.
 	#
 	def tokeniseOne(self,s):
-		t = self.findToken(s) 										# find a matching token
-		if t is not None:
-			self.buffer.append(t.id)								# add the token ID.
-			return s[len(t.name):]									# return post token.
-		#
-		m = re.match("^(\\d+)(.*)$",s)								# constant
-		if m is not None:
-			value = int(m.group(1))									# value of constant
-			assert value < 32768 * 4096,"Out of range "+s 			# too big.
-			if value >= 32768: 										# constant shift ?
-				self.buffer.append((value >> 15) | 0x1000)
-			self.buffer.append((value & 0x7FFF) + 0x4000)			# number token
-			return m.group(2)
 		#
 		m = re.match("^([a-zA-Z][a-zA-Z0-9]*)(\\$?)(\\(?)(.*)$",s)	# identifier with possible $ (
 		if m is not None:
+			t = self.findToken(s,True)								# is *whole* identifier a token ?
+			if t is not None:										# tokenise it rather than identifier
+				self.buffer.append(t.id)
+				return m.group(4)
 			ident = [self.convert(x) for x in m.group(1).upper()]	# shift into range
 			if len(ident) % 2 != 0:									# pad out to even length using zero.
 				ident.append(0) 									# 000000 is padding character.
@@ -65,6 +56,20 @@ class Tokeniser(object):
 					word = word + 0x2000
 				self.buffer.append(word)
 			return m.group(4)
+		#
+		t = self.findToken(s,False) 								# find a matching token
+		if t is not None:
+			self.buffer.append(t.id)								# add the token ID.
+			return s[len(t.name):]									# return post token.
+		#
+		m = re.match("^(\\d+)(.*)$",s)								# constant
+		if m is not None:
+			value = int(m.group(1))									# value of constant
+			assert value < 32768 * 4096,"Out of range "+s 			# too big.
+			if value >= 32768: 										# constant shift ?
+				self.buffer.append((value >> 15) | 0x1000)
+			self.buffer.append((value & 0x7FFF) + 0x4000)			# number token
+			return m.group(2)
 		#
 		m = re.match('^\\"(.*?)\\"(.*)$',s)							# quoted string.
 		if m is not None:
@@ -94,11 +99,12 @@ class Tokeniser(object):
 	#
 	#		Find the token that s begins with. Relies on sort order of tokeniser.tokens
 	#
-	def findToken(self,s):
+	def findToken(self,s,exactMatch):
 		s = s.lower()												# all tokens are L/C
 		for e in Tokeniser.tokens:
 			if s.startswith(e.name):
-				return e
+				if (not exactMatch) or s == e.name:
+					return e
 		return None
 	#
 	#		Debugging helper
@@ -113,6 +119,6 @@ Tokeniser.tokens = None
 
 if __name__ == "__main__":
 	tk = Tokeniser()
-	w = '>> len(42) 32769 abcde zz z ab ab$ ab( ab$( "abc" "" "abcd" "VW"'.split(" ")
+	w = '>> len(42) 32769 abcde zz z ab ab$ ab( ab$( "abc" "" "abcd" let lets'.split(" ")
 	for b in w:
 		tk.tokeniseDebug(b)

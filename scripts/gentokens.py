@@ -10,6 +10,7 @@
 # *******************************************************************************************
 
 import re,os,sys
+from tokensrc import *
 
 # *******************************************************************************************
 #									Represents a single token
@@ -35,10 +36,12 @@ class TokenList(object):
 		self.tokens = []													# Tokens read in
 		self.lookup = {} 													# access them via hash
 		duplicates = {} 													# Checking for duplicates using hash
-																			# Read the tokens file.																				
-		src = [x.strip().lower().replace("\t"," ") for x in open("tokens.txt").readlines()]
+
+		src = TokenSource().get()											# Read the token source
+		src = [x.strip().lower().replace("\t"," ") for x in src]			# preprocess
 		src = [x if x.find("##") < 0 else x[:x.find("##")] for x in src]	# comments out
-		src = [x for x in " ".join(src).split(" ") if x != ""]
+		src = [x for x in " ".join(src).split(" ") if x != ""]				# seperate words
+
 		currentGroup = None 												# Group is none
 		tokenID = 1															# Next free token ID
 		for token in src:													# Work through them

@@ -1,19 +1,19 @@
 Main
 ----
-- VariableCreate routine
-- test this works.
+- VariableCreate routine - test this works.
 - rewrite the test framework (no arrays yet) to generate BASIC code not hard-write it in.
-- array dimension, memory allocation, update the test framework.
 - update the old dump memory code.
+- array dimension, memory allocation, update the test framework.
 - remove magic constants (?)
 
 Fixes
 -----
 - concreting null strings, use a space in the block for this which is always $00
   so we don't end up with lots of NULL strings to garbage collect.
+- don't concrete strings that are in code space, not required.
 - modulus arithmetic error (test_math does not check %) sign issue.
 - expressions stack sizes and spacing and testing
-- garbage collection (not the specialist NULL strings !) 
+- garbage collection (not the specialist NULL strings, strings in high memory ONLY) 
 - allocating temp space, even size so every address is even (?)
 
 Memory Checks
@@ -26,7 +26,5 @@ Memory Checks
 
 - when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
   left.
-
-
 
 

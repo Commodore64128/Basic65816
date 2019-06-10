@@ -111,7 +111,7 @@ class ListableVariableBlock(VariableBlock):
 if __name__ == "__main__":
 	random.seed(43)
 	blk = ListableVariableBlock(0x4000,0x8000)
-	blk.addBASICLine(10,'let demo = -2')
+	blk.addBASICLine('let demo = -2',10)
 	#
 	if False:
 		for i in range(0,20):

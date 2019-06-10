@@ -1,14 +1,13 @@
 rm basic.dump  basic.bin basic.lst ../source/temp/*
-cp ../scripts/tokens.txt .
 pushd ../scripts
 python gentokens.py
 
-python dispvariables.py
+#python dispvariables.py
 
 #python test_assert.py
 #python test_math.py
 #python test_compare.py
-#python test_functions.py
+python test_functions.py
 
 popd
 cp ../scripts/temp/* ../source/temp
