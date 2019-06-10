@@ -79,13 +79,13 @@ class SimpleVariable(object):
 	#		there's only one anyway Returns [ identifier, value, isString ]
 	#
 	def selectOne(self):
-		return [self.getIdentifier(),self.getValue(),self.isString]
+		return [self.getIdentifier(),self.getCodeValue(),self.getValue(),self.isString]
 	#
 	#		Pick one representation of the value, so for each variable this returns a list
 	#		with the variable *or* the value, and the value and type
 	#
 	def pickOne(self):
-		return [self.getIdentifier() if random.randint(0,1) == 0 else self.getCodeValue(),self.getValue(),self.isString]
+		return [self.getIdentifier() if random.randint(0,1) == 0 else self.getCodeValue(),self.getCodeValue(),self.getValue(),self.isString]
 
 SimpleVariable.usedIdentifiers = {}													# used identifiers
 

@@ -2,7 +2,8 @@ rm basic.dump  basic.bin basic.lst ../source/temp/*
 pushd ../scripts
 python gentokens.py
 #python test_creation.py
-python test_comparison.py
+#python test_comparison.py
+python test_maths.py
 popd
 cp ../scripts/temp/* ../source/temp
 
