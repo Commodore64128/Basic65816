@@ -46,6 +46,7 @@ class TokenSource(object):
 	run 										## run program.
 	clear 										## clear all variables.
 	dim 										## array dimension.
+	collect 									## garbage collection.
 		
 [keyword+]
 	while

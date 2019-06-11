@@ -28,6 +28,7 @@ StartOfBasicCode:
 		.include "commands/let.asm" 				; assignment
 		.include "commands/run.asm" 				; run / end / clear etc.
 		.include "commands/dim.asm"					; array dimension
+		.include "commands/collect.asm"				; garbage collection code.
 		.include "commands/miscellany.asm"			; all other commands
 
 IDTypeMask = $2000 									; bit masks in identifier.

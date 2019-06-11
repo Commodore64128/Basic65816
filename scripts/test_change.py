@@ -40,7 +40,8 @@ if __name__ == "__main__":
 	#
 	print()
 	bs.append(eb.checkCode())
+	bs.save()
+
 	blk = BasicBlock(0x4000,0x8000)
 	blk.loadProgram()
 	blk.exportFile("temp/basic.bin")	
-	bs.save()

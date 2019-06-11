@@ -68,6 +68,10 @@ _SCCExit:
 ; *******************************************************************************************
 
 StringMakeConcrete:
+		ldy 	#Block_LowMemoryPtr 		; compare the address against low memory.
+		cmp 	(DBaseAddress),y 			; if the address is < this, then it doesn't need concreting.
+		bcc 	_SMCExit
+		;
 		sta 	DTemp1 						; source 
 		lda 	(DTemp1)					; get length
 		and 	#$00FF
@@ -76,6 +80,7 @@ StringMakeConcrete:
 		lda 	#Block_EmptyString 			; empty string, return the null pointer in low memory
 		clc
 		adc 	DBaseAddress
+_SMCExit:		
 		rts
 		;
 		;		String is not empty, so allocate high memory for it.

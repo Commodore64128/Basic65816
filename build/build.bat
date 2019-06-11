@@ -1,4 +1,4 @@
 @echo off
-call exec.bat ..\scripts\test_comparison.py
-rem python ..\scripts\showdump.py
+call exec.bat ..\scripts\make_gc.py
+python ..\scripts\showdump.py
 

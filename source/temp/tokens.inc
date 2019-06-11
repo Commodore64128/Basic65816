@@ -34,8 +34,9 @@ CommandJumpTable:
 	.word Function_RUN             & $FFFF ; token $3e1d "run"
 	.word Function_CLEAR           & $FFFF ; token $3e1e "clear"
 	.word Function_Dim             & $FFFF ; token $3e1f "dim"
-	.word IllegalToken             & $FFFF ; token $3c20 "while"
-	.word IllegalToken             & $FFFF ; token $3a21 "wend"
+	.word Function_COLLECT         & $FFFF ; token $3e20 "collect"
+	.word IllegalToken             & $FFFF ; token $3c21 "while"
+	.word IllegalToken             & $FFFF ; token $3a22 "wend"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -72,8 +73,9 @@ TokenText:
 	 .text $f4,"run"      ; token $3e1d
 	 .text $f6,"clear"    ; token $3e1e
 	 .text $f4,"dim"      ; token $3e1f
-	 .text $e6,"while"    ; token $3c20
-	 .text $d5,"wend"     ; token $3a21
+	 .text $f8,"collect"  ; token $3e20
+	 .text $e6,"while"    ; token $3c21
+	 .text $d5,"wend"     ; token $3a22
 	.byte $00
 
 ;
@@ -110,5 +112,6 @@ endTokenID                       = $3e1c
 runTokenID                       = $3e1d
 clearTokenID                     = $3e1e
 dimTokenID                       = $3e1f
-whileTokenID                     = $3c20
-wendTokenID                      = $3a21
+collectTokenID                   = $3e20
+whileTokenID                     = $3c21
+wendTokenID                      = $3a22
