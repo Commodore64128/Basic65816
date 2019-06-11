@@ -35,7 +35,7 @@ class TokenSource(object):
 [unary]
 	rnd() 										## random number 32 bit							
 	sgn( 	abs( 	len(	 					## standard
-	val(										## string to integer.
+	val(	str$(								## string to integer,integer to string.
 		
 [syntax]
 	, 	;	:	(	)

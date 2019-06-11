@@ -24,20 +24,21 @@ CommandJumpTable:
 	.word Function_Abs             & $FFFF ; token $3013 "abs("
 	.word Function_Len             & $FFFF ; token $3014 "len("
 	.word Function_VAL             & $FFFF ; token $3015 "val("
-	.word IllegalToken             & $FFFF ; token $3216 ","
-	.word IllegalToken             & $FFFF ; token $3217 ";"
-	.word IllegalToken             & $FFFF ; token $3218 ":"
-	.word IllegalToken             & $FFFF ; token $3219 "("
-	.word IllegalToken             & $FFFF ; token $321a ")"
-	.word Function_Let             & $FFFF ; token $3e1b "let"
-	.word Function_ASSERT          & $FFFF ; token $3e1c "assert"
-	.word Function_END             & $FFFF ; token $3e1d "end"
-	.word Function_RUN             & $FFFF ; token $3e1e "run"
-	.word Function_CLEAR           & $FFFF ; token $3e1f "clear"
-	.word Function_Dim             & $FFFF ; token $3e20 "dim"
-	.word Function_COLLECT         & $FFFF ; token $3e21 "collect"
-	.word IllegalToken             & $FFFF ; token $3c22 "while"
-	.word IllegalToken             & $FFFF ; token $3a23 "wend"
+	.word Function_Str             & $FFFF ; token $3016 "str$("
+	.word IllegalToken             & $FFFF ; token $3217 ","
+	.word IllegalToken             & $FFFF ; token $3218 ";"
+	.word IllegalToken             & $FFFF ; token $3219 ":"
+	.word IllegalToken             & $FFFF ; token $321a "("
+	.word IllegalToken             & $FFFF ; token $321b ")"
+	.word Function_Let             & $FFFF ; token $3e1c "let"
+	.word Function_ASSERT          & $FFFF ; token $3e1d "assert"
+	.word Function_END             & $FFFF ; token $3e1e "end"
+	.word Function_RUN             & $FFFF ; token $3e1f "run"
+	.word Function_CLEAR           & $FFFF ; token $3e20 "clear"
+	.word Function_Dim             & $FFFF ; token $3e21 "dim"
+	.word Function_COLLECT         & $FFFF ; token $3e22 "collect"
+	.word IllegalToken             & $FFFF ; token $3c23 "while"
+	.word IllegalToken             & $FFFF ; token $3a24 "wend"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -64,20 +65,21 @@ TokenText:
 	 .text $85,"abs("     ; token $3013
 	 .text $85,"len("     ; token $3014
 	 .text $85,"val("     ; token $3015
-	 .text $92,","        ; token $3216
-	 .text $92,";"        ; token $3217
-	 .text $92,":"        ; token $3218
-	 .text $92,"("        ; token $3219
-	 .text $92,")"        ; token $321a
-	 .text $f4,"let"      ; token $3e1b
-	 .text $f7,"assert"   ; token $3e1c
-	 .text $f4,"end"      ; token $3e1d
-	 .text $f4,"run"      ; token $3e1e
-	 .text $f6,"clear"    ; token $3e1f
-	 .text $f4,"dim"      ; token $3e20
-	 .text $f8,"collect"  ; token $3e21
-	 .text $e6,"while"    ; token $3c22
-	 .text $d5,"wend"     ; token $3a23
+	 .text $86,"str$("    ; token $3016
+	 .text $92,","        ; token $3217
+	 .text $92,";"        ; token $3218
+	 .text $92,":"        ; token $3219
+	 .text $92,"("        ; token $321a
+	 .text $92,")"        ; token $321b
+	 .text $f4,"let"      ; token $3e1c
+	 .text $f7,"assert"   ; token $3e1d
+	 .text $f4,"end"      ; token $3e1e
+	 .text $f4,"run"      ; token $3e1f
+	 .text $f6,"clear"    ; token $3e20
+	 .text $f4,"dim"      ; token $3e21
+	 .text $f8,"collect"  ; token $3e22
+	 .text $e6,"while"    ; token $3c23
+	 .text $d5,"wend"     ; token $3a24
 	.byte $00
 
 ;
@@ -104,17 +106,18 @@ sgnlparenTokenID                 = $3012
 abslparenTokenID                 = $3013
 lenlparenTokenID                 = $3014
 vallparenTokenID                 = $3015
-commaTokenID                     = $3216
-semicolonTokenID                 = $3217
-colonTokenID                     = $3218
-lparenTokenID                    = $3219
-rparenTokenID                    = $321a
-letTokenID                       = $3e1b
-assertTokenID                    = $3e1c
-endTokenID                       = $3e1d
-runTokenID                       = $3e1e
-clearTokenID                     = $3e1f
-dimTokenID                       = $3e20
-collectTokenID                   = $3e21
-whileTokenID                     = $3c22
-wendTokenID                      = $3a23
+strdollarlparenTokenID           = $3016
+commaTokenID                     = $3217
+semicolonTokenID                 = $3218
+colonTokenID                     = $3219
+lparenTokenID                    = $321a
+rparenTokenID                    = $321b
+letTokenID                       = $3e1c
+assertTokenID                    = $3e1d
+endTokenID                       = $3e1e
+runTokenID                       = $3e1f
+clearTokenID                     = $3e20
+dimTokenID                       = $3e21
+collectTokenID                   = $3e22
+whileTokenID                     = $3c23
+wendTokenID                      = $3a24

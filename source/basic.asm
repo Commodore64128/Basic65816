@@ -25,6 +25,7 @@ StartOfBasicCode:
 		.include "binary/multiply.asm"
 		.include "unary/simpleunary.asm" 			; unary functions.
 		.include "unary/val.asm"
+		.include "unary/str.asm"
 		
 		.include "commands/let.asm" 				; assignment
 		.include "commands/run.asm" 				; run / end / clear etc.

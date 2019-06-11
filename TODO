@@ -1,18 +1,19 @@
 Main
 ----
-- Integer to String in various bases STR(x[,<base>])
-- Tests for these added.
+- Add Stack which is reset on CLEAR etc.
+- GOTO GOSUB RETURN ON..GOTO/GOSUB
 - LIST ?
 - I/O Code.
 - PRINT <string> <variable> ' (; on end)
-- GOTO GOSUB RETURN 
 - PROC <identifier> ENDPROC
 
 
 Fixes
 -----
 - modulus arithmetic error (test_math does not check %) sign issue. Seems to be different views on this (!)
+
 - expressions stack sizes and spacing and testing
+
 - allocating temp space, even size so every address is even (?)
 
 Memory Checks

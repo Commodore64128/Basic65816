@@ -96,3 +96,15 @@ ResetTypeInteger:
 		sta 	EXSPrecType+0,x
 		rts
 
+; *******************************************************************************************
+;
+;								Set the return type as string
+;
+; *******************************************************************************************
+
+ResetTypeString:
+		lda 	EXSPrecType+0,x 			; clear bit 15
+		ora 	#$8000
+		sta 	EXSPrecType+0,x
+		rts
+

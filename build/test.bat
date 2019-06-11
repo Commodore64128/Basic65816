@@ -4,13 +4,13 @@ rem		Runs the basic tests .... until you get bored or the lack of Garbage collec
 rem		causes chaos.
 rem
 
-call exec.bat test_creation.py
-call exec.bat test_comparison.py
+rem  call exec.bat test_creation.py
+rem call exec.bat test_comparison.py
 call exec.bat test_func.py
-call exec.bat test_maths.py
-call exec.bat test_change.py
+rem call exec.bat test_maths.py
+rem call exec.bat test_change.py
 
-call exec.bat make_gc.py
-python ../scripts/showdump.py gc
+rem call exec.bat make_gc.py
+rem python ../scripts/showdump.py gc
 
 test

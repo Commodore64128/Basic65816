@@ -46,7 +46,7 @@ VALGetBase:
 ;
 _VGBAlternate:
 		jsr 	ExpectComma 				; skip comma.
-		jsr 	EvaluateInteger 			; get base
+		jsr 	EvaluateNextInteger 		; get base
 		cpy 	#0							; check base legal
 		bne 	_VGBBadBase 				
 		cmp 	#2
