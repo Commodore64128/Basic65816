@@ -66,15 +66,16 @@ _VGBBadBase:
 ; *******************************************************************************************
 
 StringToInteger:
-		stx 	DSignCount 					; Signcount is the base, 2-16.
-		stz 	DTemp1 						; Zero DTemp1, this is the result register.
-		stz 	DTemp1+2
 		sta 	DTemp3 						; DTemp3 is the character pointer
 		lda 	(DTemp3)					; DTemp3+2 is the character count to do.
 		and 	#$00FF
-		sta 	DTemp3+2
+		sta 	DTemp3+2		
 		beq 	_STIError 					; if length zero it's bad.
 		inc 	DTemp3 						; skip length byte.
+		;
+		stx 	DSignCount 					; Signcount is the base, 2-16.
+		stz 	DTemp1 						; Zero DTemp1, this is the result register.
+		stz 	DTemp1+2
 		;
 		lda 	(DTemp3)					; look at first character
 		and 	#$00FF 						; mask off
