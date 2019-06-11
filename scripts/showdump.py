@@ -106,9 +106,28 @@ class ListableVariableBlock(BasicBlock):
 		s = "".join([chr(self.readByte(item+1+i)) for i in range(0,self.readByte(item))])
 		return '"{0}"@${1:04x}'.format(s,item)
 		return '"{0}"'.format(s)
+	#
+	#		Complete G/C Check (see make_gc.py). make_gc creates initial values jklmn. It then assigns
+	#		lots of values with WXYZ in. Lastly, anything which has WXYZ in is overwritten with abcd
+	#
+	#		After garbage collection, the WXYZ should have all been removed. This combined with the 
+	#		consistency check in the generated BASIC tests the garbage collection.
+	#
+	def completeGCCheck(self):
+		pos = self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
+		while pos < self.endAddress:
+			size = self.readByte(pos)
+			name = "".join([chr(self.readByte(pos+i+1)) for i in range(0,size)])
+			#print("{0:x} {1} {2}".format(pos,self.readByte(pos),name))
+			assert name.lower() == name,"Value "+name+" found"
+			pos = pos + size + 1
+		print("String area is all lower case.")
 
 if __name__ == "__main__":
 	blk = ListableVariableBlock(0x4000,0x8000)
 	blk.importFile("basic.dump")	
-	#blk.listVariables(open("var.txt","w"))
-	blk.listVariables()
+	if len(sys.argv) == 2:
+		blk.completeGCCheck()
+	else:
+		#blk.listVariables(open("var.txt","w"))
+		blk.listVariables()

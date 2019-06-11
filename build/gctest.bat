@@ -5,5 +5,5 @@ rem		causes chaos.
 rem
 
 call exec.bat make_gc.py
-
-test
+python ../scripts/showdump.py gc
+gctest

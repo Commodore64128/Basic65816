@@ -89,7 +89,7 @@ if __name__ == "__main__":
 		if v.isUpdated:
 			newValue = var.createUsing("abcd")
 			bs.append('{0} = \"{1}\"+""'.format(v.identifier,newValue))
-			v.currentValue = newValue
+			v.currentValue = newValue			
 	#
 	#		Force a garbage collection.
 	#
