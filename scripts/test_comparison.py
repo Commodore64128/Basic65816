@@ -38,7 +38,7 @@ if __name__ == "__main__":
 	bs.append(eb.assignCode())
 	bs.append(eb.checkCode())
 
-	for i in range(0,700):
+	for i in range(0,600):
 		ok = False
 		while not ok:
 			v1 = eb.pickOne()

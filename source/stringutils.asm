@@ -71,6 +71,16 @@ StringMakeConcrete:
 		sta 	DTemp1 						; source 
 		lda 	(DTemp1)					; get length
 		and 	#$00FF
+		bne 	_SMCNonZero 				; if not "" skip.
+		;
+		lda 	#Block_EmptyString 			; empty string, return the null pointer in low memory
+		clc
+		adc 	DBaseAddress
+		rts
+		;
+		;		String is not empty, so allocate high memory for it.
+		;
+_SMCNonZero:
 		pha 								; save on stack.
 		;
 		eor 	#$FFFF 						; 2's complement with carry clear
