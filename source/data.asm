@@ -43,6 +43,8 @@ DHashTablePtr = DPBaseAddress + 32 			; address of hash entry of searched variab
 
 DLineNumber = DPBaseAddress + 34 			; current line number.
 
+DTemp3 = DPBaseAddress + 36 				; *** LONG *** Temporary Value.
+
 ; ********************************************************************************
 ;
 ;			Expression Stack. There are three entries, low and high word

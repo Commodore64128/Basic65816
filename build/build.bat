@@ -1,4 +1,4 @@
 @echo off
-call exec.bat ..\scripts\make_gc.py
-python ..\scripts\showdump.py gc
+call exec.bat ..\scripts\basicblock.py
+python ..\scripts\showdump.py
 

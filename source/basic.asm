@@ -24,7 +24,8 @@ StartOfBasicCode:
 		.include "binary/divide.asm"
 		.include "binary/multiply.asm"
 		.include "unary/simpleunary.asm" 			; unary functions.
-
+		.include "unary/val.asm"
+		
 		.include "commands/let.asm" 				; assignment
 		.include "commands/run.asm" 				; run / end / clear etc.
 		.include "commands/dim.asm"					; array dimension
