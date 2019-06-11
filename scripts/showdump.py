@@ -104,10 +104,10 @@ class ListableVariableBlock(BasicBlock):
 		if item == 0:
 			return "*BUG*"
 		s = "".join([chr(self.readByte(item+1+i)) for i in range(0,self.readByte(item))])
-		#return '"{0}"@${1:04x}'.format(s,item)
+		return '"{0}"@${1:04x}'.format(s,item)
 		return '"{0}"'.format(s)
 
 if __name__ == "__main__":
 	blk = ListableVariableBlock(0x4000,0x8000)
 	blk.importFile("basic.dump")	
-	blk.listVariables()
+	blk.listVariables(open("var.txt","w"))

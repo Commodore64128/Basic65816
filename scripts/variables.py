@@ -209,7 +209,7 @@ class BasicSource(object):
 	def append(self,code):
 		code = code if isinstance(code,list) else [code]
 		for l in code:
-			print("==== "+l+" ====")
+			#print("==== "+l+" ====")
 			self.handle.write(l.strip()+"\n")
 	#
 	def save(self):

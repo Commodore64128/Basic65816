@@ -49,8 +49,8 @@ variables = []
 if __name__ == "__main__":
 	print("Creation test code.")
 	random.seed(42)
-	arrayCount = 2
-	varCount = 1
+	arrayCount = 0
+	varCount = 181
 	bs = BasicSource()
 	#
 	#		Create everything.
@@ -90,7 +90,7 @@ if __name__ == "__main__":
 	#
 	#		Force a garbage collection.
 	#
-	bs.append("collect")															# force garbage collection
+	#bs.append("collect")															# force garbage collection
 	#
 	#		Check everything adds up afterwards.
 	#
