@@ -110,4 +110,5 @@ class ListableVariableBlock(BasicBlock):
 if __name__ == "__main__":
 	blk = ListableVariableBlock(0x4000,0x8000)
 	blk.importFile("basic.dump")	
-	blk.listVariables(open("var.txt","w"))
+	#blk.listVariables(open("var.txt","w"))
+	blk.listVariables()

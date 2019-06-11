@@ -1,15 +1,11 @@
 Main
 ----
-- garbage collection
 - work out next phase
 
 Fixes
 -----
-
-- don't concrete strings that are in or are below code space, not required.
 - modulus arithmetic error (test_math does not check %) sign issue. Seems to be different views on this (!)
 - expressions stack sizes and spacing and testing
-- garbage collection (not the specialist NULL strings, strings in high memory ONLY) 
 - allocating temp space, even size so every address is even (?)
 
 Memory Checks

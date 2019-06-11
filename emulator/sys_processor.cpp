@@ -54,6 +54,8 @@ void CPUReset(void) {
 //													 Execute a single phase.
 // *******************************************************************************************************************************
 
+#include "stdio.h"
+
 BYTE8 CPUExecuteInstruction(void) {
 	Cycles++;
 	CPU65816ExecuteOneInstruction();

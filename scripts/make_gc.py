@@ -48,9 +48,12 @@ variables = []
 
 if __name__ == "__main__":
 	print("Creation test code.")
-	random.seed(42)
-	arrayCount = 0
-	varCount = 181
+	random.seed()
+	startSeed = random.randint(0,99999)
+	print("Testing G/C with key "+str(startSeed))
+	random.seed(startSeed)
+	arrayCount = 20
+	varCount = 100
 	bs = BasicSource()
 	#
 	#		Create everything.
@@ -90,7 +93,7 @@ if __name__ == "__main__":
 	#
 	#		Force a garbage collection.
 	#
-	#bs.append("collect")															# force garbage collection
+	bs.append("collect")															# force garbage collection
 	#
 	#		Check everything adds up afterwards.
 	#

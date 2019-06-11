@@ -45,18 +45,18 @@ StringCreateCopy:
 		beq 	_SCCExit 					; do nothing if length zero.
 		phx 								; save X and put the character count in X
 		tax
-		sep 	#$20 						; switch to 8 bit mode.
 _SCCCopy:
 		iny 								; advance and read (first time skips length)
+		sep 	#$20 						; switch to 8 bit mode.
 		lda 	$0000,y
 		sta 	(DCurrentTempString) 		; write into target
-		inc 	DCurrentTempString 			; bump target pointer
 		lda 	(DStartTempString)			; one more character
 		inc 	a
 		sta 	(DStartTempString)
+		rep 	#$20 						; switch back to 16 bit mode
+		inc 	DCurrentTempString 			; bump target pointer
 		dex 								; do X times
 		bne 	_SCCCopy
-		rep 	#$20 						; switch back to 16 bit mode
 		plx
 _SCCExit:
 		rts
