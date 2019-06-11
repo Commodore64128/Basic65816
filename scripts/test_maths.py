@@ -32,7 +32,7 @@ def calculate(op,a,b):
 	assert False
 
 if __name__ == "__main__":
-	print("Creation test code.")
+	print("Arithmetic/Bitwise test code.")
 	operators = "+,-,*,/,&,|,^".split(",")
 
 	eb = EntityBucket(-1,100,0,16,0)

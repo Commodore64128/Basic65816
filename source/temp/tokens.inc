@@ -33,7 +33,7 @@ CommandJumpTable:
 	.word Function_END             & $FFFF ; token $3e1c "end"
 	.word Function_RUN             & $FFFF ; token $3e1d "run"
 	.word Function_CLEAR           & $FFFF ; token $3e1e "clear"
-	.word IllegalToken             & $FFFF ; token $3e1f "dim"
+	.word Function_Dim             & $FFFF ; token $3e1f "dim"
 	.word IllegalToken             & $FFFF ; token $3c20 "while"
 	.word IllegalToken             & $FFFF ; token $3a21 "wend"
 

@@ -1,7 +1,6 @@
 Main
 ----
-- array dimension, memory allocation, update the test framework.
-- remove magic constants (?)
+- update the test framework.
 
 Fixes
 -----

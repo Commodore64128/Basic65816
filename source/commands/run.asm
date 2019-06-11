@@ -101,6 +101,9 @@ _FRun_EndInstruction:
 ; *******************************************************************************************
 
 Function_CLEAR: ;; clear
+		ldy 	#Block_EmptyString 			; clear empty string reference.
+		lda 	#$0000
+		sta 	(DBaseAddress),y
 		;
 		;		reset high pointer
 		;	

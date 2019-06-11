@@ -25,9 +25,10 @@ StartOfBasicCode:
 		.include "binary/multiply.asm"
 		.include "unary/simpleunary.asm" 			; unary functions.
 
-		.include "commands/miscellany.asm"			; commands
-		.include "commands/let.asm"
-		.include "commands/run.asm"
+		.include "commands/let.asm" 				; assignment
+		.include "commands/run.asm" 				; run / end / clear etc.
+		.include "commands/dim.asm"					; array dimension
+		.include "commands/miscellany.asm"			; all other commands
 
 IDTypeMask = $2000 									; bit masks in identifier.
 IDArrayMask = $1000

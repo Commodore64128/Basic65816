@@ -101,6 +101,8 @@ class ListableVariableBlock(BasicBlock):
 		if not isString:
 			#return "{0}${0:x}".format(item)
 			return "{0}".format(item)
+		if item == 0:
+			return "*BUG*"
 		s = "".join([chr(self.readByte(item+1+i)) for i in range(0,self.readByte(item))])
 		#return '"{0}"@${1:04x}'.format(s,item)
 		return '"{0}"'.format(s)

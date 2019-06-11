@@ -28,7 +28,7 @@ def calculate(op,a,b):
 	assert False
 
 if __name__ == "__main__":
-	print("Creation test code.")
+	print("Comparison test code.")
 	operators = "<,>,=,>=,<=,<>".split(",")
 
 	eb = EntityBucket()

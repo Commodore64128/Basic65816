@@ -203,7 +203,7 @@ _VANSubscript:
 ;		Create a new variable. VariableFind needs to have been called first so DHashPtr
 ;		is set up.
 ;
-;		A contains the number of data items, or zero if the variable is a single item. 
+;		A contains the high index, or zero if the variable is a single item. 
 ;		Y is the address of the token that is the  name of the variable. 
 ;
 ;		On exit A contains the address of the data part of the record for non-arrays, 
@@ -214,11 +214,23 @@ _VANSubscript:
 VariableCreate:			
 		pha 								; save count.
 		;
+		;		Erase word. For strings this the address of the NULL string stored at Block_EmptyString.
+		;
+		lda 	$0000,y 					; get first token
+		and 	#IDTypeMask 
+		beq 	_VCIsInteger 				; if this is zero ... use zero.
+		lda 	#Block_EmptyString 			; otherwise fill with this address.
+		clc
+		adc 	DBaseAddress
+_VCIsInteger:		
+		sta 	DSignCount 					; this is temporary for this
+		;
 		;		Work out space to allocate.
 		;
+		pla 								; restore count
+		pha 
+		inc 	a 							; need 1 more element. If zero, you need one. If high index,size is one more.
 		asl 	a 							; 2 x # items.
-		bne 	_VCNotSingle 				; if this is zero, then it is a single variable
-		lda 	#2 							; so we want 2 (1 items x 2)
 _VCNotSingle:
 		sta 	DTemp1 						; save temporarily
 		lda 	$0000,y 					; get first token.
@@ -249,7 +261,7 @@ _VCNotArray:
 		;
 		ldy 	DTemp2 						; put the address back in Y
 _VCErase:
-		lda 	#$0000 						; clear that word
+		lda 	DSignCount 					; clear that word to empty string/zero.
 		sta 	$0004,y 					; data from +4 onwards
 		iny 						
 		iny
@@ -273,10 +285,3 @@ _VCNotArray2:
 		clc 								; advance pointer to the data bit.
 		adc 	#4
 		rts 								; and done.
-
-
-
-
-
-
-

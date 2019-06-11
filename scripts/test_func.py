@@ -18,7 +18,7 @@ def sgn(c):
 	return c
 
 if __name__ == "__main__":
-	print("Creation test code.")
+	print("Unary function test code.")
 	eb = EntityBucket()
 	#
 	bs = BasicSource()

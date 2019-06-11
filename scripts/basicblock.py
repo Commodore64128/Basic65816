@@ -169,6 +169,7 @@ class BasicBlock(object):
 		self._export("Block_HashMask",BasicBlock.HASHMASK)
 		self._export("Block_LowMemoryPtr",BasicBlock.LOWPTR)
 		self._export("Block_HighMemoryPtr",BasicBlock.HIGHPTR)
+		self._export("Block_EmptyString",BasicBlock.EMPTYSTRING)
 		self._export("Block_ProgramStart",BasicBlock.PROGRAM)
 		self._export("Block_HashTableEntrySize",BasicBlock.HASHMASKENTRYSIZE)
 		self.handle.close()
@@ -181,12 +182,13 @@ BasicBlock.FASTVARIABLES = 0x10 												# Fast Variable Base
 BasicBlock.HASHTABLE = 0x80 													# Hash Table Base
 BasicBlock.LOWPTR = 0x08 														# Low Memory Allocation
 BasicBlock.HIGHPTR = 0x0A 														# High Memory Allocation
+BasicBlock.EMPTYSTRING = 0x0C 													# Empty String pointer 
 BasicBlock.PROGRAM = 0x100 														# First line of program
 BasicBlock.HASHMASK = 15 														# Hash mask (0,1,3,7,15)
 BasicBlock.HASHMASKENTRYSIZE = 16 												# Entries per table.
 
 if __name__ == "__main__":
 	blk = BasicBlock(0x4000,0x8000)
-	blk.addBASICLine('((2+3)*(4+5)*2)+1',10)
+	blk.addBASICLine('xx = 0:dim a(4),demo(3):a(2)=19:demo(1)=-1:dim st$(4):let a$=st$(1)',10)
 	blk.exportFile("temp/basic.bin")	
 	blk.exportConstants("temp/block.inc")
