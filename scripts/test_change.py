@@ -15,25 +15,28 @@ from variables import *
 
 if __name__ == "__main__":
 	print("Change test code.")
-	eb = EntityBucket(1,4,4,0,0)
+	eb = EntityBucket()
 	#
 	bs = BasicSource()
 	bs.append(eb.setupCode())
 	bs.append(eb.assignCode())
 	print()
 	#
-	for i in range(0,15):
+	for i in range(0,500):
 		ok = False
 		while not ok:
 			v1 = eb.pickOne()
 			v2 = eb.pickOne()
-			ok = v1[4] == v2[4]
-		if random.randint(0,1) == 10:
-			newValue = v2[2]
+			ok = v1.isString == v2.isString
+		if random.randint(0,1) != 10:
+			newValue = v2.getIdentifier()
+			updateValue = v2.getValue()
 		else:
-			newValue = v2[5].singleDefaultValue()
-		#v1[5].updateValue(v1[6],newValue)
-		bs.append("let {0} = {1}".format(v1[0],newValue if not v2[4] else '"'+newValue+'"'))
+			newValue = v2.singleDefaultValue()
+			updateValue = newValue
+			newValue = str(newValue) if not v2.isString else '"'+newValue+'"'
+		bs.append("let {0} = {1}".format(v1.getIdentifier(),newValue))
+		v1.setValue(updateValue)
 	#
 	print()
 	bs.append(eb.checkCode())

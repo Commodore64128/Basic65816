@@ -27,10 +27,10 @@ if __name__ == "__main__":
 	#
 	for i in range(0,300):
 		v1 = eb.pickOneInteger()
-		bs.append("assert abs({0})={1}".format(v1[1],abs(v1[2])))
-		bs.append("assert sgn({0})={1}".format(v1[1],sgn(v1[2])))
+		bs.append("assert abs({0})={1}".format(v1.getEither(),abs(v1.getValue())))
+		bs.append("assert sgn({0})={1}".format(v1.getEither(),sgn(v1.getValue())))
 		v2 = eb.pickOneString()
-		bs.append("assert len({0})={1}".format(v2[1],len(v2[2])))
+		bs.append("assert len({0})={1}".format(v2.getEither(),len(v2.getValue())))
 	#
 	bs.append(eb.checkCode())
 	bs.save()

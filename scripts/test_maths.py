@@ -35,7 +35,7 @@ if __name__ == "__main__":
 	print("Arithmetic/Bitwise test code.")
 	operators = "+,-,*,/,&,|,^".split(",")
 
-	eb = EntityBucket(-1,60,0,0,0)
+	eb = EntityBucket(-1,60,0,10,0)
 	#
 	bs = BasicSource()
 	bs.append(eb.setupCode())
@@ -48,11 +48,12 @@ if __name__ == "__main__":
 			v2 = eb.pickOne()
 			operator = operators[random.randint(0,len(operators)-1)]
 			ok = True
-			if abs(v1[2]*v2[2]) >= 32768*4096:
+			if abs(v1.getValue()*v2.getValue()) >= 32768*4096:
 				ok = False
-			if (operator == "/" or operator == "%") and v2[2] == 0:
+			if (operator == "/" or operator == "%") and v2.getValue() == 0:
 				ok = False
-		bs.append("assert ({0}{1}{2}) = {3}".format(v1[1],operator,v2[1],calculate(operator,v1[2],v2[2])))
+		r = calculate(operator,v1.getValue(),v2.getValue())
+		bs.append("assert ({0}{1}{2}) = {3}".format(v1.getEither(),operator,v2.getEither(),r))
 
 	bs.append(eb.checkCode())
 	bs.save()

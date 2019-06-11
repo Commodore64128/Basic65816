@@ -38,14 +38,15 @@ if __name__ == "__main__":
 	bs.append(eb.assignCode())
 	bs.append(eb.checkCode())
 
-	for i in range(0,600):
+	for i in range(0,700):
 		ok = False
 		while not ok:
 			v1 = eb.pickOne()
 			v2 = eb.pickOne()
-			ok = v1[4] == v2[4]
+			ok = v1.isString == v2.isString
 		operator = operators[random.randint(0,len(operators)-1)]
-		bs.append("assert ({0}{1}{2}) = {3}".format(v1[1],operator,v2[1],-1 if calculate(operator,v1[2],v2[2]) else 0))
+		r = -1 if calculate(operator,v1.getValue(),v2.getValue()) else 0
+		bs.append("assert ({0}{1}{2}) = {3}".format(v1.getEither(),operator,v2.getEither(),r))
 	bs.save()
 	#
 	blk = BasicBlock(0x4000,0x8000)
