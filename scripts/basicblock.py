@@ -188,6 +188,8 @@ BasicBlock.HASHMASKENTRYSIZE = 16 												# Entries per table.
 
 if __name__ == "__main__":
 	blk = BasicBlock(0x4000,0x8000)
-	blk.addBASICLine('a = val("-1000a",16)',10)
+	blk.addBASICLine('assert val("-1",10) = -1')
+	blk.addBASICLine('assert val("-1",10) = -1')
+	blk.addBASICLine('assert val("-1",10) = -1')
 	blk.exportFile("temp/basic.bin")	
 	blk.exportConstants("temp/block.inc")

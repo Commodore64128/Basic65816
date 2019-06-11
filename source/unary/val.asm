@@ -68,7 +68,7 @@ _VGBBadBase:
 StringToInteger:
 		stx 	DSignCount 					; Signcount is the base, 2-16.
 		stz 	DTemp1 						; Zero DTemp1, this is the result register.
-		stz 	DTemp1+1
+		stz 	DTemp1+2
 		sta 	DTemp3 						; DTemp3 is the character pointer
 		lda 	(DTemp3)					; DTemp3+2 is the character count to do.
 		and 	#$00FF
@@ -157,16 +157,12 @@ _CUCExit:
 ; *******************************************************************************************
 
 MultiplyTemp1ByA:
-		bra 	_MTGeneral
-
 		cmp 	#16							; special case bases, the common ones.
 		beq 	_MT1_16
 		cmp 	#10
 		beq 	_MT1_10
 		cmp 	#8
 		beq 	_MT1_8
-		cmp 	#4
-		beq 	_MT1_4
 		cmp 	#2
 		beq 	_MT1_2
 
@@ -217,8 +213,8 @@ _MT1_10:
 		adc 	DTemp1
 		sta 	DTemp1
 		pla
-		adc 	DTemp1
-		sta 	DTemp1
+		adc 	DTemp1+2
+		sta 	DTemp1+2
 		;									; x 10
 		asl 	DTemp1
 		rol 	DTemp1+2
