@@ -24,15 +24,15 @@ if __name__ == "__main__":
 	bs = BasicSource()
 	bs.append(eb.setupCode())
 	bs.append(eb.assignCode())
-	bs.append(eb.checkCode())
 	#
 	for i in range(0,300):
 		v1 = eb.pickOneInteger()
-		bs.append("assert abs({0})={1}".format(v1[0],abs(v1[2])))
-		bs.append("assert sgn({0})={1}".format(v1[0],sgn(v1[2])))
+		bs.append("assert abs({0})={1}".format(v1[1],abs(v1[2])))
+		bs.append("assert sgn({0})={1}".format(v1[1],sgn(v1[2])))
 		v2 = eb.pickOneString()
-		bs.append("assert len({0})={1}".format(v2[0],len(v2[2])))
+		bs.append("assert len({0})={1}".format(v2[1],len(v2[2])))
 	#
+	bs.append(eb.checkCode())
 	bs.save()
 	blk = BasicBlock(0x4000,0x8000)
 	blk.loadProgram()

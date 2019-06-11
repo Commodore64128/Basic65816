@@ -1,4 +1,4 @@
 @echo off
-call exec.bat basicblock.py
-python ..\scripts\showdump.py
+call exec.bat ..\scripts\test_change.py
+rem python ..\scripts\showdump.py
 

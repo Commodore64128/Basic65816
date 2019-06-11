@@ -23,7 +23,7 @@ class SimpleVariable(object):
 	def __init__(self,stringType,identifier = None,value = None):
 		self.isString = stringType													# set up.
 		self.identifier = self.defaultIdentifier() if identifier is None else identifier
-		self.setValue(value)
+		self.value if value is not None else self.singleDefaultValue()
 	#
 	#		Accessors/Manipulators
 	#
@@ -33,7 +33,7 @@ class SimpleVariable(object):
 		return self.value
 	def getCodeValue(self):
 		return '"'+self.value+'"' if self.isString else str(self.value)
-	def setValue(self,value):
+	def updateValue(self,index,value):
 		self.value = self.defaultValue() if value is None else value
 	#
 	#		Code to do initial setup, assign value, and check value still holds.
@@ -68,6 +68,9 @@ class SimpleVariable(object):
 	#		Create a default value.
 	#
 	def defaultValue(self):
+		return self.singleDefaultValue()
+	#
+	def singleDefaultValue(self):
 		if self.isString:
 			s1 = ""
 			for i in range(0,random.randint(0,11)):
@@ -78,16 +81,14 @@ class SimpleVariable(object):
 			return random.randint(-r,r)
 	#
 	#		Pick one of the values in this entity at random. If it's a single variable
-	#		there's only one anyway Returns [ identifier, value, isString ]
-	#
-	def selectOne(self):
-		return [self.getIdentifier(),self.getCodeValue(),self.getValue(),self.isString]
-	#
-	#		Pick one representation of the value, so for each variable this returns a list
-	#		with the variable *or* the value, and the value and type
+	#		there's only one anyway Returns [ identifier(0), code value/random value (1), value (2)
+	#		code value (3), isString (4), object (5), index (6)]
 	#
 	def pickOne(self):
-		return [self.getIdentifier() if random.randint(0,1) == 0 else self.getCodeValue(),self.getCodeValue(),self.getValue(),self.isString]
+		chosen = self.getIdentifier() if random.randint(0,1) == 0 else self.getCodeValue()
+		s = [self.getIdentifier(),chosen,self.getValue(),self.getCodeValue(),self.isString,self,0]
+		assert len(s) == 7
+		return s
 
 SimpleVariable.usedIdentifiers = {}													# used identifiers
 
@@ -107,12 +108,69 @@ class StringVariable(SimpleVariable):
 
 # *******************************************************************************************
 #
+#										Array Classes
+#
+# *******************************************************************************************
+
+class ArrayVariable(SimpleVariable):
+	def __init__(self,isString,size = None,identifier = None,value = None):
+		self.size = random.randint(2,6) if size is None else size
+		self.isString = isString
+		if value is not None:
+			self.size = len(value)-1
+		else:
+			self.value = [self.singleDefaultValue() for x in range(0,self.size+1)]
+		SimpleVariable.__init__(self,isString,identifier,self.value)
+
+	def toString(self):
+		return "{0:10} := {1}".format(self.getIdentifier()+str(self.size)+")",self.value)
+
+	def getIdentifier(self):
+		return SimpleVariable.getIdentifier(self)+"("
+
+	def setupCode(self):
+		return "dim {0}{1})".format(self.getIdentifier(),self.size)
+	def assignCode(self):
+		return ":".join(["{0}{1})={2}".format(self.getIdentifier(),i,self.codeSubValue(i)) for i in range(0,self.size+1)])
+	def checkCode(self):
+		return ":".join(["assert {0}{1})={2}".format(self.getIdentifier(),i,self.codeSubValue(i)) for i in range(0,self.size+1)])
+
+	def codeSubValue(self,i):
+		return '"'+self.value[i]+'"' if self.isString else str(self.value[i]) 
+	def getSubValue(self,i):
+		return self.value[i]
+
+	def updateValue(self,index,value):
+		print(self.value)
+		self.value[index] = value
+
+	#		there's only one anyway Returns [ identifier(0), code value/random value (1), value (2)
+	#		code value (3), isString (4), object (5), index (6)]
+
+	def pickOne(self):
+		n = random.randint(0,self.size)
+		ident = self.getIdentifier()+str(n)+")"
+		chosen = ident if random.randint(0,1) == 0 else self.codeSubValue(n)		
+		s = [ident,chosen,self.getSubValue(n),self.codeSubValue(n),self.isString,self,n]
+		assert len(s) == 7
+		return s
+
+class IntegerArray(ArrayVariable):
+	def __init__(self,size = None,identifier = None,value = None):
+		ArrayVariable.__init__(self,False,size,identifier,value)
+
+class StringArray(ArrayVariable):
+	def __init__(self,size = None,identifier = None,value = None):
+		ArrayVariable.__init__(self,True,size,identifier,value)
+
+# *******************************************************************************************
+#
 #								Container with multiple variables
 #
 # *******************************************************************************************
 
 class EntityBucket(object):
-	def __init__(self,randomSeed=-1,iCount=60,sCount=60,iaCount=10,isCount=10):
+	def __init__(self,randomSeed=-1,iCount=60,sCount=60,iaCount=10,saCount=10):
 		self.bucket = []
 		if randomSeed < 0:
 			random.seed()
@@ -123,6 +181,10 @@ class EntityBucket(object):
 			self.add(IntegerVariable())
 		for i in range(0,sCount):
 			self.add(StringVariable())
+		for i in range(0,iaCount):
+			self.add(IntegerArray())
+		for i in range(0,saCount):
+			self.add(StringArray())
 
 	def add(self,entity):
 		self.bucket.append(entity)
@@ -176,14 +238,14 @@ class BasicSource(object):
 	def append(self,code):
 		code = code if isinstance(code,list) else [code]
 		for l in code:
+			print(l)
 			self.handle.write(l.strip()+"\n")
 	#
 	def save(self):
 		self.handle.close()
 
 if __name__ == "__main__":
-	random.seed(42)
-	eb = EntityBucket(42,3,3,0,0)
+	eb = EntityBucket(42,1,1,1,1)
 	print(eb.toString())
 	print(eb.setupCode())
 	print(eb.assignCode())
