@@ -1,21 +1,23 @@
 Main
 ----
-- Add Stack which is reset on CLEAR etc.
 - GOTO GOSUB RETURN ON..GOTO/GOSUB
-- LIST. Detokenising.
+- REPEAT UNTIL
+- LIST. Detokenising. Spacing out and in.
 - Input code. Tokenising.
-- PROC <identifier> ENDPROC
-
+- Typing commands in
+- Typing programs in
+- PROC <identifier> DEFPROC ENDPROC
 
 Fixes
 -----
-- reset temporary storage pointer when typing things in, even if no command executed.
+- 	reset temporary storage pointer when typing things in, even if no command executed as error could
+	occur if you do gosub 700.
 
-- modulus arithmetic error (test_math does not check %) sign issue. Seems to be different views on this (!)
+- 	modulus arithmetic error (test_math does not check %) sign issue. Seems to be different views on this (!)
 
-- expressions stack sizes and spacing and testing
+- 	expressions stack sizes and spacing and testing. same for basic stack.
 
-- allocating temp space, even size so every address is even (?)
+- 	allocating temp space, even size so every address is even (?)
 
 Memory Checks
 =============

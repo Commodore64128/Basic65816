@@ -47,6 +47,17 @@ DTemp3 = DPBaseAddress + 36 				; *** LONG *** Temporary Value.
 
 DCursor = DPBaseAddress + 40 				; cursor (for external routines, not used by BASIC)
 
+DStack = DPBaseAddress + 42 				; BASIC stack pointer.
+
+; ********************************************************************************
+;
+;									BASIC stack.
+;
+; ********************************************************************************
+
+BASStack = $80 								; start of Basic stack.
+BASStackSize = $80 							; maximum size of BASIC stack.
+
 ; ********************************************************************************
 ;
 ;			Expression Stack. There are three entries, low and high word

@@ -101,7 +101,31 @@ _FRun_EndInstruction:
 ; *******************************************************************************************
 
 Function_CLEAR: ;; clear
-		ldy 	#Block_EmptyString 			; clear empty string reference.
+		jsr 	ClearVariablesPointersAndStacks
+		rts
+
+; *******************************************************************************************
+;		
+;											Resets
+;
+;	(i) 	Basic stack
+;	(ii)	Pointer used for NULL string
+;	(iii)	High memory pointer to top of memory
+;	(iv)	Low memory pointer to end of program
+;	(v)		Clear the Variable Hash Tables.
+;
+; *******************************************************************************************
+
+ClearVariablesPointersAndStacks:		
+		;
+		;		Reset the BASIC stack.
+		;
+		lda 	#BASStack 					
+		sta 	DStack
+		;
+		;		Clear the value used to refer to an empty string.
+		;
+		ldy 	#Block_EmptyString 	
 		lda 	#$0000
 		sta 	(DBaseAddress),y
 		;
