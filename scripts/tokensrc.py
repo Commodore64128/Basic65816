@@ -38,7 +38,7 @@ class TokenSource(object):
 	val(	str$(								## string to integer,integer to string.
 		
 [syntax]
-	, 	;	:	(	)
+	, 	;	:	(	)	'	
 
 [keyword]										
 	let 										## assignment	
@@ -49,7 +49,8 @@ class TokenSource(object):
 	dim 										## array dimension.
 	collect 									## garbage collection.
 	cls 										## clear screen
-			
+	print 		? 								## print and shorthand print.
+				
 [keyword+]
 	while
 

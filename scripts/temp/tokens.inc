@@ -30,16 +30,19 @@ CommandJumpTable:
 	.word IllegalToken             & $FFFF ; token $3219 ":"
 	.word IllegalToken             & $FFFF ; token $321a "("
 	.word IllegalToken             & $FFFF ; token $321b ")"
-	.word Function_Let             & $FFFF ; token $3e1c "let"
-	.word Function_ASSERT          & $FFFF ; token $3e1d "assert"
-	.word Function_END             & $FFFF ; token $3e1e "end"
-	.word Function_RUN             & $FFFF ; token $3e1f "run"
-	.word Function_CLEAR           & $FFFF ; token $3e20 "clear"
-	.word Function_Dim             & $FFFF ; token $3e21 "dim"
-	.word Function_COLLECT         & $FFFF ; token $3e22 "collect"
-	.word Function_CLS             & $FFFF ; token $3e23 "cls"
-	.word IllegalToken             & $FFFF ; token $3c24 "while"
-	.word IllegalToken             & $FFFF ; token $3a25 "wend"
+	.word IllegalToken             & $FFFF ; token $321c "'"
+	.word Function_Let             & $FFFF ; token $3e1d "let"
+	.word Function_ASSERT          & $FFFF ; token $3e1e "assert"
+	.word Function_END             & $FFFF ; token $3e1f "end"
+	.word Function_RUN             & $FFFF ; token $3e20 "run"
+	.word Function_CLEAR           & $FFFF ; token $3e21 "clear"
+	.word Function_Dim             & $FFFF ; token $3e22 "dim"
+	.word Function_COLLECT         & $FFFF ; token $3e23 "collect"
+	.word Function_CLS             & $FFFF ; token $3e24 "cls"
+	.word Function_PRINT           & $FFFF ; token $3e25 "print"
+	.word Function_PRINTALT        & $FFFF ; token $3e26 "?"
+	.word IllegalToken             & $FFFF ; token $3c27 "while"
+	.word IllegalToken             & $FFFF ; token $3a28 "wend"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -72,16 +75,19 @@ TokenText:
 	 .text $92,":"        ; token $3219
 	 .text $92,"("        ; token $321a
 	 .text $92,")"        ; token $321b
-	 .text $f4,"let"      ; token $3e1c
-	 .text $f7,"assert"   ; token $3e1d
-	 .text $f4,"end"      ; token $3e1e
-	 .text $f4,"run"      ; token $3e1f
-	 .text $f6,"clear"    ; token $3e20
-	 .text $f4,"dim"      ; token $3e21
-	 .text $f8,"collect"  ; token $3e22
-	 .text $f4,"cls"      ; token $3e23
-	 .text $e6,"while"    ; token $3c24
-	 .text $d5,"wend"     ; token $3a25
+	 .text $92,"'"        ; token $321c
+	 .text $f4,"let"      ; token $3e1d
+	 .text $f7,"assert"   ; token $3e1e
+	 .text $f4,"end"      ; token $3e1f
+	 .text $f4,"run"      ; token $3e20
+	 .text $f6,"clear"    ; token $3e21
+	 .text $f4,"dim"      ; token $3e22
+	 .text $f8,"collect"  ; token $3e23
+	 .text $f4,"cls"      ; token $3e24
+	 .text $f6,"print"    ; token $3e25
+	 .text $f2,"?"        ; token $3e26
+	 .text $e6,"while"    ; token $3c27
+	 .text $d5,"wend"     ; token $3a28
 	.byte $00
 
 ;
@@ -114,13 +120,16 @@ semicolonTokenID                 = $3218
 colonTokenID                     = $3219
 lparenTokenID                    = $321a
 rparenTokenID                    = $321b
-letTokenID                       = $3e1c
-assertTokenID                    = $3e1d
-endTokenID                       = $3e1e
-runTokenID                       = $3e1f
-clearTokenID                     = $3e20
-dimTokenID                       = $3e21
-collectTokenID                   = $3e22
-clsTokenID                       = $3e23
-whileTokenID                     = $3c24
-wendTokenID                      = $3a25
+squoteTokenID                    = $321c
+letTokenID                       = $3e1d
+assertTokenID                    = $3e1e
+endTokenID                       = $3e1f
+runTokenID                       = $3e20
+clearTokenID                     = $3e21
+dimTokenID                       = $3e22
+collectTokenID                   = $3e23
+clsTokenID                       = $3e24
+printTokenID                     = $3e25
+questionTokenID                  = $3e26
+whileTokenID                     = $3c27
+wendTokenID                      = $3a28

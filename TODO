@@ -1,6 +1,5 @@
 Main
 ----
-- PRINT <string> <variable> ' (; on end)
 - Add Stack which is reset on CLEAR etc.
 - GOTO GOSUB RETURN ON..GOTO/GOSUB
 - LIST. Detokenising.

@@ -61,18 +61,25 @@ HWPrintChar:
 
 ; *******************************************************************************************
 ;
-;									Print a new line
+;								Print a new line and TAB (share code)
 ;
 ; *******************************************************************************************
 
 HWNewLine:
 		pha
-_HWNLLoop:
+		phx
+		ldx 	#31
+HWMoveCursor:
 		lda 	#32
 		jsr 	HWPrintChar
-		lda 	DCursor
-		and 	#31
-		bne 	_HWNLLoop
+		txa
+		and 	DCursor
+		bne 	HWMoveCursor
+		plx
 		pla
 		rts
 		
+HWTab:	pha 
+		phx
+		ldx 	#7
+		bra 	HWMoveCursor		
