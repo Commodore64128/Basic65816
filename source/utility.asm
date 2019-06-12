@@ -18,8 +18,24 @@
 ErrorHandler:
 		rep 	#$30 						; in case we changed it.
 		plx 								; address of error message -1
-		nop
+		inx 								; error message.
+		jsr 	PrintROMMessage 			; print message in ROM
+		lda 	DLineNumber 				; is it line 0 (e.g. typed in)
+		beq 	_EHEndMessage
+		ldx 	#_EHAt & $FFFF 				; print " at "
+		jsr 	PrintROMMessage
+		lda 	DLineNumber 				; Line# in YA
+		ldy 	#0
+		ldx 	#10 						; base 10
+		jsr 	ConvertToString 			; convert and print it.
+		tay
+		jsr 	PrintBASICString 
+_EHEndMessage:
+		jsr 	HWNewLine
+
 _EH1:	bra 	_EH1
+
+_EHAt:	.text 	" at ",$00
 
 ; *******************************************************************************************
 ;
@@ -108,3 +124,49 @@ ResetTypeString:
 		sta 	EXSPrecType+0,x
 		rts
 
+; *******************************************************************************************
+;
+;				Print ROM message prints the message in the "ROM Image" at X
+;
+; *******************************************************************************************
+
+PrintROMMessage:
+		pha
+		phx
+_PRMLoop:
+		lda 	StartOfBasicCode,x 			; print characters until $00 found.
+		and 	#$00FF
+		beq 	_PRMExit
+		jsr 	HWPrintChar
+		inx
+		bra 	_PRMLoop
+_PRMExit:
+		plx
+		pla
+		rts
+
+; *******************************************************************************************
+;
+;				Print a BASIC String in the data page at Y (e.g. preceded with length)
+;
+; *******************************************************************************************
+
+PrintBASICString:
+		pha
+		phx
+		phy
+		lda 	$0000,y 					; get length
+		and 	#$00FF 			
+		beq 	_PBSExit 					; null string
+		tax
+_PBSLoop:									; print X characters out
+		iny
+		lda 	$0000,y
+		jsr 	HWPrintChar
+		dex
+		bne 	_PBSLoop
+_PBSExit:
+		ply
+		plx
+		pla
+		rts		

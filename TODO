@@ -1,16 +1,17 @@
 Main
 ----
-- Fix up error reporting. Add "OK."
 - PRINT <string> <variable> ' (; on end)
 - Add Stack which is reset on CLEAR etc.
 - GOTO GOSUB RETURN ON..GOTO/GOSUB
-- LIST ?
-- Input code.
+- LIST. Detokenising.
+- Input code. Tokenising.
 - PROC <identifier> ENDPROC
 
 
 Fixes
 -----
+- reset temporary storage pointer when typing things in, even if no command executed.
+
 - modulus arithmetic error (test_math does not check %) sign issue. Seems to be different views on this (!)
 
 - expressions stack sizes and spacing and testing
