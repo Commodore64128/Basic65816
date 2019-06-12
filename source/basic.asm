@@ -29,6 +29,7 @@ StartOfBasicCode:
 		
 		.include "commands/let.asm" 				; assignment
 		.include "commands/print.asm"				; print.
+		.include "commands/transfer.asm"			; goto/gosub/return on x goto/gosub
 		.include "commands/run.asm" 				; run / end / clear etc.
 		.include "commands/dim.asm"					; array dimension
 		.include "commands/collect.asm"				; garbage collection code.

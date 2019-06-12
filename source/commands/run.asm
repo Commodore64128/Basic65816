@@ -118,10 +118,11 @@ Function_CLEAR: ;; clear
 
 ClearVariablesPointersAndStacks:		
 		;
-		;		Reset the BASIC stack.
+		;		Reset the BASIC stack, which has a zero on it for 'first pop' fail.
 		;
-		lda 	#BASStack 					
+		lda 	#BASStack
 		sta 	DStack
+		stz 	BASStack 					
 		;
 		;		Clear the value used to refer to an empty string.
 		;

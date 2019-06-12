@@ -41,8 +41,12 @@ CommandJumpTable:
 	.word Function_CLS             & $FFFF ; token $3e24 "cls"
 	.word Function_PRINT           & $FFFF ; token $3e25 "print"
 	.word Function_PRINTALT        & $FFFF ; token $3e26 "?"
-	.word IllegalToken             & $FFFF ; token $3c27 "while"
-	.word IllegalToken             & $FFFF ; token $3a28 "wend"
+	.word Function_GOTO            & $FFFF ; token $3e27 "goto"
+	.word Function_GOSUB           & $FFFF ; token $3e28 "gosub"
+	.word Function_RETURN          & $FFFF ; token $3e29 "return"
+	.word IllegalToken             & $FFFF ; token $3e2a "on"
+	.word IllegalToken             & $FFFF ; token $3c2b "while"
+	.word IllegalToken             & $FFFF ; token $3a2c "wend"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -86,8 +90,12 @@ TokenText:
 	 .text $f4,"cls"      ; token $3e24
 	 .text $f6,"print"    ; token $3e25
 	 .text $f2,"?"        ; token $3e26
-	 .text $e6,"while"    ; token $3c27
-	 .text $d5,"wend"     ; token $3a28
+	 .text $f5,"goto"     ; token $3e27
+	 .text $f6,"gosub"    ; token $3e28
+	 .text $f7,"return"   ; token $3e29
+	 .text $f3,"on"       ; token $3e2a
+	 .text $e6,"while"    ; token $3c2b
+	 .text $d5,"wend"     ; token $3a2c
 	.byte $00
 
 ;
@@ -131,5 +139,9 @@ collectTokenID                   = $3e23
 clsTokenID                       = $3e24
 printTokenID                     = $3e25
 questionTokenID                  = $3e26
-whileTokenID                     = $3c27
-wendTokenID                      = $3a28
+gotoTokenID                      = $3e27
+gosubTokenID                     = $3e28
+returnTokenID                    = $3e29
+onTokenID                        = $3e2a
+whileTokenID                     = $3c2b
+wendTokenID                      = $3a2c

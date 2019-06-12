@@ -1,6 +1,7 @@
 Main
 ----
-- GOTO GOSUB RETURN ON..GOTO/GOSUB
+- REM 
+- ON..GOTO
 - REPEAT UNTIL
 - LIST. Detokenising. Spacing out and in.
 - Input code. Tokenising.
@@ -18,6 +19,8 @@ Fixes
 - 	expressions stack sizes and spacing and testing. same for basic stack.
 
 - 	allocating temp space, even size so every address is even (?)
+
+- 	reset stuff on error (not variables ?)
 
 Memory Checks
 =============

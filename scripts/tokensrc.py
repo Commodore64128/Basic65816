@@ -12,11 +12,6 @@
 class TokenSource(object):
 	def get(self):
 		return """
-## ********************************************************************************
-##
-##							Tokens defined in Basic
-##
-## ********************************************************************************
 
 [0]
 	&	|	^									## bitwise operators.
@@ -50,7 +45,8 @@ class TokenSource(object):
 	collect 									## garbage collection.
 	cls 										## clear screen
 	print 		? 								## print and shorthand print.
-				
+	goto gosub return on 						## transfer of control.
+
 [keyword+]
 	while
 
