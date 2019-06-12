@@ -1,11 +1,11 @@
 
-; 64tass Turbo Assembler Macro V1.54.1900 listing file
-; 64tass --m65816 -f -q -o basic.bin -L basic.lst ..\source\start.asm
-; Wed Jun 12 16:32:12 2019
+; 64tass Turbo Assembler Macro V1.53.1515? listing file
+; tass64 --m65816 -f -q -o basic.bin -L basic.lst ../source/start.asm
+; Wed Jun 12 22:15:09 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
-;******  Processing input file: ..\source\start.asm
+;******  Processing input file: ../source/start.asm
 
 .0000	18		clc				clc											; switch into 65816 16 bit mode.
 .0001	fb		xce				xce
@@ -19,11 +19,11 @@
 .0012	a0 00 c0	ldy #$c000			ldy 	#CodeEndSpace & $FFFF				; and the end address in Y ($C000)
 .0015	5c 8e 0d 01	jmp $010d8e			jmp 	SwitchBasicInstance
 
-;******  Processing file: ..\source\basic.asm
+;******  Processing file: ../source/basic.asm
 
 .010000					StartOfBasicCode:
 
-;******  Processing file: ..\source\temp/block.inc
+;******  Processing file: ../source/temp/block.inc
 
 =$0010					Block_FastVariables = $0010
 =$0080					Block_HashTable = $0080
@@ -34,10 +34,10 @@
 =$0100					Block_ProgramStart = $0100
 =$0010					Block_HashTableEntrySize = $0010
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\temp/tokens.inc
+;******  Processing file: ../source/temp/tokens.inc
 
 .010000					CommandJumpTable:
 >010000	ce 03					.word IllegalToken & $FFFF ; for the $0000 token.
@@ -176,10 +176,10 @@
 =$3c2b					whileTokenID                     = $3c2b
 =$3a2c					wendTokenID                      = $3a2c
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\data.asm
+;******  Processing file: ../source/data.asm
 
 =$00					DPBaseAddress = $00 						; Base address used for direct page.
 =0					DPageNumber = DPBaseAddress+0 				; page number of workspace area (upper 8 bits of address)
@@ -208,10 +208,10 @@
 =16					EXSValueH = EXSStackElements*2  			; High word
 =32					EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 = string.
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\expression.asm
+;******  Processing file: ../source/expression.asm
 
 .0100fd					Evaluate:
 .0100fd	a2 00 01	ldx #$0100			ldx		#EXSBase 					; reset the stack
@@ -385,10 +385,10 @@
 .010246	90 e8		bcc $010230			bcc 	ESType
 .010248	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\variable.asm
+;******  Processing file: ../source/variable.asm
 
 .010249					VariableAccessExpression:
 .010249	b2 06		lda ($06)			lda 	(DCodePtr)					; get the first token, push on stack
@@ -571,10 +571,10 @@
 .0103a0	69 04 00	adc #$0004			adc 	#4
 .0103a3	60		rts				rts 								; and done.
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\utility.asm
+;******  Processing file: ../source/utility.asm
 
 .0103a4					ErrorHandler:
 .0103a4	c2 30		rep #$30			rep 	#$30 						; in case we changed it.
@@ -678,10 +678,10 @@
 .010477	68		pla				pla
 .010478	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\stringutils.asm
+;******  Processing file: ../source/stringutils.asm
 
 .010479					StringTempAllocate:
 .010479	29 ff 00	and #$00ff			and 	#$00FF 						; check it's a byte size
@@ -753,10 +753,10 @@
 .0104e8	a5 0c		lda $0c				lda 	DTemp2 						; return new string address.
 .0104ea	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\binary/arithmetic.asm
+;******  Processing file: ../source/binary/arithmetic.asm
 
 .0104eb					Binary_Add:
 .0104eb	b5 20		lda $20,x		lda 	EXSPrecType+0,x 					; check both same type
@@ -839,10 +839,10 @@
 .0105a0					_Binary_SLExit:
 .0105a0	60		rts			rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\binary/bitwise.asm
+;******  Processing file: ../source/binary/bitwise.asm
 
 .0105a1					Binary_And:
 .0105a1	20 1b 04	jsr $01041b		jsr 	CheckBothNumeric 					; check both values are numeric
@@ -872,10 +872,10 @@
 .0105ce	95 10		sta $10,x		sta 	EXSValueH+0,x
 .0105d0	60		rts			rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\binary/comparison.asm
+;******  Processing file: ../source/binary/comparison.asm
 
 .0105d1					Binary_Equals:
 .0105d1	20 8a 06	jsr $01068a		jsr 	CompareTypeCheck 				; which types are we comparing ?
@@ -1032,10 +1032,10 @@
 .0106f3	38		sec			sec 									; return with CS indicating string comparison.
 .0106f4	60		rts			rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\binary/divide.asm
+;******  Processing file: ../source/binary/divide.asm
 
 .0106f5					Binary_Divide:
 .0106f5	20 1b 04	jsr $01041b		jsr 	CheckBothNumeric 					; check both values are numeric
@@ -1108,10 +1108,10 @@
 .010775	95 10		sta $10,x		sta 	EXSValueH+0,x
 .010777	60		rts			rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\binary/multiply.asm
+;******  Processing file: ../source/binary/multiply.asm
 
 .010778					Binary_Multiply:
 .010778	20 1b 04	jsr $01041b		jsr 	CheckBothNumeric 					; check both values are numeric
@@ -1144,10 +1144,10 @@
 .0107ab					_BinaryMultiply_Exit:
 .0107ab	60		rts			rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\unary/simpleunary.asm
+;******  Processing file: ../source/unary/simpleunary.asm
 
 .0107ac					Function_Len:
 .0107ac	20 3b 04	jsr $01043b			jsr 	ResetTypeInteger 			; returns an integer
@@ -1226,10 +1226,10 @@
 .01083a	45 12		eor $12				eor 	DRandom+2
 .01083c	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\unary/val.asm
+;******  Processing file: ../source/unary/val.asm
 
 .01083d					Function_VAL:
 .01083d	20 3b 04	jsr $01043b			jsr 	ResetTypeInteger 			; returns an integer
@@ -1412,10 +1412,10 @@
 .01098f	26 0a		rol $0a				rol 	DTemp1+2
 .010991	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\unary/str.asm
+;******  Processing file: ../source/unary/str.asm
 
 .010992					Function_Str:
 .010992	20 43 04	jsr $010443			jsr 	ResetTypeString 			; returns a string.
@@ -1527,10 +1527,10 @@
 .010a4c	7a		ply				ply 								; restore Y and exit.
 .010a4d	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\commands/let.asm
+;******  Processing file: ../source/commands/let.asm
 
 .010a4e					Function_Let:
 .010a4e	b2 06		lda ($06)			lda 	(DCodePtr)					; get the first token, for typing.
@@ -1590,10 +1590,10 @@
 >010ab3	55 6e 64 65 66 69 6e 65				.text 	"Undefined array",$00 								; with this message
 >010abb	64 20 61 72 72 61 79 00
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\commands/print.asm
+;******  Processing file: ../source/commands/print.asm
 
 .010ac3					Function_PRINTALT:
 .010ac3					Function_PRINT:
@@ -1638,10 +1638,10 @@
 .010b0e					_FPRExit:
 .010b0e	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\commands/transfer.asm
+;******  Processing file: ../source/commands/transfer.asm
 
 .010b0f					Function_GOTO:
 .010b0f	b2 06		lda ($06)			lda 	(DCodePtr) 					; look at the number
@@ -1717,10 +1717,10 @@
 >010ba7	52 65 74 75 72 6e 20 77				.text 	"Return without Gosub",$00 								; with this message
 >010baf	69 74 68 6f 75 74 20 47 6f 73 75 62 00
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\commands/run.asm
+;******  Processing file: ../source/commands/run.asm
 
 .010bbc					Function_END:
 .010bbc	02 00		cop #$00			cop 	#0
@@ -1822,10 +1822,10 @@
 .010c6b	98		tya				tya 								; return in A
 .010c6c	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\commands/dim.asm
+;******  Processing file: ../source/commands/dim.asm
 
 .010c6d					Function_Dim:
 .010c6d	b2 06		lda ($06)			lda 	(DCodePtr)					; get the first token, for typing.
@@ -1873,10 +1873,10 @@
 >010cd3	44 49 4d 20 74 6f 6f 20				.text 	"DIM too large",$00 								; with this message
 >010cdb	6c 61 72 67 65 00
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\commands/collect.asm
+;******  Processing file: ../source/commands/collect.asm
 
 .010ce1					Function_COLLECT:
 .010ce1	a5 04		lda $04				lda 	DHighAddress 				; DTemp2 is the highest value the pointer can be - must be < this.
@@ -1973,10 +1973,10 @@
 .010d6d	60		rts				rts
 .010d6e	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ..\source\commands/miscellany.asm
+;******  Processing file: ../source/commands/miscellany.asm
 
 .010d6f					Function_ASSERT:
 .010d6f	20 0b 02	jsr $01020b			jsr 	EvaluateInteger 			; something that returns an integer.
@@ -1992,7 +1992,7 @@
 .010d8a	20 a3 0d	jsr $010da3			jsr 	HWClearScreen
 .010d8d	60		rts				rts
 
-;******  Return to file: ..\source\basic.asm
+;******  Return to file: ../source/basic.asm
 
 =$2000					IDTypeMask = $2000 									; bit masks in identifier.
 =$1000					IDArrayMask = $1000
@@ -2012,10 +2012,10 @@
 .010d9f	ab		plb				plb
 .010da0	4c be 0b	jmp $010bbe			jmp 	Function_RUN
 
-;******  Return to file: ..\source\start.asm
+;******  Return to file: ../source/start.asm
 
 
-;******  Processing file: ..\source\hwinterface.asm
+;******  Processing file: ../source/hwinterface.asm
 
 =$01					HWCursorCharacter = $01
 .010da3					HWClearScreen:
@@ -2069,26 +2069,571 @@
 .010df5	a2 07 00	ldx #$0007			ldx 	#7
 .010df8	80 eb		bra $010de5			bra 	HWMoveCursor
 
-;******  Return to file: ..\source\start.asm
+;******  Return to file: ../source/start.asm
 
 .024000					CodeSpace:
 >024000	42 41 53 43 00 00 00 00				.binary "temp/basic.bin"
->024008	9a 41 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
+>024008	aa 63 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
 >024018	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ;	...repeated 13 times (208 bytes)...
->0240f8	00 00 00 00 00 00 00 00 0c 00 0a 00 18 c0 06 22
->024108	00 40 00 00 1c 00 14 00 24 3e 19 32 25 3e 0c 00
->024118	09 58 20 69 73 20 6e 6f 77 20 18 32 18 c0 00 00
->024128	12 00 19 00 03 c0 06 22 01 40 19 32 28 3e 64 40
->024138	00 00 12 00 1c 00 03 c0 06 22 02 40 19 32 28 3e
->024148	64 40 00 00 12 00 1e 00 1d 3e 18 c0 06 22 18 c0
->024158	0a 24 01 40 00 00 0a 00 28 00 27 3e 14 40 00 00
->024168	06 00 29 00 00 00 1e 00 64 00 25 3e 12 00 0f 49
->024178	6e 20 73 75 62 72 6f 75 74 69 6e 65 20 23 18 32
->024188	03 c0 00 00 08 00 6e 00 29 3e 00 00 00 00 ee ee
->024198	ee ee 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->0241a8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-;	...repeated 2020 times (32320 bytes)...
+>0240f8	00 00 00 00 00 00 00 00 12 00 01 00 22 3e 7a dd
+>024108	13 d9 01 d0 03 40 1b 32 00 00 12 00 02 00 22 3e
+>024118	8b dd f4 d9 1f d0 02 40 1b 32 00 00 10 00 03 00
+>024128	22 3e 3c de 09 d0 03 40 1b 32 00 00 10 00 04 00
+>024138	22 3e 56 dd 8e d2 05 40 1b 32 00 00 12 00 05 00
+>024148	22 3e 74 dd ea d8 13 d0 03 40 1b 32 00 00 10 00
+>024158	06 00 22 3e 69 de 32 d3 04 40 1b 32 00 00 10 00
+>024168	07 00 22 3e 26 dd 37 d3 05 40 1b 32 00 00 10 00
+>024178	08 00 22 3e d7 dd 61 d3 03 40 1b 32 00 00 10 00
+>024188	09 00 22 3e 02 de c2 d3 02 40 1b 32 00 00 10 00
+>024198	0a 00 22 3e 0a de 1b d0 02 40 1b 32 00 00 0e 00
+>0241a8	0b 00 22 3e 61 f6 05 40 1b 32 00 00 12 00 0c 00
+>0241b8	22 3e fe fc 85 fb 11 f0 05 40 1b 32 00 00 10 00
+>0241c8	0d 00 22 3e 77 fd 0a f0 06 40 1b 32 00 00 10 00
+>0241d8	0e 00 22 3e 58 fe 3e f3 05 40 1b 32 00 00 0e 00
+>0241e8	0f 00 22 3e 0c f0 05 40 1b 32 00 00 10 00 10 00
+>0241f8	22 3e 50 fd 18 f0 06 40 1b 32 00 00 0e 00 11 00
+>024208	22 3e fd f5 02 40 1b 32 00 00 0e 00 12 00 22 3e
+>024218	58 f6 05 40 1b 32 00 00 10 00 13 00 22 3e ef fc
+>024228	0d f0 05 40 1b 32 00 00 12 00 14 00 22 3e c8 fc
+>024238	d1 fc 06 f0 02 40 1b 32 00 00 10 00 15 00 10 c0
+>024248	06 22 0b 24 01 10 c1 9b 00 00 0e 00 16 00 04 cd
+>024258	07 c0 06 22 63 7b 00 00 10 00 17 00 1d 3e 2a c6
+>024268	06 22 0b 24 0d 40 00 00 0e 00 18 00 d2 c5 06 22
+>024278	03 10 8e 98 00 00 12 00 19 00 1d 3e 6d ce 1c c3
+>024288	06 22 0b 24 76 40 00 00 10 00 1a 00 56 cd c1 c4
+>024298	06 22 0b 24 ca b5 00 00 10 00 1b 00 59 ce 64 cb
+>0242a8	0b c0 06 22 3d 40 00 00 10 00 1c 00 0b c0 06 22
+>0242b8	0b 24 03 10 bb 8b 00 00 0e 00 1d 00 16 c0 06 22
+>0242c8	05 10 f1 40 00 00 0e 00 1e 00 33 c6 06 22 04 10
+>0242d8	8b 63 00 00 12 00 1f 00 29 ce 6e cc 18 c0 06 22
+>0242e8	03 10 59 8a 00 00 12 00 20 00 1d 3e f3 cc d3 c4
+>0242f8	06 22 05 10 4f 9e 00 00 12 00 21 00 1d 3e d5 cd
+>024308	39 c5 06 22 05 10 c4 bb 00 00 10 00 22 00 1d 3e
+>024318	33 ce 1b c0 06 22 f5 b0 00 00 12 00 23 00 24 cd
+>024328	0a ce 0e c0 06 22 02 10 9a aa 00 00 10 00 24 00
+>024338	1d 3e 0f c0 06 22 03 10 fe ac 00 00 14 00 25 00
+>024348	1d 3e ed cc 2f cb 1b c0 06 22 0b 24 b4 a9 00 00
+>024358	0c 00 26 00 e1 c5 06 22 8d 41 00 00 0e 00 27 00
+>024368	05 c0 06 22 03 10 06 6c 00 00 0e 00 28 00 01 c0
+>024378	06 22 0b 24 3c 40 00 00 10 00 29 00 62 ce 13 ce
+>024388	24 c0 06 22 6b 40 00 00 10 00 2a 00 1d 3e 29 c6
+>024398	06 22 0b 24 38 96 00 00 10 00 2b 00 ca c4 06 22
+>0243a8	0b 24 05 10 01 53 00 00 0e 00 2c 00 5c ce 23 c0
+>0243b8	06 22 91 88 00 00 0e 00 2d 00 2f cd 16 c0 06 22
+>0243c8	7c 87 00 00 10 00 2e 00 c4 cc 8b ca 10 c0 06 22
+>0243d8	7a 40 00 00 10 00 2f 00 3d ce 0e c0 06 22 0b 24
+>0243e8	1b 40 00 00 12 00 30 00 58 ce 3e ce 0a c0 06 22
+>0243f8	0b 24 17 40 00 00 0e 00 31 00 1d 3e 24 c5 06 22
+>024408	2f 40 00 00 12 00 32 00 35 ce 26 cd 10 c0 06 22
+>024418	06 10 f5 49 00 00 12 00 33 00 1d 3e d9 cc 09 c6
+>024428	06 22 01 10 12 4c 00 00 10 00 34 00 1d 3e c2 c4
+>024438	06 22 0b 24 26 75 00 00 14 00 35 00 51 cd 73 ce
+>024448	0f c0 06 22 0b 24 05 10 5c ae 00 00 14 00 36 00
+>024458	1d 3e 4d cd 0a c0 06 22 0b 24 01 10 d7 af 00 00
+>024468	12 00 37 00 1d 3e 4b cd 54 c2 06 22 01 10 c1 9c
+>024478	00 00 10 00 38 00 cf cd e2 c0 06 22 02 10 5d 85
+>024488	00 00 10 00 39 00 1d 3e 68 ce 02 c0 06 22 1d 40
+>024498	00 00 0e 00 3a 00 1d 3e ef c4 06 22 75 af 00 00
+>0244a8	0e 00 3b 00 7b cd 1f c0 06 22 22 40 00 00 12 00
+>0244b8	3c 00 1d 3e 17 c0 06 22 0b 24 03 10 91 50 00 00
+>0244c8	10 00 3d 00 48 cd 9d c0 06 22 0b 24 20 40 00 00
+>0244d8	10 00 3e 00 02 cd 12 c0 06 22 05 10 36 70 00 00
+>0244e8	12 00 3f 00 14 ce aa ca 08 c0 06 22 02 10 0f b8
+>0244f8	00 00 14 00 40 00 1d 3e 0b ce e0 c9 0a c0 06 22
+>024508	0b 24 55 66 00 00 12 00 41 00 2a ce 14 c0 06 22
+>024518	0b 24 01 10 fe aa 00 00 14 00 42 00 1d 3e 32 ce
+>024528	b0 c9 0a c0 06 22 0b 24 bf 40 00 00 12 00 43 00
+>024538	1d 3e ff cd 0f c0 06 22 01 10 cc 6e 00 00 12 00
+>024548	44 00 e4 cd 49 cb 1b c0 06 22 01 10 f8 bb 00 00
+>024558	10 00 45 00 6c c6 06 22 0b 24 05 10 8f a6 00 00
+>024568	14 00 46 00 1d 3e d2 cc 0f c0 06 22 0b 24 03 10
+>024578	b2 54 00 00 14 00 47 00 1d 3e e6 cd 22 c0 06 22
+>024588	0b 24 04 10 21 a4 00 00 10 00 48 00 1a c0 06 22
+>024598	0b 24 05 10 4c ad 00 00 12 00 49 00 1d 3e 08 ce
+>0245a8	3e c0 06 22 02 10 76 ad 00 00 12 00 4a 00 1d 3e
+>0245b8	0b ce 99 cc 21 c0 06 22 3a 40 00 00 0e 00 4b 00
+>0245c8	30 ce 56 c5 06 22 5f a0 00 00 10 00 4c 00 d3 cc
+>0245d8	1c c0 06 22 03 10 6a 91 00 00 12 00 4d 00 2d ce
+>0245e8	0b c0 06 22 0b 24 02 10 7f 7b 00 00 0e 00 4e 00
+>0245f8	13 ce 11 c4 06 22 7d 40 00 00 12 00 4f 00 1d 3e
+>024608	09 c0 06 22 0b 24 01 10 47 45 00 00 12 00 50 00
+>024618	1d 3e 02 c0 06 22 0b 24 02 10 67 7e 00 00 12 00
+>024628	51 00 a7 ed 51 ea 17 e0 06 22 04 00 00 00 00 00
+>024638	10 00 52 00 2b e6 06 22 06 00 03 47 5a 49 00 00
+>024648	16 00 53 00 1d 3e de e5 06 22 0a 00 07 53 4b 20
+>024658	49 45 20 56 00 00 1e 00 54 00 1d 3e f7 ec d3 ec
+>024668	03 e0 06 22 0e 00 0b 55 49 44 47 50 20 20 20 42
+>024678	4f 4b 00 00 1a 00 55 00 1d 3e e5 e5 06 22 0e 00
+>024688	0a 57 54 20 48 46 20 44 45 53 4a 00 00 00 18 00
+>024698	56 00 1d 3e 29 e6 06 22 0c 00 09 43 4d 53 43 20
+>0246a8	20 58 59 4a 00 00 10 00 57 00 1d 3e 0a e0 06 22
+>0246b8	04 00 00 00 00 00 14 00 58 00 0f e0 06 22 0a 00
+>0246c8	07 4c 42 59 20 43 57 4b 00 00 18 00 59 00 01 e5
+>0246d8	06 22 0e 00 0b 4a 44 4a 4b 58 20 20 51 46 48 47
+>0246e8	00 00 12 00 5a 00 5a ed 90 e5 06 22 06 00 02 4e
+>0246f8	56 00 00 00 14 00 5b 00 1d 3e 0b ee b6 e2 06 22
+>024708	06 00 02 4b 4b 00 00 00 16 00 5c 00 40 ee 76 e1
+>024718	06 22 0a 00 06 53 5a 5a 41 4a 4c 00 00 00 10 00
+>024728	5d 00 89 ed 11 e0 06 22 04 00 00 00 00 00 18 00
+>024738	5e 00 1d 3e 00 ee a7 e0 06 22 0a 00 06 53 46 4f
+>024748	20 20 4a 00 00 00 12 00 5f 00 1d 3e 62 ee 20 e2
+>024758	06 22 04 00 00 00 00 00 18 00 60 00 1d 3e b3 ed
+>024768	4a e6 06 22 0a 00 06 43 46 58 42 41 58 00 00 00
+>024778	12 00 61 00 da ed 0c e0 06 22 06 00 02 45 4f 00
+>024788	00 00 18 00 62 00 1d 3e 2b ed ad e2 06 22 0a 00
+>024798	07 55 50 59 50 46 4d 41 00 00 1a 00 63 00 1d 3e
+>0247a8	26 ed 07 e0 06 22 0c 00 08 5a 57 59 50 20 47 20
+>0247b8	5a 00 00 00 12 00 64 00 1d 3e 62 ee a1 e4 06 22
+>0247c8	04 00 01 4a 00 00 12 00 65 00 1d 3e a3 ed 29 e5
+>0247d8	06 22 04 00 01 43 00 00 16 00 66 00 1d 3e 3e ee
+>0247e8	10 e0 06 22 08 00 05 47 49 20 4d 44 00 00 16 00
+>0247f8	67 00 cf ed 5f ee 0c e0 06 22 08 00 04 49 4d 42
+>024808	57 00 00 00 18 00 68 00 6c e6 06 22 0e 00 0a 55
+>024818	50 52 4e 49 55 46 20 52 4b 00 00 00 12 00 69 00
+>024828	fb e5 06 22 08 00 04 48 53 52 50 00 00 00 14 00
+>024838	6a 00 1d 3e 5b ee ce ec 0d e0 06 22 04 00 00 00
+>024848	00 00 18 00 6b 00 1d 3e c7 ec 0e e0 06 22 0a 00
+>024858	07 4b 42 42 41 4b 44 49 00 00 12 00 6c 00 87 ed
+>024868	1d e6 06 22 06 00 03 59 51 4b 00 00 12 00 6d 00
+>024878	19 e0 06 22 08 00 04 57 20 43 56 00 00 00 14 00
+>024888	6e 00 1d 3e 5d ee 1d e0 06 22 06 00 03 45 47 43
+>024898	00 00 12 00 6f 00 1d 3e d8 ed 3a e4 06 22 04 00
+>0248a8	00 00 00 00 14 00 70 00 1d 3e 39 ee 05 e0 06 22
+>0248b8	06 00 03 44 20 5a 00 00 18 00 71 00 1d 3e 17 e0
+>0248c8	06 22 0c 00 09 58 51 5a 20 57 45 20 46 43 00 00
+>0248d8	18 00 72 00 1d 3e d6 ed 1d e0 06 22 0a 00 07 5a
+>0248e8	59 4f 20 4a 47 57 00 00 1a 00 73 00 1d 3e 4e ed
+>0248f8	3c ec 1c e0 06 22 0a 00 07 41 50 50 4c 49 55 57
+>024908	00 00 1c 00 74 00 1d 3e d2 ec f5 e9 23 e0 06 22
+>024918	0c 00 08 46 47 4b 53 4f 49 57 59 00 00 00 10 00
+>024928	75 00 39 ee 06 e0 06 22 04 00 00 00 00 00 18 00
+>024938	76 00 1d 3e 05 e0 06 22 0c 00 09 58 4b 42 20 56
+>024948	57 50 44 45 00 00 18 00 77 00 1d 3e f8 e4 06 22
+>024958	0c 00 08 53 4f 58 20 49 4f 43 4c 00 00 00 18 00
+>024968	78 00 1d 3e 51 e5 06 22 0c 00 09 4a 43 55 20 4a
+>024978	4b 4d 43 50 00 00 16 00 79 00 11 e0 06 22 0c 00
+>024988	08 45 20 58 4f 46 51 48 55 00 00 00 0e 00 7a 00
+>024998	f6 e4 06 22 04 00 00 00 00 00 12 00 7b 00 1d 3e
+>0249a8	10 ee a7 e5 06 22 04 00 00 00 00 00 14 00 7c 00
+>0249b8	1d 3e e2 ed 3c eb 08 e0 06 22 04 00 00 00 00 00
+>0249c8	1a 00 7d 00 1d 3e cd ec 33 ed 0d e0 06 22 0a 00
+>0249d8	06 5a 41 50 55 49 4d 00 00 00 1c 00 7e 00 1d 3e
+>0249e8	82 ed 5d ed 1b e0 06 22 0c 00 09 4e 53 20 46 46
+>0249f8	20 4d 53 59 00 00 18 00 7f 00 1d 3e 49 ed aa e2
+>024a08	06 22 0a 00 06 50 54 53 4e 53 51 00 00 00 16 00
+>024a18	80 00 1d 3e c6 ec 15 e0 06 22 08 00 05 4e 4a 4a
+>024a28	41 52 00 00 16 00 81 00 aa ed c2 e5 06 22 0a 00
+>024a38	07 4a 47 4a 41 52 4b 52 00 00 14 00 82 00 1d 3e
+>024a48	ff ed d7 e5 06 22 06 00 03 5a 45 57 00 00 16 00
+>024a58	83 00 26 e5 06 22 0c 00 09 51 51 20 49 4d 50 20
+>024a68	48 4a 00 00 1a 00 84 00 1d 3e e1 ed bf ea 1f e0
+>024a78	06 22 0a 00 06 57 4a 4a 43 52 4e 00 00 00 10 00
+>024a88	85 00 1d 3e 0b e0 06 22 04 00 00 00 00 00 12 00
+>024a98	86 00 1a e0 06 22 08 00 04 47 20 20 57 00 00 00
+>024aa8	10 00 87 00 1d 3e 04 e6 06 22 04 00 00 00 00 00
+>024ab8	12 00 88 00 1d 3e d4 ed 24 e0 06 22 04 00 00 00
+>024ac8	00 00 1a 00 89 00 0c ee 6f ec 02 e0 06 22 0c 00
+>024ad8	08 43 4f 4b 52 20 48 43 54 00 00 00 14 00 8a 00
+>024ae8	1d 3e c4 e4 06 22 08 00 05 4e 56 44 56 4c 00 00
+>024af8	12 00 8b 00 24 e5 06 22 08 00 04 46 4e 49 48 00
+>024b08	00 00 12 00 8c 00 77 ed 99 e0 06 22 06 00 03 52
+>024b18	48 4b 00 00 4e 00 8d 00 7a dd 13 d9 01 d0 00 40
+>024b28	1b 32 06 22 0b 24 0d 40 19 32 7a dd 13 d9 01 d0
+>024b38	01 40 1b 32 06 22 02 10 b4 53 19 32 7a dd 13 d9
+>024b48	01 d0 02 40 1b 32 06 22 0b 24 02 10 48 56 19 32
+>024b58	7a dd 13 d9 01 d0 03 40 1b 32 06 22 05 10 01 8d
+>024b68	00 00 3a 00 8e 00 8b dd f4 d9 1f d0 00 40 1b 32
+>024b78	06 22 02 10 34 bc 19 32 8b dd f4 d9 1f d0 01 40
+>024b88	1b 32 06 22 0b 24 3c 48 19 32 8b dd f4 d9 1f d0
+>024b98	02 40 1b 32 06 22 0b 24 cd 50 00 00 4a 00 8f 00
+>024ba8	3c de 09 d0 00 40 1b 32 06 22 0b 24 02 10 ba 95
+>024bb8	19 32 3c de 09 d0 01 40 1b 32 06 22 0b 24 03 10
+>024bc8	90 59 19 32 3c de 09 d0 02 40 1b 32 06 22 03 10
+>024bd8	39 5f 19 32 3c de 09 d0 03 40 1b 32 06 22 0b 24
+>024be8	04 10 90 67 00 00 6a 00 90 00 56 dd 8e d2 00 40
+>024bf8	1b 32 06 22 0b 24 04 10 ea 94 19 32 56 dd 8e d2
+>024c08	01 40 1b 32 06 22 0b 24 03 10 8c 75 19 32 56 dd
+>024c18	8e d2 02 40 1b 32 06 22 03 10 74 a7 19 32 56 dd
+>024c28	8e d2 03 40 1b 32 06 22 04 10 d1 84 19 32 56 dd
+>024c38	8e d2 04 40 1b 32 06 22 01 10 2f 44 19 32 56 dd
+>024c48	8e d2 05 40 1b 32 06 22 0b 24 04 10 bd 44 00 00
+>024c58	48 00 91 00 74 dd ea d8 13 d0 00 40 1b 32 06 22
+>024c68	9d 40 19 32 74 dd ea d8 13 d0 01 40 1b 32 06 22
+>024c78	0b 24 02 10 a4 52 19 32 74 dd ea d8 13 d0 02 40
+>024c88	1b 32 06 22 54 40 19 32 74 dd ea d8 13 d0 03 40
+>024c98	1b 32 06 22 59 40 00 00 50 00 92 00 69 de 32 d3
+>024ca8	00 40 1b 32 06 22 05 10 f7 9a 19 32 69 de 32 d3
+>024cb8	01 40 1b 32 06 22 0b 24 46 40 19 32 69 de 32 d3
+>024cc8	02 40 1b 32 06 22 eb 76 19 32 69 de 32 d3 03 40
+>024cd8	1b 32 06 22 05 10 09 49 19 32 69 de 32 d3 04 40
+>024ce8	1b 32 06 22 9c 40 00 00 64 00 93 00 26 dd 37 d3
+>024cf8	00 40 1b 32 06 22 03 10 d4 9d 19 32 26 dd 37 d3
+>024d08	01 40 1b 32 06 22 01 10 1b 9b 19 32 26 dd 37 d3
+>024d18	02 40 1b 32 06 22 01 10 9f 59 19 32 26 dd 37 d3
+>024d28	03 40 1b 32 06 22 0b 24 05 10 cc 4e 19 32 26 dd
+>024d38	37 d3 04 40 1b 32 06 22 93 b8 19 32 26 dd 37 d3
+>024d48	05 40 1b 32 06 22 0b 24 be 61 00 00 48 00 94 00
+>024d58	d7 dd 61 d3 00 40 1b 32 06 22 0b 24 03 10 15 64
+>024d68	19 32 d7 dd 61 d3 01 40 1b 32 06 22 0b 24 05 10
+>024d78	72 b9 19 32 d7 dd 61 d3 02 40 1b 32 06 22 01 10
+>024d88	dc 6c 19 32 d7 dd 61 d3 03 40 1b 32 06 22 0b 24
+>024d98	70 40 00 00 32 00 95 00 02 de c2 d3 00 40 1b 32
+>024da8	06 22 04 40 19 32 02 de c2 d3 01 40 1b 32 06 22
+>024db8	04 10 3c 90 19 32 02 de c2 d3 02 40 1b 32 06 22
+>024dc8	0b 24 be 40 00 00 36 00 96 00 0a de 1b d0 00 40
+>024dd8	1b 32 06 22 03 10 33 66 19 32 0a de 1b d0 01 40
+>024de8	1b 32 06 22 0b 24 01 10 16 85 19 32 0a de 1b d0
+>024df8	02 40 1b 32 06 22 01 10 ce 99 00 00 6c 00 97 00
+>024e08	61 f6 00 40 1b 32 06 22 04 00 00 00 19 32 61 f6
+>024e18	01 40 1b 32 06 22 08 00 04 4d 58 45 46 00 19 32
+>024e28	61 f6 02 40 1b 32 06 22 08 00 05 49 20 58 4a 59
+>024e38	19 32 61 f6 03 40 1b 32 06 22 04 00 00 00 19 32
+>024e48	61 f6 04 40 1b 32 06 22 08 00 05 46 56 56 43 4d
+>024e58	19 32 61 f6 05 40 1b 32 06 22 0c 00 08 46 50 20
+>024e68	20 54 58 42 43 00 00 00 88 00 98 00 fe fc 85 fb
+>024e78	11 f0 00 40 1b 32 06 22 0c 00 09 58 5a 20 20 58
+>024e88	20 46 56 56 19 32 fe fc 85 fb 11 f0 01 40 1b 32
+>024e98	06 22 04 00 01 52 19 32 fe fc 85 fb 11 f0 02 40
+>024ea8	1b 32 06 22 0a 00 07 44 4e 51 41 5a 50 56 19 32
+>024eb8	fe fc 85 fb 11 f0 03 40 1b 32 06 22 04 00 00 00
+>024ec8	19 32 fe fc 85 fb 11 f0 04 40 1b 32 06 22 0a 00
+>024ed8	07 51 20 4e 50 42 43 54 19 32 fe fc 85 fb 11 f0
+>024ee8	05 40 1b 32 06 22 08 00 05 43 4d 43 5a 56 00 00
+>024ef8	8c 00 99 00 77 fd 0a f0 00 40 1b 32 06 22 04 00
+>024f08	01 4c 19 32 77 fd 0a f0 01 40 1b 32 06 22 08 00
+>024f18	05 5a 20 59 20 4b 19 32 77 fd 0a f0 02 40 1b 32
+>024f28	06 22 0c 00 08 47 48 49 4d 20 20 42 57 00 19 32
+>024f38	77 fd 0a f0 03 40 1b 32 06 22 04 00 00 00 19 32
+>024f48	77 fd 0a f0 04 40 1b 32 06 22 04 00 00 00 19 32
+>024f58	77 fd 0a f0 05 40 1b 32 06 22 0a 00 07 55 59 55
+>024f68	54 4d 20 55 19 32 77 fd 0a f0 06 40 1b 32 06 22
+>024f78	0a 00 06 49 49 5a 56 53 57 00 00 00 7c 00 9a 00
+>024f88	58 fe 3e f3 00 40 1b 32 06 22 0a 00 06 52 44 55
+>024f98	42 49 59 00 19 32 58 fe 3e f3 01 40 1b 32 06 22
+>024fa8	04 00 01 41 19 32 58 fe 3e f3 02 40 1b 32 06 22
+>024fb8	06 00 02 43 44 00 19 32 58 fe 3e f3 03 40 1b 32
+>024fc8	06 22 06 00 03 58 59 4a 19 32 58 fe 3e f3 04 40
+>024fd8	1b 32 06 22 08 00 05 4e 4d 20 59 58 19 32 58 fe
+>024fe8	3e f3 05 40 1b 32 06 22 0e 00 0a 51 4f 4a 42 54
+>024ff8	57 48 51 52 5a 00 00 00 6c 00 9b 00 0c f0 00 40
+>025008	1b 32 06 22 04 00 01 55 19 32 0c f0 01 40 1b 32
+>025018	06 22 08 00 05 57 51 47 54 48 19 32 0c f0 02 40
+>025028	1b 32 06 22 0e 00 0b 59 20 49 57 20 54 53 48 20
+>025038	20 57 19 32 0c f0 03 40 1b 32 06 22 06 00 02 4f
+>025048	58 00 19 32 0c f0 04 40 1b 32 06 22 06 00 03 5a
+>025058	51 4e 19 32 0c f0 05 40 1b 32 06 22 06 00 03 59
+>025068	20 53 00 00 84 00 9c 00 50 fd 18 f0 00 40 1b 32
+>025078	06 22 08 00 05 49 4b 4d 46 58 19 32 50 fd 18 f0
+>025088	01 40 1b 32 06 22 06 00 03 4f 48 4c 19 32 50 fd
+>025098	18 f0 02 40 1b 32 06 22 04 00 00 00 19 32 50 fd
+>0250a8	18 f0 03 40 1b 32 06 22 08 00 05 4d 43 56 44 50
+>0250b8	19 32 50 fd 18 f0 04 40 1b 32 06 22 08 00 05 51
+>0250c8	20 54 44 56 19 32 50 fd 18 f0 05 40 1b 32 06 22
+>0250d8	04 00 00 00 19 32 50 fd 18 f0 06 40 1b 32 06 22
+>0250e8	06 00 02 43 4d 00 00 00 48 00 9d 00 fd f5 00 40
+>0250f8	1b 32 06 22 0c 00 09 4d 46 20 50 41 52 43 4e 42
+>025108	19 32 fd f5 01 40 1b 32 06 22 0c 00 09 58 43 55
+>025118	20 58 42 20 20 50 19 32 fd f5 02 40 1b 32 06 22
+>025128	0e 00 0b 49 48 20 20 48 20 56 4c 49 4f 5a 00 00
+>025138	66 00 9e 00 58 f6 00 40 1b 32 06 22 04 00 00 00
+>025148	19 32 58 f6 01 40 1b 32 06 22 04 00 01 51 19 32
+>025158	58 f6 02 40 1b 32 06 22 06 00 02 5a 49 00 19 32
+>025168	58 f6 03 40 1b 32 06 22 06 00 02 47 4d 00 19 32
+>025178	58 f6 04 40 1b 32 06 22 0e 00 0a 51 49 56 4a 20
+>025188	44 42 54 43 44 00 19 32 58 f6 05 40 1b 32 06 22
+>025198	04 00 00 00 00 00 76 00 9f 00 ef fc 0d f0 00 40
+>0251a8	1b 32 06 22 04 00 00 00 19 32 ef fc 0d f0 01 40
+>0251b8	1b 32 06 22 04 00 00 00 19 32 ef fc 0d f0 02 40
+>0251c8	1b 32 06 22 04 00 00 00 19 32 ef fc 0d f0 03 40
+>0251d8	1b 32 06 22 0a 00 06 5a 54 41 4f 20 49 00 19 32
+>0251e8	ef fc 0d f0 04 40 1b 32 06 22 0e 00 0a 4e 4f 4a
+>0251f8	46 50 20 44 45 42 44 00 19 32 ef fc 0d f0 05 40
+>025208	1b 32 06 22 06 00 02 4b 43 00 00 00 44 00 a0 00
+>025218	c8 fc d1 fc 06 f0 00 40 1b 32 06 22 04 00 01 5a
+>025228	19 32 c8 fc d1 fc 06 f0 01 40 1b 32 06 22 06 00
+>025238	02 4b 51 00 19 32 c8 fc d1 fc 06 f0 02 40 1b 32
+>025248	06 22 0c 00 09 52 53 20 20 46 4a 45 4f 56 00 00
+>025258	12 00 a1 00 1e 3e 10 c0 06 22 0b 24 01 10 c1 9b
+>025268	00 00 10 00 a2 00 1e 3e 04 cd 07 c0 06 22 63 7b
+>025278	00 00 10 00 a3 00 1e 3e 2a c6 06 22 0b 24 0d 40
+>025288	00 00 10 00 a4 00 1e 3e d2 c5 06 22 03 10 8e 98
+>025298	00 00 12 00 a5 00 1e 3e 6d ce 1c c3 06 22 0b 24
+>0252a8	76 40 00 00 12 00 a6 00 1e 3e 56 cd c1 c4 06 22
+>0252b8	0b 24 ca b5 00 00 12 00 a7 00 1e 3e 59 ce 64 cb
+>0252c8	0b c0 06 22 3d 40 00 00 12 00 a8 00 1e 3e 0b c0
+>0252d8	06 22 0b 24 03 10 bb 8b 00 00 10 00 a9 00 1e 3e
+>0252e8	16 c0 06 22 05 10 f1 40 00 00 10 00 aa 00 1e 3e
+>0252f8	33 c6 06 22 04 10 8b 63 00 00 14 00 ab 00 1e 3e
+>025308	29 ce 6e cc 18 c0 06 22 03 10 59 8a 00 00 12 00
+>025318	ac 00 1e 3e f3 cc d3 c4 06 22 05 10 4f 9e 00 00
+>025328	12 00 ad 00 1e 3e d5 cd 39 c5 06 22 05 10 c4 bb
+>025338	00 00 10 00 ae 00 1e 3e 33 ce 1b c0 06 22 f5 b0
+>025348	00 00 14 00 af 00 1e 3e 24 cd 0a ce 0e c0 06 22
+>025358	02 10 9a aa 00 00 10 00 b0 00 1e 3e 0f c0 06 22
+>025368	03 10 fe ac 00 00 14 00 b1 00 1e 3e ed cc 2f cb
+>025378	1b c0 06 22 0b 24 b4 a9 00 00 0e 00 b2 00 1e 3e
+>025388	e1 c5 06 22 8d 41 00 00 10 00 b3 00 1e 3e 05 c0
+>025398	06 22 03 10 06 6c 00 00 10 00 b4 00 1e 3e 01 c0
+>0253a8	06 22 0b 24 3c 40 00 00 12 00 b5 00 1e 3e 62 ce
+>0253b8	13 ce 24 c0 06 22 6b 40 00 00 10 00 b6 00 1e 3e
+>0253c8	29 c6 06 22 0b 24 38 96 00 00 12 00 b7 00 1e 3e
+>0253d8	ca c4 06 22 0b 24 05 10 01 53 00 00 10 00 b8 00
+>0253e8	1e 3e 5c ce 23 c0 06 22 91 88 00 00 10 00 b9 00
+>0253f8	1e 3e 2f cd 16 c0 06 22 7c 87 00 00 12 00 ba 00
+>025408	1e 3e c4 cc 8b ca 10 c0 06 22 7a 40 00 00 12 00
+>025418	bb 00 1e 3e 3d ce 0e c0 06 22 0b 24 1b 40 00 00
+>025428	14 00 bc 00 1e 3e 58 ce 3e ce 0a c0 06 22 0b 24
+>025438	17 40 00 00 0e 00 bd 00 1e 3e 24 c5 06 22 2f 40
+>025448	00 00 14 00 be 00 1e 3e 35 ce 26 cd 10 c0 06 22
+>025458	06 10 f5 49 00 00 12 00 bf 00 1e 3e d9 cc 09 c6
+>025468	06 22 01 10 12 4c 00 00 10 00 c0 00 1e 3e c2 c4
+>025478	06 22 0b 24 26 75 00 00 16 00 c1 00 1e 3e 51 cd
+>025488	73 ce 0f c0 06 22 0b 24 05 10 5c ae 00 00 14 00
+>025498	c2 00 1e 3e 4d cd 0a c0 06 22 0b 24 01 10 d7 af
+>0254a8	00 00 12 00 c3 00 1e 3e 4b cd 54 c2 06 22 01 10
+>0254b8	c1 9c 00 00 12 00 c4 00 1e 3e cf cd e2 c0 06 22
+>0254c8	02 10 5d 85 00 00 10 00 c5 00 1e 3e 68 ce 02 c0
+>0254d8	06 22 1d 40 00 00 0e 00 c6 00 1e 3e ef c4 06 22
+>0254e8	75 af 00 00 10 00 c7 00 1e 3e 7b cd 1f c0 06 22
+>0254f8	22 40 00 00 12 00 c8 00 1e 3e 17 c0 06 22 0b 24
+>025508	03 10 91 50 00 00 12 00 c9 00 1e 3e 48 cd 9d c0
+>025518	06 22 0b 24 20 40 00 00 12 00 ca 00 1e 3e 02 cd
+>025528	12 c0 06 22 05 10 36 70 00 00 14 00 cb 00 1e 3e
+>025538	14 ce aa ca 08 c0 06 22 02 10 0f b8 00 00 14 00
+>025548	cc 00 1e 3e 0b ce e0 c9 0a c0 06 22 0b 24 55 66
+>025558	00 00 14 00 cd 00 1e 3e 2a ce 14 c0 06 22 0b 24
+>025568	01 10 fe aa 00 00 14 00 ce 00 1e 3e 32 ce b0 c9
+>025578	0a c0 06 22 0b 24 bf 40 00 00 12 00 cf 00 1e 3e
+>025588	ff cd 0f c0 06 22 01 10 cc 6e 00 00 14 00 d0 00
+>025598	1e 3e e4 cd 49 cb 1b c0 06 22 01 10 f8 bb 00 00
+>0255a8	12 00 d1 00 1e 3e 6c c6 06 22 0b 24 05 10 8f a6
+>0255b8	00 00 14 00 d2 00 1e 3e d2 cc 0f c0 06 22 0b 24
+>0255c8	03 10 b2 54 00 00 14 00 d3 00 1e 3e e6 cd 22 c0
+>0255d8	06 22 0b 24 04 10 21 a4 00 00 12 00 d4 00 1e 3e
+>0255e8	1a c0 06 22 0b 24 05 10 4c ad 00 00 12 00 d5 00
+>0255f8	1e 3e 08 ce 3e c0 06 22 02 10 76 ad 00 00 12 00
+>025608	d6 00 1e 3e 0b ce 99 cc 21 c0 06 22 3a 40 00 00
+>025618	10 00 d7 00 1e 3e 30 ce 56 c5 06 22 5f a0 00 00
+>025628	12 00 d8 00 1e 3e d3 cc 1c c0 06 22 03 10 6a 91
+>025638	00 00 14 00 d9 00 1e 3e 2d ce 0b c0 06 22 0b 24
+>025648	02 10 7f 7b 00 00 10 00 da 00 1e 3e 13 ce 11 c4
+>025658	06 22 7d 40 00 00 12 00 db 00 1e 3e 09 c0 06 22
+>025668	0b 24 01 10 47 45 00 00 12 00 dc 00 1e 3e 02 c0
+>025678	06 22 0b 24 02 10 67 7e 00 00 14 00 dd 00 1e 3e
+>025688	a7 ed 51 ea 17 e0 06 22 04 00 00 00 00 00 12 00
+>025698	de 00 1e 3e 2b e6 06 22 06 00 03 47 5a 49 00 00
+>0256a8	16 00 df 00 1e 3e de e5 06 22 0a 00 07 53 4b 20
+>0256b8	49 45 20 56 00 00 1e 00 e0 00 1e 3e f7 ec d3 ec
+>0256c8	03 e0 06 22 0e 00 0b 55 49 44 47 50 20 20 20 42
+>0256d8	4f 4b 00 00 1a 00 e1 00 1e 3e e5 e5 06 22 0e 00
+>0256e8	0a 57 54 20 48 46 20 44 45 53 4a 00 00 00 18 00
+>0256f8	e2 00 1e 3e 29 e6 06 22 0c 00 09 43 4d 53 43 20
+>025708	20 58 59 4a 00 00 10 00 e3 00 1e 3e 0a e0 06 22
+>025718	04 00 00 00 00 00 16 00 e4 00 1e 3e 0f e0 06 22
+>025728	0a 00 07 4c 42 59 20 43 57 4b 00 00 1a 00 e5 00
+>025738	1e 3e 01 e5 06 22 0e 00 0b 4a 44 4a 4b 58 20 20
+>025748	51 46 48 47 00 00 14 00 e6 00 1e 3e 5a ed 90 e5
+>025758	06 22 06 00 02 4e 56 00 00 00 14 00 e7 00 1e 3e
+>025768	0b ee b6 e2 06 22 06 00 02 4b 4b 00 00 00 18 00
+>025778	e8 00 1e 3e 40 ee 76 e1 06 22 0a 00 06 53 5a 5a
+>025788	41 4a 4c 00 00 00 12 00 e9 00 1e 3e 89 ed 11 e0
+>025798	06 22 04 00 00 00 00 00 18 00 ea 00 1e 3e 00 ee
+>0257a8	a7 e0 06 22 0a 00 06 53 46 4f 20 20 4a 00 00 00
+>0257b8	12 00 eb 00 1e 3e 62 ee 20 e2 06 22 04 00 00 00
+>0257c8	00 00 18 00 ec 00 1e 3e b3 ed 4a e6 06 22 0a 00
+>0257d8	06 43 46 58 42 41 58 00 00 00 14 00 ed 00 1e 3e
+>0257e8	da ed 0c e0 06 22 06 00 02 45 4f 00 00 00 18 00
+>0257f8	ee 00 1e 3e 2b ed ad e2 06 22 0a 00 07 55 50 59
+>025808	50 46 4d 41 00 00 1a 00 ef 00 1e 3e 26 ed 07 e0
+>025818	06 22 0c 00 08 5a 57 59 50 20 47 20 5a 00 00 00
+>025828	12 00 f0 00 1e 3e 62 ee a1 e4 06 22 04 00 01 4a
+>025838	00 00 12 00 f1 00 1e 3e a3 ed 29 e5 06 22 04 00
+>025848	01 43 00 00 16 00 f2 00 1e 3e 3e ee 10 e0 06 22
+>025858	08 00 05 47 49 20 4d 44 00 00 18 00 f3 00 1e 3e
+>025868	cf ed 5f ee 0c e0 06 22 08 00 04 49 4d 42 57 00
+>025878	00 00 1a 00 f4 00 1e 3e 6c e6 06 22 0e 00 0a 55
+>025888	50 52 4e 49 55 46 20 52 4b 00 00 00 14 00 f5 00
+>025898	1e 3e fb e5 06 22 08 00 04 48 53 52 50 00 00 00
+>0258a8	14 00 f6 00 1e 3e 5b ee ce ec 0d e0 06 22 04 00
+>0258b8	00 00 00 00 18 00 f7 00 1e 3e c7 ec 0e e0 06 22
+>0258c8	0a 00 07 4b 42 42 41 4b 44 49 00 00 14 00 f8 00
+>0258d8	1e 3e 87 ed 1d e6 06 22 06 00 03 59 51 4b 00 00
+>0258e8	14 00 f9 00 1e 3e 19 e0 06 22 08 00 04 57 20 43
+>0258f8	56 00 00 00 14 00 fa 00 1e 3e 5d ee 1d e0 06 22
+>025908	06 00 03 45 47 43 00 00 12 00 fb 00 1e 3e d8 ed
+>025918	3a e4 06 22 04 00 00 00 00 00 14 00 fc 00 1e 3e
+>025928	39 ee 05 e0 06 22 06 00 03 44 20 5a 00 00 18 00
+>025938	fd 00 1e 3e 17 e0 06 22 0c 00 09 58 51 5a 20 57
+>025948	45 20 46 43 00 00 18 00 fe 00 1e 3e d6 ed 1d e0
+>025958	06 22 0a 00 07 5a 59 4f 20 4a 47 57 00 00 1a 00
+>025968	ff 00 1e 3e 4e ed 3c ec 1c e0 06 22 0a 00 07 41
+>025978	50 50 4c 49 55 57 00 00 1c 00 00 01 1e 3e d2 ec
+>025988	f5 e9 23 e0 06 22 0c 00 08 46 47 4b 53 4f 49 57
+>025998	59 00 00 00 12 00 01 01 1e 3e 39 ee 06 e0 06 22
+>0259a8	04 00 00 00 00 00 18 00 02 01 1e 3e 05 e0 06 22
+>0259b8	0c 00 09 58 4b 42 20 56 57 50 44 45 00 00 18 00
+>0259c8	03 01 1e 3e f8 e4 06 22 0c 00 08 53 4f 58 20 49
+>0259d8	4f 43 4c 00 00 00 18 00 04 01 1e 3e 51 e5 06 22
+>0259e8	0c 00 09 4a 43 55 20 4a 4b 4d 43 50 00 00 18 00
+>0259f8	05 01 1e 3e 11 e0 06 22 0c 00 08 45 20 58 4f 46
+>025a08	51 48 55 00 00 00 10 00 06 01 1e 3e f6 e4 06 22
+>025a18	04 00 00 00 00 00 12 00 07 01 1e 3e 10 ee a7 e5
+>025a28	06 22 04 00 00 00 00 00 14 00 08 01 1e 3e e2 ed
+>025a38	3c eb 08 e0 06 22 04 00 00 00 00 00 1a 00 09 01
+>025a48	1e 3e cd ec 33 ed 0d e0 06 22 0a 00 06 5a 41 50
+>025a58	55 49 4d 00 00 00 1c 00 0a 01 1e 3e 82 ed 5d ed
+>025a68	1b e0 06 22 0c 00 09 4e 53 20 46 46 20 4d 53 59
+>025a78	00 00 18 00 0b 01 1e 3e 49 ed aa e2 06 22 0a 00
+>025a88	06 50 54 53 4e 53 51 00 00 00 16 00 0c 01 1e 3e
+>025a98	c6 ec 15 e0 06 22 08 00 05 4e 4a 4a 41 52 00 00
+>025aa8	18 00 0d 01 1e 3e aa ed c2 e5 06 22 0a 00 07 4a
+>025ab8	47 4a 41 52 4b 52 00 00 14 00 0e 01 1e 3e ff ed
+>025ac8	d7 e5 06 22 06 00 03 5a 45 57 00 00 18 00 0f 01
+>025ad8	1e 3e 26 e5 06 22 0c 00 09 51 51 20 49 4d 50 20
+>025ae8	48 4a 00 00 1a 00 10 01 1e 3e e1 ed bf ea 1f e0
+>025af8	06 22 0a 00 06 57 4a 4a 43 52 4e 00 00 00 10 00
+>025b08	11 01 1e 3e 0b e0 06 22 04 00 00 00 00 00 14 00
+>025b18	12 01 1e 3e 1a e0 06 22 08 00 04 47 20 20 57 00
+>025b28	00 00 10 00 13 01 1e 3e 04 e6 06 22 04 00 00 00
+>025b38	00 00 12 00 14 01 1e 3e d4 ed 24 e0 06 22 04 00
+>025b48	00 00 00 00 1c 00 15 01 1e 3e 0c ee 6f ec 02 e0
+>025b58	06 22 0c 00 08 43 4f 4b 52 20 48 43 54 00 00 00
+>025b68	14 00 16 01 1e 3e c4 e4 06 22 08 00 05 4e 56 44
+>025b78	56 4c 00 00 14 00 17 01 1e 3e 24 e5 06 22 08 00
+>025b88	04 46 4e 49 48 00 00 00 14 00 18 01 1e 3e 77 ed
+>025b98	99 e0 06 22 06 00 03 52 48 4b 00 00 56 00 19 01
+>025ba8	1e 3e 7a dd 13 d9 01 d0 00 40 1b 32 06 22 0b 24
+>025bb8	0d 40 19 32 1e 3e 7a dd 13 d9 01 d0 01 40 1b 32
+>025bc8	06 22 02 10 b4 53 19 32 1e 3e 7a dd 13 d9 01 d0
+>025bd8	02 40 1b 32 06 22 0b 24 02 10 48 56 19 32 1e 3e
+>025be8	7a dd 13 d9 01 d0 03 40 1b 32 06 22 05 10 01 8d
+>025bf8	00 00 40 00 1a 01 1e 3e 8b dd f4 d9 1f d0 00 40
+>025c08	1b 32 06 22 02 10 34 bc 19 32 1e 3e 8b dd f4 d9
+>025c18	1f d0 01 40 1b 32 06 22 0b 24 3c 48 19 32 1e 3e
+>025c28	8b dd f4 d9 1f d0 02 40 1b 32 06 22 0b 24 cd 50
+>025c38	00 00 52 00 1b 01 1e 3e 3c de 09 d0 00 40 1b 32
+>025c48	06 22 0b 24 02 10 ba 95 19 32 1e 3e 3c de 09 d0
+>025c58	01 40 1b 32 06 22 0b 24 03 10 90 59 19 32 1e 3e
+>025c68	3c de 09 d0 02 40 1b 32 06 22 03 10 39 5f 19 32
+>025c78	1e 3e 3c de 09 d0 03 40 1b 32 06 22 0b 24 04 10
+>025c88	90 67 00 00 76 00 1c 01 1e 3e 56 dd 8e d2 00 40
+>025c98	1b 32 06 22 0b 24 04 10 ea 94 19 32 1e 3e 56 dd
+>025ca8	8e d2 01 40 1b 32 06 22 0b 24 03 10 8c 75 19 32
+>025cb8	1e 3e 56 dd 8e d2 02 40 1b 32 06 22 03 10 74 a7
+>025cc8	19 32 1e 3e 56 dd 8e d2 03 40 1b 32 06 22 04 10
+>025cd8	d1 84 19 32 1e 3e 56 dd 8e d2 04 40 1b 32 06 22
+>025ce8	01 10 2f 44 19 32 1e 3e 56 dd 8e d2 05 40 1b 32
+>025cf8	06 22 0b 24 04 10 bd 44 00 00 50 00 1d 01 1e 3e
+>025d08	74 dd ea d8 13 d0 00 40 1b 32 06 22 9d 40 19 32
+>025d18	1e 3e 74 dd ea d8 13 d0 01 40 1b 32 06 22 0b 24
+>025d28	02 10 a4 52 19 32 1e 3e 74 dd ea d8 13 d0 02 40
+>025d38	1b 32 06 22 54 40 19 32 1e 3e 74 dd ea d8 13 d0
+>025d48	03 40 1b 32 06 22 59 40 00 00 5a 00 1e 01 1e 3e
+>025d58	69 de 32 d3 00 40 1b 32 06 22 05 10 f7 9a 19 32
+>025d68	1e 3e 69 de 32 d3 01 40 1b 32 06 22 0b 24 46 40
+>025d78	19 32 1e 3e 69 de 32 d3 02 40 1b 32 06 22 eb 76
+>025d88	19 32 1e 3e 69 de 32 d3 03 40 1b 32 06 22 05 10
+>025d98	09 49 19 32 1e 3e 69 de 32 d3 04 40 1b 32 06 22
+>025da8	9c 40 00 00 70 00 1f 01 1e 3e 26 dd 37 d3 00 40
+>025db8	1b 32 06 22 03 10 d4 9d 19 32 1e 3e 26 dd 37 d3
+>025dc8	01 40 1b 32 06 22 01 10 1b 9b 19 32 1e 3e 26 dd
+>025dd8	37 d3 02 40 1b 32 06 22 01 10 9f 59 19 32 1e 3e
+>025de8	26 dd 37 d3 03 40 1b 32 06 22 0b 24 05 10 cc 4e
+>025df8	19 32 1e 3e 26 dd 37 d3 04 40 1b 32 06 22 93 b8
+>025e08	19 32 1e 3e 26 dd 37 d3 05 40 1b 32 06 22 0b 24
+>025e18	be 61 00 00 50 00 20 01 1e 3e d7 dd 61 d3 00 40
+>025e28	1b 32 06 22 0b 24 03 10 15 64 19 32 1e 3e d7 dd
+>025e38	61 d3 01 40 1b 32 06 22 0b 24 05 10 72 b9 19 32
+>025e48	1e 3e d7 dd 61 d3 02 40 1b 32 06 22 01 10 dc 6c
+>025e58	19 32 1e 3e d7 dd 61 d3 03 40 1b 32 06 22 0b 24
+>025e68	70 40 00 00 38 00 21 01 1e 3e 02 de c2 d3 00 40
+>025e78	1b 32 06 22 04 40 19 32 1e 3e 02 de c2 d3 01 40
+>025e88	1b 32 06 22 04 10 3c 90 19 32 1e 3e 02 de c2 d3
+>025e98	02 40 1b 32 06 22 0b 24 be 40 00 00 3c 00 22 01
+>025ea8	1e 3e 0a de 1b d0 00 40 1b 32 06 22 03 10 33 66
+>025eb8	19 32 1e 3e 0a de 1b d0 01 40 1b 32 06 22 0b 24
+>025ec8	01 10 16 85 19 32 1e 3e 0a de 1b d0 02 40 1b 32
+>025ed8	06 22 01 10 ce 99 00 00 78 00 23 01 1e 3e 61 f6
+>025ee8	00 40 1b 32 06 22 04 00 00 00 19 32 1e 3e 61 f6
+>025ef8	01 40 1b 32 06 22 08 00 04 4d 58 45 46 00 19 32
+>025f08	1e 3e 61 f6 02 40 1b 32 06 22 08 00 05 49 20 58
+>025f18	4a 59 19 32 1e 3e 61 f6 03 40 1b 32 06 22 04 00
+>025f28	00 00 19 32 1e 3e 61 f6 04 40 1b 32 06 22 08 00
+>025f38	05 46 56 56 43 4d 19 32 1e 3e 61 f6 05 40 1b 32
+>025f48	06 22 0c 00 08 46 50 20 20 54 58 42 43 00 00 00
+>025f58	94 00 24 01 1e 3e fe fc 85 fb 11 f0 00 40 1b 32
+>025f68	06 22 0c 00 09 58 5a 20 20 58 20 46 56 56 19 32
+>025f78	1e 3e fe fc 85 fb 11 f0 01 40 1b 32 06 22 04 00
+>025f88	01 52 19 32 1e 3e fe fc 85 fb 11 f0 02 40 1b 32
+>025f98	06 22 0a 00 07 44 4e 51 41 5a 50 56 19 32 1e 3e
+>025fa8	fe fc 85 fb 11 f0 03 40 1b 32 06 22 04 00 00 00
+>025fb8	19 32 1e 3e fe fc 85 fb 11 f0 04 40 1b 32 06 22
+>025fc8	0a 00 07 51 20 4e 50 42 43 54 19 32 1e 3e fe fc
+>025fd8	85 fb 11 f0 05 40 1b 32 06 22 08 00 05 43 4d 43
+>025fe8	5a 56 00 00 9a 00 25 01 1e 3e 77 fd 0a f0 00 40
+>025ff8	1b 32 06 22 04 00 01 4c 19 32 1e 3e 77 fd 0a f0
+>026008	01 40 1b 32 06 22 08 00 05 5a 20 59 20 4b 19 32
+>026018	1e 3e 77 fd 0a f0 02 40 1b 32 06 22 0c 00 08 47
+>026028	48 49 4d 20 20 42 57 00 19 32 1e 3e 77 fd 0a f0
+>026038	03 40 1b 32 06 22 04 00 00 00 19 32 1e 3e 77 fd
+>026048	0a f0 04 40 1b 32 06 22 04 00 00 00 19 32 1e 3e
+>026058	77 fd 0a f0 05 40 1b 32 06 22 0a 00 07 55 59 55
+>026068	54 4d 20 55 19 32 1e 3e 77 fd 0a f0 06 40 1b 32
+>026078	06 22 0a 00 06 49 49 5a 56 53 57 00 00 00 88 00
+>026088	26 01 1e 3e 58 fe 3e f3 00 40 1b 32 06 22 0a 00
+>026098	06 52 44 55 42 49 59 00 19 32 1e 3e 58 fe 3e f3
+>0260a8	01 40 1b 32 06 22 04 00 01 41 19 32 1e 3e 58 fe
+>0260b8	3e f3 02 40 1b 32 06 22 06 00 02 43 44 00 19 32
+>0260c8	1e 3e 58 fe 3e f3 03 40 1b 32 06 22 06 00 03 58
+>0260d8	59 4a 19 32 1e 3e 58 fe 3e f3 04 40 1b 32 06 22
+>0260e8	08 00 05 4e 4d 20 59 58 19 32 1e 3e 58 fe 3e f3
+>0260f8	05 40 1b 32 06 22 0e 00 0a 51 4f 4a 42 54 57 48
+>026108	51 52 5a 00 00 00 78 00 27 01 1e 3e 0c f0 00 40
+>026118	1b 32 06 22 04 00 01 55 19 32 1e 3e 0c f0 01 40
+>026128	1b 32 06 22 08 00 05 57 51 47 54 48 19 32 1e 3e
+>026138	0c f0 02 40 1b 32 06 22 0e 00 0b 59 20 49 57 20
+>026148	54 53 48 20 20 57 19 32 1e 3e 0c f0 03 40 1b 32
+>026158	06 22 06 00 02 4f 58 00 19 32 1e 3e 0c f0 04 40
+>026168	1b 32 06 22 06 00 03 5a 51 4e 19 32 1e 3e 0c f0
+>026178	05 40 1b 32 06 22 06 00 03 59 20 53 00 00 92 00
+>026188	28 01 1e 3e 50 fd 18 f0 00 40 1b 32 06 22 08 00
+>026198	05 49 4b 4d 46 58 19 32 1e 3e 50 fd 18 f0 01 40
+>0261a8	1b 32 06 22 06 00 03 4f 48 4c 19 32 1e 3e 50 fd
+>0261b8	18 f0 02 40 1b 32 06 22 04 00 00 00 19 32 1e 3e
+>0261c8	50 fd 18 f0 03 40 1b 32 06 22 08 00 05 4d 43 56
+>0261d8	44 50 19 32 1e 3e 50 fd 18 f0 04 40 1b 32 06 22
+>0261e8	08 00 05 51 20 54 44 56 19 32 1e 3e 50 fd 18 f0
+>0261f8	05 40 1b 32 06 22 04 00 00 00 19 32 1e 3e 50 fd
+>026208	18 f0 06 40 1b 32 06 22 06 00 02 43 4d 00 00 00
+>026218	4e 00 29 01 1e 3e fd f5 00 40 1b 32 06 22 0c 00
+>026228	09 4d 46 20 50 41 52 43 4e 42 19 32 1e 3e fd f5
+>026238	01 40 1b 32 06 22 0c 00 09 58 43 55 20 58 42 20
+>026248	20 50 19 32 1e 3e fd f5 02 40 1b 32 06 22 0e 00
+>026258	0b 49 48 20 20 48 20 56 4c 49 4f 5a 00 00 72 00
+>026268	2a 01 1e 3e 58 f6 00 40 1b 32 06 22 04 00 00 00
+>026278	19 32 1e 3e 58 f6 01 40 1b 32 06 22 04 00 01 51
+>026288	19 32 1e 3e 58 f6 02 40 1b 32 06 22 06 00 02 5a
+>026298	49 00 19 32 1e 3e 58 f6 03 40 1b 32 06 22 06 00
+>0262a8	02 47 4d 00 19 32 1e 3e 58 f6 04 40 1b 32 06 22
+>0262b8	0e 00 0a 51 49 56 4a 20 44 42 54 43 44 00 19 32
+>0262c8	1e 3e 58 f6 05 40 1b 32 06 22 04 00 00 00 00 00
+>0262d8	82 00 2b 01 1e 3e ef fc 0d f0 00 40 1b 32 06 22
+>0262e8	04 00 00 00 19 32 1e 3e ef fc 0d f0 01 40 1b 32
+>0262f8	06 22 04 00 00 00 19 32 1e 3e ef fc 0d f0 02 40
+>026308	1b 32 06 22 04 00 00 00 19 32 1e 3e ef fc 0d f0
+>026318	03 40 1b 32 06 22 0a 00 06 5a 54 41 4f 20 49 00
+>026328	19 32 1e 3e ef fc 0d f0 04 40 1b 32 06 22 0e 00
+>026338	0a 4e 4f 4a 46 50 20 44 45 42 44 00 19 32 1e 3e
+>026348	ef fc 0d f0 05 40 1b 32 06 22 06 00 02 4b 43 00
+>026358	00 00 4a 00 2c 01 1e 3e c8 fc d1 fc 06 f0 00 40
+>026368	1b 32 06 22 04 00 01 5a 19 32 1e 3e c8 fc d1 fc
+>026378	06 f0 01 40 1b 32 06 22 06 00 02 4b 51 00 19 32
+>026388	1e 3e c8 fc d1 fc 06 f0 02 40 1b 32 06 22 0c 00
+>026398	09 52 53 20 20 46 4a 45 4f 56 00 00 00 00 ee ee
+>0263a8	ee ee 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>0263b8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+;	...repeated 1475 times (23600 bytes)...
 >02bff8	00 00 00 00 00 00 00 00
 .02c000					CodeEndSpace:
 

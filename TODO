@@ -1,8 +1,15 @@
 Main
 ----
+- Make all data elements 4 bytes in length.
+		- variable.asm
+		- showdump.py
+		- garbage collection.asm
+
+- REPEAT UNTIL
+- Instruction count test (3.1 MIPS @14Mhz)
 - REM 
 - ON..GOTO
-- REPEAT UNTIL
+- Cycle counting (Instruction counting probably)
 - LIST. Detokenising. Spacing out and in.
 - Input code. Tokenising.
 - Typing commands in
