@@ -1,10 +1,11 @@
 Main
 ----
+- Fix up error reporting. Add "OK."
+- PRINT <string> <variable> ' (; on end)
 - Add Stack which is reset on CLEAR etc.
 - GOTO GOSUB RETURN ON..GOTO/GOSUB
 - LIST ?
-- I/O Code.
-- PRINT <string> <variable> ' (; on end)
+- Input code.
 - PROC <identifier> ENDPROC
 
 

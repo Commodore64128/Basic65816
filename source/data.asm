@@ -45,6 +45,8 @@ DLineNumber = DPBaseAddress + 34 			; current line number.
 
 DTemp3 = DPBaseAddress + 36 				; *** LONG *** Temporary Value.
 
+DCursor = DPBaseAddress + 40 				; cursor (for external routines, not used by BASIC)
+
 ; ********************************************************************************
 ;
 ;			Expression Stack. There are three entries, low and high word

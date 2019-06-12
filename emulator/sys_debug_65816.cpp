@@ -124,7 +124,9 @@ void DBGXRender(int *address,int showDisplay) {
 			for (int y = 0;y < 16;y++)
 			{
 				int ch = CPURead(0xF0000+x+y*32);
-				GFXCharacter(x1+x*size*6,y1+y*size*8,ch & 0x7F,size,(ch & 0x80) ? 0x000:0xF80,(ch & 0x80) ? 0xF80:0x000);
+				int fcol = (ch & 0x80) ? 0xFF0:0xF80;
+				if ((ch & 0x7F) < 32) fcol = 0xF80;
+				GFXCharacter(x1+x*size*6,y1+y*size*8,ch & 0x7F,size,fcol,(ch < 32) ? 0xF80:0x000);
 			}
 		}
 	}

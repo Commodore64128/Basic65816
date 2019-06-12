@@ -59,6 +59,7 @@ error	.macro
 
 SwitchBasicInstance:
 		rep 	#$30 								; 16 bit A:X mode.
+		jsr 	HWClearScreen 						; clear screen		
 		and 	#$00FF 								; make page number 24 bit
 		sta 	DPageNumber 						; save page, base, high in RAM.
 		stx		DBaseAddress
@@ -70,3 +71,4 @@ SwitchBasicInstance:
 		plb 
 
 		jmp 	Function_RUN
+

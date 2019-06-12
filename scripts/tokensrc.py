@@ -48,7 +48,8 @@ class TokenSource(object):
 	clear 										## clear all variables.
 	dim 										## array dimension.
 	collect 									## garbage collection.
-		
+	cls 										## clear screen
+			
 [keyword+]
 	while
 
