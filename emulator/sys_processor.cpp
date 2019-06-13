@@ -21,6 +21,7 @@
 #define CYCLES_PER_FRAME	(CYCLES_PER_SECOND/FRAME_RATE)							// T-States per second.
 
 static LONG32 Cycles = 0;
+static LONG32 instructionCount = 0; 
 
 #define HWIReset() {}
 #define HWIEndFrame() {}
@@ -48,8 +49,8 @@ void CPUReset(void) {
 	CPU65816Reset();
 	HWIReset();
 	Cycles = 0;	
-	for (int i = 0;i < 512;i++)
-		ramMemory[(i+0xF0000) & RAMMASK] = rand() % 96+32;
+	for (int i = 0;i < 64*32;i++)
+		ramMemory[(i+0xF0000) & RAMMASK] = rand() & 0xFF;
 }
 
 // *******************************************************************************************************************************
@@ -60,6 +61,7 @@ void CPUReset(void) {
 
 BYTE8 CPUExecuteInstruction(void) {
 	Cycles++;
+	instructionCount++;
 	CPU65816ExecuteOneInstruction();
 	if (Cycles < CYCLES_PER_FRAME) return 0;										// Frame in progress, return 0.
 	Cycles -= CYCLES_PER_FRAME;														// Adjust cycle counter
@@ -134,6 +136,9 @@ void CPUEndRun(void) {
 	for (LONG32 l = 0x24000;l < 0x2C000;l += 1024) {
 		fwrite(ramMemory+l,1,1024,f);
 	}
+	fclose(f);
+	f = fopen("cpu.count","w");
+	fprintf(f,"%d",instructionCount);
 	fclose(f);
 }
 

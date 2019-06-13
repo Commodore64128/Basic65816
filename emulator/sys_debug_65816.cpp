@@ -116,15 +116,15 @@ void DBGXRender(int *address,int showDisplay) {
 	}
 
 	if (showDisplay) {
-		int size = 4;
-		int x1 = WIN_WIDTH/2-32*size*6/2;
+		int size = 2;
+		int x1 = WIN_WIDTH/2-64*size*6/2;
 		int y1 = 64;
-		for (int x = 0;x < 32;x++) 
+		for (int x = 0;x < 64;x++) 
 		{
-			for (int y = 0;y < 16;y++)
+			for (int y = 0;y < 32;y++)
 			{
-				int ch = CPURead(0xF0000+x+y*32);
-				int fcol = (ch & 0x80) ? 0xFF0:0xF80;
+				int ch = CPURead(0xF0000+x+y*64);
+				int fcol = (ch & 0x80) ? 0x0FF:0xF80;
 				if ((ch & 0x7F) < 32) fcol = 0xF80;
 				GFXCharacter(x1+x*size*6,y1+y*size*8,ch & 0x7F,size,fcol,(ch < 32) ? 0xF80:0x000);
 			}

@@ -1,8 +1,6 @@
 Main
 ----
 
-- REPEAT UNTIL
-- Instruction count test (3.1 MIPS @14Mhz)
 - REM 
 - ON..GOTO
 - Cycle counting (Instruction counting probably)

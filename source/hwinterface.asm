@@ -11,6 +11,9 @@
 
 HWCursorCharacter = $01
 
+sWidth = 64
+sHeight = 32
+
 ; *******************************************************************************************
 ;
 ;								Clear screen and home cursor
@@ -20,7 +23,7 @@ HWCursorCharacter = $01
 HWClearScreen:
 		pha
 		phx
-		ldx 	#510
+		ldx 	#sWidth*sHeight-2
 _CS0:	lda 	#$2020
 		sta 	$F0000,x
 		dex
@@ -48,7 +51,7 @@ HWPrintChar:
 		rep 	#$20
 		inx
 		txa
-		and 	#(32*16-1)
+		and 	#(sWidth*sHeight-1)
 		sta 	DCursor
 		tax
 		lda 	#HWCursorCharacter
@@ -68,7 +71,7 @@ HWPrintChar:
 HWNewLine:
 		pha
 		phx
-		ldx 	#31
+		ldx 	#sWidth-1
 HWMoveCursor:
 		lda 	#32
 		jsr 	HWPrintChar

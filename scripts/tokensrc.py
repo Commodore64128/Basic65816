@@ -44,14 +44,14 @@ class TokenSource(object):
 	dim 										## array dimension.
 	collect 									## garbage collection.
 	cls 										## clear screen
-	print 		? 								## print and shorthand print.
+	print 		 								## print
 	goto gosub return on 						## transfer of control.
 
 [keyword+]
-	while
+	repeat 										## repeat loop test at bottom
 
-[keyword-]
-	wend
+[keyword-]										## until for repeat.
+	until
 
 """.split("\n")
 

@@ -15,7 +15,6 @@
 ;
 ; *******************************************************************************************
 
-Function_PRINTALT:	;; ?
 Function_PRINT: 	;; print
 		lda 	(DCodePtr) 					; look at first characteer
 		beq 	_FPRExitCR 					; if zero, then exit with CR, maybe.

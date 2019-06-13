@@ -1,900 +1,900 @@
-dim x5td(6)
-dim y6aw0(4)
-dim w3ohg(3)
-dim d(6)
-dim p4amg(4)
-dim g5pxy(3)
-dim i1q(4)
-dim r3(6)
-dim x5kns(4)
-dim s9el7(3)
-dim n2p4$(4)
-dim l8$(5)
-dim p4n$(4)
-dim x8$(6)
-dim g3s$(4)
-dim x61$(5)
-dim p5qk$(3)
-dim m61yt$(3)
-dim a3h$(2)
-dim f2$(5)
-u2u=141508
-d4eej=166
-let l=-199
-x4=186119
-let v3ok=-15
-v8=32435
-let a66=-105408
-let m6g=116469
-let u14d=53197
-let w=109662
-let k9=-122008
-s0din=-6254
-v7=-17004
-let h3l1=166
-i2hxl=-138014
-d2dhw=119626
-let l77es=-93765
-c0rf=-36384
-let e6=194940
-a5t=-127
-let d4=-125375
-c1m4=-191
-l54l=44566
-let r9yae=118500
-g7b2q=91878
-let m0ga=-165529
-let x=43708
-let h5h=-83
-let z=182286
-let g5c=136
-let a1cw=83230
-let x1=102
-let q9s=143736
-let m1tvm=-94890
-i8=-172724
-v=-86
-y8367=84352
-let h=-178778
-u5o45=-66
-let e=-17
-a8p=44641
-h7or7=112627
-let t00a=-107
-let j5jeh=119932
-let x7=99588
-y3=101166
-u20=119170
-q7pf=-75561
-m3cx=-26
-let n0u1t=-109
-let n5ds=-146581
-let b7em=-139951
-let l08i=-180
-let n3prr=86414
-m59d5=-18745
-let h9=-62733
-let q=130411
-let j29bz=-19320
-let d5m01=-145032
-n2=88297
-a0$="NZPLICP A"
-let x$="G XZI"
-let v5c$="YCSTXWIKWYR"
-f1$="LLL"
-let v9$="OIS MM"
-let e$="EIT U"
-let g8h$="HGQSP  R G"
-let a$="TOWW HOS"
-t0j8d$="Y MZ"
-let b6$="CJSWGYRJ"
-i7xk$="ZIN H"
-d43v7$="JB JRNPV"
-let g$="CP P JLT  A"
-let x17$="NTK   YU"
-j6yht$="T VOJPAXI"
-a1flh$="ZJHHBU"
-let s280$=""
-y7fwx$="MAD"
-let a84ho$="GA"
-m7xlb$="TUO"
-let a5oba$=""
-e88$="MBB QW"
-let c4buk$="FXY"
-let m$="K IRVY"
-let n66h$="X"
-z2p$="PN  KSSH"
-r9wr$="D KX"
-let l1bve$="FTUN"
-let v8kue$="PMRVSLLA"
-u22$="BM  XTVLEY"
-let j1$="LKE ICVKLC"
-u$="V WCEEDUUX"
-w5eu$="X  K CDJTJ"
-let e1ttc$="R QJBUC"
-u7fz3$="P"
-let f$="CSY  SPY"
-let b5e$="CN"
-g4$="A  FHVCR W"
-j8c$="C CWBSNYH"
-let c9y60$="TGE"
-j9$="WGXD"
-b4$="J"
-k$="E KH"
-j01fs$="XHP SDMLISA"
-i5blu$=""
-let q7ii2$="Z"
-g3$="B"
-let e0o$="P"
-let o8$="GYYXSEP"
-k93$="SLVUQZTQ  P"
-let d8l$="FJ"
-q5wiu$="JML SCC"
-o4$="R CNDOO JJ"
-let n$="GCXI   MC"
-c428k$="ZZJN"
-let i$="NT  OU"
-let s4f$="BFJKXBIW  X"
-let d$="WMJHZMPT"
-k0c0$="RY  QE CQM"
-z2ycr$="U DQQMGJ"
-x5td(0)=-43223:x5td(1)=-86334:x5td(2)=-82855:x5td(3)=-123408:x5td(4)=-152131:x5td(5)=93550:x5td(6)=73894
-y6aw0(0)=-83190:y6aw0(1)=-38319:y6aw0(2)=59342:y6aw0(3)=110652:y6aw0(4)=-112
-w3ohg(0)=87965:w3ohg(1)=73343:w3ohg(2)=-43828:w3ohg(3)=-175843
-d(0)=-83896:d(1)=-80746:d(2)=179528:d(3)=-159169:d(4)=-146748:d(5)=138:d(6)=-61462
-p4amg(0)=48:p4amg(1)=122807:p4amg(2)=37953:p4amg(3)=49588:p4amg(4)=45
-g5pxy(0)=-154461:g5pxy(1)=79879:g5pxy(2)=-38019:g5pxy(3)=-21415
-i1q(0)=-64:i1q(1)=-10118:i1q(2)=57637:i1q(3)=138827:i1q(4)=-90365
-r3(0)=89831:r3(1)=158530:r3(2)=57445:r3(3)=-177480:r3(4)=-131:r3(5)=-178555:r3(6)=-102975
-x5kns(0)=-42:x5kns(1)=132:x5kns(2)=186526:x5kns(3)=86839:x5kns(4)=169468
-s9el7(0)=-167:s9el7(1)=170958:s9el7(2)=54:s9el7(3)=-40747
-n2p4$(0)="":n2p4$(1)="B":n2p4$(2)="EICG":n2p4$(3)="ZATAFSQ":n2p4$(4)="ZB  EBQS"
-l8$(0)="YDDUWTR FS":l8$(1)="YTGDTC":l8$(2)="ZH  A  M":l8$(3)="KSB":l8$(4)="HI":l8$(5)="CUEU"
-p4n$(0)="IOOGK OT":p4n$(1)="WDQPKYID":p4n$(2)="QCNX":p4n$(3)="B NDQ":p4n$(4)="RSNQHI Z"
-x8$(0)="X":x8$(1)="":x8$(2)="QY":x8$(3)="Q I":x8$(4)="ZDS":x8$(5)="O":x8$(6)="NYXLXYLNGNW"
-g3s$(0)="BIPYCY":g3s$(1)="R":g3s$(2)="LSMORK":g3s$(3)="K":g3s$(4)="XMPE ZO YLZ"
-x61$(0)="CV K SOU":x61$(1)="BO   X":x61$(2)="PS M":x61$(3)="HZS TG":x61$(4)="GL Q":x61$(5)="GEYQHEF"
-p5qk$(0)="F":p5qk$(1)="VQ  VV":p5qk$(2)="ZHTGFJKWM":p5qk$(3)="KVOP"
-m61yt$(0)="QOKYW":m61yt$(1)="":m61yt$(2)="XAI Q YT":m61yt$(3)=""
-a3h$(0)="YI WW":a3h$(1)="OAVXF":a3h$(2)="DAXY"
-f2$(0)="OXAC  FLX X":f2$(1)="BCI WGHQLU":f2$(2)="":f2$(3)="MT":f2$(4)="Z":f2$(5)="LONNBNWRCE"
-assert u2u=141508
-assert d4eej=166
-assert l=-199
-assert x4=186119
-assert v3ok=-15
-assert v8=32435
-assert a66=-105408
-assert m6g=116469
-assert u14d=53197
-assert w=109662
-assert k9=-122008
-assert s0din=-6254
-assert v7=-17004
-assert h3l1=166
-assert i2hxl=-138014
-assert d2dhw=119626
-assert l77es=-93765
-assert c0rf=-36384
-assert e6=194940
-assert a5t=-127
-assert d4=-125375
-assert c1m4=-191
-assert l54l=44566
-assert r9yae=118500
-assert g7b2q=91878
-assert m0ga=-165529
-assert x=43708
-assert h5h=-83
-assert z=182286
-assert g5c=136
-assert a1cw=83230
-assert x1=102
-assert q9s=143736
-assert m1tvm=-94890
-assert i8=-172724
-assert v=-86
-assert y8367=84352
-assert h=-178778
-assert u5o45=-66
-assert e=-17
-assert a8p=44641
-assert h7or7=112627
-assert t00a=-107
-assert j5jeh=119932
-assert x7=99588
-assert y3=101166
-assert u20=119170
-assert q7pf=-75561
-assert m3cx=-26
-assert n0u1t=-109
-assert n5ds=-146581
-assert b7em=-139951
-assert l08i=-180
-assert n3prr=86414
-assert m59d5=-18745
-assert h9=-62733
-assert q=130411
-assert j29bz=-19320
-assert d5m01=-145032
-assert n2=88297
-assert a0$="NZPLICP A"
-assert x$="G XZI"
-assert v5c$="YCSTXWIKWYR"
-assert f1$="LLL"
-assert v9$="OIS MM"
-assert e$="EIT U"
-assert g8h$="HGQSP  R G"
-assert a$="TOWW HOS"
-assert t0j8d$="Y MZ"
-assert b6$="CJSWGYRJ"
-assert i7xk$="ZIN H"
-assert d43v7$="JB JRNPV"
-assert g$="CP P JLT  A"
-assert x17$="NTK   YU"
-assert j6yht$="T VOJPAXI"
-assert a1flh$="ZJHHBU"
-assert s280$=""
-assert y7fwx$="MAD"
-assert a84ho$="GA"
-assert m7xlb$="TUO"
-assert a5oba$=""
-assert e88$="MBB QW"
-assert c4buk$="FXY"
-assert m$="K IRVY"
-assert n66h$="X"
-assert z2p$="PN  KSSH"
-assert r9wr$="D KX"
-assert l1bve$="FTUN"
-assert v8kue$="PMRVSLLA"
-assert u22$="BM  XTVLEY"
-assert j1$="LKE ICVKLC"
-assert u$="V WCEEDUUX"
-assert w5eu$="X  K CDJTJ"
-assert e1ttc$="R QJBUC"
-assert u7fz3$="P"
-assert f$="CSY  SPY"
-assert b5e$="CN"
-assert g4$="A  FHVCR W"
-assert j8c$="C CWBSNYH"
-assert c9y60$="TGE"
-assert j9$="WGXD"
-assert b4$="J"
-assert k$="E KH"
-assert j01fs$="XHP SDMLISA"
-assert i5blu$=""
-assert q7ii2$="Z"
-assert g3$="B"
-assert e0o$="P"
-assert o8$="GYYXSEP"
-assert k93$="SLVUQZTQ  P"
-assert d8l$="FJ"
-assert q5wiu$="JML SCC"
-assert o4$="R CNDOO JJ"
-assert n$="GCXI   MC"
-assert c428k$="ZZJN"
-assert i$="NT  OU"
-assert s4f$="BFJKXBIW  X"
-assert d$="WMJHZMPT"
-assert k0c0$="RY  QE CQM"
-assert z2ycr$="U DQQMGJ"
-assert x5td(0)=-43223:assert x5td(1)=-86334:assert x5td(2)=-82855:assert x5td(3)=-123408:assert x5td(4)=-152131:assert x5td(5)=93550:assert x5td(6)=73894
-assert y6aw0(0)=-83190:assert y6aw0(1)=-38319:assert y6aw0(2)=59342:assert y6aw0(3)=110652:assert y6aw0(4)=-112
-assert w3ohg(0)=87965:assert w3ohg(1)=73343:assert w3ohg(2)=-43828:assert w3ohg(3)=-175843
-assert d(0)=-83896:assert d(1)=-80746:assert d(2)=179528:assert d(3)=-159169:assert d(4)=-146748:assert d(5)=138:assert d(6)=-61462
-assert p4amg(0)=48:assert p4amg(1)=122807:assert p4amg(2)=37953:assert p4amg(3)=49588:assert p4amg(4)=45
-assert g5pxy(0)=-154461:assert g5pxy(1)=79879:assert g5pxy(2)=-38019:assert g5pxy(3)=-21415
-assert i1q(0)=-64:assert i1q(1)=-10118:assert i1q(2)=57637:assert i1q(3)=138827:assert i1q(4)=-90365
-assert r3(0)=89831:assert r3(1)=158530:assert r3(2)=57445:assert r3(3)=-177480:assert r3(4)=-131:assert r3(5)=-178555:assert r3(6)=-102975
-assert x5kns(0)=-42:assert x5kns(1)=132:assert x5kns(2)=186526:assert x5kns(3)=86839:assert x5kns(4)=169468
-assert s9el7(0)=-167:assert s9el7(1)=170958:assert s9el7(2)=54:assert s9el7(3)=-40747
-assert n2p4$(0)="":assert n2p4$(1)="B":assert n2p4$(2)="EICG":assert n2p4$(3)="ZATAFSQ":assert n2p4$(4)="ZB  EBQS"
-assert l8$(0)="YDDUWTR FS":assert l8$(1)="YTGDTC":assert l8$(2)="ZH  A  M":assert l8$(3)="KSB":assert l8$(4)="HI":assert l8$(5)="CUEU"
-assert p4n$(0)="IOOGK OT":assert p4n$(1)="WDQPKYID":assert p4n$(2)="QCNX":assert p4n$(3)="B NDQ":assert p4n$(4)="RSNQHI Z"
-assert x8$(0)="X":assert x8$(1)="":assert x8$(2)="QY":assert x8$(3)="Q I":assert x8$(4)="ZDS":assert x8$(5)="O":assert x8$(6)="NYXLXYLNGNW"
-assert g3s$(0)="BIPYCY":assert g3s$(1)="R":assert g3s$(2)="LSMORK":assert g3s$(3)="K":assert g3s$(4)="XMPE ZO YLZ"
-assert x61$(0)="CV K SOU":assert x61$(1)="BO   X":assert x61$(2)="PS M":assert x61$(3)="HZS TG":assert x61$(4)="GL Q":assert x61$(5)="GEYQHEF"
-assert p5qk$(0)="F":assert p5qk$(1)="VQ  VV":assert p5qk$(2)="ZHTGFJKWM":assert p5qk$(3)="KVOP"
-assert m61yt$(0)="QOKYW":assert m61yt$(1)="":assert m61yt$(2)="XAI Q YT":assert m61yt$(3)=""
-assert a3h$(0)="YI WW":assert a3h$(1)="OAVXF":assert a3h$(2)="DAXY"
-assert f2$(0)="OXAC  FLX X":assert f2$(1)="BCI WGHQLU":assert f2$(2)="":assert f2$(3)="MT":assert f2$(4)="Z":assert f2$(5)="LONNBNWRCE"
-assert (r9wr$<"FTUN") = -1
-assert ("ZATAFSQ">="PMRVSLLA") = -1
-assert (z>-38019) = -1
-assert (v<44566) = -1
-assert (109662>q7pf) = -1
-assert ("WGXD">c4buk$) = -1
-assert (m6g=182286) = 0
-assert (-191<>n0u1t) = -1
-assert (x17$<="PMRVSLLA") = -1
-assert ("E KH">f2$(0)) = 0
-assert (c0rf<=l) = -1
-assert (s9el7(1)<=n5ds) = 0
-assert (""<>j8c$) = -1
-assert (48>119932) = 0
-assert (-172724<182286) = -1
-assert (j8c$=t0j8d$) = 0
-assert ("RSNQHI Z"<>"YI WW") = -1
-assert (l77es<-146748) = 0
-assert (-127<>-15) = -1
-assert (a66=-83190) = 0
-assert (-180>=d(3)) = -1
-assert (u$<>x$) = -1
-assert (-154461>=32435) = 0
-assert (n$<>"P") = -1
-assert (a1flh$>w5eu$) = -1
-assert ("RY  QE CQM"<>j01fs$) = -1
-assert (88297>=32435) = -1
-assert (-139951>=-178778) = -1
-assert (99588<y8367) = 0
-assert (v>-15) = 0
-assert (i1q(1)>=-83) = 0
-assert (m59d5>=-138014) = -1
-assert (-178778>37953) = 0
-assert (194940=48) = 0
-assert (s280$="JB JRNPV") = 0
-assert (f1$<="GCXI   MC") = 0
-assert (c9y60$<"D KX") = 0
-assert (169468>=141508) = -1
-assert (a0$<=m7xlb$) = -1
-assert (101166>=a1cw) = -1
-assert (f1$="P") = 0
-assert (-26=v3ok) = 0
-assert (x5kns(1)>=d2dhw) = 0
-assert (-180<>166) = -1
-assert (f2$(3)>j8c$) = -1
-assert (g5c=d4) = 0
-assert (-93765=-83) = 0
-assert (j5jeh<=v7) = 0
-assert (h3l1<n3prr) = -1
-assert (j29bz>109662) = 0
-assert (w3ohg(0)<m59d5) = 0
-assert ("OIS MM">m7xlb$) = 0
-assert (e6>m3cx) = -1
-assert (86414=-125375) = 0
-assert (-172724>=141508) = 0
-assert (u7fz3$>="FTUN") = -1
-assert (x7<=-145032) = 0
-assert (-105408=-18745) = 0
-assert (q7pf<-159169) = 0
-assert ("CN"<"WMJHZMPT") = -1
-assert ("WMJHZMPT"="BFJKXBIW  X") = 0
-assert (v8kue$<e0o$) = 0
-assert (112627>=w3ohg(1)) = -1
-assert ("GYYXSEP">q5wiu$) = 0
-assert (w3ohg(1)=170958) = 0
-assert (n3prr=-199) = 0
-assert (n$>a5oba$) = -1
-assert ("P"<>c9y60$) = -1
-assert (j5jeh>99588) = -1
-assert (a66<-127) = -1
-assert (v9$<>x$) = -1
-assert (n3prr=119932) = 0
-assert ("T VOJPAXI"<=q7ii2$) = -1
-assert (v8>y6aw0(4)) = -1
-assert (n0u1t<>v3ok) = -1
-assert (84352>=x7) = 0
-assert (d43v7$<=c9y60$) = -1
-assert (r3(2)<>43708) = -1
-assert ("GCXI   MC">="Z") = 0
-assert ("K IRVY">r9wr$) = -1
-assert (g3s$(2)>="X") = 0
-assert (r9wr$=n66h$) = 0
-assert (-26<=166) = -1
-assert (n5ds<x5td(0)) = -1
-assert (83230<>141508) = -1
-assert ("Z">s280$) = -1
-assert ("T VOJPAXI"<>a3h$(1)) = -1
-assert ("CP P JLT  A">"TGE") = 0
-assert (x17$<"Z") = -1
-assert ("LKE ICVKLC">"K IRVY") = -1
-assert (j29bz=x1) = 0
-assert ("JB JRNPV">=l8$(5)) = -1
-assert ("TOWW HOS"<=t0j8d$) = -1
-assert (d(6)=84352) = 0
-assert (h7or7=e) = 0
-assert (n2p4$(4)>="RY  QE CQM") = -1
-assert (-172724=v8) = 0
-assert ("WGXD"<m7xlb$) = 0
-assert ("B"<"OIS MM") = -1
-assert (e0o$<>"JB JRNPV") = -1
-assert (-146581<=119170) = -1
-assert ("J"<>w5eu$) = -1
-assert (-105408=y6aw0(2)) = 0
-assert (l>-125375) = -1
-assert (t0j8d$<"D KX") = 0
-assert (x$<="TOWW HOS") = -1
-assert (i2hxl>=m0ga) = -1
-assert (y3<>-94890) = -1
-assert (-66>=-86) = -1
-assert ("BIPYCY"<="J") = -1
-assert (m6g=73894) = 0
-assert ("NTK   YU"<l8$(2)) = -1
-assert (130411<86414) = 0
-assert (v3ok<k9) = 0
-assert (l77es>h3l1) = 0
-assert ("FTUN"=x8$(0)) = 0
-assert (u$="MBB QW") = 0
-assert (n66h$<>"GYYXSEP") = -1
-assert ("J">="FTUN") = -1
-assert (d2dhw<>q9s) = -1
-assert (w<=g5c) = 0
-assert (d$>="OIS MM") = -1
-assert (a0$<="PMRVSLLA") = -1
-assert (f$<=u7fz3$) = -1
-assert (136>y6aw0(1)) = -1
-assert (-109>=m3cx) = 0
-assert ("TOWW HOS"<"MT") = 0
-assert (194940>=143736) = -1
-assert (g5c>86414) = 0
-assert ("FXY"<"CSY  SPY") = 0
-assert (u2u<-61462) = 0
-assert (102<-62733) = 0
-assert (112627<194940) = -1
-assert (j5jeh>=r9yae) = -1
-assert (h<>a8p) = -1
-assert (86839>53197) = -1
-assert (j5jeh=-15) = 0
-assert ("TUO"<="X") = -1
-assert (m6g=119626) = 0
-assert (g5pxy(0)<=r9yae) = -1
-assert (-139951<i8) = 0
-assert (a1flh$>"Z") = -1
-assert ("QCNX"<"ZJHHBU") = -1
-assert (b7em<d2dhw) = -1
-assert (a5t>j5jeh) = 0
-assert (e1ttc$>=a84ho$) = -1
-assert (119932>x) = -1
-assert ("U DQQMGJ">"RY  QE CQM") = -1
-assert (u5o45<=u14d) = -1
-assert ("NYXLXYLNGNW"<="BFJKXBIW  X") = 0
-assert (130411=k9) = 0
-assert ("TGE"<="BM  XTVLEY") = 0
-assert (q7ii2$<>"U DQQMGJ") = -1
-assert (r3(4)<a1cw) = -1
-assert (r3(6)>166) = 0
-assert (122807<y6aw0(0)) = 0
-assert (g$<n66h$) = -1
-assert (x5td(0)>j5jeh) = 0
-assert ("R CNDOO JJ"<=z2ycr$) = -1
-assert (o8$<="JML SCC") = -1
-assert (n$>"E KH") = -1
-assert ("OAVXF"<=e0o$) = -1
-assert (j9$<q5wiu$) = 0
-assert (""="R") = 0
-assert (j5jeh>=158530) = 0
-assert (p5qk$(1)=n2p4$(2)) = 0
-assert (g4$<a5oba$) = 0
-assert ("OIS MM">"RY  QE CQM") = 0
-assert (118500=x1) = 0
-assert ("XHP SDMLISA"<>"P") = -1
-assert (t0j8d$>k0c0$) = -1
-assert (x1<>119626) = -1
-assert (136<>91878) = -1
-assert (x1=h) = 0
-assert ("Y MZ"<a5oba$) = 0
-assert (e<>-83) = -1
-assert (n0u1t<=v) = -1
-assert (-107<>w) = -1
-assert (q7pf<l54l) = -1
-assert ("">r9wr$) = 0
-assert (z<n2) = 0
-assert ("C CWBSNYH"<=a$) = -1
-assert (c1m4<=101166) = -1
-assert (-62733>=-138014) = -1
-assert (c9y60$>=n$) = -1
-assert ("ZZJN"<g$) = 0
-assert ("Z"<="FTUN") = 0
-assert ("G XZI"<"") = 0
-assert ("ZZJN">="B") = -1
-assert (182286<m0ga) = 0
-assert (q=j5jeh) = 0
-assert (e88$=a1flh$) = 0
-assert (h7or7<=-17) = 0
-assert (h9=-86) = 0
-assert (a$>="ZHTGFJKWM") = 0
-assert (x5kns(3)>=h) = -1
-assert (n3prr<=-94890) = 0
-assert (136<-64) = 0
-assert (109662>=-17004) = -1
-assert (-127<119170) = -1
-assert (k9<=u5o45) = -1
-assert ("GA">=w5eu$) = 0
-assert ("CSY  SPY"=p4n$(3)) = 0
-assert (-86=194940) = 0
-assert (i7xk$<>s280$) = -1
-assert (x7>86839) = -1
-assert (102<-165529) = 0
-assert (v8=91878) = 0
-assert (166=d(0)) = 0
-assert (-38319<>d4) = -1
-assert (99588<-138014) = 0
-assert ("G XZI"="BM  XTVLEY") = 0
-assert (d5m01=h9) = 0
-assert (141508<=s0din) = 0
-assert (a0$<b5e$) = 0
-assert (q7pf>u2u) = 0
-assert (a5oba$<e0o$) = -1
-assert (v8=a1cw) = 0
-assert (j8c$>"") = -1
-assert (v3ok<=-62733) = 0
-assert (130411>i1q(3)) = 0
-assert (d4=a1cw) = 0
-assert (e$<p5qk$(2)) = -1
-assert (z2ycr$<"NTK   YU") = 0
-assert (y6aw0(4)=x5td(5)) = 0
-assert (119170<=h) = 0
-assert (n3prr>=182286) = 0
-assert (n5ds>-15) = 0
-assert ("K IRVY"<>i7xk$) = -1
-assert (u20<=-17004) = 0
-assert ("ZJHHBU"<o8$) = 0
-assert (r3(3)<>q9s) = -1
-assert ("T VOJPAXI">=k93$) = -1
-assert (y7fwx$>l8$(5)) = -1
-assert ("CSY  SPY"<"PS M") = -1
-assert (u22$=o8$) = 0
-assert (v7=s0din) = 0
-assert (z>73894) = -1
-assert (k9>=l54l) = 0
-assert (n0u1t>-109) = 0
-assert (v7>=48) = 0
-assert (-127>=88297) = 0
-assert (y3>=79879) = -1
-assert (g4$<"LKE ICVKLC") = -1
-assert (116469>-159169) = -1
-assert (u$<>n$) = -1
-assert (110652<>l) = -1
-assert ("G XZI"<=i$) = -1
-assert (a$>x8$(5)) = -1
-assert (x4<=u14d) = 0
-assert (i8<>-93765) = -1
-assert (a5oba$>="SLVUQZTQ  P") = 0
-assert ("BM  XTVLEY"<>"PN  KSSH") = -1
-assert (a66<=c1m4) = -1
-assert (e88$="PN  KSSH") = 0
-assert (v7>=119932) = 0
-assert (d$>=f2$(5)) = -1
-assert (e1ttc$>=n2p4$(1)) = -1
-assert ("NTK   YU">=e1ttc$) = 0
-assert (-105408=-86) = 0
-assert (p4n$(0)<>n$) = -1
-assert (u20<=-62733) = 0
-assert (d43v7$>k93$) = 0
-assert ("T VOJPAXI"=e88$) = 0
-assert (-109>=c0rf) = -1
-assert ("TGE">="CP P JLT  A") = -1
-assert ("T VOJPAXI">"FTUN") = -1
-assert ("WMJHZMPT"=n$) = 0
-assert (186119>-172724) = -1
-assert (182286=a5t) = 0
-assert (k9<=141508) = -1
-assert (d43v7$=b4$) = 0
-assert (143736<-21415) = 0
-assert ("CN"<="TGE") = -1
-assert (-17004>-139951) = -1
-assert (n2<-146581) = 0
-assert (d43v7$>l1bve$) = -1
-assert (101166<>x4) = -1
-assert (v9$<="YCSTXWIKWYR") = -1
-assert (99588>=-26) = -1
-assert (a0$="SLVUQZTQ  P") = 0
-assert (116469=g5c) = 0
-assert ("E KH"<>b6$) = -1
-assert (i5blu$<"") = 0
-assert (h5h>=109662) = 0
-assert ("A  FHVCR W">n2p4$(1)) = 0
-assert (166<=-43223) = 0
-assert (c1m4>86839) = 0
-assert (x1=u20) = 0
-assert (101166<d(2)) = -1
-assert (v5c$<="ZATAFSQ") = -1
-assert (-180<-109) = -1
-assert (m61yt$(1)<"RY  QE CQM") = -1
-assert (i1q(2)<>l77es) = -1
-assert (-125375=u20) = 0
-assert (a8p=u20) = 0
-assert (m61yt$(0)>="TUO") = 0
-assert ("PN  KSSH"=m$) = 0
-assert (x8$(6)="HGQSP  R G") = 0
-assert ("P"=b6$) = 0
-assert (-36384<y8367) = -1
-assert (y3<=a8p) = 0
-assert (f2$(0)="BIPYCY") = 0
-assert ("T VOJPAXI"<>r9wr$) = -1
-assert (v5c$<>"D KX") = -1
-assert (102=182286) = 0
-assert ("MBB QW">i5blu$) = -1
-assert (n2<>h5h) = -1
-assert (x61$(1)<>n$) = -1
-assert (i$=j01fs$) = 0
-assert (u7fz3$>k93$) = 0
-assert (x5kns(2)>d2dhw) = -1
-assert (g$<>o4$) = -1
-assert ("XAI Q YT"<="") = 0
-assert (-199<=c1m4) = -1
-assert (-15<>c1m4) = -1
-assert (-43223<=86414) = -1
-assert (j5jeh<=-26) = 0
-assert (w<>x4) = -1
-assert ("YDDUWTR FS"<j01fs$) = 0
-assert (182286=m59d5) = 0
-assert (v3ok<g5pxy(1)) = -1
-assert (-172724>d2dhw) = 0
-assert (a1cw<=x1) = 0
-assert (-145032>h3l1) = 0
-assert (j6yht$<="Y MZ") = -1
-assert (u5o45>=v3ok) = 0
-assert (v5c$<s280$) = 0
-assert (h3l1>=x5kns(4)) = 0
-assert (-42>166) = 0
-assert ("J"<=a$) = -1
-assert (d(5)>136) = -1
-assert (59342=l77es) = 0
-assert (-15>b7em) = -1
-assert ("FTUN">="LLL") = 0
-assert (x8$(6)<="CJSWGYRJ") = 0
-assert ("QY">=j1$) = -1
-assert (32435>=d5m01) = -1
-assert ("CJSWGYRJ">=o8$) = 0
-assert (44566>=t00a) = -1
-assert (a84ho$<>w5eu$) = -1
-assert ("HGQSP  R G"<>v8kue$) = -1
-assert ("NT  OU"=z2p$) = 0
-assert (g3$<>y7fwx$) = -1
-assert (44641<44641) = 0
-assert (-139951<=n5ds) = 0
-assert (l8$(3)<="XHP SDMLISA") = -1
-assert (a66<=m59d5) = -1
-assert ("PMRVSLLA">v9$) = -1
-assert ("CJSWGYRJ">l8$(4)) = 0
-assert (""="MAD") = 0
-assert (x1<>-138014) = -1
-assert (v9$<=g8h$) = 0
-assert ("FXY"=e88$) = 0
-assert (g7b2q<h3l1) = 0
-assert (186119>d2dhw) = -1
-assert (c9y60$>="ZZJN") = 0
-assert (-107=-191) = 0
-assert (g5c<x7) = -1
-assert (32435=-62733) = 0
-assert (u5o45<x5kns(2)) = -1
-assert ("YCSTXWIKWYR"=j8c$) = 0
-assert (v3ok<>s0din) = -1
-assert (-36384>166) = 0
-assert (112627>=109662) = -1
-assert (-131>r3(5)) = -1
-assert (x7>-83190) = -1
-assert ("EICG"<=y7fwx$) = -1
-assert (-165529<-17004) = -1
-assert (j5jeh<>s9el7(1)) = -1
-assert (o4$<="RY  QE CQM") = -1
-assert (32435<=l54l) = -1
-assert ("HGQSP  R G"<=d8l$) = 0
-assert (z2p$="PMRVSLLA") = 0
-assert ("RY  QE CQM"<>n66h$) = -1
-assert (l77es<j5jeh) = -1
-assert (x$>=d43v7$) = 0
-assert ("R CNDOO JJ"="") = 0
-assert (59342<=y8367) = -1
-assert (l54l>=m6g) = 0
-assert (194940=x) = 0
-assert ("CP P JLT  A">=w5eu$) = 0
-assert (q7ii2$<=f$) = 0
-assert (""<"MAD") = -1
-assert (53197>=c1m4) = -1
-assert (k9=143736) = 0
-assert ("F"<=j1$) = -1
-assert (b5e$<>a0$) = -1
-assert (-26>=v8) = 0
-assert (r3(3)=166) = 0
-assert (-177480>-19320) = 0
-assert (n66h$<"ZZJN") = -1
-assert ("C CWBSNYH"<="NT  OU") = -1
-assert (g5c<141508) = -1
-assert (141508=43708) = 0
-assert (u22$<="MBB QW") = -1
-assert (j1$>p4n$(4)) = 0
-assert (r3(3)<s9el7(2)) = -1
-assert (u20>=l77es) = -1
-assert (c428k$<>"SLVUQZTQ  P") = -1
-assert (d$>="BM  XTVLEY") = -1
-assert (m0ga<>g7b2q) = -1
-assert (a0$>"C CWBSNYH") = -1
-assert (""<=z2p$) = -1
-assert (g5pxy(2)>t00a) = 0
-assert (x61$(5)<n2p4$(0)) = 0
-assert (h<>x1) = -1
-assert (d4eej<=w3ohg(2)) = 0
-assert (p4n$(3)=x17$) = 0
-assert (e1ttc$<"NTK   YU") = 0
-assert ("SLVUQZTQ  P">d43v7$) = -1
-assert (g7b2q<m1tvm) = 0
-assert (a8p<-80746) = 0
-assert ("XHP SDMLISA"<d43v7$) = 0
-assert (h7or7>116469) = 0
-assert (-105408>=101166) = 0
-assert (102>166) = 0
-assert (59342<q7pf) = 0
-assert ("P"<>"JB JRNPV") = -1
-assert (i5blu$>=a$) = 0
-assert ("X  K CDJTJ"<=l8$(2)) = -1
-assert (r9wr$<>z2ycr$) = -1
-assert (a3h$(1)>j9$) = 0
-assert (119932<=m59d5) = 0
-assert (i1q(1)<=i8) = 0
-assert (c0rf>=x7) = 0
-assert (i$<>c4buk$) = -1
-assert (o4$=f1$) = 0
-assert ("U DQQMGJ"="XHP SDMLISA") = 0
-assert (k93$<"P") = 0
-assert ("B"<>"BIPYCY") = -1
-assert (i5blu$<=b5e$) = -1
-assert (-94890>i8) = -1
-assert (n66h$<>"TGE") = -1
-assert (l8$(2)>="FTUN") = -1
-assert (x7<=d(3)) = 0
-assert (k93$<"") = 0
-assert (e0o$>c428k$) = 0
-assert (c4buk$<>"U DQQMGJ") = -1
-assert (v7<=j5jeh) = -1
-assert (l8$(1)>="XHP SDMLISA") = -1
-assert (g$="U DQQMGJ") = 0
-assert (k0c0$<=i$) = 0
-assert ("IOOGK OT"=x$) = 0
-assert ("ZZJN">=e0o$) = -1
-assert ("PN  KSSH"="NTK   YU") = 0
-assert ("TGE"="CP P JLT  A") = 0
-assert (-94890<=p4amg(2)) = -1
-assert (119170<>m1tvm) = -1
-assert (d4<=138827) = -1
-assert (44641<=h5h) = 0
-assert ("ZJHHBU">="ZHTGFJKWM") = -1
-assert (e$<"EIT U") = 0
-assert (i5blu$<>"WMJHZMPT") = -1
-assert (a8p>n0u1t) = -1
-assert (118500>=d(1)) = -1
-assert ("YTGDTC"<>x8$(4)) = -1
-assert (r3(1)<=m59d5) = 0
-assert ("RY  QE CQM"<="JB JRNPV") = 0
-assert (-145032>=j29bz) = 0
-assert (c0rf<c0rf) = 0
-assert (109662<-17004) = 0
-assert (m59d5<w) = -1
-assert (m3cx>=u20) = 0
-assert ("NT  OU"="O") = 0
-assert ("Y MZ">"WGXD") = -1
-assert ("TOWW HOS">=x61$(5)) = -1
-assert (s9el7(2)<u2u) = -1
-assert ("Y MZ"<=v9$) = 0
-assert (m$>"TGE") = 0
-assert ("A  FHVCR W">a5oba$) = -1
-assert (86414<=119170) = -1
-assert (""<>b5e$) = -1
-assert (n66h$<m61yt$(3)) = 0
-assert (u22$>=x$) = 0
-assert (-145032>-75561) = 0
-assert (143736<a66) = 0
-assert (a3h$(2)<=u22$) = 0
-assert (-172724<m6g) = -1
-assert (i1q(2)<=130411) = -1
-assert (m6g<=54) = 0
-assert ("A  FHVCR W"=j01fs$) = 0
-assert (g3s$(2)=g$) = 0
-assert (k93$<"Q I") = 0
-assert (g8h$>y7fwx$) = 0
-assert (d4eej<-146581) = 0
-assert (-43828<=-199) = -1
-assert (-75561<-138014) = 0
-assert (i2hxl<>a1cw) = -1
-assert ("LSMORK"<"V WCEEDUUX") = -1
-assert ("P"<=m7xlb$) = -1
-assert (k9<>-180) = -1
-assert (u20<y6aw0(1)) = 0
-assert (l1bve$<>j8c$) = -1
-assert (a84ho$=a0$) = 0
-assert (32435<=136) = 0
-assert (n0u1t<=c1m4) = 0
-assert (h5h=c1m4) = 0
-assert (i$>x8$(5)) = 0
-assert (a66=x5kns(3)) = 0
-assert (u22$>="TOWW HOS") = 0
-assert (-17>=c1m4) = -1
-assert (112627>=v3ok) = -1
-assert (j8c$<="B") = 0
-assert (-64=x4) = 0
-assert (b6$<>"FXY") = -1
-assert (a8p>v8) = -1
-assert ("E KH"<"WMJHZMPT") = -1
-assert (-172724<>-19320) = -1
-assert (143736=p4amg(1)) = 0
-assert ("OIS MM"=x8$(4)) = 0
-assert (c9y60$<="XHP SDMLISA") = -1
-assert (-80746<119170) = -1
-assert (118500>44641) = -1
-assert (y3<>d2dhw) = -1
-assert (""<="P") = -1
-assert (e$="JB JRNPV") = 0
-assert ("EIT U"<>a0$) = -1
-assert (x4>=l08i) = -1
-assert (83230=84352) = 0
-assert (e0o$=p4n$(1)) = 0
-assert (e1ttc$<="XHP SDMLISA") = -1
-assert ("LLL"<>j9$) = -1
-assert (g7b2q>=-75561) = -1
-assert (119626<-19320) = 0
-assert (-122008=e6) = 0
-assert (j5jeh>i1q(1)) = -1
-assert (x4<>m6g) = -1
-assert ("PN  KSSH">="LKE ICVKLC") = -1
-assert (h7or7<>101166) = -1
-assert (w5eu$="EIT U") = 0
-assert (y6aw0(0)<>119626) = -1
-assert ("NTK   YU"=k$) = 0
-assert (r9wr$=c428k$) = 0
-assert (k$>=k$) = -1
-assert (-19320<=109662) = -1
-assert (c4buk$>=d$) = 0
-assert ("">="WMJHZMPT") = 0
-assert ("RY  QE CQM">="YCSTXWIKWYR") = 0
-assert (t00a<-191) = 0
-assert ("JML SCC"<>m7xlb$) = -1
-assert ("">"MBB QW") = 0
-assert ("YTGDTC"<>b6$) = -1
-assert ("NT  OU"<>"") = -1
-assert (v=-180) = 0
-assert (h3l1>-86) = -1
-assert ("CN"<=a1flh$) = -1
-assert (q7ii2$<"GCXI   MC") = 0
-assert ("WMJHZMPT">"RSNQHI Z") = -1
-assert ("">"R CNDOO JJ") = 0
-assert (u20>=w) = -1
-assert ("P"<=u$) = -1
-assert (x$<>"ZJHHBU") = -1
-assert (-66<=-178778) = 0
-assert (c4buk$<="G XZI") = -1
-assert ("NTK   YU"<"") = 0
-assert ("CV K SOU"<="") = 0
-assert (c0rf<=d2dhw) = -1
-assert ("T VOJPAXI"<>a3h$(0)) = -1
-assert (a3h$(0)=k$) = 0
-assert ("NT  OU">=c9y60$) = 0
-assert ("XHP SDMLISA"<=q7ii2$) = -1
-assert ("MAD"<t0j8d$) = -1
-assert (86414<>v8) = -1
-assert (e=c0rf) = 0
-assert (i$>"HZS TG") = -1
-assert (x8$(0)<>"P") = -1
-assert (p4n$(2)<>j01fs$) = -1
-assert (j5jeh<-18745) = 0
-assert ("JML SCC"<q5wiu$) = 0
-assert (m61yt$(1)="B") = 0
-assert (z>=-15) = -1
-assert ("WMJHZMPT"="") = 0
-assert (102>=i8) = -1
-assert ("LLL"<>u22$) = -1
-assert ("PMRVSLLA"<=x$) = 0
-assert (f$<a3h$(2)) = -1
-assert ("K">"CP P JLT  A") = -1
-assert (n66h$="") = 0
-assert (j29bz<c1m4) = -1
-assert ("ZJHHBU"<="Z") = 0
-assert (t0j8d$<=d8l$) = 0
-assert (a1flh$<="R QJBUC") = 0
-assert (c1m4=x5td(5)) = 0
-assert ("PMRVSLLA"<=a84ho$) = 0
-assert (h9>=z) = 0
-assert (186526>=88297) = -1
-assert (b4$<="") = 0
-assert (h>=u5o45) = 0
-assert (g3s$(0)<>"NZPLICP A") = -1
-assert ("Y MZ"<n$) = 0
-assert (-17<143736) = -1
-assert (u22$<>"C CWBSNYH") = -1
-assert ("HGQSP  R G">k0c0$) = 0
-assert (-19320>-90365) = -1
-assert ("HGQSP  R G">x17$) = 0
-assert (d4eej<=112627) = -1
-assert (v7<79879) = -1
-assert ("P"<="FTUN") = 0
-assert (l8$(3)="HI") = 0
+dim d9zu(6)
+dim c1(2)
+dim s0iqd(6)
+dim s253d(4)
+dim d4(6)
+dim s4k(3)
+dim n2(4)
+dim n1xc(3)
+dim l16c(4)
+dim z96fn(6)
+dim s0$(5)
+dim f7nhv$(5)
+dim k6$(6)
+dim r6z47$(3)
+dim j02z$(2)
+dim p0mcb$(2)
+dim j7p2i$(5)
+dim o1$(5)
+dim m4n0$(6)
+dim q7$(5)
+let v=119682
+q6c=-168757
+h5zhs=-96797
+w4ek=-4817
+let v3=-146196
+f9t=-60021
+let n7uj=-124
+let e=95
+let z4=53
+s1e7=64174
+i9r=199505
+let l=-158389
+i5=-73377
+i9649=-54956
+k5bb=-141
+let v3bp3=63013
+b5=127854
+let m29ap=172912
+n0x2=-48775
+d7q=-50622
+u3kj7=56413
+x5wlb=-153909
+l6w51=103793
+let o3wf0=0
+x7uj=-189640
+b9=145
+a=-180390
+let d3uf=34146
+let l4yc=84940
+let w=158081
+m7=-199626
+let p9d=-194726
+let a1=32325
+let e5i=114309
+let l4pck=152260
+let g1=-147
+d3cyp=78173
+m4=147211
+let x=163
+f9pj=95095
+let v4=102
+let y913n=-19375
+let a523v=96
+let h95x=3
+s7=191
+s1oht=29888
+let x2k0=75656
+q1cj=-78788
+let u8sh5=27
+let w6=9208
+h=153094
+k2kiy=147
+r4hx0=-181688
+let c79b0=-198
+let k1j=-92
+n=131044
+m92at=-15723
+b=-19
+h6w=-177162
+let g=-99
+let h9z0t$="Z NYAKEASH"
+let c$=""
+let n9nmc$="HCKIUCU"
+let k$="POFQHAFTFB"
+i4i$="LIXDM"
+i8vy$=""
+q22$="D S"
+let b$="SDODCXSZ"
+j2i$="CTSPPKWVZE"
+let l3nnm$="MKTZQT"
+i5qdi$="SY GNJ"
+m6xvz$="EIQQ"
+let x4$="XC"
+z3$="XJRAT"
+s0ahj$="JGNOYYJ CM"
+l1fjn$="XL  AQ  AV"
+let u$="RDSZXUVV"
+i5$="D"
+let z7o$="L"
+let h6pzz$="KB  BDDIT"
+let m6$="IB"
+let e5j$="Q   YOZR T"
+d$="S  V G"
+n2$=""
+let t$="HXK"
+let l2$="QXCO"
+let w2$="H"
+let a3ocl$="JFSPVY"
+r2i4t$="MHO ENJWT"
+let q9rv$="UCA"
+e3b7$="EWIT"
+let e7m$=""
+let j7$="RKY Q"
+t1$=""
+let l$="ZCNH S"
+b5agc$="DSY HFP"
+let y$="HX"
+e$="V"
+d7yf$="Y"
+p1$="WYMBN  OL"
+c6z$="Y  QQA"
+let j7e4$="VPXCR"
+let h$="KZ DH"
+let v4i9$="B"
+let i7o$="MVFJOCKDIYG"
+j7bp3$=""
+y22s2$=""
+let m$="Q  A"
+let x1w$="P TV"
+let v9dkd$="CEPGSU"
+let s$="ZSU BJLSJ"
+n6d$="QR PP"
+let c4y6q$="WI"
+let e3p$="I S  LYZP"
+h5$="KSG JYSE"
+m0$="B VG VSUEF"
+j$="N"
+let o5n3$=""
+t45kv$=""
+let w5z$="IGAWRT BBO"
+d9zu(0)=148357:d9zu(1)=-193252:d9zu(2)=-143032:d9zu(3)=-159509:d9zu(4)=198543:d9zu(5)=-100943:d9zu(6)=-196310
+c1(0)=72756:c1(1)=-175:c1(2)=123
+s0iqd(0)=29:s0iqd(1)=121525:s0iqd(2)=63:s0iqd(3)=77249:s0iqd(4)=-23490:s0iqd(5)=-128495:s0iqd(6)=115074
+s253d(0)=-126962:s253d(1)=78627:s253d(2)=-157061:s253d(3)=-182188:s253d(4)=155009
+d4(0)=-164089:d4(1)=-40340:d4(2)=-135858:d4(3)=-171393:d4(4)=-191765:d4(5)=114:d4(6)=120691
+s4k(0)=-109:s4k(1)=-102293:s4k(2)=-161733:s4k(3)=-178255
+n2(0)=-127608:n2(1)=18115:n2(2)=-189118:n2(3)=130:n2(4)=-153074
+n1xc(0)=45595:n1xc(1)=13072:n1xc(2)=-63106:n1xc(3)=26327
+l16c(0)=165340:l16c(1)=-186:l16c(2)=49059:l16c(3)=-9:l16c(4)=-175136
+z96fn(0)=-151725:z96fn(1)=45:z96fn(2)=55756:z96fn(3)=144034:z96fn(4)=-53759:z96fn(5)=-29:z96fn(6)=-176861
+s0$(0)="YS EBWVZ":s0$(1)="ONC YVKQ":s0$(2)="X VGWU":s0$(3)="OMAYVJ Z":s0$(4)="":s0$(5)="TJH TY M SW"
+f7nhv$(0)="MJRFWTRCC":f7nhv$(1)="VSHSKXORRT":f7nhv$(2)="DLCFB":f7nhv$(3)="WQAV O":f7nhv$(4)="MWVUFJB T":f7nhv$(5)=""
+k6$(0)="Y TSLX":k6$(1)="ZBMO":k6$(2)="MKNP AXW":k6$(3)="Z  IH CHL":k6$(4)="ONPB":k6$(5)="VHHO":k6$(6)="EVAFMTWD V"
+r6z47$(0)="FFFOZSO  NJ":r6z47$(1)="IHZB S UK":r6z47$(2)="ASUDJJMBORD":r6z47$(3)="PP PPQNWK"
+j02z$(0)="LJLJU ZTX C":j02z$(1)="PSVTQIAWF":j02z$(2)=""
+p0mcb$(0)="AE":p0mcb$(1)="Z":p0mcb$(2)="O"
+j7p2i$(0)="VZ CGK":j7p2i$(1)="FBK":j7p2i$(2)="XJKPV KQMP":j7p2i$(3)="ZMEMFHS UR":j7p2i$(4)="TWS F J PGT":j7p2i$(5)="B RJP ACX O"
+o1$(0)="AGC EU IK":o1$(1)="X DH":o1$(2)="NDYCSJSY":o1$(3)="YORVRC  Z":o1$(4)="KGPDODP":o1$(5)=""
+m4n0$(0)="LTSQ":m4n0$(1)="N FD":m4n0$(2)="":m4n0$(3)="BFXMMMO":m4n0$(4)="WAYTEA":m4n0$(5)="IGV":m4n0$(6)="FDETE"
+q7$(0)="":q7$(1)="KVKAD":q7$(2)="KLUCCKSO C":q7$(3)="RZ":q7$(4)="MM  FLET":q7$(5)="D"
+assert v=119682
+assert q6c=-168757
+assert h5zhs=-96797
+assert w4ek=-4817
+assert v3=-146196
+assert f9t=-60021
+assert n7uj=-124
+assert e=95
+assert z4=53
+assert s1e7=64174
+assert i9r=199505
+assert l=-158389
+assert i5=-73377
+assert i9649=-54956
+assert k5bb=-141
+assert v3bp3=63013
+assert b5=127854
+assert m29ap=172912
+assert n0x2=-48775
+assert d7q=-50622
+assert u3kj7=56413
+assert x5wlb=-153909
+assert l6w51=103793
+assert o3wf0=0
+assert x7uj=-189640
+assert b9=145
+assert a=-180390
+assert d3uf=34146
+assert l4yc=84940
+assert w=158081
+assert m7=-199626
+assert p9d=-194726
+assert a1=32325
+assert e5i=114309
+assert l4pck=152260
+assert g1=-147
+assert d3cyp=78173
+assert m4=147211
+assert x=163
+assert f9pj=95095
+assert v4=102
+assert y913n=-19375
+assert a523v=96
+assert h95x=3
+assert s7=191
+assert s1oht=29888
+assert x2k0=75656
+assert q1cj=-78788
+assert u8sh5=27
+assert w6=9208
+assert h=153094
+assert k2kiy=147
+assert r4hx0=-181688
+assert c79b0=-198
+assert k1j=-92
+assert n=131044
+assert m92at=-15723
+assert b=-19
+assert h6w=-177162
+assert g=-99
+assert h9z0t$="Z NYAKEASH"
+assert c$=""
+assert n9nmc$="HCKIUCU"
+assert k$="POFQHAFTFB"
+assert i4i$="LIXDM"
+assert i8vy$=""
+assert q22$="D S"
+assert b$="SDODCXSZ"
+assert j2i$="CTSPPKWVZE"
+assert l3nnm$="MKTZQT"
+assert i5qdi$="SY GNJ"
+assert m6xvz$="EIQQ"
+assert x4$="XC"
+assert z3$="XJRAT"
+assert s0ahj$="JGNOYYJ CM"
+assert l1fjn$="XL  AQ  AV"
+assert u$="RDSZXUVV"
+assert i5$="D"
+assert z7o$="L"
+assert h6pzz$="KB  BDDIT"
+assert m6$="IB"
+assert e5j$="Q   YOZR T"
+assert d$="S  V G"
+assert n2$=""
+assert t$="HXK"
+assert l2$="QXCO"
+assert w2$="H"
+assert a3ocl$="JFSPVY"
+assert r2i4t$="MHO ENJWT"
+assert q9rv$="UCA"
+assert e3b7$="EWIT"
+assert e7m$=""
+assert j7$="RKY Q"
+assert t1$=""
+assert l$="ZCNH S"
+assert b5agc$="DSY HFP"
+assert y$="HX"
+assert e$="V"
+assert d7yf$="Y"
+assert p1$="WYMBN  OL"
+assert c6z$="Y  QQA"
+assert j7e4$="VPXCR"
+assert h$="KZ DH"
+assert v4i9$="B"
+assert i7o$="MVFJOCKDIYG"
+assert j7bp3$=""
+assert y22s2$=""
+assert m$="Q  A"
+assert x1w$="P TV"
+assert v9dkd$="CEPGSU"
+assert s$="ZSU BJLSJ"
+assert n6d$="QR PP"
+assert c4y6q$="WI"
+assert e3p$="I S  LYZP"
+assert h5$="KSG JYSE"
+assert m0$="B VG VSUEF"
+assert j$="N"
+assert o5n3$=""
+assert t45kv$=""
+assert w5z$="IGAWRT BBO"
+assert d9zu(0)=148357:assert d9zu(1)=-193252:assert d9zu(2)=-143032:assert d9zu(3)=-159509:assert d9zu(4)=198543:assert d9zu(5)=-100943:assert d9zu(6)=-196310
+assert c1(0)=72756:assert c1(1)=-175:assert c1(2)=123
+assert s0iqd(0)=29:assert s0iqd(1)=121525:assert s0iqd(2)=63:assert s0iqd(3)=77249:assert s0iqd(4)=-23490:assert s0iqd(5)=-128495:assert s0iqd(6)=115074
+assert s253d(0)=-126962:assert s253d(1)=78627:assert s253d(2)=-157061:assert s253d(3)=-182188:assert s253d(4)=155009
+assert d4(0)=-164089:assert d4(1)=-40340:assert d4(2)=-135858:assert d4(3)=-171393:assert d4(4)=-191765:assert d4(5)=114:assert d4(6)=120691
+assert s4k(0)=-109:assert s4k(1)=-102293:assert s4k(2)=-161733:assert s4k(3)=-178255
+assert n2(0)=-127608:assert n2(1)=18115:assert n2(2)=-189118:assert n2(3)=130:assert n2(4)=-153074
+assert n1xc(0)=45595:assert n1xc(1)=13072:assert n1xc(2)=-63106:assert n1xc(3)=26327
+assert l16c(0)=165340:assert l16c(1)=-186:assert l16c(2)=49059:assert l16c(3)=-9:assert l16c(4)=-175136
+assert z96fn(0)=-151725:assert z96fn(1)=45:assert z96fn(2)=55756:assert z96fn(3)=144034:assert z96fn(4)=-53759:assert z96fn(5)=-29:assert z96fn(6)=-176861
+assert s0$(0)="YS EBWVZ":assert s0$(1)="ONC YVKQ":assert s0$(2)="X VGWU":assert s0$(3)="OMAYVJ Z":assert s0$(4)="":assert s0$(5)="TJH TY M SW"
+assert f7nhv$(0)="MJRFWTRCC":assert f7nhv$(1)="VSHSKXORRT":assert f7nhv$(2)="DLCFB":assert f7nhv$(3)="WQAV O":assert f7nhv$(4)="MWVUFJB T":assert f7nhv$(5)=""
+assert k6$(0)="Y TSLX":assert k6$(1)="ZBMO":assert k6$(2)="MKNP AXW":assert k6$(3)="Z  IH CHL":assert k6$(4)="ONPB":assert k6$(5)="VHHO":assert k6$(6)="EVAFMTWD V"
+assert r6z47$(0)="FFFOZSO  NJ":assert r6z47$(1)="IHZB S UK":assert r6z47$(2)="ASUDJJMBORD":assert r6z47$(3)="PP PPQNWK"
+assert j02z$(0)="LJLJU ZTX C":assert j02z$(1)="PSVTQIAWF":assert j02z$(2)=""
+assert p0mcb$(0)="AE":assert p0mcb$(1)="Z":assert p0mcb$(2)="O"
+assert j7p2i$(0)="VZ CGK":assert j7p2i$(1)="FBK":assert j7p2i$(2)="XJKPV KQMP":assert j7p2i$(3)="ZMEMFHS UR":assert j7p2i$(4)="TWS F J PGT":assert j7p2i$(5)="B RJP ACX O"
+assert o1$(0)="AGC EU IK":assert o1$(1)="X DH":assert o1$(2)="NDYCSJSY":assert o1$(3)="YORVRC  Z":assert o1$(4)="KGPDODP":assert o1$(5)=""
+assert m4n0$(0)="LTSQ":assert m4n0$(1)="N FD":assert m4n0$(2)="":assert m4n0$(3)="BFXMMMO":assert m4n0$(4)="WAYTEA":assert m4n0$(5)="IGV":assert m4n0$(6)="FDETE"
+assert q7$(0)="":assert q7$(1)="KVKAD":assert q7$(2)="KLUCCKSO C":assert q7$(3)="RZ":assert q7$(4)="MM  FLET":assert q7$(5)="D"
+assert (s0ahj$<r2i4t$) = -1
+assert ("Y"=v4i9$) = 0
+assert ("MKTZQT">"P TV") = 0
+assert (t45kv$>"JFSPVY") = 0
+assert (d3cyp=27) = 0
+assert (x5wlb>=119682) = 0
+assert (-19375<>m29ap) = -1
+assert (-19375>=-147) = 0
+assert (d3uf<=-158389) = 0
+assert (145<n0x2) = 0
+assert (d3cyp>0) = -1
+assert ("ZSU BJLSJ">y22s2$) = -1
+assert (-186<c1(0)) = -1
+assert (n7uj<w6) = -1
+assert ("JFSPVY"="EIQQ") = 0
+assert (s1e7<>-19375) = -1
+assert ("D S"<>"I S  LYZP") = -1
+assert (s253d(2)<l16c(2)) = -1
+assert (n7uj<=95095) = -1
+assert (95<>s1oht) = -1
+assert (78173<n0x2) = 0
+assert (z96fn(4)=d3uf) = 0
+assert ("RDSZXUVV"<="I S  LYZP") = 0
+assert (-177162<=v) = -1
+assert ("TWS F J PGT">"ZSU BJLSJ") = 0
+assert (-159509<=l4pck) = -1
+assert (103793<0) = 0
+assert (158081=-50622) = 0
+assert (-126962<=29888) = -1
+assert (j$>="UCA") = 0
+assert (-158389<>q1cj) = -1
+assert ("JGNOYYJ CM">="MVFJOCKDIYG") = 0
+assert (e7m$<l1fjn$) = -1
+assert (a523v<>78173) = -1
+assert (27<>g1) = -1
+assert (j7e4$>="") = -1
+assert (s4k(0)>=w) = 0
+assert (v3<=n1xc(0)) = -1
+assert ("Z NYAKEASH">"CTSPPKWVZE") = -1
+assert (s7>-15723) = -1
+assert ("SY GNJ">"XC") = 0
+assert (j7e4$<>z3$) = -1
+assert ("Z NYAKEASH"=l$) = 0
+assert (h9z0t$>"IGAWRT BBO") = -1
+assert (x<=123) = 0
+assert (-50622<32325) = -1
+assert ("TJH TY M SW"=p0mcb$(0)) = 0
+assert (i8vy$<"N") = -1
+assert (-141=n1xc(2)) = 0
+assert (c79b0>-177162) = -1
+assert (e5j$>"VPXCR") = 0
+assert (q22$<"Z NYAKEASH") = -1
+assert (w5z$<="EWIT") = 0
+assert ("UCA"<>i5qdi$) = -1
+assert (63<>x7uj) = -1
+assert ("WI"<s$) = -1
+assert (i5qdi$<="JFSPVY") = 0
+assert (b5>=163) = -1
+assert (-60021>147211) = 0
+assert (s0iqd(2)>=96) = 0
+assert ("HCKIUCU">=a3ocl$) = 0
+assert (t45kv$<j7e4$) = -1
+assert (d4(4)>-146196) = 0
+assert (191<=27) = 0
+assert ("KZ DH"<=q22$) = 0
+assert (r4hx0<>-60021) = -1
+assert (i5qdi$>"DSY HFP") = -1
+assert (s4k(1)=-73377) = 0
+assert ("EWIT"<=m6xvz$) = 0
+assert (-151725<>-4817) = -1
+assert ("IB"<>z7o$) = -1
+assert (""<>"Z") = -1
+assert (q22$<>"Q   YOZR T") = -1
+assert (-180390>f9t) = 0
+assert (f7nhv$(0)>x4$) = 0
+assert (32325<>u8sh5) = -1
+assert ("D">=p0mcb$(2)) = 0
+assert ("V"<=c4y6q$) = -1
+assert ("KB  BDDIT">=i8vy$) = -1
+assert ("H"<>"SDODCXSZ") = -1
+assert (n9nmc$<"") = 0
+assert (t45kv$="MHO ENJWT") = 0
+assert (95095=v3bp3) = 0
+assert (3=191) = 0
+assert (m$="XC") = 0
+assert ("UCA">=m$) = -1
+assert ("XJRAT">k6$(3)) = 0
+assert ("L"=t45kv$) = 0
+assert (153094<=-50622) = 0
+assert (-19375<=199505) = -1
+assert (s0iqd(6)=103793) = 0
+assert (a1>=h) = 0
+assert (j7e4$>q9rv$) = -1
+assert ("L">=h6pzz$) = -1
+assert (-198<152260) = -1
+assert (n1xc(0)<=119682) = -1
+assert (95095<63) = 0
+assert ("CEPGSU"="QR PP") = 0
+assert (131044<=b5) = 0
+assert (""<"ZBMO") = -1
+assert ("MHO ENJWT">=s$) = 0
+assert (163>s1oht) = 0
+assert ("SY GNJ"<x1w$) = 0
+assert ("JGNOYYJ CM">"D") = -1
+assert (j$<="MVFJOCKDIYG") = 0
+assert (x2k0<=b9) = 0
+assert ("D"<"Y  QQA") = -1
+assert (n2$>p1$) = 0
+assert (t45kv$<="SY GNJ") = -1
+assert (l16c(4)<=v3bp3) = -1
+assert (x<>-48775) = -1
+assert ("VPXCR">="S  V G") = -1
+assert (y22s2$<=j02z$(2)) = -1
+assert (s253d(4)=f9pj) = 0
+assert ("B"="QR PP") = 0
+assert ("UCA"<h$) = 0
+assert (n1xc(1)>-4817) = -1
+assert (h5zhs>k1j) = 0
+assert (145<78173) = -1
+assert ("">"HCKIUCU") = 0
+assert (-73377=w) = 0
+assert (p0mcb$(2)>b5agc$) = -1
+assert (127854=h) = 0
+assert (s0iqd(5)<>f9t) = -1
+assert (-15723<=-147) = -1
+assert (q7$(1)<"") = 0
+assert (0>=x2k0) = 0
+assert (m7>-181688) = 0
+assert ("XJRAT"<"SY GNJ") = 0
+assert (k2kiy<>u3kj7) = -1
+assert ("Y">=m4n0$(0)) = -1
+assert (y$="YORVRC  Z") = 0
+assert (-96797>l4pck) = 0
+assert ("SDODCXSZ">"HCKIUCU") = -1
+assert (r4hx0=-73377) = 0
+assert ("HXK">"CTSPPKWVZE") = -1
+assert (""<=b5agc$) = -1
+assert (w5z$<="EVAFMTWD V") = 0
+assert ("P TV"<>c4y6q$) = -1
+assert (i9r<r4hx0) = 0
+assert (-60021<h6w) = 0
+assert (-198=x) = 0
+assert (k6$(3)>=w5z$) = -1
+assert (e$>="QXCO") = -1
+assert (63013<>-54956) = -1
+assert ("HCKIUCU">="DSY HFP") = -1
+assert ("I S  LYZP">"KSG JYSE") = 0
+assert (n0x2=n2(1)) = 0
+assert (z96fn(5)>-19) = 0
+assert (l4yc<=-73377) = 0
+assert (v4i9$<>o5n3$) = -1
+assert ("KSG JYSE"<i7o$) = -1
+assert (h9z0t$<"") = 0
+assert (75656<g) = 0
+assert ("L">=n6d$) = 0
+assert ("RDSZXUVV"<"LIXDM") = 0
+assert ("XC"=o5n3$) = 0
+assert ("Y">=p1$) = -1
+assert (h6pzz$=o1$(4)) = 0
+assert (i4i$<="MM  FLET") = -1
+assert ("MKTZQT">=u$) = 0
+assert (j2i$=h$) = 0
+assert (d4(6)>=b9) = -1
+assert (n6d$="MKNP AXW") = 0
+assert (-50622<>-54956) = -1
+assert ("QXCO">v4i9$) = -1
+assert (v9dkd$<>m6$) = -1
+assert (-141>w) = 0
+assert (q7$(5)=l3nnm$) = 0
+assert ("XJKPV KQMP">="DSY HFP") = -1
+assert (c$<>o1$(5)) = 0
+assert (e5i<>127854) = -1
+assert (172912<=d4(1)) = 0
+assert (z7o$<"O") = -1
+assert (153094>=f9pj) = -1
+assert (-158389>v3) = 0
+assert (-19375<-96797) = 0
+assert (-19375<27) = -1
+assert (-147>=l4pck) = 0
+assert ("">=n6d$) = 0
+assert (l$<=c6z$) = 0
+assert (172912<>n7uj) = -1
+assert ("S  V G"<"S  V G") = 0
+assert (r6z47$(3)<l1fjn$) = -1
+assert (e$<"TWS F J PGT") = 0
+assert (""<>b$) = -1
+assert (-78788<=53) = -1
+assert (n2$=b5agc$) = 0
+assert (-96797<=m29ap) = -1
+assert ("XC"=e5j$) = 0
+assert (t1$<"") = 0
+assert (d4(2)>=l16c(4)) = -1
+assert (-147<s1oht) = -1
+assert (-78788>=i5) = 0
+assert (-153909<>191) = -1
+assert (b<>p9d) = -1
+assert (s0iqd(1)<>-73377) = -1
+assert (a3ocl$="KB  BDDIT") = 0
+assert (0=147) = 0
+assert (s4k(0)<q6c) = 0
+assert ("N FD"<v9dkd$) = 0
+assert (h5$<>"DSY HFP") = -1
+assert (i9r<-78788) = 0
+assert (b$>"B") = -1
+assert (l4yc<>x2k0) = -1
+assert (s0$(2)<c$) = 0
+assert (-124=34146) = 0
+assert ("EIQQ">=z3$) = 0
+assert (i7o$<>"Q  A") = -1
+assert (84940<=-124) = 0
+assert ("Y"="PP PPQNWK") = 0
+assert (m7=d3cyp) = 0
+assert ("IB"<="P TV") = -1
+assert (t1$=r6z47$(1)) = 0
+assert (-99=n1xc(0)) = 0
+assert (63013<>145) = -1
+assert (34146=a) = 0
+assert (i9649<=-54956) = -1
+assert (t45kv$<>"") = 0
+assert (s0$(2)<>"D S") = -1
+assert (147<>m29ap) = -1
+assert (y$=r2i4t$) = 0
+assert (34146<>b9) = -1
+assert (x=84940) = 0
+assert ("B RJP ACX O"<h$) = -1
+assert (z4<n1xc(2)) = 0
+assert (k1j<>102) = -1
+assert (l4pck>-178255) = -1
+assert ("WI"="Y") = 0
+assert ("Y  QQA"<=j$) = 0
+assert (127854>=-50622) = -1
+assert (j7bp3$>w5z$) = 0
+assert (t$=i7o$) = 0
+assert ("QR PP"<="KB  BDDIT") = 0
+assert (102<-96797) = 0
+assert (z7o$<>j$) = -1
+assert (153094<75656) = 0
+assert (158081<>-128495) = -1
+assert (b$=j2i$) = 0
+assert (l2$<"ASUDJJMBORD") = 0
+assert (m6$>"CEPGSU") = -1
+assert ("D S"<="") = 0
+assert (h$=w5z$) = 0
+assert (k$<>n6d$) = -1
+assert (j7$=n6d$) = 0
+assert (x<145) = 0
+assert ("LIXDM">u$) = 0
+assert (75656<=172912) = -1
+assert (k$<>"") = -1
+assert ("VPXCR">="RDSZXUVV") = -1
+assert (-99<>l) = -1
+assert (z3$<="QXCO") = 0
+assert (-50622<=d3cyp) = -1
+assert ("PP PPQNWK"<r2i4t$) = 0
+assert (x>=-199626) = -1
+assert (s1oht>=-141) = -1
+assert (e7m$<>"JGNOYYJ CM") = -1
+assert (-102293>=-199626) = -1
+assert ("RKY Q"<="VHHO") = -1
+assert (l6w51=x7uj) = 0
+assert (x1w$<="KZ DH") = 0
+assert (s0ahj$<="TWS F J PGT") = -1
+assert (-92>=-153909) = -1
+assert (k1j<=145) = -1
+assert (72756=k5bb) = 0
+assert (u$<=q22$) = 0
+assert (-146196<d9zu(3)) = 0
+assert (-92>0) = 0
+assert (v9dkd$<r6z47$(2)) = 0
+assert (x4$<h5$) = 0
+assert (""<="Q   YOZR T") = -1
+assert (h5zhs<=s253d(4)) = -1
+assert (u3kj7>56413) = 0
+assert (o5n3$>="KB  BDDIT") = 0
+assert (m7>=-4817) = 0
+assert (m4<p9d) = 0
+assert (l2$>="QR PP") = -1
+assert (j7bp3$<>w2$) = -1
+assert (g1>=-177162) = -1
+assert ("HX"<"EIQQ") = 0
+assert (a523v>-48775) = -1
+assert ("Q  A"<>j2i$) = -1
+assert ("EWIT"<=e5j$) = -1
+assert (n2(4)<>h95x) = -1
+assert ("H"=t45kv$) = 0
+assert (-153909>s1e7) = 0
+assert (78173<63) = 0
+assert ("VPXCR">=c6z$) = 0
+assert (148357<-109) = 0
+assert (g=y913n) = 0
+assert (s0$(3)<>"KB  BDDIT") = -1
+assert (c4y6q$>="IGAWRT BBO") = -1
+assert (n6d$>="PSVTQIAWF") = -1
+assert (n9nmc$<l2$) = -1
+assert (191>=119682) = 0
+assert (v4i9$<"P TV") = -1
+assert (p9d<=-193252) = -1
+assert (m92at<-182188) = 0
+assert (-147<>m4) = -1
+assert (s0iqd(5)<>18115) = -1
+assert (t45kv$<"IB") = -1
+assert (55756<=147) = 0
+assert (114309<x7uj) = 0
+assert (r4hx0>=147) = 0
+assert (-60021<=63013) = -1
+assert ("WI"="SDODCXSZ") = 0
+assert (-177162<152260) = -1
+assert (c6z$="HX") = 0
+assert (199505<=172912) = 0
+assert ("CEPGSU">="WYMBN  OL") = 0
+assert (b9>=163) = 0
+assert (0=56413) = 0
+assert (s253d(2)>=-15723) = 0
+assert (53>-19375) = -1
+assert (q7$(4)="P TV") = 0
+assert ("CEPGSU"<m0$) = 0
+assert (163>i5) = -1
+assert (172912>=l4yc) = -1
+assert ("SY GNJ"<=v4i9$) = 0
+assert (i4i$<m6xvz$) = 0
+assert (x1w$="B VG VSUEF") = 0
+assert (e5i<>32325) = -1
+assert ("Z  IH CHL">l1fjn$) = -1
+assert (i5$>="") = -1
+assert (-198<-127608) = 0
+assert (-177162>27) = 0
+assert (95095=95) = 0
+assert (v3bp3>=-92) = -1
+assert (v>-48775) = -1
+assert ("JGNOYYJ CM">"HX") = -1
+assert (m$<z3$) = -1
+assert (127854>=-146196) = -1
+assert ("LIXDM"<"Z NYAKEASH") = -1
+assert (e$<=k6$(1)) = -1
+assert (-63106<-96797) = 0
+assert (84940>z96fn(1)) = -1
+assert (b$>x1w$) = -1
+assert (r2i4t$<z7o$) = 0
+assert (131044=u3kj7) = 0
+assert (p0mcb$(2)<y$) = 0
+assert ("EWIT">"QXCO") = 0
+assert ("EIQQ">=i4i$) = 0
+assert ("XC"<>"IHZB S UK") = -1
+assert ("Q  A"<n2$) = 0
+assert (q9rv$<=j02z$(1)) = 0
+assert (""<="") = -1
+assert (3<=s4k(0)) = 0
+assert (0<>-19) = -1
+assert ("IB"<"XL  AQ  AV") = -1
+assert (k$<=i4i$) = 0
+assert (h$>j7$) = 0
+assert (27<145) = -1
+assert (i8vy$>=o5n3$) = -1
+assert (g>114309) = 0
+assert (""<="JFSPVY") = -1
+assert (i5>=123) = 0
+assert (-189118>s4k(0)) = 0
+assert (95095<=95) = 0
+assert (l4yc<>75656) = -1
+assert (i8vy$<n9nmc$) = -1
+assert (-19=3) = 0
+assert (t1$<=k$) = -1
+assert ("AE"=o5n3$) = 0
+assert (-158389<-19375) = -1
+assert (n2$<w2$) = -1
+assert (j02z$(1)="CEPGSU") = 0
+assert (s7<=d9zu(3)) = 0
+assert (s0iqd(0)<=s1oht) = -1
+assert (h5$<="") = 0
+assert (r2i4t$<>"") = -1
+assert (d7yf$<="") = 0
+assert ("CEPGSU"<="") = 0
+assert (s1e7>h5zhs) = -1
+assert ("B"="S  V G") = 0
+assert (f9pj=56413) = 0
+assert (u3kj7>=b) = -1
+assert (-78788<s4k(0)) = -1
+assert ("JGNOYYJ CM"<m$) = -1
+assert ("NDYCSJSY"<>s0ahj$) = -1
+assert (127854=k5bb) = 0
+assert (d9zu(5)>103793) = 0
+assert (n7uj<>102) = -1
+assert (-96797<>s253d(4)) = -1
+assert ("LJLJU ZTX C">=m6$) = -1
+assert (-157061<=158081) = -1
+assert (n7uj<n7uj) = 0
+assert (v9dkd$="POFQHAFTFB") = 0
+assert (d7q=32325) = 0
+assert (q1cj<>v3) = -1
+assert (q7$(3)>=k6$(0)) = 0
+assert (158081>=d4(5)) = -1
+assert (z7o$>p0mcb$(2)) = 0
+assert (b5=-109) = 0
+assert (s7>=w) = 0
+assert (""<>e3p$) = -1
+assert (-96797<78173) = -1
+assert (123<95095) = -1
+assert (131044<>x5wlb) = -1
+assert (145=c1(2)) = 0
+assert ("HCKIUCU"<x1w$) = -1
+assert (f7nhv$(1)<>"LIXDM") = -1
+assert (j02z$(2)=m4n0$(4)) = 0
+assert (""=f7nhv$(1)) = 0
+assert (53=-124) = 0
+assert (-92>m92at) = -1
+assert (-199626<>13072) = -1
+assert (q22$=t1$) = 0
+assert (119682<=l6w51) = 0
+assert (j7bp3$>=v9dkd$) = 0
+assert (29888>=147211) = 0
+assert ("CEPGSU"<=w2$) = -1
+assert ("EVAFMTWD V"<=e5j$) = -1
+assert (-153909=f9t) = 0
+assert (v3<=103793) = -1
+assert (-99=q1cj) = 0
+assert ("Y"<p1$) = 0
+assert (-54956<=x2k0) = -1
+assert (x4$=k$) = 0
+assert (j$<="CEPGSU") = 0
+assert (i4i$<>r2i4t$) = -1
+assert (w2$<>"D") = -1
+assert (h5$<f7nhv$(0)) = -1
+assert ("IGAWRT BBO"<s0ahj$) = -1
+assert (a1<=n1xc(3)) = 0
+assert (x7uj<34146) = -1
+assert (199505<=e5i) = 0
+assert (d4(5)=u3kj7) = 0
+assert (96<>c79b0) = -1
+assert (y22s2$<w5z$) = -1
+assert (k1j>=u3kj7) = 0
+assert (k6$(0)<"X DH") = 0
+assert (m0$<="ASUDJJMBORD") = 0
+assert (153094<191) = 0
+assert (l$<>h5$) = -1
+assert (29888=-189640) = 0
+assert (-19<>l16c(3)) = -1
+assert (s0ahj$<>"MHO ENJWT") = -1
+assert (t$<>"BFXMMMO") = -1
+assert (s0ahj$<j7p2i$(0)) = -1
+assert (v4>=-92) = -1
+assert (d3uf<>w4ek) = -1
+assert (131044>=114309) = -1
+assert (i4i$<=s0$(0)) = -1
+assert (63<=n) = -1
+assert (n2(0)<>n1xc(2)) = -1
+assert (-96797<w6) = -1
+assert (d$>"") = -1
+assert (g<>-177162) = -1
+assert (j7$>d$) = 0
+assert (m$=d7yf$) = 0
+assert (103793<>9208) = -1
+assert ("D S"<j02z$(0)) = -1
+assert ("CEPGSU"=o1$(0)) = 0
+assert ("MVFJOCKDIYG"<"DSY HFP") = 0
+assert (53<95) = -1
+assert (45595<64174) = -1
+assert (b9<=102) = 0
+assert (k$>="XJKPV KQMP") = 0
+assert (p0mcb$(0)<q9rv$) = -1
+assert ("IGV"<"EIQQ") = 0
+assert (k6$(4)<i8vy$) = 0
+assert ("TJH TY M SW">b$) = -1
+assert (z96fn(0)>=119682) = 0
+assert (m7=a) = 0
+assert (""<"D S") = -1
+assert (h5zhs<>c79b0) = -1
+assert (119682>s253d(3)) = -1
+assert (y$>"LIXDM") = 0
+assert ("UCA">c4y6q$) = 0
+assert (9208<>75656) = -1
+assert (-158389>=h) = 0
+assert (-92=9208) = 0
+assert (l16c(2)>=n0x2) = -1
+assert ("Q   YOZR T"<=e5j$) = -1
+assert (13072<95) = 0
+assert (114309>=n1xc(1)) = -1
+assert (v9dkd$<l$) = -1
+assert (b5=h) = 0
+assert ("MHO ENJWT"=s0$(4)) = 0
+assert (e7m$>"IHZB S UK") = 0
+assert (v>l4yc) = -1
+assert ("Q   YOZR T"="ZSU BJLSJ") = 0
+assert (i5=64174) = 0
+assert ("MHO ENJWT">q9rv$) = 0
+assert (-175136<h5zhs) = -1
+assert (h9z0t$<j7e4$) = 0
+assert (d$="XL  AQ  AV") = 0
+assert (h9z0t$<>q22$) = -1
+assert ("HCKIUCU"=q9rv$) = 0
+assert (e$<h6pzz$) = 0
+assert (y22s2$<"JFSPVY") = -1
+assert ("IGAWRT BBO"<"JGNOYYJ CM") = -1
+assert ("X DH">="VPXCR") = -1
+assert (v3bp3<=0) = 0
+assert (a3ocl$>"H") = -1
+assert ("IGAWRT BBO"<"") = 0
+assert (d3cyp<=145) = 0
+assert (c79b0>=-73377) = -1
+assert ("H"=c$) = 0
+assert (j7bp3$<=m$) = -1
+assert (p9d=147211) = 0
+assert (119682<=i9649) = 0
+assert (i5$<>"ZCNH S") = -1
+assert ("HX"<>y$) = 0
+assert (i9649>=96) = 0
+assert ("Z NYAKEASH"<"ZSU BJLSJ") = -1
+assert (n2$<"MWVUFJB T") = -1
+assert (h<d7q) = 0
+assert (z7o$<>"HCKIUCU") = -1
+assert (-199626<=-153074) = -1
+assert (i5$="LJLJU ZTX C") = 0
+assert (158081<=p9d) = 0
+assert (-175136<-124) = -1
+assert (96=-181688) = 0
+assert (-78788>v4) = 0
+assert ("X VGWU"<>"DSY HFP") = -1
+assert (x5wlb<=-161733) = 0
+assert (n7uj>-78788) = -1
+assert ("ZCNH S">="") = -1
+assert (h<=-54956) = 0
+assert (96>y913n) = -1
+assert (t$<>"Z NYAKEASH") = -1
+assert ("EIQQ"<>j2i$) = -1
+assert (-176861=172912) = 0
+assert (34146<=a1) = 0
+assert (s0iqd(3)<d3cyp) = -1
+assert (l16c(4)<q6c) = -1
+assert ("">="S  V G") = 0
+assert (-181688<=-9) = -1
+assert (e3b7$<"Q   YOZR T") = -1
+assert (l4pck<>w6) = -1
+assert ("IGAWRT BBO"="KB  BDDIT") = 0
+assert (-161733<>y913n) = -1
+assert (p9d<-175) = -1
+assert (e3b7$<>j7e4$) = -1
+assert (l16c(4)<=d9zu(2)) = -1
+assert (j2i$>="WI") = 0
+assert (b9=w6) = 0
+assert ("QR PP"<i5$) = 0
+assert (i8vy$<"LTSQ") = -1
+assert ("Q  A"<>"") = -1
+assert ("EWIT"=q22$) = 0
+assert ("CEPGSU">i7o$) = 0
+assert ("UCA"<"I S  LYZP") = 0
+assert ("N FD"<=l1fjn$) = -1
+assert ("Z NYAKEASH"="KSG JYSE") = 0
+assert (h6w<=-60021) = -1
+assert (c79b0>a1) = 0
+assert (27<=i9r) = -1
+assert (i9649<o3wf0) = -1
+assert (k1j<=78627) = -1
+assert (l4yc<=w6) = 0
+assert (-194726>119682) = 0
+assert (""<>"QXCO") = -1
+assert (119682<m29ap) = -1
+assert ("">=e3b7$) = 0
+assert (k2kiy<l6w51) = -1
+assert (g1<=z96fn(1)) = -1
+assert (j7bp3$<j7p2i$(2)) = -1
+assert (v4i9$>="RKY Q") = 0
+assert ("KSG JYSE"<>"XL  AQ  AV") = -1
+assert (v4<>m92at) = -1
+assert (d3cyp>x2k0) = -1
+assert (q9rv$<>"Q   YOZR T") = -1
+assert (172912>u3kj7) = -1
+assert ("Y  QQA"<="XL  AQ  AV") = 0
+assert (e$=m0$) = 0
+assert ("Y  QQA">"EWIT") = -1
+assert (t45kv$<>"") = 0
+assert (h5$>"VZ CGK") = 0
+assert (g=r4hx0) = 0
+assert ("">s0ahj$) = 0
+assert (-158389>-19375) = 0
+assert (-124=77249) = 0
+assert (s$<"IB") = 0
+assert (e$<>m0$) = -1
+assert ("Y"<=y$) = 0
+assert (-50622=-124) = 0
+assert ("">i4i$) = 0
+assert (q1cj<>64174) = -1
+assert ("QXCO"<>c6z$) = -1
+assert (h$<=c4y6q$) = -1
+assert ("KB  BDDIT"<=i8vy$) = 0
+assert (v4i9$>j7p2i$(5)) = 0
+assert (163>l4pck) = 0
+assert (q1cj=127854) = 0
+assert (o3wf0>l4pck) = 0
+assert ("VPXCR">"Z NYAKEASH") = 0
+assert (""<>h9z0t$) = -1
+assert (j$>=m6xvz$) = -1
+assert (e7m$>"HX") = 0
+assert (y$<"JFSPVY") = -1
+assert (d7yf$>="XL  AQ  AV") = -1
+assert (""="DSY HFP") = 0
+assert ("L"<>i8vy$) = -1
+assert ("ONC YVKQ">"MHO ENJWT") = -1
+assert ("MKTZQT">=x4$) = 0
+assert ("I S  LYZP">"V") = 0
+assert (t1$<>"D") = -1
+assert (75656<a1) = 0
