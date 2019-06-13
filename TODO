@@ -1,7 +1,7 @@
 Main
 ----
-- IF ... ELSE ... ENDIF
 - WHILE...WEND
+- FOR .. NEXT
 - LIST. Detokenising. Spacing out and in.
 - CALL <address> (params A,X,Y ?)
 - Input code. Tokenising.
@@ -44,5 +44,4 @@ Not yet considered but likely/probables
 - 	ASC(), CHR$()
 -	LEFT$(),RIGHT$(),MID$()
 - 	SPC()
-- 	FOR/NEXT
 -	PEEK LEEK DEEK POKE LOKE DOKE

@@ -46,14 +46,14 @@ CommandJumpTable:
 	.word Function_GOSUB           & $FFFF ; token $3e29 "gosub"
 	.word Function_RETURN          & $FFFF ; token $3e2a "return"
 	.word Function_ONGOTO          & $FFFF ; token $3e2b "on"
-	.word IllegalToken             & $FFFF ; token $3e2c "else"
+	.word Handler_ELSE             & $FFFF ; token $3e2c "else"
 	.word Function_REPEAT          & $FFFF ; token $3c2d "repeat"
 	.word IllegalToken             & $FFFF ; token $3c2e "while"
 	.word Function_IF              & $FFFF ; token $3c2f "if"
 	.word IllegalToken             & $FFFF ; token $3a30 "wend"
 	.word Function_UNTIL           & $FFFF ; token $3a31 "until"
 	.word IllegalToken             & $FFFF ; token $3a32 "then"
-	.word IllegalToken             & $FFFF ; token $3a33 "endif"
+	.word Handler_ENDIF            & $FFFF ; token $3a33 "endif"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
