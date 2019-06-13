@@ -48,13 +48,18 @@ class TokenSource(object):
 	cls 										## clear screen
 	print 		 								## print
 	goto gosub return on 						## transfer of control goto/gosub stuff.
+	else 										## else for if .. else .. endif
 
 [keyword+]
 	repeat										## repeat loop test at bottom
+	while 										## repeat loop test at top
+	if
 
 [keyword-]										## until for repeat.
+	wend 										## repeat loop test at bottom
 	until
-
+	then 	endif 								## end for if statements.
+	
 """.split("\n")
 
 if __name__ == "__main__":

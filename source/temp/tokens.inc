@@ -46,8 +46,14 @@ CommandJumpTable:
 	.word Function_GOSUB           & $FFFF ; token $3e29 "gosub"
 	.word Function_RETURN          & $FFFF ; token $3e2a "return"
 	.word Function_ONGOTO          & $FFFF ; token $3e2b "on"
-	.word Function_REPEAT          & $FFFF ; token $3c2c "repeat"
-	.word Function_UNTIL           & $FFFF ; token $3a2d "until"
+	.word IllegalToken             & $FFFF ; token $3e2c "else"
+	.word Function_REPEAT          & $FFFF ; token $3c2d "repeat"
+	.word IllegalToken             & $FFFF ; token $3c2e "while"
+	.word Function_IF              & $FFFF ; token $3c2f "if"
+	.word IllegalToken             & $FFFF ; token $3a30 "wend"
+	.word Function_UNTIL           & $FFFF ; token $3a31 "until"
+	.word IllegalToken             & $FFFF ; token $3a32 "then"
+	.word IllegalToken             & $FFFF ; token $3a33 "endif"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -96,8 +102,14 @@ TokenText:
 	 .text $f6,"gosub"    ; token $3e29
 	 .text $f7,"return"   ; token $3e2a
 	 .text $f3,"on"       ; token $3e2b
-	 .text $e7,"repeat"   ; token $3c2c
-	 .text $d6,"until"    ; token $3a2d
+	 .text $f5,"else"     ; token $3e2c
+	 .text $e7,"repeat"   ; token $3c2d
+	 .text $e6,"while"    ; token $3c2e
+	 .text $e3,"if"       ; token $3c2f
+	 .text $d5,"wend"     ; token $3a30
+	 .text $d6,"until"    ; token $3a31
+	 .text $d5,"then"     ; token $3a32
+	 .text $d6,"endif"    ; token $3a33
 	.byte $00
 
 ;
@@ -146,5 +158,11 @@ gotoTokenID                      = $3e28
 gosubTokenID                     = $3e29
 returnTokenID                    = $3e2a
 onTokenID                        = $3e2b
-repeatTokenID                    = $3c2c
-untilTokenID                     = $3a2d
+elseTokenID                      = $3e2c
+repeatTokenID                    = $3c2d
+whileTokenID                     = $3c2e
+ifTokenID                        = $3c2f
+wendTokenID                      = $3a30
+untilTokenID                     = $3a31
+thenTokenID                      = $3a32
+endifTokenID                     = $3a33

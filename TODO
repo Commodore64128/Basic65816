@@ -1,6 +1,7 @@
 Main
 ----
-- IF THEN ELSE ... ELSE ENDIF / WHILE WEND planning (also the +/- ing ??? ELSE no effect ?)
+- IF ... ELSE ... ENDIF
+- WHILE...WEND
 - LIST. Detokenising. Spacing out and in.
 - CALL <address> (params A,X,Y ?)
 - Input code. Tokenising.
