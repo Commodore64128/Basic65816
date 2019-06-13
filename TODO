@@ -1,6 +1,5 @@
 Main
 ----
-- WHILE...WEND
 - FOR .. NEXT
 - LIST. Detokenising. Spacing out and in.
 - CALL <address> (params A,X,Y ?)
@@ -26,7 +25,7 @@ Fixes
 
 - 	expressions stack sizes and spacing and testing. same for basic stack.
 
-- 	reset stuff on error (not variables ?)
+- 	reset stuff on error (not variables ?) - what about stop.
 
 Memory Checks
 =============

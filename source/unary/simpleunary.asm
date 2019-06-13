@@ -86,7 +86,8 @@ _FSgnNegative:
 ;										 (Galois LFSR)
 ; *******************************************************************************************
 
-Function_Random: ;; rnd()
+Function_Random: ;; rnd(
+		jsr 	ExpectRightBracket 			; check )
 		jsr 	ResetTypeInteger
 		lda 	DRandom 					; check for non-zero 
 		ora 	DRandom+2 					; they don't like these :)

@@ -32,6 +32,7 @@ StartOfBasicCode:
 		.include "commands/if.asm"					; conditional execution.
 		.include "commands/transfer.asm"			; goto/gosub/return on x goto/gosub
 		.include "commands/repeat.asm"				; repeat .. until
+		.include "commands/while.asm"				; while .. wend
 		.include "commands/run.asm" 				; run / end / clear etc.
 		.include "commands/dim.asm"					; array dimension
 		.include "commands/collect.asm"				; garbage collection code.

@@ -28,12 +28,13 @@ class TokenSource(object):
 
 
 [unary]
-	rnd() 										## random number 32 bit							
+	rnd( 										## random number 32 bit							
 	sgn( 	abs( 	len(	 					## standard
 	val(	str$(								## string to integer,integer to string.
 		
 [syntax]
 	, 	;	:	(	)	'	
+	to  step 									## syntax words for for/next
 
 [keyword]	
 	rem 										## comment (note comment must be a quoted string)									
@@ -53,12 +54,14 @@ class TokenSource(object):
 [keyword+]
 	repeat										## repeat loop test at bottom
 	while 										## repeat loop test at top
-	if
+	if 											## conditional execution
+	for 										## indexed loop
 
 [keyword-]										## until for repeat.
-	wend 										## repeat loop test at bottom
-	until
+	wend 										## repeat loop test at top
+	until 										## and at bottom
 	then 	endif 								## end for if statements.
+	next 										## end of indexed loop
 	
 """.split("\n")
 

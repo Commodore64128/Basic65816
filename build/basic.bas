@@ -1,17 +1,11 @@
-20 	x = 0
-50 	repeat
-100	if (x & 1) = 0
-110		print x,"Even",
-112 	if x > 5
-118			print ">5"
-119 	else
-120 		print "<=5"
-129 	endif
-130 else
-134 	print x,"odd",
-135 	y = x
-136 	repeat:print y;" ";:y = y-1:until y = 0:print
-140	endif
-150 x = x + 1
-160 until x > 10
-180 stop	
+10 y = 5
+15 while y < 40
+20 		x = y
+30  	while x>0
+40 			print x;" ";
+50 			x=x-1
+60  	wend
+65 		print rnd()
+66 		y = y + 5
+68 	wend
+70  print "Done":stop
