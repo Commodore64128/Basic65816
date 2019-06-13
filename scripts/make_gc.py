@@ -48,12 +48,12 @@ variables = []
 
 if __name__ == "__main__":
 	print("Creation test code.")
-	random.seed()
+	random.seed(42)
 	startSeed = random.randint(0,99999)
 	print("Testing G/C with key "+str(startSeed))
 	random.seed(startSeed)
 	arrayCount = 20
-	varCount = 100
+	varCount = arrayCount*4
 	bs = BasicSource()
 	#
 	#		Create everything.

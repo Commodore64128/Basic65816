@@ -1,9 +1,5 @@
 Main
 ----
-- Make all data elements 4 bytes in length.
-		- variable.asm
-		- showdump.py
-		- garbage collection.asm
 
 - REPEAT UNTIL
 - Instruction count test (3.1 MIPS @14Mhz)
@@ -24,8 +20,6 @@ Fixes
 - 	modulus arithmetic error (test_math does not check %) sign issue. Seems to be different views on this (!)
 
 - 	expressions stack sizes and spacing and testing. same for basic stack.
-
-- 	allocating temp space, even size so every address is even (?)
 
 - 	reset stuff on error (not variables ?)
 

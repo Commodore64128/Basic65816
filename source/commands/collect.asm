@@ -112,6 +112,8 @@ _CSADoAllStrings:
 		jsr 	COLLECTCheck 				; collect check the first.
 		inc 	a 							; advance the pointer.
 		inc 	a
+		inc 	a
+		inc 	a
 		dex
 		bne 	_CSADoAllStrings 			; until all strings are done.
 		bra 	_CSALoop

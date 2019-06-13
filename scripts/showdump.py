@@ -23,6 +23,7 @@ class ListableVariableBlock(BasicBlock):
 	#		List variables.
 	#
 	def listVariables(self,handle = sys.stdout):
+		self.lowestString = 0x10000
 		self.listFastVariables(handle)
 		for typeID in range(0,4):
 			hashTable = self.baseAddress+BasicBlock.HASHTABLE+BasicBlock.HASHMASKENTRYSIZE * typeID * 2
@@ -57,6 +58,8 @@ class ListableVariableBlock(BasicBlock):
 				data = []				
 				for i in range(0,dataCount):
 					data.append(self.readLong(i*4+dataBase))
+					if typeID >= 2 and data[-1] > self.readWord(self.baseAddress+BasicBlock.LOWPTR):
+						self.lowestString = min(self.lowestString,data[-1])
 				#
 				name = self.decodeIdentifier(self.readWord(addr+2))
 				self.output(handle,name,addr,"#{0:x}".format(hashEntry),self._formatList(data,typeID >= 2,typeID % 2 != 0))
@@ -110,8 +113,8 @@ class ListableVariableBlock(BasicBlock):
 	#		After garbage collection, the WXYZ should have all been removed. This combined with the 
 	#		consistency check in the generated BASIC tests the garbage collection.
 	#
-	def completeGCCheck(self):
-		pos = self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
+	def completeGCCheck(self,pos):
+		#pos = self.readWord(self.baseAddress+BasicBlock.HIGHPTR)
 		while pos < self.endAddress:
 			size = self.readByte(pos)
 			name = "".join([chr(self.readByte(pos+i+1)) for i in range(0,size)])
@@ -124,7 +127,9 @@ if __name__ == "__main__":
 	blk = ListableVariableBlock(0x4000,0x8000)
 	blk.importFile("basic.dump")	
 	if len(sys.argv) == 2:
-		blk.completeGCCheck()
+		blk.listVariables(open(os.devnull,"w"))
+		print("Lowest string is at ${0:04x}".format(blk.lowestString))
+		blk.completeGCCheck(blk.lowestString)
 	else:
 		#blk.listVariables(open("var.txt","w"))
 		blk.listVariables()
