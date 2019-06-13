@@ -41,6 +41,7 @@ class TokenSource(object):
 	assert 										## debugging helper
 	end 										## end program
 	run 										## run program.
+	stop 										## stop program.
 	clear 										## clear all variables.
 	dim 										## array dimension (one dimension only)
 	collect 									## garbage collection (forced)

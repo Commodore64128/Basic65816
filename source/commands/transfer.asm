@@ -11,6 +11,41 @@
 
 ; *******************************************************************************************
 ;
+;									ON <expr> GOTO x,x,x
+;
+; *******************************************************************************************
+
+Function_ONGOTO: ;; on
+		jsr 	EvaluateInteger 			; on what GOTO :)
+		cpy 	#0 							; check range
+		bne 	_FOGoFail
+		cmp 	#0
+		beq 	_FOGoFail 					; we start with index = 1
+		;
+		pha 								; save count.
+		lda 	#gotoTokenID 				; expect GOTO
+		jsr 	ExpectToken
+		plx 								; put count in X.
+_FOGoLoop:
+		lda 	(DCodePtr) 					; check the next value is a constant.
+		cmp 	#$4000						; range 4000-BFFF
+		bcc 	FGOFail
+		cmp 	#$C000
+		bcs 	FGOFail
+		;
+		dex 								; subtract one, if done, call GOTO code
+		beq 	Function_GOTO
+		;
+		inc 	DCodePtr 					; step over constant
+		inc 	DCodePtr
+		jsr 	ExpectComma 				; expect a comma
+		bra 	_FOGoLoop 					; and loop round.
+
+_FOGoFail:
+		#error 	"Bad On..Goto value"
+
+; *******************************************************************************************
+;
 ;									GOTO <line number>
 ;
 ; *******************************************************************************************
@@ -18,9 +53,9 @@
 Function_GOTO: ;; goto
 		lda 	(DCodePtr) 					; look at the number
 		cmp 	#$4000						; range 4000-BFFF
-		bcc 	_FGOFail
+		bcc 	FGOFail
 		cmp 	#$C000
-		bcs 	_FGOFail
+		bcs 	FGOFail
 		sec 								; convert to 0-32767
 		sbc 	#$4000 						; and put in X.
 		tax
@@ -50,10 +85,11 @@ _FGOFound:
 		sta 	DCodePtr 					
 		rts									; and continue
 		;
-_FGOFail:
-		#error 	"Bad Line Number"
 _FGOUnknown:
 		#error 	"Unknown Line Number"				
+FGOFail:
+		#error 	"Bad Line Number"
+
 
 ; *******************************************************************************************
 ;
@@ -104,3 +140,4 @@ Function_RETURN: ;; return
 
 _FRetFail:
 		#error 	"Return without Gosub"
+

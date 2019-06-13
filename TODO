@@ -1,16 +1,23 @@
 Main
 ----
-
-- ON..GOTO
 - IF THEN ELSE ... ELSE ENDIF / WHILE WEND planning (also the +/- ing ??? ELSE no effect ?)
 - LIST. Detokenising. Spacing out and in.
+- CALL <address> (params A,X,Y ?)
 - Input code. Tokenising.
 - Typing commands in
 - Typing programs in
+
+Public play:
+
 - PROC <identifier> DEFPROC ENDPROC
+- LOCALs 
+- Parameters (not arrays ?)
+- Switchable environments.
 
 Fixes
 -----
+- 	check keyword actually a keyword 10 = works :) 
+
 - 	reset temporary storage pointer when typing things in, even if no command executed as error could
 	occur if you do gosub 700.
 
@@ -31,3 +38,9 @@ Memory Checks
 - when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
   left.
 
+Not yet considered but likely/probables
+=======================================
+- 	ASC(), CHR$()
+-	LEFT$(),RIGHT$(),MID$()
+- 	SPC()
+- 	FOR/NEXT

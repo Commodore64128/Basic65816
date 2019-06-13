@@ -36,17 +36,18 @@ CommandJumpTable:
 	.word Function_ASSERT          & $FFFF ; token $3e1f "assert"
 	.word Function_END             & $FFFF ; token $3e20 "end"
 	.word Function_RUN             & $FFFF ; token $3e21 "run"
-	.word Function_CLEAR           & $FFFF ; token $3e22 "clear"
-	.word Function_Dim             & $FFFF ; token $3e23 "dim"
-	.word Function_COLLECT         & $FFFF ; token $3e24 "collect"
-	.word Function_CLS             & $FFFF ; token $3e25 "cls"
-	.word Function_PRINT           & $FFFF ; token $3e26 "print"
-	.word Function_GOTO            & $FFFF ; token $3e27 "goto"
-	.word Function_GOSUB           & $FFFF ; token $3e28 "gosub"
-	.word Function_RETURN          & $FFFF ; token $3e29 "return"
-	.word IllegalToken             & $FFFF ; token $3e2a "on"
-	.word Function_REPEAT          & $FFFF ; token $3c2b "repeat"
-	.word Function_UNTIL           & $FFFF ; token $3a2c "until"
+	.word Function_STOP            & $FFFF ; token $3e22 "stop"
+	.word Function_CLEAR           & $FFFF ; token $3e23 "clear"
+	.word Function_Dim             & $FFFF ; token $3e24 "dim"
+	.word Function_COLLECT         & $FFFF ; token $3e25 "collect"
+	.word Function_CLS             & $FFFF ; token $3e26 "cls"
+	.word Function_PRINT           & $FFFF ; token $3e27 "print"
+	.word Function_GOTO            & $FFFF ; token $3e28 "goto"
+	.word Function_GOSUB           & $FFFF ; token $3e29 "gosub"
+	.word Function_RETURN          & $FFFF ; token $3e2a "return"
+	.word Function_ONGOTO          & $FFFF ; token $3e2b "on"
+	.word Function_REPEAT          & $FFFF ; token $3c2c "repeat"
+	.word Function_UNTIL           & $FFFF ; token $3a2d "until"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -85,17 +86,18 @@ TokenText:
 	 .text $f7,"assert"   ; token $3e1f
 	 .text $f4,"end"      ; token $3e20
 	 .text $f4,"run"      ; token $3e21
-	 .text $f6,"clear"    ; token $3e22
-	 .text $f4,"dim"      ; token $3e23
-	 .text $f8,"collect"  ; token $3e24
-	 .text $f4,"cls"      ; token $3e25
-	 .text $f6,"print"    ; token $3e26
-	 .text $f5,"goto"     ; token $3e27
-	 .text $f6,"gosub"    ; token $3e28
-	 .text $f7,"return"   ; token $3e29
-	 .text $f3,"on"       ; token $3e2a
-	 .text $e7,"repeat"   ; token $3c2b
-	 .text $d6,"until"    ; token $3a2c
+	 .text $f5,"stop"     ; token $3e22
+	 .text $f6,"clear"    ; token $3e23
+	 .text $f4,"dim"      ; token $3e24
+	 .text $f8,"collect"  ; token $3e25
+	 .text $f4,"cls"      ; token $3e26
+	 .text $f6,"print"    ; token $3e27
+	 .text $f5,"goto"     ; token $3e28
+	 .text $f6,"gosub"    ; token $3e29
+	 .text $f7,"return"   ; token $3e2a
+	 .text $f3,"on"       ; token $3e2b
+	 .text $e7,"repeat"   ; token $3c2c
+	 .text $d6,"until"    ; token $3a2d
 	.byte $00
 
 ;
@@ -134,14 +136,15 @@ letTokenID                       = $3e1e
 assertTokenID                    = $3e1f
 endTokenID                       = $3e20
 runTokenID                       = $3e21
-clearTokenID                     = $3e22
-dimTokenID                       = $3e23
-collectTokenID                   = $3e24
-clsTokenID                       = $3e25
-printTokenID                     = $3e26
-gotoTokenID                      = $3e27
-gosubTokenID                     = $3e28
-returnTokenID                    = $3e29
-onTokenID                        = $3e2a
-repeatTokenID                    = $3c2b
-untilTokenID                     = $3a2c
+stopTokenID                      = $3e22
+clearTokenID                     = $3e23
+dimTokenID                       = $3e24
+collectTokenID                   = $3e25
+clsTokenID                       = $3e26
+printTokenID                     = $3e27
+gotoTokenID                      = $3e28
+gosubTokenID                     = $3e29
+returnTokenID                    = $3e2a
+onTokenID                        = $3e2b
+repeatTokenID                    = $3c2c
+untilTokenID                     = $3a2d
