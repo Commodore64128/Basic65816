@@ -1,9 +1,8 @@
 Main
 ----
 
-- REM 
 - ON..GOTO
-- Cycle counting (Instruction counting probably)
+- IF THEN ELSE ... ELSE ENDIF / WHILE WEND planning (also the +/- ing ??? ELSE no effect ?)
 - LIST. Detokenising. Spacing out and in.
 - Input code. Tokenising.
 - Typing commands in

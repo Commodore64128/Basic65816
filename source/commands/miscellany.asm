@@ -33,3 +33,25 @@ _FAssFail:
 Function_CLS: ;; cls
 		jsr 	HWClearScreen
 		rts
+
+
+; *******************************************************************************************
+;
+;									REM "remark"
+;
+; *******************************************************************************************
+
+Function_REM: ;; rem 
+		nop
+		lda 	(DCodePtr) 					; get code ptr.
+		beq 	_FRemSyntax 				; if 0, syntax error
+		cmp 	#$0100 						; if not $00xx syntax error
+		bcs 	_FRemSyntax
+		clc 								; add to DCodePtr
+		adc 	DCodePtr
+		sta 	DCodePtr
+		rts
+_FRemSyntax:
+		brl 	SyntaxError
+
+

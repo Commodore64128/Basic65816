@@ -35,20 +35,21 @@ class TokenSource(object):
 [syntax]
 	, 	;	:	(	)	'	
 
-[keyword]										
+[keyword]	
+	rem 										## comment (note comment must be a quoted string)									
 	let 										## assignment	
 	assert 										## debugging helper
 	end 										## end program
 	run 										## run program.
 	clear 										## clear all variables.
-	dim 										## array dimension.
-	collect 									## garbage collection.
+	dim 										## array dimension (one dimension only)
+	collect 									## garbage collection (forced)
 	cls 										## clear screen
 	print 		 								## print
-	goto gosub return on 						## transfer of control.
+	goto gosub return on 						## transfer of control goto/gosub stuff.
 
 [keyword+]
-	repeat 										## repeat loop test at bottom
+	repeat										## repeat loop test at bottom
 
 [keyword-]										## until for repeat.
 	until
