@@ -1,8 +1,4 @@
 
-10 	x = 1
-20 	print x
-30  x = x + 1
-40  if x < 10 then 20:print "xxx"
-45  print "Done"
-50 	stop
-
+20 LET k=0 
+30 LET k=k+1
+50 IF k<10000 THEN GOTO 30

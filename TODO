@@ -17,7 +17,7 @@ Public play:
 
 Fixes
 -----
-- 	check keyword actually a keyword 10 = works :) 
+- 	check keyword actually a keyword 10 = works - it's a legal keyword :) 
 
 - 	reset temporary storage pointer when typing things in, even if no command executed as error could
 	occur if you do gosub 700.
@@ -45,3 +45,4 @@ Not yet considered but likely/probables
 -	LEFT$(),RIGHT$(),MID$()
 - 	SPC()
 - 	FOR/NEXT
+-	PEEK LEEK DEEK POKE LOKE DOKE
