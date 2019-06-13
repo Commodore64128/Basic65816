@@ -56,10 +56,7 @@ class ListableVariableBlock(BasicBlock):
 				#
 				data = []				
 				for i in range(0,dataCount):
-					if typeID < 2:
-						data.append(self.readLong(i*4+dataBase))
-					else:
-						data.append(self.readWord(i*2+dataBase))
+					data.append(self.readLong(i*4+dataBase))
 				#
 				name = self.decodeIdentifier(self.readWord(addr+2))
 				self.output(handle,name,addr,"#{0:x}".format(hashEntry),self._formatList(data,typeID >= 2,typeID % 2 != 0))

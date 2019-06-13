@@ -39,7 +39,7 @@ VariableAccessExpression:
 		;
 		;		Subscript it. If you do this DVariablePtr points to record+4 - the high subscript
 		;
-		lda 	DVariablePtr 				; variable pointer into A,first token is in Y
+		lda 	DVariablePtr 				; variable pointer into A
 		jsr 	VariableSubscript			; index calculation
 		sta 	DVariablePtr 				; and write it back.
 		;
@@ -159,8 +159,8 @@ _VFError:
 
 ; *******************************************************************************************
 ;
-;		Subscript an Array Entry. On entry Y is the first token of the array name (for 
-;		typing) and A points to the max-subscript for the index (record +4 for arrays)
+;		Subscript an Array Entry. On entry A points to the max-subscript for the index 
+;		(record +4 for arrays)
 ;
 ;		On exit A points to the respective data element which can be 2 or 4 bytes 
 ;		depending.
@@ -168,7 +168,6 @@ _VFError:
 ; *******************************************************************************************
 
 VariableSubscript:
-		phy 								; save token on stack
 		pha		 							; save variable address on stack.
 		jsr		EvaluateNextInteger 		; get the subscript
 		jsr 	ExpectRightBracket 			; skip right bracket.
@@ -179,19 +178,12 @@ VariableSubscript:
 		bcs 	_VANSubscript
 _VANSubOkay:
 		asl 	a 							; double lsword
-		sta 	DTemp1	 					; 2 x subscript in DTemp1
+		asl 	a 							; and again, also clears carry.
+		sta 	DTemp1	 					; 4 x subscript in DTemp1
 
 		pla 								; restore DVariablePtr
-		sta 	DVariablePtr
-
-		pla 								; get and save that first token
-		and 	#IDTypeMask 				; is it a string ?
-		bne 	_VANNotString  				; if not, i.e. it is an integeer
-		asl 	DTemp1 						; double subscript again (32 bit word)
-_VANNotString
-		lda 	DVariablePtr 				; variable address
-		clc 								; add 2 to get it past the high subscript
-		adc 	#2
+		inc 	a 							; add 2 to get it past the high subscript
+		inc 	a
 		adc 	DTemp1 						; add the subscript
 		rts
 
