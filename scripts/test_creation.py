@@ -14,7 +14,7 @@ from variables import *
 
 if __name__ == "__main__":
 	print("Creation test code.")
-	eb = EntityBucket()
+	eb = EntityBucket(4,4,4,4,4)
 	#
 	bs = BasicSource()
 	bs.append(eb.setupCode())

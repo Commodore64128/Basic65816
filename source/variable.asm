@@ -229,17 +229,12 @@ _VCIsInteger:
 		;
 		pla 								; restore count
 		pha 
-		inc 	a 							; need 1 more element. If zero, you need one. If high index,size is one more.
+		inc 	a 							; need 1 more element. If zero, you need one. If high index,size is one more.	
 		asl 	a 							; 2 x # items.
+		asl 	a 							; 4 x # items.
 _VCNotSingle:
 		sta 	DTemp1 						; save temporarily
 		lda 	$0000,y 					; get first token.
-		pha 								; save on stack
-		and 	#IDTypeMask 				; check type
-		bne 	_VCString
-		asl 	DTemp1 						; if integer, then 4 x # items.
-_VCString:
-		pla 								; restore first token.
 		and 	#IDArrayMask 				; check array bit.
 		beq 	_VCNotArray
 		inc 	DTemp1 						; if set, add 2 to count.
