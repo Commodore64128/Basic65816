@@ -13,6 +13,7 @@ Main
 - LOCALs 
 - Parameters (not arrays)
 - Switchable environments.
+- 65816 assembler.
 - Dog food !!
 
 Fixes
