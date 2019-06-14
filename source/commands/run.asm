@@ -59,8 +59,8 @@ _FRun_NextInstruction:
 		beq 	_FRun_Colon
 
 		tay 								; save in Y
-		and 	#$E000 						; see if it is a keyword. 111x
-		cmp 	#$2000 						
+		and 	#$E800 						; see if it is a keyword. 1111 1xxk kkkk kkkk e.g. types 11xx
+		cmp 	#$2800 						; so it only runs 1100-1111 keywords.
 		bne 	_FRun_TryLET 				; if not, try LET as a default.
 		;
 		tya 								; get token back
@@ -83,8 +83,13 @@ _FRun_Colon:
 		;		Maybe we can do a LET , is there an identifier ?
 		;
 _FRun_TryLET:
+		lda 	(DCodePtr) 					; look to see if it's an identifier.
+		cmp 	#$C000
+		bcc		_FRunSyntax
 		jsr 	Function_LET 				; try as a LET.
 		bra 	_FRun_NextInstruction 		; if we get away with it, go to next instruction.
+_FRunSyntax:
+		brl 	SyntaxError		
 		;
 		;		End of instruction. Go to next line.
 		;

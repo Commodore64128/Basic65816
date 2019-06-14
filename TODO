@@ -1,29 +1,24 @@
 Main
 ----
 - POKE DOKE LOKE
+- Full Code Read and Recomment
 - LEFT$ RIGHT$ MID$
-- UPPER$() LOWER$()
+- UPPER$ LOWER$
 - LIST. Detokenising. Spacing out and tabs in.
 - CALL <address> (params A,X,Y ?)
 - Input code. Tokenising.
 - Typing commands in
 - Typing programs in
-
-Public play:
-
 - PROC <identifier> DEFPROC ENDPROC
 - LOCALs 
-- Parameters (not arrays ?)
+- Parameters (not arrays)
 - Switchable environments.
+- Dog food !!
 
 Fixes
 -----
-- 	check keyword actually a keyword 10 = works - it's a legal keyword :) 
-
 - 	reset temporary storage pointer when typing things in, even if no command executed as error could
 	occur if you do gosub 700.
-
-- 	modulus arithmetic error (test_math does not check %) sign issue. Seems to be different views on this (!)
 
 - 	expressions stack sizes and spacing and testing. same for basic stack.
 

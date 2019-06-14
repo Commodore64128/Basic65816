@@ -25,6 +25,14 @@ Command_FOR:	;; for
 		ldy 	DCodePtr 					; Y is the address of the name
 		lda 	#0 							; A = 0 because it's not an array.
 		jsr 	VariableCreate 				; create it.
+		pha 								; save on stack
+_CFOSkipToken:
+		lda 	(DCodePtr) 					; skip over the token
+		inc 	DCodePtr
+		inc 	DCodePtr
+		and 	#IDContMask 				; if there is a continuation 
+		bne 	_CFOSkipToken
+		pla 								; restore address
 _CFOExists:
 		pha 								; push variable address on stack
 		lda 	#equalTokenID 				; check for = 
