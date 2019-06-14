@@ -34,7 +34,7 @@ if __name__ == "__main__":
 	bs.append(eb.setupCode())
 	bs.append(eb.assignCode())
 	#
-	for i in range(0,150):
+	for i in range(0,100):
 		v1 = eb.pickOneInteger()
 		bs.append("assert abs({0})={1}".format(v1.getEither(),abs(v1.getValue())))
 		bs.append("assert sgn({0})={1}".format(v1.getEither(),sgn(v1.getValue())))
@@ -45,6 +45,11 @@ if __name__ == "__main__":
 		conv = toStr(n,base)
 		bs.append("assert val(\"{0}\",{2}) = {1}".format(conv,n,base))
 		bs.append("assert str$({0},{2}) = \"{1}\"".format(n,conv.lower(),base))
+		n = random.randint(32,127)
+		ch = chr(n)
+		bs.append("assert asc(\"{0}\") = {1}".format(ch,n))
+		bs.append("assert chr$({1}) = \"{0}\"".format(ch,n))
+
 	#
 	bs.append(eb.checkCode())
 	bs.save()

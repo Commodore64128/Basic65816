@@ -31,7 +31,8 @@ class TokenSource(object):
 	rnd( 										## random number 32 bit							
 	sgn( 	abs( 	len(	 					## standard
 	val(	str$(								## string to integer,integer to string.
-		
+	chr$( 	asc(								## character to integer conversion.
+			
 [syntax]
 	, 	;	:	(	)	'	
 	to  step 									## syntax words for for/next

@@ -118,3 +118,47 @@ _Rnd_Exit:
 		lda 	DRandom
 		eor 	DRandom+2
 		rts
+
+; *******************************************************************************************
+;
+;									chr$(<expr>)
+;
+; *******************************************************************************************
+
+Function_Chr: ;; chr$(
+		jsr 	ResetTypeString 			; returns a string
+		jsr 	EvaluateNextInteger 		; get integer
+		jsr 	ExpectRightBracket 			; check )
+		cpy 	#0 							; must be 0-255
+		bne 	_FCHBad 
+		pha 
+		lda 	#1 							; allocate a single character
+		jsr 	StringTempAllocate
+		pla
+		jsr 	StringWriteCharacter 		; write it out.
+		lda 	DStartTempString 			; return that address
+		sta 	EXSValueL+0,x
+		stz 	EXSValueH+0,x
+		rts
+_FCHBad:#error 	"Bad value for chr$()"
+
+; *******************************************************************************************
+;
+;									asc(<expr>)
+;
+; *******************************************************************************************
+
+Function_Asc: ;; asc(
+		jsr 	ResetTypeInteger 			; returns an integer
+		jsr 	EvaluateNextString 			; get string
+		jsr 	ExpectRightBracket 			; check )
+		tay 								; string address in Y
+		lda 	$0000,y 					; check length non zero
+		and 	#$00FF
+		beq 	_FASBad
+		lda 	$0001,y 					; get first char
+		and 	#$00FF
+		sta 	EXSValueL+0,x
+		stz 	EXSValueH+0,x
+		rts
+_FASBad:#error 	"Bad value for asc()"

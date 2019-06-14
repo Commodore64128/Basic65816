@@ -1,7 +1,8 @@
 Main
 ----
+- Change tokenising to 44*44. Zero other bit.
 - FOR .. NEXT
-- LIST. Detokenising. Spacing out and in.
+- LIST. Detokenising. Spacing out and tabs in.
 - CALL <address> (params A,X,Y ?)
 - Input code. Tokenising.
 - Typing commands in
@@ -40,7 +41,7 @@ Memory Checks
 
 Not yet considered but likely/probables
 =======================================
-- 	ASC(), CHR$()
 -	LEFT$(),RIGHT$(),MID$()
 - 	SPC()
 -	PEEK LEEK DEEK POKE LOKE DOKE
+- 	UPPER$() LOWER$()

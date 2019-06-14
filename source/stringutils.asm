@@ -34,6 +34,21 @@ StringTempAllocate:
 
 ; *******************************************************************************************
 ;
+;								Write A to current temp string
+;
+; *******************************************************************************************
+
+StringWriteCharacter:
+		sep 	#$20						; 8 bit mode
+		sta 	(DCurrentTempString) 		; save character
+		lda 	(DStartTempString) 			; bump length
+		inc 	a
+		sta 	(DStartTempString)
+		rep 	#$20						; 16 bit mode
+		rts	
+
+; *******************************************************************************************
+;
 ;			  Copy String at A to the most recently allocated temporary storage.
 ;
 ; *******************************************************************************************
