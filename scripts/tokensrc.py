@@ -34,7 +34,8 @@ class TokenSource(object):
 	chr$( 	asc(								## character to integer conversion.
 	spc(										## space formatting
 	peek(	deek( 	leek(						## peek byte/word/long
-				
+	lower$( upper$( 							## recasing.
+					
 [syntax]
 	, 	;	:	(	)	'	
 	to  step 									## syntax words for for/next

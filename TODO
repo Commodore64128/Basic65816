@@ -1,7 +1,6 @@
 Main
 ----
 - LEFT$ RIGHT$ MID$
-- UPPER$ LOWER$
 - LIST. Detokenising. Spacing out and tabs in.
 - CALL <address> (params A,X,Y,C ?)
 - Input code. Tokenising.

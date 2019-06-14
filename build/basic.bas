@@ -1,5 +1,6 @@
 10 rem "POKE LOKE DOKE test"
-15 a$ = "hello"+"world"
+15 a$ = "Hello "+" World!"
+17 print ">>";upper$(a$)+"..."+lower$(a$)
 20 addr = 2 * 65536 + 4 * 4096
 30 gosub 130
 60 print

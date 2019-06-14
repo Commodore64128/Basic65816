@@ -31,42 +31,44 @@ CommandJumpTable:
 	.word Function_Peek            & $FFFF ; token $301a "peek("
 	.word Function_Deek            & $FFFF ; token $301b "deek("
 	.word Function_Leek            & $FFFF ; token $301c "leek("
-	.word IllegalToken             & $FFFF ; token $321d ","
-	.word IllegalToken             & $FFFF ; token $321e ";"
-	.word IllegalToken             & $FFFF ; token $321f ":"
-	.word IllegalToken             & $FFFF ; token $3220 "("
-	.word IllegalToken             & $FFFF ; token $3221 ")"
-	.word IllegalToken             & $FFFF ; token $3222 "'"
-	.word IllegalToken             & $FFFF ; token $3223 "to"
-	.word IllegalToken             & $FFFF ; token $3224 "step"
-	.word Function_REM             & $FFFF ; token $3e25 "rem"
-	.word Function_Let             & $FFFF ; token $3e26 "let"
-	.word Function_ASSERT          & $FFFF ; token $3e27 "assert"
-	.word Function_END             & $FFFF ; token $3e28 "end"
-	.word Function_RUN             & $FFFF ; token $3e29 "run"
-	.word Function_STOP            & $FFFF ; token $3e2a "stop"
-	.word Function_CLEAR           & $FFFF ; token $3e2b "clear"
-	.word Function_Dim             & $FFFF ; token $3e2c "dim"
-	.word Function_COLLECT         & $FFFF ; token $3e2d "collect"
-	.word Function_CLS             & $FFFF ; token $3e2e "cls"
-	.word Function_PRINT           & $FFFF ; token $3e2f "print"
-	.word Function_GOTO            & $FFFF ; token $3e30 "goto"
-	.word Function_GOSUB           & $FFFF ; token $3e31 "gosub"
-	.word Function_RETURN          & $FFFF ; token $3e32 "return"
-	.word Function_ONGOTO          & $FFFF ; token $3e33 "on"
-	.word Handler_ELSE             & $FFFF ; token $3e34 "else"
-	.word Command_POKE             & $FFFF ; token $3e35 "poke"
-	.word Command_DOKE             & $FFFF ; token $3e36 "doke"
-	.word Command_LOKE             & $FFFF ; token $3e37 "loke"
-	.word Function_REPEAT          & $FFFF ; token $3c38 "repeat"
-	.word Function_WHILE           & $FFFF ; token $3c39 "while"
-	.word Function_IF              & $FFFF ; token $3c3a "if"
-	.word Command_FOR              & $FFFF ; token $3c3b "for"
-	.word Function_WEND            & $FFFF ; token $3a3c "wend"
-	.word Function_UNTIL           & $FFFF ; token $3a3d "until"
-	.word IllegalToken             & $FFFF ; token $3a3e "then"
-	.word Handler_ENDIF            & $FFFF ; token $3a3f "endif"
-	.word Command_NEXT             & $FFFF ; token $3a40 "next"
+	.word Function_LOWER           & $FFFF ; token $301d "lower$("
+	.word Function_UPPER           & $FFFF ; token $301e "upper$("
+	.word IllegalToken             & $FFFF ; token $321f ","
+	.word IllegalToken             & $FFFF ; token $3220 ";"
+	.word IllegalToken             & $FFFF ; token $3221 ":"
+	.word IllegalToken             & $FFFF ; token $3222 "("
+	.word IllegalToken             & $FFFF ; token $3223 ")"
+	.word IllegalToken             & $FFFF ; token $3224 "'"
+	.word IllegalToken             & $FFFF ; token $3225 "to"
+	.word IllegalToken             & $FFFF ; token $3226 "step"
+	.word Function_REM             & $FFFF ; token $3e27 "rem"
+	.word Function_Let             & $FFFF ; token $3e28 "let"
+	.word Function_ASSERT          & $FFFF ; token $3e29 "assert"
+	.word Function_END             & $FFFF ; token $3e2a "end"
+	.word Function_RUN             & $FFFF ; token $3e2b "run"
+	.word Function_STOP            & $FFFF ; token $3e2c "stop"
+	.word Function_CLEAR           & $FFFF ; token $3e2d "clear"
+	.word Function_Dim             & $FFFF ; token $3e2e "dim"
+	.word Function_COLLECT         & $FFFF ; token $3e2f "collect"
+	.word Function_CLS             & $FFFF ; token $3e30 "cls"
+	.word Function_PRINT           & $FFFF ; token $3e31 "print"
+	.word Function_GOTO            & $FFFF ; token $3e32 "goto"
+	.word Function_GOSUB           & $FFFF ; token $3e33 "gosub"
+	.word Function_RETURN          & $FFFF ; token $3e34 "return"
+	.word Function_ONGOTO          & $FFFF ; token $3e35 "on"
+	.word Handler_ELSE             & $FFFF ; token $3e36 "else"
+	.word Command_POKE             & $FFFF ; token $3e37 "poke"
+	.word Command_DOKE             & $FFFF ; token $3e38 "doke"
+	.word Command_LOKE             & $FFFF ; token $3e39 "loke"
+	.word Function_REPEAT          & $FFFF ; token $3c3a "repeat"
+	.word Function_WHILE           & $FFFF ; token $3c3b "while"
+	.word Function_IF              & $FFFF ; token $3c3c "if"
+	.word Command_FOR              & $FFFF ; token $3c3d "for"
+	.word Function_WEND            & $FFFF ; token $3a3e "wend"
+	.word Function_UNTIL           & $FFFF ; token $3a3f "until"
+	.word IllegalToken             & $FFFF ; token $3a40 "then"
+	.word Handler_ENDIF            & $FFFF ; token $3a41 "endif"
+	.word Command_NEXT             & $FFFF ; token $3a42 "next"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -100,42 +102,44 @@ TokenText:
 	 .text $86,"peek("    ; token $301a
 	 .text $86,"deek("    ; token $301b
 	 .text $86,"leek("    ; token $301c
-	 .text $92,","        ; token $321d
-	 .text $92,";"        ; token $321e
-	 .text $92,":"        ; token $321f
-	 .text $92,"("        ; token $3220
-	 .text $92,")"        ; token $3221
-	 .text $92,"'"        ; token $3222
-	 .text $93,"to"       ; token $3223
-	 .text $95,"step"     ; token $3224
-	 .text $f4,"rem"      ; token $3e25
-	 .text $f4,"let"      ; token $3e26
-	 .text $f7,"assert"   ; token $3e27
-	 .text $f4,"end"      ; token $3e28
-	 .text $f4,"run"      ; token $3e29
-	 .text $f5,"stop"     ; token $3e2a
-	 .text $f6,"clear"    ; token $3e2b
-	 .text $f4,"dim"      ; token $3e2c
-	 .text $f8,"collect"  ; token $3e2d
-	 .text $f4,"cls"      ; token $3e2e
-	 .text $f6,"print"    ; token $3e2f
-	 .text $f5,"goto"     ; token $3e30
-	 .text $f6,"gosub"    ; token $3e31
-	 .text $f7,"return"   ; token $3e32
-	 .text $f3,"on"       ; token $3e33
-	 .text $f5,"else"     ; token $3e34
-	 .text $f5,"poke"     ; token $3e35
-	 .text $f5,"doke"     ; token $3e36
-	 .text $f5,"loke"     ; token $3e37
-	 .text $e7,"repeat"   ; token $3c38
-	 .text $e6,"while"    ; token $3c39
-	 .text $e3,"if"       ; token $3c3a
-	 .text $e4,"for"      ; token $3c3b
-	 .text $d5,"wend"     ; token $3a3c
-	 .text $d6,"until"    ; token $3a3d
-	 .text $d5,"then"     ; token $3a3e
-	 .text $d6,"endif"    ; token $3a3f
-	 .text $d5,"next"     ; token $3a40
+	 .text $88,"lower$("  ; token $301d
+	 .text $88,"upper$("  ; token $301e
+	 .text $92,","        ; token $321f
+	 .text $92,";"        ; token $3220
+	 .text $92,":"        ; token $3221
+	 .text $92,"("        ; token $3222
+	 .text $92,")"        ; token $3223
+	 .text $92,"'"        ; token $3224
+	 .text $93,"to"       ; token $3225
+	 .text $95,"step"     ; token $3226
+	 .text $f4,"rem"      ; token $3e27
+	 .text $f4,"let"      ; token $3e28
+	 .text $f7,"assert"   ; token $3e29
+	 .text $f4,"end"      ; token $3e2a
+	 .text $f4,"run"      ; token $3e2b
+	 .text $f5,"stop"     ; token $3e2c
+	 .text $f6,"clear"    ; token $3e2d
+	 .text $f4,"dim"      ; token $3e2e
+	 .text $f8,"collect"  ; token $3e2f
+	 .text $f4,"cls"      ; token $3e30
+	 .text $f6,"print"    ; token $3e31
+	 .text $f5,"goto"     ; token $3e32
+	 .text $f6,"gosub"    ; token $3e33
+	 .text $f7,"return"   ; token $3e34
+	 .text $f3,"on"       ; token $3e35
+	 .text $f5,"else"     ; token $3e36
+	 .text $f5,"poke"     ; token $3e37
+	 .text $f5,"doke"     ; token $3e38
+	 .text $f5,"loke"     ; token $3e39
+	 .text $e7,"repeat"   ; token $3c3a
+	 .text $e6,"while"    ; token $3c3b
+	 .text $e3,"if"       ; token $3c3c
+	 .text $e4,"for"      ; token $3c3d
+	 .text $d5,"wend"     ; token $3a3e
+	 .text $d6,"until"    ; token $3a3f
+	 .text $d5,"then"     ; token $3a40
+	 .text $d6,"endif"    ; token $3a41
+	 .text $d5,"next"     ; token $3a42
 	.byte $00
 
 ;
@@ -169,39 +173,41 @@ spclparenTokenID                 = $3019
 peeklparenTokenID                = $301a
 deeklparenTokenID                = $301b
 leeklparenTokenID                = $301c
-commaTokenID                     = $321d
-semicolonTokenID                 = $321e
-colonTokenID                     = $321f
-lparenTokenID                    = $3220
-rparenTokenID                    = $3221
-squoteTokenID                    = $3222
-toTokenID                        = $3223
-stepTokenID                      = $3224
-remTokenID                       = $3e25
-letTokenID                       = $3e26
-assertTokenID                    = $3e27
-endTokenID                       = $3e28
-runTokenID                       = $3e29
-stopTokenID                      = $3e2a
-clearTokenID                     = $3e2b
-dimTokenID                       = $3e2c
-collectTokenID                   = $3e2d
-clsTokenID                       = $3e2e
-printTokenID                     = $3e2f
-gotoTokenID                      = $3e30
-gosubTokenID                     = $3e31
-returnTokenID                    = $3e32
-onTokenID                        = $3e33
-elseTokenID                      = $3e34
-pokeTokenID                      = $3e35
-dokeTokenID                      = $3e36
-lokeTokenID                      = $3e37
-repeatTokenID                    = $3c38
-whileTokenID                     = $3c39
-ifTokenID                        = $3c3a
-forTokenID                       = $3c3b
-wendTokenID                      = $3a3c
-untilTokenID                     = $3a3d
-thenTokenID                      = $3a3e
-endifTokenID                     = $3a3f
-nextTokenID                      = $3a40
+lowerdollarlparenTokenID         = $301d
+upperdollarlparenTokenID         = $301e
+commaTokenID                     = $321f
+semicolonTokenID                 = $3220
+colonTokenID                     = $3221
+lparenTokenID                    = $3222
+rparenTokenID                    = $3223
+squoteTokenID                    = $3224
+toTokenID                        = $3225
+stepTokenID                      = $3226
+remTokenID                       = $3e27
+letTokenID                       = $3e28
+assertTokenID                    = $3e29
+endTokenID                       = $3e2a
+runTokenID                       = $3e2b
+stopTokenID                      = $3e2c
+clearTokenID                     = $3e2d
+dimTokenID                       = $3e2e
+collectTokenID                   = $3e2f
+clsTokenID                       = $3e30
+printTokenID                     = $3e31
+gotoTokenID                      = $3e32
+gosubTokenID                     = $3e33
+returnTokenID                    = $3e34
+onTokenID                        = $3e35
+elseTokenID                      = $3e36
+pokeTokenID                      = $3e37
+dokeTokenID                      = $3e38
+lokeTokenID                      = $3e39
+repeatTokenID                    = $3c3a
+whileTokenID                     = $3c3b
+ifTokenID                        = $3c3c
+forTokenID                       = $3c3d
+wendTokenID                      = $3a3e
+untilTokenID                     = $3a3f
+thenTokenID                      = $3a40
+endifTokenID                     = $3a41
+nextTokenID                      = $3a42

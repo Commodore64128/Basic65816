@@ -23,10 +23,12 @@ StartOfBasicCode:
 		.include "binary/comparison.asm"
 		.include "binary/divide.asm"
 		.include "binary/multiply.asm"
+
 		.include "unary/simpleunary.asm" 			; unary functions.
 		.include "unary/memread.asm"			
 		.include "unary/val.asm"
 		.include "unary/str.asm"
+		.include "unary/caseconv.asm"
 		
 		.include "commands/let.asm" 				; assignment
 		.include "commands/print.asm"				; print.
