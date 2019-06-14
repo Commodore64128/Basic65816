@@ -5,5 +5,4 @@
 30 print b,x,str$(x,b)
 35 b = b - 1
 38 wend
-45 print val("1239102491948791797828973")
 50 stop

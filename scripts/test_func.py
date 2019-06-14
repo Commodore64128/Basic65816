@@ -50,9 +50,11 @@ if __name__ == "__main__":
 		if ch != '"':
 			bs.append("assert asc(\"{0}\") = {1}".format(ch,n))
 			bs.append("assert chr$({1}) = \"{0}\"".format(ch,n))
-
-	#
 	bs.append(eb.checkCode())
+	#
+	for i in range(2,17):
+		bs.append("assert str$(32767*65536+65535,{1}) = \"{0}\"".format(toStr(0x7FFFFFFF,i).lower(),i))
+	#
 	bs.save()
 	blk = BasicBlock(0x4000,0x8000)
 	blk.loadProgram()

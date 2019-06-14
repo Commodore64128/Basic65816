@@ -1,800 +1,300 @@
-dim q8(3)
-dim h0(4)
-dim u1(6)
-dim d59(3)
-dim n0sy(2)
-dim t77(6)
-dim f29n(5)
-dim o8(2)
-dim j22t(4)
-dim h3(3)
-dim q6z$(3)
-dim j890$(6)
-dim e3x$(3)
-dim w63f$(5)
-dim s4$(5)
-dim t32$(5)
-dim g5fv$(6)
-dim c3s$(5)
-dim w0r$(6)
-dim t2h$(5)
-a5i3m=33
-y=-34786
-let j=-156478
-o3a=-141414
-let v=-8431
-let y7a2=-15494
-let n=5981
-let n954=-127814
-let t5pc=14
-let v52za=-178
-b82=59064
-r7rj=-88136
-let s4gu=17
-let h=-23
-y1zpq=-126198
-v0v=-171764
-s9=-42232
-u4l6=-132159
-let s3ud=-161
-x94l2=-73241
-b=-174489
-let e2l=105202
-let q7v4=-63198
-b3f=-155715
-m=190
-f2yo=-127832
-q8osc=182399
-let w02og=177088
-let a4nb=28620
-p1hy9=78
-let t=-181
-let d89sc=197
-let q1rn=-149572
-let k5pp0=81558
-z6j=136
-let f7t9a=153086
-l0yvd=-15293
-a8gjo=42456
-g9d=-65
-p=-165862
-b23=73831
-let c5=-91
-let h5t=-69058
-z8=37735
-let i=-54663
-d=99886
-let v9ot=-23035
-let g7=-131712
-m6=-115467
-m8de5=26662
-s1=-38358
-s8nvi=25392
-let u7zer=74706
-let f=171827
-c4q=-194707
-k3lvr=-112439
-i4=109348
-let t1v4=47
-q8d=92838
-let t1xf5=23
-let s$="XOM HNCRET"
-f$="AX"
-i49$=""
-let k9$="VL NOGPI"
-k1yjp$="RALJ YPA"
-w4$="O NRAH"
-let j9ref$="YZ"
-t2$="SEWXGBV RSZ"
-h$="CRL"
-let c$="IZJUX M"
-w9he$="QKF GKHHN"
-let v0ltb$="G NQQQGMY A"
-b4$="NXXME"
-n5y$="P B LJ"
-let c7gj8$="A  RCW"
-let i6o$=""
-let f8a$="IC"
-p8rr$="M"
-let d7v2d$="I"
-let r$="M"
-let r7r6$="OGMV"
-let g0$="I"
-let b5of$="MRA"
-u$="KZY"
-let k74kh$="TIPJPYEV"
-let y$="SF  ZS"
-v77e5$="TDR"
-let u5pwv$="CY  Q"
-let e0$="W"
-let k4$=""
-let d2iei$="M"
-let e$="MP AK"
-let z9olr$="TC ML"
-let z4$="R"
-l6dm$="K IO"
-n$=""
-y6lqk$="XZES"
-let r3$="DTUXOT"
-let c51y$="X XFWEJH"
-let g8lji$=""
-let k$="B WJJHYK"
-let l$="CV"
-j71$="KOU"
-let o2$="VHABX"
-u1$=""
-s08yn$=""
-d$="JX"
-let p$=""
-w2tng$="EU"
-r2qwv$="VAKS"
-x5c6u$="BFOH O E"
-i5x$=""
-j7$=""
-let g32nw$="OWDLHX"
-r2d9$=""
-let q$="ZSPIZ"
-i$="GKUTW"
-p8$=""
-let y8$="NDIY     HM"
-h1rrf$="NT JUC"
-q8(0)=112038:q8(1)=-178063:q8(2)=-170128:q8(3)=-199566
-h0(0)=-47829:h0(1)=-524:h0(2)=136010:h0(3)=130:h0(4)=166092
-u1(0)=131516:u1(1)=83031:u1(2)=17:u1(3)=-87025:u1(4)=-40916:u1(5)=193025:u1(6)=-17
-d59(0)=-8:d59(1)=121393:d59(2)=76217:d59(3)=-16918
-n0sy(0)=122:n0sy(1)=60205:n0sy(2)=-36
-t77(0)=-112885:t77(1)=-153:t77(2)=57:t77(3)=-118219:t77(4)=-26347:t77(5)=68845:t77(6)=-45682
-f29n(0)=-66622:f29n(1)=-37:f29n(2)=-131:f29n(3)=172619:f29n(4)=84721:f29n(5)=-33573
-o8(0)=-38444:o8(1)=195318:o8(2)=-187
-j22t(0)=26059:j22t(1)=-32278:j22t(2)=-99325:j22t(3)=-98060:j22t(4)=117
-h3(0)=-137188:h3(1)=-194351:h3(2)=159742:h3(3)=147844
-q6z$(0)="XPF  E":q6z$(1)="G":q6z$(2)="QHU":q6z$(3)="AL NTAT"
-j890$(0)="JR  VXJP BR":j890$(1)="JKFVXSH YE":j890$(2)="HD":j890$(3)="MB":j890$(4)="IONVZ":j890$(5)="FYRF N":j890$(6)="Q XRWD"
-e3x$(0)="GESCEMBCFK":e3x$(1)="F":e3x$(2)="WME":e3x$(3)="RR"
-w63f$(0)="HENVWZRZ YM":w63f$(1)="PLU":w63f$(2)="VVBH  GA":w63f$(3)="WOJGKYC":w63f$(4)="H Z LSYP":w63f$(5)=""
-s4$(0)="YQ":s4$(1)="JDMOQU":s4$(2)="":s4$(3)="CUS":s4$(4)="G VGVH FSKS":s4$(5)="Y AGWF Q"
-t32$(0)="BM L":t32$(1)="G   VAXF":t32$(2)="M OK I":t32$(3)="":t32$(4)="L":t32$(5)="JBGZ"
-g5fv$(0)="P TKIN E":g5fv$(1)="HGOLE":g5fv$(2)="":g5fv$(3)="ZCFX  X":g5fv$(4)="M":g5fv$(5)="WF SHPXWLSU":g5fv$(6)="PYL"
-c3s$(0)="D X":c3s$(1)="L E LQV JF":c3s$(2)="S IAQ":c3s$(3)="":c3s$(4)="IOQOBGIR AE":c3s$(5)="O"
-w0r$(0)="M":w0r$(1)="P N":w0r$(2)="NLT SR":w0r$(3)="GY NHKPZR V":w0r$(4)="ZQ PZB G":w0r$(5)="EO LF":w0r$(6)="C"
-t2h$(0)="V":t2h$(1)="T REYA  TS":t2h$(2)="ZLND":t2h$(3)="":t2h$(4)="FF":t2h$(5)="HHYTDQGX R"
-let q8osc = s3ud
-let c3s$(3) = j7$
-let f8a$ = w63f$(4)
-let u7zer = s1
-let t = n
-let b82 = b3f
-let t2h$(5) = c3s$(3)
-let p = h0(3)
-let j9ref$ = n5y$
-let y = t77(3)
-let b82 = u7zer
-let x5c6u$ = n$
-let f29n(4) = n0sy(1)
-let h1rrf$ = z4$
-let b23 = d59(3)
-let l0yvd = f7t9a
-let w0r$(0) = r$
-let b4$ = y$
-let p$ = z4$
-let a4nb = d89sc
-let s08yn$ = j890$(1)
-let s9 = j
-let p8rr$ = h$
-let w9he$ = g5fv$(3)
-let d$ = p8$
-let y$ = y$
-let n0sy(2) = d89sc
-let w4$ = g0$
-let y8$ = l6dm$
-let d = z8
-let r2d9$ = q$
-let q8(3) = y7a2
-let e3x$(1) = p8$
-let x94l2 = t5pc
-let z6j = b3f
-let a8gjo = v
-let t32$(3) = p$
-let q$ = e3x$(0)
-let r$ = x5c6u$
-let b82 = y1zpq
-let t1xf5 = c5
-let c4q = f29n(1)
-let w02og = s1
-let i5x$ = j71$
-let u$ = l6dm$
-let o8(2) = q8d
-let z8 = v
-let z4$ = w63f$(1)
-let c$ = h1rrf$
-let t32$(4) = i$
-let b = d
-let k1yjp$ = r$
-let n$ = g8lji$
-let q8(3) = i
-let y8$ = q6z$(1)
-let i$ = u5pwv$
-let w02og = t
-let d59(0) = r7rj
-let d$ = c51y$
-let g9d = m6
-let q8d = w02og
-let t1v4 = t5pc
-let m = i4
-let o8(1) = q7v4
-let y = z6j
-let n5y$ = k4$
-let q6z$(3) = i6o$
-let u$ = p$
-let l6dm$ = e$
-let e2l = v52za
-let m = q8d
-let q6z$(3) = l$
-let y6lqk$ = d$
-let f = x94l2
-let i49$ = b5of$
-let j7$ = u5pwv$
-let b23 = n954
-let t2$ = u1$
-let o3a = f7t9a
-let f = v0v
-let v0v = v0v
-let g5fv$(6) = w63f$(2)
-let c$ = i$
-let s08yn$ = p8$
-let h1rrf$ = n$
-let b4$ = d$
-let s1 = v0v
-let h3(3) = m
-let m6 = b82
-let f8a$ = e3x$(2)
-let f29n(4) = v9ot
-let p8rr$ = e0$
-let j7$ = i6o$
-let l0yvd = q8d
-let u4l6 = a4nb
-let v0ltb$ = w9he$
-let c51y$ = r2qwv$
-let j = y7a2
-let l6dm$ = k$
-let r3$ = e0$
-let i = t1xf5
-let s$ = y6lqk$
-let y7a2 = b
-let z6j = h5t
-let e0$ = n5y$
-let a8gjo = m
-let i5x$ = w63f$(4)
-let t77(6) = w02og
-let q6z$(2) = w4$
-let c5 = h5t
-let i6o$ = g5fv$(1)
-let n0sy(1) = t5pc
-let t2h$(1) = j71$
-let y7a2 = n0sy(0)
-let j22t(2) = p1hy9
-let t2h$(2) = e$
-let d$ = g0$
-let y$ = r$
-let w63f$(2) = k1yjp$
-let v77e5$ = t32$(5)
-let o2$ = r2qwv$
-let c51y$ = v77e5$
-let g8lji$ = g8lji$
-let j71$ = s$
-let l0yvd = t77(3)
-let k5pp0 = s9
-let z9olr$ = g32nw$
-let x5c6u$ = l$
-let q8(0) = t1xf5
-let h5t = z6j
-let e2l = s9
-let j7$ = x5c6u$
-let v77e5$ = i$
-let b5of$ = j7$
-let t = k3lvr
-let t2h$(2) = j7$
-let c51y$ = r3$
-let u7zer = v52za
-let y1zpq = f29n(2)
-let y = j22t(1)
-let d2iei$ = c7gj8$
-let z4$ = o2$
-let g5fv$(1) = w0r$(5)
-let n0sy(0) = s4gu
-let n = f
-let l0yvd = e2l
-let v0ltb$ = w0r$(0)
-let b23 = l0yvd
-let e2l = y1zpq
-let g5fv$(5) = i6o$
-let s3ud = z8
-let r3$ = l$
-let k74kh$ = y8$
-let q8(0) = t1v4
-let q7v4 = p1hy9
-let i5x$ = u$
-let l6dm$ = q$
-let v52za = p
-let k4$ = e$
-let c51y$ = c51y$
-let g8lji$ = d2iei$
-let o8(2) = c4q
-let v77e5$ = j890$(6)
-let s1 = u1(4)
-let u$ = r2d9$
-let f$ = r2qwv$
-let x94l2 = c4q
-let q8osc = h0(0)
-let h5t = j22t(2)
-let b23 = f7t9a
-let a4nb = q8(2)
-let d = s9
-let m6 = c5
-let m8de5 = p1hy9
-let q1rn = h
-let c51y$ = l6dm$
-let i = d89sc
-let h = z6j
-let j22t(4) = f2yo
-let q6z$(2) = k74kh$
-let v0v = s1
-let s3ud = y1zpq
-let a4nb = k5pp0
-let l0yvd = u4l6
-let y6lqk$ = e3x$(0)
-let q8d = y
-let j71$ = k9$
-let h$ = x5c6u$
-let n0sy(1) = h
-let y6lqk$ = u1$
-let q8d = f7t9a
-let c$ = c51y$
-let m6 = c4q
-let c5 = s3ud
-let p1hy9 = h3(1)
-let d2iei$ = s4$(5)
-let r3$ = h1rrf$
-let z4$ = b5of$
-let e0$ = r3$
-let y = u7zer
-let u$ = p8$
-let b4$ = r7r6$
-let s08yn$ = c3s$(1)
-let u$ = r7r6$
-let m6 = f2yo
-let f29n(4) = p1hy9
-let u7zer = t
-let u1$ = d2iei$
-let b3f = t5pc
-let f29n(4) = q8osc
-let m6 = d59(2)
-let w0r$(2) = c7gj8$
-let k3lvr = y7a2
-let f29n(0) = d59(0)
-let t77(2) = g7
-let t32$(5) = w9he$
-let i5x$ = q6z$(0)
-let g8lji$ = g0$
-let y = y1zpq
-let z9olr$ = e0$
-let y8$ = k9$
-let w9he$ = g0$
-let w9he$ = v0ltb$
-let w0r$(1) = f$
-let s08yn$ = x5c6u$
-let k$ = o2$
-let j7$ = b5of$
-let j22t(1) = a5i3m
-let h3(3) = h5t
-let e3x$(2) = r2qwv$
-let v = h3(0)
-let z4$ = i49$
-let f8a$ = j7$
-let y7a2 = p1hy9
-let w9he$ = v77e5$
-let m8de5 = h0(0)
-let k1yjp$ = v77e5$
-let d59(0) = f
-let b = s4gu
-let s4gu = i
-let k9$ = p8rr$
-let g5fv$(3) = r$
-let y6lqk$ = q6z$(3)
-let p$ = k4$
-let a4nb = f2yo
-let z8 = s4gu
-let t32$(4) = n$
-let b = o3a
-let d59(2) = z6j
-let i$ = u$
-let m8de5 = q8(3)
-let j22t(0) = d59(1)
-let v9ot = c5
-let w2tng$ = r2d9$
-let a4nb = l0yvd
-let d$ = p8$
-let t77(2) = i4
-let u5pwv$ = w2tng$
-let k1yjp$ = q6z$(2)
-let n5y$ = i$
-let t2h$(5) = e$
-let g9d = t1v4
-let n954 = n954
-let x5c6u$ = k$
-let a8gjo = q7v4
-let s$ = n$
-let u$ = t2h$(1)
-let s$ = d2iei$
-let v = t1v4
-let h5t = a5i3m
-let k3lvr = r7rj
-let g7 = e2l
-let q8osc = g9d
-let a5i3m = s4gu
-let p = c4q
-let r2qwv$ = q$
-let h0(0) = f29n(0)
-let o3a = d89sc
-let c51y$ = i49$
-let t77(5) = f2yo
-let h = j
-let q8(2) = o3a
-let y$ = o2$
-let q8d = h
-let t77(3) = b3f
-let s4$(4) = b5of$
-let y8$ = w0r$(4)
-let r7r6$ = e3x$(3)
-let k4$ = p8$
-let n = s9
-let q8(3) = f29n(3)
-let j7$ = j71$
-let i49$ = f8a$
-let p = t
-let b82 = q8(0)
-let g5fv$(1) = c$
-let r7rj = f7t9a
-let b = p
-let r2d9$ = e$
-let q8d = h0(0)
-let y = b
-let f$ = f$
-let z6j = m6
-let j = i4
-let c3s$(5) = i5x$
-let e2l = g7
-let w63f$(2) = k4$
-let i = j
-let r3$ = y$
-let d2iei$ = x5c6u$
-let w63f$(2) = j9ref$
-let k1yjp$ = f$
-let m6 = v9ot
-let i = q8osc
-let f7t9a = v9ot
-let k$ = e3x$(1)
-let v52za = b3f
-let u7zer = m
-let v = h0(0)
-let j890$(1) = i5x$
-let t2$ = v0ltb$
-let p$ = s08yn$
-let b5of$ = w9he$
-let t77(0) = u4l6
-let n$ = z4$
-let t77(0) = c4q
-let j890$(1) = j890$(4)
-let q6z$(3) = j9ref$
-let f$ = w2tng$
-let e$ = q$
-let v0ltb$ = w4$
-let p1hy9 = a8gjo
-let m6 = y1zpq
-let e3x$(3) = s4$(3)
-let n0sy(2) = v9ot
-let j22t(3) = e2l
-let u1(4) = n0sy(2)
-let v9ot = z8
-let t1v4 = p1hy9
-let g5fv$(4) = w9he$
-let s9 = t1xf5
-let z8 = c5
-let y6lqk$ = p8$
-let s1 = b3f
-let c7gj8$ = i6o$
-let q1rn = s3ud
-let d = h0(1)
-let e0$ = q6z$(2)
-let r7r6$ = c3s$(4)
-let z9olr$ = j71$
-let d7v2d$ = g8lji$
-let a5i3m = s9
-let z9olr$ = c7gj8$
-let y8$ = k9$
-let g5fv$(4) = r$
-let n$ = h$
-let o2$ = y8$
-let d89sc = h5t
-let c51y$ = r2d9$
-let f7t9a = v
-let r2d9$ = t2$
-let n = h
-let u1$ = j71$
-let v77e5$ = t32$(1)
-let v9ot = d
-let f8a$ = r2d9$
-let o8(1) = u1(1)
-let o3a = w02og
-let t5pc = d89sc
-let t1xf5 = t77(1)
-let k1yjp$ = g5fv$(2)
-let k5pp0 = q7v4
-let c$ = r2qwv$
-let m8de5 = n0sy(1)
-let s3ud = m6
-let a4nb = w02og
-let d89sc = q7v4
-let c5 = z8
-let e0$ = q$
-let p8rr$ = n$
-let g8lji$ = w0r$(4)
-let d59(0) = r7rj
-let a5i3m = u1(1)
-let n954 = o3a
-let o2$ = u$
-let e$ = c3s$(5)
-let w9he$ = n5y$
-let o8(0) = p1hy9
-let r$ = i5x$
-let w2tng$ = t2$
-let y = p1hy9
-let o2$ = u1$
-let i5x$ = r7r6$
-let f29n(4) = q8d
-let x5c6u$ = g0$
-let c5 = a8gjo
-let d2iei$ = v77e5$
-let h5t = s3ud
-let f$ = k74kh$
-let w02og = a5i3m
-let g7 = q8(1)
-let q8d = b3f
-let g0$ = c3s$(0)
-let c51y$ = x5c6u$
-let b3f = j
-let k4$ = k74kh$
-let t = a4nb
-let d$ = r3$
-let v9ot = f7t9a
-let b82 = r7rj
-let c4q = r7rj
-let n954 = b82
-let q8(2) = n0sy(0)
-let j9ref$ = r3$
-let g7 = f7t9a
-let q8(1) = h5t
-let j890$(3) = r7r6$
-let f29n(0) = q8d
-let u1(4) = m
-let b4$ = z4$
-let n5y$ = t2$
-let h1rrf$ = t2$
-let t5pc = m
-let a5i3m = s9
-let y7a2 = q1rn
-let q6z$(1) = r7r6$
-let k4$ = k1yjp$
-let p1hy9 = n954
-let f2yo = g9d
-let t32$(3) = k4$
-let a4nb = q8osc
-let t32$(2) = d$
-let q6z$(1) = c51y$
-let c5 = r7rj
-let r7r6$ = l6dm$
-let m = t5pc
-let s9 = f
-let o3a = s4gu
-let g32nw$ = o2$
-let z8 = o3a
-let i = t1v4
-let n954 = f7t9a
-let q1rn = d89sc
-let w2tng$ = p8$
-let s$ = g0$
-let j71$ = i6o$
-let r3$ = y6lqk$
-let f = p1hy9
-let p8$ = c51y$
-let t2$ = s$
-let q8(1) = l0yvd
-let t1v4 = v0v
-let h = s3ud
-let b4$ = j71$
-let f7t9a = m
-let h = r7rj
-let w4$ = q6z$(3)
-let c3s$(4) = q6z$(2)
-let c5 = n0sy(1)
-let t77(2) = h
-let e0$ = o2$
-let u1$ = b4$
-let u1$ = y$
-let s08yn$ = j890$(3)
-let j890$(2) = d7v2d$
-let j7$ = l6dm$
-let r3$ = g0$
-let j71$ = u5pwv$
-let k$ = v77e5$
-let e$ = t2h$(3)
-let a8gjo = i4
-let k3lvr = i4
-let w63f$(4) = n5y$
-let i4 = n
-let h0(0) = k3lvr
-let t5pc = k3lvr
-let w0r$(3) = s$
-let t77(6) = n0sy(2)
-let l0yvd = s1
-let v9ot = f2yo
-let z6j = h0(4)
-let c4q = c5
-let y$ = d2iei$
-let u4l6 = z8
-let j22t(2) = h
-let b5of$ = l6dm$
-let g5fv$(2) = k74kh$
-let g7 = u1(1)
-let d$ = e$
-let b3f = f2yo
-let w0r$(5) = c51y$
-let b5of$ = r3$
-let a5i3m = f7t9a
-let b = s1
-let q8d = n
-let k5pp0 = u7zer
-let s8nvi = q7v4
-let c51y$ = d$
-let r7rj = b
-let y6lqk$ = r$
-assert a5i3m=5981
-assert y=78
-assert j=109348
-assert o3a=197
-assert v=-88136
-assert y7a2=-131
-assert n=-15494
-assert n954=-88136
-assert t5pc=109348
-assert v52za=14
-assert b82=153086
-assert r7rj=14
-assert s4gu=197
-assert h=153086
-assert y1zpq=-131
-assert v0v=-40916
-assert s9=-171764
-assert u4l6=197
-assert s3ud=-131
-assert x94l2=-37
-assert b=14
-assert e2l=-131
-assert q7v4=78
-assert b3f=14
-assert m=5981
-assert f2yo=14
-assert q8osc=14
-assert w02og=83031
-assert a4nb=14
-assert p1hy9=153086
-assert t=5981
-assert d89sc=78
-assert q1rn=78
-assert k5pp0=5981
-assert z6j=166092
-assert f7t9a=5981
-assert l0yvd=14
-assert a8gjo=109348
-assert g9d=14
-assert p=-112439
-assert b23=153086
-assert c5=-69058
-assert h5t=-131
-assert z8=197
-assert i=78
-assert d=-524
-assert v9ot=14
-assert g7=83031
-assert m6=-131
-assert m8de5=-69058
-assert s1=14
-assert s8nvi=78
-assert u7zer=5981
-assert f=153086
-assert c4q=-69058
-assert k3lvr=109348
-assert i4=-15494
-assert t1v4=-40916
-assert q8d=-15494
-assert t1xf5=-153
-assert s$="D X"
-assert f$="G"
-assert i49$="CV"
-assert k9$="W"
-assert k1yjp$=""
-assert w4$="P B LJ"
-assert j9ref$="VAKS"
-assert t2$="D X"
-assert h$="CV"
-assert c$="GESCEMBCFK"
-assert w9he$="OGMV"
-assert v0ltb$="I"
-assert b4$="HGOLE"
-assert n5y$="M"
-assert c7gj8$="HGOLE"
-assert i6o$="HGOLE"
-assert f8a$="M"
-assert p8rr$="CV"
-assert d7v2d$="I"
-assert r$="XPF  E"
-assert r7r6$="GESCEMBCFK"
-assert g0$="D X"
-assert b5of$="D X"
-assert u$="KOU"
-assert k74kh$="G"
-assert y$="G   VAXF"
-assert v77e5$="G   VAXF"
-assert u5pwv$="ZSPIZ"
-assert e0$="VL NOGPI"
-assert k4$=""
-assert d2iei$="G   VAXF"
-assert e$=""
-assert z9olr$="HGOLE"
-assert z4$="MRA"
-assert l6dm$="GESCEMBCFK"
-assert n$="CV"
-assert y6lqk$="XPF  E"
-assert r3$="D X"
-assert c51y$=""
-assert g8lji$="ZQ PZB G"
-assert k$="G   VAXF"
-assert l$="CV"
-assert j71$="ZSPIZ"
-assert o2$="VL NOGPI"
-assert u1$="VAKS"
-assert s08yn$="IOQOBGIR AE"
-assert d$=""
-assert p$="CV"
-assert w2tng$=""
-assert r2qwv$="GESCEMBCFK"
-assert x5c6u$="I"
-assert i5x$="IOQOBGIR AE"
-assert j7$="GESCEMBCFK"
-assert g32nw$="VL NOGPI"
-assert r2d9$="M"
-assert q$="GESCEMBCFK"
-assert i$="OGMV"
-assert p8$="I"
-assert y8$="W"
-assert h1rrf$="M"
-assert q8(0)=14:assert q8(1)=197:assert q8(2)=17:assert q8(3)=172619
-assert h0(0)=109348:assert h0(1)=-524:assert h0(2)=136010:assert h0(3)=130:assert h0(4)=166092
-assert u1(0)=131516:assert u1(1)=83031:assert u1(2)=17:assert u1(3)=-87025:assert u1(4)=5981:assert u1(5)=193025:assert u1(6)=-17
-assert d59(0)=153086:assert d59(1)=121393:assert d59(2)=-69058:assert d59(3)=-16918
-assert n0sy(0)=17:assert n0sy(1)=-69058:assert n0sy(2)=-131
-assert t77(0)=-37:assert t77(1)=-153:assert t77(2)=153086:assert t77(3)=14:assert t77(4)=-26347:assert t77(5)=-127832:assert t77(6)=-131
-assert f29n(0)=14:assert f29n(1)=-37:assert f29n(2)=-131:assert f29n(3)=172619:assert f29n(4)=-88136:assert f29n(5)=-33573
-assert o8(0)=78:assert o8(1)=83031:assert o8(2)=-37
-assert j22t(0)=121393:assert j22t(1)=33:assert j22t(2)=153086:assert j22t(3)=-131:assert j22t(4)=-127832
-assert h3(0)=-137188:assert h3(1)=-194351:assert h3(2)=159742:assert h3(3)=78
-assert q6z$(0)="XPF  E":assert q6z$(1)="I":assert q6z$(2)="G":assert q6z$(3)="P B LJ"
-assert j890$(0)="JR  VXJP BR":assert j890$(1)="IONVZ":assert j890$(2)="I":assert j890$(3)="IOQOBGIR AE":assert j890$(4)="IONVZ":assert j890$(5)="FYRF N":assert j890$(6)="Q XRWD"
-assert e3x$(0)="GESCEMBCFK":assert e3x$(1)="":assert e3x$(2)="VAKS":assert e3x$(3)="CUS"
-assert w63f$(0)="HENVWZRZ YM":assert w63f$(1)="PLU":assert w63f$(2)="P B LJ":assert w63f$(3)="WOJGKYC":assert w63f$(4)="M":assert w63f$(5)=""
-assert s4$(0)="YQ":assert s4$(1)="JDMOQU":assert s4$(2)="":assert s4$(3)="CUS":assert s4$(4)="CV":assert s4$(5)="Y AGWF Q"
-assert t32$(0)="BM L":assert t32$(1)="G   VAXF":assert t32$(2)="VAKS":assert t32$(3)="":assert t32$(4)="":assert t32$(5)="ZCFX  X"
-assert g5fv$(0)="P TKIN E":assert g5fv$(1)="GESCEMBCFK":assert g5fv$(2)="G":assert g5fv$(3)="":assert g5fv$(4)="":assert g5fv$(5)="HGOLE":assert g5fv$(6)="VVBH  GA"
-assert c3s$(0)="D X":assert c3s$(1)="L E LQV JF":assert c3s$(2)="S IAQ":assert c3s$(3)="":assert c3s$(4)="G":assert c3s$(5)="XPF  E"
-assert w0r$(0)="M":assert w0r$(1)="VAKS":assert w0r$(2)="A  RCW":assert w0r$(3)="D X":assert w0r$(4)="ZQ PZB G":assert w0r$(5)="I":assert w0r$(6)="C"
-assert t2h$(0)="V":assert t2h$(1)="KOU":assert t2h$(2)="CV":assert t2h$(3)="":assert t2h$(4)="FF":assert t2h$(5)="MP AK"
+dim i(6)
+dim g3s(6)
+dim w94hp(4)
+dim q(5)
+dim f19q(5)
+dim f6sop(5)
+dim x(6)
+dim h7o(6)
+dim d(5)
+dim g2(6)
+dim v52t$(4)
+dim j7b$(5)
+dim y9$(5)
+dim b1$(5)
+dim r7$(4)
+dim g6exq$(3)
+dim g4$(5)
+dim n9$(3)
+dim c70$(2)
+dim a86f$(4)
+b4c=-176208
+a=137470
+t0ds=-191
+u=59222
+let a7=-22508
+let y8y=90531
+n38wu=124565
+let h8h=28416
+let n0m=144238
+let u6o9v=-38
+let p6=30585
+y0p=58
+let f8h=-128169
+l4v6=147595
+u4o75=-50404
+let m7e=-90056
+let l5eeu=-12118
+g2p45=-123546
+let h96=76616
+let n72s=190022
+o8=13
+s5=54208
+let w633=-81897
+let c4=64966
+let s1l28=-165083
+u7fmb=-80
+let r0=-182
+let e70a=170683
+t97mf=73438
+h3f6=80745
+v3=79170
+let j13k=-145363
+let a3fl=28305
+q9q=-2
+z7=182563
+let c=94807
+z76hy=-51
+let h=1136
+let m1a=19002
+a10b=-154372
+s=73957
+q55j=-7661
+r872t=28242
+g=163212
+let y=170
+x6=22715
+let a4=-186
+let q1cqh=-161
+let z=-113007
+w=183
+let o=44015
+let w5f=-69864
+let i4xg=-188820
+let j6yij=74337
+q8k=117
+let k7jd5=96
+v9=170492
+p4=19
+let b6=177
+let p4g=31
+h5hs$=""
+let c0tj$="NK VEG"
+x5$="ZGX  FE"
+j20m$="SBSZPBO"
+let u$="O"
+j$="WP QKZX"
+let k5pe$="TORD RDK"
+let r6$="FC"
+let l7jlc$="FRKRPAP H"
+g10w$="CKMSBDVRG"
+let z7rs$="E TPS"
+let e2upf$="XWVI"
+let a3$="GXFJIO M"
+let i1$="YK NU T"
+t$="KLZZMI  L"
+let a$="V Q"
+let b$=""
+v6$="Y    BVUF"
+let s3$="F FC   YO"
+let m1$="R"
+let f$="UKOGZ"
+u8$="NK ZY"
+let v$="FIPW"
+let e5$=""
+j5ber$="CNNG"
+let w5h$=""
+let c$="AP"
+k5l$="B"
+l$="BHM II FA"
+let f2$="O"
+let g11$="Y I"
+f3w$="J"
+p32$="BHNWA"
+let j6ac$="EV"
+f4$="TYXTBW EQ"
+r4aq$="Z"
+p$="JSNE"
+let m4$="A KQG"
+r58$="FZQIVYVJM"
+let b8a$="EUY"
+let h$="HZLO IW"
+let g9$="Z Y D"
+let v2e9n$="F EM X"
+let s$="WOJ"
+y53q$="RYZZU"
+let f0p$="H BNCBAYPD"
+n7xq$="DQN QP"
+x4y3$="I"
+let i0dy$="CPPQ"
+let m3s$="IY A  G F Q"
+q1n4$="ZGH KP VR"
+let g8dd$="EQ"
+let d9$="N VUHY"
+let d5tk$="IAM UJAQQL"
+o8$="CQHDWL"
+m7o4$="WY"
+let k$="ICW"
+let p7yc$="LFDS TT"
+let u0y$="RL"
+h5c$="OK"
+i(0)=-121:i(1)=-149999:i(2)=128731:i(3)=-34901:i(4)=-6341:i(5)=-198027:i(6)=-135666
+g3s(0)=42093:g3s(1)=-45921:g3s(2)=72753:g3s(3)=-138450:g3s(4)=165:g3s(5)=-156938:g3s(6)=-45477
+w94hp(0)=-165597:w94hp(1)=175:w94hp(2)=-20625:w94hp(3)=81692:w94hp(4)=134508
+q(0)=-13862:q(1)=-35818:q(2)=195:q(3)=87781:q(4)=-5:q(5)=195568
+f19q(0)=172353:f19q(1)=145155:f19q(2)=-42607:f19q(3)=72480:f19q(4)=-79402:f19q(5)=-159
+f6sop(0)=-100:f6sop(1)=-41043:f6sop(2)=-50952:f6sop(3)=78122:f6sop(4)=126461:f6sop(5)=-157119
+x(0)=-175805:x(1)=115239:x(2)=176:x(3)=-179988:x(4)=89013:x(5)=-148:x(6)=98642
+h7o(0)=61066:h7o(1)=-32517:h7o(2)=-135083:h7o(3)=79831:h7o(4)=-117816:h7o(5)=74154:h7o(6)=-72771
+d(0)=-18250:d(1)=-178087:d(2)=-14609:d(3)=-63699:d(4)=-162573:d(5)=67795
+g2(0)=128443:g2(1)=4:g2(2)=-21299:g2(3)=101354:g2(4)=121393:g2(5)=7067:g2(6)=133004
+v52t$(0)="WOZ":v52t$(1)="IK DS":v52t$(2)="JEHARSN":v52t$(3)="VBRERN":v52t$(4)="U SYLMMO"
+j7b$(0)="HBUMEU":j7b$(1)="BRADPMMXM":j7b$(2)="B":j7b$(3)="OSZSB":j7b$(4)="Q":j7b$(5)="GZNW H"
+y9$(0)="T KGH VU":y9$(1)="NZYQ":y9$(2)="H EZWZ":y9$(3)="NJBIY":y9$(4)="QSBK":y9$(5)="MI ED LJ"
+b1$(0)="":b1$(1)="BVT QGYMT":b1$(2)="QI":b1$(3)="AZM":b1$(4)="G":b1$(5)="UCTR"
+r7$(0)="CJ":r7$(1)="":r7$(2)="DS":r7$(3)="Q IKEZOGUYY":r7$(4)=""
+g6exq$(0)="CUM":g6exq$(1)="XNCFYCP":g6exq$(2)="KUDZVI":g6exq$(3)="CWCCMRCXIQ"
+g4$(0)="CTVZT WO H":g4$(1)="MHYMIV":g4$(2)="TLOUORQH":g4$(3)="T":g4$(4)="UKTHUH":g4$(5)="HLDL BBG"
+n9$(0)="":n9$(1)="XMTIAAVO":n9$(2)="Z":n9$(3)="WAPQPO MUE"
+c70$(0)="FPH LE":c70$(1)="NFK":c70$(2)="Q RXHRP"
+a86f$(0)="ESMU":a86f$(1)="FS  V":a86f$(2)="":a86f$(3)="ZY LGK":a86f$(4)=""
+assert b4c=-176208
+assert a=137470
+assert t0ds=-191
+assert u=59222
+assert a7=-22508
+assert y8y=90531
+assert n38wu=124565
+assert h8h=28416
+assert n0m=144238
+assert u6o9v=-38
+assert p6=30585
+assert y0p=58
+assert f8h=-128169
+assert l4v6=147595
+assert u4o75=-50404
+assert m7e=-90056
+assert l5eeu=-12118
+assert g2p45=-123546
+assert h96=76616
+assert n72s=190022
+assert o8=13
+assert s5=54208
+assert w633=-81897
+assert c4=64966
+assert s1l28=-165083
+assert u7fmb=-80
+assert r0=-182
+assert e70a=170683
+assert t97mf=73438
+assert h3f6=80745
+assert v3=79170
+assert j13k=-145363
+assert a3fl=28305
+assert q9q=-2
+assert z7=182563
+assert c=94807
+assert z76hy=-51
+assert h=1136
+assert m1a=19002
+assert a10b=-154372
+assert s=73957
+assert q55j=-7661
+assert r872t=28242
+assert g=163212
+assert y=170
+assert x6=22715
+assert a4=-186
+assert q1cqh=-161
+assert z=-113007
+assert w=183
+assert o=44015
+assert w5f=-69864
+assert i4xg=-188820
+assert j6yij=74337
+assert q8k=117
+assert k7jd5=96
+assert v9=170492
+assert p4=19
+assert b6=177
+assert p4g=31
+assert h5hs$=""
+assert c0tj$="NK VEG"
+assert x5$="ZGX  FE"
+assert j20m$="SBSZPBO"
+assert u$="O"
+assert j$="WP QKZX"
+assert k5pe$="TORD RDK"
+assert r6$="FC"
+assert l7jlc$="FRKRPAP H"
+assert g10w$="CKMSBDVRG"
+assert z7rs$="E TPS"
+assert e2upf$="XWVI"
+assert a3$="GXFJIO M"
+assert i1$="YK NU T"
+assert t$="KLZZMI  L"
+assert a$="V Q"
+assert b$=""
+assert v6$="Y    BVUF"
+assert s3$="F FC   YO"
+assert m1$="R"
+assert f$="UKOGZ"
+assert u8$="NK ZY"
+assert v$="FIPW"
+assert e5$=""
+assert j5ber$="CNNG"
+assert w5h$=""
+assert c$="AP"
+assert k5l$="B"
+assert l$="BHM II FA"
+assert f2$="O"
+assert g11$="Y I"
+assert f3w$="J"
+assert p32$="BHNWA"
+assert j6ac$="EV"
+assert f4$="TYXTBW EQ"
+assert r4aq$="Z"
+assert p$="JSNE"
+assert m4$="A KQG"
+assert r58$="FZQIVYVJM"
+assert b8a$="EUY"
+assert h$="HZLO IW"
+assert g9$="Z Y D"
+assert v2e9n$="F EM X"
+assert s$="WOJ"
+assert y53q$="RYZZU"
+assert f0p$="H BNCBAYPD"
+assert n7xq$="DQN QP"
+assert x4y3$="I"
+assert i0dy$="CPPQ"
+assert m3s$="IY A  G F Q"
+assert q1n4$="ZGH KP VR"
+assert g8dd$="EQ"
+assert d9$="N VUHY"
+assert d5tk$="IAM UJAQQL"
+assert o8$="CQHDWL"
+assert m7o4$="WY"
+assert k$="ICW"
+assert p7yc$="LFDS TT"
+assert u0y$="RL"
+assert h5c$="OK"
+assert i(0)=-121:assert i(1)=-149999:assert i(2)=128731:assert i(3)=-34901:assert i(4)=-6341:assert i(5)=-198027:assert i(6)=-135666
+assert g3s(0)=42093:assert g3s(1)=-45921:assert g3s(2)=72753:assert g3s(3)=-138450:assert g3s(4)=165:assert g3s(5)=-156938:assert g3s(6)=-45477
+assert w94hp(0)=-165597:assert w94hp(1)=175:assert w94hp(2)=-20625:assert w94hp(3)=81692:assert w94hp(4)=134508
+assert q(0)=-13862:assert q(1)=-35818:assert q(2)=195:assert q(3)=87781:assert q(4)=-5:assert q(5)=195568
+assert f19q(0)=172353:assert f19q(1)=145155:assert f19q(2)=-42607:assert f19q(3)=72480:assert f19q(4)=-79402:assert f19q(5)=-159
+assert f6sop(0)=-100:assert f6sop(1)=-41043:assert f6sop(2)=-50952:assert f6sop(3)=78122:assert f6sop(4)=126461:assert f6sop(5)=-157119
+assert x(0)=-175805:assert x(1)=115239:assert x(2)=176:assert x(3)=-179988:assert x(4)=89013:assert x(5)=-148:assert x(6)=98642
+assert h7o(0)=61066:assert h7o(1)=-32517:assert h7o(2)=-135083:assert h7o(3)=79831:assert h7o(4)=-117816:assert h7o(5)=74154:assert h7o(6)=-72771
+assert d(0)=-18250:assert d(1)=-178087:assert d(2)=-14609:assert d(3)=-63699:assert d(4)=-162573:assert d(5)=67795
+assert g2(0)=128443:assert g2(1)=4:assert g2(2)=-21299:assert g2(3)=101354:assert g2(4)=121393:assert g2(5)=7067:assert g2(6)=133004
+assert v52t$(0)="WOZ":assert v52t$(1)="IK DS":assert v52t$(2)="JEHARSN":assert v52t$(3)="VBRERN":assert v52t$(4)="U SYLMMO"
+assert j7b$(0)="HBUMEU":assert j7b$(1)="BRADPMMXM":assert j7b$(2)="B":assert j7b$(3)="OSZSB":assert j7b$(4)="Q":assert j7b$(5)="GZNW H"
+assert y9$(0)="T KGH VU":assert y9$(1)="NZYQ":assert y9$(2)="H EZWZ":assert y9$(3)="NJBIY":assert y9$(4)="QSBK":assert y9$(5)="MI ED LJ"
+assert b1$(0)="":assert b1$(1)="BVT QGYMT":assert b1$(2)="QI":assert b1$(3)="AZM":assert b1$(4)="G":assert b1$(5)="UCTR"
+assert r7$(0)="CJ":assert r7$(1)="":assert r7$(2)="DS":assert r7$(3)="Q IKEZOGUYY":assert r7$(4)=""
+assert g6exq$(0)="CUM":assert g6exq$(1)="XNCFYCP":assert g6exq$(2)="KUDZVI":assert g6exq$(3)="CWCCMRCXIQ"
+assert g4$(0)="CTVZT WO H":assert g4$(1)="MHYMIV":assert g4$(2)="TLOUORQH":assert g4$(3)="T":assert g4$(4)="UKTHUH":assert g4$(5)="HLDL BBG"
+assert n9$(0)="":assert n9$(1)="XMTIAAVO":assert n9$(2)="Z":assert n9$(3)="WAPQPO MUE"
+assert c70$(0)="FPH LE":assert c70$(1)="NFK":assert c70$(2)="Q RXHRP"
+assert a86f$(0)="ESMU":assert a86f$(1)="FS  V":assert a86f$(2)="":assert a86f$(3)="ZY LGK":assert a86f$(4)=""
