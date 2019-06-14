@@ -56,4 +56,3 @@ Binary_Xor: ;; ^
 	eor 	EXSValueH+2,x
 	sta 	EXSValueH+0,x
 	rts
-

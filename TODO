@@ -1,6 +1,7 @@
 Main
 ----
-- Full Code Read and Recomment
+- Document BASIC so far.
+- Reset Temp to zero - it's allocated first time it's required.
 - LEFT$ RIGHT$ MID$
 - UPPER$ LOWER$
 - LIST. Detokenising. Spacing out and tabs in.
@@ -26,6 +27,8 @@ Fixes
 - 	garbage collection, moving string to its own position doesn't need to be physically copied.
 
 - 	allocating stack for FOR REPEAT WHILE IF
+
+- 	fewer bytes allocate in convert to string for bases >= 10 (say)
 
 Memory Checks
 =============

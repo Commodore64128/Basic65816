@@ -44,6 +44,9 @@ VALGetBase:
 		lda 	#10
 		rts
 ;
+;		found ,base, means base other than 10.
+;
+
 _VGBAlternate:
 		jsr 	ExpectComma 				; skip comma.
 		jsr 	EvaluateNextInteger 		; get base
@@ -51,7 +54,7 @@ _VGBAlternate:
 		bne 	_VGBBadBase 				
 		cmp 	#2
 		bcc 	_VGBBadBase
-		cmp 	#36+1						; 0-9A-Z if you really want base 36 we can do it.
+		cmp 	#16+1						; 0-9A-F
 		bcs 	_VGBBadBase
 		jsr 	ExpectRightBracket 			; get right bracket and return.
 		rts
@@ -77,6 +80,8 @@ StringToInteger:
 		stz 	DTemp1 						; Zero DTemp1, this is the result register.
 		stz 	DTemp1+2
 		;
+		;		See if it is -something
+		;
 		lda 	(DTemp3)					; look at first character
 		and 	#$00FF 						; mask off
 		pha 								; push on stack
@@ -85,15 +90,18 @@ StringToInteger:
 		inc 	DTemp3 						; advance pointer over minus sign
 		dec 	DTemp3+2					; dec count
 		beq 	_STIError 					; if only - then error.
+		;
+		;		Scan string loop
+		;
 _STILoop:		
 		lda 	DSignCount 					; multiply DTemp1 by DSignCount
 		jsr 	MultiplyTemp1ByA
 		;
-		lda 	(DTemp3)
+		lda 	(DTemp3)					; get character, mask
 		and 	#$00FF
-		jsr 	ConvertUpperCase
+		jsr 	ConvertUpperCase	 		; make U/C
 		;
-		cmp 	#'0' 						; check if 0-9
+		cmp 	#'0' 						; validate it check if 0-9
 		bcc 	_STIError
 		cmp 	#'9'+1
 		bcc 	_STIOkay1
@@ -107,7 +115,9 @@ _STIOkay1:
 		and 	#15 						; now in range 0-35
 		cmp 	DSignCount 					; error if >= base
 		bcs 	_STIError
-
+		;
+		;		Add digit into return value.
+		;
 		clc 								; add A to DTemp1
 		adc 	DTemp1
 		sta 	DTemp1
@@ -169,6 +179,9 @@ _MTGeneral:
 		stz 	DTemp1 						; zero DTemp1
 		stz 	DTemp1+2 					
 		ldy 	#0 		 					; this is the 'high byte' of the result.
+		;
+		;		Main multiply loop.
+		;
 _MTLoop:
 		txa 								; shift X right into C 
 		lsr 	a

@@ -42,10 +42,15 @@ _FPRHaveString:
 		tay 								; print the basic String.
 		jsr 	PrintBASICString
 		bra 	Function_Print 				; and go round again.
-
+		;
+		;		Print TAB
+		;
 _FPRTab:									; , (tab)
 		jsr 	HWTab
 		bra 	_FPRSkipLoop
+		;
+		;		Print New Line
+		;
 _FPRNewLine:								; ; (newline)
 		jsr 	HWNewLine
 _FPRSkipLoop: 								; skip over token and go back
@@ -58,7 +63,7 @@ _FPRExitCR:
 		dey
 		dey
 		lda 	$0000,y
-		cmp 	#commaTokenID 	 			; if so, don't print CR.
+		cmp 	#commaTokenID 	 			; if so, don't do a new line at the end of the instruction.
 		beq 	_FPRExit
 		cmp 	#semicolonTokenID 	
 		beq 	_FPRExit

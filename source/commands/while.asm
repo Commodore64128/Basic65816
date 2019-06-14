@@ -19,19 +19,19 @@ Function_WHILE: ;; while
 		lda 	DCodePtr 					; get the current instruction
 		pha 								; save on stack
 
-		jsr 	EvaluateInteger 			; .... until what.
+		jsr 	EvaluateInteger 			; while what.
 		cpy 	#0 							; do the body if non-zero.
 		bne 	_FWHExecute
 		cmp 	#0
 		bne 	_FWHExecute
 		;
-		;		Skip over the body.
+		;		Skip over the body, the test failed.
 		;
 		pla 								; throw away current instruction
 		lda 	#wendTokenID 				; skip to WEND
 		ldx 	#0
-		jsr 	ScanForwardLevel 	
-		inc 	DCodePtr 					; and skip over that
+		jsr 	ScanForwardLevel 			; scan forward checking structures
+		inc 	DCodePtr 					; and skip over the WEND.
 		inc 	DCodePtr
 		rts
 		;
@@ -68,12 +68,12 @@ Function_WEND: ;; wend
 		bne 	_FWEFail
 		;
 		txa 								; unpick stack and always loop back.
-		sec
+		sec 								; we do the check at the top.
 		sbc 	#6
 		sta 	DStack
 		tax
 		lda 	$02,x 						; copy code pointer out.
-		sta 	DCodePtr
+		sta 	DCodePtr 					; goes back to the WHILE token.
 		lda 	$04,x 						; copy line number out
 		sta 	DLineNumber
 		rts

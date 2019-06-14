@@ -39,7 +39,7 @@ Evaluate:
 ; *******************************************************************************************
 
 EvaluateLevel:
-		and 	#$7FFF 						; zero type bit.
+		and 	#$7FFF 						; zero type bit, which means integer unless we change it.
 		sta 	EXSPrecType+0,x 			; save precedence level.
 
 		lda 	(DCodePtr)					; look at the next token
@@ -92,7 +92,7 @@ _ELGotAtom:
 		;
 		tya 								; get the keyword token back
 		and 	#15 << TokenShift 			; mask out the precedence bits.
-		cmp 	DTemp1 						; compare against precedence.
+		cmp 	DTemp1 						; compare against precedence of the new binary operator.
 		bcc 	_ELExit 					; precedence too low, then exit.
 		;
 		;		Found a legal binary operator. Calculate the right hand side.
@@ -136,11 +136,11 @@ _ELExit:lda 	EXSPrecType+0,x 			; type into carry
 		;		Variable code. Executed when found $C000-$FFFF as its an identifier.
 		;
 _ELVariable:
-		asl 	EXSPrecType+0,x
+		asl 	EXSPrecType+0,x 			; shift it left
 		jsr 	VariableAccessExpression	; this will be 'find variable, error if failed', get value.
 		sta 	EXSValueL+0,x 				; save variable contents in stack
 		sty 	EXSValueH+0,x
-		ror 	EXSPrecType+0,x
+		ror 	EXSPrecType+0,x 			; shift right rotating the carry in.
 		bra 	_ELGotAtom
 		;
 		;		Branch to syntax error
@@ -192,10 +192,11 @@ _ELCopy:
 		sta 	EXSValueH+0,x
 		brl 	_ELGotAtom 					; and continue.
 		;
-		;		Unary Operators.
+		;									Unary Operators.
 		;
 		;
-		;		Unary Operator - ! ? $ which are all followed by an atom. So first get the atom.
+		;		Unary Operators which are all followed by an atom. So first get the atom. There is only
+		;		one at present '-'
 		;
 _ELUnaryOperator:
 		phy 								; save the operator on the stack.

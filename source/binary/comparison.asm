@@ -205,7 +205,8 @@ _CTCStringCompare:
 _CTCSmallest: 								; A now is the length of the shorter string.
 	sta		DSignCount 						; use this as a comparison count. Check to see they match fires
 	;
-	;		String compare loop. Compare the characters the strings have in common length - e.g if one 3 chars, one 5 chars, check 3 chars.
+	;		String compare loop. Compare the characters the strings have in common length - 
+	;		e.g if one 3 chars, one 5 chars, check 3 chars.
 	;
 _CTCCompare:
 	iny 									; look at next character (done first, first char is size)
@@ -236,8 +237,9 @@ _CTCEqualSoFar:
 	bcc 	_CTCLess 
 	bne 	_CTCGreater 					; if len(s1) > len(s2) then s2 is the smaller
 
-	rep 	#$20 	 						; if lengths are the same, then they're the same.
+	rep 	#$20 	 						; if lengths are the same, then the strings are the same.
 	lda 	#$0000 
 _CTCExit:
 	sec 									; return with CS indicating string comparison.
 	rts
+

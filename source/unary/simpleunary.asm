@@ -131,13 +131,13 @@ Function_Chr: ;; chr$(
 		jsr 	ExpectRightBracket 			; check )
 		cpy 	#0 							; must be 0-255
 		bne 	_FCHBad 
-		pha 
-		lda 	#1 							; allocate a single character
+		pha  								; save char # on stack
+		lda 	#1 							; allocate a single character string
 		jsr 	StringTempAllocate
-		pla
+		pla 								; restore character number
 		jsr 	StringWriteCharacter 		; write it out.
-		lda 	DStartTempString 			; return that address
-		sta 	EXSValueL+0,x
+		lda 	DStartTempString 			; return the string address
+		sta 	EXSValueL+0,x 				; and return that.
 		stz 	EXSValueH+0,x
 		rts
 _FCHBad:#error 	"Bad value for chr$()"
@@ -155,10 +155,11 @@ Function_Asc: ;; asc(
 		tay 								; string address in Y
 		lda 	$0000,y 					; check length non zero
 		and 	#$00FF
-		beq 	_FASBad
+		beq 	_FASBad 					; what does ASC("") do ? return 0 - error here.
+		;
 		lda 	$0001,y 					; get first char
-		and 	#$00FF
-		sta 	EXSValueL+0,x
+		and 	#$00FF 						; mask it
+		sta 	EXSValueL+0,x 				; and return that.
 		stz 	EXSValueH+0,x
 		rts
 _FASBad:#error 	"Bad value for asc()"
@@ -171,11 +172,11 @@ _FASBad:#error 	"Bad value for asc()"
 
 Function_SPC: ;; spc(
 		jsr 	ResetTypeString 			; returns a string
-		jsr 	EvaluateNextInteger 		; get integer
+		jsr 	EvaluateNextInteger 		; get integer, which is the length.
 		jsr 	ExpectRightBracket 			; check )
 		cpy 	#0 							; must be 0-255
 		bne 	_FSPBad 
-		pha 
+		pha 								; save length
 		jsr 	StringTempAllocate 			; allocate character space
 		ply 								; get count in Y
 		beq 	_FSPExit 					; if zero, just empty string
@@ -183,10 +184,11 @@ _FSPCopy:
 		lda 	#" "						; space character		
 		jsr 	StringWriteCharacter 		; write it out.
 		dey
-		bne 	_FSPCopy
+		bne 	_FSPCopy	 				; do it Y times
 _FSPExit:		
 		lda 	DStartTempString 			; return that address
 		sta 	EXSValueL+0,x
 		stz 	EXSValueH+0,x
 		rts
 _FSPBad:#error 	"Bad value for spc()"
+

@@ -11,7 +11,7 @@
 
 HWCursorCharacter = $01
 
-sWidth = 64
+sWidth = 64									; this have to be powers of two in this really simple I/O code.
 sHeight = 32
 
 ; *******************************************************************************************

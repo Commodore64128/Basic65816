@@ -11,7 +11,7 @@
 
 Function_Let: ;; let
 		lda 	(DCodePtr)					; get the first token, for typing.
-		pha 
+		pha  								; save on stack for later.
 		jsr 	VariableFind 				; find the variable
 		sta 	DVariablePtr 				; save where it is.
 		bcs 	_FLetFound 					; skip if found.
@@ -20,11 +20,11 @@ Function_Let: ;; let
 		;
 		pla 								; get and push the first token again.
 		pha
-		and 	#IDArrayMask 				; if it is an array, you can't autoinstantiate
+		and 	#IDArrayMask 				; if it is an array, you can't autoinstantiate it, you have to DIM it.
 		bne 	_FLError					; arrays, so this causes an error.
 		;
 		ldy 	DCodePtr 					; Y is the address of the name
-		lda 	#0 							; A = 0 because it's not an array.
+		lda 	#0 							; A = 0 because it's not an array, just a single value.
 		jsr 	VariableCreate 				; create it.
 		sta 	DVariablePtr 				; save the data address.
 		;
@@ -36,7 +36,7 @@ _FLSkipToken:
 		bne 	_FLSkipToken
 _FLetFound:	
 		;
-		;		Check to see if there is indexing by examining the first token.
+		;		Check to see if there is indexing by examining the first token of the identifier.
 		;		The first token is on the stack, the variable data address is in DVariablePtr
 		;		This is the record+4 value, which is the data for non array types, and the
 		;		array size for array types.

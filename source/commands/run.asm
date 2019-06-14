@@ -16,6 +16,9 @@
 ; *******************************************************************************************
 
 Function_END: ;; end
+		;
+		;		At the moment, causes immediate exit. Used for unit tests/speed tests.
+		;
 		cop 	#0
 
 ; *******************************************************************************************
@@ -35,7 +38,7 @@ Function_RUN: ;; run
 _FRun_NextLineNumber:
 		tay 								; put in Y
 		lda 	$0000,y 					; read the link token.
-		beq 	Function_END 				; if zero, off the end of the program
+		beq 	Function_END 				; if zero, off the end of the program, so END the program
 		lda 	$0002,y 					; read the line number
 		sta 	DLineNumber 				; and save it.
 
@@ -85,7 +88,7 @@ _FRun_Colon:
 _FRun_TryLET:
 		lda 	(DCodePtr) 					; look to see if it's an identifier.
 		cmp 	#$C000
-		bcc		_FRunSyntax
+		bcc		_FRunSyntax 				; no, must be syntax.
 		jsr 	Function_LET 				; try as a LET.
 		bra 	_FRun_NextInstruction 		; if we get away with it, go to next instruction.
 _FRunSyntax:
@@ -136,11 +139,11 @@ ClearVariablesPointersAndStacks:
 		;
 		lda 	#BASStack
 		sta 	DStack
-		stz 	BASStack 					
+		stz 	BASStack 					; any structure popping this => error
 		;
 		;		Clear the value used to refer to an empty string.
 		;
-		ldy 	#Block_EmptyString 	
+		ldy 	#Block_EmptyString 			
 		lda 	#$0000
 		sta 	(DBaseAddress),y
 		;
@@ -197,4 +200,3 @@ _FCELoop:
 _FCEExit:
 		tya 								; return in A
 		rts
-

@@ -33,10 +33,15 @@ _CFOSkipToken:
 		and 	#IDContMask 				; if there is a continuation 
 		bne 	_CFOSkipToken
 		pla 								; restore address
+		;
+		;		Now have the variable used as the index
+		;
 _CFOExists:
 		pha 								; push variable address on stack
 		lda 	#equalTokenID 				; check for = 
 		jsr 	ExpectToken
+		;
+		;		Get the start value and initialise the index variable
 		;
 		jsr 	EvaluateInteger 			; this is the start value
 		tyx 								; put high value in X
@@ -45,11 +50,15 @@ _CFOExists:
 		txa
 		sta 	$0002,y
 		;
+		;		Skip TO
+		;
 		lda 	#toTokenID 					; expect the TO
 		jsr 	ExpectToken
 		;
+		;		Save information on the stack for the loop.
+		;
 		ldx 	DStack 						; get the stack.
-		lda 	DCodePtr 					; save code ptr at +2
+		lda 	DCodePtr 					; save code ptr at +2 (after "TO")
 		sta 	$02,x 						
 		lda 	DLineNumber 				; save line number at +4
 		sta 	$04,x
@@ -62,6 +71,9 @@ _CFOExists:
 		clc
 		adc 	#8
 		sta 	DStack
+		;
+		;		We do not execute this here FOR I = 1 TO [22 STEP 3] it is just skipped over.
+		;
 		;									; skip over <n> [STEP <n>] for now.
 		jsr 	EvaluateInteger 			; the end value, which we don't want this time.
 		lda 	(DCodePtr)
@@ -90,6 +102,9 @@ Command_NEXT: ;; next
 		beq 	_CNXOk
 		#error 	"Next without For"
 _CNXOk:				
+		;
+		;		If identifier present (optional) then check it.
+		;
 		lda 	(DCodePtr)					; if there's an identifier here.
 		cmp 	#$C000 						; e.g. NEXT <var>
 		bcc 	_CNXNoVariable
@@ -103,7 +118,9 @@ _CNXOk:
 		beq 	_CNXNoVariable 				; then continue
 _CNXNextVar:
 		#error 	"Bad NEXT variable"
-
+		;
+		; 		Do the actual NEXT code.
+		;
 _CNXNoVariable:
 		lda 	DCodePtr 					; save the following position on the stack in case we are done.
 		pha
@@ -115,6 +132,9 @@ _CNXNoVariable:
 		;
 		lda 	$02,x 						; put the old pointer in the pointer (e.g. after TO)
 		sta 	DCodePtr
+		;
+		;		Now evaluate <target> and optional STEP <step>
+		;
 		jsr 	EvaluateInteger 			; this is the target constant
 		phy 								; save the target on the stack
 		pha
@@ -130,6 +150,8 @@ _CNXNoVariable:
 		jsr 	EvaluateInteger 			; work out the step.
 		sta 	DTemp1 						; and save in DTemp1
 		sty 	DTemp1+2
+		;
+		;		Now calculate the new 32 bit index value
 		;
 _CNXNoStep:
 		pla 								; save the Target in DTemp2
@@ -148,7 +170,9 @@ _CNXNoStep:
 		lda 	$0002,y
 		adc 	DTemp1+2
 		sta 	$0002,y
-		; 									; now calculate Target - Result.
+		;
+		; 	 	now calculate Target - Index Value
+		;
 		sec
 		lda 	DTemp2
 		sbc 	$0000,y
@@ -158,7 +182,7 @@ _CNXNoStep:
 		sta 	DTemp2+2
 
 		ora 	DTemp2 						; if zero (Target = Result)
-		beq 	_CNXLoopAgain 				; then loop again, as we have to be +1
+		beq 	_CNXLoopAgain 				; then loop again, as we have to be past the target.
 
 		lda 	DTemp2+2 					; if sign(target-counter) == sign(step)
 		eor 	DTemp1+2
@@ -170,10 +194,10 @@ _CNXNoStep:
 		sta 	DCodePtr
 		rts
 		;
-		;		Go round again
+		;		Go round again, i.e. NEXT has decided we need to execute the body again.
 		;
 _CNXLoopAgain:		
-		pla 								; throw the original DCodePtr.
+		pla 								; throw the original DCodePtr as we're going back.
 		clc
 		lda 	DStack 						; fix the stack back so we can loop round again.
 		tax

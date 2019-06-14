@@ -32,19 +32,25 @@ Function_Str: 	;; str$(
 		stz 	EXSValueH+0,x
 		rts
 
+; *******************************************************************************************
+;
+;			Convert YA to string in base X, returns a string in temporary memory.
+;
+; *******************************************************************************************
+
 ConvertToString:
-		phx 								; save X
+		phx 								; save X (base)
 		sta 	DTemp3 						; save number in DTemp3
 		sty 	DTemp3+2
 		stx 	DSignCount 					; save base in DSignCount.
-		lda 	#20 						; enough space for Base 2.
+		lda 	#34 						; enough space for Base 2.
 		jsr 	StringTempAllocate 			; allocate space for return string.
 
 		lda 	DTemp3+2 					; is number -ve.
 		bpl 	_CTSNotNegative
-		lda 	#"-"						; output a minus character
+		lda 	#"-"						; output a minus character to the new string
 		jsr 	CTSOutputA
-		sec 								; negate DTemp3
+		sec 								; negate DTemp3 which is the number
 		lda 	#0 
 		sbc 	DTemp3
 		sta 	DTemp3
@@ -52,18 +58,18 @@ ConvertToString:
 		sbc 	DTemp3+2
 		sta 	DTemp3+2
 _CTSNotNegative:
-		lda 	#1 							; push 1 on stack
+		lda 	#1 							; push 32-bit 1 on stack, which is the first subtractor.
 		pha
 		lda 	#0
 		pha
-		lda 	DSignCount 					; reset DTemp1, the subtractor to the base.
+		lda 	DSignCount 					; reset DTemp1, the subtractor to the base value
 		sta 	DTemp1
 		stz 	DTemp1+2
 		;
 		;		Scale up subtractor (DTemp1), so it is more than the number (DTemp3)
 		;
 _CTSMultiplySubtractor:
-		sec
+		sec 								; check number vs subtractor
 		lda 	DTemp3
 		sbc 	DTemp1
 		lda 	DTemp3+2
@@ -76,9 +82,9 @@ _CTSMultiplySubtractor:
 		pha	
 		;
 		lda 	DSignCount 					; multiply subtractor by base
-		jsr 	MultiplyTemp1ByA
-		bcs 	_CTSScaledUp
-		bra 	_CTSMultiplySubtractor
+		jsr 	MultiplyTemp1ByA 
+		bcs 	_CTSScaledUp 				; if overflow, start subtracting.
+		bra 	_CTSMultiplySubtractor 		; otherwise try the next x base.
 		;
 		;		Subtractor now >= number. Top of the pop-and-subtract loop.
 		;
@@ -87,7 +93,7 @@ _CTSScaledUp:
 		pla
 		cpy 	#0 							; has that divider reached one yet ?
 		bne 	_CTSHasDigit
-		cmp 	#1 							; 
+		cmp 	#1 							; if so, then we've just got that digit left.
 		beq 	_CTSExit
 _CTSHasDigit:
 		sta 	DTemp2 						; save in DTemp2
@@ -109,7 +115,7 @@ _CTSSubLoop:
 _CTSFinishedSubtracting:
 		txa 								; convert to ASCII.
 		jsr 	CTSOutputHexDigit 			; write that out.
-		bra 	_CTSScaledUp
+		bra 	_CTSScaledUp 				; go pop the next subtactor and do that.
 		;
 _CTSExit:
 		lda 	DTemp3 						; output last digit
@@ -117,7 +123,9 @@ _CTSExit:
 		lda 	DStartTempString 			; return string address.
 		plx 								; restore X.
 		rts
-
+		;
+		;		Output one digit to the string.
+		;
 CTSOutputHexDigit:
 		cmp 	#10 						; 0-9 are 48-56
 		bcc 	_CTSNotLetter
@@ -138,3 +146,4 @@ CTSOutputA:
 		inc 	DCurrentTempString 			; advance the pointer.
 		ply 								; restore Y and exit.
 		rts
+

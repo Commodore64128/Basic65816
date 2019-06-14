@@ -21,13 +21,14 @@ StringTempAllocate:
 		clc 								; this adds one, for the length.
 		adc 	DTempStringPointer
 		sta 	DTempStringPointer
-		pha 
+		;
+		pha 								; save start address
 		lda 	#$0000
 		sep 	#$20 						; zero the length of this new string.
 		sta		(DTempStringPointer)
 		rep 	#$20
-		pla
-		sta 	DStartTempString 			; start of temporary string.
+		pla 								; restore start address
+		sta 	DStartTempString 			; start of new temporary string.
 		sta 	DCurrentTempString 			; save current temporary string
 		inc 	DCurrentTempString 			; step over length byte.
 		rts
@@ -57,7 +58,7 @@ StringCreateCopy:
 		tay 								; put pointer to string in Y
 		lda 	$0000,y 					; read the first byte, the length.
 		and 	#$00FF 						; mask out the length byte.
-		beq 	_SCCExit 					; do nothing if length zero.
+		beq 	_SCCExit 					; do nothing if length zero (the length byte is reset when allocated)
 		phx 								; save X and put the character count in X
 		tax
 _SCCCopy:
@@ -93,7 +94,7 @@ StringMakeConcrete:
 		bne 	_SMCNonZero 				; if not "" skip.
 		;
 		lda 	#Block_EmptyString 			; empty string, return the null pointer in low memory
-		clc
+		clc 								; this reference is used for all empty strings.
 		adc 	DBaseAddress
 _SMCExit:		
 		rts
@@ -103,7 +104,7 @@ _SMCExit:
 _SMCNonZero:
 		pha 								; save on stack.
 		;
-		eor 	#$FFFF 						; 2's complement with carry clear
+		eor 	#$FFFF 						; 2's complement with carry clear, allocate one more.
 		clc
 		ldy 	#Block_HighMemoryPtr 		; add to the high pointer to create space
 		adc 	(DBaseAddress),y
@@ -113,9 +114,9 @@ _SMCNonZero:
 		ply 								; get length copy from here until Y goes -ve
 		sep 	#$20 						; 8 bit mode.
 _SMCLoop:
-		lda 	(DTemp1),y
+		lda 	(DTemp1),y 					; copy from source to target
 		sta 	(DTemp2),y
-		dey
+		dey 								; Y+1 times.
 		bpl 	_SMCLoop
 		rep 	#$20 						; 16 bit mode.
 		lda 	DTemp2 						; return new string address.

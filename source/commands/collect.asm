@@ -138,4 +138,4 @@ COLLECTCheck:
 _COCExit: 									; restore pointer and exit
 		lda 	DTemp1+2
 		rts
-		rts
+		

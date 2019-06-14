@@ -21,7 +21,8 @@ Binary_Add: ;; +
 	bmi 	_BATypeError
 	lda 	EXSPrecType+0,x 					; see if they are strings
 	bmi 	_BAConcatenateString 				; if so , do the concatenation code.
-	clc
+	;
+	clc 										; add the results
 	lda		EXSValueL+0,x
 	adc 	EXSValueL+2,x
 	sta 	EXSValueL+0,x
@@ -40,7 +41,7 @@ _BALengthError:
 	;
 _BAConcatenateString:
 	lda 	EXSValueL+0,x 						; save pointers in DTemp1/DTemp2
-	sta 	DTemp1
+	sta 	DTemp1 								; they are the first and second strings.
 	lda 	EXSValueL+2,x
 	sta 	DTemp2
 	sep 	#$20								; switch into byte mode.
@@ -51,7 +52,7 @@ _BAConcatenateString:
 	rep 	#$20 								; back to 16 bit mode.
 
 	jsr 	StringTempAllocate 					; allocate string of that size in temp memory.
-	sta 	EXSValueL+0,x 						; update the address
+	sta 	EXSValueL+0,x 						; update the return value to that address.
 	stz 	EXSValueH+0,x
 
 	lda 	DTemp1 								; copy first string there.

@@ -118,7 +118,6 @@ _FIXSkip:
 		dec 	DStack
 _FIXNoThrow:
 		rts
-
 		;
 		;		ELSE. If you execute ELSE, then skip forward to the ENDIF on this level.
 		;
@@ -133,6 +132,7 @@ Handler_ELSE:	;; else
 		;
 		inc 	DCodePtr 					; skip over the ENDIF
 		inc 	DCodePtr
+
 		dec 	DStack 						; throw the token IF on the stack top.
 		dec 	DStack
 		rts
@@ -156,11 +156,13 @@ Handler_ENDIF:	;; endif
 _HEIBadStructure:	
 		#error 	"Else without If"
 
+; *******************************************************************************************
 ;
 ;		Forward scanner. Work forward through the current position looking for either the
 ;		token in A or X (use 0 if you only want one). This allows for up and down counts
 ;		caused by keyword+ and keyword-
 ;
+; *******************************************************************************************
 
 ScanForwardLevel:
 		sta 	DTemp1 						; save test in DTemp1 and DTemp1+2
@@ -168,9 +170,13 @@ ScanForwardLevel:
 		lda 	DLineNumber 				; save original line number for error
 		sta 	DTemp2				
 		ldx 	#0 							; X is the level counter.
+		;
+		; 		Main loop. If not in a sub structure (e.g. in a loop in a loop) check to 
+		;	 	see if matching keywords found.
+		;
 _SFLLoop:
 		cpx 	#0 							; if X != 0 then don't test tokens for exit.
-		bne 	_SFLNoCheck
+		bne 	_SFLNoCheck 				; we're in a substructure.
 		;
 		lda 	(DCodePtr)					; what's there
 		beq 	_SFLNoCheck 				; don't check zero
@@ -180,6 +186,8 @@ _SFLLoop:
 		bne 	_SFLNoCheck
 _SFLFound:
 		rts
+		;
+		;		Advance forwards. Skip tokens, processing keyword+/keyword- to track structures.
 		;
 _SFLNoCheck:
 		lda 	(DCodePtr) 					; what is the token.
@@ -195,6 +203,9 @@ _SFLNoCheck:
 		and 	#$E000 						; if not a keyword 010x xxxx xxxx xxxx
 		cmp 	#$2000
 		bne 	_SFLLoop
+		;
+		;		Have a token, so see what type it is.
+		;
 		tya 								; get the token back.
 		and 	#15 << 9 					; get out token type xxxA AAAx xxxx xxxx
 		cmp 	#15 << 9 					; 15 is a standard keyword
@@ -211,6 +222,8 @@ _SFLError:
 		lda 	DTemp2 						; get original line number
 		sta 	DLineNumber
 		#error	"Structure imbalance"
+		;
+		;		Skips a string constant.
 		;
 _SFLSkipString:
 		and 	#$00FF 						; token length of string

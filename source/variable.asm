@@ -27,12 +27,12 @@ VariableAccessExpression:
 		pha 
 		jsr 	VariableFind 				; try to find the variables
 		sta 	DVariablePtr 				; store the result in DVariablePtr
-		bcc 	_VANError
+		bcc 	_VANError 					; not found, so report an error.
 		;
 		; 		apply subscripting if array.
 		;
 		pla 								; get and save that first token
-		pha
+		pha 								; we use it for typing.
 		tay 								; put first token in Y.
 		and 	#IDArrayMask 				; is it an array ?
 		beq 	_VANNotArray
@@ -50,7 +50,7 @@ _VANNotArray:
 		and 	#IDTypeMask 				; this is the integer/string bit. $2000 if string, $0000 if int
 		eor 	#IDTypeMask 				; now $0000 if string, $2000 if integer.
 		sec 								; set up return string.
-		beq 	_VANLoadLower 				; if zero, Y = 0 and just load the lower address with CS
+		beq 	_VANLoadLower 				; if zero, Y = 0 and just load the lower address with the variable (string)
 		clc 								; returning a number, read high data word
 		ldy 	#2
 		lda 	(DVariablePtr),y
@@ -89,8 +89,9 @@ VariableFind:
 		asl 	a 							; x 4 and clear carry
 		asl 	a
 		adc 	#Block_FastVariables 		; offset to fast variables
-		adc 	DBaseAddress 				; now an actual address
-		inc 	DCodePtr 					; skip over the token
+		adc 	DBaseAddress 				; now an actual address in A
+		;
+		inc 	DCodePtr 					; skip over the token (only one)
 		inc 	DCodePtr
 		sec 								; return with carry set.
 		rts
@@ -102,7 +103,7 @@ _VFSlowVariable:
 		;		Figure out which hash table
 		;
 		lda 	(DCodePtr)					; get the token
-		and 	#(IDTypeMask+IDArrayMask) 	; get the type bits out --xx ---- ---- ----
+		and 	#(IDTypeMask+IDArrayMask) 	; get the type bits out --tt ---- ---- ----
 		xba 								; now this is 0000 0000 00tt 0000 e.g. tt x 16
 		asl 	a 							; there are 32 entries per table, also clc
 		adc 	#Block_HashTable 			; now its the correct has table offset
@@ -123,6 +124,7 @@ _VFSlowVariable:
 _VFNext:
 		lda 	(DTemp1) 					; normally the link, first time will be the header.
 		beq 	_VFFail 					; if zero, then it's the end of the list.
+		;
 		sta 	DTemp1 						; this is the new variable record to check
 		tay 								; read the address of the name at $0002,y
 		lda 	$0002,y
@@ -134,7 +136,7 @@ _VFCompare:
 		bne 	_VFNext 					; if not, go to the next one.
 		iny 								; advance token pointer
 		iny 
-		and 	#IDContMask 				; if continuation bit set, keep going
+		and 	#IDContMask 				; if continuation bit set, keep going (if they match)
 		bne 	_VFCompare
 		;
 		;		Found it.
@@ -150,7 +152,8 @@ _VFCompare:
 		;
 		sec 								; return with CS indicating success
 		rts
-_VFFail:
+		;
+_VFFail: 									; didn't find the variable
 		clc
 		rts
 
@@ -173,10 +176,12 @@ VariableSubscript:
 		jsr 	ExpectRightBracket 			; skip right bracket.
 		cpy 	#0 							; msword must be zero
 		bne 	_VANSubscript
+		;
 		cmp 	(DVariablePtr)				; the subscript is at +4, so check against that.
 		beq 	_VANSubOkay 				; fail if subscript > high subscript
-		bcs 	_VANSubscript
+		bcs 	_VANSubscript 
 _VANSubOkay:
+
 		asl 	a 							; double lsword
 		asl 	a 							; and again, also clears carry.
 		sta 	DTemp1	 					; 4 x subscript in DTemp1
@@ -192,8 +197,9 @@ _VANSubscript:
 
 ; *******************************************************************************************
 ;
-;		Create a new variable. VariableFind needs to have been called first so DHashPtr
-;		is set up.
+;								Create a new variable. 
+;
+;		*** VariableFind needs to have been called first so DHashPtr is set up ***
 ;
 ;		A contains the high index, or zero if the variable is a single item. 
 ;		Y is the address of the token that is the  name of the variable. 
@@ -206,14 +212,16 @@ _VANSubscript:
 VariableCreate:			
 		pha 								; save count.
 		;
-		;		Erase word. For strings this the address of the NULL string stored at Block_EmptyString.
+		;		Get the word to fill the new variable with. For strings this the address of the NULL 
+		;		string stored at Block_EmptyString.
 		;
 		lda 	$0000,y 					; get first token
 		and 	#IDTypeMask 
 		beq 	_VCIsInteger 				; if this is zero ... use zero.
 		lda 	#Block_EmptyString 			; otherwise fill with this address.
-		clc
+		clc 								; which is guaranteed by have a 0 length.
 		adc 	DBaseAddress
+		;
 _VCIsInteger:		
 		sta 	DSignCount 					; this is temporary for this
 		;
@@ -229,19 +237,19 @@ _VCNotSingle:
 		lda 	$0000,y 					; get first token.
 		and 	#IDArrayMask 				; check array bit.
 		beq 	_VCNotArray
-		inc 	DTemp1 						; if set, add 2 to count.
+		inc 	DTemp1 						; if set, add 2 to count, space stores the high index value.
 		inc 	DTemp1
 _VCNotArray:
-		phy 								; save address of token on stack.
+		phy 								; save address of first token on stack.
 		;
 		;		Allocate space (in DTemp1) + 4
 		;
 		ldy 	#Block_LowMemoryPtr 		; get low memory
-		lda 	(DBaseAddress),y 			; save that on stack.
+		lda 	(DBaseAddress),y 		
 		sta 	DTemp2 						; save in DTemp2
-		clc 								; add 4 for link and name.
-		adc 	#4
-		adc 	DTemp1 						; add memory required
+		clc 								; add 4 for link and name words
+		adc 	#4 
+		adc 	DTemp1 						; add memory required. already calculate this.
 		sta 	(DBaseAddress),y 			; update low memory
 		;
 		;		Clear the data space.	
@@ -253,7 +261,7 @@ _VCErase:
 		iny 						
 		iny
 		dec 	DTemp1 						; do it DTemp1 times.
-		dec 	DTemp1 						; this is the count of the data beyond link/name.
+		dec 	DTemp1 						; (this is the count of the data beyond link/name)
 		bne 	_VCErase
 		;
 		;		Now set it up.
@@ -261,12 +269,13 @@ _VCErase:
 		ldy 	DTemp2 						; Y is the variable address
 		lda 	(DHashTablePtr)				; get the link to next.
 		sta 	$0000,y 					; save at offset +0
+		;
 		pla 								; restore the token address
 		sta 	$0002,y 					; save at offset +2
+		;
 		pla 								; restore count and store.
 		sta 	$0004,y
 		;
-_VCNotArray2:
 		tya 								; update the head link
 		sta 	(DHashTablePtr)
 		clc 								; advance pointer to the data bit.
