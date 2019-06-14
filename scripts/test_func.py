@@ -47,8 +47,9 @@ if __name__ == "__main__":
 		bs.append("assert str$({0},{2}) = \"{1}\"".format(n,conv.lower(),base))
 		n = random.randint(32,127)
 		ch = chr(n)
-		bs.append("assert asc(\"{0}\") = {1}".format(ch,n))
-		bs.append("assert chr$({1}) = \"{0}\"".format(ch,n))
+		if ch != '"':
+			bs.append("assert asc(\"{0}\") = {1}".format(ch,n))
+			bs.append("assert chr$({1}) = \"{0}\"".format(ch,n))
 
 	#
 	bs.append(eb.checkCode())

@@ -31,6 +31,7 @@ StartOfBasicCode:
 		.include "commands/let.asm" 				; assignment
 		.include "commands/print.asm"				; print.
 		.include "commands/if.asm"					; conditional execution.
+		.include "commands/for.asm"					; loops
 		.include "commands/transfer.asm"			; goto/gosub/return on x goto/gosub
 		.include "commands/repeat.asm"				; repeat .. until
 		.include "commands/while.asm"				; while .. wend

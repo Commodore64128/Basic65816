@@ -1,7 +1,9 @@
-5 x = 0
-6 repeat
-7 rem "If you change the last 10 to 16 it crashes"
-10 print str$(x,16),str$(peek(x),16),str$(deek(x),16),str$(leek(x),10)
-12 x = x + 1
-15 until x = 16
-20 stop
+10 x = 32767
+15 x = x * 65536 + 65535
+20 b = 16
+25 while b >= 2
+30 print b,x,str$(x,b)
+35 b = b - 1
+38 wend
+45 print val("1239102491948791797828973")
+50 stop

@@ -77,6 +77,7 @@ _CTSMultiplySubtractor:
 		;
 		lda 	DSignCount 					; multiply subtractor by base
 		jsr 	MultiplyTemp1ByA
+		bcs 	_CTSScaledUp
 		bra 	_CTSMultiplySubtractor
 		;
 		;		Subtractor now >= number. Top of the pop-and-subtract loop.

@@ -58,7 +58,7 @@ CommandJumpTable:
 	.word Function_REPEAT          & $FFFF ; token $3c35 "repeat"
 	.word Function_WHILE           & $FFFF ; token $3c36 "while"
 	.word Function_IF              & $FFFF ; token $3c37 "if"
-	.word IllegalToken             & $FFFF ; token $3c38 "for"
+	.word Command_FOR              & $FFFF ; token $3c38 "for"
 	.word Function_WEND            & $FFFF ; token $3a39 "wend"
 	.word Function_UNTIL           & $FFFF ; token $3a3a "until"
 	.word IllegalToken             & $FFFF ; token $3a3b "then"

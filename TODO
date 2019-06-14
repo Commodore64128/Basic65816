@@ -1,6 +1,5 @@
 Main
 ----
-- Fix STR$/LEEK bug with high value (I think the scalar up x 16 is overflowing !).
 - FOR .. NEXT
 - POKE DOKE LOKE
 - LEFT$ RIGHT$ MID$
@@ -43,4 +42,3 @@ Memory Checks
 
 - when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
   left.
-

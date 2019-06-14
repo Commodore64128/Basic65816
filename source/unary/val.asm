@@ -153,19 +153,11 @@ _CUCExit:
 
 ; *******************************************************************************************
 ;
-;								Multiply DTemp1 by A (uses DTemp2)
+;						Multiply DTemp1 by A (uses DTemp2), CS on overflow.
 ;
 ; *******************************************************************************************
 
 MultiplyTemp1ByA:
-		cmp 	#16							; special case bases, the common ones.
-		beq 	_MT1_16
-		cmp 	#10
-		beq 	_MT1_10
-		cmp 	#8
-		beq 	_MT1_8
-		cmp 	#2
-		beq 	_MT1_2
 
 _MTGeneral:
 		phx
@@ -176,6 +168,7 @@ _MTGeneral:
 		sta 	DTemp2+2
 		stz 	DTemp1 						; zero DTemp1
 		stz 	DTemp1+2 					
+		ldy 	#0 		 					; this is the 'high byte' of the result.
 _MTLoop:
 		txa 								; shift X right into C 
 		lsr 	a
@@ -188,51 +181,18 @@ _MTLoop:
 		lda 	DTemp1+2
 		adc 	DTemp2+2
 		sta 	DTemp1+2	
+		bcc 	_MTNoAdd
+		iny
 _MTNoAdd:
 		asl 	DTemp2  					; shift multiplicand left
 		rol 	DTemp2+2
+		bcc 	_MTNoOverflow
+		iny
+_MTNoOverflow:
 		txa 								; until multiplier is zero.
 		bne 	_MTLoop
-_MTGExit:
+		tya
+		clc
+		adc 	#$FFFF
 		plx 								; restore X
 		rts 								; and exit
-		;
-		;		x 10
-		;
-_MT1_10:
-		lda 	DTemp1+2 					; initial on stack.
-		pha
-		lda 	DTemp1
-		pha
-		asl 	DTemp1						; x 4
-		rol 	DTemp1+2
-		asl 	DTemp1
-		rol 	DTemp1+2
-		;
-		pla 								; add saved value, x 5
-		clc
-		adc 	DTemp1
-		sta 	DTemp1
-		pla
-		adc 	DTemp1+2
-		sta 	DTemp1+2
-		;									; x 10
-		asl 	DTemp1
-		rol 	DTemp1+2
-		rts
-		;
-		;		x 16,8,4,2
-		;
-_MT1_16:		
-		asl 	DTemp1
-		rol 	DTemp1+2
-_MT1_8:		
-		asl 	DTemp1
-		rol 	DTemp1+2
-_MT1_4:		
-		asl 	DTemp1
-		rol 	DTemp1+2
-_MT1_2		
-		asl 	DTemp1
-		rol 	DTemp1+2
-		rts		
