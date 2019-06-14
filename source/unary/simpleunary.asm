@@ -162,3 +162,31 @@ Function_Asc: ;; asc(
 		stz 	EXSValueH+0,x
 		rts
 _FASBad:#error 	"Bad value for asc()"
+
+; *******************************************************************************************
+;
+;										spc(expr)
+;
+; *******************************************************************************************
+
+Function_SPC: ;; spc(
+		jsr 	ResetTypeString 			; returns a string
+		jsr 	EvaluateNextInteger 		; get integer
+		jsr 	ExpectRightBracket 			; check )
+		cpy 	#0 							; must be 0-255
+		bne 	_FSPBad 
+		pha 
+		jsr 	StringTempAllocate 			; allocate character space
+		ply 								; get count in Y
+		beq 	_FSPExit 					; if zero, just empty string
+_FSPCopy:
+		lda 	#" "						; space character		
+		jsr 	StringWriteCharacter 		; write it out.
+		dey
+		bne 	_FSPCopy
+_FSPExit:		
+		lda 	DStartTempString 			; return that address
+		sta 	EXSValueL+0,x
+		stz 	EXSValueH+0,x
+		rts
+_FSPBad:#error 	"Bad value for spc()"

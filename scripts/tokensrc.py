@@ -32,7 +32,9 @@ class TokenSource(object):
 	sgn( 	abs( 	len(	 					## standard
 	val(	str$(								## string to integer,integer to string.
 	chr$( 	asc(								## character to integer conversion.
-			
+	spc(										## space formatting
+	peek(	deek( 	leek(						## peek byte/word/long
+				
 [syntax]
 	, 	;	:	(	)	'	
 	to  step 									## syntax words for for/next

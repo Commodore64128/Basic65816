@@ -15,7 +15,7 @@
 		rep 	#$30 									
 		.al	
 		.xl
-		ldx 	#$FFF0 								; 6502 stack at $FFE0
+		ldx 	#$FC00 								; 6502 stack at $FFE0
 		txs
 		lda 	#$FE00 								; set DP to $FE00
 		tcd
