@@ -1,13 +1,13 @@
-5 qqq = 1
-10 for nx = 20 to 1 step -5
-20 print nx,qqq
-25 next nx
-26 print "At end ";nx
+20 addr = 2 * 65536 + 4 * 4096
+30 for ix = 0 to 8
+40 print str$(ix+addr,16),str$(peek(ix+addr),16)
+50 next ix
+60 print
 
-31 print 11 % 4
-32 print 11 % -4
-33 print -11 % 4
-34 print -11 % -4
+70 loke addr+2,-42
 
+130 for ix = 0 to 8
+140 print str$(ix+addr,16),str$(peek(ix+addr),16)
+150 next ix
 
-130 stop
+160 stop

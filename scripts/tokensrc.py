@@ -53,6 +53,7 @@ class TokenSource(object):
 	print 		 								## print
 	goto gosub return on 						## transfer of control goto/gosub stuff.
 	else 										## else for if .. else .. endif
+	poke doke loke 								## byte/word/long write.
 
 [keyword+]
 	repeat										## repeat loop test at bottom
