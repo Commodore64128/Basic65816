@@ -63,7 +63,7 @@ CommandJumpTable:
 	.word Function_UNTIL           & $FFFF ; token $3a3a "until"
 	.word IllegalToken             & $FFFF ; token $3a3b "then"
 	.word Handler_ENDIF            & $FFFF ; token $3a3c "endif"
-	.word IllegalToken             & $FFFF ; token $3a3d "next"
+	.word Command_NEXT             & $FFFF ; token $3a3d "next"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]

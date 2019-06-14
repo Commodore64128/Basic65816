@@ -1,6 +1,5 @@
 Main
 ----
-- FOR .. NEXT
 - POKE DOKE LOKE
 - LEFT$ RIGHT$ MID$
 - UPPER$() LOWER$()
@@ -30,7 +29,9 @@ Fixes
 
 - 	reset stuff on error (not variables ?) - what about stop.
 
-- 	garbage collection, moving string to its own position.
+- 	garbage collection, moving string to its own position doesn't need to be physically copied.
+
+- 	allocating stack for FOR REPEAT WHILE IF
 
 Memory Checks
 =============
@@ -42,3 +43,4 @@ Memory Checks
 
 - when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
   left.
+
