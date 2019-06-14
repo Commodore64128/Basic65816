@@ -41,7 +41,6 @@ Function_CLS: ;; cls
 ; *******************************************************************************************
 
 Function_REM: ;; rem 
-		nop
 		lda 	(DCodePtr) 					; get code ptr.
 		beq 	_FRemSyntax 				; if 0, syntax error
 		cmp 	#$0100 						; if not $00xx syntax error
