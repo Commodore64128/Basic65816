@@ -28,6 +28,8 @@ Fixes
 
 - 	reset stuff on error (not variables ?) - what about stop.
 
+- 	garbage collection, moving string to its own position.
+
 Memory Checks
 =============
 (all check LowMem vs HighMem)

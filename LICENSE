@@ -19,3 +19,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Notes
+=====
+Some documentation is not under this license ; the 65816 PDF and the STOS Manual.
+They appear to be freely available but I cannot relicense them as they are probably
+the property of WDC and Clickteam or Francois Lionet or something.
+
+The 64tass binary is also not under this license and is probably here.
+
+The CPU emulation is hacked from VICE, which says on its web page it is both Copyrighted 
+and under the GNU GPL. This license is less restrictive than that I think, though this 
+means the 65816 emulator and source are definitely under Gnu GPL as well.
