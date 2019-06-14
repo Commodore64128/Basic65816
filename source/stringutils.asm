@@ -16,6 +16,18 @@
 ; *******************************************************************************************
 
 StringTempAllocate:
+		pha
+		lda 	DTempStringPointer 			; needs resetting ?
+		bne 	_STANoReset
+
+		phy 								; reset the temp string pointer.
+		ldy 	#Block_HighMemoryPtr
+		lda 	(DBaseAddress),y
+		sta 	DTempStringPointer
+		ply
+
+_STANoReset:
+		pla 								; get length.
 		and 	#$00FF 						; check it's a byte size
 		eor 	#$FFFF 						; 2's complement add to temporary pointer.
 		clc 								; this adds one, for the length.

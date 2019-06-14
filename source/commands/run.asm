@@ -50,11 +50,7 @@ _FRun_NextLineNumber:
 		;		Next instruction.
 		;
 _FRun_NextInstruction:
-		ldy 	#Block_HighMemoryPtr 		; initialise temporary string below upper area
-		lda 	(DBaseAddress),y 			; with enough memory to concrete a string above.
-		sec
-		sbc 	#256
-		sta 	DTempStringPointer
+		stz 	DTempStringPointer 			; force reset on next string allocation.
 		;
 		lda 	(DCodePtr)					; what's next
 		beq 	_FRun_EndInstruction		; if end of this line, then go to next line.

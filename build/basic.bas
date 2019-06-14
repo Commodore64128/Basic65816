@@ -1,4 +1,5 @@
 10 rem "POKE LOKE DOKE test"
+15 a$ = "hello"+"world"
 20 addr = 2 * 65536 + 4 * 4096
 30 gosub 130
 60 print
