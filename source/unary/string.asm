@@ -62,7 +62,6 @@ Function_RIGHT: 	;; right$(
 		beq 	FNStringY 					; return string in Y if current len = required len.
 		bcc 	FNStringY 					; if current < required return whole thing.
 		;
-		nop
 		sec 								; current-required is the number to skip
 		sbc 	DTemp1 
 		sta 	DTemp1+2
@@ -115,4 +114,55 @@ FNStringY:
 FNStringParameter:
 		#error 	"Bad String Operation"
 
-		
+; *******************************************************************************************
+;
+;									mid$(string$,n[,n1])
+;
+; *******************************************************************************************
+
+Function_MID: 	;; mid$(
+		jsr 	ResetTypeString 			; returns a string.
+		jsr 	EvaluateNextString 			; get the value you are absoluting
+		pha 								; save string on stack.
+		jsr 	ExpectComma 				; get offset (n)
+		jsr 	EvaluateNextInteger
+		cpy 	#0 							; can't be high
+		bne 	FNStringParameter
+		cmp 	#0
+		beq 	FNStringParameter 			; or zero
+		pha 								; save start position on stack.
+		lda 	#255 						; default third parameter is 255 e.g. whole string
+		sta 	DTemp1
+		lda 	(DCodePtr) 					; is there a comma
+		cmp 	#commaTokenID
+		bne 	_FMINoThird
+		inc 	DCodePtr 					; skip the comma
+		inc 	DCodePtr
+		jsr 	EvaluateNextInteger 		; how many to do (n1)
+		cpy 	#0 							; can't be high
+		bne 	FNStringParameter
+		sta 	DTemp1 						; save in DTemp1 (characters to count)
+_FMINoThird:
+		jsr 	ExpectRightBracket
+		pla 								; get offset position
+		sta 	DTemp2 							
+		ply 								; get address of string in Y
+		;
+		lda		$0000,y 					; get length
+		and 	#$00FF
+		cmp 	DTemp2 						; check length of string vs offset position 				
+		bcc 	FNStringEmpty 				; if length <= offset position then return ""
+		beq 	FNStringEmpty 	
+		;
+		sec 								; calculate number of characters left after
+		sbc 	DTemp2 						; offset
+		inc 	a 							; there is one more because of index starts at 1.
+		cmp 	DTemp1 						; available -- chars required.
+		bcs 	_FMISufficient
+		sta 	DTemp1 						; if available < chars required, only copy those
+_FMISufficient:
+		tya 								; get address
+		clc
+		adc 	DTemp2 						; add the offset, the extra 1 (index) skips length
+		tay 								; put in Y
+		brl 	FNDTemp1Characters			; and copy them.

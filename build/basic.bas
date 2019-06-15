@@ -1,5 +1,5 @@
 10 rem "POKE LOKE DOKE test"
-15 a$ = "Hello "+" World!"
+15 a$ = "Hello."+".World!"
 17 print ">>";upper$(a$)+"..."+lower$(a$)
 20 print "4  [";left$(a$,4);"]"
 21 print "20 [";left$(a$,20);"]"
@@ -8,6 +8,11 @@
 30 print "4  [";right$(a$,4);"]"
 31 print "20 [";right$(a$,20);"]"
 32 print "0  [";right$(a$,0);"]"
+
+39 print "42 . ["+mid$(a$,42)+"]"
+40 print "2  6 ["+mid$(a$,2,7)+"]"
+41 print "2  . ["+mid$(a$,2)+"]"
+42 print "2  x ["+mid$(a$,2,44444)+"]"
 
 100 stop
 

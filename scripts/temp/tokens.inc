@@ -34,7 +34,7 @@ CommandJumpTable:
 	.word Function_LOWER           & $FFFF ; token $301d "lower$("
 	.word Function_UPPER           & $FFFF ; token $301e "upper$("
 	.word Function_LEFT            & $FFFF ; token $301f "left$("
-	.word IllegalToken             & $FFFF ; token $3020 "mid$("
+	.word Function_MID             & $FFFF ; token $3020 "mid$("
 	.word Function_RIGHT           & $FFFF ; token $3021 "right$("
 	.word IllegalToken             & $FFFF ; token $3222 ","
 	.word IllegalToken             & $FFFF ; token $3223 ";"

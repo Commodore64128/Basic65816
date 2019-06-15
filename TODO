@@ -1,6 +1,6 @@
 Main
 ----
-- MID$
+- Add to test function.
 - LIST. Detokenising. Spacing out and tabs in. Breaking.
 - CALL <address> (params A,X,Y,C ?)
 - Input code. Tokenising.
