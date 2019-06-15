@@ -2,10 +2,10 @@
 6 print instr("hello","ex")
 7 print instr("hello","hello")
 8 print instr("hello","hello2")
+9 list 100,133:goto 11180
 
-
-11  for i = 1 to 999999
-12  print i
+11  for i = 1 to 9999
+12 		print i
 13  next i
 20 	x = 0
 50 	repeat
@@ -14,6 +14,7 @@
 80 for i = 1 to 5
 90	 a = i
 95 next i
+97 repeat
 100	if (x & 1) = 0
 110		print x,"Even",
 112 	if x > 5
@@ -29,4 +30,7 @@
 140	endif
 150 x = x + 1
 160 until x > 10
+170 for i = 0 to 255
+200 poke 983040+i,i
+210 next i
 11180 stop	

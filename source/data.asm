@@ -10,6 +10,14 @@
 ; ********************************************************************************
 ; ********************************************************************************
 
+DirectPage = $FC00 
+
+;	+00 .. +7F 			General variables
+;	+80 .. +1FF 		BASIC stack
+;	+200 .. +27F 		Expression Stack.
+;  	+280 .. +3FF 		CPU Stack.
+
+
 ; ********************************************************************************
 ;
 ;								This is the Zero Page Data
@@ -63,7 +71,7 @@ DTemp4 = DPBaseAddress + 50 				; *** LONG *** Temporary Value
 ; ********************************************************************************
 
 BASStack = $80 								; start of Basic stack.
-BASStackSize = $80 							; maximum size of BASIC stack.
+BASStackSize = $180 						; maximum size of BASIC stack.
 
 ; ********************************************************************************
 ;
@@ -72,12 +80,20 @@ BASStackSize = $80 							; maximum size of BASIC stack.
 ;
 ; ********************************************************************************
 
-EXSBase = $100 								; Initial value of X at lowest stack level.
+EXSBase = $200 								; Initial value of X at lowest stack level.
 
-EXSStackElements = 8 						; depth of stack.
+EXSStackElements = 16 						; depth of stack.
 
 											; offsets from stack base (each stack element = 2 bytes)
 EXSValueL = 0 								; Low word
 EXSValueH = EXSStackElements*2  			; High word
 EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 = string.
+
+; ********************************************************************************
+;
+;								65816 Stack Starts Here.
+;
+; ********************************************************************************
+
+CPUStack = EXSBase+$200-2 					; CPU Stack initial value.
 

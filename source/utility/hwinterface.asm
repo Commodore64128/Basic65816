@@ -9,9 +9,9 @@
 ; *******************************************************************************************
 ; *******************************************************************************************
 
-HWCursorCharacter = $01
+HWCursorCharacter = $66
 
-sWidth = 64									; this have to be powers of two in this really simple I/O code.
+sWidth = 64					; this has to be powers of two in this really simple I/O code.
 sHeight = 32
 
 ; *******************************************************************************************
@@ -45,13 +45,25 @@ _CS0:	lda 	#$2020
 HWPrintChar:
 		pha
 		phx
+		and 	#$00FF
+		cmp 	#"a"
+		bcc 	_HWPCNotLC
+		cmp 	#"z"+1
+		bcs 	_HWPCNotLC
+		sec
+		sbc 	#32
+_HWPCNotLC:		
+		and 	#$3F
 		ldx 	DCursor
 		sep 	#$20
 		sta 	$F0000,x
 		rep 	#$20
 		inx
 		txa
-		and 	#(sWidth*sHeight-1)
+		cmp 	#(sWidth*sHeight)
+		bne 	_HWNotEnd
+		lda 	#0
+_HWNotEnd:
 		sta 	DCursor
 		tax
 		lda 	#HWCursorCharacter
@@ -111,3 +123,4 @@ _HWGKWait:
 		beq 	_HWGKWait
 		nop
 		rts 	
+		

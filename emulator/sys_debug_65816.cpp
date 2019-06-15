@@ -22,7 +22,7 @@
 #define DBGC_HIGHLIGHT 	(0xFF0)
 
 #include "dasm65816.h"
-
+#include "c64font.h"
 
 // *******************************************************************************************************************************
 //												Reset the 8008
@@ -115,18 +115,35 @@ void DBGXRender(int *address,int showDisplay) {
 		}
 	}
 
+	int xs = 64;
+	int ys = 32;
 	if (showDisplay) {
 		int size = 2;
-		int x1 = WIN_WIDTH/2-64*size*6/2;
-		int y1 = 64;
-		for (int x = 0;x < 64;x++) 
+		int x1 = WIN_WIDTH/2-xs*size*8/2;
+		int y1 = WIN_HEIGHT/2-ys*size*8/2;
+		SDL_Rect r;
+		int b = 16;
+		r.x = x1-b;r.y = y1-b;r.w = xs*size*8+b*2;r.h=ys*size*8+b*2;
+		GFXRectangle(&r,0);
+		for (int x = 0;x < xs;x++) 
 		{
-			for (int y = 0;y < 32;y++)
+			for (int y = 0;y < ys;y++)
 			{
-				int ch = CPURead(0xF0000+x+y*64);
-				int fcol = (ch & 0x80) ? 0x0FF:0xF80;
-				if ((ch & 0x7F) < 32) fcol = 0xF80;
-				GFXCharacter(x1+x*size*6,y1+y*size*8,ch & 0x7F,size,fcol,(ch < 32) ? 0xF80:0x000);
+				int ch = CPURead(0xF0000+x+y*xs);
+				int xc = x1 + x * 8 * size;
+				int yc = y1 + y * 8 * size;
+				SDL_Rect rc;
+				int cp = ch * 8;
+				rc.w = rc.h = size;																// Width and Height of pixel.
+				for (int x = 0;x < 8;x++) {														// 5 Across
+					rc.x = xc + x * size;
+					for (int y = 0;y < 8;y++) {													// 7 Down
+						rc.y = yc + y * size;
+						if (font[cp+y] & (0x80 >> x)) {		
+							GFXRectangle(&rc,0xF80);			
+						}
+					}
+				}
 			}
 		}
 	}

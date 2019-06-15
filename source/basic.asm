@@ -15,8 +15,8 @@ StartOfBasicCode:
 		.include "data.asm" 						; data definition.
 		.include "expression.asm" 					; expression evaluation
 		.include "variable.asm"						; variable management
-		.include "utility.asm"						; utility stuff.
-		.include "stringutils.asm"					; string utility stuff.
+		.include "utility/utility.asm"				; utility stuff.
+		.include "utility/stringutils.asm"			; string utility stuff.
 		
 		.include "binary/arithmetic.asm"			; binary operators
 		.include "binary/bitwise.asm"

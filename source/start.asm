@@ -15,13 +15,14 @@
 		rep 	#$30 									
 		.al	
 		.xl
-		ldx 	#$FC00 								; 6502 stack at $FFE0
+		ldx 	#DirectPage+CPUStack 				; 65816 Stack
 		txs
-		lda 	#$FE00 								; set DP to $FE00
+		lda 	#DirectPage 						; set Direct Page.
 		tcd
 		lda 	#CodeSpace >> 16 					; put the page number in A ($2)
 		ldx 	#CodeSpace & $FFFF 					; and the base address in X ($4000)
 		ldy 	#CodeEndSpace & $FFFF				; and the end address in Y ($C000)
+	
 		jmp 	SwitchBasicInstance
 
 
@@ -30,7 +31,7 @@
 													; this has self modifying code at despatch
 													; in expression.asm
 
-		.include "hwinterface.asm"					; display code.
+		.include "utility/hwinterface.asm"			; display code.
 
 		*=$24000 									; actual BASIC block goes here, demo at 02:4000
 CodeSpace:

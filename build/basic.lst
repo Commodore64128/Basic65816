@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.53.1515? listing file
 ; tass64 --m65816 -f -q -o basic.bin -L basic.lst ../source/start.asm
-; Sat Jun 15 17:41:37 2019
+; Sat Jun 15 19:06:30 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -10,9 +10,9 @@
 .0000	18		clc				clc											; switch into 65816 16 bit mode.
 .0001	fb		xce				xce
 .0002	c2 30		rep #$30			rep 	#$30
-.0004	a2 00 fc	ldx #$fc00			ldx 	#$FC00 								; 6502 stack at $FFE0
+.0004	a2 fe ff	ldx #$fffe			ldx 	#DirectPage+CPUStack 				; 65816 Stack
 .0007	9a		txs				txs
-.0008	a9 00 fe	lda #$fe00			lda 	#$FE00 								; set DP to $FE00
+.0008	a9 00 fc	lda #$fc00			lda 	#DirectPage 						; set Direct Page.
 .000b	5b		tcd				tcd
 .000c	a9 02 00	lda #$0002			lda 	#CodeSpace >> 16 					; put the page number in A ($2)
 .000f	a2 00 40	ldx #$4000			ldx 	#CodeSpace & $FFFF 					; and the base address in X ($4000)
@@ -262,6 +262,7 @@
 
 ;******  Processing file: ../source/data.asm
 
+=$fc00					DirectPage = $FC00
 =$00					DPBaseAddress = $00 						; Base address used for direct page.
 =0					DPageNumber = DPBaseAddress+0 				; page number of workspace area (upper 8 bits of address)
 =2					DBaseAddress = DPBaseAddress+2 				; low memory for workspace area
@@ -286,12 +287,13 @@
 =48					DListBuffer = DPBaseAddress + 48 			; list buffer address.
 =50					DTemp4 = DPBaseAddress + 50 				; *** LONG *** Temporary Value
 =$80					BASStack = $80 								; start of Basic stack.
-=$80					BASStackSize = $80 							; maximum size of BASIC stack.
-=$100					EXSBase = $100 								; Initial value of X at lowest stack level.
-=8					EXSStackElements = 8 						; depth of stack.
+=$180					BASStackSize = $180 						; maximum size of BASIC stack.
+=$200					EXSBase = $200 								; Initial value of X at lowest stack level.
+=16					EXSStackElements = 16 						; depth of stack.
 =0					EXSValueL = 0 								; Low word
-=16					EXSValueH = EXSStackElements*2  			; High word
-=32					EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 = string.
+=32					EXSValueH = EXSStackElements*2  			; High word
+=64					EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 = string.
+=1022					CPUStack = EXSBase+$200-2 					; CPU Stack initial value.
 
 ;******  Return to file: ../source/basic.asm
 
@@ -299,11 +301,11 @@
 ;******  Processing file: ../source/expression.asm
 
 .0101cc					Evaluate:
-.0101cc	a2 00 01	ldx #$0100			ldx		#EXSBase 					; reset the stack
+.0101cc	a2 00 02	ldx #$0200			ldx		#EXSBase 					; reset the stack
 .0101cf	a9 00 00	lda #$0000			lda 	#0<<TokenShift 				; start at the lowest precedence level.
 .0101d2					EvaluateLevel:
 .0101d2	29 ff 7f	and #$7fff			and 	#$7FFF 						; zero type bit, which means integer unless we change it.
-.0101d5	95 20		sta $20,x			sta 	EXSPrecType+0,x 			; save precedence level.
+.0101d5	95 40		sta $40,x			sta 	EXSPrecType+0,x 			; save precedence level.
 .0101d7	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the next token
 .0101d9	c9 00 c0	cmp #$c000			cmp 	#$C000 						; if $C000-$CFFF then variable.
 .0101dc	b0 79		bcs $010257			bcs 	_ELVariable
@@ -328,7 +330,7 @@
 .010202	6a		ror a				ror 	a 							; rotate that into the constant value
 .010203	95 00		sta $00,x			sta 	EXSValueL+0,x 				; save as low word
 .010205	a5 1c		lda $1c				lda 	DConstantShift 				; constant shift is high word.
-.010207	95 10		sta $10,x			sta 	EXSValueH+0,x
+.010207	95 20		sta $20,x			sta 	EXSValueH+0,x
 .010209	64 1c		stz $1c				stz 	DConstantShift 				; clear the constant shift
 .01020b	e6 06		inc $06				inc 	DCodePtr 					; skip over constant
 .01020d	e6 06		inc $06				inc 	DCodePtr
@@ -338,7 +340,7 @@
 .010212	29 00 f0	and #$f000			and 	#$F000 						; is it 0010 xxxk e.g. a binary operator.
 .010215	c9 00 20	cmp #$2000			cmp 	#$2000 						; if not then exit
 .010218	d0 35		bne $01024f			bne 	_ELExit
-.01021a	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; get precedence/type
+.01021a	b5 40		lda $40,x			lda 	EXSPrecType+0,x 			; get precedence/type
 .01021c	29 00 1e	and #$1e00			and 	#15 << TokenShift 			; mask out the precedence bits.
 .01021f	85 08		sta $08				sta 	DTemp1 						; save in temporary register
 .010221	98		tya				tya 								; get the keyword token back
@@ -368,17 +370,17 @@
 .01024a					_ELCallRoutine:
 .01024a	20 4a 02	jsr $01024a			jsr 	_ELCallRoutine 				; call the new address *MODIFIED*
 .01024d	80 c0		bra $01020f			bra 	_ELGotAtom 					; go round operator level again.
-.01024f	b5 20		lda $20,x	_ELExit:lda 	EXSPrecType+0,x 			; type into carry
+.01024f	b5 40		lda $40,x	_ELExit:lda 	EXSPrecType+0,x 			; type into carry
 .010251	0a		asl a				asl 	a
 .010252	b5 00		lda $00,x			lda 	EXSValueL+0,x 				; put result into YA
-.010254	b4 10		ldy $10,x			ldy 	EXSValueH+0,x
+.010254	b4 20		ldy $20,x			ldy 	EXSValueH+0,x
 .010256	60		rts				rts
 .010257					_ELVariable:
-.010257	16 20		asl $20,x			asl 	EXSPrecType+0,x 			; shift it left
+.010257	16 40		asl $40,x			asl 	EXSPrecType+0,x 			; shift it left
 .010259	20 18 03	jsr $010318			jsr 	VariableAccessExpression	; this will be 'find variable, error if failed', get value.
 .01025c	95 00		sta $00,x			sta 	EXSValueL+0,x 				; save variable contents in stack
-.01025e	94 10		sty $10,x			sty 	EXSValueH+0,x
-.010260	76 20		ror $20,x			ror 	EXSPrecType+0,x 			; shift right rotating the carry in.
+.01025e	94 20		sty $20,x			sty 	EXSValueH+0,x
+.010260	76 40		ror $40,x			ror 	EXSPrecType+0,x 			; shift right rotating the carry in.
 .010262	80 ab		bra $01020f			bra 	_ELGotAtom
 .010264					_ELSyntax
 .010264	82 31 02	brl $010498			brl 	SyntaxError
@@ -389,14 +391,14 @@
 .01026e	1a		inc a				inc 	a
 .01026f	1a		inc a				inc 	a
 .010270	95 00		sta $00,x			sta 	EXSValueL+0,x 				; this is the low word
-.010272	74 10		stz $10,x			stz 	EXSValueH+0,x 				; high word is zero.
+.010272	74 20		stz $20,x			stz 	EXSValueH+0,x 				; high word is zero.
 .010274	b2 06		lda ($06)			lda 	(DCodePtr)					; get length to skip
 .010276	18		clc				clc 								; add to string constant.
 .010277	65 06		adc $06				adc 	DCodePtr
 .010279	85 06		sta $06				sta 	DCodePtr
-.01027b	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; set type to string
+.01027b	b5 40		lda $40,x			lda 	EXSPrecType+0,x 			; set type to string
 .01027d	09 00 80	ora #$8000			ora 	#$8000
-.010280	95 20		sta $20,x			sta 	EXSPrecType+0,x
+.010280	95 40		sta $40,x			sta 	EXSPrecType+0,x
 .010282	80 8b		bra $01020f			bra 	_ELGotAtom
 .010284					_ELUnaryKeyword:
 .010284	b2 06		lda ($06)			lda 	(DCodePtr)					; look at the next token
@@ -413,8 +415,8 @@
 .01029e					_ELCopy:
 .01029e	b5 02		lda $02,x			lda 	EXSValueL+2,x 				; just copy the value
 .0102a0	95 00		sta $00,x			sta 	EXSValueL+0,x
-.0102a2	b5 12		lda $12,x			lda 	EXSValueH+2,x
-.0102a4	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0102a2	b5 22		lda $22,x			lda 	EXSValueH+2,x
+.0102a4	95 20		sta $20,x			sta 	EXSValueH+0,x
 .0102a6	82 66 ff	brl $01020f			brl 	_ELGotAtom 					; and continue.
 .0102a9					_ELUnaryOperator:
 .0102a9	5a		phy				phy 								; save the operator on the stack.
@@ -434,8 +436,8 @@
 .0102c1	f5 02		sbc $02,x			sbc 	EXSValueL+2,x
 .0102c3	95 00		sta $00,x			sta 	EXSValueL+0,x
 .0102c5	a9 00 00	lda #$0000			lda 	#0
-.0102c8	f5 12		sbc $12,x			sbc 	EXSValueH+2,x
-.0102ca	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0102c8	f5 22		sbc $22,x			sbc 	EXSValueH+2,x
+.0102ca	95 20		sta $20,x			sta 	EXSValueH+0,x
 .0102cc	82 40 ff	brl $01020f			brl 	_ELGotAtom					; and continue.
 .0102cf					EvaluateNext:
 .0102cf	e8		inx				inx
@@ -646,7 +648,7 @@
 ;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ../source/utility.asm
+;******  Processing file: ../source/utility/utility.asm
 
 .01045d					ErrorHandler:
 .01045d	c2 30		rep #$30			rep 	#$30 						; in case we changed it.
@@ -664,7 +666,7 @@
 .010479	a8		tay				tay
 .01047a	20 18 05	jsr $010518			jsr 	PrintBASICString
 .01047d					_EHEndMessage:
-.01047d	20 6c 17	jsr $01176c			jsr 	HWNewLine
+.01047d	20 82 17	jsr $011782			jsr 	HWNewLine
 .010480	80 fe		bra $010480	_EH1:	bra 	_EH1
 >010482	20 61 74 20 00			_EHAt:	.text 	" at ",$00
 .010487					IllegalToken:
@@ -698,8 +700,8 @@
 .0104d2	68		pla				pla
 .0104d3	60		rts				rts
 .0104d4					CheckBothNumeric:
-.0104d4	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; OR together their prec/type
-.0104d6	15 22		ora $22,x			ora 	EXSPrecType+2,x
+.0104d4	b5 40		lda $40,x			lda 	EXSPrecType+0,x 			; OR together their prec/type
+.0104d6	15 42		ora $42,x			ora 	EXSPrecType+2,x
 .0104d8	30 01		bmi $0104db			bmi 	_CBNFail 					; need to both be zero in bit 15
 .0104da	60		rts				rts
 .0104db					_CBNFail:
@@ -707,14 +709,14 @@
 >0104de	4f 70 65 72 61 74 6f 72				.text 	"Operator integer only",$00 								; with this message
 >0104e6	20 69 6e 74 65 67 65 72 20 6f 6e 6c 79 00
 .0104f4					ResetTypeInteger:
-.0104f4	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; clear bit 15
+.0104f4	b5 40		lda $40,x			lda 	EXSPrecType+0,x 			; clear bit 15
 .0104f6	29 ff 7f	and #$7fff			and 	#$7FFF
-.0104f9	95 20		sta $20,x			sta 	EXSPrecType+0,x
+.0104f9	95 40		sta $40,x			sta 	EXSPrecType+0,x
 .0104fb	60		rts				rts
 .0104fc					ResetTypeString:
-.0104fc	b5 20		lda $20,x			lda 	EXSPrecType+0,x 			; clear bit 15
+.0104fc	b5 40		lda $40,x			lda 	EXSPrecType+0,x 			; clear bit 15
 .0104fe	09 00 80	ora #$8000			ora 	#$8000
-.010501	95 20		sta $20,x			sta 	EXSPrecType+0,x
+.010501	95 40		sta $40,x			sta 	EXSPrecType+0,x
 .010503	60		rts				rts
 .010504					PrintROMMessage:
 .010504	48		pha				pha
@@ -723,7 +725,7 @@
 .010506	bf 00 00 01	lda $010000,x			lda 	StartOfBasicCode,x 			; print characters until $00 found.
 .01050a	29 ff 00	and #$00ff			and 	#$00FF
 .01050d	f0 06		beq $010515			beq 	_PRMExit
-.01050f	20 4a 17	jsr $01174a			jsr 	HWPrintChar
+.01050f	20 47 17	jsr $011747			jsr 	HWPrintChar
 .010512	e8		inx				inx
 .010513	80 f1		bra $010506			bra 	_PRMLoop
 .010515					_PRMExit:
@@ -741,7 +743,7 @@
 .010524					_PBSLoop:
 .010524	c8		iny				iny
 .010525	b9 00 00	lda $0000,y			lda 	$0000,y
-.010528	20 4a 17	jsr $01174a			jsr 	HWPrintChar
+.010528	20 47 17	jsr $011747			jsr 	HWPrintChar
 .01052b	ca		dex				dex
 .01052c	d0 f6		bne $010524			bne 	_PBSLoop
 .01052e					_PBSExit:
@@ -753,7 +755,7 @@
 ;******  Return to file: ../source/basic.asm
 
 
-;******  Processing file: ../source/stringutils.asm
+;******  Processing file: ../source/utility/stringutils.asm
 
 .010532					StringTempAllocate:
 .010532	48		pha				pha
@@ -850,18 +852,18 @@
 ;******  Processing file: ../source/binary/arithmetic.asm
 
 .0105c1					Binary_Add:
-.0105c1	b5 20		lda $20,x		lda 	EXSPrecType+0,x 					; check both same type
-.0105c3	55 22		eor $22,x		eor 	EXSPrecType+2,x
+.0105c1	b5 40		lda $40,x		lda 	EXSPrecType+0,x 					; check both same type
+.0105c3	55 42		eor $42,x		eor 	EXSPrecType+2,x
 .0105c5	30 12		bmi $0105d9		bmi 	_BATypeError
-.0105c7	b5 20		lda $20,x		lda 	EXSPrecType+0,x 					; see if they are strings
+.0105c7	b5 40		lda $40,x		lda 	EXSPrecType+0,x 					; see if they are strings
 .0105c9	30 3f		bmi $01060a		bmi 	_BAConcatenateString 				; if so , do the concatenation code.
 .0105cb	18		clc			clc 										; add the results
 .0105cc	b5 00		lda $00,x		lda		EXSValueL+0,x
 .0105ce	75 02		adc $02,x		adc 	EXSValueL+2,x
 .0105d0	95 00		sta $00,x		sta 	EXSValueL+0,x
-.0105d2	b5 10		lda $10,x		lda		EXSValueH+0,x
-.0105d4	75 12		adc $12,x		adc 	EXSValueH+2,x
-.0105d6	95 10		sta $10,x		sta 	EXSValueH+0,x
+.0105d2	b5 20		lda $20,x		lda		EXSValueH+0,x
+.0105d4	75 22		adc $22,x		adc 	EXSValueH+2,x
+.0105d6	95 20		sta $20,x		sta 	EXSValueH+0,x
 .0105d8	60		rts			rts
 .0105d9					_BATypeError:
 .0105d9	20 5d 04	jsr $01045d			jsr 	ErrorHandler 						; call error routine
@@ -885,7 +887,7 @@
 .01061b	c2 20		rep #$20		rep 	#$20 								; back to 16 bit mode.
 .01061d	20 32 05	jsr $010532		jsr 	StringTempAllocate 					; allocate string of that size in temp memory.
 .010620	95 00		sta $00,x		sta 	EXSValueL+0,x 						; update the return value to that address.
-.010622	74 10		stz $10,x		stz 	EXSValueH+0,x
+.010622	74 20		stz $20,x		stz 	EXSValueH+0,x
 .010624	a5 08		lda $08			lda 	DTemp1 								; copy first string there.
 .010626	20 6c 05	jsr $01056c		jsr 	StringCreateCopy
 .010629	a5 0c		lda $0c			lda 	DTemp2 								; copy second string there.
@@ -901,9 +903,9 @@
 .010646	b5 00		lda $00,x		lda		EXSValueL+0,x
 .010648	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
 .01064a	95 00		sta $00,x		sta 	EXSValueL+0,x
-.01064c	b5 10		lda $10,x		lda		EXSValueH+0,x
-.01064e	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
-.010650	95 10		sta $10,x		sta 	EXSValueH+0,x
+.01064c	b5 20		lda $20,x		lda		EXSValueH+0,x
+.01064e	f5 22		sbc $22,x		sbc 	EXSValueH+2,x
+.010650	95 20		sta $20,x		sta 	EXSValueH+0,x
 .010652	60		rts			rts
 .010653					Binary_ShiftRight:
 .010653	20 d4 04	jsr $0104d4		jsr 	CheckBothNumeric 					; check both values are numeric
@@ -911,7 +913,7 @@
 .010658	29 3f 00	and #$003f		and 	#63
 .01065b	f0 07		beq $010664		beq		_Binary_SRExit
 .01065d					_Binary_SRLoop:
-.01065d	56 10		lsr $10,x		lsr 	EXSValueH+0,x
+.01065d	56 20		lsr $20,x		lsr 	EXSValueH+0,x
 .01065f	76 00		ror $00,x		ror 	EXSValueL+0,x
 .010661	3a		dec a			dec 	a
 .010662	d0 f9		bne $01065d		bne 	_Binary_SRLoop
@@ -924,7 +926,7 @@
 .01066d	f0 07		beq $010676		beq		_Binary_SLExit
 .01066f					_Binary_SLLoop:
 .01066f	16 00		asl $00,x		asl 	EXSValueL+0,x
-.010671	36 10		rol $10,x		rol 	EXSValueH+0,x
+.010671	36 20		rol $20,x		rol 	EXSValueH+0,x
 .010673	3a		dec a			dec 	a
 .010674	d0 f9		bne $01066f		bne 	_Binary_SLLoop
 .010676					_Binary_SLExit:
@@ -940,27 +942,27 @@
 .01067a	b5 00		lda $00,x		lda		EXSValueL+0,x
 .01067c	35 02		and $02,x		and 	EXSValueL+2,x
 .01067e	95 00		sta $00,x		sta 	EXSValueL+0,x
-.010680	b5 10		lda $10,x		lda		EXSValueH+0,x
-.010682	35 12		and $12,x		and 	EXSValueH+2,x
-.010684	95 10		sta $10,x		sta 	EXSValueH+0,x
+.010680	b5 20		lda $20,x		lda		EXSValueH+0,x
+.010682	35 22		and $22,x		and 	EXSValueH+2,x
+.010684	95 20		sta $20,x		sta 	EXSValueH+0,x
 .010686	60		rts			rts
 .010687					Binary_Or:
 .010687	20 d4 04	jsr $0104d4		jsr 	CheckBothNumeric 					; check both values are numeric
 .01068a	b5 00		lda $00,x		lda		EXSValueL+0,x
 .01068c	15 02		ora $02,x		ora 	EXSValueL+2,x
 .01068e	95 00		sta $00,x		sta 	EXSValueL+0,x
-.010690	b5 10		lda $10,x		lda		EXSValueH+0,x
-.010692	15 12		ora $12,x		ora 	EXSValueH+2,x
-.010694	95 10		sta $10,x		sta 	EXSValueH+0,x
+.010690	b5 20		lda $20,x		lda		EXSValueH+0,x
+.010692	15 22		ora $22,x		ora 	EXSValueH+2,x
+.010694	95 20		sta $20,x		sta 	EXSValueH+0,x
 .010696	60		rts			rts
 .010697					Binary_Xor:
 .010697	20 d4 04	jsr $0104d4		jsr 	CheckBothNumeric 					; check both values are numeric
 .01069a	b5 00		lda $00,x		lda		EXSValueL+0,x
 .01069c	55 02		eor $02,x		eor 	EXSValueL+2,x
 .01069e	95 00		sta $00,x		sta 	EXSValueL+0,x
-.0106a0	b5 10		lda $10,x		lda		EXSValueH+0,x
-.0106a2	55 12		eor $12,x		eor 	EXSValueH+2,x
-.0106a4	95 10		sta $10,x		sta 	EXSValueH+0,x
+.0106a0	b5 20		lda $20,x		lda		EXSValueH+0,x
+.0106a2	55 22		eor $22,x		eor 	EXSValueH+2,x
+.0106a4	95 20		sta $20,x		sta 	EXSValueH+0,x
 .0106a6	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
@@ -974,8 +976,8 @@
 .0106ac	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric comparison
 .0106ae	d5 02		cmp $02,x		cmp 	EXSValueL+2,x
 .0106b0	d0 4f		bne $010701		bne 	Compare_Fail
-.0106b2	b5 10		lda $10,x		lda 	EXSValueH,x
-.0106b4	d5 12		cmp $12,x		cmp 	EXSValueH+2,x
+.0106b2	b5 20		lda $20,x		lda 	EXSValueH,x
+.0106b4	d5 22		cmp $22,x		cmp 	EXSValueH+2,x
 .0106b6	d0 49		bne $010701		bne 	Compare_Fail
 .0106b8	80 3f		bra $0106f9		bra 	Compare_Succeed
 .0106ba					_BEString:
@@ -988,8 +990,8 @@
 .0106c6	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric comparison
 .0106c8	d5 02		cmp $02,x		cmp 	EXSValueL+2,x
 .0106ca	d0 2d		bne $0106f9		bne 	Compare_Succeed
-.0106cc	b5 10		lda $10,x		lda 	EXSValueH,x
-.0106ce	d5 12		cmp $12,x		cmp 	EXSValueH+2,x
+.0106cc	b5 20		lda $20,x		lda 	EXSValueH,x
+.0106ce	d5 22		cmp $22,x		cmp 	EXSValueH+2,x
 .0106d0	d0 27		bne $0106f9		bne 	Compare_Succeed
 .0106d2	80 2d		bra $010701		bra 	Compare_Fail
 .0106d4					_BNEString:
@@ -1002,8 +1004,8 @@
 .0106e0	38		sec			sec
 .0106e1	b5 00		lda $00,x		lda 	EXSValueL,x 					; signed numeric <
 .0106e3	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.0106e5	b5 10		lda $10,x		lda 	EXSValueH,x
-.0106e7	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.0106e5	b5 20		lda $20,x		lda 	EXSValueH,x
+.0106e7	f5 22		sbc $22,x		sbc 	EXSValueH+2,x
 .0106e9	50 03		bvc $0106ee		bvc 	*+5
 .0106eb	49 00 80	eor #$8000		eor 	#$8000
 .0106ee	30 09		bmi $0106f9		bmi 	Compare_Succeed
@@ -1015,11 +1017,11 @@
 .0106f9					Compare_Succeed:
 .0106f9	a9 ff ff	lda #$ffff		lda 	#$FFFF
 .0106fc	95 00		sta $00,x		sta 	EXSValueL,x
-.0106fe	95 10		sta $10,x		sta 	EXSValueH,x
+.0106fe	95 20		sta $20,x		sta 	EXSValueH,x
 .010700	60		rts			rts
 .010701					Compare_Fail:
 .010701	74 00		stz $00,x		stz 	EXSValueL,x
-.010703	74 10		stz $10,x		stz 	EXSValueH,x
+.010703	74 20		stz $20,x		stz 	EXSValueH,x
 .010705	60		rts			rts
 .010706					Binary_GreaterEqual:
 .010706	20 60 07	jsr $010760		jsr 	CompareTypeCheck 				; which types are we comparing ?
@@ -1027,8 +1029,8 @@
 .01070b	38		sec			sec
 .01070c	b5 00		lda $00,x		lda 	EXSValueL,x 					; numeric >= signed
 .01070e	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.010710	b5 10		lda $10,x		lda 	EXSValueH,x
-.010712	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.010710	b5 20		lda $20,x		lda 	EXSValueH,x
+.010712	f5 22		sbc $22,x		sbc 	EXSValueH+2,x
 .010714	50 03		bvc $010719		bvc 	*+5
 .010716	49 00 80	eor #$8000		eor 	#$8000
 .010719	10 de		bpl $0106f9		bpl 	Compare_Succeed
@@ -1043,8 +1045,8 @@
 .010729	18		clc			clc 									; numeric <= signed
 .01072a	b5 00		lda $00,x		lda 	EXSValueL,x
 .01072c	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.01072e	b5 10		lda $10,x		lda 	EXSValueH,x
-.010730	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.01072e	b5 20		lda $20,x		lda 	EXSValueH,x
+.010730	f5 22		sbc $22,x		sbc 	EXSValueH+2,x
 .010732	50 03		bvc $010737		bvc 	*+5
 .010734	49 00 80	eor #$8000		eor 	#$8000
 .010737	30 c0		bmi $0106f9		bmi 	Compare_Succeed
@@ -1059,8 +1061,8 @@
 .010747	18		clc			clc 									; numeric > signed
 .010748	b5 00		lda $00,x		lda 	EXSValueL,x
 .01074a	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
-.01074c	b5 10		lda $10,x		lda 	EXSValueH,x
-.01074e	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.01074c	b5 20		lda $20,x		lda 	EXSValueH,x
+.01074e	f5 22		sbc $22,x		sbc 	EXSValueH+2,x
 .010750	50 03		bvc $010755		bvc 	*+5
 .010752	49 00 80	eor #$8000		eor 	#$8000
 .010755	10 a2		bpl $0106f9		bpl 	Compare_Succeed
@@ -1070,10 +1072,10 @@
 .01075c	f0 9b		beq $0106f9		beq 	Compare_Succeed
 .01075e	80 a1		bra $010701		bra 	Compare_Fail
 .010760					CompareTypeCheck:
-.010760	b5 20		lda $20,x		lda 	EXSPrecType+0,x 				; xor the type bits (bit 15)
-.010762	55 22		eor $22,x		eor 	EXSPrecType+2,x
+.010760	b5 40		lda $40,x		lda 	EXSPrecType+0,x 				; xor the type bits (bit 15)
+.010762	55 42		eor $42,x		eor 	EXSPrecType+2,x
 .010764	30 06		bmi $01076c		bmi 	_CTCFail 						; if different types cannot be compared, must be the same !
-.010766	b5 20		lda $20,x		lda 	EXSPrecType+0,x 				; get the type they (both) are.
+.010766	b5 40		lda $40,x		lda 	EXSPrecType+0,x 				; get the type they (both) are.
 .010768	30 1c		bmi $010786		bmi 	_CTCStringCompare 				; if strings, do a string comparison.
 .01076a	18		clc			clc 									; if numbers return with carry clear and calculate it.
 .01076b	60		rts			rts
@@ -1131,7 +1133,7 @@
 .0107cb					Binary_Divide:
 .0107cb	20 d4 04	jsr $0104d4		jsr 	CheckBothNumeric 					; check both values are numeric
 .0107ce	b5 02		lda $02,x		lda 	EXSValueL+2,x						; check for division by zero
-.0107d0	15 12		ora $12,x		ora	 	EXSValueH+2,x
+.0107d0	15 22		ora $22,x		ora	 	EXSValueH+2,x
 .0107d2	d0 14		bne $0107e8		bne 	_BinaryDivide_Ok
 .0107d4	20 5d 04	jsr $01045d			jsr 	ErrorHandler 						; call error routine
 >0107d7	44 69 76 69 73 69 6f 6e				.text 	"Division by zero",$00 								; with this message
@@ -1141,7 +1143,7 @@
 .0107ea	64 0a		stz $0a			stz 	DTemp1+2
 .0107ec	64 14		stz $14			stz 	DSignCount  						; zero sign count.
 .0107ee	5a		phy			phy 										; save Y (bit counter)
-.0107ef	b5 12		lda $12,x		lda 	EXSValueH+2,x 						; check sign of H+2 (right)
+.0107ef	b5 22		lda $22,x		lda 	EXSValueH+2,x 						; check sign of H+2 (right)
 .0107f1	10 07		bpl $0107fa		bpl 	_BinaryDivide_RightDone
 .0107f3	e8		inx			inx
 .0107f4	e8		inx			inx
@@ -1149,14 +1151,14 @@
 .0107f8	ca		dex			dex
 .0107f9	ca		dex			dex
 .0107fa					_BinaryDivide_RightDone:
-.0107fa	b5 10		lda $10,x		lda 	EXSValueH+0,x 				 		; check sign of H+0 (left)
+.0107fa	b5 20		lda $20,x		lda 	EXSValueH+0,x 				 		; check sign of H+0 (left)
 .0107fc	10 03		bpl $010801		bpl 	_BinaryDivide_LeftDone
 .0107fe	20 30 08	jsr $010830		jsr 	Binary_DivNegate
 .010801					_BinaryDivide_LeftDone:
 .010801	a0 20 00	ldy #$0020		ldy 	#32 								; number to do.
 .010804					_BinaryDivide_Loop:
 .010804	16 00		asl $00,x		asl 	EXSValueL+0,x 						; shift Q into carry
-.010806	36 10		rol $10,x		rol 	EXSValueH+0,x
+.010806	36 20		rol $20,x		rol 	EXSValueH+0,x
 .010808	26 08		rol $08			rol 	DTemp1+0 							; rotate A left, with carry in
 .01080a	26 0a		rol $0a			rol 	DTemp1+2
 .01080c	38		sec			sec											; calculate A-M
@@ -1164,7 +1166,7 @@
 .01080f	f5 02		sbc $02,x		sbc 	EXSValueL+2,x
 .010811	85 0c		sta $0c			sta 	DTemp2
 .010813	a5 0a		lda $0a			lda 	DTemp1+2
-.010815	f5 12		sbc $12,x		sbc 	EXSValueH+2,x
+.010815	f5 22		sbc $22,x		sbc 	EXSValueH+2,x
 .010817	90 08		bcc $010821		bcc 	_Binary_NoSubract 					; if A < M skip this
 .010819	85 0a		sta $0a			sta 	DTemp1+2 							; save the calculated value.
 .01081b	a5 0c		lda $0c			lda 	DTemp2
@@ -1188,15 +1190,15 @@
 .010836	f5 00		sbc $00,x		sbc 	EXSValueL+0,x
 .010838	95 00		sta $00,x		sta 	EXSValueL+0,x
 .01083a	a9 00 00	lda #$0000		lda 	#$0000
-.01083d	f5 10		sbc $10,x		sbc 	EXSValueH+0,x
-.01083f	95 10		sta $10,x		sta 	EXSValueH+0,x
+.01083d	f5 20		sbc $20,x		sbc 	EXSValueH+0,x
+.01083f	95 20		sta $20,x		sta 	EXSValueH+0,x
 .010841	60		rts			rts
 .010842					Binary_Modulus:
 .010842	20 cb 07	jsr $0107cb		jsr 	Binary_Divide 						; do the divide
 .010845	a5 08		lda $08			lda 	DTemp1+0 							; copy modulus into data area.
 .010847	95 00		sta $00,x		sta 	EXSValueL+0,x
 .010849	a5 0a		lda $0a			lda 	DTemp1+2
-.01084b	95 10		sta $10,x		sta 	EXSValueH+0,x
+.01084b	95 20		sta $20,x		sta 	EXSValueH+0,x
 .01084d	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
@@ -1208,10 +1210,10 @@
 .01084e	20 d4 04	jsr $0104d4		jsr 	CheckBothNumeric 					; check both values are numeric
 .010851	b5 00		lda $00,x		lda 	EXSValueL+0,x 						; multiplier to DTemp1, multiplicand in Value+2
 .010853	85 08		sta $08			sta 	DTemp1
-.010855	b5 10		lda $10,x		lda 	EXSValueH+0,x
+.010855	b5 20		lda $20,x		lda 	EXSValueH+0,x
 .010857	85 0a		sta $0a			sta		DTemp1+2
 .010859	74 00		stz $00,x		stz 	EXSValueL+0,x						; zero result
-.01085b	74 10		stz $10,x		stz 	EXSValueH+0,x
+.01085b	74 20		stz $20,x		stz 	EXSValueH+0,x
 .01085d					_BinaryMultiply_Loop:
 .01085d	a5 08		lda $08			lda 	DTemp1 								; multiplier zero then exit
 .01085f	05 0a		ora $0a			ora 	DTemp1+2
@@ -1223,14 +1225,14 @@
 .01086b	b5 00		lda $00,x		lda 	EXSValueL+0,x
 .01086d	75 02		adc $02,x		adc 	EXSValueL+2,x
 .01086f	95 00		sta $00,x		sta 	EXSValueL+0,x
-.010871	b5 10		lda $10,x		lda 	EXSValueH+0,x
-.010873	75 12		adc $12,x		adc 	EXSValueH+2,x
-.010875	95 10		sta $10,x		sta 	EXSValueH+0,x
+.010871	b5 20		lda $20,x		lda 	EXSValueH+0,x
+.010873	75 22		adc $22,x		adc 	EXSValueH+2,x
+.010875	95 20		sta $20,x		sta 	EXSValueH+0,x
 .010877					_BinaryMultiply_NoAdd:
 .010877	46 0a		lsr $0a			lsr 	DTemp1+2 							; halve multiplier
 .010879	66 08		ror $08			ror 	DTemp1
 .01087b	16 02		asl $02,x		asl 	EXSValueL+2,x 						; double multiplicand
-.01087d	36 12		rol $12,x		rol 	EXSValueH+2,x
+.01087d	36 22		rol $22,x		rol 	EXSValueH+2,x
 .01087f	80 dc		bra $01085d		bra 	_BinaryMultiply_Loop 				; go round again.
 .010881					_BinaryMultiply_Exit:
 .010881	60		rts			rts
@@ -1248,15 +1250,15 @@
 .01088d	b9 00 00	lda $0000,y			lda 	$0000,y 					; get the string length
 .010890	29 ff 00	and #$00ff			and 	#$00FF 						; as a byte
 .010893	95 00		sta $00,x			sta 	EXSValueL+0,x 				; and return it
-.010895	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010895	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010897	60		rts				rts
 .010898					Function_Abs:
 .010898	20 f4 04	jsr $0104f4			jsr 	ResetTypeInteger 			; returns an integer
 .01089b	20 f3 02	jsr $0102f3			jsr 	EvaluateNextInteger 		; get the value you are absoluting
 .01089e	20 c2 04	jsr $0104c2			jsr 	ExpectRightBracket 			; check )
-.0108a1	b5 12		lda $12,x			lda 	EXSValueH+2,x 				; get sign of result from the upper word.
+.0108a1	b5 22		lda $22,x			lda 	EXSValueH+2,x 				; get sign of result from the upper word.
 .0108a3	30 07		bmi $0108ac			bmi 	_FAbsNegative 				; negate it if negative
-.0108a5	95 10		sta $10,x			sta 	EXSValueH+0,x 				; otherwise just copy it.
+.0108a5	95 20		sta $20,x			sta 	EXSValueH+0,x 				; otherwise just copy it.
 .0108a7	b5 02		lda $02,x			lda 	EXSValueL+2,x
 .0108a9	95 00		sta $00,x			sta 	EXSValueL+0,x
 .0108ab	60		rts				rts
@@ -1266,16 +1268,16 @@
 .0108b0	f5 02		sbc $02,x			sbc 	EXSValueL+2,x
 .0108b2	95 00		sta $00,x			sta 	EXSValueL+0,x
 .0108b4	a9 00 00	lda #$0000			lda 	#0
-.0108b7	f5 12		sbc $12,x			sbc 	EXSValueH+2,x
-.0108b9	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0108b7	f5 22		sbc $22,x			sbc 	EXSValueH+2,x
+.0108b9	95 20		sta $20,x			sta 	EXSValueH+0,x
 .0108bb	60		rts				rts
 .0108bc					Function_Sgn:
 .0108bc	20 f4 04	jsr $0104f4			jsr 	ResetTypeInteger 			; returns integer
 .0108bf	20 f3 02	jsr $0102f3			jsr 	EvaluateNextInteger 		; get an integer
 .0108c2	20 c2 04	jsr $0104c2			jsr 	ExpectRightBracket 			; check )
 .0108c5	74 00		stz $00,x			stz 	EXSValueL+0,x 				; zero the result
-.0108c7	74 10		stz $10,x			stz 	EXSValueH+0,x
-.0108c9	b5 12		lda $12,x			lda 	EXSValueH+2,x 				; get sign of result from high bit of upper word.
+.0108c7	74 20		stz $20,x			stz 	EXSValueH+0,x
+.0108c9	b5 22		lda $22,x			lda 	EXSValueH+2,x 				; get sign of result from high bit of upper word.
 .0108cb	30 07		bmi $0108d4			bmi 	_FSgnNegative 				; set to -1 if signed
 .0108cd	15 02		ora $02,x			ora 	EXSValueL+2,x 				; exit if zero as we already reset it.
 .0108cf	f0 02		beq $0108d3			beq 	_FSgnExit
@@ -1285,7 +1287,7 @@
 .0108d4					_FSgnNegative:
 .0108d4	a9 ff ff	lda #$ffff			lda 	#$FFFF 						; set the return value to -1 as negative.
 .0108d7	95 00		sta $00,x			sta 	EXSValueL+0,x
-.0108d9	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0108d9	95 20		sta $20,x			sta 	EXSValueH+0,x
 .0108db	60		rts				rts
 .0108dc					Function_Random:
 .0108dc	20 c2 04	jsr $0104c2			jsr 	ExpectRightBracket 			; check )
@@ -1299,7 +1301,7 @@
 .0108f0	85 12		sta $12				sta 	DRandom+2
 .0108f2					_Rnd_NotZero:
 .0108f2	20 fd 08	jsr $0108fd			jsr 	_Rnd_Process 				; call randomiser twice
-.0108f5	95 10		sta $10,x			sta 	EXSValueH+0,x
+.0108f5	95 20		sta $20,x			sta 	EXSValueH+0,x
 .0108f7	20 fd 08	jsr $0108fd			jsr 	_Rnd_Process
 .0108fa	95 00		sta $00,x			sta 	EXSValueL+0,x
 .0108fc	60		rts				rts
@@ -1330,7 +1332,7 @@
 .01092c	20 5e 05	jsr $01055e			jsr 	StringWriteCharacter 		; write it out.
 .01092f	a5 18		lda $18				lda 	DStartTempString 			; return the string address
 .010931	95 00		sta $00,x			sta 	EXSValueL+0,x 				; and return that.
-.010933	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010933	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010935	60		rts				rts
 .010936					_FCHBad:
 .010936	20 5d 04	jsr $01045d			jsr 	ErrorHandler 						; call error routine
@@ -1347,7 +1349,7 @@
 .010960	b9 01 00	lda $0001,y			lda 	$0001,y 					; get first char
 .010963	29 ff 00	and #$00ff			and 	#$00FF 						; mask it
 .010966	95 00		sta $00,x			sta 	EXSValueL+0,x 				; and return that.
-.010968	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010968	74 20		stz $20,x			stz 	EXSValueH+0,x
 .01096a	60		rts				rts
 .01096b					_FASBad:
 .01096b	20 5d 04	jsr $01045d			jsr 	ErrorHandler 						; call error routine
@@ -1371,7 +1373,7 @@
 .0109a0					_FSPExit:
 .0109a0	a5 18		lda $18				lda 	DStartTempString 			; return that address
 .0109a2	95 00		sta $00,x			sta 	EXSValueL+0,x
-.0109a4	74 10		stz $10,x			stz 	EXSValueH+0,x
+.0109a4	74 20		stz $20,x			stz 	EXSValueH+0,x
 .0109a6	60		rts				rts
 .0109a7					_FSPBad:
 .0109a7	20 5d 04	jsr $01045d			jsr 	ErrorHandler 						; call error routine
@@ -1448,7 +1450,7 @@
 .010a37					FNStringY:
 .010a37	98		tya				tya
 .010a38	95 00		sta $00,x			sta 	EXSValueL+0,x
-.010a3a	74 12		stz $12,x			stz 	EXSValueH+2,x
+.010a3a	74 22		stz $22,x			stz 	EXSValueH+2,x
 .010a3c	60		rts				rts
 .010a3d					FNStringParameter:
 .010a3d	20 5d 04	jsr $01045d			jsr 	ErrorHandler 						; call error routine
@@ -1513,7 +1515,7 @@
 .010aba	b7 08		lda [$08],y			lda 	[DTemp1],y
 .010abc	29 ff 00	and #$00ff			and 	#$00FF 						; mask
 .010abf	95 00		sta $00,x			sta 	EXSValueL+0,x 				; write out.
-.010ac1	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010ac1	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010ac3	60		rts				rts
 .010ac4					Function_Deek:
 .010ac4	20 f4 04	jsr $0104f4			jsr 	ResetTypeInteger 			; returns an integer
@@ -1524,7 +1526,7 @@
 .010ad1	a0 00 00	ldy #$0000			ldy 	#0							; read data
 .010ad4	b7 08		lda [$08],y			lda 	[DTemp1],y
 .010ad6	95 00		sta $00,x			sta 	EXSValueL+0,x 				; write out.
-.010ad8	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010ad8	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010ada	60		rts				rts
 .010adb					Function_Leek:
 .010adb	20 f4 04	jsr $0104f4			jsr 	ResetTypeInteger 			; returns an integer
@@ -1538,7 +1540,7 @@
 .010aef	c8		iny				iny
 .010af0	c8		iny				iny
 .010af1	b7 08		lda [$08],y			lda 	[DTemp1],y
-.010af3	95 10		sta $10,x			sta 	EXSValueH+0,x
+.010af3	95 20		sta $20,x			sta 	EXSValueH+0,x
 .010af5	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
@@ -1558,7 +1560,7 @@
 .010b04	20 47 0b	jsr $010b47			jsr 	StringToInteger
 .010b07	fa		plx				plx 								; restore X
 .010b08	95 00		sta $00,x			sta 	EXSValueL+0,x
-.010b0a	94 10		sty $10,x			sty 	EXSValueH+0,x
+.010b0a	94 20		sty $20,x			sty 	EXSValueH+0,x
 .010b0c	60		rts				rts
 .010b0d					VALGetBase:
 .010b0d	b2 06		lda ($06)			lda 	(DCodePtr)					; look at next
@@ -1714,7 +1716,7 @@
 .010c28	20 31 0c	jsr $010c31			jsr 	ConvertToString 			; convert it to a string.
 .010c2b	fa		plx				plx 								; restore X
 .010c2c	95 00		sta $00,x			sta 	EXSValueL+0,x 				; save the result
-.010c2e	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010c2e	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010c30	60		rts				rts
 .010c31					ConvertToString:
 .010c31	48		pha				pha
@@ -1829,7 +1831,7 @@
 .010ce6	85 08		sta $08				sta 	DTemp1 						; DTemp1 is the string to search for
 .010ce8	68		pla				pla
 .010ce9	85 0c		sta $0c				sta 	DTemp2 						; DTemp2 is the string to search.
-.010ceb	74 10		stz $10,x			stz 	EXSValueH+0,x 				; set high word to zero.
+.010ceb	74 20		stz $20,x			stz 	EXSValueH+0,x 				; set high word to zero.
 .010ced	74 00		stz $00,x			stz 	EXSValueL+0,x 				; zero low word.
 .010cef	e2 20		sep #$20			sep 	#$20 						; calculate len(search)-len(lookfor)
 .010cf1	38		sec				sec
@@ -1887,7 +1889,7 @@
 .010d4e	a5 18		lda $18				lda 	DStartTempString 			; A = start of temporary string.
 .010d50	95 00		sta $00,x			sta 	EXSValueL+0,x
 .010d52	a8		tay				tay 								; address in Y
-.010d53	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010d53	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010d55	da		phx				phx 								; save X
 .010d56	b2 18		lda ($18)			lda 	(DStartTempString)			; get string length
 .010d58	29 ff 00	and #$00ff			and 	#$00FF
@@ -1923,7 +1925,7 @@
 .010d90	a5 18		lda $18				lda 	DStartTempString 			; A = start of temporary string.
 .010d92	95 00		sta $00,x			sta 	EXSValueL+0,x
 .010d94	a8		tay				tay 								; address in Y
-.010d95	74 10		stz $10,x			stz 	EXSValueH+0,x
+.010d95	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010d97	da		phx				phx 								; save X
 .010d98	b2 18		lda ($18)			lda 	(DStartTempString)			; get string length
 .010d9a	29 ff 00	and #$00ff			and 	#$00FF
@@ -1997,7 +1999,7 @@
 .010e0a	7a		ply				ply 								; get address in Y
 .010e0b	b5 00		lda $00,x			lda 	EXSValueL+0,x				; get the low word.
 .010e0d	99 00 00	sta $0000,y			sta 	$0000,y 					; save in variable low.
-.010e10	b5 10		lda $10,x			lda 	EXSValueH+0,x 				; get the high word.
+.010e10	b5 20		lda $20,x			lda 	EXSValueH+0,x 				; get the high word.
 .010e12	99 02 00	sta $0002,y			sta 	$0002,y 					; save that
 .010e15	60		rts				rts
 .010e16					_FLetString:
@@ -2068,14 +2070,14 @@
 .010e9c	5a		phy			phy
 .010e9d	a8		tay			tay 									; print buffer out
 .010e9e	20 18 05	jsr $010518		jsr 	PrintBasicString
-.010ea1	20 6c 17	jsr $01176c		jsr 	HWNewLine
+.010ea1	20 82 17	jsr $011782		jsr 	HWNewLine
 .010ea4	7a		ply			ply 									; get address
 .010ea5					_CLIFollowLink:
 .010ea5	98		tya			tya 									; follow link
 .010ea6	18		clc			clc
 .010ea7	79 00 00	adc $0000,y		adc 	$0000,y
 .010eaa	a8		tay			tay
-.010eab	20 86 17	jsr $011786		jsr 	HWCheckBreak 					; break key pressed.
+.010eab	20 9c 17	jsr $01179c		jsr 	HWCheckBreak 					; break key pressed.
 .010eae	f0 d2		beq $010e82		beq 	_CLINextLine
 .010eb0					_CLIExit:
 .010eb0	64 2c		stz $2c			stz 	DIndent 						; reset the indent
@@ -2352,10 +2354,10 @@
 .011085	20 18 05	jsr $010518			jsr 	PrintBASICString
 .011088	80 d7		bra $011061			bra 	Function_Print 				; and go round again.
 .01108a					_FPRTab:
-.01108a	20 7f 17	jsr $01177f			jsr 	HWTab
+.01108a	20 95 17	jsr $011795			jsr 	HWTab
 .01108d	80 03		bra $011092			bra 	_FPRSkipLoop
 .01108f					_FPRNewLine:
-.01108f	20 6c 17	jsr $01176c			jsr 	HWNewLine
+.01108f	20 82 17	jsr $011782			jsr 	HWNewLine
 .011092					_FPRSkipLoop:
 .011092	e6 06		inc $06				inc 	DCodePtr
 .011094	e6 06		inc $06				inc 	DCodePtr
@@ -2369,7 +2371,7 @@
 .0110a2	f0 08		beq $0110ac			beq 	_FPRExit
 .0110a4	c9 24 32	cmp #$3224			cmp 	#semicolonTokenID
 .0110a7	f0 03		beq $0110ac			beq 	_FPRExit
-.0110a9	20 6c 17	jsr $01176c			jsr 	HWNewLine 					; print a new line.
+.0110a9	20 82 17	jsr $011782			jsr 	HWNewLine 					; print a new line.
 .0110ac					_FPRExit:
 .0110ac	60		rts				rts
 
@@ -2906,7 +2908,7 @@
 .0114f0	85 06		sta $06				sta 	DCodePtr
 .0114f2					_FRun_NextInstruction:
 .0114f2	64 16		stz $16				stz 	DTempStringPointer 			; force reset on next string allocation.
-.0114f4	20 86 17	jsr $011786			jsr 	HWCheckBreak 				; break key pressed.
+.0114f4	20 9c 17	jsr $01179c			jsr 	HWCheckBreak 				; break key pressed.
 .0114f7	d0 3c		bne $011535			bne 	_FRun_Break
 .0114f9	b2 06		lda ($06)			lda 	(DCodePtr)					; what's next
 .0114fb	f0 32		beq $01152f			beq 	_FRun_EndInstruction		; if end of this line, then go to next line.
@@ -3211,7 +3213,7 @@
 >0116f3	61 73 73 65 72 74 20 66				.text 	"assert failed",$00 								; with this message
 >0116fb	61 69 6c 65 64 00
 .011701					Function_CLS:
-.011701	20 2f 17	jsr $01172f			jsr 	HWClearScreen
+.011701	20 2c 17	jsr $01172c			jsr 	HWClearScreen
 .011704	60		rts				rts
 .011705					Function_REM:
 .011705	b2 06		lda ($06)			lda 	(DCodePtr) 					; get code ptr.
@@ -3234,7 +3236,7 @@
 =9					TokenShift = 9										; Token shift to reach precedence.
 .011717					SwitchBasicInstance:
 .011717	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
-.011719	20 2f 17	jsr $01172f			jsr 	HWClearScreen 						; clear screen
+.011719	20 2c 17	jsr $01172c			jsr 	HWClearScreen 						; clear screen
 .01171c	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
 .01171f	85 00		sta $00				sta 	DPageNumber 						; save page, base, high in RAM.
 .011721	86 02		stx $02				stx		DBaseAddress
@@ -3243,121 +3245,687 @@
 .011726	48		pha				pha 										; then copy it into B.
 .011727	ab		plb				plb
 .011728	ab		plb				plb
-.011729	20 8b 17	jsr $01178b			jsr 	HWGetKey
-.01172c	4c d7 14	jmp $0114d7			jmp 	Function_RUN
+.011729	4c d7 14	jmp $0114d7			jmp 	Function_RUN
 
 ;******  Return to file: ../source/start.asm
 
 
-;******  Processing file: ../source/hwinterface.asm
+;******  Processing file: ../source/utility/hwinterface.asm
 
-=$01					HWCursorCharacter = $01
-=64					sWidth = 64									; this have to be powers of two in this really simple I/O code.
+=$66					HWCursorCharacter = $66
+=64					sWidth = 64					; this has to be powers of two in this really simple I/O code.
 =32					sHeight = 32
-.01172f					HWClearScreen:
-.01172f	48		pha				pha
-.011730	da		phx				phx
-.011731	a2 fe 07	ldx #$07fe			ldx 	#sWidth*sHeight-2
-.011734	a9 20 20	lda #$2020	_CS0:	lda 	#$2020
-.011737	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.01173b	ca		dex				dex
-.01173c	10 f6		bpl $011734			bpl 	_CS0
-.01173e	64 28		stz $28				stz 	DCursor
-.011740	a9 01 20	lda #$2001			lda 	#$2000+HWCursorCharacter
-.011743	8f 00 00 0f	sta $0f0000			sta 	$F0000
-.011747	fa		plx				plx
-.011748	68		pla				pla
-.011749	60		rts				rts
-.01174a					HWPrintChar:
-.01174a	48		pha				pha
-.01174b	da		phx				phx
-.01174c	a6 28		ldx $28				ldx 	DCursor
-.01174e	e2 20		sep #$20			sep 	#$20
-.011750	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011754	c2 20		rep #$20			rep 	#$20
-.011756	e8		inx				inx
-.011757	8a		txa				txa
-.011758	29 ff 07	and #$07ff			and 	#(sWidth*sHeight-1)
-.01175b	85 28		sta $28				sta 	DCursor
-.01175d	aa		tax				tax
-.01175e	a9 01 00	lda #$0001			lda 	#HWCursorCharacter
-.011761	e2 20		sep #$20			sep 	#$20
-.011763	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011767	c2 20		rep #$20			rep 	#$20
-.011769	fa		plx				plx
-.01176a	68		pla				pla
-.01176b	60		rts				rts
-.01176c					HWNewLine:
-.01176c	48		pha				pha
-.01176d	da		phx				phx
-.01176e	a2 3f 00	ldx #$003f			ldx 	#sWidth-1
-.011771					HWMoveCursor:
-.011771	a9 20 00	lda #$0020			lda 	#32
-.011774	20 4a 17	jsr $01174a			jsr 	HWPrintChar
-.011777	8a		txa				txa
-.011778	25 28		and $28				and 	DCursor
-.01177a	d0 f5		bne $011771			bne 	HWMoveCursor
-.01177c	fa		plx				plx
-.01177d	68		pla				pla
-.01177e	60		rts				rts
-.01177f	48		pha		HWTab:	pha
-.011780	da		phx				phx
-.011781	a2 07 00	ldx #$0007			ldx 	#7
-.011784	80 eb		bra $011771			bra 	HWMoveCursor
-.011786					HWCheckBreak:
-.011786	af 00 80 0f	lda $0f8000			lda 	$F8000
-.01178a	60		rts				rts
-.01178b					HWGetKey:
-.01178b	af 10 80 0f	lda $0f8010			lda 	$F8010
-.01178f	d0 fa		bne $01178b			bne 	HWGetKey
-.011791					_HWGKWait:
-.011791	af 10 80 0f	lda $0f8010			lda 	$F8010
-.011795	f0 fa		beq $011791			beq 	_HWGKWait
-.011797	ea		nop				nop
-.011798	60		rts				rts
+.01172c					HWClearScreen:
+.01172c	48		pha				pha
+.01172d	da		phx				phx
+.01172e	a2 fe 07	ldx #$07fe			ldx 	#sWidth*sHeight-2
+.011731	a9 20 20	lda #$2020	_CS0:	lda 	#$2020
+.011734	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011738	ca		dex				dex
+.011739	10 f6		bpl $011731			bpl 	_CS0
+.01173b	64 28		stz $28				stz 	DCursor
+.01173d	a9 66 20	lda #$2066			lda 	#$2000+HWCursorCharacter
+.011740	8f 00 00 0f	sta $0f0000			sta 	$F0000
+.011744	fa		plx				plx
+.011745	68		pla				pla
+.011746	60		rts				rts
+.011747					HWPrintChar:
+.011747	48		pha				pha
+.011748	da		phx				phx
+.011749	29 ff 00	and #$00ff			and 	#$00FF
+.01174c	c9 61 00	cmp #$0061			cmp 	#"a"
+.01174f	90 09		bcc $01175a			bcc 	_HWPCNotLC
+.011751	c9 7b 00	cmp #$007b			cmp 	#"z"+1
+.011754	b0 04		bcs $01175a			bcs 	_HWPCNotLC
+.011756	38		sec				sec
+.011757	e9 20 00	sbc #$0020			sbc 	#32
+.01175a					_HWPCNotLC:
+.01175a	29 3f 00	and #$003f			and 	#$3F
+.01175d	a6 28		ldx $28				ldx 	DCursor
+.01175f	e2 20		sep #$20			sep 	#$20
+.011761	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011765	c2 20		rep #$20			rep 	#$20
+.011767	e8		inx				inx
+.011768	8a		txa				txa
+.011769	c9 00 08	cmp #$0800			cmp 	#(sWidth*sHeight)
+.01176c	d0 03		bne $011771			bne 	_HWNotEnd
+.01176e	a9 00 00	lda #$0000			lda 	#0
+.011771					_HWNotEnd:
+.011771	85 28		sta $28				sta 	DCursor
+.011773	aa		tax				tax
+.011774	a9 66 00	lda #$0066			lda 	#HWCursorCharacter
+.011777	e2 20		sep #$20			sep 	#$20
+.011779	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.01177d	c2 20		rep #$20			rep 	#$20
+.01177f	fa		plx				plx
+.011780	68		pla				pla
+.011781	60		rts				rts
+.011782					HWNewLine:
+.011782	48		pha				pha
+.011783	da		phx				phx
+.011784	a2 3f 00	ldx #$003f			ldx 	#sWidth-1
+.011787					HWMoveCursor:
+.011787	a9 20 00	lda #$0020			lda 	#32
+.01178a	20 47 17	jsr $011747			jsr 	HWPrintChar
+.01178d	8a		txa				txa
+.01178e	25 28		and $28				and 	DCursor
+.011790	d0 f5		bne $011787			bne 	HWMoveCursor
+.011792	fa		plx				plx
+.011793	68		pla				pla
+.011794	60		rts				rts
+.011795	48		pha		HWTab:	pha
+.011796	da		phx				phx
+.011797	a2 07 00	ldx #$0007			ldx 	#7
+.01179a	80 eb		bra $011787			bra 	HWMoveCursor
+.01179c					HWCheckBreak:
+.01179c	af 00 80 0f	lda $0f8000			lda 	$F8000
+.0117a0	60		rts				rts
+.0117a1					HWGetKey:
+.0117a1	af 10 80 0f	lda $0f8010			lda 	$F8010
+.0117a5	d0 fa		bne $0117a1			bne 	HWGetKey
+.0117a7					_HWGKWait:
+.0117a7	af 10 80 0f	lda $0f8010			lda 	$F8010
+.0117ab	f0 fa		beq $0117a7			beq 	_HWGKWait
+.0117ad	ea		nop				nop
+.0117ae	60		rts				rts
 
 ;******  Return to file: ../source/start.asm
 
 .024000					CodeSpace:
 >024000	42 41 53 43 00 00 00 00				.binary "temp/basic.bin"
->024008	04 43 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
+>024008	b0 65 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
 >024018	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ;	...repeated 13 times (208 bytes)...
->0240f8	00 00 00 00 00 00 00 00 1c 00 05 00 35 3e 22 30
->024108	08 00 05 68 65 6c 6c 6f 23 32 06 00 02 65 6c 00
->024118	27 32 00 00 1c 00 06 00 35 3e 22 30 08 00 05 68
->024128	65 6c 6c 6f 23 32 06 00 02 65 78 00 27 32 00 00
->024138	1e 00 07 00 35 3e 22 30 08 00 05 68 65 6c 6c 6f
->024148	23 32 08 00 05 68 65 6c 6c 6f 27 32 00 00 20 00
->024158	08 00 35 3e 22 30 08 00 05 68 65 6c 6c 6f 23 32
->024168	0a 00 06 68 65 6c 6c 6f 32 00 27 32 00 00 14 00
->024178	0b 00 42 3c 09 c0 06 22 01 40 29 38 1e 10 3f 82
->024188	00 00 0a 00 0c 00 35 3e 09 c0 00 00 0a 00 0d 00
->024198	47 3a 09 c0 00 00 0c 00 14 00 18 c0 06 22 00 40
->0241a8	00 00 08 00 32 00 3f 3c 00 00 08 00 3c 00 35 3e
->0241b8	00 00 0e 00 46 00 44 3a 18 c0 06 22 00 40 00 00
->0241c8	12 00 50 00 42 3c 09 c0 06 22 01 40 29 38 05 40
->0241d8	00 00 0c 00 5a 00 01 c0 06 22 09 c0 00 00 0a 00
->0241e8	5f 00 47 3a 09 c0 00 00 16 00 64 00 41 3c 26 32
->0241f8	18 c0 01 20 01 40 27 32 06 22 00 40 00 00 16 00
->024208	6e 00 35 3e 18 c0 23 32 08 00 04 45 76 65 6e 00
->024218	23 32 00 00 0e 00 70 00 41 3c 18 c0 05 22 05 40
->024228	00 00 0e 00 76 00 35 3e 06 00 02 3e 35 00 00 00
->024238	08 00 77 00 3a 3e 00 00 0e 00 78 00 35 3e 06 00
->024248	03 3c 3d 35 00 00 08 00 81 00 46 3a 00 00 22 00
->024258	82 00 41 3c 18 c0 06 22 08 40 45 3a 35 3e 10 00
->024268	0c 49 74 27 73 20 65 69 67 68 74 20 21 00 00 00
->024278	08 00 85 00 3a 3e 00 00 14 00 86 00 35 3e 18 c0
->024288	23 32 06 00 03 6f 64 64 23 32 00 00 0c 00 87 00
->024298	19 c0 06 22 18 c0 00 00 30 00 88 00 3f 3c 25 32
->0242a8	35 3e 19 c0 24 32 04 00 01 20 24 32 25 32 19 c0
->0242b8	06 22 19 c0 0b 24 01 40 25 32 44 3a 19 c0 06 22
->0242c8	00 40 25 32 35 3e 00 00 08 00 8c 00 46 3a 00 00
->0242d8	10 00 96 00 18 c0 06 22 18 c0 0a 24 01 40 00 00
->0242e8	0e 00 a0 00 44 3a 18 c0 05 22 0a 40 00 00 08 00
->0242f8	ac 2b 30 3e 00 00 00 00 ee ee ee ee 00 00 00 00
->024308	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-;	...repeated 1998 times (31968 bytes)...
+>0240f8	00 00 00 00 00 00 00 00 0e 00 01 00 32 3e 56 d5
+>024108	04 40 27 32 00 00 10 00 02 00 32 3e 54 dd dc d1
+>024118	05 40 27 32 00 00 10 00 03 00 32 3e 0c de ec d0
+>024128	05 40 27 32 00 00 10 00 04 00 32 3e 33 de ee d5
+>024138	06 40 27 32 00 00 12 00 05 00 32 3e a2 dd 17 d9
+>024148	14 d0 04 40 27 32 00 00 12 00 06 00 32 3e 40 de
+>024158	03 d9 05 d0 05 40 27 32 00 00 12 00 07 00 32 3e
+>024168	2d de a4 dd 23 d0 06 40 27 32 00 00 10 00 08 00
+>024178	32 3e f3 dc 11 d0 03 40 27 32 00 00 0e 00 09 00
+>024188	32 3e cb d4 05 40 27 32 00 00 10 00 0a 00 32 3e
+>024198	ac dd 26 d4 05 40 27 32 00 00 10 00 0b 00 32 3e
+>0241a8	ac fd 25 f4 04 40 27 32 00 00 12 00 0c 00 32 3e
+>0241b8	d3 fc 71 f9 0e f0 04 40 27 32 00 00 0e 00 0d 00
+>0241c8	32 3e c2 f4 04 40 27 32 00 00 0e 00 0e 00 32 3e
+>0241d8	0e f0 03 40 27 32 00 00 10 00 0f 00 32 3e 22 fd
+>0241e8	17 f0 03 40 27 32 00 00 10 00 10 00 32 3e b9 fd
+>0241f8	24 f0 06 40 27 32 00 00 10 00 11 00 32 3e 14 fe
+>024208	04 f1 05 40 27 32 00 00 0e 00 12 00 32 3e d0 f4
+>024218	02 40 27 32 00 00 10 00 13 00 32 3e 87 fd 85 f3
+>024228	04 40 27 32 00 00 0e 00 14 00 32 3e 10 f0 05 40
+>024238	27 32 00 00 10 00 15 00 2c 3e 05 c0 06 22 01 10
+>024248	a0 83 00 00 14 00 16 00 2c 3e 63 ce 09 ca 0a c0
+>024258	06 22 01 10 39 84 00 00 14 00 17 00 2c 3e b1 cd
+>024268	a2 c8 19 c0 06 22 01 10 4d a9 00 00 10 00 18 00
+>024278	ef cc 59 cc 0b c0 06 22 22 40 00 00 12 00 19 00
+>024288	01 ce 04 c0 06 22 0b 24 04 10 c8 b1 00 00 12 00
+>024298	1a 00 2c 3e 14 c0 06 22 0b 24 01 10 1e 60 00 00
+>0242a8	10 00 1b 00 2c 3e 4f c5 06 22 04 10 eb 67 00 00
+>0242b8	12 00 1c 00 2c 3e 2e cd 86 c2 06 22 0b 24 be 50
+>0242c8	00 00 0e 00 1d 00 a4 cd 21 c0 06 22 50 40 00 00
+>0242d8	0e 00 1e 00 0f c0 06 22 05 10 e9 ae 00 00 12 00
+>0242e8	1f 00 2c 3e b0 cd 6c c2 06 22 0b 24 4a 40 00 00
+>0242f8	14 00 20 00 2b ce 4f cd 1c c0 06 22 0b 24 04 10
+>024308	aa 98 00 00 10 00 21 00 2c 3e 09 ce 99 c1 06 22
+>024318	20 40 00 00 10 00 22 00 2c 3e 0e c0 06 22 0b 24
+>024328	97 6e 00 00 14 00 23 00 2c 3e 05 cd 1e c0 06 22
+>024338	0b 24 01 10 13 88 00 00 12 00 24 00 2c 3e f3 c4
+>024348	06 22 0b 24 02 10 bb af 00 00 14 00 25 00 2c 3e
+>024358	1a cd 68 c0 06 22 0b 24 04 10 d9 99 00 00 10 00
+>024368	26 00 6c ce 04 c0 06 22 0b 24 0f 8c 00 00 0e 00
+>024378	27 00 2c 3e 11 c0 06 22 25 40 00 00 12 00 28 00
+>024388	d1 cd 15 c0 06 22 0b 24 05 10 fb a7 00 00 10 00
+>024398	29 00 a2 cd 06 c0 06 22 0b 24 b2 40 00 00 0e 00
+>0243a8	2a 00 00 c5 06 22 04 10 ee 45 00 00 14 00 2b 00
+>0243b8	2c 3e 32 cd fe c4 06 22 0b 24 01 10 64 6f 00 00
+>0243c8	10 00 2c 00 2c 3e 08 c0 06 22 03 10 ff 4c 00 00
+>0243d8	10 00 2d 00 2c 3e 2f ce 1d c0 06 22 ba 40 00 00
+>0243e8	10 00 2e 00 2b ce 5c c0 06 22 0b 24 4f 40 00 00
+>0243f8	12 00 2f 00 6b ce 14 c0 06 22 0b 24 04 10 38 6f
+>024408	00 00 14 00 30 00 2c 3e 1b cd 0d c0 06 22 0b 24
+>024418	01 10 ea 61 00 00 10 00 31 00 66 c6 06 22 0b 24
+>024428	01 10 29 ac 00 00 0e 00 32 00 18 c0 06 22 0b 24
+>024438	73 40 00 00 10 00 33 00 2c 3e 40 ce 9e c0 06 22
+>024448	47 40 00 00 10 00 34 00 d6 cc 1f c0 06 22 03 10
+>024458	82 74 00 00 10 00 35 00 4e cd 1d c0 06 22 05 10
+>024468	e5 4e 00 00 10 00 36 00 4e cd 4f c5 06 22 0b 24
+>024478	f5 a3 00 00 12 00 37 00 07 ce eb c2 06 22 0b 24
+>024488	02 10 43 63 00 00 14 00 38 00 2c 3e 5e cd c3 c0
+>024498	06 22 0b 24 01 10 9a 6b 00 00 10 00 39 00 55 c5
+>0244a8	06 22 0b 24 02 10 63 50 00 00 12 00 3a 00 2c 3e
+>0244b8	63 ce 4c c3 06 22 03 10 02 b4 00 00 10 00 3b 00
+>0244c8	2c 3e a1 c5 06 22 0b 24 38 40 00 00 14 00 3c 00
+>0244d8	2c 3e 60 ce 0d c4 06 22 0b 24 01 10 89 4a 00 00
+>0244e8	10 00 3d 00 55 ce 0a c0 06 22 01 10 44 5d 00 00
+>0244f8	12 00 3e 00 8d cd 5b c9 19 c0 06 22 0b 24 05 40
+>024508	00 00 14 00 3f 00 2c 3e 2c cd a2 c8 08 c0 06 22
+>024518	02 10 1e 4a 00 00 12 00 40 00 2c 3e 52 cd d5 c3
+>024528	06 22 03 10 0f 44 00 00 12 00 41 00 33 ce 1b c0
+>024538	06 22 0b 24 03 10 d4 a9 00 00 14 00 42 00 5c cd
+>024548	4a ce 19 c0 06 22 0b 24 01 10 e1 b0 00 00 14 00
+>024558	43 00 2c 3e d6 cc 3b cc 0d c0 06 22 03 10 e1 4b
+>024568	00 00 12 00 44 00 2c 3e af cd 08 c0 06 22 0b 24
+>024578	3e 74 00 00 10 00 45 00 2c 3e 02 cd 03 c0 06 22
+>024588	fb 45 00 00 12 00 46 00 2c 3e 1b c5 06 22 0b 24
+>024598	02 10 46 79 00 00 10 00 47 00 2c 3e 2a ce 19 c0
+>0245a8	06 22 52 40 00 00 0e 00 48 00 e4 c5 06 22 0b 24
+>0245b8	7f 40 00 00 0c 00 49 00 7f c5 06 22 d6 60 00 00
+>0245c8	10 00 4a 00 d4 c4 06 22 0b 24 04 10 96 4e 00 00
+>0245d8	10 00 4b 00 12 ce 13 c0 06 22 05 10 4c 5e 00 00
+>0245e8	14 00 4c 00 b3 cd e9 cd 0a c0 06 22 0b 24 03 10
+>0245f8	f6 49 00 00 10 00 4d 00 ca cc 17 c0 06 22 01 10
+>024608	5c 64 00 00 14 00 4e 00 2c 3e 06 ce 37 cb 03 c0
+>024618	06 22 03 10 9f 7f 00 00 12 00 4f 00 ef cc e5 c1
+>024628	06 22 0b 24 01 10 40 80 00 00 10 00 50 00 0a c0
+>024638	06 22 0b 24 02 10 52 66 00 00 1a 00 51 00 2c 3e
+>024648	2c ee 58 ea 1a e0 06 22 0a 00 06 54 59 55 44 53
+>024658	41 00 00 00 18 00 52 00 af ed 12 e0 06 22 0c 00
+>024668	08 43 4f 4b 20 5a 49 49 45 00 00 00 18 00 53 00
+>024678	2c 3e 2a ed fe e1 06 22 0a 00 06 58 48 20 55 43
+>024688	55 00 00 00 18 00 54 00 0b ee d0 e5 06 22 0c 00
+>024698	09 4e 53 20 20 53 20 20 54 47 00 00 12 00 55 00
+>0246a8	02 ee 2e e5 06 22 06 00 03 4c 55 51 00 00 1a 00
+>0246b8	56 00 ce ed 59 ec 1f e0 06 22 0c 00 08 47 50 20
+>0246c8	4d 44 20 49 44 00 00 00 14 00 57 00 34 ee 57 ee
+>0246d8	12 e0 06 22 06 00 03 44 47 4a 00 00 16 00 58 00
+>0246e8	51 ed ac e4 06 22 0a 00 07 49 4d 20 20 58 50 48
+>0246f8	00 00 10 00 59 00 2e ed 03 e0 06 22 04 00 00 00
+>024708	00 00 1c 00 5a 00 29 ed 60 eb 07 e0 06 22 0e 00
+>024718	0a 59 49 4f 47 20 56 4f 46 45 46 00 00 00 18 00
+>024728	5b 00 ff ed 6e ec 03 e0 06 22 0a 00 06 44 4c 45
+>024738	20 43 47 00 00 00 1a 00 5c 00 2c 3e 34 ee 3b ee
+>024748	08 e0 06 22 0a 00 07 42 59 49 47 59 43 55 00 00
+>024758	14 00 5d 00 f5 ec 19 e0 06 22 08 00 04 49 41 47
+>024768	59 00 00 00 10 00 5e 00 2c 3e 31 e6 06 22 04 00
+>024778	01 50 00 00 16 00 5f 00 2c 3e 87 ed 04 e0 06 22
+>024788	08 00 05 50 43 45 50 4c 00 00 16 00 60 00 2c 3e
+>024798	76 ed 08 e0 06 22 08 00 04 48 59 53 46 00 00 00
+>0247a8	0e 00 61 00 01 e0 06 22 04 00 00 00 00 00 18 00
+>0247b8	62 00 2c 3e 62 e6 06 22 0c 00 08 4e 20 5a 56 41
+>0247c8	56 47 49 00 00 00 12 00 63 00 4d ed b3 e1 06 22
+>0247d8	06 00 03 59 45 4e 00 00 10 00 64 00 2a ee 5d e3
+>0247e8	06 22 04 00 01 44 00 00 1c 00 65 00 2a ee b0 e9
+>0247f8	1c e0 06 22 0e 00 0b 42 20 51 49 20 4e 45 5a 50
+>024808	48 45 00 00 16 00 66 00 6a ee f4 eb 1a e0 06 22
+>024818	08 00 05 59 5a 20 4d 48 00 00 1a 00 67 00 2c 3e
+>024828	59 ed ef e2 06 22 0c 00 09 59 43 52 51 43 54 58
+>024838	57 45 00 00 12 00 68 00 a1 ed 1c e0 06 22 06 00
+>024848	03 42 20 46 00 00 18 00 69 00 2c 3e 6e ee ba ed
+>024858	16 e0 06 22 08 00 05 46 59 4c 59 52 00 00 18 00
+>024868	6a 00 2c 3e 1a e0 06 22 0c 00 09 58 55 4a 46 46
+>024878	49 20 49 47 00 00 12 00 6b 00 32 ee 5f ed 23 e0
+>024888	06 22 04 00 01 45 00 00 14 00 6c 00 2c 3e 47 ed
+>024898	23 e0 06 22 06 00 03 4e 20 58 00 00 12 00 6d 00
+>0248a8	2c 3e 5a e5 06 22 06 00 03 53 4f 4f 00 00 18 00
+>0248b8	6e 00 07 e0 06 22 0e 00 0a 42 47 4c 46 42 55 45
+>0248c8	55 51 44 00 00 00 18 00 6f 00 2c 3e dc ed 04 e0
+>0248d8	06 22 0a 00 07 57 51 48 56 50 50 48 00 00 14 00
+>0248e8	70 00 05 ed ed e3 06 22 08 00 04 4e 49 45 48 00
+>0248f8	00 00 1c 00 71 00 2c 3e 3b ee a0 eb 08 e0 06 22
+>024908	0c 00 09 57 20 51 4e 4e 49 45 51 51 00 00 18 00
+>024918	72 00 dc ed 0f ea 05 e0 06 22 0a 00 07 43 20 4a
+>024928	51 4a 20 4d 00 00 10 00 73 00 a9 ed 34 e3 06 22
+>024938	04 00 00 00 00 00 1a 00 74 00 2c 3e 22 ed 12 e0
+>024948	06 22 0c 00 09 47 20 56 5a 44 4d 48 20 5a 00 00
+>024958	14 00 75 00 2c 3e 55 ee 06 e0 06 22 06 00 03 44
+>024968	20 43 00 00 16 00 76 00 2c 3e a4 ed bf e0 06 22
+>024978	08 00 05 42 55 4e 4e 57 00 00 1a 00 77 00 2c 3e
+>024988	a3 ed 5b e0 06 22 0c 00 09 58 4d 4c 43 4c 4e 20
+>024998	20 4d 00 00 0e 00 78 00 1f e5 06 22 04 00 00 00
+>0249a8	00 00 1a 00 79 00 2c 3e c9 ec 17 e0 06 22 0c 00
+>0249b8	08 4e 4f 4e 5a 53 4b 51 43 00 00 00 16 00 7a 00
+>0249c8	2c 3e ff ed e5 e9 16 e0 06 22 06 00 02 46 58 00
+>0249d8	00 00 18 00 7b 00 0d e0 06 22 0e 00 0b 55 20 58
+>0249e8	4c 5a 4f 20 4d 51 55 53 00 00 14 00 7c 00 2c 3e
+>0249f8	2b ee 48 e4 06 22 06 00 03 4f 52 4b 00 00 14 00
+>024a08	7d 00 fd ec 6c e3 06 22 08 00 04 51 20 20 44 00
+>024a18	00 00 18 00 7e 00 2c 3e cf ed 31 e6 06 22 0a 00
+>024a28	06 50 57 51 58 41 4e 00 00 00 14 00 7f 00 55 ee
+>024a38	5a ee 0f e0 06 22 06 00 03 5a 20 41 00 00 18 00
+>024a48	80 00 14 ee eb e5 06 22 0c 00 09 56 4a 55 59 52
+>024a58	5a 59 43 48 00 00 10 00 81 00 b9 ed aa e2 06 22
+>024a68	04 00 00 00 00 00 0e 00 82 00 0f e0 06 22 04 00
+>024a78	00 00 00 00 16 00 83 00 2c 3e ef e4 06 22 0a 00
+>024a88	06 59 4f 59 20 4b 4f 00 00 00 1a 00 84 00 60 ee
+>024a98	25 ea 13 e0 06 22 0c 00 08 56 53 59 50 59 43 45
+>024aa8	50 00 00 00 0e 00 85 00 03 e0 06 22 04 00 00 00
+>024ab8	00 00 12 00 86 00 2c 3e e6 e5 06 22 06 00 03 44
+>024ac8	4d 4d 00 00 16 00 87 00 47 ed 6a e1 06 22 0a 00
+>024ad8	07 42 49 4d 20 46 20 4e 00 00 12 00 88 00 2c 3e
+>024ae8	0c e0 06 22 06 00 03 4c 20 4f 00 00 16 00 89 00
+>024af8	28 ee 20 e0 06 22 0a 00 07 4b 20 49 50 20 4e 57
+>024b08	00 00 1a 00 8a 00 cb ec a4 e9 1e e0 06 22 0c 00
+>024b18	08 50 57 4b 44 56 4c 45 59 00 00 00 14 00 8b 00
+>024b28	7d ed a9 e2 06 22 08 00 04 41 20 41 48 00 00 00
+>024b38	12 00 8c 00 8a ed 1d e0 06 22 06 00 02 42 53 00
+>024b48	00 00 48 00 8d 00 56 d5 00 40 27 32 06 22 80 40
+>024b58	25 32 56 d5 01 40 27 32 06 22 81 40 25 32 56 d5
+>024b68	02 40 27 32 06 22 0b 24 03 10 f5 89 25 32 56 d5
+>024b78	03 40 27 32 06 22 50 40 25 32 56 d5 04 40 27 32
+>024b88	06 22 0b 24 03 10 00 94 00 00 68 00 8e 00 54 dd
+>024b98	dc d1 00 40 27 32 06 22 0b 24 01 10 c4 61 25 32
+>024ba8	54 dd dc d1 01 40 27 32 06 22 0b 24 04 10 8c 7c
+>024bb8	25 32 54 dd dc d1 02 40 27 32 06 22 03 10 39 6e
+>024bc8	25 32 54 dd dc d1 03 40 27 32 06 22 0b 24 02 10
+>024bd8	68 b2 25 32 54 dd dc d1 04 40 27 32 06 22 6e 40
+>024be8	25 32 54 dd dc d1 05 40 27 32 06 22 0b 24 01 40
+>024bf8	00 00 68 00 8f 00 0c de ec d0 00 40 27 32 06 22
+>024c08	0b 24 04 10 b3 a9 25 32 0c de ec d0 01 40 27 32
+>024c18	06 22 0b 24 9d 40 25 32 0c de ec d0 02 40 27 32
+>024c28	06 22 02 10 c1 8a 25 32 0c de ec d0 03 40 27 32
+>024c38	06 22 0b 24 04 10 47 72 25 32 0c de ec d0 04 40
+>024c48	27 32 06 22 03 10 35 b8 25 32 0c de ec d0 05 40
+>024c58	27 32 06 22 04 10 a1 b9 00 00 70 00 90 00 33 de
+>024c68	ee d5 00 40 27 32 06 22 04 10 0d 7c 25 32 33 de
+>024c78	ee d5 01 40 27 32 06 22 07 40 25 32 33 de ee d5
+>024c88	02 40 27 32 06 22 0b 24 04 10 0d 7e 25 32 33 de
+>024c98	ee d5 03 40 27 32 06 22 05 10 5d 59 25 32 33 de
+>024ca8	ee d5 04 40 27 32 06 22 42 40 25 32 33 de ee d5
+>024cb8	05 40 27 32 06 22 03 40 25 32 33 de ee d5 06 40
+>024cc8	27 32 06 22 01 10 15 75 00 00 5e 00 91 00 a2 dd
+>024cd8	17 d9 14 d0 00 40 27 32 06 22 51 40 25 32 a2 dd
+>024ce8	17 d9 14 d0 01 40 27 32 06 22 9f 41 25 32 a2 dd
+>024cf8	17 d9 14 d0 02 40 27 32 06 22 0b 24 05 10 75 be
+>024d08	25 32 a2 dd 17 d9 14 d0 03 40 27 32 06 22 0b 24
+>024d18	04 10 ab 77 25 32 a2 dd 17 d9 14 d0 04 40 27 32
+>024d28	06 22 0b 24 87 40 00 00 72 00 92 00 40 de 03 d9
+>024d38	05 d0 00 40 27 32 06 22 b8 40 25 32 40 de 03 d9
+>024d48	05 d0 01 40 27 32 06 22 0b 24 02 10 70 bf 25 32
+>024d58	40 de 03 d9 05 d0 02 40 27 32 06 22 0b 24 a2 40
+>024d68	25 32 40 de 03 d9 05 d0 03 40 27 32 06 22 01 10
+>024d78	e2 43 25 32 40 de 03 d9 05 d0 04 40 27 32 06 22
+>024d88	0b 24 05 10 b0 aa 25 32 40 de 03 d9 05 d0 05 40
+>024d98	27 32 06 22 0b 24 f8 b6 00 00 80 00 93 00 2d de
+>024da8	a4 dd 23 d0 00 40 27 32 06 22 01 10 8f 61 25 32
+>024db8	2d de a4 dd 23 d0 01 40 27 32 06 22 0b 24 1a 4c
+>024dc8	25 32 2d de a4 dd 23 d0 02 40 27 32 06 22 0b 24
+>024dd8	79 40 25 32 2d de a4 dd 23 d0 03 40 27 32 06 22
+>024de8	56 40 25 32 2d de a4 dd 23 d0 04 40 27 32 06 22
+>024df8	0b 24 83 a3 25 32 2d de a4 dd 23 d0 05 40 27 32
+>024e08	06 22 0b 24 82 40 25 32 2d de a4 dd 23 d0 06 40
+>024e18	27 32 06 22 04 10 3e 89 00 00 42 00 94 00 f3 dc
+>024e28	11 d0 00 40 27 32 06 22 28 40 25 32 f3 dc 11 d0
+>024e38	01 40 27 32 06 22 05 10 28 ad 25 32 f3 dc 11 d0
+>024e48	02 40 27 32 06 22 0b 24 02 10 2d 69 25 32 f3 dc
+>024e58	11 d0 03 40 27 32 06 22 9e 40 00 00 5a 00 95 00
+>024e68	cb d4 00 40 27 32 06 22 0b 24 58 40 25 32 cb d4
+>024e78	01 40 27 32 06 22 03 10 3d 52 25 32 cb d4 02 40
+>024e88	27 32 06 22 03 10 f6 42 25 32 cb d4 03 40 27 32
+>024e98	06 22 03 10 90 4e 25 32 cb d4 04 40 27 32 06 22
+>024ea8	0b 24 a5 40 25 32 cb d4 05 40 27 32 06 22 0b 24
+>024eb8	03 10 2b 68 00 00 6a 00 96 00 ac dd 26 d4 00 40
+>024ec8	27 32 06 22 05 10 1c 42 25 32 ac dd 26 d4 01 40
+>024ed8	27 32 06 22 03 10 80 a8 25 32 ac dd 26 d4 02 40
+>024ee8	27 32 06 22 0b 24 02 10 5c a0 25 32 ac dd 26 d4
+>024ef8	03 40 27 32 06 22 0b 24 02 10 ae 5f 25 32 ac dd
+>024f08	26 d4 04 40 27 32 06 22 02 10 94 86 25 32 ac dd
+>024f18	26 d4 05 40 27 32 06 22 0b 24 05 10 4b 4b 00 00
+>024f28	66 00 97 00 ac fd 25 f4 00 40 27 32 06 22 06 00
+>024f38	02 48 59 00 25 32 ac fd 25 f4 01 40 27 32 06 22
+>024f48	04 00 00 00 25 32 ac fd 25 f4 02 40 27 32 06 22
+>024f58	08 00 05 4d 47 45 51 43 25 32 ac fd 25 f4 03 40
+>024f68	27 32 06 22 06 00 02 50 4b 00 25 32 ac fd 25 f4
+>024f78	04 40 27 32 06 22 0e 00 0a 4b 20 45 4d 55 57 57
+>024f88	42 47 4d 00 00 00 6c 00 98 00 d3 fc 71 f9 0e f0
+>024f98	00 40 27 32 06 22 06 00 02 53 47 00 25 32 d3 fc
+>024fa8	71 f9 0e f0 01 40 27 32 06 22 0a 00 06 49 4d 48
+>024fb8	51 53 57 00 25 32 d3 fc 71 f9 0e f0 02 40 27 32
+>024fc8	06 22 04 00 01 4c 25 32 d3 fc 71 f9 0e f0 03 40
+>024fd8	27 32 06 22 08 00 05 4f 53 53 47 4e 25 32 d3 fc
+>024fe8	71 f9 0e f0 04 40 27 32 06 22 06 00 03 52 59 45
+>024ff8	00 00 68 00 99 00 c2 f4 00 40 27 32 06 22 04 00
+>025008	01 4f 25 32 c2 f4 01 40 27 32 06 22 0e 00 0a 46
+>025018	59 58 53 4a 46 57 56 47 4f 00 25 32 c2 f4 02 40
+>025028	27 32 06 22 0a 00 06 5a 50 20 20 20 57 00 25 32
+>025038	c2 f4 03 40 27 32 06 22 0e 00 0b 4f 56 46 55 58
+>025048	49 59 20 4f 53 52 25 32 c2 f4 04 40 27 32 06 22
+>025058	08 00 04 46 46 50 54 00 00 00 48 00 9a 00 0e f0
+>025068	00 40 27 32 06 22 04 00 00 00 25 32 0e f0 01 40
+>025078	27 32 06 22 08 00 04 51 45 20 4e 00 25 32 0e f0
+>025088	02 40 27 32 06 22 0c 00 09 5a 45 4c 52 55 57 48
+>025098	20 45 25 32 0e f0 03 40 27 32 06 22 04 00 00 00
+>0250a8	00 00 54 00 9b 00 22 fd 17 f0 00 40 27 32 06 22
+>0250b8	06 00 03 53 20 48 25 32 22 fd 17 f0 01 40 27 32
+>0250c8	06 22 08 00 04 4f 5a 20 50 00 25 32 22 fd 17 f0
+>0250d8	02 40 27 32 06 22 06 00 02 55 56 00 25 32 22 fd
+>0250e8	17 f0 03 40 27 32 06 22 0c 00 08 59 46 47 57 51
+>0250f8	53 55 50 00 00 00 9e 00 9c 00 b9 fd 24 f0 00 40
+>025108	27 32 06 22 06 00 03 58 51 47 25 32 b9 fd 24 f0
+>025118	01 40 27 32 06 22 0c 00 08 54 45 4c 51 4d 46 54
+>025128	42 00 25 32 b9 fd 24 f0 02 40 27 32 06 22 06 00
+>025138	03 4e 20 4f 25 32 b9 fd 24 f0 03 40 27 32 06 22
+>025148	0e 00 0b 52 4a 55 4f 57 4d 41 56 53 20 54 25 32
+>025158	b9 fd 24 f0 04 40 27 32 06 22 0a 00 06 51 20 48
+>025168	20 5a 4f 00 25 32 b9 fd 24 f0 05 40 27 32 06 22
+>025178	0e 00 0b 51 41 59 53 20 41 20 20 55 55 51 25 32
+>025188	b9 fd 24 f0 06 40 27 32 06 22 08 00 04 46 4c 4a
+>025198	45 00 00 00 82 00 9d 00 14 fe 04 f1 00 40 27 32
+>0251a8	06 22 0a 00 06 47 49 20 55 20 44 00 25 32 14 fe
+>0251b8	04 f1 01 40 27 32 06 22 06 00 03 4a 4c 43 25 32
+>0251c8	14 fe 04 f1 02 40 27 32 06 22 06 00 02 41 50 00
+>0251d8	25 32 14 fe 04 f1 03 40 27 32 06 22 0e 00 0b 4b
+>0251e8	58 20 48 20 4c 47 57 43 50 4f 25 32 14 fe 04 f1
+>0251f8	04 40 27 32 06 22 08 00 04 4a 54 52 4d 00 25 32
+>025208	14 fe 04 f1 05 40 27 32 06 22 0a 00 07 5a 42 44
+>025218	20 55 20 5a 00 00 32 00 9e 00 d0 f4 00 40 27 32
+>025228	06 22 04 00 00 00 25 32 d0 f4 01 40 27 32 06 22
+>025238	08 00 04 53 4c 20 48 00 25 32 d0 f4 02 40 27 32
+>025248	06 22 04 00 01 58 00 00 78 00 9f 00 87 fd 85 f3
+>025258	00 40 27 32 06 22 0e 00 0a 49 20 46 56 4a 20 51
+>025268	20 55 45 00 25 32 87 fd 85 f3 01 40 27 32 06 22
+>025278	08 00 05 4c 42 47 4d 57 25 32 87 fd 85 f3 02 40
+>025288	27 32 06 22 08 00 05 5a 20 4c 52 4a 25 32 87 fd
+>025298	85 f3 03 40 27 32 06 22 0c 00 08 4b 50 4e 41 4b
+>0252a8	47 58 4b 00 25 32 87 fd 85 f3 04 40 27 32 06 22
+>0252b8	0e 00 0b 51 4c 50 20 5a 20 4b 54 46 20 49 00 00
+>0252c8	7e 00 a0 00 10 f0 00 40 27 32 06 22 08 00 05 4e
+>0252d8	4c 4b 58 54 25 32 10 f0 01 40 27 32 06 22 0a 00
+>0252e8	06 54 20 48 59 52 51 00 25 32 10 f0 02 40 27 32
+>0252f8	06 22 0e 00 0a 54 4c 42 55 52 55 20 45 20 45 00
+>025308	25 32 10 f0 03 40 27 32 06 22 06 00 03 42 20 52
+>025318	25 32 10 f0 04 40 27 32 06 22 0a 00 06 5a 4c 46
+>025328	41 20 49 00 25 32 10 f0 05 40 27 32 06 22 0e 00
+>025338	0b 5a 54 20 20 5a 51 49 45 4f 51 55 00 00 10 00
+>025348	a1 00 2d 3e 05 c0 06 22 01 10 a0 83 00 00 14 00
+>025358	a2 00 2d 3e 63 ce 09 ca 0a c0 06 22 01 10 39 84
+>025368	00 00 14 00 a3 00 2d 3e b1 cd a2 c8 19 c0 06 22
+>025378	01 10 4d a9 00 00 12 00 a4 00 2d 3e ef cc 59 cc
+>025388	0b c0 06 22 22 40 00 00 14 00 a5 00 2d 3e 01 ce
+>025398	04 c0 06 22 0b 24 04 10 c8 b1 00 00 12 00 a6 00
+>0253a8	2d 3e 14 c0 06 22 0b 24 01 10 1e 60 00 00 10 00
+>0253b8	a7 00 2d 3e 4f c5 06 22 04 10 eb 67 00 00 12 00
+>0253c8	a8 00 2d 3e 2e cd 86 c2 06 22 0b 24 be 50 00 00
+>0253d8	10 00 a9 00 2d 3e a4 cd 21 c0 06 22 50 40 00 00
+>0253e8	10 00 aa 00 2d 3e 0f c0 06 22 05 10 e9 ae 00 00
+>0253f8	12 00 ab 00 2d 3e b0 cd 6c c2 06 22 0b 24 4a 40
+>025408	00 00 16 00 ac 00 2d 3e 2b ce 4f cd 1c c0 06 22
+>025418	0b 24 04 10 aa 98 00 00 10 00 ad 00 2d 3e 09 ce
+>025428	99 c1 06 22 20 40 00 00 10 00 ae 00 2d 3e 0e c0
+>025438	06 22 0b 24 97 6e 00 00 14 00 af 00 2d 3e 05 cd
+>025448	1e c0 06 22 0b 24 01 10 13 88 00 00 12 00 b0 00
+>025458	2d 3e f3 c4 06 22 0b 24 02 10 bb af 00 00 14 00
+>025468	b1 00 2d 3e 1a cd 68 c0 06 22 0b 24 04 10 d9 99
+>025478	00 00 12 00 b2 00 2d 3e 6c ce 04 c0 06 22 0b 24
+>025488	0f 8c 00 00 0e 00 b3 00 2d 3e 11 c0 06 22 25 40
+>025498	00 00 14 00 b4 00 2d 3e d1 cd 15 c0 06 22 0b 24
+>0254a8	05 10 fb a7 00 00 12 00 b5 00 2d 3e a2 cd 06 c0
+>0254b8	06 22 0b 24 b2 40 00 00 10 00 b6 00 2d 3e 00 c5
+>0254c8	06 22 04 10 ee 45 00 00 14 00 b7 00 2d 3e 32 cd
+>0254d8	fe c4 06 22 0b 24 01 10 64 6f 00 00 10 00 b8 00
+>0254e8	2d 3e 08 c0 06 22 03 10 ff 4c 00 00 10 00 b9 00
+>0254f8	2d 3e 2f ce 1d c0 06 22 ba 40 00 00 12 00 ba 00
+>025508	2d 3e 2b ce 5c c0 06 22 0b 24 4f 40 00 00 14 00
+>025518	bb 00 2d 3e 6b ce 14 c0 06 22 0b 24 04 10 38 6f
+>025528	00 00 14 00 bc 00 2d 3e 1b cd 0d c0 06 22 0b 24
+>025538	01 10 ea 61 00 00 12 00 bd 00 2d 3e 66 c6 06 22
+>025548	0b 24 01 10 29 ac 00 00 10 00 be 00 2d 3e 18 c0
+>025558	06 22 0b 24 73 40 00 00 10 00 bf 00 2d 3e 40 ce
+>025568	9e c0 06 22 47 40 00 00 12 00 c0 00 2d 3e d6 cc
+>025578	1f c0 06 22 03 10 82 74 00 00 12 00 c1 00 2d 3e
+>025588	4e cd 1d c0 06 22 05 10 e5 4e 00 00 12 00 c2 00
+>025598	2d 3e 4e cd 4f c5 06 22 0b 24 f5 a3 00 00 14 00
+>0255a8	c3 00 2d 3e 07 ce eb c2 06 22 0b 24 02 10 43 63
+>0255b8	00 00 14 00 c4 00 2d 3e 5e cd c3 c0 06 22 0b 24
+>0255c8	01 10 9a 6b 00 00 12 00 c5 00 2d 3e 55 c5 06 22
+>0255d8	0b 24 02 10 63 50 00 00 12 00 c6 00 2d 3e 63 ce
+>0255e8	4c c3 06 22 03 10 02 b4 00 00 10 00 c7 00 2d 3e
+>0255f8	a1 c5 06 22 0b 24 38 40 00 00 14 00 c8 00 2d 3e
+>025608	60 ce 0d c4 06 22 0b 24 01 10 89 4a 00 00 12 00
+>025618	c9 00 2d 3e 55 ce 0a c0 06 22 01 10 44 5d 00 00
+>025628	14 00 ca 00 2d 3e 8d cd 5b c9 19 c0 06 22 0b 24
+>025638	05 40 00 00 14 00 cb 00 2d 3e 2c cd a2 c8 08 c0
+>025648	06 22 02 10 1e 4a 00 00 12 00 cc 00 2d 3e 52 cd
+>025658	d5 c3 06 22 03 10 0f 44 00 00 14 00 cd 00 2d 3e
+>025668	33 ce 1b c0 06 22 0b 24 03 10 d4 a9 00 00 16 00
+>025678	ce 00 2d 3e 5c cd 4a ce 19 c0 06 22 0b 24 01 10
+>025688	e1 b0 00 00 14 00 cf 00 2d 3e d6 cc 3b cc 0d c0
+>025698	06 22 03 10 e1 4b 00 00 12 00 d0 00 2d 3e af cd
+>0256a8	08 c0 06 22 0b 24 3e 74 00 00 10 00 d1 00 2d 3e
+>0256b8	02 cd 03 c0 06 22 fb 45 00 00 12 00 d2 00 2d 3e
+>0256c8	1b c5 06 22 0b 24 02 10 46 79 00 00 10 00 d3 00
+>0256d8	2d 3e 2a ce 19 c0 06 22 52 40 00 00 10 00 d4 00
+>0256e8	2d 3e e4 c5 06 22 0b 24 7f 40 00 00 0e 00 d5 00
+>0256f8	2d 3e 7f c5 06 22 d6 60 00 00 12 00 d6 00 2d 3e
+>025708	d4 c4 06 22 0b 24 04 10 96 4e 00 00 12 00 d7 00
+>025718	2d 3e 12 ce 13 c0 06 22 05 10 4c 5e 00 00 16 00
+>025728	d8 00 2d 3e b3 cd e9 cd 0a c0 06 22 0b 24 03 10
+>025738	f6 49 00 00 12 00 d9 00 2d 3e ca cc 17 c0 06 22
+>025748	01 10 5c 64 00 00 14 00 da 00 2d 3e 06 ce 37 cb
+>025758	03 c0 06 22 03 10 9f 7f 00 00 14 00 db 00 2d 3e
+>025768	ef cc e5 c1 06 22 0b 24 01 10 40 80 00 00 12 00
+>025778	dc 00 2d 3e 0a c0 06 22 0b 24 02 10 52 66 00 00
+>025788	1a 00 dd 00 2d 3e 2c ee 58 ea 1a e0 06 22 0a 00
+>025798	06 54 59 55 44 53 41 00 00 00 1a 00 de 00 2d 3e
+>0257a8	af ed 12 e0 06 22 0c 00 08 43 4f 4b 20 5a 49 49
+>0257b8	45 00 00 00 18 00 df 00 2d 3e 2a ed fe e1 06 22
+>0257c8	0a 00 06 58 48 20 55 43 55 00 00 00 1a 00 e0 00
+>0257d8	2d 3e 0b ee d0 e5 06 22 0c 00 09 4e 53 20 20 53
+>0257e8	20 20 54 47 00 00 14 00 e1 00 2d 3e 02 ee 2e e5
+>0257f8	06 22 06 00 03 4c 55 51 00 00 1c 00 e2 00 2d 3e
+>025808	ce ed 59 ec 1f e0 06 22 0c 00 08 47 50 20 4d 44
+>025818	20 49 44 00 00 00 16 00 e3 00 2d 3e 34 ee 57 ee
+>025828	12 e0 06 22 06 00 03 44 47 4a 00 00 18 00 e4 00
+>025838	2d 3e 51 ed ac e4 06 22 0a 00 07 49 4d 20 20 58
+>025848	50 48 00 00 12 00 e5 00 2d 3e 2e ed 03 e0 06 22
+>025858	04 00 00 00 00 00 1e 00 e6 00 2d 3e 29 ed 60 eb
+>025868	07 e0 06 22 0e 00 0a 59 49 4f 47 20 56 4f 46 45
+>025878	46 00 00 00 1a 00 e7 00 2d 3e ff ed 6e ec 03 e0
+>025888	06 22 0a 00 06 44 4c 45 20 43 47 00 00 00 1a 00
+>025898	e8 00 2d 3e 34 ee 3b ee 08 e0 06 22 0a 00 07 42
+>0258a8	59 49 47 59 43 55 00 00 16 00 e9 00 2d 3e f5 ec
+>0258b8	19 e0 06 22 08 00 04 49 41 47 59 00 00 00 10 00
+>0258c8	ea 00 2d 3e 31 e6 06 22 04 00 01 50 00 00 16 00
+>0258d8	eb 00 2d 3e 87 ed 04 e0 06 22 08 00 05 50 43 45
+>0258e8	50 4c 00 00 16 00 ec 00 2d 3e 76 ed 08 e0 06 22
+>0258f8	08 00 04 48 59 53 46 00 00 00 10 00 ed 00 2d 3e
+>025908	01 e0 06 22 04 00 00 00 00 00 18 00 ee 00 2d 3e
+>025918	62 e6 06 22 0c 00 08 4e 20 5a 56 41 56 47 49 00
+>025928	00 00 14 00 ef 00 2d 3e 4d ed b3 e1 06 22 06 00
+>025938	03 59 45 4e 00 00 12 00 f0 00 2d 3e 2a ee 5d e3
+>025948	06 22 04 00 01 44 00 00 1e 00 f1 00 2d 3e 2a ee
+>025958	b0 e9 1c e0 06 22 0e 00 0b 42 20 51 49 20 4e 45
+>025968	5a 50 48 45 00 00 18 00 f2 00 2d 3e 6a ee f4 eb
+>025978	1a e0 06 22 08 00 05 59 5a 20 4d 48 00 00 1a 00
+>025988	f3 00 2d 3e 59 ed ef e2 06 22 0c 00 09 59 43 52
+>025998	51 43 54 58 57 45 00 00 14 00 f4 00 2d 3e a1 ed
+>0259a8	1c e0 06 22 06 00 03 42 20 46 00 00 18 00 f5 00
+>0259b8	2d 3e 6e ee ba ed 16 e0 06 22 08 00 05 46 59 4c
+>0259c8	59 52 00 00 18 00 f6 00 2d 3e 1a e0 06 22 0c 00
+>0259d8	09 58 55 4a 46 46 49 20 49 47 00 00 14 00 f7 00
+>0259e8	2d 3e 32 ee 5f ed 23 e0 06 22 04 00 01 45 00 00
+>0259f8	14 00 f8 00 2d 3e 47 ed 23 e0 06 22 06 00 03 4e
+>025a08	20 58 00 00 12 00 f9 00 2d 3e 5a e5 06 22 06 00
+>025a18	03 53 4f 4f 00 00 1a 00 fa 00 2d 3e 07 e0 06 22
+>025a28	0e 00 0a 42 47 4c 46 42 55 45 55 51 44 00 00 00
+>025a38	18 00 fb 00 2d 3e dc ed 04 e0 06 22 0a 00 07 57
+>025a48	51 48 56 50 50 48 00 00 16 00 fc 00 2d 3e 05 ed
+>025a58	ed e3 06 22 08 00 04 4e 49 45 48 00 00 00 1c 00
+>025a68	fd 00 2d 3e 3b ee a0 eb 08 e0 06 22 0c 00 09 57
+>025a78	20 51 4e 4e 49 45 51 51 00 00 1a 00 fe 00 2d 3e
+>025a88	dc ed 0f ea 05 e0 06 22 0a 00 07 43 20 4a 51 4a
+>025a98	20 4d 00 00 12 00 ff 00 2d 3e a9 ed 34 e3 06 22
+>025aa8	04 00 00 00 00 00 1a 00 00 01 2d 3e 22 ed 12 e0
+>025ab8	06 22 0c 00 09 47 20 56 5a 44 4d 48 20 5a 00 00
+>025ac8	14 00 01 01 2d 3e 55 ee 06 e0 06 22 06 00 03 44
+>025ad8	20 43 00 00 16 00 02 01 2d 3e a4 ed bf e0 06 22
+>025ae8	08 00 05 42 55 4e 4e 57 00 00 1a 00 03 01 2d 3e
+>025af8	a3 ed 5b e0 06 22 0c 00 09 58 4d 4c 43 4c 4e 20
+>025b08	20 4d 00 00 10 00 04 01 2d 3e 1f e5 06 22 04 00
+>025b18	00 00 00 00 1a 00 05 01 2d 3e c9 ec 17 e0 06 22
+>025b28	0c 00 08 4e 4f 4e 5a 53 4b 51 43 00 00 00 16 00
+>025b38	06 01 2d 3e ff ed e5 e9 16 e0 06 22 06 00 02 46
+>025b48	58 00 00 00 1a 00 07 01 2d 3e 0d e0 06 22 0e 00
+>025b58	0b 55 20 58 4c 5a 4f 20 4d 51 55 53 00 00 14 00
+>025b68	08 01 2d 3e 2b ee 48 e4 06 22 06 00 03 4f 52 4b
+>025b78	00 00 16 00 09 01 2d 3e fd ec 6c e3 06 22 08 00
+>025b88	04 51 20 20 44 00 00 00 18 00 0a 01 2d 3e cf ed
+>025b98	31 e6 06 22 0a 00 06 50 57 51 58 41 4e 00 00 00
+>025ba8	16 00 0b 01 2d 3e 55 ee 5a ee 0f e0 06 22 06 00
+>025bb8	03 5a 20 41 00 00 1a 00 0c 01 2d 3e 14 ee eb e5
+>025bc8	06 22 0c 00 09 56 4a 55 59 52 5a 59 43 48 00 00
+>025bd8	12 00 0d 01 2d 3e b9 ed aa e2 06 22 04 00 00 00
+>025be8	00 00 10 00 0e 01 2d 3e 0f e0 06 22 04 00 00 00
+>025bf8	00 00 16 00 0f 01 2d 3e ef e4 06 22 0a 00 06 59
+>025c08	4f 59 20 4b 4f 00 00 00 1c 00 10 01 2d 3e 60 ee
+>025c18	25 ea 13 e0 06 22 0c 00 08 56 53 59 50 59 43 45
+>025c28	50 00 00 00 10 00 11 01 2d 3e 03 e0 06 22 04 00
+>025c38	00 00 00 00 12 00 12 01 2d 3e e6 e5 06 22 06 00
+>025c48	03 44 4d 4d 00 00 18 00 13 01 2d 3e 47 ed 6a e1
+>025c58	06 22 0a 00 07 42 49 4d 20 46 20 4e 00 00 12 00
+>025c68	14 01 2d 3e 0c e0 06 22 06 00 03 4c 20 4f 00 00
+>025c78	18 00 15 01 2d 3e 28 ee 20 e0 06 22 0a 00 07 4b
+>025c88	20 49 50 20 4e 57 00 00 1c 00 16 01 2d 3e cb ec
+>025c98	a4 e9 1e e0 06 22 0c 00 08 50 57 4b 44 56 4c 45
+>025ca8	59 00 00 00 16 00 17 01 2d 3e 7d ed a9 e2 06 22
+>025cb8	08 00 04 41 20 41 48 00 00 00 14 00 18 01 2d 3e
+>025cc8	8a ed 1d e0 06 22 06 00 02 42 53 00 00 00 52 00
+>025cd8	19 01 2d 3e 56 d5 00 40 27 32 06 22 80 40 25 32
+>025ce8	2d 3e 56 d5 01 40 27 32 06 22 81 40 25 32 2d 3e
+>025cf8	56 d5 02 40 27 32 06 22 0b 24 03 10 f5 89 25 32
+>025d08	2d 3e 56 d5 03 40 27 32 06 22 50 40 25 32 2d 3e
+>025d18	56 d5 04 40 27 32 06 22 0b 24 03 10 00 94 00 00
+>025d28	74 00 1a 01 2d 3e 54 dd dc d1 00 40 27 32 06 22
+>025d38	0b 24 01 10 c4 61 25 32 2d 3e 54 dd dc d1 01 40
+>025d48	27 32 06 22 0b 24 04 10 8c 7c 25 32 2d 3e 54 dd
+>025d58	dc d1 02 40 27 32 06 22 03 10 39 6e 25 32 2d 3e
+>025d68	54 dd dc d1 03 40 27 32 06 22 0b 24 02 10 68 b2
+>025d78	25 32 2d 3e 54 dd dc d1 04 40 27 32 06 22 6e 40
+>025d88	25 32 2d 3e 54 dd dc d1 05 40 27 32 06 22 0b 24
+>025d98	01 40 00 00 74 00 1b 01 2d 3e 0c de ec d0 00 40
+>025da8	27 32 06 22 0b 24 04 10 b3 a9 25 32 2d 3e 0c de
+>025db8	ec d0 01 40 27 32 06 22 0b 24 9d 40 25 32 2d 3e
+>025dc8	0c de ec d0 02 40 27 32 06 22 02 10 c1 8a 25 32
+>025dd8	2d 3e 0c de ec d0 03 40 27 32 06 22 0b 24 04 10
+>025de8	47 72 25 32 2d 3e 0c de ec d0 04 40 27 32 06 22
+>025df8	03 10 35 b8 25 32 2d 3e 0c de ec d0 05 40 27 32
+>025e08	06 22 04 10 a1 b9 00 00 7e 00 1c 01 2d 3e 33 de
+>025e18	ee d5 00 40 27 32 06 22 04 10 0d 7c 25 32 2d 3e
+>025e28	33 de ee d5 01 40 27 32 06 22 07 40 25 32 2d 3e
+>025e38	33 de ee d5 02 40 27 32 06 22 0b 24 04 10 0d 7e
+>025e48	25 32 2d 3e 33 de ee d5 03 40 27 32 06 22 05 10
+>025e58	5d 59 25 32 2d 3e 33 de ee d5 04 40 27 32 06 22
+>025e68	42 40 25 32 2d 3e 33 de ee d5 05 40 27 32 06 22
+>025e78	03 40 25 32 2d 3e 33 de ee d5 06 40 27 32 06 22
+>025e88	01 10 15 75 00 00 68 00 1d 01 2d 3e a2 dd 17 d9
+>025e98	14 d0 00 40 27 32 06 22 51 40 25 32 2d 3e a2 dd
+>025ea8	17 d9 14 d0 01 40 27 32 06 22 9f 41 25 32 2d 3e
+>025eb8	a2 dd 17 d9 14 d0 02 40 27 32 06 22 0b 24 05 10
+>025ec8	75 be 25 32 2d 3e a2 dd 17 d9 14 d0 03 40 27 32
+>025ed8	06 22 0b 24 04 10 ab 77 25 32 2d 3e a2 dd 17 d9
+>025ee8	14 d0 04 40 27 32 06 22 0b 24 87 40 00 00 7e 00
+>025ef8	1e 01 2d 3e 40 de 03 d9 05 d0 00 40 27 32 06 22
+>025f08	b8 40 25 32 2d 3e 40 de 03 d9 05 d0 01 40 27 32
+>025f18	06 22 0b 24 02 10 70 bf 25 32 2d 3e 40 de 03 d9
+>025f28	05 d0 02 40 27 32 06 22 0b 24 a2 40 25 32 2d 3e
+>025f38	40 de 03 d9 05 d0 03 40 27 32 06 22 01 10 e2 43
+>025f48	25 32 2d 3e 40 de 03 d9 05 d0 04 40 27 32 06 22
+>025f58	0b 24 05 10 b0 aa 25 32 2d 3e 40 de 03 d9 05 d0
+>025f68	05 40 27 32 06 22 0b 24 f8 b6 00 00 8e 00 1f 01
+>025f78	2d 3e 2d de a4 dd 23 d0 00 40 27 32 06 22 01 10
+>025f88	8f 61 25 32 2d 3e 2d de a4 dd 23 d0 01 40 27 32
+>025f98	06 22 0b 24 1a 4c 25 32 2d 3e 2d de a4 dd 23 d0
+>025fa8	02 40 27 32 06 22 0b 24 79 40 25 32 2d 3e 2d de
+>025fb8	a4 dd 23 d0 03 40 27 32 06 22 56 40 25 32 2d 3e
+>025fc8	2d de a4 dd 23 d0 04 40 27 32 06 22 0b 24 83 a3
+>025fd8	25 32 2d 3e 2d de a4 dd 23 d0 05 40 27 32 06 22
+>025fe8	0b 24 82 40 25 32 2d 3e 2d de a4 dd 23 d0 06 40
+>025ff8	27 32 06 22 04 10 3e 89 00 00 4a 00 20 01 2d 3e
+>026008	f3 dc 11 d0 00 40 27 32 06 22 28 40 25 32 2d 3e
+>026018	f3 dc 11 d0 01 40 27 32 06 22 05 10 28 ad 25 32
+>026028	2d 3e f3 dc 11 d0 02 40 27 32 06 22 0b 24 02 10
+>026038	2d 69 25 32 2d 3e f3 dc 11 d0 03 40 27 32 06 22
+>026048	9e 40 00 00 66 00 21 01 2d 3e cb d4 00 40 27 32
+>026058	06 22 0b 24 58 40 25 32 2d 3e cb d4 01 40 27 32
+>026068	06 22 03 10 3d 52 25 32 2d 3e cb d4 02 40 27 32
+>026078	06 22 03 10 f6 42 25 32 2d 3e cb d4 03 40 27 32
+>026088	06 22 03 10 90 4e 25 32 2d 3e cb d4 04 40 27 32
+>026098	06 22 0b 24 a5 40 25 32 2d 3e cb d4 05 40 27 32
+>0260a8	06 22 0b 24 03 10 2b 68 00 00 76 00 22 01 2d 3e
+>0260b8	ac dd 26 d4 00 40 27 32 06 22 05 10 1c 42 25 32
+>0260c8	2d 3e ac dd 26 d4 01 40 27 32 06 22 03 10 80 a8
+>0260d8	25 32 2d 3e ac dd 26 d4 02 40 27 32 06 22 0b 24
+>0260e8	02 10 5c a0 25 32 2d 3e ac dd 26 d4 03 40 27 32
+>0260f8	06 22 0b 24 02 10 ae 5f 25 32 2d 3e ac dd 26 d4
+>026108	04 40 27 32 06 22 02 10 94 86 25 32 2d 3e ac dd
+>026118	26 d4 05 40 27 32 06 22 0b 24 05 10 4b 4b 00 00
+>026128	70 00 23 01 2d 3e ac fd 25 f4 00 40 27 32 06 22
+>026138	06 00 02 48 59 00 25 32 2d 3e ac fd 25 f4 01 40
+>026148	27 32 06 22 04 00 00 00 25 32 2d 3e ac fd 25 f4
+>026158	02 40 27 32 06 22 08 00 05 4d 47 45 51 43 25 32
+>026168	2d 3e ac fd 25 f4 03 40 27 32 06 22 06 00 02 50
+>026178	4b 00 25 32 2d 3e ac fd 25 f4 04 40 27 32 06 22
+>026188	0e 00 0a 4b 20 45 4d 55 57 57 42 47 4d 00 00 00
+>026198	76 00 24 01 2d 3e d3 fc 71 f9 0e f0 00 40 27 32
+>0261a8	06 22 06 00 02 53 47 00 25 32 2d 3e d3 fc 71 f9
+>0261b8	0e f0 01 40 27 32 06 22 0a 00 06 49 4d 48 51 53
+>0261c8	57 00 25 32 2d 3e d3 fc 71 f9 0e f0 02 40 27 32
+>0261d8	06 22 04 00 01 4c 25 32 2d 3e d3 fc 71 f9 0e f0
+>0261e8	03 40 27 32 06 22 08 00 05 4f 53 53 47 4e 25 32
+>0261f8	2d 3e d3 fc 71 f9 0e f0 04 40 27 32 06 22 06 00
+>026208	03 52 59 45 00 00 72 00 25 01 2d 3e c2 f4 00 40
+>026218	27 32 06 22 04 00 01 4f 25 32 2d 3e c2 f4 01 40
+>026228	27 32 06 22 0e 00 0a 46 59 58 53 4a 46 57 56 47
+>026238	4f 00 25 32 2d 3e c2 f4 02 40 27 32 06 22 0a 00
+>026248	06 5a 50 20 20 20 57 00 25 32 2d 3e c2 f4 03 40
+>026258	27 32 06 22 0e 00 0b 4f 56 46 55 58 49 59 20 4f
+>026268	53 52 25 32 2d 3e c2 f4 04 40 27 32 06 22 08 00
+>026278	04 46 46 50 54 00 00 00 50 00 26 01 2d 3e 0e f0
+>026288	00 40 27 32 06 22 04 00 00 00 25 32 2d 3e 0e f0
+>026298	01 40 27 32 06 22 08 00 04 51 45 20 4e 00 25 32
+>0262a8	2d 3e 0e f0 02 40 27 32 06 22 0c 00 09 5a 45 4c
+>0262b8	52 55 57 48 20 45 25 32 2d 3e 0e f0 03 40 27 32
+>0262c8	06 22 04 00 00 00 00 00 5c 00 27 01 2d 3e 22 fd
+>0262d8	17 f0 00 40 27 32 06 22 06 00 03 53 20 48 25 32
+>0262e8	2d 3e 22 fd 17 f0 01 40 27 32 06 22 08 00 04 4f
+>0262f8	5a 20 50 00 25 32 2d 3e 22 fd 17 f0 02 40 27 32
+>026308	06 22 06 00 02 55 56 00 25 32 2d 3e 22 fd 17 f0
+>026318	03 40 27 32 06 22 0c 00 08 59 46 47 57 51 53 55
+>026328	50 00 00 00 ac 00 28 01 2d 3e b9 fd 24 f0 00 40
+>026338	27 32 06 22 06 00 03 58 51 47 25 32 2d 3e b9 fd
+>026348	24 f0 01 40 27 32 06 22 0c 00 08 54 45 4c 51 4d
+>026358	46 54 42 00 25 32 2d 3e b9 fd 24 f0 02 40 27 32
+>026368	06 22 06 00 03 4e 20 4f 25 32 2d 3e b9 fd 24 f0
+>026378	03 40 27 32 06 22 0e 00 0b 52 4a 55 4f 57 4d 41
+>026388	56 53 20 54 25 32 2d 3e b9 fd 24 f0 04 40 27 32
+>026398	06 22 0a 00 06 51 20 48 20 5a 4f 00 25 32 2d 3e
+>0263a8	b9 fd 24 f0 05 40 27 32 06 22 0e 00 0b 51 41 59
+>0263b8	53 20 41 20 20 55 55 51 25 32 2d 3e b9 fd 24 f0
+>0263c8	06 40 27 32 06 22 08 00 04 46 4c 4a 45 00 00 00
+>0263d8	8e 00 29 01 2d 3e 14 fe 04 f1 00 40 27 32 06 22
+>0263e8	0a 00 06 47 49 20 55 20 44 00 25 32 2d 3e 14 fe
+>0263f8	04 f1 01 40 27 32 06 22 06 00 03 4a 4c 43 25 32
+>026408	2d 3e 14 fe 04 f1 02 40 27 32 06 22 06 00 02 41
+>026418	50 00 25 32 2d 3e 14 fe 04 f1 03 40 27 32 06 22
+>026428	0e 00 0b 4b 58 20 48 20 4c 47 57 43 50 4f 25 32
+>026438	2d 3e 14 fe 04 f1 04 40 27 32 06 22 08 00 04 4a
+>026448	54 52 4d 00 25 32 2d 3e 14 fe 04 f1 05 40 27 32
+>026458	06 22 0a 00 07 5a 42 44 20 55 20 5a 00 00 38 00
+>026468	2a 01 2d 3e d0 f4 00 40 27 32 06 22 04 00 00 00
+>026478	25 32 2d 3e d0 f4 01 40 27 32 06 22 08 00 04 53
+>026488	4c 20 48 00 25 32 2d 3e d0 f4 02 40 27 32 06 22
+>026498	04 00 01 58 00 00 82 00 2b 01 2d 3e 87 fd 85 f3
+>0264a8	00 40 27 32 06 22 0e 00 0a 49 20 46 56 4a 20 51
+>0264b8	20 55 45 00 25 32 2d 3e 87 fd 85 f3 01 40 27 32
+>0264c8	06 22 08 00 05 4c 42 47 4d 57 25 32 2d 3e 87 fd
+>0264d8	85 f3 02 40 27 32 06 22 08 00 05 5a 20 4c 52 4a
+>0264e8	25 32 2d 3e 87 fd 85 f3 03 40 27 32 06 22 0c 00
+>0264f8	08 4b 50 4e 41 4b 47 58 4b 00 25 32 2d 3e 87 fd
+>026508	85 f3 04 40 27 32 06 22 0e 00 0b 51 4c 50 20 5a
+>026518	20 4b 54 46 20 49 00 00 8a 00 2c 01 2d 3e 10 f0
+>026528	00 40 27 32 06 22 08 00 05 4e 4c 4b 58 54 25 32
+>026538	2d 3e 10 f0 01 40 27 32 06 22 0a 00 06 54 20 48
+>026548	59 52 51 00 25 32 2d 3e 10 f0 02 40 27 32 06 22
+>026558	0e 00 0a 54 4c 42 55 52 55 20 45 20 45 00 25 32
+>026568	2d 3e 10 f0 03 40 27 32 06 22 06 00 03 42 20 52
+>026578	25 32 2d 3e 10 f0 04 40 27 32 06 22 0a 00 06 5a
+>026588	4c 46 41 20 49 00 25 32 2d 3e 10 f0 05 40 27 32
+>026598	06 22 0e 00 0b 5a 54 20 20 5a 51 49 45 4f 51 55
+>0265a8	00 00 00 00 ee ee ee ee 00 00 00 00 00 00 00 00
+>0265b8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+;	...repeated 1443 times (23088 bytes)...
 >02bff8	00 00 00 00 00 00 00 00
 .02c000					CodeEndSpace:
 
