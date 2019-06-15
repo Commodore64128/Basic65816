@@ -50,7 +50,11 @@ _FRun_NextLineNumber:
 		;		Next instruction.
 		;
 _FRun_NextInstruction:
+		;
 		stz 	DTempStringPointer 			; force reset on next string allocation.
+		;
+		jsr 	HWCheckBreak 				; break key pressed.
+		bne 	_FRun_Break
 		;
 		lda 	(DCodePtr)					; what's next
 		beq 	_FRun_EndInstruction		; if end of this line, then go to next line.
@@ -97,6 +101,11 @@ _FRun_EndInstruction:
 		inc 	a 							; go to link for next line
 		inc 	a
 		bra 	_FRun_NextLineNumber
+		;
+		;		Handle break
+		;
+_FRun_Break:
+		#error 	"Break"	
 
 ; *******************************************************************************************
 ;

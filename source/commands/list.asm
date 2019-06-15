@@ -16,6 +16,37 @@ Command_List: 	;; list
 	sta 	DListBuffer						; save buffer.
 	stz 	DIndent 						; reset the indents
 	stz 	DIndent2
+	stz 	DTemp4+0 						; low number
+	lda 	#$7FFF
+	sta 	DTemp4+2 						; high number.
+	;
+	;		Decode command line
+	;
+	lda 	(DCodePtr)						; anything else ?
+	beq 	_CLIList
+	cmp 	#colonTokenID
+	beq 	_CLIList
+	jsr 	EvaluateNextInteger 			; yes, first number
+	cpy 	#0 
+	bne 	_CLIError
+	sta 	DTemp4+0 						; which becomes the first and the last :)
+	sta 	DTemp4+2
+	lda 	(DCodePtr) 						; , follows ?
+	cmp 	#commaTokenID
+	bne 	_CLIList
+	jsr 	ExpectComma 					; skip comma
+	jsr 	EvaluateNextInteger 			; get end line.
+	sta 	DTemp4+2
+	cpy 	#0 								; if legal continue.
+	beq 	_CLIList
+_CLIError:
+	brl 	SyntaxError
+
+_CLIList:
+	;
+	;		Start listing - scan the whole program to track structure, only output the
+	;		lines we want.
+	;
 	lda 	#Block_ProgramStart 			; work out program start.
 	clc
 	adc 	DBaseAddress
@@ -23,7 +54,17 @@ Command_List: 	;; list
 _CLINextLine:
 	lda 	$0000,y 						; check end of program
 	beq 	_CLIExit
+	;
 	jsr 	ScanIndent  					; scan for formatting.
+	;
+	lda 	$0002,y 						; get line number.
+	cmp 	DTemp4+0 						; check if it is in range.
+	bcc 	_CLIFollowLink 
+	cmp 	DTemp4+2
+	beq 	_CLIShowLine
+	bcs 	_CLIFollowLink
+_CLIShowLine:
+	;
 	lda 	DListBuffer
 	jsr 	Detokenise 						; detokenise it
 	phy
@@ -31,12 +72,13 @@ _CLINextLine:
 	jsr 	PrintBasicString
 	jsr 	HWNewLine
 	ply 									; get address
+_CLIFollowLink:	
 	tya 									; follow link
 	clc
 	adc 	$0000,y
 	tay
-	bra 	_CLINextLine
-
+	jsr 	HWCheckBreak 					; break key pressed.
+	beq 	_CLINextLine
 _CLIExit:
 	stz 	DIndent 						; reset the indent
 	rts
@@ -292,7 +334,7 @@ _DTKNotSpecial2:
 
 ; *******************************************************************************************
 ;
-;		At the line beginning with Y, scan it for keywords+ keywords- in X adjust DIndent
+;		  At the line beginning with Y, scan it for keywords+ keywords- adjust DIndent
 ;
 ; *******************************************************************************************
 

@@ -54,6 +54,8 @@ DIndent = DPBaseAddress + 44 				; indent for LIST
 DIndent2 = DPBaseAddress + 46 				; previous indent.
 DListBuffer = DPBaseAddress + 48 			; list buffer address.
 
+DTemp4 = DPBaseAddress + 50 				; *** LONG *** Temporary Value
+
 ; ********************************************************************************
 ;
 ;									BASIC stack.

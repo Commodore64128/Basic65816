@@ -1,7 +1,6 @@
 Main
 ----
 - INSTR
-- LIST - ranges, breaking
 - CALL <address> (params A,X,Y,C ?)
 - Input code. Tokenising.
 - Typing commands in
@@ -15,6 +14,8 @@ Main
 
 Fixes
 -----
+- 	detokenising lines, too long ?
+
 - 	reset temporary storage pointer when typing things in, even if no command executed as error could
 	occur if you do gosub 700.
 
