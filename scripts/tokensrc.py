@@ -36,7 +36,8 @@ class TokenSource(object):
 	peek(	deek( 	leek(						## peek byte/word/long
 	lower$( upper$( 							## recasing.
 	left$(	mid$(	right$(						## string subdivision.
-					
+	instr( 										## substring search.
+							
 [syntax]
 	, 	;	:	(	)	'	
 

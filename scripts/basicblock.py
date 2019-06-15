@@ -143,6 +143,8 @@ class BasicBlock(object):
 	#
 	def addBASICLine(self,code,lineNumber = None):
 		assert not self.memoryVariableCreated									# check not created variables
+		if code.strip() == "":
+			return
 		if lineNumber is None or lineNumber == 0:								# default line number
 			lineNumber = self.lastProgramLineNumber + 1
 		assert lineNumber > self.lastProgramLineNumber and lineNumber <= 32767 	# check line number

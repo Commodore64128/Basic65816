@@ -29,6 +29,7 @@ StartOfBasicCode:
 		.include "unary/memread.asm"			
 		.include "unary/val.asm"
 		.include "unary/str.asm"
+		.include "unary/instr.asm"
 		.include "unary/caseconv.asm"
 		
 		.include "commands/let.asm" 				; assignment

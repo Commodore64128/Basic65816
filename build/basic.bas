@@ -1,4 +1,10 @@
-10  list 50,112:
+5 print instr("hello","el")
+6 print instr("hello","ex")
+7 print instr("hello","hello")
+8 print instr("hello","hello2")
+9 stop
+
+
 11  for i = 1 to 99999
 12  print i
 13  next i
