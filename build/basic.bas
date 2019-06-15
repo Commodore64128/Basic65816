@@ -2,10 +2,9 @@
 6 print instr("hello","ex")
 7 print instr("hello","hello")
 8 print instr("hello","hello2")
-9 stop
 
 
-11  for i = 1 to 99999
+11  for i = 1 to 999999
 12  print i
 13  next i
 20 	x = 0

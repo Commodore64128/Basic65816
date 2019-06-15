@@ -46,6 +46,7 @@ void CPULoadBinary(char *fileName);													// Load Binary in.
 BYTE8 CPURead(LONG32 address);														// Access RAM
 BYTE8 CPUExecute(LONG32 break1,LONG32 break2);										// Run to break point(s)
 LONG32 CPUGetStepOverBreakpoint(void);												// Get step over breakpoint
+int CPUKeyHandler(int key,int inRunMode);
 
 #include "65816.h"
 

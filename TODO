@@ -1,7 +1,7 @@
 Main
 ----
 - CALL <address> (params A,X,Y,C ?)
-- Input code. Tokenising.
+- Tokenising.
 - Typing commands in
 - Typing programs in
 - PROC <identifier> DEFPROC ENDPROC
