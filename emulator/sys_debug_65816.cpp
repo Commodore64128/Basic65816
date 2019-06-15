@@ -124,6 +124,9 @@ void DBGXRender(int *address,int showDisplay) {
 		SDL_Rect r;
 		int b = 16;
 		r.x = x1-b;r.y = y1-b;r.w = xs*size*8+b*2;r.h=ys*size*8+b*2;
+		GFXRectangle(&r,0xFFFF);
+		b = b - 4;
+		r.x = x1-b;r.y = y1-b;r.w = xs*size*8+b*2;r.h=ys*size*8+b*2;
 		GFXRectangle(&r,0);
 		for (int x = 0;x < xs;x++) 
 		{
@@ -140,7 +143,7 @@ void DBGXRender(int *address,int showDisplay) {
 					for (int y = 0;y < 8;y++) {													// 7 Down
 						rc.y = yc + y * size;
 						if (font[cp+y] & (0x80 >> x)) {		
-							GFXRectangle(&rc,0xF80);			
+							GFXRectangle(&rc,0x0F0);			
 						}
 					}
 				}

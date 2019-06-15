@@ -2,7 +2,7 @@
 6 print instr("hello","ex")
 7 print instr("hello","hello")
 8 print instr("hello","hello2")
-9 list 100,133:goto 11180
+9 list 100,133:goto 170
 
 11  for i = 1 to 9999
 12 		print i
@@ -31,6 +31,6 @@
 150 x = x + 1
 160 until x > 10
 170 for i = 0 to 255
-200 poke 983040+i,i
+200 poke 983040+i+64*24,i
 210 next i
 11180 stop	

@@ -1,4 +1,5 @@
-; *******************************************************************************************c; *******************************************************************************************
+; *******************************************************************************************
+; *******************************************************************************************
 ;
 ;		Name : 		basic.asm
 ;		Purpose : 	Basic start up
@@ -17,7 +18,8 @@ StartOfBasicCode:
 		.include "variable.asm"						; variable management
 		.include "utility/utility.asm"				; utility stuff.
 		.include "utility/stringutils.asm"			; string utility stuff.
-		
+		.include "utility/tokeniser.asm"			; ASCII -> Tokens converter
+
 		.include "binary/arithmetic.asm"			; binary operators
 		.include "binary/bitwise.asm"
 		.include "binary/comparison.asm"
@@ -25,12 +27,12 @@ StartOfBasicCode:
 		.include "binary/multiply.asm"
 
 		.include "unary/simpleunary.asm" 			; unary functions.
-		.include "unary/string.asm"
-		.include "unary/memread.asm"			
-		.include "unary/val.asm"
+		.include "unary/string.asm" 				; (left$,right$,mid$)
+		.include "unary/memread.asm"				; (peek, deek, leek)
+		.include "unary/val.asm"					
 		.include "unary/str.asm"
 		.include "unary/instr.asm"
-		.include "unary/caseconv.asm"
+		.include "unary/caseconv.asm"				; (upper$,lower$)
 		
 		.include "commands/let.asm" 				; assignment
 		.include "commands/list.asm"				; list / detokenising code.
@@ -40,7 +42,7 @@ StartOfBasicCode:
 		.include "commands/transfer.asm"			; goto/gosub/return on x goto/gosub
 		.include "commands/repeat.asm"				; repeat .. until
 		.include "commands/while.asm"				; while .. wend
-		.include "commands/run.asm" 				; run / end / clear etc.
+		.include "commands/run.asm" 				; run / end / clear / stop etc.
 		.include "commands/dim.asm"					; array dimension
 		.include "commands/collect.asm"				; garbage collection code.
 		.include "commands/memwrite.asm" 			; write to memory.

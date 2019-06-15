@@ -45,6 +45,7 @@ _CS0:	lda 	#$2020
 HWPrintChar:
 		pha
 		phx
+		phy 
 		and 	#$00FF
 		cmp 	#"a"
 		bcc 	_HWPCNotLC
@@ -52,8 +53,9 @@ HWPrintChar:
 		bcs 	_HWPCNotLC
 		sec
 		sbc 	#32
+		ora 	#128
 _HWPCNotLC:		
-		and 	#$3F
+		and 	#$BF
 		ldx 	DCursor
 		sep 	#$20
 		sta 	$F0000,x
@@ -70,6 +72,7 @@ _HWNotEnd:
 		sep 	#$20
 		sta 	$F0000,x
 		rep 	#$20
+		ply
 		plx
 		pla
 		rts
