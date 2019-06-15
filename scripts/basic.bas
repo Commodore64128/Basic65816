@@ -1,855 +1,300 @@
-dim i96d(4)
-dim g0m0(2)
-dim d4(5)
-dim r3nlt(3)
-dim n7oze(5)
-dim w56(3)
-dim a5r7(6)
-dim e4(2)
-dim p62(4)
-dim a3s5b(4)
-dim v9$(3)
-dim f4c3z$(6)
-dim o8pjq$(2)
-dim r1z$(6)
-dim n6hc$(3)
-dim u8uy8$(6)
-dim y0$(5)
-dim u2i2$(4)
-dim k2h$(2)
-dim h2x5$(2)
-o6m=-3276
-let o3=101
-a96cf=-89
-x4oq=-86492
-let b75y=68785
-let d34t8=26127
-a74ok=181055
-r3asv=-27374
-let w2oa=-37
-let f2=168729
-let g7x7=61
-u=-155158
-let z00=16
-i6x7z=-176
-let p8dk=58910
-let f3iry=-189733
-let j2ak=130137
-q41k=-119003
-d6bq=-164038
-z=-44326
-let v3=-96271
-let i2=-10
-let p=-125
-let b8=-61741
-let s6=-103626
-let c=22417
-let s=93180
-o=-59287
-o2c2=-135724
-let o49rp=96401
-w0z5=-95008
-q=-92447
-let e8r=54339
-let a4=-91817
-s5tj=-125507
-let h=-116497
-j4=68
-m1qa3=165471
-let d0=158
-m1l2j=123
-let x=-182825
-d5e=48
-i=170378
-let r0=-74108
-c37j=110
-let g9i=78723
-m=-38667
-h6=-65991
-let u7=-62344
-b3k6=-64285
-let s1=-26315
-t2q=78
-let o2=119753
-let n2ao=61
-let f6ga=-33367
-k=-122302
-let d=-185256
-b=-194798
-let b4s9=6144
-a52j9=105181
-e9v$="SUWKB UF"
-let f6u$=""
-r$="AW N"
-let a$="SYJELWPKGVZ"
-l0ibh$="O IRZH"
-p2yi2$="IFE AVAHW"
-let j2mxn$="EOJW"
-let g29$="P  HEVB D"
-r34b$="IFQ  A"
-z$="XL OTC"
-let q6g$="UV"
-o1e$=""
-d17a$="SSAKFE"
-p1y9$=""
-h6$="WXZA ZQD K"
-let k3vmo$="CKGFW"
-let e8$="S"
-let n9$="KVLOCQR"
-let j9tnh$="VX S"
-let a2$="DQDJY"
-let u2iv$="JY  SXOP"
-let r8p$="L YL"
-h7l$="XGVK"
-let r0rq$="MTGGTL"
-z5jg$="MBH TD HA"
-y1hy8$="J"
-k15o0$="AZJUVOJSI"
-let j$="TFS GX"
-let x0$="OKYRR  N"
-let p7thl$=""
-v5kqs$="AFK"
-g5fqt$="JP FZG  J"
-i$="U URMIFAJ"
-b99i$="AN  IEBFJ"
-let e2w$="WWIF"
-b$="QX"
-x54z$=""
-let l90$="HRBD"
-n8el3$="UHVWRKTTT"
-c7o$="Y  TJQA RH"
-b3lm0$="NWBSGLP"
-p4t$=""
-g$="N"
-f40w2$=""
-let t$=""
-let e$="CXCPE"
-let f$="PJDS"
-let x7gt$="ZMZSOA"
-r1zb$="VTLXP TABJ"
-let y6jo$="KYU"
-let r8i$="DZ E"
-let p1$="PYPQ LQLVH"
-p3$="F  W"
-p0w$="JJENLCOC"
-x3$="QNGQ   J"
-h5$=""
-i4$=""
-let r661h$="LXIUI"
-m$="VDOC O"
-u5a$="DF L"
-i96d(0)=199170:i96d(1)=-193432:i96d(2)=-43664:i96d(3)=88507:i96d(4)=-115887
-g0m0(0)=82706:g0m0(1)=-98926:g0m0(2)=87980
-d4(0)=-190:d4(1)=-68239:d4(2)=-64181:d4(3)=157903:d4(4)=-114116:d4(5)=93371
-r3nlt(0)=16:r3nlt(1)=-187912:r3nlt(2)=-39488:r3nlt(3)=-198510
-n7oze(0)=-152:n7oze(1)=142:n7oze(2)=101980:n7oze(3)=-60701:n7oze(4)=188880:n7oze(5)=149
-w56(0)=185787:w56(1)=-193798:w56(2)=114712:w56(3)=-170372
-a5r7(0)=187894:a5r7(1)=-185039:a5r7(2)=75732:a5r7(3)=-120:a5r7(4)=128855:a5r7(5)=47627:a5r7(6)=-72083
-e4(0)=30:e4(1)=125:e4(2)=75
-p62(0)=99153:p62(1)=-49342:p62(2)=-171605:p62(3)=-112017:p62(4)=-182940
-a3s5b(0)=113334:a3s5b(1)=16742:a3s5b(2)=111:a3s5b(3)=-64100:a3s5b(4)=-36168
-v9$(0)="J KI H":v9$(1)="U I":v9$(2)="EU":v9$(3)="TUMBX W"
-f4c3z$(0)="":f4c3z$(1)="YIK":f4c3z$(2)="HQG EZ":f4c3z$(3)="ZSWE":f4c3z$(4)="YVSD K":f4c3z$(5)="AXX":f4c3z$(6)="N PWVPDVTLS"
-o8pjq$(0)="C GXMUTFF":o8pjq$(1)="QR":o8pjq$(2)="RFA  Z QJ"
-r1z$(0)="QJTN  UV":r1z$(1)="AQPT":r1z$(2)="MYSCJ":r1z$(3)="HVGZF ZN Y":r1z$(4)="QV":r1z$(5)="AJJN":r1z$(6)="JRL Q"
-n6hc$(0)="HAURNMCAW":n6hc$(1)="":n6hc$(2)="KPKA S":n6hc$(3)="OJ"
-u8uy8$(0)="":u8uy8$(1)="MPWZHTE":u8uy8$(2)="HMJEQJZPK":u8uy8$(3)="AK":u8uy8$(4)="EUR HPZ":u8uy8$(5)="JJH LQXSFA":u8uy8$(6)="ODLTPGBF C"
-y0$(0)="":y0$(1)="DM W":y0$(2)="E TL":y0$(3)="SWWSEYGFY":y0$(4)="XUVZEJ":y0$(5)="UTMIZUX"
-u2i2$(0)="TE":u2i2$(1)="RN MBZ B":u2i2$(2)="VF VD R":u2i2$(3)="TEJ NQYM":u2i2$(4)="VNQ R"
-k2h$(0)="XAMCXV   U":k2h$(1)="SF V WL":k2h$(2)="Z   Q"
-h2x5$(0)="MMP":h2x5$(1)="M WJ":h2x5$(2)="GXC"
-assert abs(113334)=113334
-assert sgn(113334)=1
-assert len("N")=1
-assert val("2232410",6) = 113334
-assert str$(113334,6) = "2232410"
-assert abs(d)=185256
-assert sgn(d)=-1
-assert len("JJENLCOC")=8
-assert val("-100102010100",3) = -185256
-assert str$(-185256,3) = "-100102010100"
-assert abs(-64285)=64285
-assert sgn(b3k6)=-1
-assert len("SSAKFE")=6
-assert val("-195DB",14) = -64285
-assert str$(-64285,14) = "-195db"
-assert abs(b8)=61741
-assert sgn(-61741)=-1
-assert len(u2iv$)=8
-assert val("-103621",9) = -61741
-assert str$(-61741,9) = "-103621"
-assert abs(-26315)=26315
-assert sgn(-26315)=-1
-assert len(u2iv$)=8
-assert val("-26315",10) = -26315
-assert str$(-26315,10) = "-26315"
-assert abs(-62344)=62344
-assert sgn(u7)=-1
-assert len(u2iv$)=8
-assert val("-3443334",5) = -62344
-assert str$(-62344,5) = "-3443334"
-assert abs(a5r7(4))=128855
-assert sgn(128855)=1
-assert len(f40w2$)=0
-assert val("282A5",15) = 128855
-assert str$(128855,15) = "282a5"
-assert abs(-95008)=95008
-assert sgn(-95008)=-1
-assert len(p3$)=4
-assert val("-95008",10) = -95008
-assert str$(-95008,10) = "-95008"
-assert abs(d4(5))=93371
-assert sgn(d4(5))=1
-assert len(k15o0$)=9
-assert val("266273",8) = 93371
-assert str$(93371,8) = "266273"
-assert abs(d4(1))=68239
-assert sgn(d4(1))=-1
-assert len("HRBD")=4
-assert val("-250A2",13) = -68239
-assert str$(-68239,13) = "-250a2"
-assert abs(g9i)=78723
-assert sgn(78723)=1
-assert len(o1e$)=0
-assert val("13383",16) = 78723
-assert str$(78723,16) = "13383"
-assert abs(d4(4))=114116
-assert sgn(-114116)=-1
-assert len(c7o$)=10
-assert val("-12210112112",3) = -114116
-assert str$(-114116,3) = "-12210112112"
-assert abs(123)=123
-assert sgn(123)=1
-assert len(u8uy8$(3))=2
-assert val("96",13) = 123
-assert str$(123,13) = "96"
-assert abs(96401)=96401
-assert sgn(96401)=1
-assert len(b3lm0$)=7
-assert val("66478",11) = 96401
-assert str$(96401,11) = "66478"
-assert abs(s)=93180
-assert sgn(s)=1
-assert len(n8el3$)=9
-assert val("265774",8) = 93180
-assert str$(93180,8) = "265774"
-assert abs(b75y)=68785
-assert sgn(68785)=1
-assert len("KYU")=3
-assert val("10111100121",3) = 68785
-assert str$(68785,3) = "10111100121"
-assert abs(-64285)=64285
-assert sgn(b3k6)=-1
-assert len(r$)=4
-assert val("-175435",8) = -64285
-assert str$(-64285,8) = "-175435"
-assert abs(-125507)=125507
-assert sgn(s5tj)=-1
-assert len("OKYRR  N")=8
-assert val("-86328",11) = -125507
-assert str$(-125507,11) = "-86328"
-assert abs(c)=22417
-assert sgn(22417)=1
-assert len("")=0
-assert val("A285",13) = 22417
-assert str$(22417,13) = "a285"
-assert abs(s5tj)=125507
-assert sgn(-125507)=-1
-assert len("")=0
-assert val("-6076B",12) = -125507
-assert str$(-125507,12) = "-6076b"
-assert abs(q41k)=119003
-assert sgn(q41k)=-1
-assert len(d17a$)=6
-assert val("-350333",8) = -119003
-assert str$(-119003,8) = "-350333"
-assert abs(-59287)=59287
-assert sgn(-59287)=-1
-assert len("U URMIFAJ")=9
-assert val("-3344122",5) = -59287
-assert str$(-59287,5) = "-3344122"
-assert abs(i2)=10
-assert sgn(i2)=-1
-assert len(n8el3$)=9
-assert val("-14",6) = -10
-assert str$(-10,6) = "-14"
-assert abs(-38667)=38667
-assert sgn(m)=-1
-assert len("S")=1
-assert val("-1001011100001011",2) = -38667
-assert str$(-38667,2) = "-1001011100001011"
-assert abs(d6bq)=164038
-assert sgn(-164038)=-1
-assert len(l0ibh$)=6
-assert val("-3390D",15) = -164038
-assert str$(-164038,15) = "-3390d"
-assert abs(82706)=82706
-assert sgn(82706)=1
-assert len("UHVWRKTTT")=9
-assert val("82706",10) = 82706
-assert str$(82706,10) = "82706"
-assert abs(q41k)=119003
-assert sgn(q41k)=-1
-assert len("KVLOCQR")=7
-assert val("-1003643",7) = -119003
-assert str$(-119003,7) = "-1003643"
-assert abs(-98926)=98926
-assert sgn(-98926)=-1
-assert len("DF L")=4
-assert val("-2041554",6) = -98926
-assert str$(-98926,6) = "-2041554"
-assert abs(s6)=103626
-assert sgn(s6)=-1
-assert len(r8i$)=4
-assert val("-611055",7) = -103626
-assert str$(-103626,7) = "-611055"
-assert abs(s1)=26315
-assert sgn(s1)=-1
-assert len(f40w2$)=0
-assert val("-40078",9) = -26315
-assert str$(-26315,9) = "-40078"
-assert abs(181055)=181055
-assert sgn(a74ok)=1
-assert len("VF VD R")=7
-assert val("3514115",6) = 181055
-assert str$(181055,6) = "3514115"
-assert abs(f2)=168729
-assert sgn(168729)=1
-assert len("KVLOCQR")=7
-assert val("101001001100011001",2) = 168729
-assert str$(168729,2) = "101001001100011001"
-assert abs(110)=110
-assert sgn(c37j)=1
-assert len("")=0
-assert val("6E",16) = 110
-assert str$(110,16) = "6e"
-assert abs(-122302)=122302
-assert sgn(-122302)=-1
-assert len("S")=1
-assert val("-11101110110111110",2) = -122302
-assert str$(-122302,2) = "-11101110110111110"
-assert abs(s)=93180
-assert sgn(93180)=1
-assert len("VX S")=4
-assert val("112233330",4) = 93180
-assert str$(93180,4) = "112233330"
-assert abs(j4)=68
-assert sgn(j4)=1
-assert len(i4$)=0
-assert val("104",8) = 68
-assert str$(68,8) = "104"
-assert abs(t2q)=78
-assert sgn(t2q)=1
-assert len("F  W")=4
-assert val("4E",16) = 78
-assert str$(78,16) = "4e"
-assert abs(g7x7)=61
-assert sgn(61)=1
-assert len(j2mxn$)=4
-assert val("75",8) = 61
-assert str$(61,8) = "75"
-assert abs(-190)=190
-assert sgn(d4(0))=-1
-assert len(u2i2$(3))=8
-assert val("-21001",3) = -190
-assert str$(-190,3) = "-21001"
-assert abs(h)=116497
-assert sgn(-116497)=-1
-assert len("SYJELWPKGVZ")=11
-assert val("-247B7",15) = -116497
-assert str$(-116497,15) = "-247b7"
-assert abs(-64285)=64285
-assert sgn(-64285)=-1
-assert len(n9$)=7
-assert val("-140AA",15) = -64285
-assert str$(-64285,15) = "-140aa"
-assert abs(-116497)=116497
-assert sgn(h)=-1
-assert len(e2w$)=4
-assert val("-57501",12) = -116497
-assert str$(-116497,12) = "-57501"
-assert abs(b3k6)=64285
-assert sgn(b3k6)=-1
-assert len("N")=1
-assert val("-140AA",15) = -64285
-assert str$(-64285,15) = "-140aa"
-assert abs(-26315)=26315
-assert sgn(-26315)=-1
-assert len("AN  IEBFJ")=9
-assert val("-66CB",16) = -26315
-assert str$(-26315,16) = "-66cb"
-assert abs(b8)=61741
-assert sgn(b8)=-1
-assert len(g$)=1
-assert val("-33010231",4) = -61741
-assert str$(-61741,4) = "-33010231"
-assert abs(m)=38667
-assert sgn(-38667)=-1
-assert len(z5jg$)=9
-assert val("-B6CC",15) = -38667
-assert str$(-38667,15) = "-b6cc"
-assert abs(110)=110
-assert sgn(110)=1
-assert len("")=0
-assert val("11002",3) = 110
-assert str$(110,3) = "11002"
-assert abs(n7oze(0))=152
-assert sgn(n7oze(0))=-1
-assert len(b99i$)=9
-assert val("-A2",15) = -152
-assert str$(-152,15) = "-a2"
-assert abs(-65991)=65991
-assert sgn(h6)=-1
-assert len("C GXMUTFF")=9
-assert val("-45642",11) = -65991
-assert str$(-65991,11) = "-45642"
-assert abs(-171605)=171605
-assert sgn(-171605)=-1
-assert len("DZ E")=4
-assert val("-83385",12) = -171605
-assert str$(-171605,12) = "-83385"
-assert abs(-59287)=59287
-assert sgn(o)=-1
-assert len(h7l$)=4
-assert val("-3344122",5) = -59287
-assert str$(-59287,5) = "-3344122"
-assert abs(-38667)=38667
-assert sgn(m)=-1
-assert len(r1zb$)=10
-assert val("-1A463",12) = -38667
-assert str$(-38667,12) = "-1a463"
-assert abs(185787)=185787
-assert sgn(w56(0))=1
-assert len("PYPQ LQLVH")=10
-assert val("231112323",4) = 185787
-assert str$(185787,4) = "231112323"
-assert abs(-182825)=182825
-assert sgn(x)=-1
-assert len("WWIF")=4
-assert val("-100021210022",3) = -182825
-assert str$(-182825,3) = "-100021210022"
-assert abs(-68239)=68239
-assert sgn(d4(1))=-1
-assert len("DQDJY")=5
-assert val("-1AC23",14) = -68239
-assert str$(-68239,14) = "-1ac23"
-assert abs(-64100)=64100
-assert sgn(-64100)=-1
-assert len("AN  IEBFJ")=9
-assert val("-106832",9) = -64100
-assert str$(-64100,9) = "-106832"
-assert abs(s)=93180
-assert sgn(93180)=1
-assert len(k15o0$)=9
-assert val("45B10",12) = 93180
-assert str$(93180,12) = "45b10"
-assert abs(-44326)=44326
-assert sgn(z)=-1
-assert len(r$)=4
-assert val("-541114",6) = -44326
-assert str$(-44326,6) = "-541114"
-assert abs(q)=92447
-assert sgn(-92447)=-1
-assert len("AN  IEBFJ")=9
-assert val("-264437",8) = -92447
-assert str$(-92447,8) = "-264437"
-assert abs(d0)=158
-assert sgn(158)=1
-assert len(r8p$)=4
-assert val("9E",16) = 158
-assert str$(158,16) = "9e"
-assert abs(n2ao)=61
-assert sgn(n2ao)=1
-assert len("")=0
-assert val("67",9) = 61
-assert str$(61,9) = "67"
-assert abs(22417)=22417
-assert sgn(c)=1
-assert len(x3$)=8
-assert val("122233",7) = 22417
-assert str$(22417,7) = "122233"
-assert abs(r0)=74108
-assert sgn(-74108)=-1
-assert len(o8pjq$(1))=2
-assert val("-1D016",14) = -74108
-assert str$(-74108,14) = "-1d016"
-assert abs(a52j9)=105181
-assert sgn(105181)=1
-assert len("VX S")=4
-assert val("7202A",11) = 105181
-assert str$(105181,11) = "7202a"
-assert abs(d5e)=48
-assert sgn(d5e)=1
-assert len(n9$)=7
-assert val("143",5) = 48
-assert str$(48,5) = "143"
-assert abs(142)=142
-assert sgn(142)=1
-assert len("C GXMUTFF")=9
-assert val("354",6) = 142
-assert str$(142,6) = "354"
-assert abs(p62(1))=49342
-assert sgn(-49342)=-1
-assert len(o8pjq$(1))=2
-assert val("-140276",8) = -49342
-assert str$(-49342,8) = "-140276"
-assert abs(101)=101
-assert sgn(o3)=1
-assert len(g29$)=9
-assert val("1211",4) = 101
-assert str$(101,4) = "1211"
-assert abs(78723)=78723
-assert sgn(g9i)=1
-assert len("S")=1
-assert val("54167",11) = 78723
-assert str$(78723,11) = "54167"
-assert abs(-193798)=193798
-assert sgn(-193798)=-1
-assert len("NWBSGLP")=7
-assert val("-22200143",5) = -193798
-assert str$(-193798,5) = "-22200143"
-assert abs(-155158)=155158
-assert sgn(-155158)=-1
-assert len("")=0
-assert val("-457026",8) = -155158
-assert str$(-155158,8) = "-457026"
-assert abs(o2)=119753
-assert sgn(119753)=1
-assert len("L YL")=4
-assert val("4267A",13) = 119753
-assert str$(119753,13) = "4267a"
-assert abs(-61741)=61741
-assert sgn(-61741)=-1
-assert len("MMP")=3
-assert val("-1153501",6) = -61741
-assert str$(-61741,6) = "-1153501"
-assert abs(123)=123
-assert sgn(m1l2j)=1
-assert len(e9v$)=8
-assert val("1111011",2) = 123
-assert str$(123,2) = "1111011"
-assert abs(c37j)=110
-assert sgn(110)=1
-assert len("SF V WL")=7
-assert val("7C",14) = 110
-assert str$(110,14) = "7c"
-assert abs(-96271)=96271
-assert sgn(v3)=-1
-assert len("O IRZH")=6
-assert val("-1D7D1",15) = -96271
-assert str$(-96271,15) = "-1d7d1"
-assert abs(j2ak)=130137
-assert sgn(j2ak)=1
-assert len(f40w2$)=0
-assert val("89857",11) = 130137
-assert str$(130137,11) = "89857"
-assert abs(d5e)=48
-assert sgn(d5e)=1
-assert len("QX")=2
-assert val("300",4) = 48
-assert str$(48,4) = "300"
-assert abs(m1qa3)=165471
-assert sgn(m1qa3)=1
-assert len("N")=1
-assert val("1256265",7) = 165471
-assert str$(165471,7) = "1256265"
-assert abs(99153)=99153
-assert sgn(p62(0))=1
-assert len("S")=1
-assert val("301521",8) = 99153
-assert str$(99153,8) = "301521"
-assert abs(q)=92447
-assert sgn(q)=-1
-assert len("MTGGTL")=6
-assert val("-112210133",4) = -92447
-assert str$(-92447,4) = "-112210133"
-assert abs(181055)=181055
-assert sgn(a74ok)=1
-assert len("XGVK")=4
-assert val("64544",13) = 181055
-assert str$(181055,13) = "64544"
-assert abs(-96271)=96271
-assert sgn(-96271)=-1
-assert len("U URMIFAJ")=9
-assert val("-156047",9) = -96271
-assert str$(-96271,9) = "-156047"
-assert abs(-89)=89
-assert sgn(-89)=-1
-assert len("SYJELWPKGVZ")=11
-assert val("-1011001",2) = -89
-assert str$(-89,2) = "-1011001"
-assert abs(-44326)=44326
-assert sgn(-44326)=-1
-assert len("J")=1
-assert val("-126446",8) = -44326
-assert str$(-44326,8) = "-126446"
-assert abs(n2ao)=61
-assert sgn(n2ao)=1
-assert len("")=0
-assert val("41",15) = 61
-assert str$(61,15) = "41"
-assert abs(-27374)=27374
-assert sgn(r3asv)=-1
-assert len("")=0
-assert val("-65356",8) = -27374
-assert str$(-27374,8) = "-65356"
-assert abs(-59287)=59287
-assert sgn(o)=-1
-assert len(t$)=0
-assert val("-10000022211",3) = -59287
-assert str$(-59287,3) = "-10000022211"
-assert abs(-185256)=185256
-assert sgn(-185256)=-1
-assert len("XUVZEJ")=6
-assert val("-3545400",6) = -185256
-assert str$(-185256,6) = "-3545400"
-assert abs(-194798)=194798
-assert sgn(b)=-1
-assert len(r0rq$)=6
-assert val("-233203232",4) = -194798
-assert str$(-194798,4) = "-233203232"
-assert abs(123)=123
-assert sgn(m1l2j)=1
-assert len("")=0
-assert val("146",9) = 123
-assert str$(123,9) = "146"
-assert abs(-96271)=96271
-assert sgn(-96271)=-1
-assert len("XL OTC")=6
-assert val("-1D7D1",15) = -96271
-assert str$(-96271,15) = "-1d7d1"
-assert abs(-74108)=74108
-assert sgn(r0)=-1
-assert len(u2i2$(4))=5
-assert val("-426026",7) = -74108
-assert str$(-74108,7) = "-426026"
-assert abs(x)=182825
-assert sgn(-182825)=-1
-assert len(r34b$)=6
-assert val("-652A6",13) = -182825
-assert str$(-182825,13) = "-652a6"
-assert abs(181055)=181055
-assert sgn(a74ok)=1
-assert len("U URMIFAJ")=9
-assert val("181055",10) = 181055
-assert str$(181055,10) = "181055"
-assert abs(b75y)=68785
-assert sgn(b75y)=1
-assert len(z5jg$)=9
-assert val("100302301",4) = 68785
-assert str$(68785,4) = "100302301"
-assert abs(j4)=68
-assert sgn(68)=1
-assert len("MTGGTL")=6
-assert val("75",9) = 68
-assert str$(68,9) = "75"
-assert abs(-62344)=62344
-assert sgn(u7)=-1
-assert len("S")=1
-assert val("-18A12",14) = -62344
-assert str$(-62344,14) = "-18a12"
-assert abs(-91817)=91817
-assert sgn(a4)=-1
-assert len(n6hc$(1))=0
-assert val("-148848",9) = -91817
-assert str$(-91817,9) = "-148848"
-assert abs(-86492)=86492
-assert sgn(x4oq)=-1
-assert len("JP FZG  J")=9
-assert val("-304A3",13) = -86492
-assert str$(-86492,13) = "-304a3"
-assert o6m=-3276
-assert o3=101
-assert a96cf=-89
-assert x4oq=-86492
-assert b75y=68785
-assert d34t8=26127
-assert a74ok=181055
-assert r3asv=-27374
-assert w2oa=-37
-assert f2=168729
-assert g7x7=61
-assert u=-155158
-assert z00=16
-assert i6x7z=-176
-assert p8dk=58910
-assert f3iry=-189733
-assert j2ak=130137
-assert q41k=-119003
-assert d6bq=-164038
-assert z=-44326
-assert v3=-96271
-assert i2=-10
-assert p=-125
-assert b8=-61741
-assert s6=-103626
-assert c=22417
-assert s=93180
-assert o=-59287
-assert o2c2=-135724
-assert o49rp=96401
-assert w0z5=-95008
-assert q=-92447
-assert e8r=54339
-assert a4=-91817
-assert s5tj=-125507
-assert h=-116497
-assert j4=68
-assert m1qa3=165471
-assert d0=158
-assert m1l2j=123
-assert x=-182825
-assert d5e=48
-assert i=170378
-assert r0=-74108
-assert c37j=110
-assert g9i=78723
-assert m=-38667
-assert h6=-65991
-assert u7=-62344
-assert b3k6=-64285
-assert s1=-26315
-assert t2q=78
-assert o2=119753
-assert n2ao=61
-assert f6ga=-33367
-assert k=-122302
-assert d=-185256
-assert b=-194798
-assert b4s9=6144
-assert a52j9=105181
-assert e9v$="SUWKB UF"
-assert f6u$=""
-assert r$="AW N"
-assert a$="SYJELWPKGVZ"
-assert l0ibh$="O IRZH"
-assert p2yi2$="IFE AVAHW"
-assert j2mxn$="EOJW"
-assert g29$="P  HEVB D"
-assert r34b$="IFQ  A"
-assert z$="XL OTC"
-assert q6g$="UV"
-assert o1e$=""
-assert d17a$="SSAKFE"
-assert p1y9$=""
-assert h6$="WXZA ZQD K"
-assert k3vmo$="CKGFW"
-assert e8$="S"
-assert n9$="KVLOCQR"
-assert j9tnh$="VX S"
-assert a2$="DQDJY"
-assert u2iv$="JY  SXOP"
-assert r8p$="L YL"
-assert h7l$="XGVK"
-assert r0rq$="MTGGTL"
-assert z5jg$="MBH TD HA"
-assert y1hy8$="J"
-assert k15o0$="AZJUVOJSI"
-assert j$="TFS GX"
-assert x0$="OKYRR  N"
-assert p7thl$=""
-assert v5kqs$="AFK"
-assert g5fqt$="JP FZG  J"
-assert i$="U URMIFAJ"
-assert b99i$="AN  IEBFJ"
-assert e2w$="WWIF"
-assert b$="QX"
-assert x54z$=""
-assert l90$="HRBD"
-assert n8el3$="UHVWRKTTT"
-assert c7o$="Y  TJQA RH"
-assert b3lm0$="NWBSGLP"
-assert p4t$=""
-assert g$="N"
-assert f40w2$=""
-assert t$=""
-assert e$="CXCPE"
-assert f$="PJDS"
-assert x7gt$="ZMZSOA"
-assert r1zb$="VTLXP TABJ"
-assert y6jo$="KYU"
-assert r8i$="DZ E"
-assert p1$="PYPQ LQLVH"
-assert p3$="F  W"
-assert p0w$="JJENLCOC"
-assert x3$="QNGQ   J"
-assert h5$=""
-assert i4$=""
-assert r661h$="LXIUI"
-assert m$="VDOC O"
-assert u5a$="DF L"
-assert i96d(0)=199170:assert i96d(1)=-193432:assert i96d(2)=-43664:assert i96d(3)=88507:assert i96d(4)=-115887
-assert g0m0(0)=82706:assert g0m0(1)=-98926:assert g0m0(2)=87980
-assert d4(0)=-190:assert d4(1)=-68239:assert d4(2)=-64181:assert d4(3)=157903:assert d4(4)=-114116:assert d4(5)=93371
-assert r3nlt(0)=16:assert r3nlt(1)=-187912:assert r3nlt(2)=-39488:assert r3nlt(3)=-198510
-assert n7oze(0)=-152:assert n7oze(1)=142:assert n7oze(2)=101980:assert n7oze(3)=-60701:assert n7oze(4)=188880:assert n7oze(5)=149
-assert w56(0)=185787:assert w56(1)=-193798:assert w56(2)=114712:assert w56(3)=-170372
-assert a5r7(0)=187894:assert a5r7(1)=-185039:assert a5r7(2)=75732:assert a5r7(3)=-120:assert a5r7(4)=128855:assert a5r7(5)=47627:assert a5r7(6)=-72083
-assert e4(0)=30:assert e4(1)=125:assert e4(2)=75
-assert p62(0)=99153:assert p62(1)=-49342:assert p62(2)=-171605:assert p62(3)=-112017:assert p62(4)=-182940
-assert a3s5b(0)=113334:assert a3s5b(1)=16742:assert a3s5b(2)=111:assert a3s5b(3)=-64100:assert a3s5b(4)=-36168
-assert v9$(0)="J KI H":assert v9$(1)="U I":assert v9$(2)="EU":assert v9$(3)="TUMBX W"
-assert f4c3z$(0)="":assert f4c3z$(1)="YIK":assert f4c3z$(2)="HQG EZ":assert f4c3z$(3)="ZSWE":assert f4c3z$(4)="YVSD K":assert f4c3z$(5)="AXX":assert f4c3z$(6)="N PWVPDVTLS"
-assert o8pjq$(0)="C GXMUTFF":assert o8pjq$(1)="QR":assert o8pjq$(2)="RFA  Z QJ"
-assert r1z$(0)="QJTN  UV":assert r1z$(1)="AQPT":assert r1z$(2)="MYSCJ":assert r1z$(3)="HVGZF ZN Y":assert r1z$(4)="QV":assert r1z$(5)="AJJN":assert r1z$(6)="JRL Q"
-assert n6hc$(0)="HAURNMCAW":assert n6hc$(1)="":assert n6hc$(2)="KPKA S":assert n6hc$(3)="OJ"
-assert u8uy8$(0)="":assert u8uy8$(1)="MPWZHTE":assert u8uy8$(2)="HMJEQJZPK":assert u8uy8$(3)="AK":assert u8uy8$(4)="EUR HPZ":assert u8uy8$(5)="JJH LQXSFA":assert u8uy8$(6)="ODLTPGBF C"
-assert y0$(0)="":assert y0$(1)="DM W":assert y0$(2)="E TL":assert y0$(3)="SWWSEYGFY":assert y0$(4)="XUVZEJ":assert y0$(5)="UTMIZUX"
-assert u2i2$(0)="TE":assert u2i2$(1)="RN MBZ B":assert u2i2$(2)="VF VD R":assert u2i2$(3)="TEJ NQYM":assert u2i2$(4)="VNQ R"
-assert k2h$(0)="XAMCXV   U":assert k2h$(1)="SF V WL":assert k2h$(2)="Z   Q"
-assert h2x5$(0)="MMP":assert h2x5$(1)="M WJ":assert h2x5$(2)="GXC"
-assert asc("_") = 95
-assert chr$(95) = "_"
-assert upper$("l\3") = "L\3"
-assert lower$("l\3") = "l\3"
-assert asc("x") = 120
-assert chr$(120) = "x"
-assert upper$("D:NTa?4") = "D:NTA?4"
-assert lower$("D:NTa?4") = "d:nta?4"
-assert asc("u") = 117
-assert chr$(117) = "u"
-assert upper$("[=fg") = "[=FG"
-assert lower$("[=fg") = "[=fg"
-assert asc("_") = 95
-assert chr$(95) = "_"
-assert upper$("Ev<<") = "EV<<"
-assert lower$("Ev<<") = "ev<<"
-assert asc("o") = 111
-assert chr$(111) = "o"
-assert upper$("{BV2Je{") = "{BV2JE{"
-assert lower$("{BV2Je{") = "{bv2je{"
-assert asc("E") = 69
-assert chr$(69) = "E"
-assert upper$("=dRJW") = "=DRJW"
-assert lower$("=dRJW") = "=drjw"
-assert asc(":") = 58
-assert chr$(58) = ":"
-assert upper$("0Blw") = "0BLW"
-assert lower$("0Blw") = "0blw"
-assert asc("-") = 45
-assert chr$(45) = "-"
-assert upper$("_N22s3|;") = "_N22S3|;"
-assert lower$("_N22s3|;") = "_n22s3|;"
-assert asc("5") = 53
-assert chr$(53) = "5"
-assert upper$("xZ6rcX") = "XZ6RCX"
-assert lower$("xZ6rcX") = "xz6rcx"
-assert asc("5") = 53
-assert chr$(53) = "5"
-assert upper$("t3F{NN:") = "T3F{NN:"
-assert lower$("t3F{NN:") = "t3f{nn:"
-assert str$(32767*65536+65535,2) = "1111111111111111111111111111111"
-assert str$(32767*65536+65535,3) = "12112122212110202101"
-assert str$(32767*65536+65535,4) = "1333333333333333"
-assert str$(32767*65536+65535,5) = "13344223434042"
-assert str$(32767*65536+65535,6) = "553032005531"
-assert str$(32767*65536+65535,7) = "104134211161"
-assert str$(32767*65536+65535,8) = "17777777777"
-assert str$(32767*65536+65535,9) = "5478773671"
-assert str$(32767*65536+65535,10) = "2147483647"
-assert str$(32767*65536+65535,11) = "a02220281"
-assert str$(32767*65536+65535,12) = "4bb2308a7"
-assert str$(32767*65536+65535,13) = "282ba4aaa"
-assert str$(32767*65536+65535,14) = "1652ca931"
-assert str$(32767*65536+65535,15) = "c87e66b7"
-assert str$(32767*65536+65535,16) = "7fffffff"
+dim j8u(6)
+dim l8ge7(2)
+dim w(2)
+dim c83(3)
+dim z0(4)
+dim v5ij(3)
+dim p4219(3)
+dim h0(2)
+dim h33(5)
+dim b5s(3)
+dim p5ka$(3)
+dim j$(5)
+dim u6$(4)
+dim u6m$(3)
+dim n81xk$(5)
+dim f3$(5)
+dim u7u$(3)
+dim q0xe$(5)
+dim j57$(2)
+dim b5cc4$(3)
+e6=-49207
+t8=-149076
+s0c6j=-98
+a=-199690
+let w4dj7=142
+u7mb=49532
+f=-159856
+p51=-80873
+let t=-45270
+d83z=110657
+let l7=-139
+let y=152585
+r2=-51
+let n1gy=-159696
+u=-133594
+let z41=186
+let i6s3=13419
+let i=-77285
+let e31=-48828
+w9eyi=112
+s=-65044
+let j5na=-139791
+f1=58
+s6m=83772
+y0f6h=3435
+let z6=35329
+let k2n=118307
+let b86ic=-81
+n3px=93910
+let r9xjh=-127391
+o9dkw=32162
+u4=-19020
+let v52o=-8894
+k6=-37033
+let f2ogp=-113673
+let n106f=178824
+i2c=-123649
+h288=-56
+x4meb=16896
+i2=-119764
+m535=-16653
+m3=-57
+let z4yd=174442
+let y828k=0
+let r5=8190
+let n8a=104428
+x9=109454
+let k9n=-52
+q=57197
+let o91k=-110827
+o9znf=-37568
+p8g3f=-122109
+b6uw=-45436
+p5=-14902
+i55cm=96390
+o2jd=-49606
+let z4s3m=-119720
+let m4=180652
+let g6uj=8800
+let h7lct=96629
+let b6ob6$="Y Y XCAF"
+d$="WBNI"
+l3p$="AL"
+h$="DB"
+u5$="WVR YP"
+i7g$="DFVNCUMLU"
+l86$="UZ"
+let u$="TACKGLK GS"
+let c7cb$="GGNX"
+let p1s$="J"
+let t$="YRP FEF"
+let r073$="GA RM ULP"
+let n056$="GF"
+c$="X"
+i2$="R KBX"
+let k4hif$="P DLXV Z"
+r6$="YV"
+let l10$="EH VMW K"
+let b$="O Q GE F"
+w7kn$="QJL"
+j1vp9$="VIZPWPN"
+let o8dn3$="T  BHTL"
+z4$="LVKA CTD"
+let o$="TDVPYKZH"
+let r$="NN GBT"
+let q1z4n$="PI   UOLOS"
+let z17$="U HJK  BD"
+let x3i$="IP     BW"
+let x61gc$="DZT S"
+k2k$="GAZGO EZG"
+h0v$="IF"
+let o3$="UZ  VY E"
+let c1c$="VGBUEE"
+let e13$="XR"
+let i1uq7$="NUF"
+let y5$=""
+c9r$="VLV L"
+let q6gcv$="SO L C"
+h6ot$="AUQBVQX"
+d2e$="RXBHFS"
+p6$="IC"
+let q$="XCV KPNJ"
+g4$="RUL  RIZZX"
+x$="A"
+let n03f$="KSBJC NV"
+let o0$="UNID"
+g2$="G XRS"
+z3nna$="UZIEHMXG"
+i0$="DDGECZ"
+m5k$="H DXU"
+let v09$="JTX"
+let e9$="HIRWLROZ"
+let h038f$="O"
+i2p$="WLZCT"
+m2ms$="JPBPL ZU"
+let a9$="BSUKHY YW"
+let u4onv$="I Z"
+e5$="WO UNWF ZF"
+r5q5s$="V  JPGFGFPY"
+let z2$="QI HBPM"
+j8u(0)=-84284:j8u(1)=120134:j8u(2)=14636:j8u(3)=-69446:j8u(4)=-174898:j8u(5)=-185133:j8u(6)=-118
+l8ge7(0)=199:l8ge7(1)=-151705:l8ge7(2)=94
+w(0)=123:w(1)=-166:w(2)=-139
+c83(0)=-112870:c83(1)=-124239:c83(2)=-73328:c83(3)=-158866
+z0(0)=-46522:z0(1)=12084:z0(2)=24:z0(3)=-91321:z0(4)=-55407
+v5ij(0)=47:v5ij(1)=28:v5ij(2)=200:v5ij(3)=41601
+p4219(0)=147319:p4219(1)=83:p4219(2)=36:p4219(3)=-145317
+h0(0)=-165994:h0(1)=75:h0(2)=109735
+h33(0)=6:h33(1)=82669:h33(2)=-133483:h33(3)=61952:h33(4)=117942:h33(5)=146
+b5s(0)=21557:b5s(1)=98560:b5s(2)=174772:b5s(3)=-77114
+p5ka$(0)="HB XV":p5ka$(1)="B KL CL":p5ka$(2)="RP OMP  E":p5ka$(3)="WOR RX"
+j$(0)="MX CU":j$(1)="G SXEWFHZF":j$(2)="NO HRS":j$(3)="TZ  Z":j$(4)="P OH RHK":j$(5)="NJF B"
+u6$(0)="I ND":u6$(1)="L RTXVJFI":u6$(2)="V TSY":u6$(3)="B":u6$(4)="YWM"
+u6m$(0)="VLQD XU":u6m$(1)="O":u6m$(2)="JTL ST":u6m$(3)=""
+n81xk$(0)="AFMCZ ZKK":n81xk$(1)="YAWWEU MPZP":n81xk$(2)="":n81xk$(3)="R":n81xk$(4)="XFOBVIW":n81xk$(5)=""
+f3$(0)="TAU Q PQ":f3$(1)="FY":f3$(2)="EC HLAC":f3$(3)="ZRBPNHY":f3$(4)="ZN  BH QG":f3$(5)="ATZ"
+u7u$(0)="RJ":u7u$(1)="TFX":u7u$(2)="EYX":u7u$(3)="ZDYV"
+q0xe$(0)="LOOFW":q0xe$(1)="EFYTR B":q0xe$(2)="WT ON":q0xe$(3)="XX":q0xe$(4)="NG":q0xe$(5)="E  RZHZ"
+j57$(0)="QJP":j57$(1)="R RBEU":j57$(2)="Y"
+b5cc4$(0)="D":b5cc4$(1)="TLE":b5cc4$(2)="R E OZWC":b5cc4$(3)="XORK"
+assert e6=-49207
+assert t8=-149076
+assert s0c6j=-98
+assert a=-199690
+assert w4dj7=142
+assert u7mb=49532
+assert f=-159856
+assert p51=-80873
+assert t=-45270
+assert d83z=110657
+assert l7=-139
+assert y=152585
+assert r2=-51
+assert n1gy=-159696
+assert u=-133594
+assert z41=186
+assert i6s3=13419
+assert i=-77285
+assert e31=-48828
+assert w9eyi=112
+assert s=-65044
+assert j5na=-139791
+assert f1=58
+assert s6m=83772
+assert y0f6h=3435
+assert z6=35329
+assert k2n=118307
+assert b86ic=-81
+assert n3px=93910
+assert r9xjh=-127391
+assert o9dkw=32162
+assert u4=-19020
+assert v52o=-8894
+assert k6=-37033
+assert f2ogp=-113673
+assert n106f=178824
+assert i2c=-123649
+assert h288=-56
+assert x4meb=16896
+assert i2=-119764
+assert m535=-16653
+assert m3=-57
+assert z4yd=174442
+assert y828k=0
+assert r5=8190
+assert n8a=104428
+assert x9=109454
+assert k9n=-52
+assert q=57197
+assert o91k=-110827
+assert o9znf=-37568
+assert p8g3f=-122109
+assert b6uw=-45436
+assert p5=-14902
+assert i55cm=96390
+assert o2jd=-49606
+assert z4s3m=-119720
+assert m4=180652
+assert g6uj=8800
+assert h7lct=96629
+assert b6ob6$="Y Y XCAF"
+assert d$="WBNI"
+assert l3p$="AL"
+assert h$="DB"
+assert u5$="WVR YP"
+assert i7g$="DFVNCUMLU"
+assert l86$="UZ"
+assert u$="TACKGLK GS"
+assert c7cb$="GGNX"
+assert p1s$="J"
+assert t$="YRP FEF"
+assert r073$="GA RM ULP"
+assert n056$="GF"
+assert c$="X"
+assert i2$="R KBX"
+assert k4hif$="P DLXV Z"
+assert r6$="YV"
+assert l10$="EH VMW K"
+assert b$="O Q GE F"
+assert w7kn$="QJL"
+assert j1vp9$="VIZPWPN"
+assert o8dn3$="T  BHTL"
+assert z4$="LVKA CTD"
+assert o$="TDVPYKZH"
+assert r$="NN GBT"
+assert q1z4n$="PI   UOLOS"
+assert z17$="U HJK  BD"
+assert x3i$="IP     BW"
+assert x61gc$="DZT S"
+assert k2k$="GAZGO EZG"
+assert h0v$="IF"
+assert o3$="UZ  VY E"
+assert c1c$="VGBUEE"
+assert e13$="XR"
+assert i1uq7$="NUF"
+assert y5$=""
+assert c9r$="VLV L"
+assert q6gcv$="SO L C"
+assert h6ot$="AUQBVQX"
+assert d2e$="RXBHFS"
+assert p6$="IC"
+assert q$="XCV KPNJ"
+assert g4$="RUL  RIZZX"
+assert x$="A"
+assert n03f$="KSBJC NV"
+assert o0$="UNID"
+assert g2$="G XRS"
+assert z3nna$="UZIEHMXG"
+assert i0$="DDGECZ"
+assert m5k$="H DXU"
+assert v09$="JTX"
+assert e9$="HIRWLROZ"
+assert h038f$="O"
+assert i2p$="WLZCT"
+assert m2ms$="JPBPL ZU"
+assert a9$="BSUKHY YW"
+assert u4onv$="I Z"
+assert e5$="WO UNWF ZF"
+assert r5q5s$="V  JPGFGFPY"
+assert z2$="QI HBPM"
+assert j8u(0)=-84284:assert j8u(1)=120134:assert j8u(2)=14636:assert j8u(3)=-69446:assert j8u(4)=-174898:assert j8u(5)=-185133:assert j8u(6)=-118
+assert l8ge7(0)=199:assert l8ge7(1)=-151705:assert l8ge7(2)=94
+assert w(0)=123:assert w(1)=-166:assert w(2)=-139
+assert c83(0)=-112870:assert c83(1)=-124239:assert c83(2)=-73328:assert c83(3)=-158866
+assert z0(0)=-46522:assert z0(1)=12084:assert z0(2)=24:assert z0(3)=-91321:assert z0(4)=-55407
+assert v5ij(0)=47:assert v5ij(1)=28:assert v5ij(2)=200:assert v5ij(3)=41601
+assert p4219(0)=147319:assert p4219(1)=83:assert p4219(2)=36:assert p4219(3)=-145317
+assert h0(0)=-165994:assert h0(1)=75:assert h0(2)=109735
+assert h33(0)=6:assert h33(1)=82669:assert h33(2)=-133483:assert h33(3)=61952:assert h33(4)=117942:assert h33(5)=146
+assert b5s(0)=21557:assert b5s(1)=98560:assert b5s(2)=174772:assert b5s(3)=-77114
+assert p5ka$(0)="HB XV":assert p5ka$(1)="B KL CL":assert p5ka$(2)="RP OMP  E":assert p5ka$(3)="WOR RX"
+assert j$(0)="MX CU":assert j$(1)="G SXEWFHZF":assert j$(2)="NO HRS":assert j$(3)="TZ  Z":assert j$(4)="P OH RHK":assert j$(5)="NJF B"
+assert u6$(0)="I ND":assert u6$(1)="L RTXVJFI":assert u6$(2)="V TSY":assert u6$(3)="B":assert u6$(4)="YWM"
+assert u6m$(0)="VLQD XU":assert u6m$(1)="O":assert u6m$(2)="JTL ST":assert u6m$(3)=""
+assert n81xk$(0)="AFMCZ ZKK":assert n81xk$(1)="YAWWEU MPZP":assert n81xk$(2)="":assert n81xk$(3)="R":assert n81xk$(4)="XFOBVIW":assert n81xk$(5)=""
+assert f3$(0)="TAU Q PQ":assert f3$(1)="FY":assert f3$(2)="EC HLAC":assert f3$(3)="ZRBPNHY":assert f3$(4)="ZN  BH QG":assert f3$(5)="ATZ"
+assert u7u$(0)="RJ":assert u7u$(1)="TFX":assert u7u$(2)="EYX":assert u7u$(3)="ZDYV"
+assert q0xe$(0)="LOOFW":assert q0xe$(1)="EFYTR B":assert q0xe$(2)="WT ON":assert q0xe$(3)="XX":assert q0xe$(4)="NG":assert q0xe$(5)="E  RZHZ"
+assert j57$(0)="QJP":assert j57$(1)="R RBEU":assert j57$(2)="Y"
+assert b5cc4$(0)="D":assert b5cc4$(1)="TLE":assert b5cc4$(2)="R E OZWC":assert b5cc4$(3)="XORK"

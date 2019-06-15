@@ -152,7 +152,6 @@ _FMINoThird:
 		and 	#$00FF
 		cmp 	DTemp2 						; check length of string vs offset position 				
 		bcc 	FNStringEmpty 				; if length <= offset position then return ""
-		beq 	FNStringEmpty 	
 		;
 		sec 								; calculate number of characters left after
 		sbc 	DTemp2 						; offset
