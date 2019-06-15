@@ -58,6 +58,7 @@ StringWriteCharacter:
 		inc 	a
 		sta 	(DStartTempString)
 		rep 	#$20						; 16 bit mode
+		inc 	DCurrentTempString 			; increment write pointer
 		rts	
 
 ; *******************************************************************************************

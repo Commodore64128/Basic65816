@@ -1,7 +1,7 @@
 Main
 ----
-- LEFT$ RIGHT$ MID$
-- LIST. Detokenising. Spacing out and tabs in.
+- MID$
+- LIST. Detokenising. Spacing out and tabs in. Breaking.
 - CALL <address> (params A,X,Y,C ?)
 - Input code. Tokenising.
 - Typing commands in

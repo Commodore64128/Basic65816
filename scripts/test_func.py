@@ -45,12 +45,18 @@ if __name__ == "__main__":
 		conv = toStr(n,base)
 		bs.append("assert val(\"{0}\",{2}) = {1}".format(conv,n,base))
 		bs.append("assert str$({0},{2}) = \"{1}\"".format(n,conv.lower(),base))
+	bs.append(eb.checkCode())
+	#
+	for i in range(0,10):
 		n = random.randint(32,127)
 		ch = chr(n)
 		if ch != '"':
 			bs.append("assert asc(\"{0}\") = {1}".format(ch,n))
-			bs.append("assert chr$({1}) = \"{0}\"".format(ch,n))
-	bs.append(eb.checkCode())
+			bs.append("assert chr$({1}) = \"{0}\"".format(ch,n))	
+			#
+		s = "".join([chr(random.randint(48,125)) for i in range(0,random.randint(3,8))])
+		bs.append("assert upper$(\"{0}\") = \"{1}\"".format(s,s.upper()))
+		bs.append("assert lower$(\"{0}\") = \"{1}\"".format(s,s.lower()))
 	#
 	for i in range(2,17):
 		bs.append("assert str$(32767*65536+65535,{1}) = \"{0}\"".format(toStr(0x7FFFFFFF,i).lower(),i))

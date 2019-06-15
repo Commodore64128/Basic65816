@@ -35,6 +35,7 @@ class TokenSource(object):
 	spc(										## space formatting
 	peek(	deek( 	leek(						## peek byte/word/long
 	lower$( upper$( 							## recasing.
+	left$(	mid$(	right$(						## string subdivision.
 					
 [syntax]
 	, 	;	:	(	)	'	
