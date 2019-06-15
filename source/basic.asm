@@ -32,6 +32,7 @@ StartOfBasicCode:
 		.include "unary/caseconv.asm"
 		
 		.include "commands/let.asm" 				; assignment
+		.include "commands/list.asm"				; list / detokenising code.
 		.include "commands/print.asm"				; print.
 		.include "commands/if.asm"					; conditional execution.
 		.include "commands/for.asm"					; loops

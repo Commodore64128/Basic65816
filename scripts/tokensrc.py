@@ -39,6 +39,8 @@ class TokenSource(object):
 					
 [syntax]
 	, 	;	:	(	)	'	
+
+[keyword-syntax]	
 	to  step 									## syntax words for for/next
 
 [keyword]	
@@ -56,6 +58,7 @@ class TokenSource(object):
 	goto gosub return on 						## transfer of control goto/gosub stuff.
 	else 										## else for if .. else .. endif
 	poke doke loke 								## byte/word/long write.
+	list 										## Program list.
 
 [keyword+]
 	repeat										## repeat loop test at bottom

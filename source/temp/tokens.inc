@@ -42,8 +42,8 @@ CommandJumpTable:
 	.word IllegalToken             & $FFFF ; token $3225 "("
 	.word IllegalToken             & $FFFF ; token $3226 ")"
 	.word IllegalToken             & $FFFF ; token $3227 "'"
-	.word IllegalToken             & $FFFF ; token $3228 "to"
-	.word IllegalToken             & $FFFF ; token $3229 "step"
+	.word IllegalToken             & $FFFF ; token $3828 "to"
+	.word IllegalToken             & $FFFF ; token $3829 "step"
 	.word Function_REM             & $FFFF ; token $3e2a "rem"
 	.word Function_Let             & $FFFF ; token $3e2b "let"
 	.word Function_ASSERT          & $FFFF ; token $3e2c "assert"
@@ -63,15 +63,16 @@ CommandJumpTable:
 	.word Command_POKE             & $FFFF ; token $3e3a "poke"
 	.word Command_DOKE             & $FFFF ; token $3e3b "doke"
 	.word Command_LOKE             & $FFFF ; token $3e3c "loke"
-	.word Function_REPEAT          & $FFFF ; token $3c3d "repeat"
-	.word Function_WHILE           & $FFFF ; token $3c3e "while"
-	.word Function_IF              & $FFFF ; token $3c3f "if"
-	.word Command_FOR              & $FFFF ; token $3c40 "for"
-	.word Function_WEND            & $FFFF ; token $3a41 "wend"
-	.word Function_UNTIL           & $FFFF ; token $3a42 "until"
-	.word IllegalToken             & $FFFF ; token $3a43 "then"
-	.word Handler_ENDIF            & $FFFF ; token $3a44 "endif"
-	.word Command_NEXT             & $FFFF ; token $3a45 "next"
+	.word Command_List             & $FFFF ; token $3e3d "list"
+	.word Function_REPEAT          & $FFFF ; token $3c3e "repeat"
+	.word Function_WHILE           & $FFFF ; token $3c3f "while"
+	.word Function_IF              & $FFFF ; token $3c40 "if"
+	.word Command_FOR              & $FFFF ; token $3c41 "for"
+	.word Function_WEND            & $FFFF ; token $3a42 "wend"
+	.word Function_UNTIL           & $FFFF ; token $3a43 "until"
+	.word IllegalToken             & $FFFF ; token $3a44 "then"
+	.word Handler_ENDIF            & $FFFF ; token $3a45 "endif"
+	.word Command_NEXT             & $FFFF ; token $3a46 "next"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -116,8 +117,8 @@ TokenText:
 	 .text $92,"("        ; token $3225
 	 .text $92,")"        ; token $3226
 	 .text $92,"'"        ; token $3227
-	 .text $93,"to"       ; token $3228
-	 .text $95,"step"     ; token $3229
+	 .text $c3,"to"       ; token $3828
+	 .text $c5,"step"     ; token $3829
 	 .text $f4,"rem"      ; token $3e2a
 	 .text $f4,"let"      ; token $3e2b
 	 .text $f7,"assert"   ; token $3e2c
@@ -137,15 +138,16 @@ TokenText:
 	 .text $f5,"poke"     ; token $3e3a
 	 .text $f5,"doke"     ; token $3e3b
 	 .text $f5,"loke"     ; token $3e3c
-	 .text $e7,"repeat"   ; token $3c3d
-	 .text $e6,"while"    ; token $3c3e
-	 .text $e3,"if"       ; token $3c3f
-	 .text $e4,"for"      ; token $3c40
-	 .text $d5,"wend"     ; token $3a41
-	 .text $d6,"until"    ; token $3a42
-	 .text $d5,"then"     ; token $3a43
-	 .text $d6,"endif"    ; token $3a44
-	 .text $d5,"next"     ; token $3a45
+	 .text $f5,"list"     ; token $3e3d
+	 .text $e7,"repeat"   ; token $3c3e
+	 .text $e6,"while"    ; token $3c3f
+	 .text $e3,"if"       ; token $3c40
+	 .text $e4,"for"      ; token $3c41
+	 .text $d5,"wend"     ; token $3a42
+	 .text $d6,"until"    ; token $3a43
+	 .text $d5,"then"     ; token $3a44
+	 .text $d6,"endif"    ; token $3a45
+	 .text $d5,"next"     ; token $3a46
 	.byte $00
 
 ;
@@ -190,8 +192,8 @@ colonTokenID                     = $3224
 lparenTokenID                    = $3225
 rparenTokenID                    = $3226
 squoteTokenID                    = $3227
-toTokenID                        = $3228
-stepTokenID                      = $3229
+toTokenID                        = $3828
+stepTokenID                      = $3829
 remTokenID                       = $3e2a
 letTokenID                       = $3e2b
 assertTokenID                    = $3e2c
@@ -211,12 +213,13 @@ elseTokenID                      = $3e39
 pokeTokenID                      = $3e3a
 dokeTokenID                      = $3e3b
 lokeTokenID                      = $3e3c
-repeatTokenID                    = $3c3d
-whileTokenID                     = $3c3e
-ifTokenID                        = $3c3f
-forTokenID                       = $3c40
-wendTokenID                      = $3a41
-untilTokenID                     = $3a42
-thenTokenID                      = $3a43
-endifTokenID                     = $3a44
-nextTokenID                      = $3a45
+listTokenID                      = $3e3d
+repeatTokenID                    = $3c3e
+whileTokenID                     = $3c3f
+ifTokenID                        = $3c40
+forTokenID                       = $3c41
+wendTokenID                      = $3a42
+untilTokenID                     = $3a43
+thenTokenID                      = $3a44
+endifTokenID                     = $3a45
+nextTokenID                      = $3a46

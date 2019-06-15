@@ -1,8 +1,7 @@
 Main
 ----
-- Add to test function.
 - INSTR
-- LIST. Detokenising. Spacing out and tabs in. Breaking.
+- LIST - ranges, breaking, formatting spaces for structures.
 - CALL <address> (params A,X,Y,C ?)
 - Input code. Tokenising.
 - Typing commands in

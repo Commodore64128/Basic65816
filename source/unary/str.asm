@@ -39,12 +39,15 @@ Function_Str: 	;; str$(
 ; *******************************************************************************************
 
 ConvertToString:
+		pha
+		lda 	#34 						; enough space for Base 2.
+		jsr 	StringTempAllocate 			; allocate space for return string.
+		pla
+ConvertToStringAlreadyAllocated:		
 		phx 								; save X (base)
 		sta 	DTemp3 						; save number in DTemp3
 		sty 	DTemp3+2
 		stx 	DSignCount 					; save base in DSignCount.
-		lda 	#34 						; enough space for Base 2.
-		jsr 	StringTempAllocate 			; allocate space for return string.
 
 		lda 	DTemp3+2 					; is number -ve.
 		bpl 	_CTSNotNegative

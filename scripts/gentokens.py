@@ -23,7 +23,7 @@ class Token(object):
 		self.id = id + (type << 9) + 0x2000
 		self.vector = "IllegalToken"
 		assert self.name != "" and len(self.name) < 15,"Name "+self.name
-		assert (type >= 0 and type <= 9) or (type >= 13 and type <= 15)
+		assert (type >= 0 and type <= 9) or (type >= 12 and type <= 15)
 	def setRoutine(self,routine):
 		self.vector = routine
 
@@ -56,6 +56,8 @@ class TokenList(object):
 					currentGroup = 8
 				elif group == "syntax":
 					currentGroup = 9
+				elif group == "keyword-syntax":
+					currentGroup = 12
 				elif group == "keyword-":
 					currentGroup = 13
 				elif group == "keyword+":
