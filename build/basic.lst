@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.53.1515? listing file
 ; tass64 --m65816 -f -q -o basic.bin -L basic.lst ../source/start.asm
-; Sat Jun 15 10:22:36 2019
+; Sat Jun 15 11:51:39 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -17,7 +17,7 @@
 .000c	a9 02 00	lda #$0002			lda 	#CodeSpace >> 16 					; put the page number in A ($2)
 .000f	a2 00 40	ldx #$4000			ldx 	#CodeSpace & $FFFF 					; and the base address in X ($4000)
 .0012	a0 00 c0	ldy #$c000			ldy 	#CodeEndSpace & $FFFF				; and the end address in Y ($C000)
-.0015	5c f7 15 01	jmp $0115f7			jmp 	SwitchBasicInstance
+.0015	5c 56 16 01	jmp $011656			jmp 	SwitchBasicInstance
 
 ;******  Processing file: ../source/basic.asm
 
@@ -82,35 +82,35 @@
 >01004e	7e 04					.word IllegalToken             & $FFFF ; token $3227 "'"
 >010050	7e 04					.word IllegalToken             & $FFFF ; token $3828 "to"
 >010052	7e 04					.word IllegalToken             & $FFFF ; token $3829 "step"
->010054	e5 15					.word Function_REM             & $FFFF ; token $3e2a "rem"
+>010054	44 16					.word Function_REM             & $FFFF ; token $3e2a "rem"
 >010056	51 0d					.word Function_Let             & $FFFF ; token $3e2b "let"
->010058	c6 15					.word Function_ASSERT          & $FFFF ; token $3e2c "assert"
->01005a	c3 13					.word Function_END             & $FFFF ; token $3e2d "end"
->01005c	c5 13					.word Function_RUN             & $FFFF ; token $3e2e "run"
->01005e	22 14					.word Function_STOP            & $FFFF ; token $3e2f "stop"
->010060	1e 14					.word Function_CLEAR           & $FFFF ; token $3e30 "clear"
->010062	7d 14					.word Function_Dim             & $FFFF ; token $3e31 "dim"
->010064	f1 14					.word Function_COLLECT         & $FFFF ; token $3e32 "collect"
->010066	e1 15					.word Function_CLS             & $FFFF ; token $3e33 "cls"
->010068	4f 0f					.word Function_PRINT           & $FFFF ; token $3e34 "print"
->01006a	51 12					.word Function_GOTO            & $FFFF ; token $3e35 "goto"
->01006c	b0 12					.word Function_GOSUB           & $FFFF ; token $3e36 "gosub"
->01006e	cc 12					.word Function_RETURN          & $FFFF ; token $3e37 "return"
->010070	0e 12					.word Function_ONGOTO          & $FFFF ; token $3e38 "on"
->010072	02 10					.word Handler_ELSE             & $FFFF ; token $3e39 "else"
->010074	80 15					.word Command_POKE             & $FFFF ; token $3e3a "poke"
->010076	98 15					.word Command_DOKE             & $FFFF ; token $3e3b "doke"
->010078	ac 15					.word Command_LOKE             & $FFFF ; token $3e3c "loke"
+>010058	25 16					.word Function_ASSERT          & $FFFF ; token $3e2c "assert"
+>01005a	22 14					.word Function_END             & $FFFF ; token $3e2d "end"
+>01005c	24 14					.word Function_RUN             & $FFFF ; token $3e2e "run"
+>01005e	81 14					.word Function_STOP            & $FFFF ; token $3e2f "stop"
+>010060	7d 14					.word Function_CLEAR           & $FFFF ; token $3e30 "clear"
+>010062	dc 14					.word Function_Dim             & $FFFF ; token $3e31 "dim"
+>010064	50 15					.word Function_COLLECT         & $FFFF ; token $3e32 "collect"
+>010066	40 16					.word Function_CLS             & $FFFF ; token $3e33 "cls"
+>010068	ae 0f					.word Function_PRINT           & $FFFF ; token $3e34 "print"
+>01006a	b0 12					.word Function_GOTO            & $FFFF ; token $3e35 "goto"
+>01006c	0f 13					.word Function_GOSUB           & $FFFF ; token $3e36 "gosub"
+>01006e	2b 13					.word Function_RETURN          & $FFFF ; token $3e37 "return"
+>010070	6d 12					.word Function_ONGOTO          & $FFFF ; token $3e38 "on"
+>010072	61 10					.word Handler_ELSE             & $FFFF ; token $3e39 "else"
+>010074	df 15					.word Command_POKE             & $FFFF ; token $3e3a "poke"
+>010076	f7 15					.word Command_DOKE             & $FFFF ; token $3e3b "doke"
+>010078	0b 16					.word Command_LOKE             & $FFFF ; token $3e3c "loke"
 >01007a	cc 0d					.word Command_List             & $FFFF ; token $3e3d "list"
->01007c	fe 12					.word Function_REPEAT          & $FFFF ; token $3c3e "repeat"
->01007e	5c 13					.word Function_WHILE           & $FFFF ; token $3c3f "while"
->010080	9b 0f					.word Function_IF              & $FFFF ; token $3c40 "if"
->010082	d7 10					.word Command_FOR              & $FFFF ; token $3c41 "for"
->010084	93 13					.word Function_WEND            & $FFFF ; token $3a42 "wend"
->010086	15 13					.word Function_UNTIL           & $FFFF ; token $3a43 "until"
+>01007c	5d 13					.word Function_REPEAT          & $FFFF ; token $3c3e "repeat"
+>01007e	bb 13					.word Function_WHILE           & $FFFF ; token $3c3f "while"
+>010080	fa 0f					.word Function_IF              & $FFFF ; token $3c40 "if"
+>010082	36 11					.word Command_FOR              & $FFFF ; token $3c41 "for"
+>010084	f2 13					.word Function_WEND            & $FFFF ; token $3a42 "wend"
+>010086	74 13					.word Function_UNTIL           & $FFFF ; token $3a43 "until"
 >010088	7e 04					.word IllegalToken             & $FFFF ; token $3a44 "then"
->01008a	30 10					.word Handler_ENDIF            & $FFFF ; token $3a45 "endif"
->01008c	52 11					.word Command_NEXT             & $FFFF ; token $3a46 "next"
+>01008a	8f 10					.word Handler_ENDIF            & $FFFF ; token $3a45 "endif"
+>01008c	b1 11					.word Command_NEXT             & $FFFF ; token $3a46 "next"
 .01008e					TokenText:
 >01008e	02 26					 .text $02,"&"        ; token $2001
 >010090	02 7c					 .text $02,"|"        ; token $2002
@@ -278,6 +278,9 @@
 =36					DTemp3 = DPBaseAddress + 36 				; *** LONG *** Temporary Value.
 =40					DCursor = DPBaseAddress + 40 				; cursor (for external routines, not used by BASIC)
 =42					DStack = DPBaseAddress + 42 				; BASIC stack pointer.
+=44					DIndent = DPBaseAddress + 44 				; indent for LIST
+=46					DIndent2 = DPBaseAddress + 46 				; previous indent.
+=48					DListBuffer = DPBaseAddress + 48 			; list buffer address.
 =$80					BASStack = $80 								; start of Basic stack.
 =$80					BASStackSize = $80 							; maximum size of BASIC stack.
 =$100					EXSBase = $100 								; Initial value of X at lowest stack level.
@@ -657,7 +660,7 @@
 .010470	a8		tay				tay
 .010471	20 0f 05	jsr $01050f			jsr 	PrintBASICString
 .010474					_EHEndMessage:
-.010474	20 49 16	jsr $011649			jsr 	HWNewLine
+.010474	20 a8 16	jsr $0116a8			jsr 	HWNewLine
 .010477	80 fe		bra $010477	_EH1:	bra 	_EH1
 >010479	20 61 74 20 00			_EHAt:	.text 	" at ",$00
 .01047e					IllegalToken:
@@ -716,7 +719,7 @@
 .0104fd	bf 00 00 01	lda $010000,x			lda 	StartOfBasicCode,x 			; print characters until $00 found.
 .010501	29 ff 00	and #$00ff			and 	#$00FF
 .010504	f0 06		beq $01050c			beq 	_PRMExit
-.010506	20 27 16	jsr $011627			jsr 	HWPrintChar
+.010506	20 86 16	jsr $011686			jsr 	HWPrintChar
 .010509	e8		inx				inx
 .01050a	80 f1		bra $0104fd			bra 	_PRMLoop
 .01050c					_PRMExit:
@@ -734,7 +737,7 @@
 .01051b					_PBSLoop:
 .01051b	c8		iny				iny
 .01051c	b9 00 00	lda $0000,y			lda 	$0000,y
-.01051f	20 27 16	jsr $011627			jsr 	HWPrintChar
+.01051f	20 86 16	jsr $011686			jsr 	HWPrintChar
 .010522	ca		dex				dex
 .010523	d0 f6		bne $01051b			bne 	_PBSLoop
 .010525					_PBSExit:
@@ -1958,1116 +1961,1171 @@
 .010dcc					Command_List:
 .010dcc	a9 ff 00	lda #$00ff		lda 	#255 							; create a buffer to use.
 .010dcf	20 29 05	jsr $010529		jsr 	StringTempAllocate
-.010dd2	48		pha			pha 									; save buffer on stack.
-.010dd3	a9 00 01	lda #$0100		lda 	#Block_ProgramStart 			; work out program start.
-.010dd6	18		clc			clc
-.010dd7	65 02		adc $02			adc 	DBaseAddress
-.010dd9	a8		tay			tay 									; put in Y
-.010dda	68		pla			pla 									; A is buffer
-.010ddb					_CLINextLine:
-.010ddb	b9 00 00	lda $0000,y		lda 	$0000,y 						; check end of program
-.010dde	f0 16		beq $010df6		beq 	_CLIExit
-.010de0	20 f7 0d	jsr $010df7		jsr 	Detokenise 						; detokenise it
-.010de3	48		pha			pha 									; save A (buffer) Y (program)
-.010de4	5a		phy			phy
-.010de5	a8		tay			tay 									; print buffer out
-.010de6	20 0f 05	jsr $01050f		jsr 	PrintBasicString
-.010de9	20 49 16	jsr $011649		jsr 	HWNewLine
-.010dec	7a		ply			ply 									; get buffer.
-.010ded	98		tya			tya 									; follow link
-.010dee	18		clc			clc
-.010def	79 00 00	adc $0000,y		adc 	$0000,y
-.010df2	a8		tay			tay
-.010df3	68		pla			pla 									; restore buffer
-.010df4	80 e5		bra $010ddb		bra 	_CLINextLine
-.010df6					_CLIExit:
-.010df6	60		rts			rts
-.010df7					Detokenise:
-.010df7	48		pha			pha
-.010df8	da		phx			phx
-.010df9	5a		phy			phy
-.010dfa	85 18		sta $18			sta 	DStartTempString 				; set the temp function pointers to this buffer
-.010dfc	1a		inc a			inc 	a
-.010dfd	85 1a		sta $1a			sta 	DCurrentTempString
-.010dff	64 1c		stz $1c			stz		DConstantShift
-.010e01	a9 00 00	lda #$0000		lda 	#$0000 							; write zero, clearing the string size.
-.010e04	92 18		sta ($18)		sta 	(DStartTempString)
-.010e06	5a		phy			phy 									; save Y
-.010e07	b9 02 00	lda $0002,y		lda 	$0002,y 						; read the line number.
-.010e0a	a0 00 00	ldy #$0000		ldy 	#$0000 							; the high byte is 0
-.010e0d	a2 0a 00	ldx #$000a		ldx 	#10 							; in BASE 10.
-.010e10	20 30 0c	jsr $010c30		jsr 	ConvertToStringAlreadyAllocated	; convert to string in situ.
-.010e13					_DTKPadLineNo:
-.010e13	a9 20 00	lda #$0020		lda 	#32 							; pad out to 6 characters.
-.010e16	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010e19	b2 18		lda ($18)		lda 	(DStartTempString)
-.010e1b	29 ff 00	and #$00ff		and 	#$00FF
-.010e1e	c9 06 00	cmp #$0006		cmp 	#6
-.010e21	d0 f0		bne $010e13		bne 	_DTKPadLineNo
-.010e23	68		pla			pla 									; get pointer
-.010e24	18		clc			clc 									; point to start of line
-.010e25	69 04 00	adc #$0004		adc 	#4
-.010e28	a8		tay			tay 									; put back in Y.
-.010e29					_DTKMainLoop:
-.010e29	b9 00 00	lda $0000,y		lda 	$0000,y 						; look at first token.
-.010e2c	d0 04		bne $010e32		bne 	_DTKNotZero 					; if zero, return.
-.010e2e	7a		ply			ply
-.010e2f	fa		plx			plx
-.010e30	68		pla			pla
-.010e31	60		rts			rts
-.010e32					_DTKNotZero:
-.010e32	c9 00 01	cmp #$0100		cmp 	#$0100 							; is it a quoted string $0000-$00FF
-.010e35	b0 1c		bcs $010e53		bcs 	_DTKNotString
-.010e37	5a		phy			phy										; save token address on stack.
-.010e38	c8		iny			iny 									; skip first token
-.010e39	c8		iny			iny
-.010e3a	a9 22 00	lda #$0022		lda 	#34 							; write out opening quote
-.010e3d	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010e40	98		tya			tya 									; copy the string out.
-.010e41	20 63 05	jsr $010563		jsr 	StringCreateCopy
-.010e44	a9 22 00	lda #$0022		lda 	#34 							; write out closing quote
-.010e47	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010e4a	68		pla			pla 									; get token, which is its own offset
-.010e4b	a8		tay			tay
-.010e4c	18		clc			clc
-.010e4d	79 00 00	adc $0000,y		adc 	$0000,y
-.010e50	a8		tay			tay
-.010e51	80 d6		bra $010e29		bra 	_DTKMainLoop
-.010e53					_DTKNotString:
-.010e53	c9 00 20	cmp #$2000		cmp 	#$2000							; if $1000-$1FFF then constant shift
-.010e56	b0 09		bcs $010e61		bcs 	_DTKNotShift
-.010e58	29 ff 0f	and #$0fff		and 	#$0FFF 							; store in shift
-.010e5b	85 1c		sta $1c			sta 	DConstantShift
-.010e5d	c8		iny			iny 									; skip token.
-.010e5e	c8		iny			iny
-.010e5f	80 c8		bra $010e29		bra 	_DTKMainLoop
-.010e61					_DTKNotShift:
-.010e61	c9 00 40	cmp #$4000		cmp 	#$4000 							; if $2000-$3FFF it's a token.
-.010e64	b0 07		bcs $010e6d		bcs 	_DTKNotKeyword
-.010e66	c8		iny			iny 									; skip over token
-.010e67	c8		iny			iny
-.010e68	20 e7 0e	jsr $010ee7		jsr 	_DTKDecodeKeyword 				; decode it.
-.010e6b	80 bc		bra $010e29		bra 	_DTKMainLoop
-.010e6d					_DTKNotKeyword:
-.010e6d	c9 00 c0	cmp #$c000		cmp 	#$C000							; if $4000-$BFFF it's a (possibly shifted) constant.
-.010e70	b0 18		bcs $010e8a		bcs 	_DTKIdentifier 					; if $C000-$CFFF it's an identifier.
-.010e72	5a		phy			phy 									; save pointer
-.010e73	38		sec			sec  									; shift it in the range 0-32767
-.010e74	e9 00 40	sbc #$4000		sbc 	#$4000
-.010e77	0a		asl a			asl 	a 								; shift it left, losing bit 15
-.010e78	46 1c		lsr $1c			lsr 	DConstantShift 					; shift constant right into carry.
-.010e7a	6a		ror a			ror 	a 								; rotate that into the constant value
-.010e7b	a4 1c		ldy $1c			ldy 	DConstantShift 					; YA number
-.010e7d	a2 0a 00	ldx #$000a		ldx 	#10 							; output base.
-.010e80	20 30 0c	jsr $010c30		jsr 	ConvertToStringAlreadyAllocated	; convert to string in situ.
-.010e83	64 1c		stz $1c			stz 	DConstantShift
-.010e85	7a		ply			ply 									; restore pointer
-.010e86	c8		iny			iny 									; skip token.
-.010e87	c8		iny			iny
-.010e88	80 9f		bra $010e29		bra 	_DTKMainLoop
-.010e8a					_DTKIdentifier:
-.010e8a	48		pha			pha 									; save token for typing at end
-.010e8b					_DTKILoop:
-.010e8b	b9 00 00	lda $0000,y		lda 	$0000,y 						; get token
-.010e8e	20 b7 0e	jsr $010eb7		jsr 	_DTKIDecodeToken 				; decode it.
-.010e91	b9 00 00	lda $0000,y		lda 	$0000,y 						; get the token again
-.010e94	c8		iny			iny 									; skip it
-.010e95	c8		iny			iny
-.010e96	29 00 08	and #$0800		and 	#IDContMask 					; continuation ?
-.010e99	d0 f0		bne $010e8b		bne 	_DTKILoop
-.010e9b	68		pla			pla 									; add $( as required.
-.010e9c	48		pha			pha 									; comes from the first token.
-.010e9d	29 00 20	and #$2000		and 	#IDTypeMask
-.010ea0	f0 06		beq $010ea8		beq 	_DTKINotString
-.010ea2	a9 24 00	lda #$0024		lda 	#"$"
-.010ea5	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010ea8					_DTKINotString:
-.010ea8	68		pla			pla
-.010ea9	29 00 10	and #$1000		and 	#IDArrayMask
-.010eac	f0 06		beq $010eb4		beq 	_DTKINotArray
-.010eae	a9 28 00	lda #$0028		lda 	#"("
-.010eb1	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010eb4					_DTKINotArray:
-.010eb4	82 72 ff	brl $010e29		brl 	_DTKMainLoop
-.010eb7					_DTKIDecodeToken:
-.010eb7	5a		phy			phy
-.010eb8	29 ff 07	and #$07ff		and		#$07FF 							; mask off the identifier bit.
-.010ebb	a0 ff ff	ldy #$ffff		ldy 	#-1 							; first, divide by 45 getting remainder.
-.010ebe					_DTKIDivide:
-.010ebe	38		sec			sec
-.010ebf	e9 2d 00	sbc #$002d		sbc 	#45
-.010ec2	c8		iny			iny
-.010ec3	b0 f9		bcs $010ebe		bcs 	_DTKIDivide
-.010ec5	69 2d 00	adc #$002d		adc 	#45
-.010ec8	20 d1 0e	jsr $010ed1		jsr 	_DTKIOutA 						; output low.
-.010ecb	98		tya			tya
-.010ecc	20 d1 0e	jsr $010ed1		jsr 	_DTKIOutA 						; output high
-.010ecf	7a		ply			ply
-.010ed0	60		rts			rts
-.010ed1					_DTKIOutA:
-.010ed1	09 00 00	ora #$0000		ora 	#$0000 							; exit if 0
-.010ed4	f0 10		beq $010ee6		beq 	_DTKIOutExit
-.010ed6	c9 1b 00	cmp #$001b		cmp 	#27 							; skip if A-Z
-.010ed9	90 04		bcc $010edf		bcc 	_DTKIOutAlpha
-.010edb	38		sec			sec  									; adjust for 0-9
-.010edc	e9 4b 00	sbc #$004b		sbc 	#$4B
-.010edf					_DTKIOutAlpha:
-.010edf	18		clc			clc										; adjust for A-Z
-.010ee0	69 60 00	adc #$0060		adc 	#96
-.010ee3	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010ee6					_DTKIOutExit:
+.010dd2	85 30		sta $30			sta 	DListBuffer						; save buffer.
+.010dd4	64 2c		stz $2c			stz 	DIndent 						; reset the indents
+.010dd6	64 2e		stz $2e			stz 	DIndent2
+.010dd8	a9 00 01	lda #$0100		lda 	#Block_ProgramStart 			; work out program start.
+.010ddb	18		clc			clc
+.010ddc	65 02		adc $02			adc 	DBaseAddress
+.010dde	a8		tay			tay 									; put in Y
+.010ddf					_CLINextLine:
+.010ddf	b9 00 00	lda $0000,y		lda 	$0000,y 						; check end of program
+.010de2	f0 19		beq $010dfd		beq 	_CLIExit
+.010de4	20 65 0f	jsr $010f65		jsr 	ScanIndent  					; scan for formatting.
+.010de7	a5 30		lda $30			lda 	DListBuffer
+.010de9	20 00 0e	jsr $010e00		jsr 	Detokenise 						; detokenise it
+.010dec	5a		phy			phy
+.010ded	a8		tay			tay 									; print buffer out
+.010dee	20 0f 05	jsr $01050f		jsr 	PrintBasicString
+.010df1	20 a8 16	jsr $0116a8		jsr 	HWNewLine
+.010df4	7a		ply			ply 									; get address
+.010df5	98		tya			tya 									; follow link
+.010df6	18		clc			clc
+.010df7	79 00 00	adc $0000,y		adc 	$0000,y
+.010dfa	a8		tay			tay
+.010dfb	80 e2		bra $010ddf		bra 	_CLINextLine
+.010dfd					_CLIExit:
+.010dfd	64 2c		stz $2c			stz 	DIndent 						; reset the indent
+.010dff	60		rts			rts
+.010e00					Detokenise:
+.010e00	48		pha			pha
+.010e01	da		phx			phx
+.010e02	5a		phy			phy
+.010e03	85 18		sta $18			sta 	DStartTempString 				; set the temp function pointers to this buffer
+.010e05	1a		inc a			inc 	a
+.010e06	85 1a		sta $1a			sta 	DCurrentTempString
+.010e08	64 1c		stz $1c			stz		DConstantShift
+.010e0a	a9 00 00	lda #$0000		lda 	#$0000 							; write zero, clearing the string size.
+.010e0d	92 18		sta ($18)		sta 	(DStartTempString)
+.010e0f	5a		phy			phy 									; save Y
+.010e10	b9 02 00	lda $0002,y		lda 	$0002,y 						; read the line number.
+.010e13	a0 00 00	ldy #$0000		ldy 	#$0000 							; the high byte is 0
+.010e16	a2 0a 00	ldx #$000a		ldx 	#10 							; in BASE 10.
+.010e19	20 30 0c	jsr $010c30		jsr 	ConvertToStringAlreadyAllocated	; convert to string in situ.
+.010e1c	a5 2c		lda $2c			lda 	DIndent 						; work out indent, which is the smaller of this/last
+.010e1e	c5 2e		cmp $2e			cmp 	DIndent2
+.010e20	90 02		bcc $010e24		bcc 	_DTKSmaller
+.010e22	a5 2e		lda $2e			lda 	DIndent2
+.010e24					_DTKSmaller:
+.010e24	0a		asl a			asl 	a
+.010e25	69 06 00	adc #$0006		adc 	#6
+.010e28	85 08		sta $08			sta 	DTemp1
+.010e2a					_DTKPadLineNo:
+.010e2a	a9 20 00	lda #$0020		lda 	#32 							; pad out to 6+indent*2 characters.
+.010e2d	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010e30	b2 18		lda ($18)		lda 	(DStartTempString)
+.010e32	29 ff 00	and #$00ff		and 	#$00FF
+.010e35	c5 08		cmp $08			cmp 	DTemp1
+.010e37	d0 f1		bne $010e2a		bne 	_DTKPadLineNo
+.010e39	68		pla			pla 									; get pointer
+.010e3a	18		clc			clc 									; point to start of line
+.010e3b	69 04 00	adc #$0004		adc 	#4
+.010e3e	a8		tay			tay 									; put back in Y.
+.010e3f					_DTKMainLoop:
+.010e3f	b9 00 00	lda $0000,y		lda 	$0000,y 						; look at first token.
+.010e42	d0 04		bne $010e48		bne 	_DTKNotZero 					; if zero, return.
+.010e44	7a		ply			ply
+.010e45	fa		plx			plx
+.010e46	68		pla			pla
+.010e47	60		rts			rts
+.010e48					_DTKNotZero:
+.010e48	c9 00 01	cmp #$0100		cmp 	#$0100 							; is it a quoted string $0000-$00FF
+.010e4b	b0 1c		bcs $010e69		bcs 	_DTKNotString
+.010e4d	5a		phy			phy										; save token address on stack.
+.010e4e	c8		iny			iny 									; skip first token
+.010e4f	c8		iny			iny
+.010e50	a9 22 00	lda #$0022		lda 	#34 							; write out opening quote
+.010e53	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010e56	98		tya			tya 									; copy the string out.
+.010e57	20 63 05	jsr $010563		jsr 	StringCreateCopy
+.010e5a	a9 22 00	lda #$0022		lda 	#34 							; write out closing quote
+.010e5d	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010e60	68		pla			pla 									; get token, which is its own offset
+.010e61	a8		tay			tay
+.010e62	18		clc			clc
+.010e63	79 00 00	adc $0000,y		adc 	$0000,y
+.010e66	a8		tay			tay
+.010e67	80 d6		bra $010e3f		bra 	_DTKMainLoop
+.010e69					_DTKNotString:
+.010e69	c9 00 20	cmp #$2000		cmp 	#$2000							; if $1000-$1FFF then constant shift
+.010e6c	b0 09		bcs $010e77		bcs 	_DTKNotShift
+.010e6e	29 ff 0f	and #$0fff		and 	#$0FFF 							; store in shift
+.010e71	85 1c		sta $1c			sta 	DConstantShift
+.010e73	c8		iny			iny 									; skip token.
+.010e74	c8		iny			iny
+.010e75	80 c8		bra $010e3f		bra 	_DTKMainLoop
+.010e77					_DTKNotShift:
+.010e77	c9 00 40	cmp #$4000		cmp 	#$4000 							; if $2000-$3FFF it's a token.
+.010e7a	b0 07		bcs $010e83		bcs 	_DTKNotKeyword
+.010e7c	c8		iny			iny 									; skip over token
+.010e7d	c8		iny			iny
+.010e7e	20 fd 0e	jsr $010efd		jsr 	_DTKDecodeKeyword 				; decode it.
+.010e81	80 bc		bra $010e3f		bra 	_DTKMainLoop
+.010e83					_DTKNotKeyword:
+.010e83	c9 00 c0	cmp #$c000		cmp 	#$C000							; if $4000-$BFFF it's a (possibly shifted) constant.
+.010e86	b0 18		bcs $010ea0		bcs 	_DTKIdentifier 					; if $C000-$CFFF it's an identifier.
+.010e88	5a		phy			phy 									; save pointer
+.010e89	38		sec			sec  									; shift it in the range 0-32767
+.010e8a	e9 00 40	sbc #$4000		sbc 	#$4000
+.010e8d	0a		asl a			asl 	a 								; shift it left, losing bit 15
+.010e8e	46 1c		lsr $1c			lsr 	DConstantShift 					; shift constant right into carry.
+.010e90	6a		ror a			ror 	a 								; rotate that into the constant value
+.010e91	a4 1c		ldy $1c			ldy 	DConstantShift 					; YA number
+.010e93	a2 0a 00	ldx #$000a		ldx 	#10 							; output base.
+.010e96	20 30 0c	jsr $010c30		jsr 	ConvertToStringAlreadyAllocated	; convert to string in situ.
+.010e99	64 1c		stz $1c			stz 	DConstantShift
+.010e9b	7a		ply			ply 									; restore pointer
+.010e9c	c8		iny			iny 									; skip token.
+.010e9d	c8		iny			iny
+.010e9e	80 9f		bra $010e3f		bra 	_DTKMainLoop
+.010ea0					_DTKIdentifier:
+.010ea0	48		pha			pha 									; save token for typing at end
+.010ea1					_DTKILoop:
+.010ea1	b9 00 00	lda $0000,y		lda 	$0000,y 						; get token
+.010ea4	20 cd 0e	jsr $010ecd		jsr 	_DTKIDecodeToken 				; decode it.
+.010ea7	b9 00 00	lda $0000,y		lda 	$0000,y 						; get the token again
+.010eaa	c8		iny			iny 									; skip it
+.010eab	c8		iny			iny
+.010eac	29 00 08	and #$0800		and 	#IDContMask 					; continuation ?
+.010eaf	d0 f0		bne $010ea1		bne 	_DTKILoop
+.010eb1	68		pla			pla 									; add $( as required.
+.010eb2	48		pha			pha 									; comes from the first token.
+.010eb3	29 00 20	and #$2000		and 	#IDTypeMask
+.010eb6	f0 06		beq $010ebe		beq 	_DTKINotString
+.010eb8	a9 24 00	lda #$0024		lda 	#"$"
+.010ebb	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010ebe					_DTKINotString:
+.010ebe	68		pla			pla
+.010ebf	29 00 10	and #$1000		and 	#IDArrayMask
+.010ec2	f0 06		beq $010eca		beq 	_DTKINotArray
+.010ec4	a9 28 00	lda #$0028		lda 	#"("
+.010ec7	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010eca					_DTKINotArray:
+.010eca	82 72 ff	brl $010e3f		brl 	_DTKMainLoop
+.010ecd					_DTKIDecodeToken:
+.010ecd	5a		phy			phy
+.010ece	29 ff 07	and #$07ff		and		#$07FF 							; mask off the identifier bit.
+.010ed1	a0 ff ff	ldy #$ffff		ldy 	#-1 							; first, divide by 45 getting remainder.
+.010ed4					_DTKIDivide:
+.010ed4	38		sec			sec
+.010ed5	e9 2d 00	sbc #$002d		sbc 	#45
+.010ed8	c8		iny			iny
+.010ed9	b0 f9		bcs $010ed4		bcs 	_DTKIDivide
+.010edb	69 2d 00	adc #$002d		adc 	#45
+.010ede	20 e7 0e	jsr $010ee7		jsr 	_DTKIOutA 						; output low.
+.010ee1	98		tya			tya
+.010ee2	20 e7 0e	jsr $010ee7		jsr 	_DTKIOutA 						; output high
+.010ee5	7a		ply			ply
 .010ee6	60		rts			rts
-.010ee7					_DTKDecodeKeyword:
-.010ee7	48		pha			pha
-.010ee8	da		phx			phx
-.010ee9	5a		phy			phy
-.010eea	a8		tay			tay 									; save token ID in Y
-.010eeb	29 00 18	and #$1800		and 	#$1800 							; is it a keyword
-.010eee	49 00 18	eor #$1800		eor 	#$1800 							; now zero if it is.
-.010ef1	48		pha			pha 									; save this flag on a stack
-.010ef2	5a		phy			phy 									; save the token ID
-.010ef3	c9 00 00	cmp #$0000		cmp 	#0 								; check if spacing perhaps required.
-.010ef6	d0 19		bne $010f11		bne 	_DTKNotSpecial1
-.010ef8	a4 1a		ldy $1a			ldy 	DCurrentTempString 				; what was the last character out ?
-.010efa	88		dey			dey
-.010efb	b9 00 00	lda $0000,y		lda 	$0000,y
-.010efe	29 ff 00	and #$00ff		and 	#$00FF
-.010f01	c9 20 00	cmp #$0020		cmp 	#" " 							; if space or colon, not needed/
-.010f04	f0 0b		beq $010f11		beq 	_DTKNotSpecial1
-.010f06	c9 3a 00	cmp #$003a		cmp 	#":"
-.010f09	f0 06		beq $010f11		beq 	_DTKNotSpecial1
-.010f0b	a9 20 00	lda #$0020		lda 	#" "							; output space otherwise.
-.010f0e	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010f11					_DTKNotSpecial1:
-.010f11	68		pla			pla
-.010f12	29 ff 01	and #$01ff		and 	#$01FF 							; this is the keyword number.
-.010f15	a8		tay			tay 									; into Y.
-.010f16	a2 00 00	ldx #$0000		ldx 	#0 								; offset into the ROM table, token text
-.010f19					_DTKDWorkThrough:
-.010f19	88		dey			dey 									; reached the token (tokens start at 1 in text table)
-.010f1a	f0 0f		beq $010f2b		beq 	_DTKDFound
-.010f1c	86 08		stx $08			stx 	DTemp1
-.010f1e	bf 8e 00 01	lda $01008e,x		lda 	TokenText,x 					; read the type/skip byte.
-.010f22	29 0f 00	and #$000f		and 	#$000F 							; bytes to skip
-.010f25	18		clc			clc
-.010f26	65 08		adc $08			adc 	DTemp1
-.010f28	aa		tax			tax
-.010f29	80 ee		bra $010f19		bra 	_DTKDWorkThrough
-.010f2b					_DTKDFound:
-.010f2b	bf 8e 00 01	lda $01008e,x		lda 	TokenText,x 					; get skip
-.010f2f	29 0f 00	and #$000f		and 	#$000F 					 		; length is skip -1
-.010f32	3a		dec a			dec 	a
-.010f33	a8		tay			tay 									; put in Y
-.010f34					_DTKOut:
-.010f34	bf 8f 00 01	lda $01008f,x		lda 	TokenText+1,x 					; output it.
-.010f38	29 ff 00	and #$00ff		and 	#$00FF
-.010f3b	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010f3e	e8		inx			inx
-.010f3f	88		dey			dey
-.010f40	d0 f2		bne $010f34		bne 	_DTKOut
-.010f42	68		pla			pla 									; trailing space.
-.010f43	d0 06		bne $010f4b		bne 	_DTKNotSpecial2
-.010f45	a9 20 00	lda #$0020		lda 	#" "
-.010f48	20 55 05	jsr $010555		jsr 	StringWriteCharacter
-.010f4b					_DTKNotSpecial2:
-.010f4b	7a		ply			ply
-.010f4c	fa		plx			plx
-.010f4d	68		pla			pla
-.010f4e	60		rts			rts
+.010ee7					_DTKIOutA:
+.010ee7	09 00 00	ora #$0000		ora 	#$0000 							; exit if 0
+.010eea	f0 10		beq $010efc		beq 	_DTKIOutExit
+.010eec	c9 1b 00	cmp #$001b		cmp 	#27 							; skip if A-Z
+.010eef	90 04		bcc $010ef5		bcc 	_DTKIOutAlpha
+.010ef1	38		sec			sec  									; adjust for 0-9
+.010ef2	e9 4b 00	sbc #$004b		sbc 	#$4B
+.010ef5					_DTKIOutAlpha:
+.010ef5	18		clc			clc										; adjust for A-Z
+.010ef6	69 60 00	adc #$0060		adc 	#96
+.010ef9	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010efc					_DTKIOutExit:
+.010efc	60		rts			rts
+.010efd					_DTKDecodeKeyword:
+.010efd	48		pha			pha
+.010efe	da		phx			phx
+.010eff	5a		phy			phy
+.010f00	a8		tay			tay 									; save token ID in Y
+.010f01	29 00 18	and #$1800		and 	#$1800 							; is it a keyword
+.010f04	49 00 18	eor #$1800		eor 	#$1800 							; now zero if it is.
+.010f07	48		pha			pha 									; save this flag on a stack
+.010f08	5a		phy			phy 									; save the token ID
+.010f09	c9 00 00	cmp #$0000		cmp 	#0 								; check if spacing perhaps required.
+.010f0c	d0 19		bne $010f27		bne 	_DTKNotSpecial1
+.010f0e	a4 1a		ldy $1a			ldy 	DCurrentTempString 				; what was the last character out ?
+.010f10	88		dey			dey
+.010f11	b9 00 00	lda $0000,y		lda 	$0000,y
+.010f14	29 ff 00	and #$00ff		and 	#$00FF
+.010f17	c9 20 00	cmp #$0020		cmp 	#" " 							; if space or colon, not needed/
+.010f1a	f0 0b		beq $010f27		beq 	_DTKNotSpecial1
+.010f1c	c9 3a 00	cmp #$003a		cmp 	#":"
+.010f1f	f0 06		beq $010f27		beq 	_DTKNotSpecial1
+.010f21	a9 20 00	lda #$0020		lda 	#" "							; output space otherwise.
+.010f24	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010f27					_DTKNotSpecial1:
+.010f27	68		pla			pla
+.010f28	29 ff 01	and #$01ff		and 	#$01FF 							; this is the keyword number.
+.010f2b	a8		tay			tay 									; into Y.
+.010f2c	a2 00 00	ldx #$0000		ldx 	#0 								; offset into the ROM table, token text
+.010f2f					_DTKDWorkThrough:
+.010f2f	88		dey			dey 									; reached the token (tokens start at 1 in text table)
+.010f30	f0 0f		beq $010f41		beq 	_DTKDFound
+.010f32	86 08		stx $08			stx 	DTemp1
+.010f34	bf 8e 00 01	lda $01008e,x		lda 	TokenText,x 					; read the type/skip byte.
+.010f38	29 0f 00	and #$000f		and 	#$000F 							; bytes to skip
+.010f3b	18		clc			clc
+.010f3c	65 08		adc $08			adc 	DTemp1
+.010f3e	aa		tax			tax
+.010f3f	80 ee		bra $010f2f		bra 	_DTKDWorkThrough
+.010f41					_DTKDFound:
+.010f41	bf 8e 00 01	lda $01008e,x		lda 	TokenText,x 					; get skip
+.010f45	29 0f 00	and #$000f		and 	#$000F 					 		; length is skip -1
+.010f48	3a		dec a			dec 	a
+.010f49	a8		tay			tay 									; put in Y
+.010f4a					_DTKOut:
+.010f4a	bf 8f 00 01	lda $01008f,x		lda 	TokenText+1,x 					; output it.
+.010f4e	29 ff 00	and #$00ff		and 	#$00FF
+.010f51	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010f54	e8		inx			inx
+.010f55	88		dey			dey
+.010f56	d0 f2		bne $010f4a		bne 	_DTKOut
+.010f58	68		pla			pla 									; trailing space.
+.010f59	d0 06		bne $010f61		bne 	_DTKNotSpecial2
+.010f5b	a9 20 00	lda #$0020		lda 	#" "
+.010f5e	20 55 05	jsr $010555		jsr 	StringWriteCharacter
+.010f61					_DTKNotSpecial2:
+.010f61	7a		ply			ply
+.010f62	fa		plx			plx
+.010f63	68		pla			pla
+.010f64	60		rts			rts
+.010f65					ScanIndent:
+.010f65	48		pha			pha
+.010f66	5a		phy			phy
+.010f67	a5 2c		lda $2c			lda 	DIndent  						; save the old indentation
+.010f69	85 2e		sta $2e			sta 	DIndent2
+.010f6b	98		tya			tya
+.010f6c	18		clc			clc 									; point to code.
+.010f6d	69 04 00	adc #$0004		adc 	#4
+.010f70	a8		tay			tay
+.010f71					_SILoop:
+.010f71	b9 00 00	lda $0000,y		lda 	$0000,y 						; get token
+.010f74	f0 35		beq $010fab		beq 	_SIExit
+.010f76	c9 00 01	cmp #$0100		cmp 	#$0100							; is it a string ?
+.010f79	b0 08		bcs $010f83		bcs 	_SICheckKeyword
+.010f7b	98		tya			tya 									; skip string.
+.010f7c	18		clc			clc
+.010f7d	79 00 00	adc $0000,y		adc 	$0000,y
+.010f80	a8		tay			tay
+.010f81	80 ee		bra $010f71		bra 	_SILoop
+.010f83					_SICheckKeyword:
+.010f83	29 00 e0	and #$e000		and 	#$E000
+.010f86	c9 00 20	cmp #$2000		cmp 	#$2000
+.010f89	f0 04		beq $010f8f		beq 	_SIFoundKeyword
+.010f8b					_SIAdvance:
+.010f8b	c8		iny			iny 									; if not, loop round.
+.010f8c	c8		iny			iny
+.010f8d	80 e2		bra $010f71		bra 	_SILoop
+.010f8f					_SIFoundKeyword:
+.010f8f	b9 00 00	lda $0000,y		lda 	$0000,y 						; get keyword
+.010f92	29 00 1e	and #$1e00		and 	#15<<9							; extract type
+.010f95	c9 00 1c	cmp #$1c00		cmp 	#14<<9
+.010f98	f0 0d		beq $010fa7		beq 	_SIKeyPlus
+.010f9a	c9 00 1a	cmp #$1a00		cmp 	#13<<9 							; and adjust DIndent appropriately.
+.010f9d	d0 ec		bne $010f8b		bne 	_SIAdvance
+.010f9f	c6 2c		dec $2c			dec 	DIndent
+.010fa1	10 e8		bpl $010f8b		bpl 	_SIAdvance
+.010fa3	64 2c		stz $2c			stz 	DIndent
+.010fa5	80 e4		bra $010f8b		bra 	_SIAdvance
+.010fa7					_SIKeyPlus:
+.010fa7	e6 2c		inc $2c			inc 	DIndent
+.010fa9	80 e0		bra $010f8b		bra 	_SIAdvance
+.010fab					_SIExit:
+.010fab	7a		ply			ply
+.010fac	68		pla			pla
+.010fad	60		rts			rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/print.asm
 
-.010f4f					Function_PRINT:
-.010f4f	b2 06		lda ($06)			lda 	(DCodePtr) 					; look at first characteer
-.010f51	f0 33		beq $010f86			beq 	_FPRExitCR 					; if zero, then exit with CR, maybe.
-.010f53	c9 24 32	cmp #$3224			cmp 	#colonTokenID 				; likewise if a colon.
-.010f56	f0 2e		beq $010f86			beq 	_FPRExitCR
-.010f58	c9 23 32	cmp #$3223			cmp 	#semicolonTokenID 			; semicolon, skip it
-.010f5b	f0 23		beq $010f80			beq 	_FPRSkipLoop
-.010f5d	c9 27 32	cmp #$3227			cmp 	#squoteTokenID 				; single quote is CR
-.010f60	f0 1b		beq $010f7d			beq 	_FPRNewLine
-.010f62	c9 22 32	cmp #$3222			cmp 	#commaTokenID 				; , is tab.
-.010f65	f0 11		beq $010f78			beq 	_FPRTab
-.010f67					_FPRExpression:
-.010f67	20 c3 01	jsr $0101c3			jsr 	Evaluate 					; evaluate a string or integer.
-.010f6a	b0 06		bcs $010f72			bcs 	_FPRHaveString
-.010f6c	a2 0a 00	ldx #$000a			ldx 	#10 						; convert to string
-.010f6f	20 28 0c	jsr $010c28			jsr 	ConvertToString
-.010f72					_FPRHaveString:
-.010f72	a8		tay				tay 								; print the basic String.
-.010f73	20 0f 05	jsr $01050f			jsr 	PrintBASICString
-.010f76	80 d7		bra $010f4f			bra 	Function_Print 				; and go round again.
-.010f78					_FPRTab:
-.010f78	20 5c 16	jsr $01165c			jsr 	HWTab
-.010f7b	80 03		bra $010f80			bra 	_FPRSkipLoop
-.010f7d					_FPRNewLine:
-.010f7d	20 49 16	jsr $011649			jsr 	HWNewLine
-.010f80					_FPRSkipLoop:
-.010f80	e6 06		inc $06				inc 	DCodePtr
-.010f82	e6 06		inc $06				inc 	DCodePtr
-.010f84	80 c9		bra $010f4f			bra 	Function_Print
-.010f86					_FPRExitCR:
-.010f86	a4 06		ldy $06				ldy 	DCodePtr 					; was the previous token a ; or ,
-.010f88	88		dey				dey
-.010f89	88		dey				dey
-.010f8a	b9 00 00	lda $0000,y			lda 	$0000,y
-.010f8d	c9 22 32	cmp #$3222			cmp 	#commaTokenID 	 			; if so, don't do a new line at the end of the instruction.
-.010f90	f0 08		beq $010f9a			beq 	_FPRExit
-.010f92	c9 23 32	cmp #$3223			cmp 	#semicolonTokenID
-.010f95	f0 03		beq $010f9a			beq 	_FPRExit
-.010f97	20 49 16	jsr $011649			jsr 	HWNewLine 					; print a new line.
-.010f9a					_FPRExit:
-.010f9a	60		rts				rts
+.010fae					Function_PRINT:
+.010fae	b2 06		lda ($06)			lda 	(DCodePtr) 					; look at first characteer
+.010fb0	f0 33		beq $010fe5			beq 	_FPRExitCR 					; if zero, then exit with CR, maybe.
+.010fb2	c9 24 32	cmp #$3224			cmp 	#colonTokenID 				; likewise if a colon.
+.010fb5	f0 2e		beq $010fe5			beq 	_FPRExitCR
+.010fb7	c9 23 32	cmp #$3223			cmp 	#semicolonTokenID 			; semicolon, skip it
+.010fba	f0 23		beq $010fdf			beq 	_FPRSkipLoop
+.010fbc	c9 27 32	cmp #$3227			cmp 	#squoteTokenID 				; single quote is CR
+.010fbf	f0 1b		beq $010fdc			beq 	_FPRNewLine
+.010fc1	c9 22 32	cmp #$3222			cmp 	#commaTokenID 				; , is tab.
+.010fc4	f0 11		beq $010fd7			beq 	_FPRTab
+.010fc6					_FPRExpression:
+.010fc6	20 c3 01	jsr $0101c3			jsr 	Evaluate 					; evaluate a string or integer.
+.010fc9	b0 06		bcs $010fd1			bcs 	_FPRHaveString
+.010fcb	a2 0a 00	ldx #$000a			ldx 	#10 						; convert to string
+.010fce	20 28 0c	jsr $010c28			jsr 	ConvertToString
+.010fd1					_FPRHaveString:
+.010fd1	a8		tay				tay 								; print the basic String.
+.010fd2	20 0f 05	jsr $01050f			jsr 	PrintBASICString
+.010fd5	80 d7		bra $010fae			bra 	Function_Print 				; and go round again.
+.010fd7					_FPRTab:
+.010fd7	20 bb 16	jsr $0116bb			jsr 	HWTab
+.010fda	80 03		bra $010fdf			bra 	_FPRSkipLoop
+.010fdc					_FPRNewLine:
+.010fdc	20 a8 16	jsr $0116a8			jsr 	HWNewLine
+.010fdf					_FPRSkipLoop:
+.010fdf	e6 06		inc $06				inc 	DCodePtr
+.010fe1	e6 06		inc $06				inc 	DCodePtr
+.010fe3	80 c9		bra $010fae			bra 	Function_Print
+.010fe5					_FPRExitCR:
+.010fe5	a4 06		ldy $06				ldy 	DCodePtr 					; was the previous token a ; or ,
+.010fe7	88		dey				dey
+.010fe8	88		dey				dey
+.010fe9	b9 00 00	lda $0000,y			lda 	$0000,y
+.010fec	c9 22 32	cmp #$3222			cmp 	#commaTokenID 	 			; if so, don't do a new line at the end of the instruction.
+.010fef	f0 08		beq $010ff9			beq 	_FPRExit
+.010ff1	c9 23 32	cmp #$3223			cmp 	#semicolonTokenID
+.010ff4	f0 03		beq $010ff9			beq 	_FPRExit
+.010ff6	20 a8 16	jsr $0116a8			jsr 	HWNewLine 					; print a new line.
+.010ff9					_FPRExit:
+.010ff9	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/if.asm
 
-.010f9b					Function_IF:
-.010f9b	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; check success.
-.010f9e	84 08		sty $08				sty 	DTemp1 						; work out if non-zero
-.010fa0	05 08		ora $08				ora 	DTemp1
-.010fa2	a8		tay				tay 								; success flag in Y.
-.010fa3	b2 06		lda ($06)			lda 	(DCodePtr) 					; does THEN follow
-.010fa5	c9 44 3a	cmp #$3a44			cmp 	#thenTokenID
-.010fa8	d0 32		bne $010fdc			bne 	_FIFExtended 				; if so, go to the extended IF.
-.010faa	e6 06		inc $06				inc 	DCodePtr 					; skip over THEN token.
-.010fac	e6 06		inc $06				inc 	DCodePtr
-.010fae	c0 00 00	cpy #$0000			cpy 	#0 							; was it successful.
-.010fb1	f0 0f		beq $010fc2			beq 	_FIFEndOfLine 				; if not, go to the end of the line.
-.010fb3	b2 06		lda ($06)			lda 	(DCodePtr) 					; look to see if there is a number there.
-.010fb5	c9 00 40	cmp #$4000			cmp 	#$4000 						; is it a numeric constant.
-.010fb8	90 21		bcc $010fdb			bcc 	_FIFContinue 				; if not, just carry on exiting.
-.010fba	c9 00 c0	cmp #$c000			cmp 	#$C000
-.010fbd	b0 1c		bcs $010fdb			bcs 	_FIFContinue
-.010fbf	4c 51 12	jmp $011251			jmp		Function_GOTO 				; we have IF <expr> THEN <number> so we do GOTO code.
-.010fc2					_FIFEndOfLine:
-.010fc2	b2 06		lda ($06)			lda 	(DCodePtr) 					; reached the end of the line.
-.010fc4	f0 15		beq $010fdb			beq 	_FIFContinue 				; if done so, continue.
-.010fc6	c9 00 01	cmp #$0100			cmp 	#$0100	 					; string constant ?
-.010fc9	90 06		bcc $010fd1			bcc 	_FIFStringConstant
-.010fcb	e6 06		inc $06				inc 	DCodePtr 					; if not, just skip the token
-.010fcd	e6 06		inc $06				inc 	DCodePtr
-.010fcf	80 f1		bra $010fc2			bra 	_FIFEndOfLine
-.010fd1					_FIFStringConstant:
-.010fd1	29 ff 00	and #$00ff			and 	#$00FF 						; add to CodePtr to skip string.
-.010fd4	18		clc				clc
-.010fd5	65 06		adc $06				adc 	DCodePtr
-.010fd7	85 06		sta $06				sta 	DCodePtr
-.010fd9	80 e7		bra $010fc2			bra 	_FIFEndOfLine
-.010fdb					_FIFContinue:
-.010fdb	60		rts				rts
-.010fdc					_FIFExtended:
-.010fdc	e6 2a		inc $2a				inc 	DStack 						; put IF on the top of the stack
-.010fde	e6 2a		inc $2a				inc 	DStack
-.010fe0	a9 40 3c	lda #$3c40			lda 	#ifTokenID
-.010fe3	a6 2a		ldx $2a				ldx 	DStack
-.010fe5	95 00		sta $00,x			sta 	$00,x
-.010fe7	98		tya				tya 								; see if the test was passed.
-.010fe8	f0 01		beq $010feb			beq 	_FIXSkip 					; if zero then it has failed.
-.010fea	60		rts				rts 								; test passed, so continue executing
-.010feb					_FIXSkip:
-.010feb	a9 39 3e	lda #$3e39			lda 	#elseTokenID 				; scan forward till found either ELSE or ENDIF
-.010fee	a2 45 3a	ldx #$3a45			ldx 	#endifTokenID 				; at the same level.
-.010ff1	20 51 10	jsr $011051			jsr 	ScanForwardLevel 			; scan forward, returns what found in A.
-.010ff4	e6 06		inc $06				inc 	DCodePtr 					; skip over the ELSE or ENDIF
-.010ff6	e6 06		inc $06				inc 	DCodePtr
-.010ff8	c9 45 3a	cmp #$3a45			cmp 	#endifTokenID 				; if ENDIF token ID, then throw the TOS as ended
-.010ffb	d0 04		bne $011001			bne 	_FIXNoThrow
-.010ffd	c6 2a		dec $2a				dec 	DStack 						; throw the token IF on the stack top.
-.010fff	c6 2a		dec $2a				dec 	DStack
-.011001					_FIXNoThrow:
-.011001	60		rts				rts
-.011002					Handler_ELSE:
-.011002	a6 2a		ldx $2a				ldx 	DStack	 					; check the top of stack is IF.
-.011004	b5 00		lda $00,x			lda 	$00,x
-.011006	c9 40 3c	cmp #$3c40			cmp 	#ifTokenID
-.011009	d0 12		bne $01101d			bne 	_HEBadStructure
-.01100b	a9 45 3a	lda #$3a45			lda 	#endifTokenID 				; only searching one token.
-.01100e	a2 00 00	ldx #$0000			ldx 	#$0000
-.011011	20 51 10	jsr $011051			jsr 	ScanForwardLevel 			; so this will find the ENDIF
-.011014	e6 06		inc $06				inc 	DCodePtr 					; skip over the ENDIF
-.011016	e6 06		inc $06				inc 	DCodePtr
-.011018	c6 2a		dec $2a				dec 	DStack 						; throw the token IF on the stack top.
-.01101a	c6 2a		dec $2a				dec 	DStack
-.01101c	60		rts				rts
-.01101d					_HEBadStructure:
-.01101d	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->011020	45 6c 73 65 20 77 69 74				.text 	"Else without If",$00 								; with this message
->011028	68 6f 75 74 20 49 66 00
-.011030					Handler_ENDIF:
-.011030	a6 2a		ldx $2a				ldx 	DStack	 					; check the top of stack is IF.
-.011032	b5 00		lda $00,x			lda 	$00,x
-.011034	c9 40 3c	cmp #$3c40			cmp 	#ifTokenID
-.011037	d0 05		bne $01103e			bne 	_HEIBadStructure
-.011039	c6 2a		dec $2a				dec 	DStack 						; throw the token IF on the stack top.
-.01103b	c6 2a		dec $2a				dec 	DStack
-.01103d	60		rts				rts
-.01103e					_HEIBadStructure:
-.01103e	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->011041	45 6c 73 65 20 77 69 74				.text 	"Else without If",$00 								; with this message
->011049	68 6f 75 74 20 49 66 00
-.011051					ScanForwardLevel:
-.011051	85 08		sta $08				sta 	DTemp1 						; save test in DTemp1 and DTemp1+2
-.011053	86 0a		stx $0a				stx 	DTemp1+2
-.011055	a5 22		lda $22				lda 	DLineNumber 				; save original line number for error
-.011057	85 0c		sta $0c				sta 	DTemp2
-.011059	a2 00 00	ldx #$0000			ldx 	#0 							; X is the level counter.
-.01105c					_SFLLoop:
-.01105c	e0 00 00	cpx #$0000			cpx 	#0 							; if X != 0 then don't test tokens for exit.
-.01105f	d0 0d		bne $01106e			bne 	_SFLNoCheck 				; we're in a substructure.
-.011061	b2 06		lda ($06)			lda 	(DCodePtr)					; what's there
-.011063	f0 09		beq $01106e			beq 	_SFLNoCheck 				; don't check zero
-.011065	c5 08		cmp $08				cmp 	DTemp1 						; does it match either token ?
-.011067	f0 04		beq $01106d			beq 	_SFLFound
-.011069	c5 0a		cmp $0a				cmp 	DTemp1+2
-.01106b	d0 01		bne $01106e			bne 	_SFLNoCheck
-.01106d					_SFLFound:
-.01106d	60		rts				rts
-.01106e					_SFLNoCheck:
-.01106e	b2 06		lda ($06)			lda 	(DCodePtr) 					; what is the token.
-.011070	f0 4f		beq $0110c1			beq 	_SFLNextLine 				; if $0000 go to the next line (end of line marker)
-.011072	c9 00 01	cmp #$0100			cmp 	#$0100 						; is it a string.
-.011075	90 40		bcc $0110b7			bcc 	_SFLSkipString 				; then handle that.
-.011077	e6 06		inc $06				inc 	DCodePtr 					; skip over the token
-.011079	e6 06		inc $06				inc 	DCodePtr
-.01107b	a8		tay				tay 								; put token in Y temporarily.
-.01107c	29 00 e0	and #$e000			and 	#$E000 						; if not a keyword 010x xxxx xxxx xxxx
-.01107f	c9 00 20	cmp #$2000			cmp 	#$2000
-.011082	d0 d8		bne $01105c			bne 	_SFLLoop
-.011084	98		tya				tya 								; get the token back.
-.011085	29 00 1e	and #$1e00			and 	#15 << 9 					; get out token type xxxA AAAx xxxx xxxx
-.011088	c9 00 1e	cmp #$1e00			cmp 	#15 << 9 					; 15 is a standard keyword
-.01108b	f0 cf		beq $01105c			beq 	_SFLLoop
-.01108d	c9 00 1a	cmp #$1a00			cmp 	#13 << 9 					; < 13 is also standard
-.011090	90 ca		bcc $01105c			bcc 	_SFLLoop
-.011092	e8		inx				inx 								; increment the level.
-.011093	c9 00 1c	cmp #$1c00			cmp 	#14 << 9 					; if keyword +, loop back.
-.011096	f0 c4		beq $01105c			beq 	_SFLLoop
-.011098	ca		dex				dex 								; decrement the level
-.011099	ca		dex				dex 								; one overdoes the previous inx.
-.01109a	10 c0		bpl $01105c			bpl 	_SFLLoop 					; if gone -ve then error.
-.01109c					_SFLError:
-.01109c	a5 0c		lda $0c				lda 	DTemp2 						; get original line number
-.01109e	85 22		sta $22				sta 	DLineNumber
-.0110a0	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0110a3	53 74 72 75 63 74 75 72				.text 	"Structure imbalance",$00 								; with this message
->0110ab	65 20 69 6d 62 61 6c 61 6e 63 65 00
-.0110b7					_SFLSkipString:
-.0110b7	29 ff 00	and #$00ff			and 	#$00FF 						; token length of string
-.0110ba	18		clc				clc
-.0110bb	65 06		adc $06				adc 	DCodePtr 					; add to code pointer and save out
-.0110bd	85 06		sta $06				sta 	DCodePtr
-.0110bf	80 9b		bra $01105c			bra 	_SFLLoop 					; go round again.
-.0110c1					_SFLNextLine:
-.0110c1	a4 06		ldy $06				ldy 	DCodePtr 					; put code pointer into Y
-.0110c3	b9 02 00	lda $0002,y			lda 	$0002,y 					; look at the link for the next line.
-.0110c6	f0 d4		beq $01109c			beq 	_SFLError 					; if zero, then there's no more code to search.
-.0110c8	b9 04 00	lda $0004,y			lda 	$0004,y 					; update the line number so it's still correct.
-.0110cb	85 22		sta $22				sta 	DLineNumber
-.0110cd	18		clc				clc
-.0110ce	a5 06		lda $06				lda 	DCodePtr
-.0110d0	69 06 00	adc #$0006			adc 	#6 							; skip $00 marker, link, new line
-.0110d3	85 06		sta $06				sta 	DCodePtr
-.0110d5	80 85		bra $01105c			bra 	_SFLLoop 					; and start this one.
+.010ffa					Function_IF:
+.010ffa	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; check success.
+.010ffd	84 08		sty $08				sty 	DTemp1 						; work out if non-zero
+.010fff	05 08		ora $08				ora 	DTemp1
+.011001	a8		tay				tay 								; success flag in Y.
+.011002	b2 06		lda ($06)			lda 	(DCodePtr) 					; does THEN follow
+.011004	c9 44 3a	cmp #$3a44			cmp 	#thenTokenID
+.011007	d0 32		bne $01103b			bne 	_FIFExtended 				; if so, go to the extended IF.
+.011009	e6 06		inc $06				inc 	DCodePtr 					; skip over THEN token.
+.01100b	e6 06		inc $06				inc 	DCodePtr
+.01100d	c0 00 00	cpy #$0000			cpy 	#0 							; was it successful.
+.011010	f0 0f		beq $011021			beq 	_FIFEndOfLine 				; if not, go to the end of the line.
+.011012	b2 06		lda ($06)			lda 	(DCodePtr) 					; look to see if there is a number there.
+.011014	c9 00 40	cmp #$4000			cmp 	#$4000 						; is it a numeric constant.
+.011017	90 21		bcc $01103a			bcc 	_FIFContinue 				; if not, just carry on exiting.
+.011019	c9 00 c0	cmp #$c000			cmp 	#$C000
+.01101c	b0 1c		bcs $01103a			bcs 	_FIFContinue
+.01101e	4c b0 12	jmp $0112b0			jmp		Function_GOTO 				; we have IF <expr> THEN <number> so we do GOTO code.
+.011021					_FIFEndOfLine:
+.011021	b2 06		lda ($06)			lda 	(DCodePtr) 					; reached the end of the line.
+.011023	f0 15		beq $01103a			beq 	_FIFContinue 				; if done so, continue.
+.011025	c9 00 01	cmp #$0100			cmp 	#$0100	 					; string constant ?
+.011028	90 06		bcc $011030			bcc 	_FIFStringConstant
+.01102a	e6 06		inc $06				inc 	DCodePtr 					; if not, just skip the token
+.01102c	e6 06		inc $06				inc 	DCodePtr
+.01102e	80 f1		bra $011021			bra 	_FIFEndOfLine
+.011030					_FIFStringConstant:
+.011030	29 ff 00	and #$00ff			and 	#$00FF 						; add to CodePtr to skip string.
+.011033	18		clc				clc
+.011034	65 06		adc $06				adc 	DCodePtr
+.011036	85 06		sta $06				sta 	DCodePtr
+.011038	80 e7		bra $011021			bra 	_FIFEndOfLine
+.01103a					_FIFContinue:
+.01103a	60		rts				rts
+.01103b					_FIFExtended:
+.01103b	e6 2a		inc $2a				inc 	DStack 						; put IF on the top of the stack
+.01103d	e6 2a		inc $2a				inc 	DStack
+.01103f	a9 40 3c	lda #$3c40			lda 	#ifTokenID
+.011042	a6 2a		ldx $2a				ldx 	DStack
+.011044	95 00		sta $00,x			sta 	$00,x
+.011046	98		tya				tya 								; see if the test was passed.
+.011047	f0 01		beq $01104a			beq 	_FIXSkip 					; if zero then it has failed.
+.011049	60		rts				rts 								; test passed, so continue executing
+.01104a					_FIXSkip:
+.01104a	a9 39 3e	lda #$3e39			lda 	#elseTokenID 				; scan forward till found either ELSE or ENDIF
+.01104d	a2 45 3a	ldx #$3a45			ldx 	#endifTokenID 				; at the same level.
+.011050	20 b0 10	jsr $0110b0			jsr 	ScanForwardLevel 			; scan forward, returns what found in A.
+.011053	e6 06		inc $06				inc 	DCodePtr 					; skip over the ELSE or ENDIF
+.011055	e6 06		inc $06				inc 	DCodePtr
+.011057	c9 45 3a	cmp #$3a45			cmp 	#endifTokenID 				; if ENDIF token ID, then throw the TOS as ended
+.01105a	d0 04		bne $011060			bne 	_FIXNoThrow
+.01105c	c6 2a		dec $2a				dec 	DStack 						; throw the token IF on the stack top.
+.01105e	c6 2a		dec $2a				dec 	DStack
+.011060					_FIXNoThrow:
+.011060	60		rts				rts
+.011061					Handler_ELSE:
+.011061	a6 2a		ldx $2a				ldx 	DStack	 					; check the top of stack is IF.
+.011063	b5 00		lda $00,x			lda 	$00,x
+.011065	c9 40 3c	cmp #$3c40			cmp 	#ifTokenID
+.011068	d0 12		bne $01107c			bne 	_HEBadStructure
+.01106a	a9 45 3a	lda #$3a45			lda 	#endifTokenID 				; only searching one token.
+.01106d	a2 00 00	ldx #$0000			ldx 	#$0000
+.011070	20 b0 10	jsr $0110b0			jsr 	ScanForwardLevel 			; so this will find the ENDIF
+.011073	e6 06		inc $06				inc 	DCodePtr 					; skip over the ENDIF
+.011075	e6 06		inc $06				inc 	DCodePtr
+.011077	c6 2a		dec $2a				dec 	DStack 						; throw the token IF on the stack top.
+.011079	c6 2a		dec $2a				dec 	DStack
+.01107b	60		rts				rts
+.01107c					_HEBadStructure:
+.01107c	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>01107f	45 6c 73 65 20 77 69 74				.text 	"Else without If",$00 								; with this message
+>011087	68 6f 75 74 20 49 66 00
+.01108f					Handler_ENDIF:
+.01108f	a6 2a		ldx $2a				ldx 	DStack	 					; check the top of stack is IF.
+.011091	b5 00		lda $00,x			lda 	$00,x
+.011093	c9 40 3c	cmp #$3c40			cmp 	#ifTokenID
+.011096	d0 05		bne $01109d			bne 	_HEIBadStructure
+.011098	c6 2a		dec $2a				dec 	DStack 						; throw the token IF on the stack top.
+.01109a	c6 2a		dec $2a				dec 	DStack
+.01109c	60		rts				rts
+.01109d					_HEIBadStructure:
+.01109d	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>0110a0	45 6c 73 65 20 77 69 74				.text 	"Else without If",$00 								; with this message
+>0110a8	68 6f 75 74 20 49 66 00
+.0110b0					ScanForwardLevel:
+.0110b0	85 08		sta $08				sta 	DTemp1 						; save test in DTemp1 and DTemp1+2
+.0110b2	86 0a		stx $0a				stx 	DTemp1+2
+.0110b4	a5 22		lda $22				lda 	DLineNumber 				; save original line number for error
+.0110b6	85 0c		sta $0c				sta 	DTemp2
+.0110b8	a2 00 00	ldx #$0000			ldx 	#0 							; X is the level counter.
+.0110bb					_SFLLoop:
+.0110bb	e0 00 00	cpx #$0000			cpx 	#0 							; if X != 0 then don't test tokens for exit.
+.0110be	d0 0d		bne $0110cd			bne 	_SFLNoCheck 				; we're in a substructure.
+.0110c0	b2 06		lda ($06)			lda 	(DCodePtr)					; what's there
+.0110c2	f0 09		beq $0110cd			beq 	_SFLNoCheck 				; don't check zero
+.0110c4	c5 08		cmp $08				cmp 	DTemp1 						; does it match either token ?
+.0110c6	f0 04		beq $0110cc			beq 	_SFLFound
+.0110c8	c5 0a		cmp $0a				cmp 	DTemp1+2
+.0110ca	d0 01		bne $0110cd			bne 	_SFLNoCheck
+.0110cc					_SFLFound:
+.0110cc	60		rts				rts
+.0110cd					_SFLNoCheck:
+.0110cd	b2 06		lda ($06)			lda 	(DCodePtr) 					; what is the token.
+.0110cf	f0 4f		beq $011120			beq 	_SFLNextLine 				; if $0000 go to the next line (end of line marker)
+.0110d1	c9 00 01	cmp #$0100			cmp 	#$0100 						; is it a string.
+.0110d4	90 40		bcc $011116			bcc 	_SFLSkipString 				; then handle that.
+.0110d6	e6 06		inc $06				inc 	DCodePtr 					; skip over the token
+.0110d8	e6 06		inc $06				inc 	DCodePtr
+.0110da	a8		tay				tay 								; put token in Y temporarily.
+.0110db	29 00 e0	and #$e000			and 	#$E000 						; if not a keyword 010x xxxx xxxx xxxx
+.0110de	c9 00 20	cmp #$2000			cmp 	#$2000
+.0110e1	d0 d8		bne $0110bb			bne 	_SFLLoop
+.0110e3	98		tya				tya 								; get the token back.
+.0110e4	29 00 1e	and #$1e00			and 	#15 << 9 					; get out token type xxxA AAAx xxxx xxxx
+.0110e7	c9 00 1e	cmp #$1e00			cmp 	#15 << 9 					; 15 is a standard keyword
+.0110ea	f0 cf		beq $0110bb			beq 	_SFLLoop
+.0110ec	c9 00 1a	cmp #$1a00			cmp 	#13 << 9 					; < 13 is also standard
+.0110ef	90 ca		bcc $0110bb			bcc 	_SFLLoop
+.0110f1	e8		inx				inx 								; increment the level.
+.0110f2	c9 00 1c	cmp #$1c00			cmp 	#14 << 9 					; if keyword +, loop back.
+.0110f5	f0 c4		beq $0110bb			beq 	_SFLLoop
+.0110f7	ca		dex				dex 								; decrement the level
+.0110f8	ca		dex				dex 								; one overdoes the previous inx.
+.0110f9	10 c0		bpl $0110bb			bpl 	_SFLLoop 					; if gone -ve then error.
+.0110fb					_SFLError:
+.0110fb	a5 0c		lda $0c				lda 	DTemp2 						; get original line number
+.0110fd	85 22		sta $22				sta 	DLineNumber
+.0110ff	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>011102	53 74 72 75 63 74 75 72				.text 	"Structure imbalance",$00 								; with this message
+>01110a	65 20 69 6d 62 61 6c 61 6e 63 65 00
+.011116					_SFLSkipString:
+.011116	29 ff 00	and #$00ff			and 	#$00FF 						; token length of string
+.011119	18		clc				clc
+.01111a	65 06		adc $06				adc 	DCodePtr 					; add to code pointer and save out
+.01111c	85 06		sta $06				sta 	DCodePtr
+.01111e	80 9b		bra $0110bb			bra 	_SFLLoop 					; go round again.
+.011120					_SFLNextLine:
+.011120	a4 06		ldy $06				ldy 	DCodePtr 					; put code pointer into Y
+.011122	b9 02 00	lda $0002,y			lda 	$0002,y 					; look at the link for the next line.
+.011125	f0 d4		beq $0110fb			beq 	_SFLError 					; if zero, then there's no more code to search.
+.011127	b9 04 00	lda $0004,y			lda 	$0004,y 					; update the line number so it's still correct.
+.01112a	85 22		sta $22				sta 	DLineNumber
+.01112c	18		clc				clc
+.01112d	a5 06		lda $06				lda 	DCodePtr
+.01112f	69 06 00	adc #$0006			adc 	#6 							; skip $00 marker, link, new line
+.011132	85 06		sta $06				sta 	DCodePtr
+.011134	80 85		bra $0110bb			bra 	_SFLLoop 					; and start this one.
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/for.asm
 
-.0110d7					Command_FOR:
-.0110d7	b2 06		lda ($06)			lda 	(DCodePtr)					; look at first word
-.0110d9	29 00 30	and #$3000			and 	#(IDTypeMask+IDArrayMask)	; check to see if it is type $00 e.g. integer variable
-.0110dc	d0 60		bne $01113e			bne		_CFOBad
-.0110de	20 50 03	jsr $010350			jsr 	VariableFind 				; try to find variable
-.0110e1	b0 15		bcs $0110f8			bcs 	_CFOExists
-.0110e3	a4 06		ldy $06				ldy 	DCodePtr 					; Y is the address of the name
-.0110e5	a9 00 00	lda #$0000			lda 	#0 							; A = 0 because it's not an array.
-.0110e8	20 fa 03	jsr $0103fa			jsr 	VariableCreate 				; create it.
-.0110eb	48		pha				pha 								; save on stack
-.0110ec					_CFOSkipToken:
-.0110ec	b2 06		lda ($06)			lda 	(DCodePtr) 					; skip over the token
-.0110ee	e6 06		inc $06				inc 	DCodePtr
-.0110f0	e6 06		inc $06				inc 	DCodePtr
-.0110f2	29 00 08	and #$0800			and 	#IDContMask 				; if there is a continuation
-.0110f5	d0 f5		bne $0110ec			bne 	_CFOSkipToken
-.0110f7	68		pla				pla 								; restore address
-.0110f8					_CFOExists:
-.0110f8	48		pha				pha 								; push variable address on stack
-.0110f9	a9 06 22	lda #$2206			lda 	#equalTokenID 				; check for =
-.0110fc	20 9f 04	jsr $01049f			jsr 	ExpectToken
-.0110ff	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; this is the start value
-.011102	bb		tyx				tyx 								; put high value in X
-.011103	7a		ply				ply 								; address in Y
-.011104	99 00 00	sta $0000,y			sta 	$0000,y
-.011107	8a		txa				txa
-.011108	99 02 00	sta $0002,y			sta 	$0002,y
-.01110b	a9 28 38	lda #$3828			lda 	#toTokenID 					; expect the TO
-.01110e	20 9f 04	jsr $01049f			jsr 	ExpectToken
-.011111	a6 2a		ldx $2a				ldx 	DStack 						; get the stack.
-.011113	a5 06		lda $06				lda 	DCodePtr 					; save code ptr at +2 (after "TO")
-.011115	95 02		sta $02,x			sta 	$02,x
-.011117	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
-.011119	95 04		sta $04,x			sta 	$04,x
-.01111b	98		tya				tya 								; save variable address at +6
-.01111c	95 06		sta $06,x			sta 	$06,x
-.01111e	a9 41 3c	lda #$3c41			lda 	#forTokenID 				; save for token at +8
-.011121	95 08		sta $08,x			sta 	$08,x
-.011123	8a		txa				txa 								; add 8 to stack position
-.011124	18		clc				clc
-.011125	69 08 00	adc #$0008			adc 	#8
-.011128	85 2a		sta $2a				sta 	DStack
-.01112a	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; the end value, which we don't want this time.
-.01112d	b2 06		lda ($06)			lda 	(DCodePtr)
-.01112f	c9 29 38	cmp #$3829			cmp 	#stepTokenID 				; if STEP x is present.
-.011132	d0 09		bne $01113d			bne 	_CFONoStep
-.011134	a9 29 38	lda #$3829			lda 	#stepTokenID 				; skip STEP
-.011137	20 9f 04	jsr $01049f			jsr 	ExpectToken
-.01113a	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; and whatever the step is.
-.01113d					_CFONoStep:
-.01113d	60		rts				rts
-.01113e					_CFOBad:
-.01113e	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->011141	42 61 64 20 46 4f 52 20				.text 	"Bad FOR variable",$00 								; with this message
->011149	76 61 72 69 61 62 6c 65 00
-.011152					Command_NEXT:
-.011152	a6 2a		ldx $2a				ldx 	DStack 						; look at TOS
-.011154	b5 00		lda $00,x			lda 	$00,x
-.011156	c9 41 3c	cmp #$3c41			cmp 	#forTokenID 				; if not FOR then error
-.011159	f0 14		beq $01116f			beq 	_CNXOk
-.01115b	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->01115e	4e 65 78 74 20 77 69 74				.text 	"Next without For",$00 								; with this message
->011166	68 6f 75 74 20 46 6f 72 00
-.01116f					_CNXOk:
-.01116f	b2 06		lda ($06)			lda 	(DCodePtr)					; if there's an identifier here.
-.011171	c9 00 c0	cmp #$c000			cmp 	#$C000 						; e.g. NEXT <var>
-.011174	90 22		bcc $011198			bcc 	_CNXNoVariable
-.011176	20 50 03	jsr $010350			jsr 	VariableFind 				; get address of variable.
-.011179	90 08		bcc $011183			bcc 	_CNXNextVar 				; not found variable, it's an error.
-.01117b	a6 2a		ldx $2a				ldx 	DStack 						; point X to variable address
-.01117d	ca		dex				dex
-.01117e	ca		dex				dex
-.01117f	d5 00		cmp $00,x			cmp 	$00,x 						; same variable as the found one.
-.011181	f0 15		beq $011198			beq 	_CNXNoVariable 				; then continue
-.011183					_CNXNextVar:
-.011183	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->011186	42 61 64 20 4e 45 58 54				.text 	"Bad NEXT variable",$00 								; with this message
->01118e	20 76 61 72 69 61 62 6c 65 00
-.011198					_CNXNoVariable:
-.011198	a5 06		lda $06				lda 	DCodePtr 					; save the following position on the stack in case we are done.
-.01119a	48		pha				pha
-.01119b	a5 2a		lda $2a				lda 	DStack 						; subtract 8 from stack
-.01119d	38		sec				sec
-.01119e	e9 08 00	sbc #$0008			sbc 	#8
-.0111a1	85 2a		sta $2a				sta 	DStack
-.0111a3	aa		tax				tax 								; X points to the stack.
-.0111a4	b5 02		lda $02,x			lda 	$02,x 						; put the old pointer in the pointer (e.g. after TO)
-.0111a6	85 06		sta $06				sta 	DCodePtr
-.0111a8	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; this is the target constant
-.0111ab	5a		phy				phy 								; save the target on the stack
-.0111ac	48		pha				pha
-.0111ad	a9 01 00	lda #$0001			lda 	#1 							; set DTemp1 (the count) to 1
-.0111b0	85 08		sta $08				sta 	DTemp1
-.0111b2	64 0a		stz $0a				stz 	DTemp1+2
-.0111b4	b2 06		lda ($06)			lda 	(DCodePtr)					; does a STEP follow.
-.0111b6	c9 29 38	cmp #$3829			cmp 	#stepTokenID
-.0111b9	d0 0b		bne $0111c6			bne 	_CNXNoStep
-.0111bb	e6 06		inc $06				inc 	DCodePtr 					; skip over the step
-.0111bd	e6 06		inc $06				inc 	DCodePtr
-.0111bf	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; work out the step.
-.0111c2	85 08		sta $08				sta 	DTemp1 						; and save in DTemp1
-.0111c4	84 0a		sty $0a				sty 	DTemp1+2
-.0111c6					_CNXNoStep:
-.0111c6	68		pla				pla 								; save the Target in DTemp2
-.0111c7	85 0c		sta $0c				sta 	DTemp2
-.0111c9	68		pla				pla
-.0111ca	85 0e		sta $0e				sta 	DTemp2+2
-.0111cc	a6 2a		ldx $2a				ldx 	DStack 						; get the stack
-.0111ce	b5 06		lda $06,x			lda 	$06,x 						; address of variable into Y
-.0111d0	a8		tay				tay
-.0111d1	18		clc				clc
-.0111d2	b9 00 00	lda $0000,y			lda 	$0000,y 					; add the step (DTemp1) to the target
-.0111d5	65 08		adc $08				adc 	DTemp1
-.0111d7	99 00 00	sta $0000,y			sta 	$0000,y
-.0111da	b9 02 00	lda $0002,y			lda 	$0002,y
-.0111dd	65 0a		adc $0a				adc 	DTemp1+2
-.0111df	99 02 00	sta $0002,y			sta 	$0002,y
-.0111e2	38		sec				sec
-.0111e3	a5 0c		lda $0c				lda 	DTemp2
-.0111e5	f9 00 00	sbc $0000,y			sbc 	$0000,y
-.0111e8	85 0c		sta $0c				sta 	DTemp2
-.0111ea	a5 0e		lda $0e				lda 	DTemp2+2
-.0111ec	f9 02 00	sbc $0002,y			sbc 	$0002,y
-.0111ef	85 0e		sta $0e				sta 	DTemp2+2
-.0111f1	05 0c		ora $0c				ora 	DTemp2 						; if zero (Target = Result)
-.0111f3	f0 0a		beq $0111ff			beq 	_CNXLoopAgain 				; then loop again, as we have to be past the target.
-.0111f5	a5 0e		lda $0e				lda 	DTemp2+2 					; if sign(target-counter) == sign(step)
-.0111f7	45 0a		eor $0a				eor 	DTemp1+2
-.0111f9	10 04		bpl $0111ff			bpl		_CNXLoopAgain 				; we aren't there yet, so loop again.
-.0111fb	68		pla				pla 								; restore the original DCodePtr as we are exiting the structure
-.0111fc	85 06		sta $06				sta 	DCodePtr
-.0111fe	60		rts				rts
-.0111ff					_CNXLoopAgain:
-.0111ff	68		pla				pla 								; throw the original DCodePtr as we're going back.
-.011200	18		clc				clc
-.011201	a5 2a		lda $2a				lda 	DStack 						; fix the stack back so we can loop round again.
-.011203	aa		tax				tax
-.011204	69 08 00	adc #$0008			adc 	#8
-.011207	85 2a		sta $2a				sta 	DStack
-.011209	b5 04		lda $04,x			lda		$04,x 						; because we've jumped to the top, get the line number
-.01120b	85 22		sta $22				sta 	DLineNumber
-.01120d	60		rts				rts
+.011136					Command_FOR:
+.011136	b2 06		lda ($06)			lda 	(DCodePtr)					; look at first word
+.011138	29 00 30	and #$3000			and 	#(IDTypeMask+IDArrayMask)	; check to see if it is type $00 e.g. integer variable
+.01113b	d0 60		bne $01119d			bne		_CFOBad
+.01113d	20 50 03	jsr $010350			jsr 	VariableFind 				; try to find variable
+.011140	b0 15		bcs $011157			bcs 	_CFOExists
+.011142	a4 06		ldy $06				ldy 	DCodePtr 					; Y is the address of the name
+.011144	a9 00 00	lda #$0000			lda 	#0 							; A = 0 because it's not an array.
+.011147	20 fa 03	jsr $0103fa			jsr 	VariableCreate 				; create it.
+.01114a	48		pha				pha 								; save on stack
+.01114b					_CFOSkipToken:
+.01114b	b2 06		lda ($06)			lda 	(DCodePtr) 					; skip over the token
+.01114d	e6 06		inc $06				inc 	DCodePtr
+.01114f	e6 06		inc $06				inc 	DCodePtr
+.011151	29 00 08	and #$0800			and 	#IDContMask 				; if there is a continuation
+.011154	d0 f5		bne $01114b			bne 	_CFOSkipToken
+.011156	68		pla				pla 								; restore address
+.011157					_CFOExists:
+.011157	48		pha				pha 								; push variable address on stack
+.011158	a9 06 22	lda #$2206			lda 	#equalTokenID 				; check for =
+.01115b	20 9f 04	jsr $01049f			jsr 	ExpectToken
+.01115e	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; this is the start value
+.011161	bb		tyx				tyx 								; put high value in X
+.011162	7a		ply				ply 								; address in Y
+.011163	99 00 00	sta $0000,y			sta 	$0000,y
+.011166	8a		txa				txa
+.011167	99 02 00	sta $0002,y			sta 	$0002,y
+.01116a	a9 28 38	lda #$3828			lda 	#toTokenID 					; expect the TO
+.01116d	20 9f 04	jsr $01049f			jsr 	ExpectToken
+.011170	a6 2a		ldx $2a				ldx 	DStack 						; get the stack.
+.011172	a5 06		lda $06				lda 	DCodePtr 					; save code ptr at +2 (after "TO")
+.011174	95 02		sta $02,x			sta 	$02,x
+.011176	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
+.011178	95 04		sta $04,x			sta 	$04,x
+.01117a	98		tya				tya 								; save variable address at +6
+.01117b	95 06		sta $06,x			sta 	$06,x
+.01117d	a9 41 3c	lda #$3c41			lda 	#forTokenID 				; save for token at +8
+.011180	95 08		sta $08,x			sta 	$08,x
+.011182	8a		txa				txa 								; add 8 to stack position
+.011183	18		clc				clc
+.011184	69 08 00	adc #$0008			adc 	#8
+.011187	85 2a		sta $2a				sta 	DStack
+.011189	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; the end value, which we don't want this time.
+.01118c	b2 06		lda ($06)			lda 	(DCodePtr)
+.01118e	c9 29 38	cmp #$3829			cmp 	#stepTokenID 				; if STEP x is present.
+.011191	d0 09		bne $01119c			bne 	_CFONoStep
+.011193	a9 29 38	lda #$3829			lda 	#stepTokenID 				; skip STEP
+.011196	20 9f 04	jsr $01049f			jsr 	ExpectToken
+.011199	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; and whatever the step is.
+.01119c					_CFONoStep:
+.01119c	60		rts				rts
+.01119d					_CFOBad:
+.01119d	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>0111a0	42 61 64 20 46 4f 52 20				.text 	"Bad FOR variable",$00 								; with this message
+>0111a8	76 61 72 69 61 62 6c 65 00
+.0111b1					Command_NEXT:
+.0111b1	a6 2a		ldx $2a				ldx 	DStack 						; look at TOS
+.0111b3	b5 00		lda $00,x			lda 	$00,x
+.0111b5	c9 41 3c	cmp #$3c41			cmp 	#forTokenID 				; if not FOR then error
+.0111b8	f0 14		beq $0111ce			beq 	_CNXOk
+.0111ba	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>0111bd	4e 65 78 74 20 77 69 74				.text 	"Next without For",$00 								; with this message
+>0111c5	68 6f 75 74 20 46 6f 72 00
+.0111ce					_CNXOk:
+.0111ce	b2 06		lda ($06)			lda 	(DCodePtr)					; if there's an identifier here.
+.0111d0	c9 00 c0	cmp #$c000			cmp 	#$C000 						; e.g. NEXT <var>
+.0111d3	90 22		bcc $0111f7			bcc 	_CNXNoVariable
+.0111d5	20 50 03	jsr $010350			jsr 	VariableFind 				; get address of variable.
+.0111d8	90 08		bcc $0111e2			bcc 	_CNXNextVar 				; not found variable, it's an error.
+.0111da	a6 2a		ldx $2a				ldx 	DStack 						; point X to variable address
+.0111dc	ca		dex				dex
+.0111dd	ca		dex				dex
+.0111de	d5 00		cmp $00,x			cmp 	$00,x 						; same variable as the found one.
+.0111e0	f0 15		beq $0111f7			beq 	_CNXNoVariable 				; then continue
+.0111e2					_CNXNextVar:
+.0111e2	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>0111e5	42 61 64 20 4e 45 58 54				.text 	"Bad NEXT variable",$00 								; with this message
+>0111ed	20 76 61 72 69 61 62 6c 65 00
+.0111f7					_CNXNoVariable:
+.0111f7	a5 06		lda $06				lda 	DCodePtr 					; save the following position on the stack in case we are done.
+.0111f9	48		pha				pha
+.0111fa	a5 2a		lda $2a				lda 	DStack 						; subtract 8 from stack
+.0111fc	38		sec				sec
+.0111fd	e9 08 00	sbc #$0008			sbc 	#8
+.011200	85 2a		sta $2a				sta 	DStack
+.011202	aa		tax				tax 								; X points to the stack.
+.011203	b5 02		lda $02,x			lda 	$02,x 						; put the old pointer in the pointer (e.g. after TO)
+.011205	85 06		sta $06				sta 	DCodePtr
+.011207	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; this is the target constant
+.01120a	5a		phy				phy 								; save the target on the stack
+.01120b	48		pha				pha
+.01120c	a9 01 00	lda #$0001			lda 	#1 							; set DTemp1 (the count) to 1
+.01120f	85 08		sta $08				sta 	DTemp1
+.011211	64 0a		stz $0a				stz 	DTemp1+2
+.011213	b2 06		lda ($06)			lda 	(DCodePtr)					; does a STEP follow.
+.011215	c9 29 38	cmp #$3829			cmp 	#stepTokenID
+.011218	d0 0b		bne $011225			bne 	_CNXNoStep
+.01121a	e6 06		inc $06				inc 	DCodePtr 					; skip over the step
+.01121c	e6 06		inc $06				inc 	DCodePtr
+.01121e	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; work out the step.
+.011221	85 08		sta $08				sta 	DTemp1 						; and save in DTemp1
+.011223	84 0a		sty $0a				sty 	DTemp1+2
+.011225					_CNXNoStep:
+.011225	68		pla				pla 								; save the Target in DTemp2
+.011226	85 0c		sta $0c				sta 	DTemp2
+.011228	68		pla				pla
+.011229	85 0e		sta $0e				sta 	DTemp2+2
+.01122b	a6 2a		ldx $2a				ldx 	DStack 						; get the stack
+.01122d	b5 06		lda $06,x			lda 	$06,x 						; address of variable into Y
+.01122f	a8		tay				tay
+.011230	18		clc				clc
+.011231	b9 00 00	lda $0000,y			lda 	$0000,y 					; add the step (DTemp1) to the target
+.011234	65 08		adc $08				adc 	DTemp1
+.011236	99 00 00	sta $0000,y			sta 	$0000,y
+.011239	b9 02 00	lda $0002,y			lda 	$0002,y
+.01123c	65 0a		adc $0a				adc 	DTemp1+2
+.01123e	99 02 00	sta $0002,y			sta 	$0002,y
+.011241	38		sec				sec
+.011242	a5 0c		lda $0c				lda 	DTemp2
+.011244	f9 00 00	sbc $0000,y			sbc 	$0000,y
+.011247	85 0c		sta $0c				sta 	DTemp2
+.011249	a5 0e		lda $0e				lda 	DTemp2+2
+.01124b	f9 02 00	sbc $0002,y			sbc 	$0002,y
+.01124e	85 0e		sta $0e				sta 	DTemp2+2
+.011250	05 0c		ora $0c				ora 	DTemp2 						; if zero (Target = Result)
+.011252	f0 0a		beq $01125e			beq 	_CNXLoopAgain 				; then loop again, as we have to be past the target.
+.011254	a5 0e		lda $0e				lda 	DTemp2+2 					; if sign(target-counter) == sign(step)
+.011256	45 0a		eor $0a				eor 	DTemp1+2
+.011258	10 04		bpl $01125e			bpl		_CNXLoopAgain 				; we aren't there yet, so loop again.
+.01125a	68		pla				pla 								; restore the original DCodePtr as we are exiting the structure
+.01125b	85 06		sta $06				sta 	DCodePtr
+.01125d	60		rts				rts
+.01125e					_CNXLoopAgain:
+.01125e	68		pla				pla 								; throw the original DCodePtr as we're going back.
+.01125f	18		clc				clc
+.011260	a5 2a		lda $2a				lda 	DStack 						; fix the stack back so we can loop round again.
+.011262	aa		tax				tax
+.011263	69 08 00	adc #$0008			adc 	#8
+.011266	85 2a		sta $2a				sta 	DStack
+.011268	b5 04		lda $04,x			lda		$04,x 						; because we've jumped to the top, get the line number
+.01126a	85 22		sta $22				sta 	DLineNumber
+.01126c	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/transfer.asm
 
-.01120e					Function_ONGOTO:
-.01120e	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; on what GOTO :)
-.011211	c0 00 00	cpy #$0000			cpy 	#0 							; check range. ON x GOTO x1,x2,x3,x4. 0 is illegal.
-.011214	d0 25		bne $01123b			bne 	_FOGoFail
-.011216	c9 00 00	cmp #$0000			cmp 	#0
-.011219	f0 20		beq $01123b			beq 	_FOGoFail 					; we start with index = 1
-.01121b	48		pha				pha 								; save count on stack
-.01121c	a9 35 3e	lda #$3e35			lda 	#gotoTokenID 				; expect GOTO
-.01121f	20 9f 04	jsr $01049f			jsr 	ExpectToken
-.011222	fa		plx				plx 								; put count in X.
-.011223					_FOGoLoop:
-.011223	b2 06		lda ($06)			lda 	(DCodePtr) 					; check the next value is a constant.
-.011225	c9 00 40	cmp #$4000			cmp 	#$4000						; range 4000-BFFF
-.011228	90 73		bcc $01129d			bcc 	FGOFail 					; if not, then we have an error.
-.01122a	c9 00 c0	cmp #$c000			cmp 	#$C000
-.01122d	b0 6e		bcs $01129d			bcs 	FGOFail
-.01122f	ca		dex				dex 								; subtract one, if done, call GOTO code
-.011230	f0 1f		beq $011251			beq 	Function_GOTO
-.011232	e6 06		inc $06				inc 	DCodePtr 					; step over the constant
-.011234	e6 06		inc $06				inc 	DCodePtr
-.011236	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; expect a comma
-.011239	80 e8		bra $011223			bra 	_FOGoLoop 					; and loop round.
-.01123b					_FOGoFail:
-.01123b	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->01123e	42 61 64 20 4f 6e 2e 2e				.text 	"Bad On..Goto value",$00 								; with this message
->011246	47 6f 74 6f 20 76 61 6c 75 65 00
-.011251					Function_GOTO:
-.011251	b2 06		lda ($06)			lda 	(DCodePtr) 					; look at the number
-.011253	c9 00 40	cmp #$4000			cmp 	#$4000						; range 4000-BFFF
-.011256	90 45		bcc $01129d			bcc 	FGOFail 					; we don't do calculate line numbers.
-.011258	c9 00 c0	cmp #$c000			cmp 	#$C000
-.01125b	b0 40		bcs $01129d			bcs 	FGOFail
-.01125d	38		sec				sec 								; convert to 0-32767
-.01125e	e9 00 40	sbc #$4000			sbc 	#$4000 						; and put in X.
-.011261	aa		tax				tax
-.011262	a9 00 01	lda #$0100			lda 	#Block_ProgramStart 		; start of program offset
-.011265	18		clc				clc
-.011266	65 02		adc $02				adc 	DBaseAddress 				; now an address into Y
-.011268	a8		tay				tay
-.011269					_FGOSearch:
-.011269	b9 00 00	lda $0000,y			lda 	$0000,y 					; look at link , exit if zero, reached end of program.
-.01126c	f0 18		beq $011286			beq 	_FGOUnknown
-.01126e	8a		txa				txa 								; does it match line number ?
-.01126f	d9 02 00	cmp $0002,y			cmp 	$0002,y
-.011272	f0 08		beq $01127c			beq 	_FGOFound 					; yes, then found.
-.011274	98		tya				tya 								; no follow the link
-.011275	18		clc				clc
-.011276	79 00 00	adc $0000,y			adc 	$0000,y 					; add offset to address
-.011279	a8		tay				tay
-.01127a	80 ed		bra $011269			bra 	_FGOSearch 					; and keep looking
-.01127c					_FGOFound:
-.01127c	85 22		sta $22				sta 	DLineNumber 				; store as new line number
-.01127e	98		tya				tya 								; Y + 4 is the code pointer.
-.01127f	18		clc				clc 								; (skipping link and line #)
-.011280	69 04 00	adc #$0004			adc 	#4
-.011283	85 06		sta $06				sta 	DCodePtr
-.011285	60		rts				rts									; and continue
-.011286					_FGOUnknown:
-.011286	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->011289	55 6e 6b 6e 6f 77 6e 20				.text 	"Unknown Line Number",$00 								; with this message
->011291	4c 69 6e 65 20 4e 75 6d 62 65 72 00
-.01129d					FGOFail:
-.01129d	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0112a0	42 61 64 20 4c 69 6e 65				.text 	"Bad Line Number",$00 								; with this message
->0112a8	20 4e 75 6d 62 65 72 00
-.0112b0					Function_GOSUB:
-.0112b0	a6 2a		ldx $2a				ldx 	DStack 						; point Y to the stack.
-.0112b2	a5 06		lda $06				lda 	DCodePtr 					; save code ptr at +0 , 2 added to skip line number
-.0112b4	18		clc				clc
-.0112b5	69 02 00	adc #$0002			adc 	#2
-.0112b8	95 02		sta $02,x			sta 	$02,x 						; save pos at +2
-.0112ba	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
-.0112bc	95 04		sta $04,x			sta 	$04,x
-.0112be	a9 36 3e	lda #$3e36			lda 	#gosubTokenID 				; save gosub token at +6
-.0112c1	95 06		sta $06,x			sta 	$06,x
-.0112c3	8a		txa				txa 								; advance stack by 6.
+.01126d					Function_ONGOTO:
+.01126d	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; on what GOTO :)
+.011270	c0 00 00	cpy #$0000			cpy 	#0 							; check range. ON x GOTO x1,x2,x3,x4. 0 is illegal.
+.011273	d0 25		bne $01129a			bne 	_FOGoFail
+.011275	c9 00 00	cmp #$0000			cmp 	#0
+.011278	f0 20		beq $01129a			beq 	_FOGoFail 					; we start with index = 1
+.01127a	48		pha				pha 								; save count on stack
+.01127b	a9 35 3e	lda #$3e35			lda 	#gotoTokenID 				; expect GOTO
+.01127e	20 9f 04	jsr $01049f			jsr 	ExpectToken
+.011281	fa		plx				plx 								; put count in X.
+.011282					_FOGoLoop:
+.011282	b2 06		lda ($06)			lda 	(DCodePtr) 					; check the next value is a constant.
+.011284	c9 00 40	cmp #$4000			cmp 	#$4000						; range 4000-BFFF
+.011287	90 73		bcc $0112fc			bcc 	FGOFail 					; if not, then we have an error.
+.011289	c9 00 c0	cmp #$c000			cmp 	#$C000
+.01128c	b0 6e		bcs $0112fc			bcs 	FGOFail
+.01128e	ca		dex				dex 								; subtract one, if done, call GOTO code
+.01128f	f0 1f		beq $0112b0			beq 	Function_GOTO
+.011291	e6 06		inc $06				inc 	DCodePtr 					; step over the constant
+.011293	e6 06		inc $06				inc 	DCodePtr
+.011295	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; expect a comma
+.011298	80 e8		bra $011282			bra 	_FOGoLoop 					; and loop round.
+.01129a					_FOGoFail:
+.01129a	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>01129d	42 61 64 20 4f 6e 2e 2e				.text 	"Bad On..Goto value",$00 								; with this message
+>0112a5	47 6f 74 6f 20 76 61 6c 75 65 00
+.0112b0					Function_GOTO:
+.0112b0	b2 06		lda ($06)			lda 	(DCodePtr) 					; look at the number
+.0112b2	c9 00 40	cmp #$4000			cmp 	#$4000						; range 4000-BFFF
+.0112b5	90 45		bcc $0112fc			bcc 	FGOFail 					; we don't do calculate line numbers.
+.0112b7	c9 00 c0	cmp #$c000			cmp 	#$C000
+.0112ba	b0 40		bcs $0112fc			bcs 	FGOFail
+.0112bc	38		sec				sec 								; convert to 0-32767
+.0112bd	e9 00 40	sbc #$4000			sbc 	#$4000 						; and put in X.
+.0112c0	aa		tax				tax
+.0112c1	a9 00 01	lda #$0100			lda 	#Block_ProgramStart 		; start of program offset
 .0112c4	18		clc				clc
-.0112c5	69 06 00	adc #$0006			adc 	#6
-.0112c8	85 2a		sta $2a				sta 	DStack
-.0112ca	80 85		bra $011251			bra 	Function_GOTO 				; and do a GOTO.
-.0112cc					Function_RETURN:
-.0112cc	a6 2a		ldx $2a				ldx 	DStack
-.0112ce	b5 00		lda $00,x			lda 	$00,x
-.0112d0	c9 36 3e	cmp #$3e36			cmp 	#gosubTokenID 				; check top token.
-.0112d3	d0 11		bne $0112e6			bne 	_FRetFail
-.0112d5	8a		txa				txa 								; unpick stack.
-.0112d6	38		sec				sec
-.0112d7	e9 06 00	sbc #$0006			sbc 	#6
-.0112da	85 2a		sta $2a				sta 	DStack
-.0112dc	aa		tax				tax
-.0112dd	b5 02		lda $02,x			lda 	$02,x 						; copy code pointer out.
-.0112df	85 06		sta $06				sta 	DCodePtr
-.0112e1	b5 04		lda $04,x			lda 	$04,x 						; copy line number out
-.0112e3	85 22		sta $22				sta 	DLineNumber
-.0112e5	60		rts				rts
-.0112e6					_FRetFail:
-.0112e6	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0112e9	52 65 74 75 72 6e 20 77				.text 	"Return without Gosub",$00 								; with this message
->0112f1	69 74 68 6f 75 74 20 47 6f 73 75 62 00
+.0112c5	65 02		adc $02				adc 	DBaseAddress 				; now an address into Y
+.0112c7	a8		tay				tay
+.0112c8					_FGOSearch:
+.0112c8	b9 00 00	lda $0000,y			lda 	$0000,y 					; look at link , exit if zero, reached end of program.
+.0112cb	f0 18		beq $0112e5			beq 	_FGOUnknown
+.0112cd	8a		txa				txa 								; does it match line number ?
+.0112ce	d9 02 00	cmp $0002,y			cmp 	$0002,y
+.0112d1	f0 08		beq $0112db			beq 	_FGOFound 					; yes, then found.
+.0112d3	98		tya				tya 								; no follow the link
+.0112d4	18		clc				clc
+.0112d5	79 00 00	adc $0000,y			adc 	$0000,y 					; add offset to address
+.0112d8	a8		tay				tay
+.0112d9	80 ed		bra $0112c8			bra 	_FGOSearch 					; and keep looking
+.0112db					_FGOFound:
+.0112db	85 22		sta $22				sta 	DLineNumber 				; store as new line number
+.0112dd	98		tya				tya 								; Y + 4 is the code pointer.
+.0112de	18		clc				clc 								; (skipping link and line #)
+.0112df	69 04 00	adc #$0004			adc 	#4
+.0112e2	85 06		sta $06				sta 	DCodePtr
+.0112e4	60		rts				rts									; and continue
+.0112e5					_FGOUnknown:
+.0112e5	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>0112e8	55 6e 6b 6e 6f 77 6e 20				.text 	"Unknown Line Number",$00 								; with this message
+>0112f0	4c 69 6e 65 20 4e 75 6d 62 65 72 00
+.0112fc					FGOFail:
+.0112fc	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>0112ff	42 61 64 20 4c 69 6e 65				.text 	"Bad Line Number",$00 								; with this message
+>011307	20 4e 75 6d 62 65 72 00
+.01130f					Function_GOSUB:
+.01130f	a6 2a		ldx $2a				ldx 	DStack 						; point Y to the stack.
+.011311	a5 06		lda $06				lda 	DCodePtr 					; save code ptr at +0 , 2 added to skip line number
+.011313	18		clc				clc
+.011314	69 02 00	adc #$0002			adc 	#2
+.011317	95 02		sta $02,x			sta 	$02,x 						; save pos at +2
+.011319	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
+.01131b	95 04		sta $04,x			sta 	$04,x
+.01131d	a9 36 3e	lda #$3e36			lda 	#gosubTokenID 				; save gosub token at +6
+.011320	95 06		sta $06,x			sta 	$06,x
+.011322	8a		txa				txa 								; advance stack by 6.
+.011323	18		clc				clc
+.011324	69 06 00	adc #$0006			adc 	#6
+.011327	85 2a		sta $2a				sta 	DStack
+.011329	80 85		bra $0112b0			bra 	Function_GOTO 				; and do a GOTO.
+.01132b					Function_RETURN:
+.01132b	a6 2a		ldx $2a				ldx 	DStack
+.01132d	b5 00		lda $00,x			lda 	$00,x
+.01132f	c9 36 3e	cmp #$3e36			cmp 	#gosubTokenID 				; check top token.
+.011332	d0 11		bne $011345			bne 	_FRetFail
+.011334	8a		txa				txa 								; unpick stack.
+.011335	38		sec				sec
+.011336	e9 06 00	sbc #$0006			sbc 	#6
+.011339	85 2a		sta $2a				sta 	DStack
+.01133b	aa		tax				tax
+.01133c	b5 02		lda $02,x			lda 	$02,x 						; copy code pointer out.
+.01133e	85 06		sta $06				sta 	DCodePtr
+.011340	b5 04		lda $04,x			lda 	$04,x 						; copy line number out
+.011342	85 22		sta $22				sta 	DLineNumber
+.011344	60		rts				rts
+.011345					_FRetFail:
+.011345	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>011348	52 65 74 75 72 6e 20 77				.text 	"Return without Gosub",$00 								; with this message
+>011350	69 74 68 6f 75 74 20 47 6f 73 75 62 00
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/repeat.asm
 
-.0112fe					Function_REPEAT:
-.0112fe	a6 2a		ldx $2a				ldx 	DStack 						; point Y to the stack.
-.011300	a5 06		lda $06				lda 	DCodePtr 					; save code ptr
-.011302	95 02		sta $02,x			sta 	$02,x 						; save pos at +2
-.011304	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
-.011306	95 04		sta $04,x			sta 	$04,x
-.011308	a9 3e 3c	lda #$3c3e			lda 	#repeatTokenID 				; save repeat token at +6
-.01130b	95 06		sta $06,x			sta 	$06,x
-.01130d	8a		txa				txa 								; advance stack by 6.
-.01130e	18		clc				clc
-.01130f	69 06 00	adc #$0006			adc 	#6
-.011312	85 2a		sta $2a				sta 	DStack
-.011314	60		rts				rts
-.011315					Function_UNTIL:
-.011315	a6 2a		ldx $2a				ldx 	DStack 						; check top token is REPEAT
-.011317	b5 00		lda $00,x			lda 	$00,x
-.011319	c9 3e 3c	cmp #$3c3e			cmp 	#repeatTokenID
-.01131c	d0 26		bne $011344			bne 	_FUNFail
-.01131e	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; .... until what.
-.011321	c0 00 00	cpy #$0000			cpy 	#0 							; exit if non-zero
-.011324	d0 15		bne $01133b			bne 	_FUNExit
-.011326	c9 00 00	cmp #$0000			cmp 	#0
-.011329	d0 10		bne $01133b			bne 	_FUNExit
-.01132b	a5 2a		lda $2a				lda 	DStack 						; unpick stack but don't remove it.
-.01132d	38		sec				sec
-.01132e	e9 06 00	sbc #$0006			sbc 	#6
-.011331	aa		tax				tax
-.011332	b5 02		lda $02,x			lda 	$02,x 						; copy code pointer out.
-.011334	85 06		sta $06				sta 	DCodePtr
-.011336	b5 04		lda $04,x			lda 	$04,x 						; copy line number out
-.011338	85 22		sta $22				sta 	DLineNumber
-.01133a	60		rts				rts
-.01133b					_FUNExit:
-.01133b	a5 2a		lda $2a				lda 	DStack 						; unpick stack.
-.01133d	38		sec				sec
-.01133e	e9 06 00	sbc #$0006			sbc 	#6
-.011341	85 2a		sta $2a				sta 	DStack
-.011343	60		rts				rts
-.011344					_FUNFail:
-.011344	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->011347	55 6e 74 69 6c 20 77 69				.text 	"Until without Repeat",$00 								; with this message
->01134f	74 68 6f 75 74 20 52 65 70 65 61 74 00
+.01135d					Function_REPEAT:
+.01135d	a6 2a		ldx $2a				ldx 	DStack 						; point Y to the stack.
+.01135f	a5 06		lda $06				lda 	DCodePtr 					; save code ptr
+.011361	95 02		sta $02,x			sta 	$02,x 						; save pos at +2
+.011363	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
+.011365	95 04		sta $04,x			sta 	$04,x
+.011367	a9 3e 3c	lda #$3c3e			lda 	#repeatTokenID 				; save repeat token at +6
+.01136a	95 06		sta $06,x			sta 	$06,x
+.01136c	8a		txa				txa 								; advance stack by 6.
+.01136d	18		clc				clc
+.01136e	69 06 00	adc #$0006			adc 	#6
+.011371	85 2a		sta $2a				sta 	DStack
+.011373	60		rts				rts
+.011374					Function_UNTIL:
+.011374	a6 2a		ldx $2a				ldx 	DStack 						; check top token is REPEAT
+.011376	b5 00		lda $00,x			lda 	$00,x
+.011378	c9 3e 3c	cmp #$3c3e			cmp 	#repeatTokenID
+.01137b	d0 26		bne $0113a3			bne 	_FUNFail
+.01137d	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; .... until what.
+.011380	c0 00 00	cpy #$0000			cpy 	#0 							; exit if non-zero
+.011383	d0 15		bne $01139a			bne 	_FUNExit
+.011385	c9 00 00	cmp #$0000			cmp 	#0
+.011388	d0 10		bne $01139a			bne 	_FUNExit
+.01138a	a5 2a		lda $2a				lda 	DStack 						; unpick stack but don't remove it.
+.01138c	38		sec				sec
+.01138d	e9 06 00	sbc #$0006			sbc 	#6
+.011390	aa		tax				tax
+.011391	b5 02		lda $02,x			lda 	$02,x 						; copy code pointer out.
+.011393	85 06		sta $06				sta 	DCodePtr
+.011395	b5 04		lda $04,x			lda 	$04,x 						; copy line number out
+.011397	85 22		sta $22				sta 	DLineNumber
+.011399	60		rts				rts
+.01139a					_FUNExit:
+.01139a	a5 2a		lda $2a				lda 	DStack 						; unpick stack.
+.01139c	38		sec				sec
+.01139d	e9 06 00	sbc #$0006			sbc 	#6
+.0113a0	85 2a		sta $2a				sta 	DStack
+.0113a2	60		rts				rts
+.0113a3					_FUNFail:
+.0113a3	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>0113a6	55 6e 74 69 6c 20 77 69				.text 	"Until without Repeat",$00 								; with this message
+>0113ae	74 68 6f 75 74 20 52 65 70 65 61 74 00
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/while.asm
 
-.01135c					Function_WHILE:
-.01135c	a5 06		lda $06				lda 	DCodePtr 					; get the current instruction
-.01135e	48		pha				pha 								; save on stack
-.01135f	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; while what.
-.011362	c0 00 00	cpy #$0000			cpy 	#0 							; do the body if non-zero.
-.011365	d0 14		bne $01137b			bne 	_FWHExecute
-.011367	c9 00 00	cmp #$0000			cmp 	#0
-.01136a	d0 0f		bne $01137b			bne 	_FWHExecute
-.01136c	68		pla				pla 								; throw away current instruction
-.01136d	a9 42 3a	lda #$3a42			lda 	#wendTokenID 				; skip to WEND
-.011370	a2 00 00	ldx #$0000			ldx 	#0
-.011373	20 51 10	jsr $011051			jsr 	ScanForwardLevel 			; scan forward checking structures
-.011376	e6 06		inc $06				inc 	DCodePtr 					; and skip over the WEND.
-.011378	e6 06		inc $06				inc 	DCodePtr
-.01137a	60		rts				rts
-.01137b					_FWHExecute:
-.01137b	a6 2a		ldx $2a				ldx 	DStack 						; point Y to the stack.
-.01137d	68		pla				pla 								; save code ptr-2 so we re-execute the WHILE.
-.01137e	3a		dec a				dec 	a
-.01137f	3a		dec a				dec 	a
-.011380	95 02		sta $02,x			sta 	$02,x 						; save pos at +2
-.011382	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
-.011384	95 04		sta $04,x			sta 	$04,x
-.011386	a9 3f 3c	lda #$3c3f			lda 	#whileTokenID 				; save while token at +6
-.011389	95 06		sta $06,x			sta 	$06,x
-.01138b	8a		txa				txa 								; advance stack by 6.
-.01138c	18		clc				clc
-.01138d	69 06 00	adc #$0006			adc 	#6
-.011390	85 2a		sta $2a				sta 	DStack
-.011392	60		rts				rts
-.011393					Function_WEND:
-.011393	a6 2a		ldx $2a				ldx 	DStack 						; check top token is WHILE
-.011395	b5 00		lda $00,x			lda 	$00,x
-.011397	c9 3f 3c	cmp #$3c3f			cmp 	#whileTokenID
-.01139a	d0 11		bne $0113ad			bne 	_FWEFail
-.01139c	8a		txa				txa 								; unpick stack and always loop back.
-.01139d	38		sec				sec 								; we do the check at the top.
-.01139e	e9 06 00	sbc #$0006			sbc 	#6
-.0113a1	85 2a		sta $2a				sta 	DStack
-.0113a3	aa		tax				tax
-.0113a4	b5 02		lda $02,x			lda 	$02,x 						; copy code pointer out.
-.0113a6	85 06		sta $06				sta 	DCodePtr 					; goes back to the WHILE token.
-.0113a8	b5 04		lda $04,x			lda 	$04,x 						; copy line number out
-.0113aa	85 22		sta $22				sta 	DLineNumber
-.0113ac	60		rts				rts
-.0113ad					_FWEFail:
-.0113ad	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0113b0	57 65 6e 64 20 77 69 74				.text 	"Wend without While",$00 								; with this message
->0113b8	68 6f 75 74 20 57 68 69 6c 65 00
+.0113bb					Function_WHILE:
+.0113bb	a5 06		lda $06				lda 	DCodePtr 					; get the current instruction
+.0113bd	48		pha				pha 								; save on stack
+.0113be	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; while what.
+.0113c1	c0 00 00	cpy #$0000			cpy 	#0 							; do the body if non-zero.
+.0113c4	d0 14		bne $0113da			bne 	_FWHExecute
+.0113c6	c9 00 00	cmp #$0000			cmp 	#0
+.0113c9	d0 0f		bne $0113da			bne 	_FWHExecute
+.0113cb	68		pla				pla 								; throw away current instruction
+.0113cc	a9 42 3a	lda #$3a42			lda 	#wendTokenID 				; skip to WEND
+.0113cf	a2 00 00	ldx #$0000			ldx 	#0
+.0113d2	20 b0 10	jsr $0110b0			jsr 	ScanForwardLevel 			; scan forward checking structures
+.0113d5	e6 06		inc $06				inc 	DCodePtr 					; and skip over the WEND.
+.0113d7	e6 06		inc $06				inc 	DCodePtr
+.0113d9	60		rts				rts
+.0113da					_FWHExecute:
+.0113da	a6 2a		ldx $2a				ldx 	DStack 						; point Y to the stack.
+.0113dc	68		pla				pla 								; save code ptr-2 so we re-execute the WHILE.
+.0113dd	3a		dec a				dec 	a
+.0113de	3a		dec a				dec 	a
+.0113df	95 02		sta $02,x			sta 	$02,x 						; save pos at +2
+.0113e1	a5 22		lda $22				lda 	DLineNumber 				; save line number at +4
+.0113e3	95 04		sta $04,x			sta 	$04,x
+.0113e5	a9 3f 3c	lda #$3c3f			lda 	#whileTokenID 				; save while token at +6
+.0113e8	95 06		sta $06,x			sta 	$06,x
+.0113ea	8a		txa				txa 								; advance stack by 6.
+.0113eb	18		clc				clc
+.0113ec	69 06 00	adc #$0006			adc 	#6
+.0113ef	85 2a		sta $2a				sta 	DStack
+.0113f1	60		rts				rts
+.0113f2					Function_WEND:
+.0113f2	a6 2a		ldx $2a				ldx 	DStack 						; check top token is WHILE
+.0113f4	b5 00		lda $00,x			lda 	$00,x
+.0113f6	c9 3f 3c	cmp #$3c3f			cmp 	#whileTokenID
+.0113f9	d0 11		bne $01140c			bne 	_FWEFail
+.0113fb	8a		txa				txa 								; unpick stack and always loop back.
+.0113fc	38		sec				sec 								; we do the check at the top.
+.0113fd	e9 06 00	sbc #$0006			sbc 	#6
+.011400	85 2a		sta $2a				sta 	DStack
+.011402	aa		tax				tax
+.011403	b5 02		lda $02,x			lda 	$02,x 						; copy code pointer out.
+.011405	85 06		sta $06				sta 	DCodePtr 					; goes back to the WHILE token.
+.011407	b5 04		lda $04,x			lda 	$04,x 						; copy line number out
+.011409	85 22		sta $22				sta 	DLineNumber
+.01140b	60		rts				rts
+.01140c					_FWEFail:
+.01140c	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>01140f	57 65 6e 64 20 77 69 74				.text 	"Wend without While",$00 								; with this message
+>011417	68 6f 75 74 20 57 68 69 6c 65 00
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/run.asm
 
-.0113c3					Function_END:
-.0113c3	02 00		cop #$00			cop 	#0
-.0113c5					Function_RUN:
-.0113c5	20 1e 14	jsr $01141e			jsr 	Function_CLEAR 				; clear all variables.
-.0113c8	a5 02		lda $02				lda 	DBaseAddress 				; work out the first instruction.
-.0113ca	18		clc				clc
-.0113cb	69 00 01	adc #$0100			adc 	#Block_ProgramStart 		; so run from here.
-.0113ce					_FRun_NextLineNumber:
-.0113ce	a8		tay				tay 								; put in Y
-.0113cf	b9 00 00	lda $0000,y			lda 	$0000,y 					; read the link token.
-.0113d2	f0 ef		beq $0113c3			beq 	Function_END 				; if zero, off the end of the program, so END the program
-.0113d4	b9 02 00	lda $0002,y			lda 	$0002,y 					; read the line number
-.0113d7	85 22		sta $22				sta 	DLineNumber 				; and save it.
-.0113d9	98		tya				tya 								; get address back
-.0113da	18		clc				clc 								; skip over the link/line number
-.0113db	69 04 00	adc #$0004			adc 	#4
-.0113de	85 06		sta $06				sta 	DCodePtr
-.0113e0					_FRun_NextInstruction:
-.0113e0	64 16		stz $16				stz 	DTempStringPointer 			; force reset on next string allocation.
-.0113e2	b2 06		lda ($06)			lda 	(DCodePtr)					; what's next
-.0113e4	f0 32		beq $011418			beq 	_FRun_EndInstruction		; if end of this line, then go to next line.
-.0113e6	c9 24 32	cmp #$3224			cmp 	#colonTokenID 				; colon then skip
-.0113e9	f0 18		beq $011403			beq 	_FRun_Colon
-.0113eb	a8		tay				tay 								; save in Y
-.0113ec	29 00 e8	and #$e800			and 	#$E800 						; see if it is a keyword. 1111 1xxk kkkk kkkk e.g. types 11xx
-.0113ef	c9 00 28	cmp #$2800			cmp 	#$2800 						; so it only runs 1100-1111 keywords.
-.0113f2	d0 15		bne $011409			bne 	_FRun_TryLET 				; if not, try LET as a default.
-.0113f4	98		tya				tya 								; get token back
-.0113f5	29 ff 01	and #$01ff			and 	#$01FF 						; mask out keyword
-.0113f8	0a		asl a				asl 	a 							; double it into X
-.0113f9	aa		tax				tax
-.0113fa	e6 06		inc $06				inc 	DCodePtr 					; skip over token
-.0113fc	e6 06		inc $06				inc 	DCodePtr
-.0113fe	fc 00 00	jsr ($010000,x)			jsr 	(CommandJumpTable,x)		; and call that routine
-.011401	80 dd		bra $0113e0			bra 	_FRun_NextInstruction 		; do the following instruction.
-.011403					_FRun_Colon:
-.011403	e6 06		inc $06				inc 	DCodePtr 					; skip over token
-.011405	e6 06		inc $06				inc 	DCodePtr
-.011407	80 d7		bra $0113e0			bra 	_FRun_NextInstruction 		; do the following instruction.
-.011409					_FRun_TryLET:
-.011409	b2 06		lda ($06)			lda 	(DCodePtr) 					; look to see if it's an identifier.
-.01140b	c9 00 c0	cmp #$c000			cmp 	#$C000
-.01140e	90 05		bcc $011415			bcc		_FRunSyntax 				; no, must be syntax.
-.011410	20 51 0d	jsr $010d51			jsr 	Function_LET 				; try as a LET.
-.011413	80 cb		bra $0113e0			bra 	_FRun_NextInstruction 		; if we get away with it, go to next instruction.
-.011415					_FRunSyntax:
-.011415	82 77 f0	brl $01048f			brl 	SyntaxError
-.011418					_FRun_EndInstruction:
-.011418	a5 06		lda $06				lda 	DCodePtr 					; address of terminating NULL.
-.01141a	1a		inc a				inc 	a 							; go to link for next line
-.01141b	1a		inc a				inc 	a
-.01141c	80 b0		bra $0113ce			bra 	_FRun_NextLineNumber
-.01141e					Function_CLEAR:
-.01141e	20 2a 14	jsr $01142a			jsr 	ClearVariablesPointersAndStacks
-.011421	60		rts				rts
-.011422					Function_STOP:
-.011422	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->011425	53 74 6f 70 00					.text 	"Stop",$00 								; with this message
-.01142a					ClearVariablesPointersAndStacks:
-.01142a	a9 80 00	lda #$0080			lda 	#BASStack
-.01142d	85 2a		sta $2a				sta 	DStack
-.01142f	64 80		stz $80				stz 	BASStack 					; any structure popping this => error
-.011431	a0 0c 00	ldy #$000c			ldy 	#Block_EmptyString
-.011434	a9 00 00	lda #$0000			lda 	#$0000
-.011437	91 02		sta ($02),y			sta 	(DBaseAddress),y
-.011439	a5 04		lda $04				lda 	DHighAddress				; reset the end of memory pointer
-.01143b	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr
-.01143e	91 02		sta ($02),y			sta 	(DBaseAddress),y
-.011440	20 67 14	jsr $011467			jsr 	FindCodeEnd 				; find where the program ends.
-.011443	a8		tay				tay 								; Y points to it.
-.011444	a9 ee ee	lda #$eeee			lda 	#$EEEE 						; put the marker in.
-.011447	99 02 00	sta $0002,y			sta 	$0002,y
-.01144a	99 04 00	sta $0004,y			sta 	$0004,y
-.01144d	98		tya				tya 								; start of working memory up
-.01144e	18		clc				clc
-.01144f	69 06 00	adc #$0006			adc 	#6
-.011452	a0 08 00	ldy #$0008			ldy 	#Block_LowMemoryPtr
-.011455	91 02		sta ($02),y			sta 	(DBaseAddress),y
-.011457	a0 80 00	ldy #$0080			ldy 	#Block_HashTable
-.01145a					_FCLoop:
-.01145a	a9 00 00	lda #$0000			lda 	#$0000
-.01145d	91 02		sta ($02),y			sta 	(DBaseAddress),y
-.01145f	c8		iny				iny
-.011460	c8		iny				iny
-.011461	c0 00 01	cpy #$0100			cpy 	#Block_HashTable+Block_HashTableEntrySize*4*2
-.011464	d0 f4		bne $01145a			bne 	_FCLoop
-.011466	60		rts				rts
-.011467					FindCodeEnd:
-.011467	a9 00 01	lda #$0100			lda 	#Block_ProgramStart 		; offset to program
-.01146a	18		clc				clc
-.01146b	65 02		adc $02				adc 	DBaseAddress 				; now an actual address
-.01146d	a8		tay				tay
-.01146e					_FCELoop:
-.01146e	b9 00 00	lda $0000,y			lda 	$0000,y 					; get link.
-.011471	f0 08		beq $01147b			beq 	_FCEExit
-.011473	98		tya				tya 								; add offset
-.011474	18		clc				clc
-.011475	79 00 00	adc $0000,y			adc 	$0000,y
-.011478	a8		tay				tay
-.011479	80 f3		bra $01146e			bra 	_FCELoop
-.01147b					_FCEExit:
-.01147b	98		tya				tya 								; return in A
-.01147c	60		rts				rts
+.011422					Function_END:
+.011422	02 00		cop #$00			cop 	#0
+.011424					Function_RUN:
+.011424	20 7d 14	jsr $01147d			jsr 	Function_CLEAR 				; clear all variables.
+.011427	a5 02		lda $02				lda 	DBaseAddress 				; work out the first instruction.
+.011429	18		clc				clc
+.01142a	69 00 01	adc #$0100			adc 	#Block_ProgramStart 		; so run from here.
+.01142d					_FRun_NextLineNumber:
+.01142d	a8		tay				tay 								; put in Y
+.01142e	b9 00 00	lda $0000,y			lda 	$0000,y 					; read the link token.
+.011431	f0 ef		beq $011422			beq 	Function_END 				; if zero, off the end of the program, so END the program
+.011433	b9 02 00	lda $0002,y			lda 	$0002,y 					; read the line number
+.011436	85 22		sta $22				sta 	DLineNumber 				; and save it.
+.011438	98		tya				tya 								; get address back
+.011439	18		clc				clc 								; skip over the link/line number
+.01143a	69 04 00	adc #$0004			adc 	#4
+.01143d	85 06		sta $06				sta 	DCodePtr
+.01143f					_FRun_NextInstruction:
+.01143f	64 16		stz $16				stz 	DTempStringPointer 			; force reset on next string allocation.
+.011441	b2 06		lda ($06)			lda 	(DCodePtr)					; what's next
+.011443	f0 32		beq $011477			beq 	_FRun_EndInstruction		; if end of this line, then go to next line.
+.011445	c9 24 32	cmp #$3224			cmp 	#colonTokenID 				; colon then skip
+.011448	f0 18		beq $011462			beq 	_FRun_Colon
+.01144a	a8		tay				tay 								; save in Y
+.01144b	29 00 e8	and #$e800			and 	#$E800 						; see if it is a keyword. 1111 1xxk kkkk kkkk e.g. types 11xx
+.01144e	c9 00 28	cmp #$2800			cmp 	#$2800 						; so it only runs 1100-1111 keywords.
+.011451	d0 15		bne $011468			bne 	_FRun_TryLET 				; if not, try LET as a default.
+.011453	98		tya				tya 								; get token back
+.011454	29 ff 01	and #$01ff			and 	#$01FF 						; mask out keyword
+.011457	0a		asl a				asl 	a 							; double it into X
+.011458	aa		tax				tax
+.011459	e6 06		inc $06				inc 	DCodePtr 					; skip over token
+.01145b	e6 06		inc $06				inc 	DCodePtr
+.01145d	fc 00 00	jsr ($010000,x)			jsr 	(CommandJumpTable,x)		; and call that routine
+.011460	80 dd		bra $01143f			bra 	_FRun_NextInstruction 		; do the following instruction.
+.011462					_FRun_Colon:
+.011462	e6 06		inc $06				inc 	DCodePtr 					; skip over token
+.011464	e6 06		inc $06				inc 	DCodePtr
+.011466	80 d7		bra $01143f			bra 	_FRun_NextInstruction 		; do the following instruction.
+.011468					_FRun_TryLET:
+.011468	b2 06		lda ($06)			lda 	(DCodePtr) 					; look to see if it's an identifier.
+.01146a	c9 00 c0	cmp #$c000			cmp 	#$C000
+.01146d	90 05		bcc $011474			bcc		_FRunSyntax 				; no, must be syntax.
+.01146f	20 51 0d	jsr $010d51			jsr 	Function_LET 				; try as a LET.
+.011472	80 cb		bra $01143f			bra 	_FRun_NextInstruction 		; if we get away with it, go to next instruction.
+.011474					_FRunSyntax:
+.011474	82 18 f0	brl $01048f			brl 	SyntaxError
+.011477					_FRun_EndInstruction:
+.011477	a5 06		lda $06				lda 	DCodePtr 					; address of terminating NULL.
+.011479	1a		inc a				inc 	a 							; go to link for next line
+.01147a	1a		inc a				inc 	a
+.01147b	80 b0		bra $01142d			bra 	_FRun_NextLineNumber
+.01147d					Function_CLEAR:
+.01147d	20 89 14	jsr $011489			jsr 	ClearVariablesPointersAndStacks
+.011480	60		rts				rts
+.011481					Function_STOP:
+.011481	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>011484	53 74 6f 70 00					.text 	"Stop",$00 								; with this message
+.011489					ClearVariablesPointersAndStacks:
+.011489	a9 80 00	lda #$0080			lda 	#BASStack
+.01148c	85 2a		sta $2a				sta 	DStack
+.01148e	64 80		stz $80				stz 	BASStack 					; any structure popping this => error
+.011490	a0 0c 00	ldy #$000c			ldy 	#Block_EmptyString
+.011493	a9 00 00	lda #$0000			lda 	#$0000
+.011496	91 02		sta ($02),y			sta 	(DBaseAddress),y
+.011498	a5 04		lda $04				lda 	DHighAddress				; reset the end of memory pointer
+.01149a	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr
+.01149d	91 02		sta ($02),y			sta 	(DBaseAddress),y
+.01149f	20 c6 14	jsr $0114c6			jsr 	FindCodeEnd 				; find where the program ends.
+.0114a2	a8		tay				tay 								; Y points to it.
+.0114a3	a9 ee ee	lda #$eeee			lda 	#$EEEE 						; put the marker in.
+.0114a6	99 02 00	sta $0002,y			sta 	$0002,y
+.0114a9	99 04 00	sta $0004,y			sta 	$0004,y
+.0114ac	98		tya				tya 								; start of working memory up
+.0114ad	18		clc				clc
+.0114ae	69 06 00	adc #$0006			adc 	#6
+.0114b1	a0 08 00	ldy #$0008			ldy 	#Block_LowMemoryPtr
+.0114b4	91 02		sta ($02),y			sta 	(DBaseAddress),y
+.0114b6	a0 80 00	ldy #$0080			ldy 	#Block_HashTable
+.0114b9					_FCLoop:
+.0114b9	a9 00 00	lda #$0000			lda 	#$0000
+.0114bc	91 02		sta ($02),y			sta 	(DBaseAddress),y
+.0114be	c8		iny				iny
+.0114bf	c8		iny				iny
+.0114c0	c0 00 01	cpy #$0100			cpy 	#Block_HashTable+Block_HashTableEntrySize*4*2
+.0114c3	d0 f4		bne $0114b9			bne 	_FCLoop
+.0114c5	60		rts				rts
+.0114c6					FindCodeEnd:
+.0114c6	a9 00 01	lda #$0100			lda 	#Block_ProgramStart 		; offset to program
+.0114c9	18		clc				clc
+.0114ca	65 02		adc $02				adc 	DBaseAddress 				; now an actual address
+.0114cc	a8		tay				tay
+.0114cd					_FCELoop:
+.0114cd	b9 00 00	lda $0000,y			lda 	$0000,y 					; get link.
+.0114d0	f0 08		beq $0114da			beq 	_FCEExit
+.0114d2	98		tya				tya 								; add offset
+.0114d3	18		clc				clc
+.0114d4	79 00 00	adc $0000,y			adc 	$0000,y
+.0114d7	a8		tay				tay
+.0114d8	80 f3		bra $0114cd			bra 	_FCELoop
+.0114da					_FCEExit:
+.0114da	98		tya				tya 								; return in A
+.0114db	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/dim.asm
 
-.01147d					Function_Dim:
-.01147d	b2 06		lda ($06)			lda 	(DCodePtr)					; get the first token, for typing.
-.01147f	29 00 10	and #$1000			and 	#IDArrayMask 				; is it an array ?
-.011482	f0 3b		beq $0114bf			beq		_FDIMNotArray 				; no, error.
-.011484	20 50 03	jsr $010350			jsr 	VariableFind 				; try to find it.
-.011487	b0 41		bcs $0114ca			bcs 	_FDIMExists 				; if it does, that's an error.
-.011489	a5 06		lda $06				lda 	DCodePtr 					; push the variable identifier address on the stack
-.01148b	48		pha				pha
-.01148c	a5 20		lda $20				lda 	DHashTablePtr 				; push the hash value on the stack as well, as evaluateinteger might change it
-.01148e	48		pha				pha
-.01148f					_FDIMSkip:
-.01148f	b2 06		lda ($06)			lda 	(DCodePtr)					; skip over the token.
-.011491	e6 06		inc $06				inc 	DCodePtr
-.011493	e6 06		inc $06				inc 	DCodePtr
-.011495	29 00 08	and #$0800			and 	#IDContMask
-.011498	d0 f5		bne $01148f			bne 	_FDIMSkip
-.01149a	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; evaluate the size
-.01149d	20 b9 04	jsr $0104b9			jsr 	ExpectRightBracket 			; check the ) following.
-.0114a0	c0 00 00	cpy #$0000			cpy 	#0 							; if MSWord is non zero, obviously it's a non starter.
-.0114a3	d0 3b		bne $0114e0			bne 	_FDIMSize
-.0114a5	c9 00 00	cmp #$0000			cmp 	#0 							; need at least one element.
-.0114a8	f0 36		beq $0114e0			beq 	_FDIMSize
-.0114aa	7a		ply				ply 								; restore HashTablePtr
-.0114ab	84 20		sty $20				sty 	DHashTablePtr
-.0114ad	7a		ply				ply 								; so now A is the high index, Y points to the token
-.0114ae	20 fa 03	jsr $0103fa			jsr 	VariableCreate 				; create the variable.
-.0114b1	b2 06		lda ($06)			lda 	(DCodePtr)					; look at next character
-.0114b3	c9 22 32	cmp #$3222			cmp 	#commaTokenID 				; if not a comma, exit
-.0114b6	d0 06		bne $0114be			bne 	_FDIMExit
-.0114b8	e6 06		inc $06				inc 	DCodePtr 					; skip comma
-.0114ba	e6 06		inc $06				inc 	DCodePtr
-.0114bc	80 bf		bra $01147d			bra 	Function_DIM 				; and do another
-.0114be					_FDIMExit:
-.0114be	60		rts				rts
-.0114bf					_FDIMNotArray:
-.0114bf	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0114c2	42 61 64 20 44 49 4d 00				.text 	"Bad DIM",$00 								; with this message
-.0114ca					_FDIMExists:
-.0114ca	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0114cd	43 61 6e 6e 6f 74 20 52				.text 	"Cannot Redimension",$00 								; with this message
->0114d5	65 64 69 6d 65 6e 73 69 6f 6e 00
-.0114e0					_FDIMSize:
-.0114e0	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0114e3	44 49 4d 20 74 6f 6f 20				.text 	"DIM too large",$00 								; with this message
->0114eb	6c 61 72 67 65 00
+.0114dc					Function_Dim:
+.0114dc	b2 06		lda ($06)			lda 	(DCodePtr)					; get the first token, for typing.
+.0114de	29 00 10	and #$1000			and 	#IDArrayMask 				; is it an array ?
+.0114e1	f0 3b		beq $01151e			beq		_FDIMNotArray 				; no, error.
+.0114e3	20 50 03	jsr $010350			jsr 	VariableFind 				; try to find it.
+.0114e6	b0 41		bcs $011529			bcs 	_FDIMExists 				; if it does, that's an error.
+.0114e8	a5 06		lda $06				lda 	DCodePtr 					; push the variable identifier address on the stack
+.0114ea	48		pha				pha
+.0114eb	a5 20		lda $20				lda 	DHashTablePtr 				; push the hash value on the stack as well, as evaluateinteger might change it
+.0114ed	48		pha				pha
+.0114ee					_FDIMSkip:
+.0114ee	b2 06		lda ($06)			lda 	(DCodePtr)					; skip over the token.
+.0114f0	e6 06		inc $06				inc 	DCodePtr
+.0114f2	e6 06		inc $06				inc 	DCodePtr
+.0114f4	29 00 08	and #$0800			and 	#IDContMask
+.0114f7	d0 f5		bne $0114ee			bne 	_FDIMSkip
+.0114f9	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; evaluate the size
+.0114fc	20 b9 04	jsr $0104b9			jsr 	ExpectRightBracket 			; check the ) following.
+.0114ff	c0 00 00	cpy #$0000			cpy 	#0 							; if MSWord is non zero, obviously it's a non starter.
+.011502	d0 3b		bne $01153f			bne 	_FDIMSize
+.011504	c9 00 00	cmp #$0000			cmp 	#0 							; need at least one element.
+.011507	f0 36		beq $01153f			beq 	_FDIMSize
+.011509	7a		ply				ply 								; restore HashTablePtr
+.01150a	84 20		sty $20				sty 	DHashTablePtr
+.01150c	7a		ply				ply 								; so now A is the high index, Y points to the token
+.01150d	20 fa 03	jsr $0103fa			jsr 	VariableCreate 				; create the variable.
+.011510	b2 06		lda ($06)			lda 	(DCodePtr)					; look at next character
+.011512	c9 22 32	cmp #$3222			cmp 	#commaTokenID 				; if not a comma, exit
+.011515	d0 06		bne $01151d			bne 	_FDIMExit
+.011517	e6 06		inc $06				inc 	DCodePtr 					; skip comma
+.011519	e6 06		inc $06				inc 	DCodePtr
+.01151b	80 bf		bra $0114dc			bra 	Function_DIM 				; and do another
+.01151d					_FDIMExit:
+.01151d	60		rts				rts
+.01151e					_FDIMNotArray:
+.01151e	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>011521	42 61 64 20 44 49 4d 00				.text 	"Bad DIM",$00 								; with this message
+.011529					_FDIMExists:
+.011529	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>01152c	43 61 6e 6e 6f 74 20 52				.text 	"Cannot Redimension",$00 								; with this message
+>011534	65 64 69 6d 65 6e 73 69 6f 6e 00
+.01153f					_FDIMSize:
+.01153f	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>011542	44 49 4d 20 74 6f 6f 20				.text 	"DIM too large",$00 								; with this message
+>01154a	6c 61 72 67 65 00
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/collect.asm
 
-.0114f1					Function_COLLECT:
-.0114f1	a5 04		lda $04				lda 	DHighAddress 				; DTemp2 is the highest value the pointer can be - must be < this.
-.0114f3	85 0c		sta $0c				sta 	DTemp2
-.0114f5	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr 		; DTemp2+2 is the smallest value that the pointer can be.
-.0114f8	b1 02		lda ($02),y			lda 	(DBaseAddress),y 			; this starts off at the start of the current string area.
-.0114fa	85 0e		sta $0e				sta 	DTemp2+2
-.0114fc	a5 04		lda $04				lda 	DHighAddress 				; reset the current string area
-.0114fe	91 02		sta ($02),y			sta 	(DBaseAddress),y
-.011500					_FCNextPass:
-.011500	a5 0e		lda $0e				lda 	DTemp2+2					; lowest permission allowable
-.011502	85 08		sta $08				sta 	DTemp1 						; and goes up as you scan through. Must be >= this.
-.011504	64 14		stz $14				stz 	DSignCount 					; DSignCount is the address of the string reference, so (DStringPtr)
-.011506	a9 c0 00	lda #$00c0			lda 	#Block_HashTable+Block_HashTableEntrySize*2*2
-.011509	18		clc				clc
-.01150a	65 02		adc $02				adc 	DBaseAddress
-.01150c	a8		tay				tay 								; put in Y
-.01150d	a2 10 00	ldx #$0010			ldx 	#16 						; there are 16 to do.
-.011510					_FCO1:
-.011510	20 36 15	jsr $011536			jsr  	COLLECTScanVariable 		; scan that one.
-.011513	c8		iny				iny 	 							; go to next pointer
-.011514	c8		iny				iny
-.011515	ca		dex				dex
-.011516	d0 f8		bne $011510			bne 	_FCO1 						; until done all 16.
-.011518	a2 10 00	ldx #$0010			ldx 	#16 						; there are 16 to do.
-.01151b					_FCO2:
-.01151b	20 4a 15	jsr $01154a			jsr  	COLLECTScanArray 			; scan that one.
-.01151e	c8		iny				iny 	 							; go to next pointer
-.01151f	c8		iny				iny
-.011520	ca		dex				dex
-.011521	d0 f8		bne $01151b			bne 	_FCO2 						; until done all 16.
-.011523	a5 14		lda $14				lda 	DSignCount 					; get the string pointer.
-.011525	f0 0e		beq $011535			beq		_FCExit 					; if finished then exit.
-.011527	48		pha				pha 								; save the target address
-.011528	b2 14		lda ($14)			lda 	(DSignCount)				; the address of the string text is the highest next time round.
-.01152a	85 0c		sta $0c				sta 	DTemp2 						; store in DTemp2
-.01152c	20 84 05	jsr $010584			jsr 	StringMakeConcrete 			; make the string concrete.
-.01152f	7a		ply				ply 								; restore the string.
-.011530	99 00 00	sta $0000,y			sta 	$0000,y 					; update the pointer.
-.011533	80 cb		bra $011500			bra		_FCNextPass
-.011535					_FCExit:
-.011535	60		rts				rts
-.011536					COLLECTScanVariable:
-.011536	da		phx				phx 								; save XY
-.011537	5a		phy				phy
-.011538					_CSVLoop:
-.011538	b9 00 00	lda $0000,y			lda 	$0000,y 					; read link.
-.01153b	f0 0a		beq $011547			beq 	_CSVExit
-.01153d	a8		tay				tay 								; put new address into Y
-.01153e	18		clc				clc 								; which is four on.
-.01153f	69 04 00	adc #$0004			adc 	#4
-.011542	20 6b 15	jsr $01156b			jsr 	COLLECTCheck
-.011545	80 f1		bra $011538			bra 	_CSVLoop
-.011547					_CSVExit:
-.011547	7a		ply				ply
-.011548	fa		plx				plx
-.011549	60		rts				rts
-.01154a					COLLECTScanArray:
-.01154a	da		phx				phx 								; save XY
-.01154b	5a		phy				phy
-.01154c					_CSALoop:
-.01154c	b9 00 00	lda $0000,y			lda 	$0000,y 					; read link.
-.01154f	f0 17		beq $011568			beq 	_CSAExit
-.011551	a8		tay				tay 								; put new address in Y
-.011552	b9 04 00	lda $0004,y			lda 	$0004,y 					; array max subscript in X
-.011555	aa		tax				tax
-.011556	e8		inx				inx									; +1 as one more data element.
-.011557	98		tya				tya 								; point A to first element, at +6
-.011558	18		clc				clc
-.011559	69 06 00	adc #$0006			adc 	#6
-.01155c					_CSADoAllStrings:
-.01155c	20 6b 15	jsr $01156b			jsr 	COLLECTCheck 				; collect check the first.
-.01155f	1a		inc a				inc 	a 							; advance the pointer.
-.011560	1a		inc a				inc 	a
-.011561	1a		inc a				inc 	a
-.011562	1a		inc a				inc 	a
-.011563	ca		dex				dex
-.011564	d0 f6		bne $01155c			bne 	_CSADoAllStrings 			; until all strings are done.
-.011566	80 e4		bra $01154c			bra 	_CSALoop
-.011568					_CSAExit:
-.011568	7a		ply				ply
-.011569	fa		plx				plx
-.01156a	60		rts				rts
-.01156b					COLLECTCheck:
-.01156b	85 0a		sta $0a				sta 	DTemp1+2 					; save address here.
-.01156d	b2 0a		lda ($0a)			lda 	(DTemp1+2) 					; get the actual string address
-.01156f	c5 08		cmp $08				cmp 	DTemp1						; if <= DTemp1 then exit
-.011571	90 0a		bcc $01157d			bcc 	_COCExit
-.011573	c5 0c		cmp $0c				cmp 	DTemp2 						; if >= DTemp2 then exit.
-.011575	b0 06		bcs $01157d			bcs 	_COCExit
-.011577	85 08		sta $08				sta 	DTemp1 						; save the best score in DTemp1
-.011579	a5 0a		lda $0a				lda 	DTemp1+2 					; and copy the address to DSignCount
-.01157b	85 14		sta $14				sta 	DSignCount
-.01157d					_COCExit:
-.01157d	a5 0a		lda $0a				lda 	DTemp1+2
-.01157f	60		rts				rts
+.011550					Function_COLLECT:
+.011550	a5 04		lda $04				lda 	DHighAddress 				; DTemp2 is the highest value the pointer can be - must be < this.
+.011552	85 0c		sta $0c				sta 	DTemp2
+.011554	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr 		; DTemp2+2 is the smallest value that the pointer can be.
+.011557	b1 02		lda ($02),y			lda 	(DBaseAddress),y 			; this starts off at the start of the current string area.
+.011559	85 0e		sta $0e				sta 	DTemp2+2
+.01155b	a5 04		lda $04				lda 	DHighAddress 				; reset the current string area
+.01155d	91 02		sta ($02),y			sta 	(DBaseAddress),y
+.01155f					_FCNextPass:
+.01155f	a5 0e		lda $0e				lda 	DTemp2+2					; lowest permission allowable
+.011561	85 08		sta $08				sta 	DTemp1 						; and goes up as you scan through. Must be >= this.
+.011563	64 14		stz $14				stz 	DSignCount 					; DSignCount is the address of the string reference, so (DStringPtr)
+.011565	a9 c0 00	lda #$00c0			lda 	#Block_HashTable+Block_HashTableEntrySize*2*2
+.011568	18		clc				clc
+.011569	65 02		adc $02				adc 	DBaseAddress
+.01156b	a8		tay				tay 								; put in Y
+.01156c	a2 10 00	ldx #$0010			ldx 	#16 						; there are 16 to do.
+.01156f					_FCO1:
+.01156f	20 95 15	jsr $011595			jsr  	COLLECTScanVariable 		; scan that one.
+.011572	c8		iny				iny 	 							; go to next pointer
+.011573	c8		iny				iny
+.011574	ca		dex				dex
+.011575	d0 f8		bne $01156f			bne 	_FCO1 						; until done all 16.
+.011577	a2 10 00	ldx #$0010			ldx 	#16 						; there are 16 to do.
+.01157a					_FCO2:
+.01157a	20 a9 15	jsr $0115a9			jsr  	COLLECTScanArray 			; scan that one.
+.01157d	c8		iny				iny 	 							; go to next pointer
+.01157e	c8		iny				iny
+.01157f	ca		dex				dex
+.011580	d0 f8		bne $01157a			bne 	_FCO2 						; until done all 16.
+.011582	a5 14		lda $14				lda 	DSignCount 					; get the string pointer.
+.011584	f0 0e		beq $011594			beq		_FCExit 					; if finished then exit.
+.011586	48		pha				pha 								; save the target address
+.011587	b2 14		lda ($14)			lda 	(DSignCount)				; the address of the string text is the highest next time round.
+.011589	85 0c		sta $0c				sta 	DTemp2 						; store in DTemp2
+.01158b	20 84 05	jsr $010584			jsr 	StringMakeConcrete 			; make the string concrete.
+.01158e	7a		ply				ply 								; restore the string.
+.01158f	99 00 00	sta $0000,y			sta 	$0000,y 					; update the pointer.
+.011592	80 cb		bra $01155f			bra		_FCNextPass
+.011594					_FCExit:
+.011594	60		rts				rts
+.011595					COLLECTScanVariable:
+.011595	da		phx				phx 								; save XY
+.011596	5a		phy				phy
+.011597					_CSVLoop:
+.011597	b9 00 00	lda $0000,y			lda 	$0000,y 					; read link.
+.01159a	f0 0a		beq $0115a6			beq 	_CSVExit
+.01159c	a8		tay				tay 								; put new address into Y
+.01159d	18		clc				clc 								; which is four on.
+.01159e	69 04 00	adc #$0004			adc 	#4
+.0115a1	20 ca 15	jsr $0115ca			jsr 	COLLECTCheck
+.0115a4	80 f1		bra $011597			bra 	_CSVLoop
+.0115a6					_CSVExit:
+.0115a6	7a		ply				ply
+.0115a7	fa		plx				plx
+.0115a8	60		rts				rts
+.0115a9					COLLECTScanArray:
+.0115a9	da		phx				phx 								; save XY
+.0115aa	5a		phy				phy
+.0115ab					_CSALoop:
+.0115ab	b9 00 00	lda $0000,y			lda 	$0000,y 					; read link.
+.0115ae	f0 17		beq $0115c7			beq 	_CSAExit
+.0115b0	a8		tay				tay 								; put new address in Y
+.0115b1	b9 04 00	lda $0004,y			lda 	$0004,y 					; array max subscript in X
+.0115b4	aa		tax				tax
+.0115b5	e8		inx				inx									; +1 as one more data element.
+.0115b6	98		tya				tya 								; point A to first element, at +6
+.0115b7	18		clc				clc
+.0115b8	69 06 00	adc #$0006			adc 	#6
+.0115bb					_CSADoAllStrings:
+.0115bb	20 ca 15	jsr $0115ca			jsr 	COLLECTCheck 				; collect check the first.
+.0115be	1a		inc a				inc 	a 							; advance the pointer.
+.0115bf	1a		inc a				inc 	a
+.0115c0	1a		inc a				inc 	a
+.0115c1	1a		inc a				inc 	a
+.0115c2	ca		dex				dex
+.0115c3	d0 f6		bne $0115bb			bne 	_CSADoAllStrings 			; until all strings are done.
+.0115c5	80 e4		bra $0115ab			bra 	_CSALoop
+.0115c7					_CSAExit:
+.0115c7	7a		ply				ply
+.0115c8	fa		plx				plx
+.0115c9	60		rts				rts
+.0115ca					COLLECTCheck:
+.0115ca	85 0a		sta $0a				sta 	DTemp1+2 					; save address here.
+.0115cc	b2 0a		lda ($0a)			lda 	(DTemp1+2) 					; get the actual string address
+.0115ce	c5 08		cmp $08				cmp 	DTemp1						; if <= DTemp1 then exit
+.0115d0	90 0a		bcc $0115dc			bcc 	_COCExit
+.0115d2	c5 0c		cmp $0c				cmp 	DTemp2 						; if >= DTemp2 then exit.
+.0115d4	b0 06		bcs $0115dc			bcs 	_COCExit
+.0115d6	85 08		sta $08				sta 	DTemp1 						; save the best score in DTemp1
+.0115d8	a5 0a		lda $0a				lda 	DTemp1+2 					; and copy the address to DSignCount
+.0115da	85 14		sta $14				sta 	DSignCount
+.0115dc					_COCExit:
+.0115dc	a5 0a		lda $0a				lda 	DTemp1+2
+.0115de	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/memwrite.asm
 
-.011580					Command_POKE:
-.011580	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; address
-.011583	48		pha				pha	 								; save on stack
-.011584	5a		phy				phy
-.011585	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; comma seperator.
-.011588	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; data
-.01158b	fa		plx				plx 								; pull address and store in DTemp1
-.01158c	86 0a		stx $0a				stx 	DTemp1+2
-.01158e	fa		plx				plx
-.01158f	86 08		stx $08				stx 	DTemp1+0
-.011591	e2 20		sep #$20			sep 	#$20 						; byte mode
-.011593	87 08		sta [$08]			sta 	[DTemp1]					; write it
-.011595	c2 20		rep #$20			rep 	#$20 						; word mode
-.011597	60		rts				rts
-.011598					Command_DOKE:
-.011598	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; address
-.01159b	48		pha				pha	 								; save on stack
-.01159c	5a		phy				phy
-.01159d	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; comma seperator.
-.0115a0	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; data
-.0115a3	fa		plx				plx 								; pull address and store in DTemp1
-.0115a4	86 0a		stx $0a				stx 	DTemp1+2
-.0115a6	fa		plx				plx
-.0115a7	86 08		stx $08				stx 	DTemp1+0
-.0115a9	87 08		sta [$08]			sta 	[DTemp1]					; write it
-.0115ab	60		rts				rts
-.0115ac					Command_LOKE:
-.0115ac	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; address
-.0115af	48		pha				pha	 								; save on stack
-.0115b0	5a		phy				phy
-.0115b1	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; comma seperator.
-.0115b4	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; data
-.0115b7	fa		plx				plx 								; pull address and store in DTemp1
-.0115b8	86 0a		stx $0a				stx 	DTemp1+2
-.0115ba	fa		plx				plx
-.0115bb	86 08		stx $08				stx 	DTemp1+0
-.0115bd	87 08		sta [$08]			sta 	[DTemp1]					; write it (low)
-.0115bf	98		tya				tya
-.0115c0	a0 02 00	ldy #$0002			ldy 	#2
-.0115c3	97 08		sta [$08],y			sta 	[DTemp1],y 					; write it (high)
-.0115c5	60		rts				rts
+.0115df					Command_POKE:
+.0115df	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; address
+.0115e2	48		pha				pha	 								; save on stack
+.0115e3	5a		phy				phy
+.0115e4	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; comma seperator.
+.0115e7	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; data
+.0115ea	fa		plx				plx 								; pull address and store in DTemp1
+.0115eb	86 0a		stx $0a				stx 	DTemp1+2
+.0115ed	fa		plx				plx
+.0115ee	86 08		stx $08				stx 	DTemp1+0
+.0115f0	e2 20		sep #$20			sep 	#$20 						; byte mode
+.0115f2	87 08		sta [$08]			sta 	[DTemp1]					; write it
+.0115f4	c2 20		rep #$20			rep 	#$20 						; word mode
+.0115f6	60		rts				rts
+.0115f7					Command_DOKE:
+.0115f7	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; address
+.0115fa	48		pha				pha	 								; save on stack
+.0115fb	5a		phy				phy
+.0115fc	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; comma seperator.
+.0115ff	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; data
+.011602	fa		plx				plx 								; pull address and store in DTemp1
+.011603	86 0a		stx $0a				stx 	DTemp1+2
+.011605	fa		plx				plx
+.011606	86 08		stx $08				stx 	DTemp1+0
+.011608	87 08		sta [$08]			sta 	[DTemp1]					; write it
+.01160a	60		rts				rts
+.01160b					Command_LOKE:
+.01160b	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; address
+.01160e	48		pha				pha	 								; save on stack
+.01160f	5a		phy				phy
+.011610	20 c2 04	jsr $0104c2			jsr 	ExpectComma 				; comma seperator.
+.011613	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; data
+.011616	fa		plx				plx 								; pull address and store in DTemp1
+.011617	86 0a		stx $0a				stx 	DTemp1+2
+.011619	fa		plx				plx
+.01161a	86 08		stx $08				stx 	DTemp1+0
+.01161c	87 08		sta [$08]			sta 	[DTemp1]					; write it (low)
+.01161e	98		tya				tya
+.01161f	a0 02 00	ldy #$0002			ldy 	#2
+.011622	97 08		sta [$08],y			sta 	[DTemp1],y 					; write it (high)
+.011624	60		rts				rts
 
 ;******  Return to file: ../source/basic.asm
 
 
 ;******  Processing file: ../source/commands/miscellany.asm
 
-.0115c6					Function_ASSERT:
-.0115c6	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; something that returns an integer.
-.0115c9	84 08		sty $08				sty 	DTemp1 						; check if result is zero.
-.0115cb	05 08		ora $08				ora 	Dtemp1
-.0115cd	f0 01		beq $0115d0			beq 	_FAssFail
-.0115cf	60		rts				rts
-.0115d0					_FAssFail:
-.0115d0	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
->0115d3	61 73 73 65 72 74 20 66				.text 	"assert failed",$00 								; with this message
->0115db	61 69 6c 65 64 00
-.0115e1					Function_CLS:
-.0115e1	20 0c 16	jsr $01160c			jsr 	HWClearScreen
-.0115e4	60		rts				rts
-.0115e5					Function_REM:
-.0115e5	b2 06		lda ($06)			lda 	(DCodePtr) 					; get code ptr.
-.0115e7	f0 0b		beq $0115f4			beq 	_FRemSyntax 				; if 0, syntax error
-.0115e9	c9 00 01	cmp #$0100			cmp 	#$0100 						; if not $00xx syntax error
-.0115ec	b0 06		bcs $0115f4			bcs 	_FRemSyntax
-.0115ee	18		clc				clc 								; add to DCodePtr
-.0115ef	65 06		adc $06				adc 	DCodePtr
-.0115f1	85 06		sta $06				sta 	DCodePtr
-.0115f3	60		rts				rts
-.0115f4					_FRemSyntax:
-.0115f4	82 98 ee	brl $01048f			brl 	SyntaxError
+.011625					Function_ASSERT:
+.011625	20 d1 02	jsr $0102d1			jsr 	EvaluateInteger 			; something that returns an integer.
+.011628	84 08		sty $08				sty 	DTemp1 						; check if result is zero.
+.01162a	05 08		ora $08				ora 	Dtemp1
+.01162c	f0 01		beq $01162f			beq 	_FAssFail
+.01162e	60		rts				rts
+.01162f					_FAssFail:
+.01162f	20 54 04	jsr $010454			jsr 	ErrorHandler 						; call error routine
+>011632	61 73 73 65 72 74 20 66				.text 	"assert failed",$00 								; with this message
+>01163a	61 69 6c 65 64 00
+.011640					Function_CLS:
+.011640	20 6b 16	jsr $01166b			jsr 	HWClearScreen
+.011643	60		rts				rts
+.011644					Function_REM:
+.011644	b2 06		lda ($06)			lda 	(DCodePtr) 					; get code ptr.
+.011646	f0 0b		beq $011653			beq 	_FRemSyntax 				; if 0, syntax error
+.011648	c9 00 01	cmp #$0100			cmp 	#$0100 						; if not $00xx syntax error
+.01164b	b0 06		bcs $011653			bcs 	_FRemSyntax
+.01164d	18		clc				clc 								; add to DCodePtr
+.01164e	65 06		adc $06				adc 	DCodePtr
+.011650	85 06		sta $06				sta 	DCodePtr
+.011652	60		rts				rts
+.011653					_FRemSyntax:
+.011653	82 39 ee	brl $01048f			brl 	SyntaxError
 
 ;******  Return to file: ../source/basic.asm
 
@@ -3076,18 +3134,18 @@
 =$0800					IDContMask = $0800
 =8					UnaryFunction = 8 									; Unary function Token Type ID.
 =9					TokenShift = 9										; Token shift to reach precedence.
-.0115f7					SwitchBasicInstance:
-.0115f7	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
-.0115f9	20 0c 16	jsr $01160c			jsr 	HWClearScreen 						; clear screen
-.0115fc	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
-.0115ff	85 00		sta $00				sta 	DPageNumber 						; save page, base, high in RAM.
-.011601	86 02		stx $02				stx		DBaseAddress
-.011603	84 04		sty $04				sty 	DHighAddress
-.011605	eb		xba				xba 										; put the page number (goes in the DBR) in B
-.011606	48		pha				pha 										; then copy it into B.
-.011607	ab		plb				plb
-.011608	ab		plb				plb
-.011609	4c c5 13	jmp $0113c5			jmp 	Function_RUN
+.011656					SwitchBasicInstance:
+.011656	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
+.011658	20 6b 16	jsr $01166b			jsr 	HWClearScreen 						; clear screen
+.01165b	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
+.01165e	85 00		sta $00				sta 	DPageNumber 						; save page, base, high in RAM.
+.011660	86 02		stx $02				stx		DBaseAddress
+.011662	84 04		sty $04				sty 	DHighAddress
+.011664	eb		xba				xba 										; put the page number (goes in the DBR) in B
+.011665	48		pha				pha 										; then copy it into B.
+.011666	ab		plb				plb
+.011667	ab		plb				plb
+.011668	4c 24 14	jmp $011424			jmp 	Function_RUN
 
 ;******  Return to file: ../source/start.asm
 
@@ -3097,96 +3155,88 @@
 =$01					HWCursorCharacter = $01
 =64					sWidth = 64									; this have to be powers of two in this really simple I/O code.
 =32					sHeight = 32
-.01160c					HWClearScreen:
-.01160c	48		pha				pha
-.01160d	da		phx				phx
-.01160e	a2 fe 07	ldx #$07fe			ldx 	#sWidth*sHeight-2
-.011611	a9 20 20	lda #$2020	_CS0:	lda 	#$2020
-.011614	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011618	ca		dex				dex
-.011619	10 f6		bpl $011611			bpl 	_CS0
-.01161b	64 28		stz $28				stz 	DCursor
-.01161d	a9 01 20	lda #$2001			lda 	#$2000+HWCursorCharacter
-.011620	8f 00 00 0f	sta $0f0000			sta 	$F0000
-.011624	fa		plx				plx
-.011625	68		pla				pla
-.011626	60		rts				rts
-.011627					HWPrintChar:
-.011627	48		pha				pha
-.011628	da		phx				phx
-.011629	a6 28		ldx $28				ldx 	DCursor
-.01162b	e2 20		sep #$20			sep 	#$20
-.01162d	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011631	c2 20		rep #$20			rep 	#$20
-.011633	e8		inx				inx
-.011634	8a		txa				txa
-.011635	29 ff 07	and #$07ff			and 	#(sWidth*sHeight-1)
-.011638	85 28		sta $28				sta 	DCursor
-.01163a	aa		tax				tax
-.01163b	a9 01 00	lda #$0001			lda 	#HWCursorCharacter
-.01163e	e2 20		sep #$20			sep 	#$20
-.011640	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011644	c2 20		rep #$20			rep 	#$20
-.011646	fa		plx				plx
-.011647	68		pla				pla
-.011648	60		rts				rts
-.011649					HWNewLine:
-.011649	48		pha				pha
-.01164a	da		phx				phx
-.01164b	a2 3f 00	ldx #$003f			ldx 	#sWidth-1
-.01164e					HWMoveCursor:
-.01164e	a9 20 00	lda #$0020			lda 	#32
-.011651	20 27 16	jsr $011627			jsr 	HWPrintChar
-.011654	8a		txa				txa
-.011655	25 28		and $28				and 	DCursor
-.011657	d0 f5		bne $01164e			bne 	HWMoveCursor
-.011659	fa		plx				plx
-.01165a	68		pla				pla
-.01165b	60		rts				rts
-.01165c	48		pha		HWTab:	pha
-.01165d	da		phx				phx
-.01165e	a2 07 00	ldx #$0007			ldx 	#7
-.011661	80 eb		bra $01164e			bra 	HWMoveCursor
+.01166b					HWClearScreen:
+.01166b	48		pha				pha
+.01166c	da		phx				phx
+.01166d	a2 fe 07	ldx #$07fe			ldx 	#sWidth*sHeight-2
+.011670	a9 20 20	lda #$2020	_CS0:	lda 	#$2020
+.011673	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011677	ca		dex				dex
+.011678	10 f6		bpl $011670			bpl 	_CS0
+.01167a	64 28		stz $28				stz 	DCursor
+.01167c	a9 01 20	lda #$2001			lda 	#$2000+HWCursorCharacter
+.01167f	8f 00 00 0f	sta $0f0000			sta 	$F0000
+.011683	fa		plx				plx
+.011684	68		pla				pla
+.011685	60		rts				rts
+.011686					HWPrintChar:
+.011686	48		pha				pha
+.011687	da		phx				phx
+.011688	a6 28		ldx $28				ldx 	DCursor
+.01168a	e2 20		sep #$20			sep 	#$20
+.01168c	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011690	c2 20		rep #$20			rep 	#$20
+.011692	e8		inx				inx
+.011693	8a		txa				txa
+.011694	29 ff 07	and #$07ff			and 	#(sWidth*sHeight-1)
+.011697	85 28		sta $28				sta 	DCursor
+.011699	aa		tax				tax
+.01169a	a9 01 00	lda #$0001			lda 	#HWCursorCharacter
+.01169d	e2 20		sep #$20			sep 	#$20
+.01169f	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.0116a3	c2 20		rep #$20			rep 	#$20
+.0116a5	fa		plx				plx
+.0116a6	68		pla				pla
+.0116a7	60		rts				rts
+.0116a8					HWNewLine:
+.0116a8	48		pha				pha
+.0116a9	da		phx				phx
+.0116aa	a2 3f 00	ldx #$003f			ldx 	#sWidth-1
+.0116ad					HWMoveCursor:
+.0116ad	a9 20 00	lda #$0020			lda 	#32
+.0116b0	20 86 16	jsr $011686			jsr 	HWPrintChar
+.0116b3	8a		txa				txa
+.0116b4	25 28		and $28				and 	DCursor
+.0116b6	d0 f5		bne $0116ad			bne 	HWMoveCursor
+.0116b8	fa		plx				plx
+.0116b9	68		pla				pla
+.0116ba	60		rts				rts
+.0116bb	48		pha		HWTab:	pha
+.0116bc	da		phx				phx
+.0116bd	a2 07 00	ldx #$0007			ldx 	#7
+.0116c0	80 eb		bra $0116ad			bra 	HWMoveCursor
 
 ;******  Return to file: ../source/start.asm
 
 .024000					CodeSpace:
 >024000	42 41 53 43 00 00 00 00				.binary "temp/basic.bin"
->024008	d0 42 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
+>024008	50 42 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
 >024018	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 ;	...repeated 13 times (208 bytes)...
->0240f8	00 00 00 00 00 00 00 00 0a 00 02 00 35 3e 04 40
->024108	00 00 4e 00 03 00 41 3c 41 c4 06 22 00 40 28 38
->024118	08 40 24 32 34 3e 06 00 03 52 41 4d 23 32 16 30
->024128	41 c4 0a 24 b5 c8 2e c3 22 32 10 40 26 32 22 32
->024138	16 30 1a 30 41 c4 0a 24 b5 c8 2e c3 26 32 22 32
->024148	10 40 26 32 24 32 46 3a 41 c4 24 32 2d 3e 00 00
->024158	08 00 04 00 3d 3e 00 00 06 00 05 00 00 00 1e 00
->024168	0a 00 2a 3e 16 00 13 50 4f 4b 45 20 4c 4f 4b 45
->024178	20 44 4f 4b 45 20 74 65 73 74 00 00 20 00 0f 00
->024188	01 e0 06 22 0a 00 06 48 65 6c 6c 6f 2e 00 0a 24
->024198	0a 00 07 2e 57 6f 72 6c 64 21 00 00 26 00 11 00
->0241a8	34 3e 06 00 02 3e 3e 00 23 32 1e 30 01 e0 26 32
->0241b8	0a 24 06 00 03 2e 2e 2e 0a 24 1d 30 01 e0 26 32
->0241c8	00 00 06 00 12 00 00 00 28 00 28 00 34 3e 0a 00
->0241d8	06 32 20 20 36 20 5b 00 0a 24 20 30 01 e0 22 32
->0241e8	02 40 22 32 07 40 26 32 0a 24 04 00 01 5d 00 00
->0241f8	06 00 29 00 00 00 08 00 64 00 2f 3e 00 00 06 00
->024208	65 00 00 00 1c 00 7d 00 b5 c8 2e c3 06 22 02 40
->024218	0c 26 02 10 00 40 0a 24 04 40 0c 26 00 50 00 00
->024228	0a 00 82 00 36 3e 82 40 00 00 08 00 a0 00 34 3e
->024238	00 00 16 00 aa 00 3c 3e b5 c8 2e c3 0a 24 02 40
->024248	22 32 0b 24 2a 40 00 00 0a 00 b4 00 36 3e e6 40
->024258	00 00 08 00 be 00 2f 3e 00 00 16 00 c8 00 2a 3e
->024268	0e 00 0b 44 69 73 70 6c 61 79 20 52 41 4d 00 00
->024278	12 00 e6 00 41 3c 41 c4 06 22 00 40 28 38 08 40
->024288	00 00 2e 00 f0 00 34 3e 16 30 41 c4 0a 24 b5 c8
->024298	2e c3 22 32 10 40 26 32 22 32 16 30 1a 30 41 c4
->0242a8	0a 24 b5 c8 2e c3 26 32 22 32 10 40 26 32 00 00
->0242b8	0a 00 fa 00 46 3a 41 c4 00 00 08 00 04 01 37 3e
->0242c8	00 00 00 00 ee ee ee ee 00 00 00 00 00 00 00 00
->0242d8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-;	...repeated 2001 times (32016 bytes)...
+>0240f8	00 00 00 00 00 00 00 00 0c 00 0a 00 3d 3e 24 32
+>024108	2f 3e 00 00 0c 00 14 00 18 c0 06 22 00 40 00 00
+>024118	08 00 32 00 3e 3c 00 00 08 00 3c 00 34 3e 00 00
+>024128	0e 00 46 00 43 3a 18 c0 06 22 00 40 00 00 12 00
+>024138	50 00 41 3c 09 c0 06 22 01 40 28 38 05 40 00 00
+>024148	0c 00 5a 00 01 c0 06 22 09 c0 00 00 0a 00 5f 00
+>024158	46 3a 09 c0 00 00 16 00 64 00 40 3c 25 32 18 c0
+>024168	01 20 01 40 26 32 06 22 00 40 00 00 16 00 6e 00
+>024178	34 3e 18 c0 22 32 08 00 04 45 76 65 6e 00 22 32
+>024188	00 00 0e 00 70 00 40 3c 18 c0 05 22 05 40 00 00
+>024198	0e 00 76 00 34 3e 06 00 02 3e 35 00 00 00 08 00
+>0241a8	77 00 39 3e 00 00 0e 00 78 00 34 3e 06 00 03 3c
+>0241b8	3d 35 00 00 08 00 81 00 45 3a 00 00 08 00 82 00
+>0241c8	39 3e 00 00 14 00 86 00 34 3e 18 c0 22 32 06 00
+>0241d8	03 6f 64 64 22 32 00 00 0c 00 87 00 19 c0 06 22
+>0241e8	18 c0 00 00 30 00 88 00 3e 3c 24 32 34 3e 19 c0
+>0241f8	23 32 04 00 01 20 23 32 24 32 19 c0 06 22 19 c0
+>024208	0b 24 01 40 24 32 43 3a 19 c0 06 22 00 40 24 32
+>024218	34 3e 00 00 08 00 8c 00 45 3a 00 00 10 00 96 00
+>024228	18 c0 06 22 18 c0 0a 24 01 40 00 00 0e 00 a0 00
+>024238	43 3a 18 c0 05 22 0a 40 00 00 08 00 b4 00 2f 3e
+>024248	00 00 00 00 ee ee ee ee 00 00 00 00 00 00 00 00
+>024258	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+;	...repeated 2009 times (32144 bytes)...
 >02bff8	00 00 00 00 00 00 00 00
 .02c000					CodeEndSpace:
 

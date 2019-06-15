@@ -13,32 +13,32 @@ Command_List: 	;; list
 
 	lda 	#255 							; create a buffer to use.
 	jsr 	StringTempAllocate
-	pha 									; save buffer on stack.
-
+	sta 	DListBuffer						; save buffer.
+	stz 	DIndent 						; reset the indents
+	stz 	DIndent2
 	lda 	#Block_ProgramStart 			; work out program start.
 	clc
 	adc 	DBaseAddress
 	tay 									; put in Y
-	pla 									; A is buffer
 _CLINextLine:
 	lda 	$0000,y 						; check end of program
 	beq 	_CLIExit
+	jsr 	ScanIndent  					; scan for formatting.
+	lda 	DListBuffer
 	jsr 	Detokenise 						; detokenise it
-	pha 									; save A (buffer) Y (program)
 	phy
 	tay 									; print buffer out
 	jsr 	PrintBasicString
 	jsr 	HWNewLine
-
-	ply 									; get buffer.
+	ply 									; get address
 	tya 									; follow link
 	clc
 	adc 	$0000,y
 	tay
-	pla 									; restore buffer
 	bra 	_CLINextLine
 
 _CLIExit:
+	stz 	DIndent 						; reset the indent
 	rts
 
 
@@ -66,12 +66,20 @@ Detokenise:
 	ldy 	#$0000 							; the high byte is 0
 	ldx 	#10 							; in BASE 10.
 	jsr 	ConvertToStringAlreadyAllocated	; convert to string in situ.
+	lda 	DIndent 						; work out indent, which is the smaller of this/last
+	cmp 	DIndent2
+	bcc 	_DTKSmaller
+	lda 	DIndent2
+_DTKSmaller:	
+	asl 	a
+	adc 	#6
+	sta 	DTemp1
 _DTKPadLineNo:
-	lda 	#32 							; pad out to 6 characters.
+	lda 	#32 							; pad out to 6+indent*2 characters.
 	jsr 	StringWriteCharacter
 	lda 	(DStartTempString)
 	and 	#$00FF
-	cmp 	#6
+	cmp 	DTemp1
 	bne 	_DTKPadLineNo
 	;
 	pla 									; get pointer
@@ -279,5 +287,59 @@ _DTKNotSpecial2:
 
 	ply
 	plx
+	pla
+	rts
+
+; *******************************************************************************************
+;
+;		At the line beginning with Y, scan it for keywords+ keywords- in X adjust DIndent
+;
+; *******************************************************************************************
+
+ScanIndent:
+	pha
+	phy
+	lda 	DIndent  						; save the old indentation
+	sta 	DIndent2
+	tya
+	clc 									; point to code.
+	adc 	#4
+	tay
+_SILoop:
+	lda 	$0000,y 						; get token
+	beq 	_SIExit
+	cmp 	#$0100							; is it a string ?
+	bcs 	_SICheckKeyword
+	tya 									; skip string.
+	clc
+	adc 	$0000,y
+	tay
+	bra 	_SILoop
+_SICheckKeyword: 							; check if keyword
+	and 	#$E000
+	cmp 	#$2000
+	beq 	_SIFoundKeyword
+_SIAdvance:
+	iny 									; if not, loop round.
+	iny
+	bra 	_SILoop
+	;
+_SIFoundKeyword:
+	lda 	$0000,y 						; get keyword
+	and 	#15<<9							; extract type
+	cmp 	#14<<9
+	beq 	_SIKeyPlus
+	cmp 	#13<<9 							; and adjust DIndent appropriately.
+	bne 	_SIAdvance
+	dec 	DIndent
+	bpl 	_SIAdvance
+	stz 	DIndent
+	bra 	_SIAdvance
+_SIKeyPlus:
+	inc 	DIndent
+	bra 	_SIAdvance
+
+_SIExit:	
+	ply
 	pla
 	rts

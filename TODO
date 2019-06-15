@@ -1,7 +1,7 @@
 Main
 ----
 - INSTR
-- LIST - ranges, breaking, formatting spaces for structures.
+- LIST - ranges, breaking
 - CALL <address> (params A,X,Y,C ?)
 - Input code. Tokenising.
 - Typing commands in

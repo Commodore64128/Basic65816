@@ -1,3 +1,4 @@
+
 ; ********************************************************************************
 ; ********************************************************************************
 ;
@@ -48,6 +49,10 @@ DTemp3 = DPBaseAddress + 36 				; *** LONG *** Temporary Value.
 DCursor = DPBaseAddress + 40 				; cursor (for external routines, not used by BASIC)
 
 DStack = DPBaseAddress + 42 				; BASIC stack pointer.
+
+DIndent = DPBaseAddress + 44 				; indent for LIST
+DIndent2 = DPBaseAddress + 46 				; previous indent.
+DListBuffer = DPBaseAddress + 48 			; list buffer address.
 
 ; ********************************************************************************
 ;

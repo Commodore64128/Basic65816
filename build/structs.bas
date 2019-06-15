@@ -1,5 +1,7 @@
 20 	x = 0
 50 	repeat
+60 		x = 0
+70 	until x = 0
 100	if (x & 1) = 0
 110		print x,"Even",
 112 	if x > 5

@@ -1,23 +1,23 @@
-2 goto 4
-3 for ix = 0 to 8:print "RAM";str$(ix+addr,16),str$(peek(ix+addr),16):next ix:end
-4 list
-
-10 rem "POKE LOKE DOKE test"
-15 a$ = "Hello."+".World!"
-17 print ">>";upper$(a$)+"..."+lower$(a$)
-
-40 print "2  6 ["+mid$(a$,2,7)+"]"
-
-100 stop
-
-125 addr = 2 * 65536 + 4 * 4096
-130 gosub 130
-160 print
-170 loke addr+2,-42
-180 gosub 230
-190 stop
-200 rem "Display RAM"
-230 for ix = 0 to 8
-240 print str$(ix+addr,16),str$(peek(ix+addr),16)
-250 next ix
-260 return
+10  list:stop
+20 	x = 0
+50 	repeat
+60 		print
+70 	until x = 0
+80 for i = 1 to 5
+90	 a = i
+95 next i
+100	if (x & 1) = 0
+110		print x,"Even",
+112 	if x > 5
+118			print ">5"
+119 	else
+120 		print "<=5"
+129 	endif
+130 else
+134 	print x,"odd",
+135 	y = x
+136 	repeat:print y;" ";:y = y-1:until y = 0:print
+140	endif
+150 x = x + 1
+160 until x > 10
+180 stop	
