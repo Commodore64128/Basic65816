@@ -33,6 +33,13 @@
 
 		.include "utility/hwinterface.asm"			; display code.
 
+		*=$20001 									; some test code here.
+		inc 	a
+		inx
+		inx
+		dey
+		rtl
+
 		*=$24000 									; actual BASIC block goes here, demo at 02:4000
 CodeSpace:
 		.binary "temp/basic.bin"

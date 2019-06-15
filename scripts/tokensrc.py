@@ -60,6 +60,7 @@ class TokenSource(object):
 	else 										## else for if .. else .. endif
 	poke doke loke 								## byte/word/long write.
 	list 										## Program list.
+	link										## Call Machine Code
 
 [keyword+]
 	repeat										## repeat loop test at bottom

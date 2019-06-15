@@ -1,15 +1,16 @@
 Main
 ----
-- CALL <address> (params A,X,Y,C ?)
-- Tokenising.
+- Tokenising (testing using LINK)
+- Entering/Amending programs (testing using LINK)
 - Typing commands in
 - Typing programs in
+- Dog food !!
+
 - PROC <identifier> DEFPROC ENDPROC
 - LOCALs 
 - Parameters (not arrays)
 - Switchable environments.
 - 65816 assembler.
-- Dog food !!
 
 Fixes
 -----

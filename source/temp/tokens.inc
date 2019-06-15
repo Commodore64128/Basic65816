@@ -65,15 +65,16 @@ CommandJumpTable:
 	.word Command_DOKE             & $FFFF ; token $3e3c "doke"
 	.word Command_LOKE             & $FFFF ; token $3e3d "loke"
 	.word Command_List             & $FFFF ; token $3e3e "list"
-	.word Function_REPEAT          & $FFFF ; token $3c3f "repeat"
-	.word Function_WHILE           & $FFFF ; token $3c40 "while"
-	.word Function_IF              & $FFFF ; token $3c41 "if"
-	.word Command_FOR              & $FFFF ; token $3c42 "for"
-	.word Function_WEND            & $FFFF ; token $3a43 "wend"
-	.word Function_UNTIL           & $FFFF ; token $3a44 "until"
-	.word IllegalToken             & $FFFF ; token $3a45 "then"
-	.word Handler_ENDIF            & $FFFF ; token $3a46 "endif"
-	.word Command_NEXT             & $FFFF ; token $3a47 "next"
+	.word Function_LINK            & $FFFF ; token $3e3f "link"
+	.word Function_REPEAT          & $FFFF ; token $3c40 "repeat"
+	.word Function_WHILE           & $FFFF ; token $3c41 "while"
+	.word Function_IF              & $FFFF ; token $3c42 "if"
+	.word Command_FOR              & $FFFF ; token $3c43 "for"
+	.word Function_WEND            & $FFFF ; token $3a44 "wend"
+	.word Function_UNTIL           & $FFFF ; token $3a45 "until"
+	.word IllegalToken             & $FFFF ; token $3a46 "then"
+	.word Handler_ENDIF            & $FFFF ; token $3a47 "endif"
+	.word Command_NEXT             & $FFFF ; token $3a48 "next"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -141,15 +142,16 @@ TokenText:
 	 .text $f5,"doke"     ; token $3e3c
 	 .text $f5,"loke"     ; token $3e3d
 	 .text $f5,"list"     ; token $3e3e
-	 .text $e7,"repeat"   ; token $3c3f
-	 .text $e6,"while"    ; token $3c40
-	 .text $e3,"if"       ; token $3c41
-	 .text $e4,"for"      ; token $3c42
-	 .text $d5,"wend"     ; token $3a43
-	 .text $d6,"until"    ; token $3a44
-	 .text $d5,"then"     ; token $3a45
-	 .text $d6,"endif"    ; token $3a46
-	 .text $d5,"next"     ; token $3a47
+	 .text $f5,"link"     ; token $3e3f
+	 .text $e7,"repeat"   ; token $3c40
+	 .text $e6,"while"    ; token $3c41
+	 .text $e3,"if"       ; token $3c42
+	 .text $e4,"for"      ; token $3c43
+	 .text $d5,"wend"     ; token $3a44
+	 .text $d6,"until"    ; token $3a45
+	 .text $d5,"then"     ; token $3a46
+	 .text $d6,"endif"    ; token $3a47
+	 .text $d5,"next"     ; token $3a48
 	.byte $00
 
 ;
@@ -217,12 +219,13 @@ pokeTokenID                      = $3e3b
 dokeTokenID                      = $3e3c
 lokeTokenID                      = $3e3d
 listTokenID                      = $3e3e
-repeatTokenID                    = $3c3f
-whileTokenID                     = $3c40
-ifTokenID                        = $3c41
-forTokenID                       = $3c42
-wendTokenID                      = $3a43
-untilTokenID                     = $3a44
-thenTokenID                      = $3a45
-endifTokenID                     = $3a46
-nextTokenID                      = $3a47
+linkTokenID                      = $3e3f
+repeatTokenID                    = $3c40
+whileTokenID                     = $3c41
+ifTokenID                        = $3c42
+forTokenID                       = $3c43
+wendTokenID                      = $3a44
+untilTokenID                     = $3a45
+thenTokenID                      = $3a46
+endifTokenID                     = $3a47
+nextTokenID                      = $3a48

@@ -1,11 +1,12 @@
-5 print instr("hello","el")
-6 print instr("hello","ex")
-7 print instr("hello","hello")
-8 print instr("hello","hello2")
+1 a = 99:x = 42:y = 38
+2 print "Before",a,x,y
+3 link 131073:rem "This is in the start.asm routine :)"
+4 print "After",a,x,y
+
+
 9 list 100,133:goto 170
 
 11  for i = 1 to 9999
-12 		print i
 13  next i
 20 	x = 0
 50 	repeat
