@@ -28,7 +28,7 @@ def toStr(n,base):
 
 if __name__ == "__main__":
 	print("Unary function test code.")
-	eb = EntityBucket()
+	eb = EntityBucket(-1,40,40,6,6)
 	#
 	bs = BasicSource()
 	bs.append(eb.setupCode())
@@ -54,7 +54,19 @@ if __name__ == "__main__":
 		n2 = random.randint(0,int(len(s)/2)+1)
 		s2 = s[n1-1:][:n2] if n2 > 0 else ""
 		bs.append("assert mid$({0},{1},{2}) = \"{3}\"".format('"'+s+'"',n1,n2,s2))
-
+		#
+		ok = False
+		while not ok:
+			v2 = eb.pickOneString()
+			s = v2.getValue()
+			ps = random.randint(0,len(s)+1)
+			pl = random.randint(1,3)
+			ss = s[ps:][:pl]
+			ok = len(ss) != 0
+		if random.randint(0,3) == 0:
+			s = eb.pickOneString().getValue()
+		pos = s.find(ss) + 1
+		bs.append("assert instr(\"{0}\",\"{1}\") = {2}".format(s,ss,pos))
 
 	bs.append(eb.checkCode())
 	#

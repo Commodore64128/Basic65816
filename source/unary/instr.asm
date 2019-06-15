@@ -39,6 +39,10 @@ Function_INSTR:	;; instr(
 		and 	#$00FF
 		inc 	a
 		sta 	DTemp3 						; this is the number of matches we can try.
+
+		lda 	(DTemp1) 					; fail if first string is ""
+		and 	#$00FF
+		beq 	_FINSError
 		;
 		;		Loop back to try the next one.
 		;
@@ -66,3 +70,6 @@ _FINSFail:
 		stz 	EXSValueL+0,x 				; return 0
 _FINSExit:		
 		rts
+
+_FINSError:	
+		#error 	"No Search String"
