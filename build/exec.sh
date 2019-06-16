@@ -27,4 +27,7 @@ if [ -e basic.bin ]
 then
 ../emulator/m65816 basic.bin go
 fi
+#
+#		So I can benchmark it.
+#
 python ../scripts/calctime.py

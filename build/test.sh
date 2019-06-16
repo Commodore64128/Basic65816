@@ -1,3 +1,6 @@
+#
+#		Runs all current tests in an infinite loop.
+#
 while true
 do
 	sh exec.sh test_creation.py
