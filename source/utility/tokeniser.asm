@@ -130,7 +130,8 @@ _TOKNumber:
 		;		Tokenise an Identifier or Keyword
 		;
 _TOKIdentifier:
-		bra 	_TOKIdentifier
+		jsr 	TOKIdentifier
+		bra 	_TOKMainLoop
 
 ; *******************************************************************************************
 ;
@@ -301,8 +302,160 @@ _TOQImbalance:
 ; *******************************************************************************************
 
 TOKKeywordSearch:
+		stx 	DTemp4 						; save length in DTemp4
+		lda 	#1 							; token number in DTemp4+2
+		sta 	DTemp4+2
+		ldx 	#0 	
+		;
+		;		Scan the token table.
+		;	
+_TOKScan:									; start scanning the token table
+		lda 	TokenText,x 				; read the first byte
+		and 	#$000F 						; and the Nibble which is skip to the next.
+		beq 	_TOKFail 					; if zero then we have failed.
+		dec 	a 							; -1 gives the length.
+		cmp 	DTemp4 						; is this token that length.
+		bne 	_TOKNext 					; no, then skip to next token.
+
+		phx 								; save X
+		ldy 	#0 							; start comparing
+_TOKCompare:
+		lda 	[DTemp1],y 					; get character
+		eor 	TokenText+1,x 				
+		and 	#$00FF
+		bne 	_TOKPopNext 				; if different, pop and goto next.
+		inx 								; bump X and Y.
+		iny
+		cpy 	DTemp4 						; matched whole length
+		bne 	_TOKCompare
+		;
+		;		Skip over the text
+		;
+		tya 								; add length to the text pointer
+		clc
+		adc 	DTemp1
+		sta 	DTemp1
+		;
+		;		Calculate the full keyword token.
+		;
+		plx 								; restore X.		
+		lda 	TokenText,x 				; get the type/token bit.
+		and 	#$00F0 						; get the type out
+		lsr 	a 							; shift into bit 1, then swap into bit 9
+		lsr		a
+		lsr 	a
+		xba
+		ora 	DTemp4+2 					; OR in keyword number
+		ora 	#$2000 						; set upper bits
+		sec
+		rts
+
+_TOKPopNext:
+		plx 								; restore X.
+_TOKNext:
+		lda 	TokenText,x 				; get the token skip again.
+		and 	#$000F 
+		sta 	DTemp3 						; save it in DTemp3 so we can add it to X
+		txa
+		clc
+		adc 	DTemp3
+		tax
+		inc 	DTemp4+2 					; bump keyword index/
+		bra 	_TOKScan
+		;									; can't find it.
+_TOKFail:
 		clc
 		rts
 
+; *******************************************************************************************
+;
+;		Find length of identifier, and possible type bits, from DTemp1. If it is
+;		in the keyword table, write that as a token, otherwise tokenise the 
+;		identifier. 
+;
+;		The identifier includes $ (
+;
+; *******************************************************************************************
+
+TOKIdentifier:
+		;
+		;		Find identifier end.
+		;
+		lda 	DTemp1 						; save start of identifier in DTemp3
+		sta 	DTemp3
+_TOKIFindLength:
+		inc 	DTemp1						; we know the first one is A-Z
+		lda 	[DTemp1]			
+		and 	#$00FF		
+		jsr 	TOKIsIdentifierCharacter
+		bcs 	_TOKIFindLength
+		;
+		;		Calculate length
+		;
+		lda 	DTemp1 						; calculate base identifier length.
+		sec
+		sbc 	DTemp3 						; i.e. the # characters in the actual name
+		sta 	DTemp4 
+		sta 	DTemp4+2 					; this is the name including $(
+		stz 	DTemp3+2 					; these are type bits used when building
+		;
+		;		Now check for $
+		;
+		lda 	[DTemp1]					; string follows
+		and 	#$00FF		
+		cmp 	#"$"
+		bne 	_TOKINotString
+		inc 	DTemp1 						; skip $
+		inc 	DTemp4+2 					; token length.
+		lda 	DTemp3+2 					; set type mask bit
+		ora 	#IDTypeMask
+		sta 	DTemp3+2
+_TOKINotString:		
+		;
+		;		Now check for (
+		;
+		lda 	[DTemp1]					; string follows
+		and 	#$00FF		
+		cmp 	#"("
+		bne 	_TOKINotArray
+		inc 	DTemp1 						; skip (
+		inc 	DTemp4+2 					; token length.
+		lda 	DTemp3+2 					; set type mask bit
+		ora 	#IDArrayMask
+		sta 	DTemp3+2
+_TOKINotArray:		
+		lda 	DTemp3 						; reset the scan position
+		sta 	DTemp1
+		ldx 	DTemp4+2 					; so see if it is a token first.
+		jsr 	TOKKeywordSearch			
+		bcc 	_TOKIIdentifier 			; if CC it's an identifier.
+		jsr 	TOKWriteToken 				; if CS write token and exit.
+		rts
+		;
+		;		So, it's not an keyword, so must be an identifier. 
+		;		Output the characters, with the continuation bit
+		;		but NOT the $ ( , put this information in the type bit. 
+		;
+_TOKIIdentifier:	
+		nop
+
+;
+;		Check if A is an allowable alphanumeric character.
+;
+TOKIsIdentifierCharacter:
+		cmp 	#"0"
+		bcc 	_TOKIIFail
+		cmp 	#"9"+1
+		bcc 	_TOKIIOk
+		cmp 	#"A"
+		bcc 	_TOKIIFail
+		cmp 	#"Z"+1
+		bcc 	_TOKIIOk
+_TOKIIFail:
+		clc
+		rts
+_TOKIIOk:
+		sec
+		rts
 
 

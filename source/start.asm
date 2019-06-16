@@ -45,7 +45,7 @@
 		.include "utility/hwinterface.asm"			; display code.
 
 		*=$20000
-TTest:	.text '42  40960 "quoTed" "" "x"  >= * aBcD',0
+TTest:	.text '42  40960 "quoTed" "" "x"  >= * right$( list print abcd$(',0
 ;
 ;		Demo BASIC instance.
 ;
