@@ -10,12 +10,16 @@
 ; ********************************************************************************
 ; ********************************************************************************
 
-DirectPage = $FC00 
+;
+;	Direct Page requires 5 pages for data as shown below.
+;
+DirectPage = $F000 		
 
-;	+00 .. +7F 			General variables
-;	+80 .. +1FF 		BASIC stack
+;	+000 .. +07F 		General variables
+;	+080 .. +1FF 		BASIC stack
 ;	+200 .. +27F 		Expression Stack.
-;  	+280 .. +3FF 		CPU Stack.
+;  	+260 .. +35F 		Tokenising Workspace.
+; 	+360 .. +4FF 		CPU Stack.
 
 
 ; ********************************************************************************
@@ -91,9 +95,17 @@ EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 =
 
 ; ********************************************************************************
 ;
+;								Tokenising Workspace
+;
+; ********************************************************************************
+
+TOKWorkSpace = EXSBase+EXSStackElements*3*2	; tokenised text goes here.
+
+; ********************************************************************************
+;
 ;								65816 Stack Starts Here.
 ;
 ; ********************************************************************************
 
-CPUStack = EXSBase+$200-2 					; CPU Stack initial value.
+CPUStack = EXSBase+$300-2 					; CPU Stack initial value.
 

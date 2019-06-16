@@ -6,6 +6,10 @@
 ;		Date :		6th June 2019
 ;		Author : 	paul@robsons.org.uk
 ;
+;		Note : 		There are currently two pieces of self modifying code.
+;					(i) the branch to the binary token handler routine in expression.asm
+;					(ii) the branch to the LINK address.
+;
 ; *******************************************************************************************
 ; *******************************************************************************************
 
