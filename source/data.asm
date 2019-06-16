@@ -68,6 +68,8 @@ DListBuffer = DPBaseAddress + 48 			; list buffer address.
 
 DTemp4 = DPBaseAddress + 50 				; *** LONG *** Temporary Value
 
+DTemp5 = DPBaseAddress + 54 				; *** LONG *** Temporary Value
+
 ; ********************************************************************************
 ;
 ;									BASIC stack.

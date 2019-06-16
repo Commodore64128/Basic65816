@@ -299,6 +299,8 @@ _TOQImbalance:
 ;		Search token table for text at [DTemp1], length X. If found, return Carry
 ;		set and advance over text, and token in A. If failed, return Carry Clear
 ;
+;		Uses DTemp4, DSignCount
+;
 ; *******************************************************************************************
 
 TOKKeywordSearch:
@@ -355,12 +357,12 @@ _TOKPopNext:
 _TOKNext:
 		lda 	TokenText,x 				; get the token skip again.
 		and 	#$000F 
-		sta 	DTemp3 						; save it in DTemp3 so we can add it to X
+		sta 	DSignCount 					; save it in DTemp3 so we can add it to X
 		txa
 		clc
-		adc 	DTemp3
+		adc 	DSignCount
 		tax
-		inc 	DTemp4+2 					; bump keyword index/
+		inc 	DTemp4+2 					; bump keyword index
 		bra 	_TOKScan
 		;									; can't find it.
 _TOKFail:
@@ -395,9 +397,10 @@ _TOKIFindLength:
 		lda 	DTemp1 						; calculate base identifier length.
 		sec
 		sbc 	DTemp3 						; i.e. the # characters in the actual name
-		sta 	DTemp4 
-		sta 	DTemp4+2 					; this is the name including $(
-		stz 	DTemp3+2 					; these are type bits used when building
+		sta 	DTemp5 
+		sta 	DTemp5+2 					; this is the name length including $(
+		lda 	#$C000 						; this is the upper bits - 11<type><arr>
+		sta 	DTemp3+2 					; used for building an identifier.
 		;
 		;		Now check for $
 		;
@@ -406,7 +409,7 @@ _TOKIFindLength:
 		cmp 	#"$"
 		bne 	_TOKINotString
 		inc 	DTemp1 						; skip $
-		inc 	DTemp4+2 					; token length.
+		inc 	DTemp5+2 					; token length.
 		lda 	DTemp3+2 					; set type mask bit
 		ora 	#IDTypeMask
 		sta 	DTemp3+2
@@ -419,14 +422,14 @@ _TOKINotString:
 		cmp 	#"("
 		bne 	_TOKINotArray
 		inc 	DTemp1 						; skip (
-		inc 	DTemp4+2 					; token length.
+		inc 	DTemp5+2 					; token length.
 		lda 	DTemp3+2 					; set type mask bit
 		ora 	#IDArrayMask
 		sta 	DTemp3+2
 _TOKINotArray:		
 		lda 	DTemp3 						; reset the scan position
 		sta 	DTemp1
-		ldx 	DTemp4+2 					; so see if it is a token first.
+		ldx 	DTemp5+2 					; so see if it is a token first.
 		jsr 	TOKKeywordSearch			
 		bcc 	_TOKIIdentifier 			; if CC it's an identifier.
 		jsr 	TOKWriteToken 				; if CS write token and exit.
@@ -436,8 +439,35 @@ _TOKINotArray:
 		;		Output the characters, with the continuation bit
 		;		but NOT the $ ( , put this information in the type bit. 
 		;
-_TOKIIdentifier:	
+_TOKIIdentifier:
 		nop
+
+
+		;
+		;		Exit, skip over token.
+		;			
+_TOKIOut:
+		lda 	DTemp3 						; get original start position
+		clc
+		adc 	DTemp5+2					; add overall length
+		sta 	DTemp1 						; this is the end position
+		rts 
+
+;
+;		Convert an identifier character (0-9A-Z) into the values 1-36
+;		for packing into an identifier token.
+;
+_TOKIToConstant:
+		and 	#$00FF 						; byte value
+		cmp 	#65
+		bcc 	_TOKITInteger
+		and 	#31 						; it's A-Z, so return 1-26
+		rts
+_TOKITInteger:
+		and 	#15 						; its 0-9 which are 27-36
+		clc
+		adc 	#27
+		rts
 
 ;
 ;		Check if A is an allowable alphanumeric character.
