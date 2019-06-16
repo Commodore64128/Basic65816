@@ -1,7 +1,7 @@
 # *******************************************************************************************
 # *******************************************************************************************
 #
-#		Name : 		makebas.py
+#		Name : 		make_bas.py
 #		Purpose :	Load build/basic.bas into position for assembly
 #		Date :		12th June 2019
 #		Author : 	Paul Robson (paul@robsons.org.uk)

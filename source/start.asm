@@ -33,19 +33,36 @@
 													; this has self modifying code at despatch
 													; in expression.asm
 
+; ******************************************************************************
 ;
 ;			This code is called by LINK to test the tokeniser at $1F000
 ;
+;			The script make_tok.py sets this up to do one conversion test.
+;
+; ******************************************************************************
+
 		* = $1F000													
-		ldy 	#TTest >> 16 						; code called for testing.				
-		lda 	#TTest & $FFFF
+		lda 	#$B000 								; the text is at $2B000
+		ldy 	#2
 		jsr 	Tokenise
+		ldx 	#TOKWorkSpace
+		ldy 	#0
+_TokeniserTestLoop:
+		lda 	$00,x								; compare workspace vs answer
+		cmp 	$B200,y 		
+_TokeniserError:
+		bne 	_TokeniserError
+		inx
+		inx
+		iny
+		iny
+		cmp 	#0
+		bne 	_TokeniserTestLoop
+		cop 	#0 									; exit successfully.			
 		rtl
 
-		.include "utility/hwinterface.asm"			; display code.
 
-		*=$20000
-TTest:	.text '42  40960 "quoTed" "" "x"  >= * right$( list print right abcd$(',0
+
 ;
 ;		Demo BASIC instance.
 ;

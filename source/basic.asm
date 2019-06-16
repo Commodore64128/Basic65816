@@ -52,6 +52,8 @@ StartOfBasicCode:
 		.include "commands/memwrite.asm" 			; write to memory.
 		.include "commands/miscellany.asm"			; all other commands
 
+		.include "utility/hwinterface.asm"			; display code.
+
 IDTypeMask = $2000 									; bit masks in identifier.
 IDArrayMask = $1000
 IDContMask = $0800

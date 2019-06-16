@@ -399,7 +399,7 @@ _TOKIFindLength:
 		sbc 	DTemp3 						; i.e. the # characters in the actual name
 		sta 	DTemp5 
 		sta 	DTemp5+2 					; this is the name length including $(
-		lda 	#$C000 						; this is the upper bits - 11<type><arr>
+		lda 	#$C000						; this is the upper bits - 11<type><arr> 1xxx
 		sta 	DTemp3+2 					; used for building an identifier.
 		;
 		;		Now check for $
@@ -440,9 +440,51 @@ _TOKINotArray:
 		;		but NOT the $ ( , put this information in the type bit. 
 		;
 _TOKIIdentifier:
-		nop
-
-
+		;
+		;		First character
+		;		
+		lda 	[DTemp1]					; get the first character
+		inc 	DTemp1
+		jsr		_TOKIToConstant 			; convert to range 0-35
+		ora 	DTemp3+2 					; put in the upper bits.
+		dec 	DTemp5 						; decrement the identifier length
+		beq 	_TOKINoSecond
+		;
+		;		Second character if exists.
+		;
+		pha 								; save current on stack.
+		lda 	[DTemp1]					; get the next character
+		inc 	DTemp1
+		jsr		_TOKIToConstant 			; convert to range 0-35
+		;
+		sta 	DSignCount 					; save it.
+		asl 	a 							; x 4
+		asl 	a
+		adc 	DSignCount 					; x 5
+		asl 	a 							; x 10
+		adc 	DSignCount 					; x 11
+		asl 	a 							; x 22
+		asl 	a 							; x 44
+		adc 	DSignCount 					; x 45
+		sta 	DSignCount
+		;
+		pla 								; get old token and add x 45
+		clc
+		adc 	DSignCount 	
+		dec 	DTemp5 						; decrement the count.
+		;
+_TOKINoSecond:
+		;
+		;		Do we need the continuation bit ?
+		;
+		ldx 	DTemp5 						; is the count now zero.
+		beq 	_TOKINotLast				; if yes
+		ora 	#IDContMask 				; set the continuation bit.
+_TOKINotLast:
+		jsr 	TOKWriteToken 				; output the token
+		;
+		lda 	DTemp5						; loop back if more to do.
+		bne 	_TOKIIdentifier
 		;
 		;		Exit, skip over token.
 		;			
