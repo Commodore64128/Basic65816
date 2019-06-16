@@ -78,6 +78,8 @@ for i in range(0,len(toks)):
 	#print("{0:02x} : {1:04x}".format(i,toks[i]))
 	blk.writeWord(0xB200+i*2,toks[i])
 #
+print("Original size {0} Tokenised {1}".format(len(checkString)+1,len(toks)*2))
+#
 blk.exportFile("temp/basic.bin")	
 
 

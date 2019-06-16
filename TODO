@@ -13,6 +13,8 @@ Main
 
 Fixes
 -----
+-   tokenising lines, too long ?
+
 - 	detokenising lines, too long ?
 
 - 	reset temporary storage pointer when typing things in, even if no command executed as error could

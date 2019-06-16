@@ -29,40 +29,13 @@
 ;			The BASIC Rom image.
 ;
 		* = $10000
-		.include "basic.asm" 						; this is the BASIC image. Note currently
-													; this has self modifying code at despatch
-													; in expression.asm
+		.include "basic.asm" 						; this is the BASIC image
 
-; ******************************************************************************
 ;
-;			This code is called by LINK to test the tokeniser at $1F000
+;		Routines for automatic testing.
 ;
-;			The script make_tok.py sets this up to do one conversion test.
-;
-; ******************************************************************************
-
-		* = $1F000													
-		lda 	#$B000 								; the text is at $2B000
-		ldy 	#2
-		jsr 	Tokenise
-		ldx 	#TOKWorkSpace
-		ldy 	#0
-_TokeniserTestLoop:
-		lda 	$00,x								; compare workspace vs answer
-		cmp 	$B200,y 		
-_TokeniserError:
-		bne 	_TokeniserError
-		inx
-		inx
-		iny
-		iny
-		cmp 	#0
-		bne 	_TokeniserTestLoop
-		cop 	#0 									; exit successfully.			
-		rtl
-
-
-
+		.include "utility/testing.asm"													
+		
 ;
 ;		Demo BASIC instance.
 ;
