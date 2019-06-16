@@ -93,7 +93,7 @@ class TokenList(object):
 		h.write("TokenText:\n")
 		for t in self.getList():
 			b = (len(t.name)+1)+t.type * 16
-			h.write('\t .text ${0:02x},{1:10} ; token ${2:04x}\n'.format(b,'"'+t.name+'"',t.id))
+			h.write('\t .text ${0:02x},{1:10} ; token ${2:04x}\n'.format(b,'"'+t.name.upper()+'"',t.id))
 		h.write("\t.byte $00\n\n")			
 		#
 		h.write(";\n;\tConstants\n;\n")

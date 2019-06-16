@@ -96,62 +96,62 @@ TokenText:
 	 .text $32,"%"        ; token $260e
 	 .text $33,">>"       ; token $260f
 	 .text $33,"<<"       ; token $2610
-	 .text $85,"rnd("     ; token $3011
-	 .text $85,"sgn("     ; token $3012
-	 .text $85,"abs("     ; token $3013
-	 .text $85,"len("     ; token $3014
-	 .text $85,"val("     ; token $3015
-	 .text $86,"str$("    ; token $3016
-	 .text $86,"chr$("    ; token $3017
-	 .text $85,"asc("     ; token $3018
-	 .text $85,"spc("     ; token $3019
-	 .text $86,"peek("    ; token $301a
-	 .text $86,"deek("    ; token $301b
-	 .text $86,"leek("    ; token $301c
-	 .text $88,"lower$("  ; token $301d
-	 .text $88,"upper$("  ; token $301e
-	 .text $87,"left$("   ; token $301f
-	 .text $86,"mid$("    ; token $3020
-	 .text $88,"right$("  ; token $3021
-	 .text $87,"instr("   ; token $3022
+	 .text $85,"RND("     ; token $3011
+	 .text $85,"SGN("     ; token $3012
+	 .text $85,"ABS("     ; token $3013
+	 .text $85,"LEN("     ; token $3014
+	 .text $85,"VAL("     ; token $3015
+	 .text $86,"STR$("    ; token $3016
+	 .text $86,"CHR$("    ; token $3017
+	 .text $85,"ASC("     ; token $3018
+	 .text $85,"SPC("     ; token $3019
+	 .text $86,"PEEK("    ; token $301a
+	 .text $86,"DEEK("    ; token $301b
+	 .text $86,"LEEK("    ; token $301c
+	 .text $88,"LOWER$("  ; token $301d
+	 .text $88,"UPPER$("  ; token $301e
+	 .text $87,"LEFT$("   ; token $301f
+	 .text $86,"MID$("    ; token $3020
+	 .text $88,"RIGHT$("  ; token $3021
+	 .text $87,"INSTR("   ; token $3022
 	 .text $92,","        ; token $3223
 	 .text $92,";"        ; token $3224
 	 .text $92,":"        ; token $3225
 	 .text $92,"("        ; token $3226
 	 .text $92,")"        ; token $3227
 	 .text $92,"'"        ; token $3228
-	 .text $c3,"to"       ; token $3829
-	 .text $c5,"step"     ; token $382a
-	 .text $f4,"rem"      ; token $3e2b
-	 .text $f4,"let"      ; token $3e2c
-	 .text $f7,"assert"   ; token $3e2d
-	 .text $f4,"end"      ; token $3e2e
-	 .text $f4,"run"      ; token $3e2f
-	 .text $f5,"stop"     ; token $3e30
-	 .text $f6,"clear"    ; token $3e31
-	 .text $f4,"dim"      ; token $3e32
-	 .text $f8,"collect"  ; token $3e33
-	 .text $f4,"cls"      ; token $3e34
-	 .text $f6,"print"    ; token $3e35
-	 .text $f5,"goto"     ; token $3e36
-	 .text $f6,"gosub"    ; token $3e37
-	 .text $f7,"return"   ; token $3e38
-	 .text $f3,"on"       ; token $3e39
-	 .text $f5,"else"     ; token $3e3a
-	 .text $f5,"poke"     ; token $3e3b
-	 .text $f5,"doke"     ; token $3e3c
-	 .text $f5,"loke"     ; token $3e3d
-	 .text $f5,"list"     ; token $3e3e
-	 .text $f5,"link"     ; token $3e3f
-	 .text $e7,"repeat"   ; token $3c40
-	 .text $e6,"while"    ; token $3c41
-	 .text $e3,"if"       ; token $3c42
-	 .text $e4,"for"      ; token $3c43
-	 .text $d5,"wend"     ; token $3a44
-	 .text $d6,"until"    ; token $3a45
-	 .text $d5,"then"     ; token $3a46
-	 .text $d6,"endif"    ; token $3a47
-	 .text $d5,"next"     ; token $3a48
+	 .text $c3,"TO"       ; token $3829
+	 .text $c5,"STEP"     ; token $382a
+	 .text $f4,"REM"      ; token $3e2b
+	 .text $f4,"LET"      ; token $3e2c
+	 .text $f7,"ASSERT"   ; token $3e2d
+	 .text $f4,"END"      ; token $3e2e
+	 .text $f4,"RUN"      ; token $3e2f
+	 .text $f5,"STOP"     ; token $3e30
+	 .text $f6,"CLEAR"    ; token $3e31
+	 .text $f4,"DIM"      ; token $3e32
+	 .text $f8,"COLLECT"  ; token $3e33
+	 .text $f4,"CLS"      ; token $3e34
+	 .text $f6,"PRINT"    ; token $3e35
+	 .text $f5,"GOTO"     ; token $3e36
+	 .text $f6,"GOSUB"    ; token $3e37
+	 .text $f7,"RETURN"   ; token $3e38
+	 .text $f3,"ON"       ; token $3e39
+	 .text $f5,"ELSE"     ; token $3e3a
+	 .text $f5,"POKE"     ; token $3e3b
+	 .text $f5,"DOKE"     ; token $3e3c
+	 .text $f5,"LOKE"     ; token $3e3d
+	 .text $f5,"LIST"     ; token $3e3e
+	 .text $f5,"LINK"     ; token $3e3f
+	 .text $e7,"REPEAT"   ; token $3c40
+	 .text $e6,"WHILE"    ; token $3c41
+	 .text $e3,"IF"       ; token $3c42
+	 .text $e4,"FOR"      ; token $3c43
+	 .text $d5,"WEND"     ; token $3a44
+	 .text $d6,"UNTIL"    ; token $3a45
+	 .text $d5,"THEN"     ; token $3a46
+	 .text $d6,"ENDIF"    ; token $3a47
+	 .text $d5,"NEXT"     ; token $3a48
 	.byte $00
 
 ;

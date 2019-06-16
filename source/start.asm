@@ -42,10 +42,10 @@
 		jsr 	Tokenise
 		rtl
 
-TTest:	.text '42 "quoTed" aBcD',0
-
 		.include "utility/hwinterface.asm"			; display code.
 
+		*=$20000
+TTest:	.text '42  40960 "quoTed" "" "x"  >= * aBcD',0
 ;
 ;		Demo BASIC instance.
 ;

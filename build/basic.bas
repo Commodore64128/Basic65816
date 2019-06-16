@@ -1,4 +1,4 @@
-1 a = 99:x = 42:y = 38
+1 a = 99:x = 42:y = 38:list 1,5
 2 print "Before",a,x,y
 3 link 65536+15*4096:rem "This is in the start.asm routine :)"
 4 print "After",a,x,y
