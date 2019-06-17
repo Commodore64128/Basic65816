@@ -11,9 +11,9 @@ rem python ..\scripts\showdump.py gc
 rem python ..\scripts\showdump.py
 rem call exec.bat make_tokenise.py
 
-call exec.bat make_basic.py
-
 rem call exec.bat make_editor.py
 rem python ..\scripts\check_editor.py
+
+call exec.bat make_basic.py
 
 

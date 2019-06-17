@@ -26,7 +26,7 @@ def getChr(x):
 #
 blk = BasicBlock(0x4000,0x8000)
 random.seed()
-seed = random.randint(0,999999)*0+423
+seed = random.randint(0,999999)
 random.seed(seed)
 print("Seed ",seed)
 
@@ -35,13 +35,18 @@ print("Seed ",seed)
 #
 linesInProgram = {}
 lineNumbers = []
-for i in range(0,random.randint(1,5)):
+print("Initial program")
+for i in range(0,random.randint(0,4)):
 	lineNumber = i * 20 + 100
 	code = createLine(lineNumber)
 	blk.addBASICLine(code,lineNumber)
 	linesInProgram[lineNumber] = code
 	lineNumbers.append(lineNumber)
-option = 1
+	print(code,lineNumber)
+print()
+option = random.randint(0,2)
+while option != 1 and len(linesInProgram) == 0:
+	option = random.randint(0,2)
 #
 #		Option #0 : Delete a randomly chosen line.
 #
@@ -49,6 +54,7 @@ if option == 0 and len(linesInProgram) > 0:
 	lineNo = lineNumbers[random.randint(0,len(lineNumbers))-1]
 	blk.setBoot(str(lineNo),False)
 	linesInProgram[lineNo] = None
+	print("Deleting ",lineNo)
 #
 #		Option #1 : Insert a new line
 #
@@ -58,6 +64,16 @@ if option == 1:
 	linesInProgram[lineNumber] = code
 	lineNumbers.append(lineNumber)
 	blk.setBoot(str(lineNumber)+" "+code,False)
+	print("Inserting ",lineNumber,code)
+#
+#		Option #2: Overwrite a line.
+#	
+if option == 2:
+	lineNo = lineNumbers[random.randint(0,len(lineNumbers))-1]
+	code = createLine(lineNumber)
+	linesInProgram[lineNumber] = code
+	blk.setBoot(str(lineNumber)+" "+code,False)
+	print("Overwriting ",lineNo,code)
 #
 #		Export the basic block
 #

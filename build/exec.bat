@@ -23,7 +23,7 @@ popd
 rem
 rem		Copy generated code to source directory
 rem
-copy ..\scripts\temp\* ..\source\temp 
+copy ..\scripts\temp\* ..\source\temp  >NUL
 rem
 rem		Assemble and RUN if successful
 rem

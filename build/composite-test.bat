@@ -11,6 +11,10 @@ call exec.bat test_change.py
 
 call exec.bat make_garbage.py
 python ..\scripts\showdump.py gc
+
 call exec.bat make_tokenise.py
+
+call exec.bat make_editor.py
+python ..\scripts\check_editor.py
 
 composite-test
