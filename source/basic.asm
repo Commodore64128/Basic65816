@@ -100,7 +100,7 @@ SwitchBasicInstance:
 		lda 	(DBaseAddress),y
 		beq 	WarmStart
 		;
-		lda 	#$0000 								; reset flag
+		dec 	a 									; decrement zero.
 		sta 	(DBaseAddress),y
 		bra 	ExecuteTokenBuffer 					; execute contents of token buffer.
 
@@ -123,12 +123,17 @@ WarmStart:
 NextCommand:		
 		ldx 	DStack65816 						; reset the CPU stack
 		txs
-
+		ldy 	#Block_BootFlag 					; if the boot flag is non-zero 
+		lda 	(DBaseAddress),y
+		bne 	ExitEmulator
 		nop				
 w1:		bra 	w1
 
 ExecuteTokenBuffer:		
 		jmp 	RUNExecuteTokenBuffer 				; execute the token buffer
+
+ExitEmulator:
+		cop 	#0
 
 BasicPrompt:
 		.text 	"Ready.",13,0

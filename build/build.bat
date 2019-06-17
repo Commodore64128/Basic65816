@@ -12,9 +12,6 @@ rem python ..\scripts\showdump.py gc
 
 rem python ..\scripts\showdump.py
 
-rem call exec.bat make_gc.py
-rem python ..\scripts\showdump.py gc
-
 rem call exec.bat make_tok.py
 
 call exec.bat make_bas.py

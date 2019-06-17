@@ -166,8 +166,8 @@ class BasicBlock(object):
 	#
 	#		Set the boot option.
 	#
-	def setBoot(self,code):
-		self.writeWord(self.baseAddress+BasicBlock.BOOTFLAG,0xFFFF)				# set the boot flag
+	def setBoot(self,code,cont = True):
+		self.writeWord(self.baseAddress+BasicBlock.BOOTFLAG,1 if cont else 2)	# set the boot flag
 		tok = self.tokeniser.tokenise(code)										# tokenise the code.
 		tok.append(0) 															# add a trailing 00
 		for i in range(0,len(tok)):												# copy into the buffer
