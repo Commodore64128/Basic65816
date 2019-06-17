@@ -1,7 +1,7 @@
 Main
 ----
-- Entering/Amending programs (testing using LINK)
-- Typing commands in using screen editor style ala Commodore.
+- Entering/Amending programs (testing using BootFlag)
+- Typing commands in using screen editor style a la Commodore.
 - Typing programs in
 - Dog food !!
 
@@ -13,8 +13,6 @@ Main
 
 Fixes
 -----
--   tokenising lines, too long ?
-
 - 	detokenising lines, too long ?
 
 - 	reset temporary storage pointer when typing things in, even if no command executed as error could

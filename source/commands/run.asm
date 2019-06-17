@@ -32,10 +32,29 @@ Function_RUN: ;; run
 		lda 	DBaseAddress 				; work out the first instruction.
 		clc 
 		adc 	#Block_ProgramStart 		; so run from here.
-		;
-		;		Run instruction at A.
-		;
-_FRun_NextLineNumber:
+		bra 	FRun_NextLineNumber
+
+; *******************************************************************************************
+;
+;								Run code in the token buffer
+;
+; *******************************************************************************************
+
+RUNExecuteTokenBuffer:
+		stz 	DLineNumber					; zero line number
+		lda 	#Block_TokenBuffer 			; work out code address/
+		clc
+		adc 	DBaseAddress
+		sta 	DCodePtr 					; set the code pointer.		
+		bra 	FRun_NextInstruction
+
+; *******************************************************************************************
+;
+;				Run instruction at line starting at A (link address)
+;
+; *******************************************************************************************
+
+FRun_NextLineNumber:
 		tay 								; put in Y
 		lda 	$0000,y 					; read the link token.
 		beq 	Function_END 				; if zero, off the end of the program, so END the program
@@ -49,7 +68,7 @@ _FRun_NextLineNumber:
 		;
 		;		Next instruction.
 		;
-_FRun_NextInstruction:
+FRun_NextInstruction:
 		;
 		stz 	DTempStringPointer 			; force reset on next string allocation.
 		;
@@ -74,14 +93,14 @@ _FRun_NextInstruction:
 		inc 	DCodePtr 					; skip over token
 		inc 	DCodePtr 	
 		jsr 	(CommandJumpTable,x)		; and call that routine
-		bra 	_FRun_NextInstruction 		; do the following instruction.
+		bra 	FRun_NextInstruction 		; do the following instruction.
 		;
 		;		Skip over colon.
 		;
 _FRun_Colon:
 		inc 	DCodePtr 					; skip over token
 		inc 	DCodePtr 	
-		bra 	_FRun_NextInstruction 		; do the following instruction.
+		bra 	FRun_NextInstruction 		; do the following instruction.
 		;
 		;		Maybe we can do a LET , is there an identifier ?
 		;
@@ -90,23 +109,30 @@ _FRun_TryLET:
 		cmp 	#$C000
 		bcc		_FRunSyntax 				; no, must be syntax.
 		jsr 	Function_LET 				; try as a LET.
-		bra 	_FRun_NextInstruction 		; if we get away with it, go to next instruction.
+		bra 	FRun_NextInstruction 		; if we get away with it, go to next instruction.
 _FRunSyntax:
 		brl 	SyntaxError		
 		;
 		;		End of instruction. Go to next line.
 		;
 _FRun_EndInstruction:
+		lda 	DLineNumber 				; if line number 0, warm start.
+		beq 	_FRun_WarmStart
 		lda 	DCodePtr 					; address of terminating NULL.
 		inc 	a 							; go to link for next line
 		inc 	a
-		bra 	_FRun_NextLineNumber
+		bra 	FRun_NextLineNumber
 		;
 		;		Handle break
 		;
 _FRun_Break:
 		#error 	"Break"	
-
+		;
+		;		Warm start as run command.
+		;
+_FRun_WarmStart:
+		brl 	WarmStart		
+		
 ; *******************************************************************************************
 ;
 ;									Clear all variables
@@ -171,7 +197,7 @@ ClearVariablesPointersAndStacks:
 		ldy 	#Block_LowMemoryPtr
 		sta 	(DBaseAddress),y
 		;
-		; 		clear the hash table from $80-$1000
+		; 		clear the variable hash table from $80-$1000
 		;
 		ldy 	#Block_HashTable 			
 _FCLoop:
@@ -181,6 +207,10 @@ _FCLoop:
 		iny
 		cpy 	#Block_HashTable+Block_HashTableEntrySize*4*2
 		bne 	_FCLoop
+		;
+		;		Force reset on temp string allocation
+		;
+		stz 	DTempStringPointer 					
 		rts
 
 ; *******************************************************************************************

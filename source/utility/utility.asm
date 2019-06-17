@@ -32,8 +32,7 @@ ErrorHandler:
 		jsr 	PrintBASICString 
 _EHEndMessage:
 		jsr 	HWNewLine
-
-_EH1:	bra 	_EH1
+		jmp 	NextCommand 				; get next command.
 
 _EHAt:	.text 	" at ",$00
 
@@ -137,7 +136,13 @@ _PRMLoop:
 		lda 	StartOfBasicCode,x 			; print characters until $00 found.
 		and 	#$00FF
 		beq 	_PRMExit
+		cmp 	#13
+		bne 	_PRMChar
+		jsr 	HWNewLine
+		bra 	_PRMNext
+_PRMChar:		
 		jsr 	HWPrintChar
+_PRMNext:		
 		inx
 		bra 	_PRMLoop
 _PRMExit:

@@ -11,8 +11,6 @@
 
 		* = $1F000													
 		brl 	TokenCheckCode
-		* = $1F004
-		brl 	CommandExecCode
 
 ; ******************************************************************************
 ;
@@ -46,17 +44,5 @@ _TokeniserError:
 		cop 	#0 									; exit successfully.			
 		rtl
 
-; ******************************************************************************
-;
-;		This code is called by LINK to execute program lines at $1F004
-;
-;
-; ******************************************************************************
-
-CommandExecCode:
-		lda 	#$B000 								; the text is at $2B000
-		ldy 	#2
-		jsr 	Tokenise
-		nop
 
 		

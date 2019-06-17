@@ -86,10 +86,50 @@ SwitchBasicInstance:
 		stx		DBaseAddress
 		sty 	DHighAddress
 
+		tsx 										; save the current SP. 										
+		stx 	DStack65816 			
 		xba 										; put the page number (goes in the DBR) in B
 		pha 										; then copy it into B.
 		plb
 		plb 
 
-		jmp 	Function_RUN
+		jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
+
+		
+		ldy 	#Block_BootFlag 					; if boot flag zero, warm start
+		lda 	(DBaseAddress),y
+		beq 	WarmStart
+		;
+		lda 	#$0000 								; reset flag
+		sta 	(DBaseAddress),y
+		bra 	ExecuteTokenBuffer 					; execute contents of token buffer.
+
+; *******************************************************************************************
+;
+;									Warm Start (print Ready.)
+;
+; *******************************************************************************************
+
+WarmStart:
+		ldx 	#BasicPrompt & $FFFF
+		jsr 	PrintROMMessage
+
+; *******************************************************************************************
+;
+;			Next command, reset CPU stack, get command, tokenise and do it.
+;
+; *******************************************************************************************
+
+NextCommand:		
+		ldx 	DStack65816 						; reset the CPU stack
+		txs
+
+		nop				
+w1:		bra 	w1
+
+ExecuteTokenBuffer:		
+		jmp 	RUNExecuteTokenBuffer 				; execute the token buffer
+
+BasicPrompt:
+		.text 	"Ready.",13,0
 

@@ -134,9 +134,12 @@ class BasicBlock(object):
 	#
 	def loadProgram(self,fileName = "basic.bas"):
 		for l in [x.strip() for x in open(fileName).readlines()]:
-			m = re.match("^(\d*)(.*)$",l)
-			assert m is not None
-			self.addBASICLine(m.group(2),None if m.group(1) == "" else int(m.group(1)))
+			if l.startswith("@"):
+				self.setBoot(l[1:].strip())
+			else:
+				m = re.match("^(\d*)(.*)$",l)
+				assert m is not None
+				self.addBASICLine(m.group(2),None if m.group(1) == "" else int(m.group(1)))
 		self.showStatus()
 	#
 	#		Add a line of BASIC
@@ -161,6 +164,15 @@ class BasicBlock(object):
 		self.resetLowMemory() 													# and reset low memory
 		self.check()
 	#
+	#		Set the boot option.
+	#
+	def setBoot(self,code):
+		self.writeWord(self.baseAddress+BasicBlock.BOOTFLAG,0xFFFF)				# set the boot flag
+		tok = self.tokeniser.tokenise(code)										# tokenise the code.
+		tok.append(0) 															# add a trailing 00
+		for i in range(0,len(tok)):												# copy into the buffer
+			self.writeWord(self.baseAddress+BasicBlock.TOKENBUFFER+i*2,tok[i])
+	#
 	#		Export constants
 	#
 	def exportConstants(self,fileName):
@@ -171,6 +183,7 @@ class BasicBlock(object):
 		self._export("Block_LowMemoryPtr",BasicBlock.LOWPTR)
 		self._export("Block_HighMemoryPtr",BasicBlock.HIGHPTR)
 		self._export("Block_EmptyString",BasicBlock.EMPTYSTRING)
+		self._export("Block_BootFlag",BasicBlock.BOOTFLAG)
 		self._export("Block_ProgramStart",BasicBlock.PROGRAM)
 		self._export("Block_TokenBuffer",BasicBlock.TOKENBUFFER)
 		self._export("Block_HashTableEntrySize",BasicBlock.HASHMASKENTRYSIZE)
@@ -185,6 +198,7 @@ BasicBlock.HASHTABLE = 0x80 													# Hash Table Base
 BasicBlock.LOWPTR = 0x08 														# Low Memory Allocation
 BasicBlock.HIGHPTR = 0x0A 														# High Memory Allocation
 BasicBlock.EMPTYSTRING = 0x0C 													# Empty String pointer 
+BasicBlock.BOOTFLAG = 0x0E 														# Boot flag.
 BasicBlock.TOKENBUFFER = 0x100 													# Tokenised command buffer
 BasicBlock.PROGRAM = 0x200 														# First line of program
 BasicBlock.HASHMASK = 15 														# Hash mask (0,1,3,7,15)

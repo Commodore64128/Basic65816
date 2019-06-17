@@ -69,6 +69,8 @@ DTemp4 = DPBaseAddress + 50 				; *** LONG *** Temporary Value
 
 DTemp5 = DPBaseAddress + 54 				; *** LONG *** Temporary Value
 
+DStack65816 = DPBaseAddress + 58 			; 65816 Stack pointer.
+
 ; ********************************************************************************
 ;
 ;									BASIC stack.
