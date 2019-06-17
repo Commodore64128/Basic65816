@@ -38,7 +38,9 @@
 Tokenise:
 		sta 	DTemp1						; DTemp1 is the string to tokenise.
 		sty 	DTemp1+2
-		lda 	#TOKWorkSpace 				; reset workspace pointer.
+		lda 	#Block_TokenBuffer 			; reset workspace pointer.
+		clc
+		adc 	DBaseAddress
 		sta 	DTemp2 						; which is DTemp2
 		;
 		;		Make anything not in quotes upper case.
@@ -140,14 +142,15 @@ _TOKIdentifier:
 ; *******************************************************************************************
 
 TOKWriteToken:
-		phx
-		ldx 	DTemp2						; address in DirectPage to write to.
-		sta 	$00,x 						; save it.
-		inx 								; bump pointer and write back
-		inx
-		stx 	DTemp2
-		plx
+		sta 	(DTemp2)					; write out
+		inc 	DTemp2 						; bump pointer
+		inc 	DTemp2
+		lda 	DTemp2 						; overflow ??
+		and 	#$00FF
+		beq 	_TOKWriteOverflow
 		rts
+_TOKWriteOverflow:
+		#error 	"Line too long"		
 
 ; *******************************************************************************************
 ;

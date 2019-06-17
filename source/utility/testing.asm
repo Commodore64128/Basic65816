@@ -30,10 +30,10 @@ TokenCheckCode:
 		lda 	#$B000 								; the text is at $2B000
 		ldy 	#2
 		jsr 	Tokenise
-		ldx 	#TOKWorkSpace
+		ldx 	DBaseAddress
 		ldy 	#0
 _TokeniserTestLoop:
-		lda 	$00,x								; compare workspace vs answer
+		lda 	Block_TokenBuffer,x					; compare workspace vs answer
 		cmp 	$B200,y 		
 _TokeniserError:
 		bne 	_TokeniserError
