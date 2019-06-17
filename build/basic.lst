@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.53.1515? listing file
 ; tass64 --m65816 -f -q -o basic.bin -L basic.lst ../source/start.asm
-; Mon Jun 17 07:11:27 2019
+; Mon Jun 17 07:24:29 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -31,7 +31,8 @@
 =$0008					Block_LowMemoryPtr = $0008
 =$000a					Block_HighMemoryPtr = $000a
 =$000c					Block_EmptyString = $000c
-=$0100					Block_ProgramStart = $0100
+=$0200					Block_ProgramStart = $0200
+=$0100					Block_TokenBuffer = $0100
 =$0010					Block_HashTableEntrySize = $0010
 
 ;******  Return to file: ../source/basic.asm
@@ -2414,7 +2415,7 @@
 .011132					_CLIError:
 .011132	82 6a f3	brl $01049f		brl 	SyntaxError
 .011135					_CLIList:
-.011135	a9 00 01	lda #$0100		lda 	#Block_ProgramStart 			; work out program start.
+.011135	a9 00 02	lda #$0200		lda 	#Block_ProgramStart 			; work out program start.
 .011138	18		clc			clc
 .011139	65 02		adc $02			adc 	DBaseAddress
 .01113b	a8		tay			tay 									; put in Y
@@ -3080,7 +3081,7 @@
 .011629	38		sec				sec 								; convert to 0-32767
 .01162a	e9 00 40	sbc #$4000			sbc 	#$4000 						; and put in X.
 .01162d	aa		tax				tax
-.01162e	a9 00 01	lda #$0100			lda 	#Block_ProgramStart 		; start of program offset
+.01162e	a9 00 02	lda #$0200			lda 	#Block_ProgramStart 		; start of program offset
 .011631	18		clc				clc
 .011632	65 02		adc $02				adc 	DBaseAddress 				; now an address into Y
 .011634	a8		tay				tay
@@ -3259,7 +3260,7 @@
 .011791	20 f8 17	jsr $0117f8			jsr 	Function_CLEAR 				; clear all variables.
 .011794	a5 02		lda $02				lda 	DBaseAddress 				; work out the first instruction.
 .011796	18		clc				clc
-.011797	69 00 01	adc #$0100			adc 	#Block_ProgramStart 		; so run from here.
+.011797	69 00 02	adc #$0200			adc 	#Block_ProgramStart 		; so run from here.
 .01179a					_FRun_NextLineNumber:
 .01179a	a8		tay				tay 								; put in Y
 .01179b	b9 00 00	lda $0000,y			lda 	$0000,y 					; read the link token.
@@ -3346,7 +3347,7 @@
 .01183e	d0 f4		bne $011834			bne 	_FCLoop
 .011840	60		rts				rts
 .011841					FindCodeEnd:
-.011841	a9 00 01	lda #$0100			lda 	#Block_ProgramStart 		; offset to program
+.011841	a9 00 02	lda #$0200			lda 	#Block_ProgramStart 		; offset to program
 .011844	18		clc				clc
 .011845	65 02		adc $02				adc 	DBaseAddress 				; now an actual address
 .011847	a8		tay				tay
@@ -3753,41 +3754,66 @@
 
 ;******  Processing file: ../source/utility/testing.asm
 
-.01f000	82 00 00	brl $01f003			brl 	TokenCheckCode
-.01f003					TokenCheckCode:
-.01f003	a9 00 b0	lda #$b000			lda 	#$B000 								; the text is at $2B000
-.01f006	a0 02 00	ldy #$0002			ldy 	#2
-.01f009	20 c8 05	jsr $0105c8			jsr 	Tokenise
-.01f00c	a2 60 02	ldx #$0260			ldx 	#TOKWorkSpace
-.01f00f	a0 00 00	ldy #$0000			ldy 	#0
-.01f012					_TokeniserTestLoop:
-.01f012	b5 00		lda $00,x			lda 	$00,x								; compare workspace vs answer
-.01f014	d9 00 b2	cmp $b200,y			cmp 	$B200,y
-.01f017					_TokeniserError:
-.01f017	d0 fe		bne $01f017			bne 	_TokeniserError
-.01f019	e8		inx				inx
-.01f01a	e8		inx				inx
-.01f01b	c8		iny				iny
-.01f01c	c8		iny				iny
-.01f01d	c9 00 00	cmp #$0000			cmp 	#0
-.01f020	d0 f0		bne $01f012			bne 	_TokeniserTestLoop
-.01f022	02 00		cop #$00			cop 	#0 									; exit successfully.
-.01f024	6b		rtl				rtl
+.01f000	82 04 00	brl $01f007			brl 	TokenCheckCode
+.01f004	82 22 00	brl $01f029			brl 	CommandExecCode
+.01f007					TokenCheckCode:
+.01f007	a9 00 b0	lda #$b000			lda 	#$B000 								; the text is at $2B000
+.01f00a	a0 02 00	ldy #$0002			ldy 	#2
+.01f00d	20 c8 05	jsr $0105c8			jsr 	Tokenise
+.01f010	a2 60 02	ldx #$0260			ldx 	#TOKWorkSpace
+.01f013	a0 00 00	ldy #$0000			ldy 	#0
+.01f016					_TokeniserTestLoop:
+.01f016	b5 00		lda $00,x			lda 	$00,x								; compare workspace vs answer
+.01f018	d9 00 b2	cmp $b200,y			cmp 	$B200,y
+.01f01b					_TokeniserError:
+.01f01b	d0 fe		bne $01f01b			bne 	_TokeniserError
+.01f01d	e8		inx				inx
+.01f01e	e8		inx				inx
+.01f01f	c8		iny				iny
+.01f020	c8		iny				iny
+.01f021	c9 00 00	cmp #$0000			cmp 	#0
+.01f024	d0 f0		bne $01f016			bne 	_TokeniserTestLoop
+.01f026	02 00		cop #$00			cop 	#0 									; exit successfully.
+.01f028	6b		rtl				rtl
+.01f029					CommandExecCode:
+.01f029	a9 00 b0	lda #$b000			lda 	#$B000 								; the text is at $2B000
+.01f02c	a0 02 00	ldy #$0002			ldy 	#2
+.01f02f	20 c8 05	jsr $0105c8			jsr 	Tokenise
+.01f032	ea		nop				nop
 
 ;******  Return to file: ../source/start.asm
 
 .024000					CodeSpace:
 >024000	42 41 53 43 00 00 00 00				.binary "temp/basic.bin"
->024008	48 41 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
+>024008	1a 42 00 c0 00 00 00 00 00 00 00 00 00 00 00 00
 >024018	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-;	...repeated 13 times (208 bytes)...
->0240f8	00 00 00 00 00 00 00 00 12 00 64 00 43 3c 09 c0
->024108	06 22 01 40 29 38 63 40 00 00 1e 00 6e 00 35 3e
->024118	09 c0 23 32 09 c0 0c 26 09 c0 23 32 09 c0 0c 26
->024128	09 c0 0c 26 09 c0 00 00 0a 00 78 00 48 3a 09 c0
->024138	00 00 08 00 82 00 30 3e 00 00 00 00 ee ee ee ee
->024148	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-;	...repeated 2026 times (32416 bytes)...
+;	...repeated 29 times (464 bytes)...
+>0241f8	00 00 00 00 00 00 00 00 14 00 01 00 3e 3e 25 32
+>024208	3f 3e 03 10 00 b0 25 32 30 3e 00 00 00 00 ee ee
+>024218	ee ee 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>024228	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+;	...repeated 1756 times (28096 bytes)...
+>02aff8	00 00 00 00 00 00 00 00 71 29 66 38 24 28 27 36
+>02b008	30 37 36 31 31 28 35 30 30 36 30 38 2d 67 6f 74
+>02b018	6f 2a 32 33 35 31 31 32 2c 34 38 33 31 34 35 2b
+>02b028	39 35 39 36 32 35 20 59 2b 6c 65 65 6b 28 3a 34
+>02b038	31 37 37 31 37 20 33 33 39 33 34 33 2a 37 38 37
+>02b048	32 33 35 3b 32 33 30 30 34 38 20 65 24 28 3b 34
+>02b058	38 33 32 39 39 3b 44 49 4d 29 37 39 39 37 31 38
+>02b068	20 36 32 37 38 37 39 2a 37 39 38 34 33 27 37 39
+>02b078	38 38 35 3b 48 28 2a 39 30 37 35 31 33 3a 00 00
+>02b088	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+;	...repeated 22 times (352 bytes)...
+>02b1f8	00 00 00 00 00 00 00 00 11 c0 27 32 2d f6 28 32
+>02b208	12 10 7b 85 26 32 0f 10 80 63 0b 24 36 3e 0c 26
+>02b218	07 10 68 56 23 32 0e 10 49 9f 0a 24 1d 10 89 64
+>02b228	19 c0 0a 24 1c 30 25 32 0c 10 b5 9f 0a 10 8f 6d
+>02b238	0c 26 18 10 23 43 24 32 07 10 a0 42 05 f0 24 32
+>02b248	0e 10 e3 9f 24 32 32 3e 27 32 18 10 e6 73 13 10
+>02b258	a7 54 0c 26 02 10 e3 77 28 32 02 10 0d 78 24 32
+>02b268	08 d0 0c 26 1b 10 f9 98 25 32 00 00 00 00 00 00
+>02b278	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+;	...repeated 215 times (3440 bytes)...
 >02bff8	00 00 00 00 00 00 00 00
 .02c000					CodeEndSpace:
 

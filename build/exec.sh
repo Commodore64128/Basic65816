@@ -13,6 +13,7 @@ rm basic.dump basic.bin basic.lst ../source/temp/*
 #
 pushd ../scripts
 python gentokens.py
+python basicblock.py
 python $1
 popd
 #

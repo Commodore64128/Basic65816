@@ -14,8 +14,8 @@
 # sh exec.sh make_gc.py
 # python ../scripts/showdump.py gc
 
-sh exec.sh make_bas.py
+#sh exec.sh make_bas.py
 
-#sh exec.sh make_tok.py
+sh exec.sh make_tok.py
 
 
