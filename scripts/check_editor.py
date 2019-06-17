@@ -35,10 +35,14 @@ for l in lines:
 	error = lineNumber != int(m.group(1))
 	#
 	tokens = block.tokeniser.tokenise(m.group(2).strip())
+	tokens.append(0)
 	for i in range(0,len(tokens)):
 		if block.readWord(pos+4+i*2) != tokens[i]:
 			error = True
 
+	if block.readWord(pos) != len(tokens)*2+4:
+		error = True
+		
 	if error:
 		print("**** FAIL ****")
 		while True:
