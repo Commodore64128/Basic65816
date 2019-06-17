@@ -11,6 +11,11 @@
 
 HWCursorCharacter = $66
 
+HWCursor = $F8020
+HWKeyPressed = $F8010
+HWBreakKey = $F8000
+HWScreen = $F0000
+
 sWidth = 64					; this has to be powers of two in this really simple I/O code.
 sHeight = 32
 
@@ -28,9 +33,8 @@ _CS0:	lda 	#$2020
 		sta 	$F0000,x
 		dex
 		bpl 	_CS0
-		stz 	DCursor
-		lda 	#$2000+HWCursorCharacter
-		sta 	$F0000
+		lda 	#0
+		sta 	HWCursor
 		plx
 		pla
 		rts
@@ -56,22 +60,38 @@ HWPrintChar:
 		ora 	#128
 _HWPCNotLC:		
 		and 	#$BF
-		ldx 	DCursor
+		pha
+		lda 	HWCursor
+		tax
+		pla
 		sep 	#$20
 		sta 	$F0000,x
 		rep 	#$20
 		inx
 		txa
+		sta 	HWCursor
 		cmp 	#(sWidth*sHeight)
 		bne 	_HWNotEnd
-		lda 	#0
-_HWNotEnd:
-		sta 	DCursor
-		tax
-		lda 	#HWCursorCharacter
-		sep 	#$20
+		sec 	
+		sbc 	#sWidth
+		sta 	HWCursor
+		ldx 	#0
+_HWScrollUp:
+		lda 	$F0000+sWidth,x		
 		sta 	$F0000,x
-		rep 	#$20
+		inx
+		inx
+		cpx 	#sWidth*sHeight
+		bne 	_HWScrollUp
+		ldx 	#(sWidth*(sHeight-1))			
+_HWBlank:
+		lda 	#$2020
+		sta 	$F0000,x
+		inx
+		inx		
+		cpx 	#sWidth*sHeight
+		bne 	_HWBlank
+_HWNotEnd:
 		ply
 		plx
 		pla
@@ -91,7 +111,7 @@ HWMoveCursor:
 		lda 	#32
 		jsr 	HWPrintChar
 		txa
-		and 	DCursor
+		and 	HWCursor
 		bne 	HWMoveCursor
 		plx
 		pla
@@ -109,7 +129,7 @@ HWTab:	pha
 ; *******************************************************************************************
 
 HWCheckBreak:
-		lda 	$F8000
+		lda 	HWBreakKey
 		rts
 
 ; *******************************************************************************************
@@ -119,10 +139,10 @@ HWCheckBreak:
 ; *******************************************************************************************
 
 HWGetKey:
-		lda 	$F8010
+		lda 	HWKeyPressed
 		bne 	HWGetKey
 _HWGKWait:		
-		lda 	$F8010
+		lda 	HWKeyPressed
 		beq 	_HWGKWait
 		nop
 		rts 	

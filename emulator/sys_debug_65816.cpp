@@ -24,6 +24,8 @@
 #include "dasm65816.h"
 #include "c64font.h"
 
+int renderCount = 0;
+
 // *******************************************************************************************************************************
 //												Reset the 8008
 // *******************************************************************************************************************************
@@ -117,10 +119,12 @@ void DBGXRender(int *address,int showDisplay) {
 
 	int xs = 64;
 	int ys = 32;
+	renderCount++;
 	if (showDisplay) {
 		int size = 2;
 		int x1 = WIN_WIDTH/2-xs*size*8/2;
 		int y1 = WIN_HEIGHT/2-ys*size*8/2;
+		int cursorPos = CPURead(0xF8020)+CPURead(0xF8021)*256;
 		SDL_Rect r;
 		int b = 16;
 		r.x = x1-b;r.y = y1-b;r.w = xs*size*8+b*2;r.h=ys*size*8+b*2;
@@ -135,15 +139,18 @@ void DBGXRender(int *address,int showDisplay) {
 				int ch = CPURead(0xF0000+x+y*xs);
 				int xc = x1 + x * 8 * size;
 				int yc = y1 + y * 8 * size;
+				int rvs = (x+y*xs == cursorPos) ? 0xFF:0x00;
+				if (renderCount & 32) rvs = 0;
 				SDL_Rect rc;
 				int cp = ch * 8;
 				rc.w = rc.h = size;																// Width and Height of pixel.
 				for (int x = 0;x < 8;x++) {														// 5 Across
 					rc.x = xc + x * size;
 					for (int y = 0;y < 8;y++) {													// 7 Down
+						int f = font[cp+y] ^ rvs;
 						rc.y = yc + y * size;
-						if (font[cp+y] & (0x80 >> x)) {		
-							GFXRectangle(&rc,0x0F0);			
+						if (f & (0x80 >> x)) {		
+							GFXRectangle(&rc,rvs ? 0x0FF:0x0F0);			
 						}
 					}
 				}
