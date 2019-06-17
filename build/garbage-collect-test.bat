@@ -9,7 +9,7 @@ rem		using "asdas"+"" then makes sure none of the G\C stuff should
 rem		be there after G\C. The script checks the strings are the
 rem		same, the following call checks there is no "garbage" left over.
 rem
-call exec.bat make_gc.py
+call exec.bat make_garbage.py
 
 rem
 rem		This checks that there is no text that should have been

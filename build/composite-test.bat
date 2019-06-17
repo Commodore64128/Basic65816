@@ -5,12 +5,12 @@ rem
 
 call exec.bat test_creation.py
 call exec.bat test_comparison.py
-call exec.bat test_func.py
+call exec.bat test_functions.py
 call exec.bat test_maths.py
 call exec.bat test_change.py
 
-call exec.bat make_gc.py
+call exec.bat make_garbage.py
 python ..\scripts\showdump.py gc
-call exec.bat make_tok.py
+call exec.bat make_tokenise.py
 
 composite-test

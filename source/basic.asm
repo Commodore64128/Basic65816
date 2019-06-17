@@ -20,6 +20,8 @@ StartOfBasicCode:
 		.include "data.asm" 						; data definition.
 		.include "expression.asm" 					; expression evaluation
 		.include "variable.asm"						; variable management
+
+		.include "utility/editline.asm"				; line insert/delete
 		.include "utility/utility.asm"				; utility stuff.
 		.include "utility/stringutils.asm"			; string utility stuff.
 		.include "utility/tokeniser.asm"			; ASCII -> Tokens converter
@@ -94,7 +96,6 @@ SwitchBasicInstance:
 		plb 
 
 		jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
-
 		
 		ldy 	#Block_BootFlag 					; if boot flag zero, warm start
 		lda 	(DBaseAddress),y
@@ -123,18 +124,58 @@ WarmStart:
 NextCommand:		
 		ldx 	DStack65816 						; reset the CPU stack
 		txs
+		stz 	DTempStringPointer 					; reset the 
 		ldy 	#Block_BootFlag 					; if the boot flag is non-zero 
 		lda 	(DBaseAddress),y
 		bne 	ExitEmulator
+
+		;
+		;		TODO: Input and tokenise command/edit.
+		;
 		nop				
 w1:		bra 	w1
 
+		;
+		;		Check to see if the first token is a number, if so it is editing if not
+		;		it's a command.
+		;
 ExecuteTokenBuffer:		
+		ldy 	#Block_TokenBuffer 					; get the first token
+		lda 	(DBaseAddress),y
+		cmp 	#$4000 								; if not a number token, execute it
+		bcc 	_ETBCommand
+		cmp 	#$C000
+		bcs 	_ETBCommand
+		;
+		;		Convert token to integer. Delete line if it exists. If something in the line
+		;		insert the new line in.
+		;
+		sec
+		sbc 	#$4000 								; put in range 0-32767
+		beq 	_ETBError
+		pha
+		jsr 	LineDelete 							; delete the line, if it exists.
+		jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
+		;
+		;		Check if text to insert, if so insert line.
+		;
+		lda 	#Block_TokenBuffer+2				; get the code for the line, e.g. next token
+		clc
+		adc 	DBaseAddress
+		tay 										; Y contains the code.
+		lda 	$0000,y 							; is there any code ?
+		beq 	NextCommand 						; no, next command.
+		pla 										; line number in A, code in Y.
+		jsr 	LineInsert 							; insert the line
+		jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
+		bra 	NextCommand
+		;
+_ETBCommand:
 		jmp 	RUNExecuteTokenBuffer 				; execute the token buffer
-
+_ETBError:
+		#error 	"Cannot have line 0"
 ExitEmulator:
 		cop 	#0
 
 BasicPrompt:
 		.text 	"Ready.",13,0
-
