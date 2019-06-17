@@ -102,4 +102,5 @@ if __name__ == "__main__":
 	bs.save()
 	blk = BasicBlock(0x4000,0x8000)
 	blk.loadProgram()
+	blk.setBoot("run")
 	blk.exportFile("temp/basic.bin")	

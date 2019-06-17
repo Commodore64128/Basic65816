@@ -17,12 +17,13 @@ rem		Run the scripts. Generates tokens\offset include file, and BASIC binary fil
 rem
 pushd ..\scripts
 python gentokens.py
+python basicblock.py
 python %1
 popd
 rem
 rem		Copy generated code to source directory
 rem
-copy ..\scripts\temp\* ..\source\temp
+copy ..\scripts\temp\* ..\source\temp 
 rem
 rem		Assemble and RUN if successful
 rem
