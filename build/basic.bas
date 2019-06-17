@@ -1,5 +1,10 @@
-@run:stop
-100 for i = 1 to 99
+@run
+
+10 for i = 1 to 200000
+20 next 
+30 end
+
+100 for i = 1 to 999
 110 	print i,i*i,i*i*i
 120 next i
 122 x = 4
@@ -7,6 +12,7 @@
 125 gosub 140:gosub 140
 127 x = x-1
 128 wend
+129 end
 130 stop
 140 print "Hello, world!",x
 150 return

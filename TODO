@@ -1,7 +1,7 @@
 Main
 ----
-- Clock to approximately real speed of 14Mhz 65816
 - Typing commands in using screen editor style a la Commodore.
+- INKEY$()
 - Typing programs in
 - Dog food !!
 

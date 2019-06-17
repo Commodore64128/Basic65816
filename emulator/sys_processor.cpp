@@ -16,7 +16,11 @@
 //															Timing
 // *******************************************************************************************************************************
 	
-#define CYCLES_PER_SECOND	(8*1000000)												// Clock at 8Mhz
+//
+//		I am unreliably informed that a 65816 operates at about 3.1 MIPS at 14Mhz. So this emulator
+//		times on that assumption.
+//	
+#define CYCLES_PER_SECOND	(3100000)												// 3.1 MIPS
 #define FRAME_RATE			(60)													// Frame rate
 #define CYCLES_PER_FRAME	(CYCLES_PER_SECOND/FRAME_RATE)							// T-States per second.
 
