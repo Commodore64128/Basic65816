@@ -3,12 +3,8 @@
 ;
 ;		Name : 		editline.asm
 ;		Purpose : 	Add or Remove line from the program
-;		Date :		6th June 2019
+;		Date :		17th June 2019
 ;		Author : 	paul@robsons.org.uk
-;
-;		Note : 		There are currently two pieces of self modifying code.
-;					(i) the branch to the binary token handler routine in expression.asm
-;					(ii) the branch to the LINK address.
 ;
 ; *******************************************************************************************
 ; *******************************************************************************************
@@ -25,9 +21,12 @@ LineDelete:
 		clc
 		adc 	#Block_ProgramStart
 		tay
+		;
+		;		Search for the line to delete
+		;
 _LDLoop:
 		lda 	$0000,y 					; look at the link
-		beq 	_LDExit						; exit if zero.
+		beq 	_LDExit						; exit if zero ; line does not exist
 		txa 								; found a match
 		cmp 	$0002,y
 		beq		_LDFound
@@ -40,7 +39,7 @@ _LDLoop:
 		;
 _LDFound:
 		sty 	DTemp1 						; copy to DTemp1
-		tya
+		tya 								; follow link to next.
 		clc 
 		adc 	$0000,y
 		sta 	DTemp2 						; copy from DTemp2
@@ -73,7 +72,7 @@ LineInsert:
 		sty 	DTemp1 						; save code in DTemp1
 		sta 	DTemp2 						; save Line # in DTemp2
 		;
-		; 		Find out how long it is.
+		; 		Find out how long the tokenised code is.
 		;
 		ldy 	#0
 _LIFindLength:
@@ -99,7 +98,7 @@ _LIFindEnd:
 		adc 	#6 							; add 6. One for the ending zero, one for line, one for offset.
 		sta 	DTemp3 						; save this in DTemp3
 		;
-		;		Find where the line is.
+		;		Find where the line is to be inserted.
 		;
 		lda 	#Block_ProgramStart
 		clc
@@ -111,7 +110,7 @@ _LIFindInsertPoint:
 		lda 	$0002,y 					; if line number here > line number required insert here.
 		cmp 	DTemp2
 		bcs 	_LIFoundInsertPoint
-		tya
+		tya 								; if < go to the next line.
 		clc
 		adc 	$0000,y
 		tay
@@ -120,7 +119,8 @@ _LIFindInsertPoint:
 _LIFoundInsertPoint:
 		sty 	DTemp5 						; save in DTemp5		
 		;
-		;		Work out the copy 
+		;		Work out the copy addresses ; we start from end => end + size and work back
+		;		opening up space.
 		;
 		jsr 	FindCodeEnd 				; get the end of the code.
 		sta 	DTemp4 						; save in DTemp4
@@ -143,7 +143,7 @@ _LICopyMove:
 		dec 	DTemp4+2
 		bra 	_LICopyMove
 		;
-		;		Now copy the new stuff in - offset and line # first.
+		;		Now copy the new line in in - offset and line # first.
 		;
 _LICopyMoveOver:		
 		lda 	DTemp3 						; copy the length in, this is the offset
@@ -168,5 +168,3 @@ _LICopyTokens:
 		cmp 	#4
 		bne 	_LICopyTokens
 		rts
-
-

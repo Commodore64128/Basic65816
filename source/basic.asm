@@ -76,7 +76,8 @@ error	.macro
 ;	X 	is the base address of the BASIC workspace (lower 16 bits)
 ;	Y 	is the end address of the BASIC workspace (lower 16 bits)
 ;
-;	Assumes S and DP are set. DP memory is used but not saved on instance switching.
+;	Assumes S and DP are set. DP memory is used but not saved on instance switching and
+;	is shared by all instances.
 ;
 ; *******************************************************************************************
 
@@ -126,7 +127,7 @@ NextCommand:
 		txs
 		stz 	DTempStringPointer 					; reset the 
 		ldy 	#Block_BootFlag 					; if the boot flag is non-zero 
-		lda 	(DBaseAddress),y
+		lda 	(DBaseAddress),y 					; then exit the emulator. 
 		bne 	ExitEmulator
 
 		;
