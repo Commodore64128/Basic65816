@@ -134,16 +134,11 @@ HWCheckBreak:
 
 ; *******************************************************************************************
 ;
-;									Get a keystroke
+;									Get keyboard status
 ;
 ; *******************************************************************************************
 
-HWGetKey:
+HWInkey:
 		lda 	HWKeyPressed
-		bne 	HWGetKey
-_HWGKWait:		
-		lda 	HWKeyPressed
-		beq 	_HWGKWait
-		nop
 		rts 	
 		

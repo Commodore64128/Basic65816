@@ -192,3 +192,17 @@ _FSPExit:
 		rts
 _FSPBad:#error 	"Bad value for spc()"
 
+
+; *******************************************************************************************
+;
+;											INKEY()
+;					
+; *******************************************************************************************
+
+Function_Inkey: ;; inkey(
+		jsr 	ExpectRightBracket 			; check )
+		jsr 	ResetTypeInteger
+		jsr 	HWInkey 					; read current key
+		sta 	EXSValueL+0,x
+		stz 	EXSValueH+0,x
+		rts

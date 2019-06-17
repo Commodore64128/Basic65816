@@ -1,6 +1,7 @@
 @run
 
 10 for i = 1 to 200000
+15 cls:print inkey()
 20 next 
 30 end
 

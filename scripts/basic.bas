@@ -1,300 +1,300 @@
-dim y5(2)
-dim e31(6)
-dim z(4)
-dim y09s(2)
-dim r4ukh(3)
-dim r9n(5)
-dim i2den(6)
-dim h13(4)
-dim n9n8g(3)
-dim s(6)
-dim i$(3)
-dim u5e5$(5)
-dim q$(5)
-dim e0jif$(4)
-dim b$(3)
-dim l3$(6)
-dim a2eqj$(2)
-dim c7v67$(3)
-dim g9wi2$(5)
-dim p5v5$(3)
-let z8c0a=37915
-i8=46919
-let m=34
-let m9=157
-let r5bgz=-120
-h1z2v=134
-let g3d=144543
-let z0zjt=-3535
-v1=-114902
-n9=136
-let g=-44754
-d5s1n=-89305
-let e8=-122147
-let i9=-96024
-let g81d=35148
-c9=90034
-f9pji=2060
-f6=-55838
-w=-182
-d0j=-111299
-let h1=-148011
-let b6t=-153
-let j5g=-179527
-c00=-125
-let g1fv=-169562
-let b97fh=154302
-let m6=-138
-let w1e=52163
-let m7k=-138
-let g8qr0=-6
-let l8=-52395
-q5pgt=-151255
-t1=115645
-s0=-39089
-let u=73578
-q3ef=-27152
-let v=58609
-let r1=79848
-t3=55838
-i8wz=44
-o2fsg=132
-c=137281
-let j9pcg=40
-x0y4=22472
-r6=-195
-let l2w3=-159
-z04dc=120278
-y28k=130703
-c8=-192
-let h8=-87542
-z4v4=-191821
-let b2k=-177970
-let y9v96=-77
-m4o5p=-167593
-d7x=-144392
-s5=139286
-let e=-71592
-x8=-1
-c1=10125
-let e3k=99
-g5ydu$="DW ZB  GG"
-let x3$="QRJFOX"
-f7f$="GUN"
-a1c1$="UBOAJFAR"
-let f83sh$="VAD A"
-f1$="B OX F"
-let t499$="KWQFRFBV"
-u6$="DBTO"
-b00ys$="RTIT"
-v$="GF U"
-let h1j$=""
-k9$="XQ ETPH"
-f9k5s$="P  W ERTY"
-let e2$="UPE"
-l84$="CYF"
-n7$="SZGRXJH"
-y2w$="CILGM"
-i3bvt$="A"
-let e9$="ZUC"
-let z$="PLOBAV"
-let d43a$="E"
-let t43m9$=""
-let m$="MD AWRUJ"
-v6zv$="KMMDACYJ"
-q8$="KVBKCHU"
-u9$="ONCBO"
-i5sys$="K"
-i5$="WP IG"
-m9n$="H J"
-let l7h$="CNW HZ   FL"
-let b1vr$="MQTFB"
-e4$="IAL"
-let s9$="ZYKPHV"
-d0$="KQMMQYFBP"
-h$="X"
-q0xk$="B NND DCQ"
-h6nd3$="J"
-let o0$="IDZNROLWP"
-j$="PS IZIFB"
-let r3c7m$="N T VU"
-q8w$="JN"
-let p1b$="PKQ P"
-let l6$="C"
-c5w$="BDL"
-let s5c9$=""
-v4wv$="EM A KV"
-let m4wv$="GLXV"
-let x6lc$="FJ"
-q81$="C"
-let d9$="DRX"
-n3rqk$=""
-v281$="YQ   V"
-let x$="FHIG H"
-let v8$="I"
-m9d$="NQFGC"
-x6d5$=""
-g9c8y$=""
-let g76u$="E NKQNL"
-let o8$="Q"
-let l64sr$=""
-y5(0)=100936:y5(1)=158640:y5(2)=113
-e31(0)=-134493:e31(1)=70:e31(2)=134:e31(3)=-166482:e31(4)=-85742:e31(5)=68:e31(6)=165740
-z(0)=-23:z(1)=162988:z(2)=100585:z(3)=-86017:z(4)=-84385
-y09s(0)=-179056:y09s(1)=4508:y09s(2)=59703
-r4ukh(0)=-157737:r4ukh(1)=-161580:r4ukh(2)=-4850:r4ukh(3)=163880
-r9n(0)=174685:r9n(1)=138285:r9n(2)=104924:r9n(3)=159:r9n(4)=107:r9n(5)=-28
-i2den(0)=-8169:i2den(1)=-75008:i2den(2)=82948:i2den(3)=152293:i2den(4)=28990:i2den(5)=143201:i2den(6)=-193818
-h13(0)=-82784:h13(1)=182257:h13(2)=44648:h13(3)=123466:h13(4)=73375
-n9n8g(0)=110952:n9n8g(1)=-42400:n9n8g(2)=174720:n9n8g(3)=22
-s(0)=-170:s(1)=139627:s(2)=-78227:s(3)=42433:s(4)=110174:s(5)=49764:s(6)=23
-i$(0)="WEKGX":i$(1)="NAYIIET":i$(2)="LZG YJZXI M":i$(3)="RUEPC"
-u5e5$(0)="SKMIIPC":u5e5$(1)="ZX":u5e5$(2)="BPSUC":u5e5$(3)="SK":u5e5$(4)="YSC ARYZQ":u5e5$(5)="HHOZCX"
-q$(0)="D RFSFBH":q$(1)="":q$(2)="LY   RPJGP":q$(3)="JDE  OKLY":q$(4)="":q$(5)="PULQ ZWAGP"
-e0jif$(0)="PB P":e0jif$(1)="":e0jif$(2)="TXNX":e0jif$(3)="C":e0jif$(4)="THQ"
-b$(0)="BZCJQ":b$(1)="LQB EJWPGDI":b$(2)="YADHJNM":b$(3)="B"
-l3$(0)="NQXGYMLGK":l3$(1)="RBG":l3$(2)="F":l3$(3)="":l3$(4)="U":l3$(5)="LHGOAW":l3$(6)="DERCL"
-a2eqj$(0)="UHECXVCVLJK":a2eqj$(1)="":a2eqj$(2)="YW"
-c7v67$(0)="GK TXNDH":c7v67$(1)="WVOLYLI ZK":c7v67$(2)="LJJXFG":c7v67$(3)="KI  E"
-g9wi2$(0)="NCXCM":g9wi2$(1)="SDLTNGH J":g9wi2$(2)="UR K  V":g9wi2$(3)="EWFFRJBDF":g9wi2$(4)="WVAEBQQK":g9wi2$(5)="JT ZTER"
-p5v5$(0)="N W JXX":p5v5$(1)="RGQQT FXKV":p5v5$(2)="Z":p5v5$(3)="UJK"
-assert z8c0a=37915
-assert i8=46919
-assert m=34
-assert m9=157
-assert r5bgz=-120
-assert h1z2v=134
-assert g3d=144543
-assert z0zjt=-3535
-assert v1=-114902
-assert n9=136
-assert g=-44754
-assert d5s1n=-89305
-assert e8=-122147
-assert i9=-96024
-assert g81d=35148
-assert c9=90034
-assert f9pji=2060
-assert f6=-55838
-assert w=-182
-assert d0j=-111299
-assert h1=-148011
-assert b6t=-153
-assert j5g=-179527
-assert c00=-125
-assert g1fv=-169562
-assert b97fh=154302
-assert m6=-138
-assert w1e=52163
-assert m7k=-138
-assert g8qr0=-6
-assert l8=-52395
-assert q5pgt=-151255
-assert t1=115645
-assert s0=-39089
-assert u=73578
-assert q3ef=-27152
-assert v=58609
-assert r1=79848
-assert t3=55838
-assert i8wz=44
-assert o2fsg=132
-assert c=137281
-assert j9pcg=40
-assert x0y4=22472
-assert r6=-195
-assert l2w3=-159
-assert z04dc=120278
-assert y28k=130703
-assert c8=-192
-assert h8=-87542
-assert z4v4=-191821
-assert b2k=-177970
-assert y9v96=-77
-assert m4o5p=-167593
-assert d7x=-144392
-assert s5=139286
-assert e=-71592
-assert x8=-1
-assert c1=10125
-assert e3k=99
-assert g5ydu$="DW ZB  GG"
-assert x3$="QRJFOX"
-assert f7f$="GUN"
-assert a1c1$="UBOAJFAR"
-assert f83sh$="VAD A"
-assert f1$="B OX F"
-assert t499$="KWQFRFBV"
-assert u6$="DBTO"
-assert b00ys$="RTIT"
-assert v$="GF U"
-assert h1j$=""
-assert k9$="XQ ETPH"
-assert f9k5s$="P  W ERTY"
-assert e2$="UPE"
-assert l84$="CYF"
-assert n7$="SZGRXJH"
-assert y2w$="CILGM"
-assert i3bvt$="A"
-assert e9$="ZUC"
-assert z$="PLOBAV"
-assert d43a$="E"
-assert t43m9$=""
-assert m$="MD AWRUJ"
-assert v6zv$="KMMDACYJ"
-assert q8$="KVBKCHU"
-assert u9$="ONCBO"
-assert i5sys$="K"
-assert i5$="WP IG"
-assert m9n$="H J"
-assert l7h$="CNW HZ   FL"
-assert b1vr$="MQTFB"
-assert e4$="IAL"
-assert s9$="ZYKPHV"
-assert d0$="KQMMQYFBP"
-assert h$="X"
-assert q0xk$="B NND DCQ"
-assert h6nd3$="J"
-assert o0$="IDZNROLWP"
-assert j$="PS IZIFB"
-assert r3c7m$="N T VU"
-assert q8w$="JN"
-assert p1b$="PKQ P"
-assert l6$="C"
-assert c5w$="BDL"
-assert s5c9$=""
-assert v4wv$="EM A KV"
-assert m4wv$="GLXV"
-assert x6lc$="FJ"
-assert q81$="C"
-assert d9$="DRX"
-assert n3rqk$=""
-assert v281$="YQ   V"
-assert x$="FHIG H"
-assert v8$="I"
-assert m9d$="NQFGC"
-assert x6d5$=""
-assert g9c8y$=""
-assert g76u$="E NKQNL"
-assert o8$="Q"
-assert l64sr$=""
-assert y5(0)=100936:assert y5(1)=158640:assert y5(2)=113
-assert e31(0)=-134493:assert e31(1)=70:assert e31(2)=134:assert e31(3)=-166482:assert e31(4)=-85742:assert e31(5)=68:assert e31(6)=165740
-assert z(0)=-23:assert z(1)=162988:assert z(2)=100585:assert z(3)=-86017:assert z(4)=-84385
-assert y09s(0)=-179056:assert y09s(1)=4508:assert y09s(2)=59703
-assert r4ukh(0)=-157737:assert r4ukh(1)=-161580:assert r4ukh(2)=-4850:assert r4ukh(3)=163880
-assert r9n(0)=174685:assert r9n(1)=138285:assert r9n(2)=104924:assert r9n(3)=159:assert r9n(4)=107:assert r9n(5)=-28
-assert i2den(0)=-8169:assert i2den(1)=-75008:assert i2den(2)=82948:assert i2den(3)=152293:assert i2den(4)=28990:assert i2den(5)=143201:assert i2den(6)=-193818
-assert h13(0)=-82784:assert h13(1)=182257:assert h13(2)=44648:assert h13(3)=123466:assert h13(4)=73375
-assert n9n8g(0)=110952:assert n9n8g(1)=-42400:assert n9n8g(2)=174720:assert n9n8g(3)=22
-assert s(0)=-170:assert s(1)=139627:assert s(2)=-78227:assert s(3)=42433:assert s(4)=110174:assert s(5)=49764:assert s(6)=23
-assert i$(0)="WEKGX":assert i$(1)="NAYIIET":assert i$(2)="LZG YJZXI M":assert i$(3)="RUEPC"
-assert u5e5$(0)="SKMIIPC":assert u5e5$(1)="ZX":assert u5e5$(2)="BPSUC":assert u5e5$(3)="SK":assert u5e5$(4)="YSC ARYZQ":assert u5e5$(5)="HHOZCX"
-assert q$(0)="D RFSFBH":assert q$(1)="":assert q$(2)="LY   RPJGP":assert q$(3)="JDE  OKLY":assert q$(4)="":assert q$(5)="PULQ ZWAGP"
-assert e0jif$(0)="PB P":assert e0jif$(1)="":assert e0jif$(2)="TXNX":assert e0jif$(3)="C":assert e0jif$(4)="THQ"
-assert b$(0)="BZCJQ":assert b$(1)="LQB EJWPGDI":assert b$(2)="YADHJNM":assert b$(3)="B"
-assert l3$(0)="NQXGYMLGK":assert l3$(1)="RBG":assert l3$(2)="F":assert l3$(3)="":assert l3$(4)="U":assert l3$(5)="LHGOAW":assert l3$(6)="DERCL"
-assert a2eqj$(0)="UHECXVCVLJK":assert a2eqj$(1)="":assert a2eqj$(2)="YW"
-assert c7v67$(0)="GK TXNDH":assert c7v67$(1)="WVOLYLI ZK":assert c7v67$(2)="LJJXFG":assert c7v67$(3)="KI  E"
-assert g9wi2$(0)="NCXCM":assert g9wi2$(1)="SDLTNGH J":assert g9wi2$(2)="UR K  V":assert g9wi2$(3)="EWFFRJBDF":assert g9wi2$(4)="WVAEBQQK":assert g9wi2$(5)="JT ZTER"
-assert p5v5$(0)="N W JXX":assert p5v5$(1)="RGQQT FXKV":assert p5v5$(2)="Z":assert p5v5$(3)="UJK"
+dim y6(4)
+dim p2z(4)
+dim y940b(3)
+dim h7(3)
+dim h7k7(3)
+dim m0(2)
+dim r5kmc(4)
+dim b9u(6)
+dim z65gi(4)
+dim b4xa(5)
+dim i0$(4)
+dim w32$(4)
+dim f1w$(4)
+dim y9ll$(3)
+dim z8$(6)
+dim s0gu$(2)
+dim n0$(2)
+dim t2s45$(6)
+dim m61d$(2)
+dim t76x$(6)
+m8e=155
+g99j=179288
+let b8z=-73295
+let t7zo0=35299
+let r612=-29855
+r9ijz=14500
+let b4=164572
+let k8h=28859
+let s87ck=-32434
+let a9j8w=-38
+u709=-66406
+let f0=-83
+let o9=-180
+let o7r8=-197
+let a6tx=100243
+let z3h=17899
+i90=193538
+y9=154
+o9xq8=-163
+l=-143870
+a8nj=-16195
+e02=-10824
+let c5d=-17988
+let m5=102284
+q8=-169267
+let x9wca=35366
+let q5vgy=-193639
+g36=185494
+let n=-86708
+let a1hv=-9106
+m2i=113
+e032k=-102108
+let i9=177
+let q1=-124550
+c8um=-118029
+let b=20970
+w6aq3=-47078
+let g31s=156704
+t2lq=99693
+h58ym=-49425
+d1y=4007
+f=-6237
+let a6x=-37
+t1o=-68
+m6j=-72
+let b66f9=-158408
+let l9=-93152
+d9=-50155
+w6qa7=-141554
+let f133=71650
+h60=-137
+f7m=-144
+q1ckr=8404
+let y0f=143237
+let k9hrp=58737
+g1=-97908
+y5p1u=79617
+let a=-85083
+i035=16827
+y5=86699
+let n9if$="M"
+i5uv4$="VLH"
+let d$="E"
+let z0$=""
+r5$=""
+x2ey7$="K HSRGLSO"
+l4$="UKL"
+let j$=""
+v$="L"
+c4a9l$="XJ"
+let a$="WBFA"
+let i0qa$="HMUZZ Y"
+let u9mrq$="WMRIFPCTL F"
+let c9i$=""
+s9n$="DRQIFEXSDX"
+let h5$="WWSCONKZ"
+let d12z$="GLCXGN  A"
+n8$="KT IQ TR"
+let f9bfu$="CAQZE"
+e$="HY"
+let o$="D TZC"
+f3$="NMYIKMGU"
+let y5p47$="ZCIAE"
+i79$="J  C NB"
+let r1m$="E N"
+let y2ai$="EB XTZ"
+let e4u4$="NRZJDSQ"
+m2h$="O"
+let l9s$="JWWL"
+let x0rpe$=""
+q5$="FSDU MOJM"
+o8a$="RDR OPE"
+let v41w$="UGLCVEO P"
+m4ot$="XZA YMHI S"
+let p5$="GOARBG"
+let r$="TU"
+g03pr$=""
+f0hj$="ZY  J"
+f99pq$="MT"
+e1lk$="R"
+let c1$="EVGKI FXG"
+l$="JLQS P"
+h8ezl$="S XWLBG"
+k4h$="ZDZFDE"
+c8k12$="GSGGBEMLN"
+j03k$="W  Z FYLCL"
+let j4a$="XFPXO J"
+i4p$="TPHV J"
+n0o$=""
+let f2vsn$="CK SQEAVHX"
+let k61iy$="O W"
+let e4o$="XD BAGJL HG"
+m8$="K RGS"
+h9$="FJ VAB RBF"
+let d5d8p$="LBXK XRK"
+s2$="DYZUUCOCSI"
+let j6bn$="ZSXS SU"
+let e1h$="L"
+let a0$="GUHU LFSFZW"
+o10$="UTKF MF"
+y6(0)=-138153:y6(1)=-150:y6(2)=-186268:y6(3)=5605:y6(4)=-148
+p2z(0)=-52:p2z(1)=-1816:p2z(2)=55815:p2z(3)=-170:p2z(4)=184553
+y940b(0)=-113311:y940b(1)=-159915:y940b(2)=92655:y940b(3)=32
+h7(0)=194561:h7(1)=191854:h7(2)=-136602:h7(3)=58
+h7k7(0)=-79758:h7k7(1)=26282:h7k7(2)=-186763:h7k7(3)=3622
+m0(0)=195898:m0(1)=-20156:m0(2)=-3503
+r5kmc(0)=126617:r5kmc(1)=86:r5kmc(2)=-180:r5kmc(3)=-143:r5kmc(4)=134169
+b9u(0)=-9:b9u(1)=71613:b9u(2)=-103:b9u(3)=-51225:b9u(4)=95423:b9u(5)=5441:b9u(6)=161104
+z65gi(0)=103178:z65gi(1)=43279:z65gi(2)=132612:z65gi(3)=-165:z65gi(4)=145710
+b4xa(0)=-17665:b4xa(1)=132204:b4xa(2)=-20658:b4xa(3)=-199341:b4xa(4)=-117139:b4xa(5)=-115
+i0$(0)="P":i0$(1)="":i0$(2)="TMR  KWT":i0$(3)="NZYB":i0$(4)="XYT"
+w32$(0)="Y CQRL":w32$(1)="Q  OTGDTIID":w32$(2)="IIUCCS M":w32$(3)="":w32$(4)="CCYTTOSLZC"
+f1w$(0)="XF":f1w$(1)="Y":f1w$(2)="":f1w$(3)="QDU":f1w$(4)="VTPM RO"
+y9ll$(0)="ZM  PO DJV":y9ll$(1)="D":y9ll$(2)="BHVDMYX G":y9ll$(3)="M IHTNDH S"
+z8$(0)="W K":z8$(1)="A":z8$(2)="AK EZO":z8$(3)="":z8$(4)="R":z8$(5)="":z8$(6)=""
+s0gu$(0)="DN FVL":s0gu$(1)="Y":s0gu$(2)="TO"
+n0$(0)="LK L N":n0$(1)="PP  MAL  G":n0$(2)=""
+t2s45$(0)="":t2s45$(1)="":t2s45$(2)="XKQ WWV YN":t2s45$(3)="":t2s45$(4)="G A RTMV":t2s45$(5)="":t2s45$(6)="AAXBGDWSLH"
+m61d$(0)="Y D":m61d$(1)="WSS":m61d$(2)="XQB  JN"
+t76x$(0)="R  ZRP":t76x$(1)="ZGPV MZ":t76x$(2)="E KMMW NG":t76x$(3)="SHB":t76x$(4)="NHL MTJPUV":t76x$(5)="INDK":t76x$(6)="JJE N TD"
+assert m8e=155
+assert g99j=179288
+assert b8z=-73295
+assert t7zo0=35299
+assert r612=-29855
+assert r9ijz=14500
+assert b4=164572
+assert k8h=28859
+assert s87ck=-32434
+assert a9j8w=-38
+assert u709=-66406
+assert f0=-83
+assert o9=-180
+assert o7r8=-197
+assert a6tx=100243
+assert z3h=17899
+assert i90=193538
+assert y9=154
+assert o9xq8=-163
+assert l=-143870
+assert a8nj=-16195
+assert e02=-10824
+assert c5d=-17988
+assert m5=102284
+assert q8=-169267
+assert x9wca=35366
+assert q5vgy=-193639
+assert g36=185494
+assert n=-86708
+assert a1hv=-9106
+assert m2i=113
+assert e032k=-102108
+assert i9=177
+assert q1=-124550
+assert c8um=-118029
+assert b=20970
+assert w6aq3=-47078
+assert g31s=156704
+assert t2lq=99693
+assert h58ym=-49425
+assert d1y=4007
+assert f=-6237
+assert a6x=-37
+assert t1o=-68
+assert m6j=-72
+assert b66f9=-158408
+assert l9=-93152
+assert d9=-50155
+assert w6qa7=-141554
+assert f133=71650
+assert h60=-137
+assert f7m=-144
+assert q1ckr=8404
+assert y0f=143237
+assert k9hrp=58737
+assert g1=-97908
+assert y5p1u=79617
+assert a=-85083
+assert i035=16827
+assert y5=86699
+assert n9if$="M"
+assert i5uv4$="VLH"
+assert d$="E"
+assert z0$=""
+assert r5$=""
+assert x2ey7$="K HSRGLSO"
+assert l4$="UKL"
+assert j$=""
+assert v$="L"
+assert c4a9l$="XJ"
+assert a$="WBFA"
+assert i0qa$="HMUZZ Y"
+assert u9mrq$="WMRIFPCTL F"
+assert c9i$=""
+assert s9n$="DRQIFEXSDX"
+assert h5$="WWSCONKZ"
+assert d12z$="GLCXGN  A"
+assert n8$="KT IQ TR"
+assert f9bfu$="CAQZE"
+assert e$="HY"
+assert o$="D TZC"
+assert f3$="NMYIKMGU"
+assert y5p47$="ZCIAE"
+assert i79$="J  C NB"
+assert r1m$="E N"
+assert y2ai$="EB XTZ"
+assert e4u4$="NRZJDSQ"
+assert m2h$="O"
+assert l9s$="JWWL"
+assert x0rpe$=""
+assert q5$="FSDU MOJM"
+assert o8a$="RDR OPE"
+assert v41w$="UGLCVEO P"
+assert m4ot$="XZA YMHI S"
+assert p5$="GOARBG"
+assert r$="TU"
+assert g03pr$=""
+assert f0hj$="ZY  J"
+assert f99pq$="MT"
+assert e1lk$="R"
+assert c1$="EVGKI FXG"
+assert l$="JLQS P"
+assert h8ezl$="S XWLBG"
+assert k4h$="ZDZFDE"
+assert c8k12$="GSGGBEMLN"
+assert j03k$="W  Z FYLCL"
+assert j4a$="XFPXO J"
+assert i4p$="TPHV J"
+assert n0o$=""
+assert f2vsn$="CK SQEAVHX"
+assert k61iy$="O W"
+assert e4o$="XD BAGJL HG"
+assert m8$="K RGS"
+assert h9$="FJ VAB RBF"
+assert d5d8p$="LBXK XRK"
+assert s2$="DYZUUCOCSI"
+assert j6bn$="ZSXS SU"
+assert e1h$="L"
+assert a0$="GUHU LFSFZW"
+assert o10$="UTKF MF"
+assert y6(0)=-138153:assert y6(1)=-150:assert y6(2)=-186268:assert y6(3)=5605:assert y6(4)=-148
+assert p2z(0)=-52:assert p2z(1)=-1816:assert p2z(2)=55815:assert p2z(3)=-170:assert p2z(4)=184553
+assert y940b(0)=-113311:assert y940b(1)=-159915:assert y940b(2)=92655:assert y940b(3)=32
+assert h7(0)=194561:assert h7(1)=191854:assert h7(2)=-136602:assert h7(3)=58
+assert h7k7(0)=-79758:assert h7k7(1)=26282:assert h7k7(2)=-186763:assert h7k7(3)=3622
+assert m0(0)=195898:assert m0(1)=-20156:assert m0(2)=-3503
+assert r5kmc(0)=126617:assert r5kmc(1)=86:assert r5kmc(2)=-180:assert r5kmc(3)=-143:assert r5kmc(4)=134169
+assert b9u(0)=-9:assert b9u(1)=71613:assert b9u(2)=-103:assert b9u(3)=-51225:assert b9u(4)=95423:assert b9u(5)=5441:assert b9u(6)=161104
+assert z65gi(0)=103178:assert z65gi(1)=43279:assert z65gi(2)=132612:assert z65gi(3)=-165:assert z65gi(4)=145710
+assert b4xa(0)=-17665:assert b4xa(1)=132204:assert b4xa(2)=-20658:assert b4xa(3)=-199341:assert b4xa(4)=-117139:assert b4xa(5)=-115
+assert i0$(0)="P":assert i0$(1)="":assert i0$(2)="TMR  KWT":assert i0$(3)="NZYB":assert i0$(4)="XYT"
+assert w32$(0)="Y CQRL":assert w32$(1)="Q  OTGDTIID":assert w32$(2)="IIUCCS M":assert w32$(3)="":assert w32$(4)="CCYTTOSLZC"
+assert f1w$(0)="XF":assert f1w$(1)="Y":assert f1w$(2)="":assert f1w$(3)="QDU":assert f1w$(4)="VTPM RO"
+assert y9ll$(0)="ZM  PO DJV":assert y9ll$(1)="D":assert y9ll$(2)="BHVDMYX G":assert y9ll$(3)="M IHTNDH S"
+assert z8$(0)="W K":assert z8$(1)="A":assert z8$(2)="AK EZO":assert z8$(3)="":assert z8$(4)="R":assert z8$(5)="":assert z8$(6)=""
+assert s0gu$(0)="DN FVL":assert s0gu$(1)="Y":assert s0gu$(2)="TO"
+assert n0$(0)="LK L N":assert n0$(1)="PP  MAL  G":assert n0$(2)=""
+assert t2s45$(0)="":assert t2s45$(1)="":assert t2s45$(2)="XKQ WWV YN":assert t2s45$(3)="":assert t2s45$(4)="G A RTMV":assert t2s45$(5)="":assert t2s45$(6)="AAXBGDWSLH"
+assert m61d$(0)="Y D":assert m61d$(1)="WSS":assert m61d$(2)="XQB  JN"
+assert t76x$(0)="R  ZRP":assert t76x$(1)="ZGPV MZ":assert t76x$(2)="E KMMW NG":assert t76x$(3)="SHB":assert t76x$(4)="NHL MTJPUV":assert t76x$(5)="INDK":assert t76x$(6)="JJE N TD"

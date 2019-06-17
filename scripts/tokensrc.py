@@ -37,6 +37,7 @@ class TokenSource(object):
 	lower$( upper$( 							## recasing.
 	left$(	mid$(	right$(						## string subdivision.
 	instr( 										## substring search.
+	inkey( 										## read keyboard current key.
 							
 [syntax]
 	, 	;	:	(	)	'	
