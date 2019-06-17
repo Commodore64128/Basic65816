@@ -64,4 +64,4 @@ _LDExit:
 		rts
 
 LineInsert:
-		nop		
+		bra 	LineInsert

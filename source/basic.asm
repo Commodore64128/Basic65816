@@ -132,7 +132,6 @@ NextCommand:
 		;
 		;		TODO: Input and tokenise command/edit.
 		;
-		nop				
 w1:		bra 	w1
 
 		;

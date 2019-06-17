@@ -26,7 +26,7 @@ def getChr(x):
 #
 blk = BasicBlock(0x4000,0x8000)
 random.seed()
-seed = random.randint(0,999999)
+seed = random.randint(0,999999)*0+423
 random.seed(seed)
 print("Seed ",seed)
 
@@ -41,7 +41,7 @@ for i in range(0,random.randint(1,5)):
 	blk.addBASICLine(code,lineNumber)
 	linesInProgram[lineNumber] = code
 	lineNumbers.append(lineNumber)
-option = 0
+option = 1
 #
 #		Option #0 : Delete a randomly chosen line.
 #
@@ -49,7 +49,15 @@ if option == 0 and len(linesInProgram) > 0:
 	lineNo = lineNumbers[random.randint(0,len(lineNumbers))-1]
 	blk.setBoot(str(lineNo),False)
 	linesInProgram[lineNo] = None
-
+#
+#		Option #1 : Insert a new line
+#
+if option == 1:
+	lineNumber = random.randint(0,4) * 20 + 90
+	code = createLine(lineNumber)
+	linesInProgram[lineNumber] = code
+	lineNumbers.append(lineNumber)
+	blk.setBoot(str(lineNumber)+" "+code,False)
 #
 #		Export the basic block
 #
@@ -62,4 +70,5 @@ keys = [x for x in linesInProgram.keys() if linesInProgram[x] is not None]
 keys.sort()
 for l in keys:
 	h.write("{0} {1}\n".format(l,linesInProgram[l]))
+	print(l,linesInProgram[l])
 h.close()
