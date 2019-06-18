@@ -62,6 +62,7 @@ class TokenSource(object):
 	poke doke loke 								## byte/word/long write.
 	list 										## Program list.
 	link										## Call Machine Code
+	new 										## Erase program.
 
 [keyword+]
 	repeat										## repeat loop test at bottom

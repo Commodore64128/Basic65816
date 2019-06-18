@@ -270,7 +270,16 @@ _VCErase:
 		lda 	(DHashTablePtr)				; get the link to next.
 		sta 	$0000,y 					; save at offset +0
 		;
+		lda 	#Block_ProgramStart 		; work out the program start
+		clc
+		adc 	DBaseAddress
+		sta 	DTemp1
+		;
 		pla 								; restore the token address
+		cmp 	DTemp1 						; if it is below the program start we need to clone it.
+		bcs 	_VCDontClone 				; because the variable being created has its identifier
+		jsr 	VCCloneIdentifier	 		; in the token workspace, done via the command line
+_VCDontClone:		
 		sta 	$0002,y 					; save at offset +2
 		;
 		pla 								; restore count and store.
@@ -281,3 +290,34 @@ _VCErase:
 		clc 								; advance pointer to the data bit.
 		adc 	#4
 		rts 								; and done.
+		;
+		;		Clone the identifier at A.
+		;
+VCCloneIdentifier:
+		phx 								; save XY
+		phy
+		tax 								; identifier address in Y.
+		ldy 	#Block_LowMemoryPtr		 	; get low memory address, this will be the new identifier.
+		lda 	(DBaseAddress),y
+		pha
+_VCCloneLoop:
+		ldy 	#Block_LowMemoryPtr 		; get low memory
+		lda 	(DBaseAddress),y
+		pha 								; save on stack
+		inc 	a 							; space for one token.
+		inc 	a		
+		sta 	(DBaseAddress),y 			
+		ply 								; address of word in Y
+		lda 	@w$0000,x 					; read the token
+		sta 	$0000,y 					; copy it into that new byte.
+		inx 								; advance the token pointer
+		inx
+		and 	#IDContMask 				; continuation ?
+		bne 	_VCCloneLoop
+		;
+		pla 								; restore start address
+		ply 								; and the others
+		plx
+		rts
+
+		
