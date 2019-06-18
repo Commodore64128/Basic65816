@@ -1,7 +1,9 @@
 Main
 ----
-- Fix LIST
-- Fix "Missing Token" (which one !!!)
+
+- defining variables in command mode doesn't work, but ones declared in code still there ???
+	(the name is in the token buffer !!!)
+
 - Dog food !!
 
 - PROC <identifier> DEFPROC ENDPROC
@@ -34,3 +36,4 @@ Fixes
 
 - when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
   left.
+

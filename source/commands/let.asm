@@ -63,7 +63,10 @@ _FLetNotArray:
 		;		skip the =, evaluate the RHS and store the result.
 		;
 		lda 	#equalTokenID 				; check the = and skip it.
-		jsr 	ExpectToken
+		cmp 	(DCodePtr)
+		bne 	_FLetMissingEquals
+		inc 	DCodePtr
+		inc 	DCodePtr
 		pla 								; restore the first token.
 		and 	#IDTypeMask 				; check the type bit
 		bne 	_FLetString 				; skip if string.
@@ -90,6 +93,8 @@ _FLetString:
 		sta 	$0002,y
 		rts
 
+_FLetMissingEquals:
+		#error 	"Missing ="
 _FLError:	
 		#error 	"Undefined array"
 		

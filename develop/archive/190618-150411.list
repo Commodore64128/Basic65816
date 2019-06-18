@@ -1,0 +1,22 @@
+100 REM "Bomber"
+101 screen = 15 * 65536 : width = 64 : height = 32
+102 CLS
+110 GOSUB 1000
+120 score = 1000 :  GOSUB 1200
+989 REM
+990 REM "Draw the game outline"
+991 REM
+1000 FOR x = 0 TO width - 1
+1010 bottom = screen +  ( height - 1 )  * width + x
+1020 POKE bottom , 207
+1030 bh =  RND(  )  & 7
+1040 IF bh <> 0
+1050 FOR i = 1 TO bh
+1060 POKE bottom - i * width , 16
+1070 NEXT i
+1080 ENDIF
+1100 NEXT x
+1110 RETURN
+1190 REM
+1191 REM "Update the score"
+1192 REM

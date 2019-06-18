@@ -26,6 +26,8 @@ Command_List: 	;; list
 	beq 	_CLIList
 	cmp 	#colonTokenID
 	beq 	_CLIList
+	cmp 	#commaTokenID 					; is it , something.
+	beq 	_CLIComma	
 	jsr 	EvaluateNextInteger 			; yes, first number
 	cpy 	#0 
 	bne 	_CLIError
@@ -34,7 +36,12 @@ Command_List: 	;; list
 	lda 	(DCodePtr) 						; , follows ?
 	cmp 	#commaTokenID
 	bne 	_CLIList
+_CLIComma:	
 	jsr 	ExpectComma 					; skip comma
+	lda 	(DCodePtr)
+	beq 	_CLIToEnd 						; if $0000 or :, then list to end.
+	cmp 	#colonTokenID
+	beq 	_CLIToEnd
 	jsr 	EvaluateNextInteger 			; get end line.
 	sta 	DTemp4+2
 	cpy 	#0 								; if legal continue.
@@ -42,6 +49,9 @@ Command_List: 	;; list
 _CLIError:
 	brl 	SyntaxError
 
+_CLIToEnd:
+	lda 	#$7FFF
+	sta 	DTemp4+2
 _CLIList:
 	;
 	;		Start listing - scan the whole program to track structure, only output the
