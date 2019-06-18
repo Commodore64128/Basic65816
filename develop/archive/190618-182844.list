@@ -1,13 +1,11 @@
 100 CLS
 110 screen = 15 * 65536 : width = 64 : height = 32
-115 DIM pattern$(5 )
-120 pattern$(0 )  = "FRRDFDFDRFD"
-121 pattern$(1 )  = "FRRDFDFDLFD"
-122 pattern$(2 )  = "FFRRDFDFDFD"
-123 pattern$(3 )  = "DFDRFDRFD"
-124 pattern$(4 )  = "FRRDFDRFDLFD"
-125 pattern$(5 )  = "FRRDFDLFDRFD"
-130 pattern$ = pattern$(4 )
+120 pattern$ = "FRRDFDFDRFD"
+121 pattern$ = "FRRDFDFDLFD"
+122 pattern$ = "FFRRDFDFDFD"
+123 pattern$ = "DFDRFDRFD"
+124 pattern$ = "FRRDFDRFDLFD"
+125 pattern$ = "FRRDFDLFDRFD"
 200 FOR dir = 0 TO 3
 210 x = dir * 10 + 10 : y = 10
 220 GOSUB 5000
