@@ -1,4 +1,9 @@
-
+5 rem "A test program"
+10 cls
+15 screenRam = 15 * 65536
+20 for i = 0 to 255
+30 poke screenRam+24*64+i,i
+40 next i
 100 for i = 1 to 9
 110 	print i,i*i,i*i*i
 120 next i

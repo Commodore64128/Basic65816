@@ -149,7 +149,7 @@ void DBGXRender(int *address,int showDisplay) {
 					for (int y = 0;y < 8;y++) {													// 7 Down
 						int f = font[cp+y] ^ rvs;
 						rc.y = yc + y * size;
-						if (f & (0x01 << x)) {		
+						if (f & (0x80 >> x)) {		
 							GFXRectangle(&rc,rvs ? 0x0FF:0x0F0);			
 						}
 					}
