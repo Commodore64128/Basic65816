@@ -129,12 +129,8 @@ NextCommand:
 		ldy 	#Block_BootFlag 					; if the boot flag is non-zero 
 		lda 	(DBaseAddress),y 					; then exit the emulator. 
 		bne 	ExitEmulator
-
-		;
-		;		TODO: Input and tokenise command/edit.
-		;
-w1:		bra 	w1
-
+		jsr 	HWInputLine 						; read line to YA.
+		jsr 	Tokenise 							; tokenise it.
 		;
 		;		Check to see if the first token is a number, if so it is editing if not
 		;		it's a command.
@@ -142,6 +138,7 @@ w1:		bra 	w1
 ExecuteTokenBuffer:		
 		ldy 	#Block_TokenBuffer 					; get the first token
 		lda 	(DBaseAddress),y
+		beq 	NextCommand 						; nothing.
 		cmp 	#$4000 								; if not a number token, execute it
 		bcc 	_ETBCommand
 		cmp 	#$C000

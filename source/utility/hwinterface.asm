@@ -9,15 +9,16 @@
 ; *******************************************************************************************
 ; *******************************************************************************************
 
-HWCursorCharacter = $66
+HWCursor = $F8020 							; cursor position r/w
+HWKeyPressed = $F8010 						; current key pressed (inkey) r
+HWBreakKey = $F8000 						; non-zero if break pressed
+HWScreen = $F0000							; screen RAM base
 
-HWCursor = $F8020
-HWKeyPressed = $F8010
-HWBreakKey = $F8000
-HWScreen = $F0000
+InputBuffer = $F8100 						; area of memory for input buffer.
+LastKey = $F8200 							; last key pressed.
 
-sWidth = 64					; this has to be powers of two in this really simple I/O code.
-sHeight = 32
+sWidth = 64									; this is a quick hack so these must be powers of 2
+sHeight = 32 								; in this implementation.
 
 ; *******************************************************************************************
 ;
@@ -28,12 +29,12 @@ sHeight = 32
 HWClearScreen:
 		pha
 		phx
-		ldx 	#sWidth*sHeight-2
+		ldx 	#sWidth*sHeight-2 			; fill screen memory with space
 _CS0:	lda 	#$2020
 		sta 	$F0000,x
 		dex
 		bpl 	_CS0
-		lda 	#0
+		lda 	#0 							; reposition cursor
 		sta 	HWCursor
 		plx
 		pla
@@ -50,32 +51,22 @@ HWPrintChar:
 		pha
 		phx
 		phy 
-		and 	#$00FF
-		cmp 	#"a"
-		bcc 	_HWPCNotLC
-		cmp 	#"z"+1
-		bcs 	_HWPCNotLC
-		sec
-		sbc 	#32
-		ora 	#128
-_HWPCNotLC:		
-		and 	#$BF
-		pha
+		pha 								; cursor position -> X
 		lda 	HWCursor
 		tax
 		pla
-		sep 	#$20
+		sep 	#$20 						; write character to screen.
 		sta 	$F0000,x
 		rep 	#$20
-		inx
+		inx 								; bump cursor position.
 		txa
 		sta 	HWCursor
-		cmp 	#(sWidth*sHeight)
+		cmp 	#(sWidth*sHeight) 			; reached end of screen
 		bne 	_HWNotEnd
-		sec 	
+		sec 	 							; back up one line
 		sbc 	#sWidth
 		sta 	HWCursor
-		ldx 	#0
+		ldx 	#0 							; scroll screen up.
 _HWScrollUp:
 		lda 	$F0000+sWidth,x		
 		sta 	$F0000,x
@@ -83,7 +74,7 @@ _HWScrollUp:
 		inx
 		cpx 	#sWidth*sHeight
 		bne 	_HWScrollUp
-		ldx 	#(sWidth*(sHeight-1))			
+		ldx 	#(sWidth*(sHeight-1))		; clear bottom line.
 _HWBlank:
 		lda 	#$2020
 		sta 	$F0000,x
@@ -106,7 +97,7 @@ _HWNotEnd:
 HWNewLine:
 		pha
 		phx
-		ldx 	#sWidth-1
+		ldx 	#sWidth-1 					; print spaces until X & position = 0
 HWMoveCursor:
 		lda 	#32
 		jsr 	HWPrintChar
@@ -142,3 +133,87 @@ HWInkey:
 		lda 	HWKeyPressed
 		rts 	
 		
+; *******************************************************************************************
+;
+;						  Read keyboard line return address in YA
+;
+; *******************************************************************************************
+
+HWInputLine:
+		jsr 	HWInkey 					; get a keystroke.
+		cmp 	LastKey
+		beq 	HWInputLine
+_HWILWait:		
+		jsr 	HWInkey
+		cmp		#0
+		beq 	_HWILWait
+		sta 	LastKey
+		cmp 	#32 						; control check
+		bcc 	_HWILControl
+		jsr 	HWPrintChar 				; print out.
+		bra 	HWInputLine 				; loop back.
+		;
+_HWILBackSpace:
+		lda 	HWCursor
+		beq 	HWInputLine
+		tax
+		dex
+		lda 	#" "
+		sep 	#$20
+		sta 	$F0000,x
+		rep 	#$20
+		ldx 	#-1
+_HWILMove:
+		txa
+		clc
+		adc 	HWCursor
+		and 	#(sWidth*sHeight-1)
+		sta 	HWCursor
+		bra 	HWInputLine
+		;
+_HWILClear:
+		jsr 	HWClearScreen
+		bra 	HWInputLine
+		;	
+_HWILControl:
+		cmp 	#8 							; backspace.
+		beq 	_HWILBackSpace
+		ldx 	#-sWidth 					; Ctrl IJKL move cursor
+		cmp 	#9
+		beq 	_HWILMove
+		ldx 	#sWidth 				
+		cmp 	#11
+		beq 	_HWILMove
+		ldx 	#-1
+		cmp 	#10
+		beq 	_HWILMove
+		ldx 	#1
+		cmp 	#12
+		beq 	_HWILMove
+		cmp 	#19 						; Ctrl S Clear Screen/Home
+		beq 	_HWILClear
+		cmp 	#13
+		bne 	HWInputLine
+		;
+		lda 	HWCursor 					; cursor position
+		and 	#$FFC0 						; start of line.
+		sta 	DTemp1 						; pointer in DTemp1
+		lda 	#$000F
+		sta 	DTemp1+2
+		ldy 	#0 							; set up for copy
+_HWILCopy:
+		tyx	
+		lda 	[DTemp1],y
+		sta 	InputBuffer,x
+		iny
+		iny
+		cpy 	#64 						; done the whole line ?
+		bne 	_HWILCopy
+		lda 	#0
+		tyx
+		sta 	InputBuffer,x 				; add trailing zero.
+		;
+		jsr 	HWNewLine 					; next line.
+		lda 	#InputBuffer & $FFFF
+		ldy 	#InputBuffer >> 16
+		rts

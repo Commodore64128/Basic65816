@@ -1,11 +1,5 @@
-@run
 
-10 for i = 1 to 200000
-15 cls:print inkey()
-20 next 
-30 end
-
-100 for i = 1 to 999
+100 for i = 1 to 9
 110 	print i,i*i,i*i*i
 120 next i
 122 x = 4
