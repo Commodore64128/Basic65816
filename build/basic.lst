@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.54.1900 listing file
 ; 64tass --m65816 -f -q -o basic.bin -L basic.lst ..\source\start.asm
-; Tue Jun 18 09:27:27 2019
+; Tue Jun 18 10:19:55 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -17,7 +17,7 @@
 .000c	a9 02 00	lda #$0002			lda 	#CodeSpace >> 16 					; put the page number in A ($2)
 .000f	a2 00 40	ldx #$4000			ldx 	#CodeSpace & $FFFF 					; and the base address in X ($4000)
 .0012	a0 00 c0	ldy #$c000			ldy 	#CodeEndSpace & $FFFF				; and the end address in Y ($C000)
-.0015	5c 58 1c 01	jmp $011c58			jmp 	SwitchBasicInstance
+.0015	5c 5d 1c 01	jmp $011c5d			jmp 	SwitchBasicInstance
 
 ;******  Processing file: ..\source\basic.asm
 
@@ -798,8 +798,8 @@
 .010548	a8		tay				tay
 .010549	20 f2 05	jsr $0105f2			jsr 	PrintBASICString
 .01054c					_EHEndMessage:
-.01054c	20 89 1b	jsr $011b89			jsr 	HWNewLine
-.01054f	4c 82 1c	jmp $011c82			jmp 	NextCommand 				; get next command.
+.01054c	20 8e 1b	jsr $011b8e			jsr 	HWNewLine
+.01054f	4c 87 1c	jmp $011c87			jmp 	NextCommand 				; get next command.
 >010552	20 61 74 20 00			_EHAt:	.text 	" at ",$00
 .010557					IllegalToken:
 .010557	20 2c 05	jsr $01052c			jsr 	ErrorHandler 						; call error routine
@@ -859,7 +859,7 @@
 .0105dd	f0 10		beq $0105ef			beq 	_PRMExit
 .0105df	c9 0d 00	cmp #$000d			cmp 	#13
 .0105e2	d0 05		bne $0105e9			bne 	_PRMChar
-.0105e4	20 89 1b	jsr $011b89			jsr 	HWNewLine
+.0105e4	20 8e 1b	jsr $011b8e			jsr 	HWNewLine
 .0105e7	80 03		bra $0105ec			bra 	_PRMNext
 .0105e9					_PRMChar:
 .0105e9	20 3d 1b	jsr $011b3d			jsr 	HWPrintChar
@@ -1884,7 +1884,7 @@
 .010d62					Function_Inkey:
 .010d62	20 92 05	jsr $010592			jsr 	ExpectRightBracket 			; check )
 .010d65	20 c4 05	jsr $0105c4			jsr 	ResetTypeInteger
-.010d68	20 aa 1b	jsr $011baa			jsr 	HWInkey 					; read current key
+.010d68	20 af 1b	jsr $011baf			jsr 	HWInkey 					; read current key
 .010d6b	95 00		sta $00,x			sta 	EXSValueL+0,x
 .010d6d	74 20		stz $20,x			stz 	EXSValueH+0,x
 .010d6f	60		rts				rts
@@ -2579,14 +2579,14 @@
 .01124e	5a		phy			phy
 .01124f	a8		tay			tay 									; print buffer out
 .011250	20 f2 05	jsr $0105f2		jsr 	PrintBasicString
-.011253	20 89 1b	jsr $011b89		jsr 	HWNewLine
+.011253	20 8e 1b	jsr $011b8e		jsr 	HWNewLine
 .011256	7a		ply			ply 									; get address
 .011257					_CLIFollowLink:
 .011257	98		tya			tya 									; follow link
 .011258	18		clc			clc
 .011259	79 00 00	adc $0000,y		adc 	$0000,y
 .01125c	a8		tay			tay
-.01125d	20 a5 1b	jsr $011ba5		jsr 	HWCheckBreak 					; break key pressed.
+.01125d	20 aa 1b	jsr $011baa		jsr 	HWCheckBreak 					; break key pressed.
 .011260	f0 d2		beq $011234		beq 	_CLINextLine
 .011262					_CLIExit:
 .011262	64 2c		stz $2c			stz 	DIndent 						; reset the indent
@@ -2863,10 +2863,10 @@
 .011437	20 f2 05	jsr $0105f2			jsr 	PrintBASICString
 .01143a	80 d7		bra $011413			bra 	Function_Print 				; and go round again.
 .01143c					_FPRTab:
-.01143c	20 9e 1b	jsr $011b9e			jsr 	HWTab
+.01143c	20 a3 1b	jsr $011ba3			jsr 	HWTab
 .01143f	80 03		bra $011444			bra 	_FPRSkipLoop
 .011441					_FPRNewLine:
-.011441	20 89 1b	jsr $011b89			jsr 	HWNewLine
+.011441	20 8e 1b	jsr $011b8e			jsr 	HWNewLine
 .011444					_FPRSkipLoop:
 .011444	e6 06		inc $06				inc 	DCodePtr
 .011446	e6 06		inc $06				inc 	DCodePtr
@@ -2880,7 +2880,7 @@
 .011454	f0 08		beq $01145e			beq 	_FPRExit
 .011456	c9 25 32	cmp #$3225			cmp 	#semicolonTokenID
 .011459	f0 03		beq $01145e			beq 	_FPRExit
-.01145b	20 89 1b	jsr $011b89			jsr 	HWNewLine 					; print a new line.
+.01145b	20 8e 1b	jsr $011b8e			jsr 	HWNewLine 					; print a new line.
 .01145e					_FPRExit:
 .01145e	60		rts				rts
 
@@ -3399,7 +3399,7 @@
 ;******  Processing file: ..\source\commands/run.asm
 
 .011887					Function_END:
-.011887	4c 7c 1c	jmp $011c7c			jmp 	WarmStart
+.011887	4c 81 1c	jmp $011c81			jmp 	WarmStart
 .01188a					Function_RUN:
 .01188a	20 06 19	jsr $011906			jsr 	Function_CLEAR 				; clear all variables.
 .01188d	a5 02		lda $02				lda 	DBaseAddress 				; work out the first instruction.
@@ -3425,7 +3425,7 @@
 .0118b1	85 06		sta $06				sta 	DCodePtr
 .0118b3					FRun_NextInstruction:
 .0118b3	64 16		stz $16				stz 	DTempStringPointer 			; force reset on next string allocation.
-.0118b5	20 a5 1b	jsr $011ba5			jsr 	HWCheckBreak 				; break key pressed.
+.0118b5	20 aa 1b	jsr $011baa			jsr 	HWCheckBreak 				; break key pressed.
 .0118b8	d0 40		bne $0118fa			bne 	_FRun_Break
 .0118ba	b2 06		lda ($06)			lda 	(DCodePtr)					; what's next
 .0118bc	f0 32		beq $0118f0			beq 	_FRun_EndInstruction		; if end of this line, then go to next line.
@@ -3466,7 +3466,7 @@
 .0118fa	20 2c 05	jsr $01052c			jsr 	ErrorHandler 						; call error routine
 >0118fd	42 72 65 61 6b 00				.text 	"Break",$00 								; with this message
 .011903					_FRun_WarmStart:
-.011903	82 76 03	brl $011c7c			brl 	WarmStart
+.011903	82 7b 03	brl $011c81			brl 	WarmStart
 .011906					Function_CLEAR:
 .011906	20 12 19	jsr $011912			jsr 	ClearVariablesPointersAndStacks
 .011909	60		rts				rts
@@ -3816,134 +3816,137 @@
 .011b41	af 20 80 0f	lda $0f8020			lda 	HWCursor
 .011b45	aa		tax				tax
 .011b46	68		pla				pla
-.011b47	e2 20		sep #$20			sep 	#$20 						; write character to screen.
-.011b49	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011b4d	c2 20		rep #$20			rep 	#$20
-.011b4f	e8		inx				inx 								; bump cursor position.
-.011b50	8a		txa				txa
-.011b51	8f 20 80 0f	sta $0f8020			sta 	HWCursor
-.011b55	c9 00 08	cmp #$0800			cmp 	#(sWidth*sHeight) 			; reached end of screen
-.011b58	d0 2b		bne $011b85			bne 	_HWNotEnd
-.011b5a	38		sec				sec 	 							; back up one line
-.011b5b	e9 40 00	sbc #$0040			sbc 	#sWidth
-.011b5e	8f 20 80 0f	sta $0f8020			sta 	HWCursor
-.011b62	a2 00 00	ldx #$0000			ldx 	#0 							; scroll screen up.
-.011b65					_HWScrollUp:
-.011b65	bf 40 00 0f	lda $0f0040,x			lda 	$F0000+sWidth,x
-.011b69	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011b6d	e8		inx				inx
-.011b6e	e8		inx				inx
-.011b6f	e0 00 08	cpx #$0800			cpx 	#sWidth*sHeight
-.011b72	d0 f1		bne $011b65			bne 	_HWScrollUp
-.011b74	a2 c0 07	ldx #$07c0			ldx 	#(sWidth*(sHeight-1))		; clear bottom line.
-.011b77					_HWBlank:
-.011b77	a9 20 20	lda #$2020			lda 	#$2020
-.011b7a	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011b7e	e8		inx				inx
-.011b7f	e8		inx				inx
-.011b80	e0 00 08	cpx #$0800			cpx 	#sWidth*sHeight
-.011b83	d0 f2		bne $011b77			bne 	_HWBlank
-.011b85					_HWNotEnd:
-.011b85	7a		ply				ply
-.011b86	fa		plx				plx
-.011b87	68		pla				pla
-.011b88	60		rts				rts
-.011b89					HWNewLine:
-.011b89	48		pha				pha
-.011b8a	da		phx				phx
-.011b8b	a2 3f 00	ldx #$003f			ldx 	#sWidth-1 					; print spaces until X & position = 0
-.011b8e					HWMoveCursor:
-.011b8e	a9 20 00	lda #$0020			lda 	#32
-.011b91	20 3d 1b	jsr $011b3d			jsr 	HWPrintChar
-.011b94	8a		txa				txa
-.011b95	2f 20 80 0f	and $0f8020			and 	HWCursor
-.011b99	d0 f3		bne $011b8e			bne 	HWMoveCursor
-.011b9b	fa		plx				plx
-.011b9c	68		pla				pla
-.011b9d	60		rts				rts
-.011b9e	48		pha		HWTab:	pha
-.011b9f	da		phx				phx
-.011ba0	a2 07 00	ldx #$0007			ldx 	#7
-.011ba3	80 e9		bra $011b8e			bra 	HWMoveCursor
-.011ba5					HWCheckBreak:
-.011ba5	af 00 80 0f	lda $0f8000			lda 	HWBreakKey
-.011ba9	60		rts				rts
-.011baa					HWInkey:
-.011baa	af 10 80 0f	lda $0f8010			lda 	HWKeyPressed
+.011b47	c9 ff ff	cmp #$ffff			cmp 	#-1
+.011b4a	f0 08		beq $011b54			beq 	_HWPCNoWrite
+.011b4c	e2 20		sep #$20			sep 	#$20 						; write character to screen.
+.011b4e	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011b52	c2 20		rep #$20			rep 	#$20
+.011b54					_HWPCNoWrite:
+.011b54	e8		inx				inx 								; bump cursor position.
+.011b55	8a		txa				txa
+.011b56	8f 20 80 0f	sta $0f8020			sta 	HWCursor
+.011b5a	c9 00 08	cmp #$0800			cmp 	#(sWidth*sHeight) 			; reached end of screen
+.011b5d	d0 2b		bne $011b8a			bne 	_HWNotEnd
+.011b5f	38		sec				sec 	 							; back up one line
+.011b60	e9 40 00	sbc #$0040			sbc 	#sWidth
+.011b63	8f 20 80 0f	sta $0f8020			sta 	HWCursor
+.011b67	a2 00 00	ldx #$0000			ldx 	#0 							; scroll screen up.
+.011b6a					_HWScrollUp:
+.011b6a	bf 40 00 0f	lda $0f0040,x			lda 	$F0000+sWidth,x
+.011b6e	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011b72	e8		inx				inx
+.011b73	e8		inx				inx
+.011b74	e0 00 08	cpx #$0800			cpx 	#sWidth*sHeight
+.011b77	d0 f1		bne $011b6a			bne 	_HWScrollUp
+.011b79	a2 c0 07	ldx #$07c0			ldx 	#(sWidth*(sHeight-1))		; clear bottom line.
+.011b7c					_HWBlank:
+.011b7c	a9 20 20	lda #$2020			lda 	#$2020
+.011b7f	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011b83	e8		inx				inx
+.011b84	e8		inx				inx
+.011b85	e0 00 08	cpx #$0800			cpx 	#sWidth*sHeight
+.011b88	d0 f2		bne $011b7c			bne 	_HWBlank
+.011b8a					_HWNotEnd:
+.011b8a	7a		ply				ply
+.011b8b	fa		plx				plx
+.011b8c	68		pla				pla
+.011b8d	60		rts				rts
+.011b8e					HWNewLine:
+.011b8e	48		pha				pha
+.011b8f	da		phx				phx
+.011b90	a2 3f 00	ldx #$003f			ldx 	#sWidth-1 					; print spaces until X & position = 0
+.011b93					HWMoveCursor:
+.011b93	a9 ff ff	lda #$ffff			lda 	#-1
+.011b96	20 3d 1b	jsr $011b3d			jsr 	HWPrintChar
+.011b99	8a		txa				txa
+.011b9a	2f 20 80 0f	and $0f8020			and 	HWCursor
+.011b9e	d0 f3		bne $011b93			bne 	HWMoveCursor
+.011ba0	fa		plx				plx
+.011ba1	68		pla				pla
+.011ba2	60		rts				rts
+.011ba3	48		pha		HWTab:	pha
+.011ba4	da		phx				phx
+.011ba5	a2 07 00	ldx #$0007			ldx 	#7
+.011ba8	80 e9		bra $011b93			bra 	HWMoveCursor
+.011baa					HWCheckBreak:
+.011baa	af 00 80 0f	lda $0f8000			lda 	HWBreakKey
 .011bae	60		rts				rts
-.011baf					HWInputLine:
-.011baf	20 aa 1b	jsr $011baa			jsr 	HWInkey 					; get a keystroke.
-.011bb2	cf 00 82 0f	cmp $0f8200			cmp 	LastKey
-.011bb6	f0 f7		beq $011baf			beq 	HWInputLine
-.011bb8					_HWILWait:
-.011bb8	20 aa 1b	jsr $011baa			jsr 	HWInkey
-.011bbb	c9 00 00	cmp #$0000			cmp		#0
-.011bbe	f0 f8		beq $011bb8			beq 	_HWILWait
-.011bc0	8f 00 82 0f	sta $0f8200			sta 	LastKey
-.011bc4	c9 20 00	cmp #$0020			cmp 	#32 						; control check
-.011bc7	90 2f		bcc $011bf8			bcc 	_HWILControl
-.011bc9	20 3d 1b	jsr $011b3d			jsr 	HWPrintChar 				; print out.
-.011bcc	80 e1		bra $011baf			bra 	HWInputLine 				; loop back.
-.011bce					_HWILBackSpace:
-.011bce	af 20 80 0f	lda $0f8020			lda 	HWCursor
-.011bd2	f0 db		beq $011baf			beq 	HWInputLine
-.011bd4	aa		tax				tax
-.011bd5	ca		dex				dex
-.011bd6	a9 20 00	lda #$0020			lda 	#" "
-.011bd9	e2 20		sep #$20			sep 	#$20
-.011bdb	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
-.011bdf	c2 20		rep #$20			rep 	#$20
-.011be1	a2 ff ff	ldx #$ffff			ldx 	#-1
-.011be4					_HWILMove:
-.011be4	8a		txa				txa
-.011be5	18		clc				clc
-.011be6	6f 20 80 0f	adc $0f8020			adc 	HWCursor
-.011bea	29 ff 07	and #$07ff			and 	#(sWidth*sHeight-1)
-.011bed	8f 20 80 0f	sta $0f8020			sta 	HWCursor
-.011bf1	80 bc		bra $011baf			bra 	HWInputLine
-.011bf3					_HWILClear:
-.011bf3	20 24 1b	jsr $011b24			jsr 	HWClearScreen
-.011bf6	80 b7		bra $011baf			bra 	HWInputLine
-.011bf8					_HWILControl:
-.011bf8	c9 08 00	cmp #$0008			cmp 	#8 							; backspace.
-.011bfb	f0 d1		beq $011bce			beq 	_HWILBackSpace
-.011bfd	a2 c0 ff	ldx #$ffc0			ldx 	#-sWidth 					; Ctrl IJKL move cursor
-.011c00	c9 09 00	cmp #$0009			cmp 	#9
-.011c03	f0 df		beq $011be4			beq 	_HWILMove
-.011c05	a2 40 00	ldx #$0040			ldx 	#sWidth
-.011c08	c9 0b 00	cmp #$000b			cmp 	#11
-.011c0b	f0 d7		beq $011be4			beq 	_HWILMove
-.011c0d	a2 ff ff	ldx #$ffff			ldx 	#-1
-.011c10	c9 0a 00	cmp #$000a			cmp 	#10
-.011c13	f0 cf		beq $011be4			beq 	_HWILMove
-.011c15	a2 01 00	ldx #$0001			ldx 	#1
-.011c18	c9 0c 00	cmp #$000c			cmp 	#12
-.011c1b	f0 c7		beq $011be4			beq 	_HWILMove
-.011c1d	c9 13 00	cmp #$0013			cmp 	#19 						; Ctrl S Clear Screen/Home
-.011c20	f0 d1		beq $011bf3			beq 	_HWILClear
-.011c22	c9 0d 00	cmp #$000d			cmp 	#13
-.011c25	d0 88		bne $011baf			bne 	HWInputLine
-.011c27	af 20 80 0f	lda $0f8020			lda 	HWCursor 					; cursor position
-.011c2b	29 c0 ff	and #$ffc0			and 	#$FFC0 						; start of line.
-.011c2e	85 08		sta $08				sta 	DTemp1 						; pointer in DTemp1
-.011c30	a9 0f 00	lda #$000f			lda 	#$000F
-.011c33	85 0a		sta $0a				sta 	DTemp1+2
-.011c35	a0 00 00	ldy #$0000			ldy 	#0 							; set up for copy
-.011c38					_HWILCopy:
-.011c38	bb		tyx				tyx
-.011c39	b7 08		lda [$08],y			lda 	[DTemp1],y
-.011c3b	9f 00 81 0f	sta $0f8100,x			sta 	InputBuffer,x
-.011c3f	c8		iny				iny
-.011c40	c8		iny				iny
-.011c41	c0 40 00	cpy #$0040			cpy 	#64 						; done the whole line ?
-.011c44	d0 f2		bne $011c38			bne 	_HWILCopy
-.011c46	a9 00 00	lda #$0000			lda 	#0
-.011c49	bb		tyx				tyx
-.011c4a	9f 00 81 0f	sta $0f8100,x			sta 	InputBuffer,x 				; add trailing zero.
-.011c4e	20 89 1b	jsr $011b89			jsr 	HWNewLine 					; next line.
-.011c51	a9 00 81	lda #$8100			lda 	#InputBuffer & $FFFF
-.011c54	a0 0f 00	ldy #$000f			ldy 	#InputBuffer >> 16
-.011c57	60		rts				rts
+.011baf					HWInkey:
+.011baf	af 10 80 0f	lda $0f8010			lda 	HWKeyPressed
+.011bb3	60		rts				rts
+.011bb4					HWInputLine:
+.011bb4	20 af 1b	jsr $011baf			jsr 	HWInkey 					; get a keystroke.
+.011bb7	cf 00 82 0f	cmp $0f8200			cmp 	LastKey
+.011bbb	f0 f7		beq $011bb4			beq 	HWInputLine
+.011bbd					_HWILWait:
+.011bbd	20 af 1b	jsr $011baf			jsr 	HWInkey
+.011bc0	c9 00 00	cmp #$0000			cmp		#0
+.011bc3	f0 f8		beq $011bbd			beq 	_HWILWait
+.011bc5	8f 00 82 0f	sta $0f8200			sta 	LastKey
+.011bc9	c9 20 00	cmp #$0020			cmp 	#32 						; control check
+.011bcc	90 2f		bcc $011bfd			bcc 	_HWILControl
+.011bce	20 3d 1b	jsr $011b3d			jsr 	HWPrintChar 				; print out.
+.011bd1	80 e1		bra $011bb4			bra 	HWInputLine 				; loop back.
+.011bd3					_HWILBackSpace:
+.011bd3	af 20 80 0f	lda $0f8020			lda 	HWCursor
+.011bd7	f0 db		beq $011bb4			beq 	HWInputLine
+.011bd9	aa		tax				tax
+.011bda	ca		dex				dex
+.011bdb	a9 20 00	lda #$0020			lda 	#" "
+.011bde	e2 20		sep #$20			sep 	#$20
+.011be0	9f 00 00 0f	sta $0f0000,x			sta 	$F0000,x
+.011be4	c2 20		rep #$20			rep 	#$20
+.011be6	a2 ff ff	ldx #$ffff			ldx 	#-1
+.011be9					_HWILMove:
+.011be9	8a		txa				txa
+.011bea	18		clc				clc
+.011beb	6f 20 80 0f	adc $0f8020			adc 	HWCursor
+.011bef	29 ff 07	and #$07ff			and 	#(sWidth*sHeight-1)
+.011bf2	8f 20 80 0f	sta $0f8020			sta 	HWCursor
+.011bf6	80 bc		bra $011bb4			bra 	HWInputLine
+.011bf8					_HWILClear:
+.011bf8	20 24 1b	jsr $011b24			jsr 	HWClearScreen
+.011bfb	80 b7		bra $011bb4			bra 	HWInputLine
+.011bfd					_HWILControl:
+.011bfd	c9 08 00	cmp #$0008			cmp 	#8 							; backspace.
+.011c00	f0 d1		beq $011bd3			beq 	_HWILBackSpace
+.011c02	a2 c0 ff	ldx #$ffc0			ldx 	#-sWidth 					; Ctrl IJKL move cursor
+.011c05	c9 09 00	cmp #$0009			cmp 	#9
+.011c08	f0 df		beq $011be9			beq 	_HWILMove
+.011c0a	a2 40 00	ldx #$0040			ldx 	#sWidth
+.011c0d	c9 0b 00	cmp #$000b			cmp 	#11
+.011c10	f0 d7		beq $011be9			beq 	_HWILMove
+.011c12	a2 ff ff	ldx #$ffff			ldx 	#-1
+.011c15	c9 0a 00	cmp #$000a			cmp 	#10
+.011c18	f0 cf		beq $011be9			beq 	_HWILMove
+.011c1a	a2 01 00	ldx #$0001			ldx 	#1
+.011c1d	c9 0c 00	cmp #$000c			cmp 	#12
+.011c20	f0 c7		beq $011be9			beq 	_HWILMove
+.011c22	c9 13 00	cmp #$0013			cmp 	#19 						; Ctrl S Clear Screen/Home
+.011c25	f0 d1		beq $011bf8			beq 	_HWILClear
+.011c27	c9 0d 00	cmp #$000d			cmp 	#13
+.011c2a	d0 88		bne $011bb4			bne 	HWInputLine
+.011c2c	af 20 80 0f	lda $0f8020			lda 	HWCursor 					; cursor position
+.011c30	29 c0 ff	and #$ffc0			and 	#$FFC0 						; start of line.
+.011c33	85 08		sta $08				sta 	DTemp1 						; pointer in DTemp1
+.011c35	a9 0f 00	lda #$000f			lda 	#$000F
+.011c38	85 0a		sta $0a				sta 	DTemp1+2
+.011c3a	a0 00 00	ldy #$0000			ldy 	#0 							; set up for copy
+.011c3d					_HWILCopy:
+.011c3d	bb		tyx				tyx
+.011c3e	b7 08		lda [$08],y			lda 	[DTemp1],y
+.011c40	9f 00 81 0f	sta $0f8100,x			sta 	InputBuffer,x
+.011c44	c8		iny				iny
+.011c45	c8		iny				iny
+.011c46	c0 40 00	cpy #$0040			cpy 	#64 						; done the whole line ?
+.011c49	d0 f2		bne $011c3d			bne 	_HWILCopy
+.011c4b	a9 00 00	lda #$0000			lda 	#0
+.011c4e	bb		tyx				tyx
+.011c4f	9f 00 81 0f	sta $0f8100,x			sta 	InputBuffer,x 				; add trailing zero.
+.011c53	20 8e 1b	jsr $011b8e			jsr 	HWNewLine 					; next line.
+.011c56	a9 00 81	lda #$8100			lda 	#InputBuffer & $FFFF
+.011c59	a0 0f 00	ldy #$000f			ldy 	#InputBuffer >> 16
+.011c5c	60		rts				rts
 
 ;******  Return to file: ..\source\basic.asm
 
@@ -3952,72 +3955,72 @@
 =$0800					IDContMask = $0800
 =8					UnaryFunction = 8 									; Unary function Token Type ID.
 =9					TokenShift = 9										; Token shift to reach precedence.
-.011c58					SwitchBasicInstance:
-.011c58	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
-.011c5a	20 24 1b	jsr $011b24			jsr 	HWClearScreen 						; clear screen
-.011c5d	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
-.011c60	85 00		sta $00				sta 	DPageNumber 						; save page, base, high in RAM.
-.011c62	86 02		stx $02				stx		DBaseAddress
-.011c64	84 04		sty $04				sty 	DHighAddress
-.011c66	ba		tsx				tsx 										; save the current SP.
-.011c67	86 3a		stx $3a				stx 	DStack65816
-.011c69	eb		xba				xba 										; put the page number (goes in the DBR) in B
-.011c6a	48		pha				pha 										; then copy it into B.
-.011c6b	ab		plb				plb
-.011c6c	ab		plb				plb
-.011c6d	20 12 19	jsr $011912			jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
-.011c70	a0 0e 00	ldy #$000e			ldy 	#Block_BootFlag 					; if boot flag zero, warm start
-.011c73	b1 02		lda ($02),y			lda 	(DBaseAddress),y
-.011c75	f0 05		beq $011c7c			beq 	WarmStart
-.011c77	3a		dec a				dec 	a 									; decrement zero.
-.011c78	91 02		sta ($02),y			sta 	(DBaseAddress),y
-.011c7a	80 18		bra $011c94			bra 	ExecuteTokenBuffer 					; execute contents of token buffer.
-.011c7c					WarmStart:
-.011c7c	a2 e2 1c	ldx #$1ce2			ldx 	#BasicPrompt & $FFFF
-.011c7f	20 d4 05	jsr $0105d4			jsr 	PrintROMMessage
-.011c82					NextCommand:
-.011c82	a6 3a		ldx $3a				ldx 	DStack65816 						; reset the CPU stack
-.011c84	9a		txs				txs
-.011c85	64 16		stz $16				stz 	DTempStringPointer 					; reset the
-.011c87	a0 0e 00	ldy #$000e			ldy 	#Block_BootFlag 					; if the boot flag is non-zero
-.011c8a	b1 02		lda ($02),y			lda 	(DBaseAddress),y 					; then exit the emulator.
-.011c8c	d0 52		bne $011ce0			bne 	ExitEmulator
-.011c8e	20 af 1b	jsr $011baf			jsr 	HWInputLine 						; read line to YA.
-.011c91	20 9b 06	jsr $01069b			jsr 	Tokenise 							; tokenise it.
-.011c94					ExecuteTokenBuffer:
-.011c94	a0 00 01	ldy #$0100			ldy 	#Block_TokenBuffer 					; get the first token
-.011c97	b1 02		lda ($02),y			lda 	(DBaseAddress),y
-.011c99	f0 e7		beq $011c82			beq 	NextCommand 						; nothing.
-.011c9b	c9 00 40	cmp #$4000			cmp 	#$4000 								; if not a number token, execute it
-.011c9e	90 27		bcc $011cc7			bcc 	_ETBCommand
-.011ca0	c9 00 c0	cmp #$c000			cmp 	#$C000
-.011ca3	b0 22		bcs $011cc7			bcs 	_ETBCommand
-.011ca5	38		sec				sec
-.011ca6	e9 00 40	sbc #$4000			sbc 	#$4000 								; put in range 0-32767
-.011ca9	f0 1f		beq $011cca			beq 	_ETBError
-.011cab	48		pha				pha
-.011cac	20 6d 04	jsr $01046d			jsr 	LineDelete 							; delete the line, if it exists.
-.011caf	20 12 19	jsr $011912			jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
-.011cb2	a9 02 01	lda #$0102			lda 	#Block_TokenBuffer+2				; get the code for the line, e.g. next token
-.011cb5	18		clc				clc
-.011cb6	65 02		adc $02				adc 	DBaseAddress
-.011cb8	a8		tay				tay 										; Y contains the code.
-.011cb9	b9 00 00	lda $0000,y			lda 	$0000,y 							; is there any code ?
-.011cbc	f0 c4		beq $011c82			beq 	NextCommand 						; no, next command.
-.011cbe	68		pla				pla 										; line number in A, code in Y.
-.011cbf	20 a8 04	jsr $0104a8			jsr 	LineInsert 							; insert the line
-.011cc2	20 12 19	jsr $011912			jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
-.011cc5	80 bb		bra $011c82			bra 	NextCommand
-.011cc7					_ETBCommand:
-.011cc7	4c 95 18	jmp $011895			jmp 	RUNExecuteTokenBuffer 				; execute the token buffer
-.011cca					_ETBError:
-.011cca	20 2c 05	jsr $01052c			jsr 	ErrorHandler 						; call error routine
->011ccd	43 61 6e 6e 6f 74 20 68				.text 	"Cannot have line 0",$00 								; with this message
->011cd5	61 76 65 20 6c 69 6e 65 20 30 00
-.011ce0					ExitEmulator:
-.011ce0	02 00		cop #$00			cop 	#0
-.011ce2					BasicPrompt:
->011ce2	52 65 61 64 79 2e 0d 00				.text 	"Ready.",13,0
+.011c5d					SwitchBasicInstance:
+.011c5d	c2 30		rep #$30			rep 	#$30 								; 16 bit A:X mode.
+.011c5f	20 24 1b	jsr $011b24			jsr 	HWClearScreen 						; clear screen
+.011c62	29 ff 00	and #$00ff			and 	#$00FF 								; make page number 24 bit
+.011c65	85 00		sta $00				sta 	DPageNumber 						; save page, base, high in RAM.
+.011c67	86 02		stx $02				stx		DBaseAddress
+.011c69	84 04		sty $04				sty 	DHighAddress
+.011c6b	ba		tsx				tsx 										; save the current SP.
+.011c6c	86 3a		stx $3a				stx 	DStack65816
+.011c6e	eb		xba				xba 										; put the page number (goes in the DBR) in B
+.011c6f	48		pha				pha 										; then copy it into B.
+.011c70	ab		plb				plb
+.011c71	ab		plb				plb
+.011c72	20 12 19	jsr $011912			jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
+.011c75	a0 0e 00	ldy #$000e			ldy 	#Block_BootFlag 					; if boot flag zero, warm start
+.011c78	b1 02		lda ($02),y			lda 	(DBaseAddress),y
+.011c7a	f0 05		beq $011c81			beq 	WarmStart
+.011c7c	3a		dec a				dec 	a 									; decrement zero.
+.011c7d	91 02		sta ($02),y			sta 	(DBaseAddress),y
+.011c7f	80 18		bra $011c99			bra 	ExecuteTokenBuffer 					; execute contents of token buffer.
+.011c81					WarmStart:
+.011c81	a2 e7 1c	ldx #$1ce7			ldx 	#BasicPrompt & $FFFF
+.011c84	20 d4 05	jsr $0105d4			jsr 	PrintROMMessage
+.011c87					NextCommand:
+.011c87	a6 3a		ldx $3a				ldx 	DStack65816 						; reset the CPU stack
+.011c89	9a		txs				txs
+.011c8a	64 16		stz $16				stz 	DTempStringPointer 					; reset the
+.011c8c	a0 0e 00	ldy #$000e			ldy 	#Block_BootFlag 					; if the boot flag is non-zero
+.011c8f	b1 02		lda ($02),y			lda 	(DBaseAddress),y 					; then exit the emulator.
+.011c91	d0 52		bne $011ce5			bne 	ExitEmulator
+.011c93	20 b4 1b	jsr $011bb4			jsr 	HWInputLine 						; read line to YA.
+.011c96	20 9b 06	jsr $01069b			jsr 	Tokenise 							; tokenise it.
+.011c99					ExecuteTokenBuffer:
+.011c99	a0 00 01	ldy #$0100			ldy 	#Block_TokenBuffer 					; get the first token
+.011c9c	b1 02		lda ($02),y			lda 	(DBaseAddress),y
+.011c9e	f0 e7		beq $011c87			beq 	NextCommand 						; nothing.
+.011ca0	c9 00 40	cmp #$4000			cmp 	#$4000 								; if not a number token, execute it
+.011ca3	90 27		bcc $011ccc			bcc 	_ETBCommand
+.011ca5	c9 00 c0	cmp #$c000			cmp 	#$C000
+.011ca8	b0 22		bcs $011ccc			bcs 	_ETBCommand
+.011caa	38		sec				sec
+.011cab	e9 00 40	sbc #$4000			sbc 	#$4000 								; put in range 0-32767
+.011cae	f0 1f		beq $011ccf			beq 	_ETBError
+.011cb0	48		pha				pha
+.011cb1	20 6d 04	jsr $01046d			jsr 	LineDelete 							; delete the line, if it exists.
+.011cb4	20 12 19	jsr $011912			jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
+.011cb7	a9 02 01	lda #$0102			lda 	#Block_TokenBuffer+2				; get the code for the line, e.g. next token
+.011cba	18		clc				clc
+.011cbb	65 02		adc $02				adc 	DBaseAddress
+.011cbd	a8		tay				tay 										; Y contains the code.
+.011cbe	b9 00 00	lda $0000,y			lda 	$0000,y 							; is there any code ?
+.011cc1	f0 c4		beq $011c87			beq 	NextCommand 						; no, next command.
+.011cc3	68		pla				pla 										; line number in A, code in Y.
+.011cc4	20 a8 04	jsr $0104a8			jsr 	LineInsert 							; insert the line
+.011cc7	20 12 19	jsr $011912			jsr 	ClearVariablesPointersAndStacks		; clear all variables etc.
+.011cca	80 bb		bra $011c87			bra 	NextCommand
+.011ccc					_ETBCommand:
+.011ccc	4c 95 18	jmp $011895			jmp 	RUNExecuteTokenBuffer 				; execute the token buffer
+.011ccf					_ETBError:
+.011ccf	20 2c 05	jsr $01052c			jsr 	ErrorHandler 						; call error routine
+>011cd2	43 61 6e 6e 6f 74 20 68				.text 	"Cannot have line 0",$00 								; with this message
+>011cda	61 76 65 20 6c 69 6e 65 20 30 00
+.011ce5					ExitEmulator:
+.011ce5	02 00		cop #$00			cop 	#0
+.011ce7					BasicPrompt:
+>011ce7	52 65 61 64 79 2e 0d 00				.text 	"Ready.",13,0
 
 ;******  Return to file: ..\source\start.asm
 

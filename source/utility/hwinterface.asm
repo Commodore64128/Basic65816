@@ -55,9 +55,12 @@ HWPrintChar:
 		lda 	HWCursor
 		tax
 		pla
+		cmp 	#-1
+		beq 	_HWPCNoWrite
 		sep 	#$20 						; write character to screen.
 		sta 	$F0000,x
 		rep 	#$20
+_HWPCNoWrite:		
 		inx 								; bump cursor position.
 		txa
 		sta 	HWCursor
@@ -99,7 +102,7 @@ HWNewLine:
 		phx
 		ldx 	#sWidth-1 					; print spaces until X & position = 0
 HWMoveCursor:
-		lda 	#32
+		lda 	#-1
 		jsr 	HWPrintChar
 		txa
 		and 	HWCursor
