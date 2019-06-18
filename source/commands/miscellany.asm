@@ -42,12 +42,16 @@ Function_CLS: ;; cls
 
 Function_REM: ;; rem 
 		lda 	(DCodePtr) 					; get code ptr.
-		beq 	_FRemSyntax 				; if 0, syntax error
+		beq 	_FRemExit 					; no comment present
+		cmp 	#colonTokenID
+		beq 	_FRemExit 					; no comment present
+
 		cmp 	#$0100 						; if not $00xx syntax error
 		bcs 	_FRemSyntax
 		clc 								; add to DCodePtr
 		adc 	DCodePtr
 		sta 	DCodePtr
+_FRemExit:		
 		rts
 _FRemSyntax:
 		brl 	SyntaxError

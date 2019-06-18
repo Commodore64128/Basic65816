@@ -1,9 +1,5 @@
 Main
 ----
-
-- defining variables in command mode doesn't work, but ones declared in code still there ???
-	(the name is in the token buffer !!!)
-
 - Dog food !!
 
 - PROC <identifier> DEFPROC ENDPROC

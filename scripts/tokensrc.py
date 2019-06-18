@@ -14,7 +14,7 @@ class TokenSource(object):
 		return """
 
 [0]
-	&	|	^									## bitwise operators.
+	&	| 	^									## bitwise operators/logical operators.
 
 [1]	
 	< 	> 	= 	<= 	>= 	<> 						## signed comparators

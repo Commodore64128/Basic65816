@@ -23,11 +23,10 @@
 2085 ENDIF
 2090 IF c$ = "D"
 2091 saddr = screen + x1 + y1 * sw
-2092 IF  PEEK( saddr )  = 32
+2092 IF  PEEK( saddr )  = 32 | c = 143
 2093 POKE saddr , c
 2095 ELSE
 2097 hit = 1
 2098 ENDIF
-2100 ENDIF
 2200 NEXT i
 2210 RETURN

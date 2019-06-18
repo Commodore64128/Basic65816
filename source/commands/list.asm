@@ -326,6 +326,13 @@ _DTKDFound:
 _DTKOut:
 	lda 	TokenText+1,x 					; output it.
 	and 	#$00FF
+	cmp 	#"A"
+	bcc 	_DTKNotLC
+	cmp 	#"Z"+1
+	bcs 	_DTKNotLC
+	clc
+	adc 	#32
+_DTKNotLC:
 	jsr 	StringWriteCharacter
 	inx
 	dey

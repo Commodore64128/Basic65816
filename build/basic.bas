@@ -11,7 +11,7 @@
 1000 FOR x = 0 TO width - 1
 1010 bottom = screen +  ( height - 1 )  * width + x
 1020 POKE bottom , 207
-1030 bh =  RND(  )  & 7
+1030 bh =  RND(  )  and 7
 1040 IF bh <> 0
 1050 FOR i = 1 TO bh
 1060 POKE bottom - i * width , 16
