@@ -10,7 +10,10 @@
 # *******************************************************************************************
 
 from basicblock import *
+import os
 
+fileImport = sys.argv[1].replace("/",os.sep).replace("\\",os.sep)
+print("Importing {0}.".format(fileImport))
 blk = BasicBlock(0x4000,0x8000)
-blk.loadProgram("../build/basic.bas")
+blk.loadProgram(fileImport)
 blk.exportFile("temp/basic.bin")	

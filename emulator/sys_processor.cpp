@@ -70,7 +70,7 @@ BYTE8 CPUExecuteInstruction(void) {
 	if (Cycles < CYCLES_PER_FRAME) return 0;										// Frame in progress, return 0.
 	Cycles -= CYCLES_PER_FRAME;														// Adjust cycle counter
 	HWIEndFrame();																	// Hardware stuff.
-	ramMemory[0xF8000 & RAMMASK] = GFXIsKeyPressed(GFXKEY_TAB) ? 1 : 0;				// TAB is break key.
+	ramMemory[0xF8000 & RAMMASK] = (GFXIsKeyPressed(GFXKEY_CONTROL) && GFXIsKeyPressed('C')) ? 1 : 0;				
 	return FRAME_RATE;																// Return the frame rate for sync speed.
 }
 

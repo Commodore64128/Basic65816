@@ -18,7 +18,7 @@ rem
 pushd ..\scripts
 python gentokens.py
 python basicblock.py
-python %1
+python %1 %2
 popd
 rem
 rem		Copy generated code to source directory

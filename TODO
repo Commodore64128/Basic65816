@@ -1,5 +1,7 @@
 Main
 ----
+- Fix LIST
+- Fix "Missing Token" (which one !!!)
 - Dog food !!
 
 - PROC <identifier> DEFPROC ENDPROC
@@ -24,7 +26,7 @@ Fixes
 
 (all check LowMem vs HighMem)
 
-- 	adding new lines, out of memory.
+- adding new lines, out of memory.
 
 - allocating new variable (memory error)
 

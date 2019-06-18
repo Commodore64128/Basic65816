@@ -14,6 +14,6 @@ rem call exec.bat make_tokenise.py
 rem call exec.bat make_editor.py
 rem python ..\scripts\check_editor.py
 
-call exec.bat make_basic.py
+call exec.bat make_basic.py ../build/basic.bas
 
 
