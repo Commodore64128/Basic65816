@@ -8,5 +8,4 @@
 45 a$ = "Test"
 46 DIM demo$(2 )
 47 demo$(1 )  = "Hello, world!"
-48 PRINT a$ , demo$(1 )  , demo$(2 )
 50 END

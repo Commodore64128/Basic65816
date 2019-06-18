@@ -24,6 +24,8 @@ rem		Tidy up. Convert Basic.Dump back to text in basic.bas format *and* an archi
 rem 	version stored in the backup directory with a timestamp.
 rem
 del /Q basic.bin
+python ..\scripts\dump_export.py
+
 
 
 

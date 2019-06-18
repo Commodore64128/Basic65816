@@ -5,8 +5,4 @@
 20 FOR i = 0 TO 255
 30 POKE screenram + 4 * 64 + i , i
 40 NEXT i
-45 a$ = "Test"
-46 DIM demo$(2 )
-47 demo$(1 )  = "Hello, world!"
-48 PRINT a$ , demo$(1 )  , demo$(2 )
 50 END
