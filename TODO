@@ -12,26 +12,21 @@ Main
 
 Fixes
 -----
-- 	adding new lines.
-
 - 	detokenising lines, too long ?
-
-- 	reset temporary storage pointer when typing things in, even if no command executed as error could
-	occur if you do gosub 700.
 
 - 	expressions stack sizes and spacing and testing. same for basic stack.
 
-- 	reset stuff on error (not variables ?) - what about stop.
+- 	reset stuff on error (not variables ?) - what about stop ?
 
 - 	garbage collection, moving string to its own position doesn't need to be physically copied.
 
-- 	allocating stack for FOR REPEAT WHILE IF
+- 	allocating stack for FOR REPEAT WHILE IF LOCAL PROC etc.
 
 - 	fewer bytes allocate in convert to string for bases >= 10 (say)
 
-Memory Checks
-=============
 (all check LowMem vs HighMem)
+
+- 	adding new lines, out of memory.
 
 - allocating new variable (memory error)
 
@@ -39,4 +34,3 @@ Memory Checks
 
 - when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
   left.
-

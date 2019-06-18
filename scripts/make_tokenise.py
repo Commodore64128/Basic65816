@@ -61,7 +61,7 @@ print(checkString)
 #		Create block and set up call to routine.
 #
 blk = BasicBlock(0x4000,0x8000)
-blk.setBoot("link {0}:stop".format(0x1F000))
+blk.setBoot("link {0}:end".format(0x1F000))
 #
 #		Copy untokenised string into memory at B000
 #
