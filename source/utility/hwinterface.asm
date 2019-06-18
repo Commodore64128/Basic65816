@@ -177,23 +177,25 @@ _HWILMove:
 _HWILClear:
 		jsr 	HWClearScreen
 		bra 	HWInputLine
-		;	
+		;
 _HWILControl:
+		cmp 	#9 							; tab 
+		beq 	_HWILTab
 		cmp 	#8 							; backspace.
 		beq 	_HWILBackSpace
-		ldx 	#-sWidth 					; Ctrl IJKL move cursor
-		cmp 	#9
+		ldx 	#-sWidth 					; Ctrl WASD move cursor
+		cmp 	#23
 		beq 	_HWILMove
 		ldx 	#sWidth 				
-		cmp 	#11
+		cmp 	#19
 		beq 	_HWILMove
 		ldx 	#-1
-		cmp 	#10
+		cmp 	#1
 		beq 	_HWILMove
 		ldx 	#1
-		cmp 	#12
+		cmp 	#4
 		beq 	_HWILMove
-		cmp 	#19 						; Ctrl S Clear Screen/Home
+		cmp 	#12 						; Ctrl L Clear Screen/Home
 		beq 	_HWILClear
 		cmp 	#13
 		bne 	HWInputLine
@@ -220,3 +222,8 @@ _HWILCopy:
 		lda 	#InputBuffer & $FFFF
 		ldy 	#InputBuffer >> 16
 		rts
+
+_HWILTab:
+		jsr 	HWTab
+		brl 	HWInputLine					
+		;
