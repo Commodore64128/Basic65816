@@ -54,7 +54,6 @@ class TokenSource(object):
 	stop 										## stop program.
 	clear 										## clear all variables.
 	dim 										## array dimension (one dimension only)
-	collect 									## garbage collection (forced)
 	cls 										## clear screen
 	print 		 								## print
 	goto gosub return on 						## transfer of control goto/gosub stuff.

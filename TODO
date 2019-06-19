@@ -1,21 +1,15 @@
 Main
 ----
 - Dog food !!
-- Rewrite the string allocation stuff.
 - Parameters (not arrays)
 - Switchable environments.
 - 65816 assembler.
-- Garbage collection, value on stack ???
 
 Fixes
 -----
 - 	detokenising lines, too long ?
 
 - 	expressions stack sizes and spacing and testing. same for basic stack.
-
-- 	reset stuff on error (not variables ?) - what about stop ?
-
-- 	garbage collection, moving string to its own position doesn't need to be physically copied.
 
 - 	allocating stack for FOR REPEAT WHILE IF LOCAL PROC etc.
 
@@ -29,6 +23,5 @@ Fixes
 
 - when allocating space for temporary variables, check there isn't a collision (memory error)
 
-- when concreting, check that doesn't run out of memory. Set a G/C flag if there isn't much 
-  left.
+- when concreting, check that doesn't run out of memory. 
 

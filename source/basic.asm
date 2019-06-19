@@ -53,7 +53,6 @@ StartOfBasicCode:
 		.include "commands/while.asm"				; while .. wend
 		.include "commands/run.asm" 				; run / end / clear / stop etc.
 		.include "commands/dim.asm"					; array dimension
-		.include "commands/collect.asm"				; garbage collection code.
 		.include "commands/memwrite.asm" 			; write to memory.
 		.include "commands/miscellany.asm"			; all other commands
 

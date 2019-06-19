@@ -8,10 +8,6 @@ call exec.bat test_comparison.py
 call exec.bat test_functions.py
 call exec.bat test_maths.py
 call exec.bat test_change.py
-
-call exec.bat make_garbage.py
-python ..\scripts\showdump.py gc
-
 call exec.bat make_tokenise.py
 
 call exec.bat make_editor.py
