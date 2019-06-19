@@ -68,15 +68,19 @@ CommandJumpTable:
 	.word Command_List             & $FFFF ; token $3e3f "list"
 	.word Function_LINK            & $FFFF ; token $3e40 "link"
 	.word Function_NEW             & $FFFF ; token $3e41 "new"
-	.word Function_REPEAT          & $FFFF ; token $3c42 "repeat"
-	.word Function_WHILE           & $FFFF ; token $3c43 "while"
-	.word Function_IF              & $FFFF ; token $3c44 "if"
-	.word Command_FOR              & $FFFF ; token $3c45 "for"
-	.word Function_WEND            & $FFFF ; token $3a46 "wend"
-	.word Function_UNTIL           & $FFFF ; token $3a47 "until"
-	.word IllegalToken             & $FFFF ; token $3a48 "then"
-	.word Handler_ENDIF            & $FFFF ; token $3a49 "endif"
-	.word Command_NEXT             & $FFFF ; token $3a4a "next"
+	.word Function_PROC            & $FFFF ; token $3e42 "proc"
+	.word IllegalToken             & $FFFF ; token $3e43 "local"
+	.word Function_REPEAT          & $FFFF ; token $3c44 "repeat"
+	.word Function_WHILE           & $FFFF ; token $3c45 "while"
+	.word Function_IF              & $FFFF ; token $3c46 "if"
+	.word Command_FOR              & $FFFF ; token $3c47 "for"
+	.word IllegalToken             & $FFFF ; token $3c48 "defproc"
+	.word Function_WEND            & $FFFF ; token $3a49 "wend"
+	.word Function_UNTIL           & $FFFF ; token $3a4a "until"
+	.word IllegalToken             & $FFFF ; token $3a4b "then"
+	.word Handler_ENDIF            & $FFFF ; token $3a4c "endif"
+	.word Command_NEXT             & $FFFF ; token $3a4d "next"
+	.word Function_ENDPROC         & $FFFF ; token $3a4e "endproc"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -147,15 +151,19 @@ TokenText:
 	 .text $f5,"LIST"     ; token $3e3f
 	 .text $f5,"LINK"     ; token $3e40
 	 .text $f4,"NEW"      ; token $3e41
-	 .text $e7,"REPEAT"   ; token $3c42
-	 .text $e6,"WHILE"    ; token $3c43
-	 .text $e3,"IF"       ; token $3c44
-	 .text $e4,"FOR"      ; token $3c45
-	 .text $d5,"WEND"     ; token $3a46
-	 .text $d6,"UNTIL"    ; token $3a47
-	 .text $d5,"THEN"     ; token $3a48
-	 .text $d6,"ENDIF"    ; token $3a49
-	 .text $d5,"NEXT"     ; token $3a4a
+	 .text $f5,"PROC"     ; token $3e42
+	 .text $f6,"LOCAL"    ; token $3e43
+	 .text $e7,"REPEAT"   ; token $3c44
+	 .text $e6,"WHILE"    ; token $3c45
+	 .text $e3,"IF"       ; token $3c46
+	 .text $e4,"FOR"      ; token $3c47
+	 .text $e8,"DEFPROC"  ; token $3c48
+	 .text $d5,"WEND"     ; token $3a49
+	 .text $d6,"UNTIL"    ; token $3a4a
+	 .text $d5,"THEN"     ; token $3a4b
+	 .text $d6,"ENDIF"    ; token $3a4c
+	 .text $d5,"NEXT"     ; token $3a4d
+	 .text $d8,"ENDPROC"  ; token $3a4e
 	.byte $00
 
 ;
@@ -226,12 +234,16 @@ lokeTokenID                      = $3e3e
 listTokenID                      = $3e3f
 linkTokenID                      = $3e40
 newTokenID                       = $3e41
-repeatTokenID                    = $3c42
-whileTokenID                     = $3c43
-ifTokenID                        = $3c44
-forTokenID                       = $3c45
-wendTokenID                      = $3a46
-untilTokenID                     = $3a47
-thenTokenID                      = $3a48
-endifTokenID                     = $3a49
-nextTokenID                      = $3a4a
+procTokenID                      = $3e42
+localTokenID                     = $3e43
+repeatTokenID                    = $3c44
+whileTokenID                     = $3c45
+ifTokenID                        = $3c46
+forTokenID                       = $3c47
+defprocTokenID                   = $3c48
+wendTokenID                      = $3a49
+untilTokenID                     = $3a4a
+thenTokenID                      = $3a4b
+endifTokenID                     = $3a4c
+nextTokenID                      = $3a4d
+endprocTokenID                   = $3a4e

@@ -63,18 +63,22 @@ class TokenSource(object):
 	list 										## Program list.
 	link										## Call Machine Code
 	new 										## Erase program.
-
+	proc 										## Procedure invocation
+	local 										## define local variable (s)
+	
 [keyword+]
 	repeat										## repeat loop test at bottom
 	while 										## repeat loop test at top
 	if 											## conditional execution
 	for 										## indexed loop
+	defproc 									## procedure definition
 
 [keyword-]										## until for repeat.
 	wend 										## repeat loop test at top
 	until 										## and at bottom
 	then 	endif 								## end for if statements.
 	next 										## end of indexed loop
+	endproc 									## procedure invocation
 	
 """.split("\n")
 

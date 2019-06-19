@@ -41,6 +41,7 @@ StartOfBasicCode:
 		.include "unary/caseconv.asm"				; (upper$,lower$)
 		
 		.include "commands/let.asm" 				; assignment
+		.include "commands/procedure.asm"			; proc/endproc
 		.include "commands/list.asm"				; list / detokenising code.
 		.include "commands/print.asm"				; print.
 		.include "commands/if.asm"					; conditional execution.

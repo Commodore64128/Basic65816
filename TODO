@@ -2,7 +2,6 @@ Main
 ----
 - Dog food !!
 
-- PROC <identifier> DEFPROC ENDPROC
 - LOCALs 
 - Parameters (not arrays)
 - Switchable environments.
