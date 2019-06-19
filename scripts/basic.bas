@@ -1,1050 +1,900 @@
-dim v3485(2)
-dim i18my(5)
-dim n9v8x(6)
-dim x(4)
-dim d(4)
-dim p(2)
-dim k5y(3)
-dim m3ozx(6)
-dim y0q(6)
-dim c7(2)
-let e9=60765
-let b6orc=-191
-let s0e=166789
-let w4luv=79061
-w8=-63898
-let b=-2
-j=-98
-let q=34
-n=-112119
-let x3v=152408
-let u69dx=-143315
-let n0sf=130147
-let u8=166
-f0s=46630
-let j8m2=139700
-q90s=198816
-v9=-176620
-k3=-68
-let h4id=59401
-let e=99
-let g9=52
-x7a1v=-55684
-let z9oa=-169
-let s24oz=-35698
-f=-167699
-i0q=-108286
-let e3zct=64367
-n1mj2=140558
-let h7=192152
-b1wcb=146331
-let q7=9428
-i6=-168702
-k1bc=87
-s3=106
-let c8dsh=86
-g3=100
-w2m8c=149251
-a=-45334
-s8f9=-190635
-let s589=124
-h2m=-115467
-let p14=-130289
-let n9=-92676
-let l1=-37280
-o5zw=194
-d52=119386
-let e2=129
-let e8xm=-55809
-let w5mg=174634
-c8u=-124044
-let m=165596
-let k0e=-13
-let h=47894
-let q47xi=-53815
-let b92=-102272
-y3oe=54806
-let w5r=-82581
-m62q=143596
-g67v=-166149
-let n4p7w=-33291
-v3485(0)=63301:v3485(1)=-128118:v3485(2)=166059
-i18my(0)=145224:i18my(1)=96645:i18my(2)=194912:i18my(3)=164:i18my(4)=-186802:i18my(5)=-181661
-n9v8x(0)=-27226:n9v8x(1)=-153209:n9v8x(2)=-32694:n9v8x(3)=-73568:n9v8x(4)=15339:n9v8x(5)=156:n9v8x(6)=-171773
-x(0)=79536:x(1)=133821:x(2)=-179295:x(3)=-29378:x(4)=102564
-d(0)=51:d(1)=-71:d(2)=25365:d(3)=38:d(4)=-41785
-p(0)=32802:p(1)=162:p(2)=-25249
-k5y(0)=161107:k5y(1)=146:k5y(2)=109668:k5y(3)=193815
-m3ozx(0)=-6:m3ozx(1)=-179475:m3ozx(2)=68723:m3ozx(3)=-46630:m3ozx(4)=140:m3ozx(5)=7:m3ozx(6)=-13594
-y0q(0)=167053:y0q(1)=4:y0q(2)=-65686:y0q(3)=-188947:y0q(4)=83289:y0q(5)=107:y0q(6)=-5710
-c7(0)=-52112:c7(1)=-167696:c7(2)=-89609
-assert (-13594+q7) = -4166
-assert (c8dsh|-55684) = -55682
-assert (46630|-191) = -153
-assert (-2/-27226) = 0
-assert (-102272+y0q(5)) = -102165
-assert (g9*-168702) = -8772504
-assert (106^d52) = 119344
-assert (192152/-68) = -2825
-assert (h4id&k1bc) = 1
-assert (k3^p(0)) = -32866
-assert (u69dx^s589) = -143279
-assert (52^h7) = 192172
-assert (i6*s3) = -17882412
-assert (i18my(3)&-35698) = 132
-assert (v9*s589) = -21900880
-assert (q7*34) = 320552
-assert (87&y3oe) = 22
-assert (m&y0q(1)) = 4
-assert (k3|i6) = -66
-assert (h2m&b) = -115468
-assert (j^146331) = -146427
-assert (-71*-82581) = 5863251
-assert (100/59401) = 0
-assert (k3&129) = 128
-assert (a|k0e) = -5
-assert (198816/k3) = -2923
-assert (166059+162) = 166221
-assert (87*64367) = 5599929
-assert (87/m3ozx(1)) = 0
-assert (-167699-100) = -167799
-assert (b1wcb|s3) = 146427
-assert (f/99) = -1693
-assert (e2|s24oz) = -35697
-assert (100|c8dsh) = 118
-assert (u8/d52) = 0
-assert (-55684|99) = -55681
-assert (u69dx/-13) = 11024
-assert (b^-167699) = 167699
-assert (b6orc^p14) = 130126
-assert (-35698-34) = -35732
-assert (b+c8u) = -124046
-assert (164/192152) = 0
-assert (m62q*g9) = 7466992
-assert (63301|k0e) = -9
-assert (-73568/-68) = 1081
-assert (107^47894) = 47997
-assert (s3|-191) = -149
-assert (106-w2m8c) = -149145
-assert (m3ozx(4)--55809) = 55949
-assert (q90s|86) = 198902
-assert (194--181661) = 181855
-assert (193815*s3) = 20544390
-assert (146^a) = -45448
-assert (86-h4id) = -59315
-assert (146/q7) = 0
-assert (100+e) = 199
-assert (m62q+e2) = 143725
-assert (100&m3ozx(5)) = 4
-assert (d(2)*166) = 4210590
-assert (h2m^k0e) = 115462
-assert (106^i18my(5)) = -181751
-assert (-68^h) = -47958
-assert (z9oa&f0s) = 46598
-assert (k1bc^q) = 117
-assert (106+q) = 140
-assert (g9|46630) = 46646
-assert (o5zw^i0q) = -108096
-assert (-92676+o5zw) = -92482
-assert (b6orc/m62q) = 0
-assert (-2^c7(0)) = 52110
-assert (c8u*140) = -17366160
-assert (k0e+x7a1v) = -55697
-assert (s8f9|s589) = -190595
-assert (a-166) = -45500
-assert (e+-191) = -92
-assert (107+-167696) = -167589
-assert (162/h7) = 0
-assert (s589/n9v8x(2)) = 0
-assert (-65686-b6orc) = -65495
-assert (u69dx^u8) = -143221
-assert (194-g9) = 142
-assert (z9oa^-168702) = 168533
-assert (-98*n) = 10987662
-assert (j-59401) = -59499
-assert (b|n1mj2) = -2
-assert (99-k5y(0)) = -161008
-assert (g3-145224) = -145124
-assert (146^-168702) = -168560
-assert (34+130147) = 130181
-assert (106|h4id) = 59499
-assert (166059*g9) = 8635068
-assert (79061-e2) = 78932
-assert (-169-k5y(3)) = -193984
-assert (-169|b6orc) = -169
-assert (z9oa&198816) = 198656
-assert (174634^g9) = 174622
-assert (129&64367) = 1
-assert (u8|-124044) = -123914
-assert (87+j8m2) = 139787
-assert (-98^w8) = 63992
-assert (k1bc|e9) = 60767
-assert (34|j8m2) = 139702
-assert (124&129) = 0
-assert (m3ozx(1)*-98) = 17588550
-assert (w5r&-13) = -82589
-assert (130147+86) = 130233
-assert (47894|k1bc) = 47959
-assert (100-52) = 48
-assert (-130289^52) = -130245
-assert (n4p7w-z9oa) = -33122
-assert (g3-139700) = -139600
-assert (e8xm*k0e) = 725517
-assert (-98-130147) = -130245
-assert (k3^e9) = -60703
-assert (f0s*q) = 1585420
-assert (s8f9*124) = -23638740
-assert (p(1)/-33291) = 0
-assert (w8/38) = -1681
-assert (-5710*86) = -491060
-assert (140558*129) = 18131982
-assert (n0sf*z9oa) = -21994843
-assert (106+p(2)) = -25143
-assert (-169+99) = -70
-assert (198816&106) = 32
-assert (l1|k3) = -4
-assert (99&-191) = 65
-assert (c7(0)/194) = -268
-assert (87^y0q(4)) = 83214
-assert (140^s589) = 240
-assert (b92*-98) = 10022656
-assert (194/34) = 5
-assert (s3*-167699) = -17776094
-assert (s0e+s3) = 166895
-assert (34^174634) = 174600
-assert (g3&-98) = 4
-assert (-13*n4p7w) = 432783
-assert (166^i6) = -168540
-assert (h2m|p(1)) = -115465
-assert (124/59401) = 0
-assert (v3485(1)&z9oa) = -128254
-assert (-13/198816) = 0
-assert (106^162) = 200
-assert (-98-34) = -132
-assert (-2-x(4)) = -102566
-assert (x3v-u8) = 152242
-assert (y0q(1)+102564) = 102568
-assert (h/q) = 1408
-assert (-98&g67v) = -166246
-assert (p(1)*q47xi) = -8718030
-assert (e2^k5y(1)) = 19
-assert (z9oa|-108286) = -169
-assert (e&32802) = 34
-assert (h&e2) = 0
-assert (y0q(1)|f0s) = 46630
-assert (m3ozx(0)+m3ozx(3)) = -46636
-assert (-68|q7) = -4
-assert (c8dsh|79061) = 79063
-assert (e3zct|129) = 64495
-assert (-128118^i18my(3)) = -128210
-assert (s0e-86) = 166703
-assert (124*47894) = 5938856
-assert (e8xm&-13) = -55821
-assert (52^i6) = -168650
-assert (-35698+k0e) = -35711
-assert (e9+100) = 60865
-assert (d(0)-i18my(2)) = -194861
-assert (q|165596) = 165630
-assert (-166149/k1bc) = -1909
-assert (-13*59401) = -772213
-assert (c8dsh^52) = 98
-assert (b*i6) = 337404
-assert (99*-191) = -18909
-assert (s8f9/-2) = 95317
-assert (b92|-68) = -68
-assert (194/j) = -1
-assert (k3&k0e) = -80
-assert (-168702^86) = -168620
-assert (p14+-191) = -130480
-assert (f/87) = -1927
-assert (p14^e) = -130196
-assert (164*k1bc) = 14268
-assert (m62q+156) = 143752
-assert (106-h7) = -192046
-assert (9428&4) = 4
-assert (-68|-130289) = -65
-assert (102564|g9) = 102580
-assert (s3&-108286) = 2
-assert (-130289|e) = -130193
-assert (j|v9) = -98
-assert (g3|198816) = 198884
-assert (k3|-52112) = -4
-assert (119386|b) = -2
-assert (k0e^54806) = -54811
-assert (s589/54806) = 0
-assert (g3^-92676) = -92776
-assert (s3+x7a1v) = -55578
-assert (o5zw+f0s) = 46824
-assert (34^-82581) = -82615
-assert (z9oa^38) = -143
-assert (99^g9) = 87
-assert (-115467&s589) = 116
-assert (100*n1mj2) = 14055800
-assert (100&m) = 68
-assert (h|-98) = -98
-assert (e--33291) = 33390
-assert (-169^n9v8x(3)) = 73719
-assert (y0q(0)/87) = 1920
-assert (j^47894) = -47992
-assert (j*q) = -3332
-assert (-190635-166) = -190801
-assert (s24oz*g3) = -3569800
-assert (-108286|b) = -2
-assert (z9oa*o5zw) = -32786
-assert (m|q) = 165630
-assert (j8m2*q) = 4749800
-assert (q90s^o5zw) = 198754
-assert (140558+87) = 140645
-assert (-169*-33291) = 5626179
-assert (m3ozx(4)^194) = 78
-assert (-53815-c8dsh) = -53901
-assert (-55809|99) = -55809
-assert (9428&124) = 84
-assert (u8/b) = -83
-assert (z9oa^192152) = -192049
-assert (u69dx-52) = -143367
-assert (d(3)/-2) = -19
-assert (e2/-143315) = 0
-assert (b6orc|q7) = -43
-assert (-63898/106) = -602
-assert (m&-71) = 165528
-assert (p14&99) = 3
-assert (-46630^o5zw) = -46824
-assert (-191^-190635) = 190484
-assert (u69dx*s589) = -17771060
-assert (86--98) = 184
-assert (124+e8xm) = -55685
-assert (o5zw-79061) = -78867
-assert (k5y(1)-133821) = -133675
-assert (q90s|e2) = 198817
-assert (-169/i0q) = 0
-assert (-63898^g3) = -63998
-assert (y0q(0)^e2) = 166924
-assert (-191*-13594) = 2596454
-assert (i0q&129) = 0
-assert (34|-115467) = -115465
-assert (s589/x7a1v) = 0
-assert (52/-108286) = 0
-assert (e8xm/-2) = 27904
-assert (34-d52) = -119352
-assert (n4p7w*166) = -5526306
-assert (-167696/52) = -3224
-assert (124^b92) = -102148
-assert (-13^-68) = 79
-assert (u8|99) = 231
-assert (100|n) = -112019
-assert (u8/-5710) = 0
-assert (q+-171773) = -171739
-assert (b1wcb^g3) = 146431
-assert (b92&m3ozx(4)) = 128
-assert (-2&p14) = -130290
-assert (-68&143596) = 143532
-assert (54806^o5zw) = 54996
-assert (34&-82581) = 34
-assert (q7|9428) = 9428
-assert (k1bc/129) = 0
-assert (q90s/k0e) = -15293
-assert (k1bc^100) = 51
-assert (-13+w8) = -63911
-assert (198816+-191) = 198625
-assert (143596^s3) = 143494
-assert (165596+100) = 165696
-assert (q&h2m) = 32
-assert (b*165596) = -331192
-assert (64367+c8dsh) = 64453
-assert (-33291*-98) = 3262518
-assert (-115467*-169) = 19513923
-assert (-13&146331) = 146323
-assert (n9*c8dsh) = -7970136
-assert (e|j8m2) = 139767
-assert (p(1)+15339) = 15501
-assert (164^-130289) = -130133
-assert (j|-112119) = -97
-assert (-37280&106) = 96
-assert (59401&-2) = 59400
-assert (86|y3oe) = 54870
-assert (m3ozx(5)-64367) = -64360
-assert (192152^k0e) = -192149
-assert (194&119386) = 66
-assert (m3ozx(1)+d(3)) = -179437
-assert (100+64367) = 64467
-assert (-32694+k3) = -32762
-assert (k1bc&47894) = 22
-assert (-98*z9oa) = 16562
-assert (-2|-55684) = -2
-assert (60765/b6orc) = -318
-assert (-168702*-68) = 11471736
-assert (34&129) = 0
-assert (w5mg*166) = 28989244
-assert (7-i6) = 168709
-assert (l1-52) = -37332
-assert (k3*-45334) = 3082712
-assert (140-e9) = -60625
-assert (149251-z9oa) = 149420
-assert (c8dsh*e3zct) = 5535562
-assert (u8*-82581) = -13708446
-assert (b6orc*v3485(0)) = -12090491
-assert (y3oe^d(1)) = -54865
-assert (106/e) = 1
-assert (87-f) = 167786
-assert (124|-92676) = -92676
-assert (-37280+s589) = -37156
-assert (d(1)--41785) = 41714
-assert (-167699-s589) = -167823
-assert (d(4)^s589) = -41797
-assert (-68*z9oa) = 11492
-assert (g9|p14) = -130241
-assert (64367&k0e) = 64355
-assert (124-h4id) = -59277
-assert (b/59401) = 0
-assert (-191^s24oz) = 35791
-assert (b&-108286) = -108286
-assert (e-152408) = -152309
-assert (-37280+b6orc) = -37471
-assert (e^f0s) = 46661
-assert (n9v8x(2)/52) = -628
-assert (-68^139700) = -139768
-assert (-92676^z9oa) = 92843
-assert (s3-9428) = -9322
-assert (46630+-68) = 46562
-assert (k5y(1)^h2m) = -115609
-assert (-167699|e2) = -167699
-assert (-13&119386) = 119378
-assert (y3oe*g9) = 2849912
-assert (-98|192152) = -98
-assert (-108286&-169) = -108286
-assert (p(0)&d(3)) = 34
-assert (s589*x3v) = 18898592
-assert (-53815-107) = -53922
-assert (129|q47xi) = -53815
-assert (k5y(1)^v9) = -176506
-assert (129+-52112) = -51983
-assert (-37280--98) = -37182
-assert (-169^u69dx) = 143226
-assert (g9-o5zw) = -142
-assert (99^87) = 52
-assert (-98*54806) = -5370988
-assert (109668+-98) = 109570
-assert (k3*f0s) = -3170840
-assert (k0e|b1wcb) = -5
-assert (140/52) = 2
-assert (k0e|c8u) = -9
-assert (z9oa+e3zct) = 64198
-assert (p14^k1bc) = -130216
-assert (s3*d52) = 12654916
-assert (34&w8) = 34
-assert (-45334&d(3)) = 34
-assert (87+99) = 186
-assert (-115467^j) = 115563
-assert (100/i0q) = 0
-assert (166/x3v) = 0
-assert (139700^124) = 139720
-assert (149251+-98) = 149153
-assert (64367*34) = 2188478
-assert (y3oe*7) = 383642
-assert (f^-2) = 167699
-assert (c8u*-68) = 8434992
-assert (194/k3) = -2
-assert (v3485(1)^100) = -128018
-assert (64367+99) = 64466
-assert (o5zw^124) = 190
-assert (152408^n9v8x(5)) = 152516
-assert (100&q47xi) = 64
-assert (s24oz&107) = 10
-assert (m3ozx(5)/-32694) = 0
-assert (k3&i18my(5)) = -181728
-assert (119386*k3) = -8118248
-assert (-68*w5r) = 5615508
-assert (-2*-168702) = 337404
-assert (140558|b6orc) = -177
-assert (192152|194) = 192218
-assert (-168702^q) = -168672
-assert (m62q&k0e) = 143584
-assert (e--166149) = 166248
-assert (-2^i0q) = 108284
-assert (-169|n1mj2) = -161
-assert (-166149^k3) = 166215
-assert (c8u*q) = -4217496
-assert (-191|60765) = -163
-assert (j*130147) = -12754406
-assert (l1*87) = -3243360
-assert (-25249^m3ozx(4)) = -25133
-assert (106/s589) = 0
-assert (102564&-98) = 102532
-assert (w5r*k0e) = 1073553
-assert (g3&-45334) = 96
-assert (-102272&g3) = 0
-assert (i0q/34) = -3184
-assert (-71*f) = 11906629
-assert (u8+-108286) = -108120
-assert (-166149/e2) = -1287
-assert (z9oa-k5y(1)) = -315
-assert (x3v/c8dsh) = 1772
-assert (-68/143596) = 0
-assert (51/-13) = -3
-assert (i6/u8) = -1016
-assert (166/60765) = 0
-assert (k3/g3) = 0
-assert (52|-167699) = -167683
-assert (194-b1wcb) = -146137
-assert (-112119*j) = 10987662
-assert (87|140558) = 140639
-assert (124&b) = 124
-assert (o5zw--191) = 385
-assert (47894*99) = 4741506
-assert (140&-68) = 140
-assert (o5zw&b) = 194
-assert (-63898/106) = -602
-assert (-89609/s3) = -845
-assert (174634*e) = 17288766
-assert (b1wcb+k1bc) = 146418
-assert (x3v^k1bc) = 152335
-assert (p(1)*-168702) = -27329724
-assert (n4p7w--98) = -33193
-assert (g9*-13) = -676
-assert (h*-2) = -95788
-assert (-128118--191) = -127927
-assert (q90s&o5zw) = 128
-assert (q47xi^c8dsh) = -53857
-assert (-168702&34) = 2
-assert (g3*b6orc) = -19100
-assert (o5zw&194) = 194
-assert (46630+146) = 46776
-assert (c8u&38) = 36
-assert (86&p14) = 6
-assert (129+34) = 163
-assert (129*h2m) = -14895243
-assert (n9&34) = 32
-assert (162|-169) = -9
-assert (c8dsh-k5y(2)) = -109582
-assert (-63898^86) = -63952
-assert (161107^106) = 161081
-assert (w8&u8) = 38
-assert (u8--168702) = 168868
-assert (d(0)/86) = 0
-assert (-169&n) = -112127
-assert (99&-13) = 99
-assert (106|x7a1v) = -55682
-assert (-143315|100) = -143251
-assert (k5y(0)+s3) = 161213
-assert (w5mg*-13) = -2270242
-assert (k5y(1)|-102272) = -102254
-assert (s24oz&q) = 2
-assert (-166149*q) = -5649066
-assert (166789/106) = 1573
-assert (124+b1wcb) = 146455
-assert (100*86) = 8600
-assert (161107|87) = 161111
-assert (h-156) = 47738
-assert (n9+166) = -92510
-assert (z9oa&w2m8c) = 149251
-assert (-166149*106) = -17611794
-assert (-68|-29378) = -66
-assert (99|m) = 165631
-assert (166789+-13) = 166776
-assert (9428|-191) = -43
-assert (119386-52) = 119334
-assert (c7(0)^c8dsh) = -52186
-assert (99/m3ozx(4)) = 0
-assert (-143315^n9v8x(5)) = -143183
-assert (198816^162) = 198658
-assert (d(1)^59401) = -59472
-assert (-63898--13) = -63885
-assert (54806*-98) = -5370988
-assert (h2m^q) = -115497
-assert (162&h2m) = 160
-assert (j&46630) = 46598
-assert (99|86) = 119
-assert (s3&-169) = 66
-assert (52+u69dx) = -143263
-assert (87|165596) = 165599
-assert (m3ozx(1)|-2) = -1
-assert (-108286&129) = 0
-assert (129/n4p7w) = 0
-assert (e8xm|g9) = -55809
-assert (-191/-108286) = 0
-assert (h4id^k0e) = -59398
-assert (54806--98) = 54904
-assert (-191|e3zct) = -145
-assert (124*-179475) = -22254900
-assert (k3*p14) = 8859652
-assert (-176620*k5y(1)) = -25786520
-assert (k3--55684) = 55616
-assert (34-149251) = -149217
-assert (64367&k1bc) = 71
-assert (g9+-108286) = -108234
-assert (194^-98) = -164
-assert (165596*q) = 5630264
-assert (j8m2^j) = -139734
-assert (n0sf-b) = 130149
-assert (c8dsh&-92676) = 84
-assert (-98|e9) = -33
-assert (96645+j) = 96547
-assert (99|174634) = 174699
-assert (n0sf|-169) = -137
-assert (46630^j) = -46664
-assert (b*f0s) = -93260
-assert (c8u*87) = -10791828
-assert (f0s--2) = 46632
-assert (25365+g9) = 25417
-assert (b*-176620) = 353240
-assert (e2*54806) = 7069974
-assert (52-102564) = -102512
-assert (o5zw-106) = 88
-assert (u8+-35698) = -35532
-assert (-13|54806) = -9
-assert (166*k1bc) = 14442
-assert (c8dsh&174634) = 2
-assert (-143315&c8dsh) = 4
-assert (-37280&-169) = -37312
-assert (s589+87) = 211
-assert (u8*-143315) = -23790290
-assert (k1bc*d(2)) = 2206755
-assert (-53815&k1bc) = 65
-assert (-29378&124) = 60
-assert (-53815*86) = -4628090
-assert (34^-168702) = -168672
-assert (96645/s589) = 779
-assert (-130289-129) = -130418
-assert (100--53815) = 53915
-assert (s589|194) = 254
-assert (166789/s589) = 1345
-assert (52/q) = 1
-assert (k0e/f) = 0
-assert (w5r^d(1)) = 82642
-assert (-169+-63898) = -64067
-assert (n4p7w+b) = -33293
-assert (-98/n1mj2) = 0
-assert (174634|b) = -2
-assert (-2+b1wcb) = 146329
-assert (m3ozx(1)/q) = -5278
-assert (n4p7w&k5y(1)) = 144
-assert (k0e|-13) = -13
-assert (c8dsh&47894) = 22
-assert (e2+-45334) = -45205
-assert (g9/119386) = 0
-assert (-112119+87) = -112032
-assert (38&83289) = 0
-assert (-68^c8dsh) = -22
-assert (60765*124) = 7534860
-assert (m3ozx(5)/w5r) = 0
-assert (-63898&-13) = -63902
-assert (w5mg+i18my(3)) = 174798
-assert (124+x(0)) = 79660
-assert (k1bc/s589) = 0
-assert (192152*-68) = -13066336
-assert (i0q*m3ozx(0)) = 649716
-assert (100+m3ozx(4)) = 240
-assert (162&-68) = 160
-assert (e2-h7) = -192023
-assert (k0e^q90s) = -198829
-assert (166^g3) = 194
-assert (194|166789) = 166855
-assert (-33291&124) = 116
-assert (-2/139700) = 0
-assert (s3^c8dsh) = 60
-assert (-2*140558) = -281116
-assert (99+52) = 151
-assert (-55684*o5zw) = -10802696
-assert (166&-102272) = 128
-assert (52^w5mg) = 174622
-assert (166--82581) = 82747
-assert (g67v&b6orc) = -166335
-assert (60765-q) = 60731
-assert (b1wcb^k1bc) = 146380
-assert (h7&d(0)) = 16
-assert (194^p14) = -130099
-assert (-37280*m3ozx(0)) = 223680
-assert (x3v/124) = 1229
-assert (y0q(3)/p(1)) = -1166
-assert (d(0)-j) = 149
-assert (-6^140558) = -140556
-assert (-13/m3ozx(5)) = -1
-assert (-45334&-68) = -45400
-assert (n0sf^-2) = -130147
-assert (s3&79536) = 32
-assert (h2m^-13) = 115462
-assert (k0e|v9) = -9
-assert (j|m62q) = -2
-assert (g3-w5r) = 82681
-assert (-52112-162) = -52274
-assert (h2m^q) = -115497
-assert (-13&-168702) = -168702
-assert (n9+52) = -92624
-assert (192152+-68) = 192084
-assert (165596&86) = 84
-assert (86|n4p7w) = -33289
-assert (34-140) = -106
-assert (-169&g3) = 68
-assert (k1bc|100) = 119
-assert (-191*v3485(1)) = 24470538
-assert (e2^f) = -167828
-assert (-128118|-169) = -33
-assert (m62q&106) = 104
-assert (j&149251) = 149250
-assert (v3485(1)&k0e) = -128126
-assert (-82581|k0e) = -5
-assert (c7(1)+k0e) = -167709
-assert (d(1)^b1wcb) = -146398
-assert (79061*g3) = 7906100
-assert (-166149&j) = -166246
-assert (140558-d(1)) = 140629
-assert (c8dsh+q) = 120
-assert (124-b92) = 102396
-assert (e8xm--169) = -55640
-assert (b6orc^-82581) = 82474
-assert (99|s0e) = 166887
-assert (-68*g67v) = 11298132
-assert (86&p(2)) = 86
-assert (52/-13594) = 0
-assert (e|v3485(1)) = -128021
-assert (106&s24oz) = 10
-assert (-176620^j) = 176522
-assert (k3^n) = 112053
-assert (-82581+-71) = -82652
-assert (99*w5mg) = 17288766
-assert (k5y(1)^m) = 165454
-assert (k0e+-167699) = -167712
-assert (k5y(1)-47894) = -47748
-assert (194/i0q) = 0
-assert (152408^b6orc) = -152551
-assert (9428-c8dsh) = 9342
-assert (79061/u8) = 476
-assert (100&194) = 64
-assert (-68-o5zw) = -262
-assert (-169/99) = -1
-assert (x7a1v*124) = -6904816
-assert (119386--2) = 119388
-assert (h2m^j) = 115563
-assert (n9v8x(5)&c7(0)) = 16
-assert (-2-7) = -9
-assert (-190635&164) = 4
-assert (e2-f) = 167828
-assert (b6orc/s589) = -1
-assert (-2/d(4)) = 0
-assert (g3^v9) = -176528
-assert (-169*x7a1v) = 9410596
-assert (15339|-68) = -1
-assert (b/k5y(0)) = 0
-assert (l1+z9oa) = -37449
-assert (-2/c8dsh) = 0
-assert (k3--29378) = 29310
-assert (-68|165596) = -4
-assert (-176620|-71) = -67
-assert (u69dx-j) = -143217
-assert (s24oz^c8dsh) = -35624
-assert (-130289^b) = 130289
-assert (u8|x(2)) = -179289
-assert (-53815+-2) = -53817
-assert (87^s589) = 43
-assert (d(3)^166) = 128
-assert (166059&156) = 136
-assert (g9+e3zct) = 64419
-assert (-2+-25249) = -25251
-assert (-191|b) = -1
-assert (-169|-102272) = -41
-assert (q7^z9oa) = -9341
-assert (166^-112119) = -111953
-assert (86|100) = 118
-assert (-98&-128118) = -128118
-assert (107+124) = 231
-assert (o5zw&m62q) = 192
-assert (-191/34) = -5
-assert (130147+o5zw) = 130341
-assert (-143315&124) = 44
-assert (100/y0q(6)) = 0
-assert (o5zw&b1wcb) = 130
-assert (166-143596) = -143430
-assert (m3ozx(3)/e2) = -361
-assert (-128118&g3) = 0
-assert (g3&k5y(0)) = 64
-assert (106-140558) = -140452
-assert (j^c8u) = 124138
-assert (u8*e8xm) = -9264294
-assert (-169^-45334) = 45501
-assert (k3*w8) = 4345064
-assert (-191*e) = -18909
-assert (w8+86) = -63812
-assert (-52112&m3ozx(0)) = -52112
-assert (192152|-169) = -33
-assert (d(0)&152408) = 16
-assert (-169^86) = -255
-assert (k5y(0)|-191) = -173
-assert (-191&g67v) = -166335
-assert (o5zw+i18my(1)) = 96839
-assert (g3-99) = 1
-assert (-168702&129) = 0
-assert (n1mj2--2) = 140560
-assert (152408&124) = 88
-assert (e-167053) = -166954
-assert (e&w8) = 98
-assert (194-v9) = 176814
-assert (34^-98) = -68
-assert (s589/n4p7w) = 0
-assert (m|e2) = 165597
-assert (g9|h4id) = 59453
-assert (124+52) = 176
-assert (166+-2) = 164
-assert (s3^-55809) = -55915
-assert (-191--92676) = 92485
-assert (n9v8x(1)^s589) = -153093
-assert (b/h) = 0
-assert (j-m) = -165694
-assert (g3+124) = 224
-assert (o5zw&59401) = 0
-assert (192152^z9oa) = -192049
-assert (166+54806) = 54972
-assert (166^166789) = 166691
-assert (s589&152408) = 88
-assert (-53815-38) = -53853
-assert (52*59401) = 3088852
-assert (x(0)|86) = 79606
-assert (z9oa+47894) = 47725
-assert (v3485(0)/k1bc) = 727
-assert (198816+-2) = 198814
-assert (s24oz*c8dsh) = -3070028
-assert (a&-191) = -45504
-assert (-2-q7) = -9430
-assert (y0q(3)+124) = -188823
-assert (s589|n4p7w) = -33283
-assert (124^166789) = 166905
-assert (j-c7(2)) = 89511
-assert (k0e+v3485(0)) = 63288
-assert (-55809+s589) = -55685
-assert (-179295-51) = -179346
-assert (k3&q47xi) = -53880
-assert (166789*g9) = 8673028
-assert (86-s8f9) = 190721
-assert (e2+32802) = 32931
-assert (63301|-98) = -33
-assert (h2m|99) = -115465
-assert (107&m62q) = 104
-assert (-98+46630) = 46532
-assert (-5710|194) = -5646
-assert (129*x(2)) = -23129055
-assert (k3*-71) = 4828
-assert (68723/99) = 694
-assert (-124044/100) = -1240
-assert (k0e|b6orc) = -13
-assert (w5r|o5zw) = -82453
-assert (h2m|100) = -115467
-assert (-191^-89609) = 89782
-assert (129+b) = 127
-assert (-190635^129) = -190508
-assert (-63898&z9oa) = -63930
-assert (194&194) = 194
-assert (-115467^-68) = 115529
-assert (j/k5y(1)) = 0
-assert (b6orc*-33291) = 6358581
-assert (99|s8f9) = -190601
-assert (o5zw*h2m) = -22400598
-assert (e2*d(0)) = 6579
-assert (q47xi-k3) = -53747
-assert (x7a1v&-6) = -55688
-assert (34+w8) = -63864
-assert (-143315/-98) = 1462
-assert (b6orc^54806) = -54953
-assert (9428^b6orc) = -9323
-assert (i0q-g9) = -108338
-assert (s589-v3485(2)) = -165935
-assert (-92676-o5zw) = -92870
-assert (25365+c8dsh) = 25451
-assert (s3|c8dsh) = 126
-assert (s8f9&s3) = 64
-assert (b1wcb-g3) = 146231
-assert (-102272&b) = -102272
-assert (86+146) = 232
-assert (w2m8c|c8dsh) = 149335
-assert (60765*k0e) = -789945
-assert (100*w2m8c) = 14925100
-assert (u69dx&86) = 4
-assert (119386/c8dsh) = 1388
-assert (87+b6orc) = -104
-assert (e|w2m8c) = 149347
-assert (-92676+107) = -92569
-assert (4*m62q) = 574384
-assert (n9v8x(3)-100) = -73668
-assert (q90s+124) = 198940
-assert (p14-166) = -130455
-assert (b+n4p7w) = -33293
-assert (k0e^-55809) = 55820
-assert (i0q/s3) = -1021
-assert (146^-45334) = -45448
-assert (-191^i0q) = 108099
-assert (194/192152) = 0
-assert (f0s^k1bc) = 46705
-assert (x3v|o5zw) = 152538
-assert (99+-32694) = -32595
-assert (k3^-55809) = 55875
-assert (-98+-29378) = -29476
-assert (s3^n4p7w) = -33377
-assert (-13-g9) = -65
-assert (-2&9428) = 9428
-assert (-191^59401) = -59576
-assert (-68&k0e) = -80
-assert (-130289-c8dsh) = -130375
-assert (140&-115467) = 132
-assert (-124044+j) = -124142
-assert (u8|-73568) = -73562
-assert (d(0)*a) = -2312034
-assert (52/h7) = 0
-assert (k5y(1)+e2) = 275
-assert (119386*-68) = -8118248
-assert (g9*100) = 5200
-assert (140+m62q) = 143736
-assert (b1wcb+j) = 146233
-assert (-55684*100) = -5568400
-assert (-124044&38) = 36
-assert (h7+b6orc) = 191961
-assert (-112119|-169) = -161
-assert (-169--55809) = 55640
-assert (100-9428) = -9328
-assert (g9*99) = 5148
-assert (d(0)^-171773) = -171728
-assert (i6&c8dsh) = 2
-assert (v3485(1)-e) = -128217
-assert (-89609/g3) = -896
-assert (n/u8) = -675
-assert (g9&m62q) = 36
-assert (k1bc/-53815) = 0
-assert (52|-124044) = -124044
-assert (149251-k1bc) = 149164
-assert (124&-176620) = 20
-assert (52&149251) = 0
-assert (99&x7a1v) = 96
-assert (w2m8c/b) = -74625
-assert (107&194) = 66
-assert (k5y(0)+-191) = 160916
-assert (e2+-108286) = -108157
-assert (100|x7a1v) = -55684
-assert (w2m8c&156) = 0
-assert (161107^z9oa) = -161276
-assert (-68|o5zw) = -2
-assert (-128118--191) = -127927
-assert (c8dsh/174634) = 0
-assert (m3ozx(5)*e9) = 425355
-assert (g3-q7) = -9328
-assert (-82581|d(3)) = -82577
-assert (-171773^86) = -171691
-assert (g9+h4id) = 59453
-assert (s589&l1) = 96
-assert (z9oa^-63898) = 63793
-assert (198816^-169) = -198665
-assert (-13/q) = 0
-assert (b|u8) = -2
-assert (152408&86) = 80
-assert (129|-2) = -1
-assert (100+119386) = 119486
-assert (-13*146331) = -1902303
-assert (n4p7w/k1bc) = -382
-assert (-53815^194) = -54005
-assert (99/38) = 2
-assert (198816-n9v8x(5)) = 198660
-assert (p(1)/s8f9) = 0
-assert (s0e|87) = 166871
-assert (-169-h7) = -192321
-assert (-13&60765) = 60753
-assert (x3v-c8dsh) = 152322
-assert (124+c8u) = -123920
-assert (-6*n) = 672714
-assert (-191--92676) = 92485
-assert (b6orc&y3oe) = 54784
-assert (164&e3zct) = 36
-assert (-98-w2m8c) = -149349
-assert (n4p7w^b) = 33291
-assert (m3ozx(3)-52) = -46682
-assert (166&d52) = 2
-assert (k3^z9oa) = 235
-assert (f0s*-98) = -4569740
-assert (j*b) = 196
-assert (s589-119386) = -119262
-assert (166789|c8dsh) = 166871
-assert (n0sf/87) = 1495
-assert (-191+-176620) = -176811
-assert (m62q+124) = 143720
-assert (s3-b1wcb) = -146225
-assert (s3^q90s) = 198858
-assert (b6orc/i18my(5)) = 0
-assert (-68+w2m8c) = 149183
-assert (v3485(0)^194) = 63367
-assert (i0q&34) = 2
-assert (c7(2)|y0q(5)) = -89601
-assert (166&b92) = 128
-assert (-115467-g3) = -115567
-assert (87*-55809) = -4855383
-assert (k0e-q) = -47
-assert (106&54806) = 2
-assert (x7a1v*g3) = -5568400
-assert (m62q-100) = 143496
-assert (b6orc--13) = -178
-assert (e3zct*194) = 12487198
-assert e9=60765
-assert b6orc=-191
-assert s0e=166789
-assert w4luv=79061
-assert w8=-63898
-assert b=-2
-assert j=-98
-assert q=34
-assert n=-112119
-assert x3v=152408
-assert u69dx=-143315
-assert n0sf=130147
-assert u8=166
-assert f0s=46630
-assert j8m2=139700
-assert q90s=198816
-assert v9=-176620
-assert k3=-68
-assert h4id=59401
-assert e=99
-assert g9=52
-assert x7a1v=-55684
-assert z9oa=-169
-assert s24oz=-35698
-assert f=-167699
-assert i0q=-108286
-assert e3zct=64367
-assert n1mj2=140558
-assert h7=192152
-assert b1wcb=146331
-assert q7=9428
-assert i6=-168702
-assert k1bc=87
-assert s3=106
-assert c8dsh=86
-assert g3=100
-assert w2m8c=149251
-assert a=-45334
-assert s8f9=-190635
-assert s589=124
-assert h2m=-115467
-assert p14=-130289
-assert n9=-92676
-assert l1=-37280
-assert o5zw=194
-assert d52=119386
-assert e2=129
-assert e8xm=-55809
-assert w5mg=174634
-assert c8u=-124044
-assert m=165596
-assert k0e=-13
-assert h=47894
-assert q47xi=-53815
-assert b92=-102272
-assert y3oe=54806
-assert w5r=-82581
-assert m62q=143596
-assert g67v=-166149
-assert n4p7w=-33291
-assert v3485(0)=63301:assert v3485(1)=-128118:assert v3485(2)=166059
-assert i18my(0)=145224:assert i18my(1)=96645:assert i18my(2)=194912:assert i18my(3)=164:assert i18my(4)=-186802:assert i18my(5)=-181661
-assert n9v8x(0)=-27226:assert n9v8x(1)=-153209:assert n9v8x(2)=-32694:assert n9v8x(3)=-73568:assert n9v8x(4)=15339:assert n9v8x(5)=156:assert n9v8x(6)=-171773
-assert x(0)=79536:assert x(1)=133821:assert x(2)=-179295:assert x(3)=-29378:assert x(4)=102564
-assert d(0)=51:assert d(1)=-71:assert d(2)=25365:assert d(3)=38:assert d(4)=-41785
-assert p(0)=32802:assert p(1)=162:assert p(2)=-25249
-assert k5y(0)=161107:assert k5y(1)=146:assert k5y(2)=109668:assert k5y(3)=193815
-assert m3ozx(0)=-6:assert m3ozx(1)=-179475:assert m3ozx(2)=68723:assert m3ozx(3)=-46630:assert m3ozx(4)=140:assert m3ozx(5)=7:assert m3ozx(6)=-13594
-assert y0q(0)=167053:assert y0q(1)=4:assert y0q(2)=-65686:assert y0q(3)=-188947:assert y0q(4)=83289:assert y0q(5)=107:assert y0q(6)=-5710
-assert c7(0)=-52112:assert c7(1)=-167696:assert c7(2)=-89609
+dim g4mfu(2)
+dim q2ndp(6)
+dim d483j(3)
+dim t0b(5)
+dim x13l3(4)
+dim z1l4i(5)
+dim n8(3)
+dim n2ecq(4)
+dim n4bm4(4)
+dim g(5)
+dim x4$(6)
+dim g0h95$(3)
+dim m3tjw$(4)
+dim c953$(6)
+dim n9dj$(5)
+dim b3$(4)
+dim h4$(2)
+dim b$(2)
+dim s8s$(6)
+dim c15$(4)
+n5xa=-158
+m8=-124602
+let y1a=-40497
+let n9kf=-58008
+t3wgs=174
+let y48wr=-195237
+y5eyh=-140457
+z=101845
+let y7yg=-166431
+let h0p=-63568
+y0s=1183
+y3q=-140005
+let p0=116700
+w76=48
+j7svk=-110265
+a=69253
+let v362=-12354
+t3kn9=166
+let b7j=-110010
+l7blo=173066
+let b=-95645
+t26v=55
+r4=10
+let d3qq=62
+let d=-135467
+e=-100
+let c=186720
+w8x=157908
+j1ez=-105265
+let v=150576
+i45=-80873
+s9=-123
+let o82=-90062
+x=-47
+h5fj9=-165381
+let f9mb=169441
+m3c=80964
+let k01=141969
+q0g=114950
+let b5n=-196015
+let y=-64466
+let b3=187744
+j3v=98812
+let l5=-130
+k2p=-195528
+h6zw=-33696
+p0oa=-45829
+n35=-60673
+let a36=102890
+let u6=-183
+let a0bh=5814
+let w=191009
+j12=-6721
+k067=-80072
+let s=-90646
+let i5a=108251
+let o9wys=-129405
+let v7=-187
+let c4n=121626
+let h7=-24577
+a17o$="PMW"
+let z8g$="PSITW"
+w$="QW"
+k$=""
+t93$="VHK R"
+let n$="KCT Z  RYB"
+let y$="QAEAR"
+let u$="FMKD QRKU"
+let j3nm$="H L"
+let a2yx$="X"
+let c$="MMTTFPUXAG"
+let z$="YFGBFJ"
+let d5$="HLE S"
+let n6u6$="L"
+let i7psl$="K"
+let s4a$="UAIENLL"
+a97$="XBXQLYL"
+let o5$="QB B K"
+f$="GDEHSS"
+let c3t3m$="PKGZT"
+let p$="I LICXGQTWF"
+l$=""
+let d43jq$="QECBCPEM"
+let s1rs$="GV"
+g8$=""
+e7y$="R  VO"
+let h2vv$="SO XQ"
+p2$="PF  JQI"
+o3q$="SHX PZCZAZ"
+x694b$="OX D E Y"
+e95uz$="VB YEM"
+b8$="CIG"
+s4er7$=""
+n71$="OUFA"
+d2$=""
+let f0$="EXMB  QAX"
+i$="M"
+b4cl0$="B"
+e8nb$="K V    WHK"
+let q$=""
+let r$="PA MEA Y"
+q9mue$="T"
+i1$="QW"
+let n4u9$="QA"
+w6$="QTYIZMK"
+let j2zg$="D URVD"
+let o4$=""
+m$="CCLZH"
+let s1ge$="FAMGUPJX"
+let y72u6$="M"
+let b7a$="XN JVFD"
+let k53$="PDF"
+let x45$="MWTWLTNS SL"
+k46gh$="C ILSFVZO"
+e1tn$=""
+let u7$="EVBT"
+j$="F BJUSC"
+p33zr$=""
+r8$="BX ZDLN"
+c0xd$="PC"
+g4mfu(0)=-57209:g4mfu(1)=110838:g4mfu(2)=-10851
+q2ndp(0)=-109411:q2ndp(1)=58383:q2ndp(2)=-148915:q2ndp(3)=99620:q2ndp(4)=111921:q2ndp(5)=196538:q2ndp(6)=-113250
+d483j(0)=25799:d483j(1)=-155258:d483j(2)=199495:d483j(3)=97188
+t0b(0)=28312:t0b(1)=8367:t0b(2)=-137959:t0b(3)=129:t0b(4)=106131:t0b(5)=-124879
+x13l3(0)=-168489:x13l3(1)=-86:x13l3(2)=94976:x13l3(3)=-87402:x13l3(4)=-692
+z1l4i(0)=-104:z1l4i(1)=157606:z1l4i(2)=-125:z1l4i(3)=-33761:z1l4i(4)=-173:z1l4i(5)=182992
+n8(0)=-55200:n8(1)=14801:n8(2)=-43904:n8(3)=144858
+n2ecq(0)=34095:n2ecq(1)=-10062:n2ecq(2)=190180:n2ecq(3)=-26857:n2ecq(4)=9
+n4bm4(0)=-74461:n4bm4(1)=164624:n4bm4(2)=45347:n4bm4(3)=98:n4bm4(4)=71499
+g(0)=-18942:g(1)=-128:g(2)=-171155:g(3)=-196722:g(4)=-116494:g(5)=12512
+x4$(0)="G":x4$(1)="EM C EGKJ":x4$(2)="FNATWYD":x4$(3)="RO MFE":x4$(4)="OBEZU":x4$(5)="BIRTNI":x4$(6)="DDYWA TSUV"
+g0h95$(0)="V HJJG BKR":g0h95$(1)="BQ UNGQQS K":g0h95$(2)="RPF":g0h95$(3)="BQQHWCS"
+m3tjw$(0)="TDAU":m3tjw$(1)="":m3tjw$(2)="Y":m3tjw$(3)="TC":m3tjw$(4)="V"
+c953$(0)="YGIBEFEEH":c953$(1)="YGKCWMJEDSP":c953$(2)="":c953$(3)="L":c953$(4)="NKWZ":c953$(5)="FPVF":c953$(6)="ZE SV  J"
+n9dj$(0)="XU TZPNP":n9dj$(1)="ZF":n9dj$(2)="AQ":n9dj$(3)="WOI  N XW":n9dj$(4)="EQ":n9dj$(5)="V"
+b3$(0)="UC UUS  H":b3$(1)="T PRWOLQ":b3$(2)="QTKCCV":b3$(3)="UTWYQCKC D":b3$(4)="KFIWHO"
+h4$(0)="RW":h4$(1)="XDQEPSDCVYA":h4$(2)="FMAGW ON"
+b$(0)="CXOSCGFC":b$(1)="P   A XNW":b$(2)="RDUMZP"
+s8s$(0)="JK":s8s$(1)="V":s8s$(2)="T PDLMW":s8s$(3)="C DURFS":s8s$(4)="RDVJUDT":s8s$(5)="KL KYBEASS":s8s$(6)="HE JV"
+c15$(0)="NZFVRNHP":c15$(1)="N HP JD":c15$(2)="OT GN":c15$(3)="T UEVAKLAD":c15$(4)="IJ"
+assert n5xa=-158
+assert m8=-124602
+assert y1a=-40497
+assert n9kf=-58008
+assert t3wgs=174
+assert y48wr=-195237
+assert y5eyh=-140457
+assert z=101845
+assert y7yg=-166431
+assert h0p=-63568
+assert y0s=1183
+assert y3q=-140005
+assert p0=116700
+assert w76=48
+assert j7svk=-110265
+assert a=69253
+assert v362=-12354
+assert t3kn9=166
+assert b7j=-110010
+assert l7blo=173066
+assert b=-95645
+assert t26v=55
+assert r4=10
+assert d3qq=62
+assert d=-135467
+assert e=-100
+assert c=186720
+assert w8x=157908
+assert j1ez=-105265
+assert v=150576
+assert i45=-80873
+assert s9=-123
+assert o82=-90062
+assert x=-47
+assert h5fj9=-165381
+assert f9mb=169441
+assert m3c=80964
+assert k01=141969
+assert q0g=114950
+assert b5n=-196015
+assert y=-64466
+assert b3=187744
+assert j3v=98812
+assert l5=-130
+assert k2p=-195528
+assert h6zw=-33696
+assert p0oa=-45829
+assert n35=-60673
+assert a36=102890
+assert u6=-183
+assert a0bh=5814
+assert w=191009
+assert j12=-6721
+assert k067=-80072
+assert s=-90646
+assert i5a=108251
+assert o9wys=-129405
+assert v7=-187
+assert c4n=121626
+assert h7=-24577
+assert a17o$="PMW"
+assert z8g$="PSITW"
+assert w$="QW"
+assert k$=""
+assert t93$="VHK R"
+assert n$="KCT Z  RYB"
+assert y$="QAEAR"
+assert u$="FMKD QRKU"
+assert j3nm$="H L"
+assert a2yx$="X"
+assert c$="MMTTFPUXAG"
+assert z$="YFGBFJ"
+assert d5$="HLE S"
+assert n6u6$="L"
+assert i7psl$="K"
+assert s4a$="UAIENLL"
+assert a97$="XBXQLYL"
+assert o5$="QB B K"
+assert f$="GDEHSS"
+assert c3t3m$="PKGZT"
+assert p$="I LICXGQTWF"
+assert l$=""
+assert d43jq$="QECBCPEM"
+assert s1rs$="GV"
+assert g8$=""
+assert e7y$="R  VO"
+assert h2vv$="SO XQ"
+assert p2$="PF  JQI"
+assert o3q$="SHX PZCZAZ"
+assert x694b$="OX D E Y"
+assert e95uz$="VB YEM"
+assert b8$="CIG"
+assert s4er7$=""
+assert n71$="OUFA"
+assert d2$=""
+assert f0$="EXMB  QAX"
+assert i$="M"
+assert b4cl0$="B"
+assert e8nb$="K V    WHK"
+assert q$=""
+assert r$="PA MEA Y"
+assert q9mue$="T"
+assert i1$="QW"
+assert n4u9$="QA"
+assert w6$="QTYIZMK"
+assert j2zg$="D URVD"
+assert o4$=""
+assert m$="CCLZH"
+assert s1ge$="FAMGUPJX"
+assert y72u6$="M"
+assert b7a$="XN JVFD"
+assert k53$="PDF"
+assert x45$="MWTWLTNS SL"
+assert k46gh$="C ILSFVZO"
+assert e1tn$=""
+assert u7$="EVBT"
+assert j$="F BJUSC"
+assert p33zr$=""
+assert r8$="BX ZDLN"
+assert c0xd$="PC"
+assert g4mfu(0)=-57209:assert g4mfu(1)=110838:assert g4mfu(2)=-10851
+assert q2ndp(0)=-109411:assert q2ndp(1)=58383:assert q2ndp(2)=-148915:assert q2ndp(3)=99620:assert q2ndp(4)=111921:assert q2ndp(5)=196538:assert q2ndp(6)=-113250
+assert d483j(0)=25799:assert d483j(1)=-155258:assert d483j(2)=199495:assert d483j(3)=97188
+assert t0b(0)=28312:assert t0b(1)=8367:assert t0b(2)=-137959:assert t0b(3)=129:assert t0b(4)=106131:assert t0b(5)=-124879
+assert x13l3(0)=-168489:assert x13l3(1)=-86:assert x13l3(2)=94976:assert x13l3(3)=-87402:assert x13l3(4)=-692
+assert z1l4i(0)=-104:assert z1l4i(1)=157606:assert z1l4i(2)=-125:assert z1l4i(3)=-33761:assert z1l4i(4)=-173:assert z1l4i(5)=182992
+assert n8(0)=-55200:assert n8(1)=14801:assert n8(2)=-43904:assert n8(3)=144858
+assert n2ecq(0)=34095:assert n2ecq(1)=-10062:assert n2ecq(2)=190180:assert n2ecq(3)=-26857:assert n2ecq(4)=9
+assert n4bm4(0)=-74461:assert n4bm4(1)=164624:assert n4bm4(2)=45347:assert n4bm4(3)=98:assert n4bm4(4)=71499
+assert g(0)=-18942:assert g(1)=-128:assert g(2)=-171155:assert g(3)=-196722:assert g(4)=-116494:assert g(5)=12512
+assert x4$(0)="G":assert x4$(1)="EM C EGKJ":assert x4$(2)="FNATWYD":assert x4$(3)="RO MFE":assert x4$(4)="OBEZU":assert x4$(5)="BIRTNI":assert x4$(6)="DDYWA TSUV"
+assert g0h95$(0)="V HJJG BKR":assert g0h95$(1)="BQ UNGQQS K":assert g0h95$(2)="RPF":assert g0h95$(3)="BQQHWCS"
+assert m3tjw$(0)="TDAU":assert m3tjw$(1)="":assert m3tjw$(2)="Y":assert m3tjw$(3)="TC":assert m3tjw$(4)="V"
+assert c953$(0)="YGIBEFEEH":assert c953$(1)="YGKCWMJEDSP":assert c953$(2)="":assert c953$(3)="L":assert c953$(4)="NKWZ":assert c953$(5)="FPVF":assert c953$(6)="ZE SV  J"
+assert n9dj$(0)="XU TZPNP":assert n9dj$(1)="ZF":assert n9dj$(2)="AQ":assert n9dj$(3)="WOI  N XW":assert n9dj$(4)="EQ":assert n9dj$(5)="V"
+assert b3$(0)="UC UUS  H":assert b3$(1)="T PRWOLQ":assert b3$(2)="QTKCCV":assert b3$(3)="UTWYQCKC D":assert b3$(4)="KFIWHO"
+assert h4$(0)="RW":assert h4$(1)="XDQEPSDCVYA":assert h4$(2)="FMAGW ON"
+assert b$(0)="CXOSCGFC":assert b$(1)="P   A XNW":assert b$(2)="RDUMZP"
+assert s8s$(0)="JK":assert s8s$(1)="V":assert s8s$(2)="T PDLMW":assert s8s$(3)="C DURFS":assert s8s$(4)="RDVJUDT":assert s8s$(5)="KL KYBEASS":assert s8s$(6)="HE JV"
+assert c15$(0)="NZFVRNHP":assert c15$(1)="N HP JD":assert c15$(2)="OT GN":assert c15$(3)="T UEVAKLAD":assert c15$(4)="IJ"
+assert (-195528>-60673) = 0
+assert (55=t3wgs) = 0
+assert ("QAEAR"="D URVD") = 0
+assert (y1a<h6zw) = -1
+assert (r8$="QA") = 0
+assert (w$=i$) = 0
+assert (g0h95$(3)<"CXOSCGFC") = -1
+assert (m3c<=55) = 0
+assert (f0$=f0$) = -1
+assert (u6<>n8(0)) = -1
+assert (n9kf>-124602) = -1
+assert (p0oa>a) = 0
+assert (q9mue$=r$) = 0
+assert ("QW"<>"SHX PZCZAZ") = -1
+assert (b4cl0$="F BJUSC") = 0
+assert (n$>e95uz$) = 0
+assert (f9mb>62) = -1
+assert (i5a>34095) = -1
+assert (d2$=d2$) = -1
+assert (-110010=-195528) = 0
+assert (g0h95$(3)>u7$) = 0
+assert ("PA MEA Y">=s8s$(1)) = 0
+assert (p0oa<-47) = -1
+assert (t26v>-60673) = -1
+assert (o82<=1183) = -1
+assert (r4<=-100) = 0
+assert (t0b(1)<=t3kn9) = 0
+assert (62=-183) = 0
+assert (j3nm$>=d2$) = -1
+assert (t26v<=s9) = 0
+assert (w76>=p0oa) = -1
+assert (""<="QA") = -1
+assert ("PA MEA Y">="") = -1
+assert (u7$>="Y") = 0
+assert (t26v<-57209) = 0
+assert (u6<=174) = -1
+assert (-130>=-12354) = -1
+assert (h5fj9>t3wgs) = 0
+assert (p0<=28312) = 0
+assert (k46gh$<h4$(1)) = -1
+assert (a36>y7yg) = -1
+assert ("NZFVRNHP"<=e1tn$) = 0
+assert (199495<=-12354) = 0
+assert (p$<i7psl$) = -1
+assert (s<=-90646) = -1
+assert (150576<=m8) = 0
+assert ("SHX PZCZAZ"<>"HLE S") = -1
+assert ("XBXQLYL"<="PMW") = 0
+assert (-64466<=y48wr) = 0
+assert ("KFIWHO">j2zg$) = -1
+assert (a2yx$<>c0xd$) = -1
+assert (p0<=k2p) = 0
+assert (174<=r4) = 0
+assert (101845<=169441) = -1
+assert ("VHK R">=j$) = -1
+assert (o9wys<-123) = -1
+assert (""<="") = -1
+assert (10=t3kn9) = 0
+assert (w$>="T") = 0
+assert ("M"="SHX PZCZAZ") = 0
+assert ("HLE S"<="T") = -1
+assert ("MMTTFPUXAG"<d5$) = 0
+assert ("T UEVAKLAD"<="XDQEPSDCVYA") = -1
+assert (t26v<=y7yg) = 0
+assert (u7$<>d2$) = -1
+assert ("">="FAMGUPJX") = 0
+assert (-116494<121626) = -1
+assert (173066<>10) = -1
+assert (p$>="EVBT") = -1
+assert ("ZE SV  J"<"MWTWLTNS SL") = 0
+assert (m$="QA") = 0
+assert (-100<>y48wr) = -1
+assert (h7>116700) = 0
+assert (-95645=j3v) = 0
+assert ("XU TZPNP"<"") = 0
+assert (d483j(1)>=-60673) = 0
+assert ("QTYIZMK"<="B") = 0
+assert (x13l3(4)=-105265) = 0
+assert (x45$<>q$) = -1
+assert (121626>=-129405) = -1
+assert ("SO XQ"<>"EXMB  QAX") = -1
+assert (114950<>-45829) = -1
+assert (e7y$>"") = -1
+assert (r8$<"SO XQ") = -1
+assert (s8s$(4)<="M") = 0
+assert (c4n<=p0) = 0
+assert (k2p>=114950) = 0
+assert (55<150576) = -1
+assert (c0xd$<>"FMKD QRKU") = -1
+assert (48>m8) = -1
+assert (m3tjw$(2)<"") = 0
+assert (u7$="PKGZT") = 0
+assert ("">u$) = 0
+assert (x694b$<b3$(0)) = -1
+assert (x4$(6)>"EM C EGKJ") = 0
+assert (b3$(0)<>"K") = -1
+assert ("I LICXGQTWF">=n6u6$) = 0
+assert (-183<p0) = -1
+assert (-33696>=-40497) = -1
+assert (""<=i$) = -1
+assert (k46gh$<o5$) = -1
+assert (j1ez>b5n) = -1
+assert (-47<=u6) = 0
+assert (o9wys=-195237) = 0
+assert (i5a>-158) = -1
+assert (p0<=-80873) = 0
+assert ("FMKD QRKU">"KCT Z  RYB") = 0
+assert (-183<=10) = -1
+assert (""<=t93$) = -1
+assert (169441<>a) = -1
+assert (-95645<111921) = -1
+assert (i7psl$<=j2zg$) = 0
+assert ("KCT Z  RYB"<>"") = -1
+assert (186720=-168489) = 0
+assert (-90062<>y1a) = -1
+assert (w$>=r8$) = -1
+assert (48=173066) = 0
+assert (c4n=s9) = 0
+assert (q9mue$<c$) = 0
+assert (k2p<>d3qq) = -1
+assert (l7blo<=b5n) = 0
+assert (x13l3(2)=5814) = 0
+assert (u7$>=n9dj$(0)) = 0
+assert (c953$(1)<"YFGBFJ") = 0
+assert ("PKGZT"<c3t3m$) = 0
+assert ("K V    WHK">"SO XQ") = 0
+assert (o82<141969) = -1
+assert (121626<>c4n) = 0
+assert ("QW"<>n71$) = -1
+assert (c15$(0)>"OX D E Y") = 0
+assert ("YGIBEFEEH"="") = 0
+assert (w$>"") = -1
+assert (x13l3(3)<>-129405) = -1
+assert (j$>="OX D E Y") = 0
+assert (a=h6zw) = 0
+assert (b5n>j1ez) = 0
+assert (-196015>=p0oa) = 0
+assert (""<u$) = -1
+assert (b7a$<x4$(1)) = 0
+assert ("H L"<>"CXOSCGFC") = -1
+assert (r$<=x45$) = 0
+assert (p$<>"CCLZH") = -1
+assert (-140457<=108251) = -1
+assert (-196015<-110010) = -1
+assert (141969<>n35) = -1
+assert (""<t93$) = -1
+assert (-171155>-90646) = 0
+assert (-60673<-129405) = 0
+assert (b5n<99620) = -1
+assert (f9mb<l5) = 0
+assert (-123=62) = 0
+assert (-100<s9) = 0
+assert (i1$="PSITW") = 0
+assert (i7psl$<i1$) = -1
+assert (p0=191009) = 0
+assert (e>=x13l3(4)) = -1
+assert ("VB YEM">c$) = -1
+assert (-187>=80964) = 0
+assert (h5fj9<>n8(1)) = -1
+assert (b3<-100) = 0
+assert ("V HJJG BKR">=q$) = -1
+assert (166<=d3qq) = 0
+assert (108251<=-60673) = 0
+assert ("EXMB  QAX"<>e7y$) = -1
+assert ("H L">="M") = 0
+assert (h2vv$<="B") = 0
+assert (j12<-63568) = 0
+assert ("IJ"="M") = 0
+assert ("KCT Z  RYB"<>"PKGZT") = -1
+assert (j1ez>=48) = 0
+assert (187744=-95645) = 0
+assert (d3qq<l7blo) = -1
+assert ("BQQHWCS"<>"L") = -1
+assert (114950>=o82) = -1
+assert (n2ecq(0)>=-187) = -1
+assert (m$<"GV") = -1
+assert (d<n8(1)) = -1
+assert (d483j(0)>t3wgs) = -1
+assert (""<="") = -1
+assert (q0g>=116700) = 0
+assert (55<t3wgs) = -1
+assert (l$<b4cl0$) = -1
+assert (u7$<"X") = -1
+assert ("">"X") = 0
+assert (x13l3(1)>n5xa) = -1
+assert (-113250>=l5) = 0
+assert (x<u6) = 0
+assert (w$<>"BX ZDLN") = -1
+assert ("NKWZ"<=k53$) = -1
+assert (s1rs$="PF  JQI") = 0
+assert (102890<z) = 0
+assert ("PF  JQI"<=s4er7$) = 0
+assert (x45$<"R  VO") = -1
+assert (191009=n8(1)) = 0
+assert ("QW"<>"VB YEM") = -1
+assert (h7<>-43904) = -1
+assert (-80873=c) = 0
+assert ("X">"QA") = -1
+assert ("FMAGW ON"=w6$) = 0
+assert ("C ILSFVZO">=o5$) = 0
+assert ("KCT Z  RYB"<z8g$) = -1
+assert (b7j<y5eyh) = 0
+assert (-58008<n2ecq(0)) = -1
+assert (q2ndp(3)<>n2ecq(3)) = -1
+assert (c4n<=a0bh) = 0
+assert ("R  VO"=p33zr$) = 0
+assert (d5$>"C ILSFVZO") = -1
+assert (p$<="PDF") = -1
+assert (i$<=u$) = 0
+assert ("I LICXGQTWF">="VB YEM") = 0
+assert (n71$=h4$(1)) = 0
+assert (-47>=y7yg) = -1
+assert (a=b3) = 0
+assert ("JK"<g8$) = 0
+assert (j1ez=k2p) = 0
+assert (s1ge$>"") = -1
+assert (-166431=q0g) = 0
+assert (r8$="FMAGW ON") = 0
+assert (n$>="QA") = 0
+assert (i7psl$>="EVBT") = -1
+assert (a36>=-129405) = -1
+assert (b8$<"UAIENLL") = -1
+assert (h2vv$>="EXMB  QAX") = -1
+assert ("EXMB  QAX">=f$) = 0
+assert (f9mb<-12354) = 0
+assert (n8(3)<>186720) = -1
+assert (k53$<=s4er7$) = 0
+assert (n6u6$="QAEAR") = 0
+assert (r8$>="GV") = 0
+assert (-113250<w) = -1
+assert (u6<>l5) = -1
+assert (14801>=-24577) = -1
+assert ("MWTWLTNS SL"<>h2vv$) = -1
+assert (-104<>116700) = -1
+assert (1183<-130) = 0
+assert (b3$(2)<="XU TZPNP") = -1
+assert (-196015<=169441) = -1
+assert ("GV"<z8g$) = -1
+assert (b3$(0)>=r8$) = -1
+assert ("QW"<="KCT Z  RYB") = 0
+assert (m3c<>1183) = -1
+assert (c3t3m$<="V") = -1
+assert (-105265<>t26v) = -1
+assert (-40497<>-140457) = -1
+assert (g4mfu(0)=-183) = 0
+assert (f9mb<=-196015) = 0
+assert ("OUFA">=a97$) = 0
+assert (b7j<>q2ndp(5)) = -1
+assert (b3=101845) = 0
+assert (187744<186720) = 0
+assert (x694b$<="K V    WHK") = 0
+assert (i5a<=-33696) = 0
+assert ("PF  JQI"<="EVBT") = 0
+assert (157908<v362) = 0
+assert (p0oa>-58008) = -1
+assert (s4er7$>=x45$) = 0
+assert (62>=o9wys) = -1
+assert (-110265>=n8(0)) = 0
+assert (b7j<>-140457) = -1
+assert (45347>=u6) = -1
+assert (k$>z$) = 0
+assert ("PMW"<>"BQ UNGQQS K") = -1
+assert (-196015=a36) = 0
+assert (166>=-45829) = -1
+assert (d2$>n71$) = 0
+assert (-26857=j1ez) = 0
+assert (v362>=-187) = 0
+assert (""="V HJJG BKR") = 0
+assert (m$="MWTWLTNS SL") = 0
+assert ("TDAU"<>n9dj$(1)) = -1
+assert ("OUFA"<c0xd$) = -1
+assert (h7>-80072) = -1
+assert (x4$(3)<="F BJUSC") = 0
+assert (p$>c15$(1)) = 0
+assert (p33zr$>="K") = 0
+assert ("">="SHX PZCZAZ") = 0
+assert ("XN JVFD"<=j3nm$) = 0
+assert (c>=n8(0)) = -1
+assert (g(1)<=y48wr) = 0
+assert ("P   A XNW"<=a17o$) = -1
+assert (c0xd$="K V    WHK") = 0
+assert (""=s8s$(3)) = 0
+assert (n71$<c$) = 0
+assert (b$(2)<>c953$(4)) = -1
+assert (s9>=-45829) = -1
+assert (i$>=j2zg$) = -1
+assert ("MMTTFPUXAG"<="MWTWLTNS SL") = -1
+assert ("GV"<>x45$) = -1
+assert ("EQ"<>"BQQHWCS") = -1
+assert (t26v<=h0p) = 0
+assert ("T"<="QECBCPEM") = 0
+assert (n$>="SHX PZCZAZ") = 0
+assert (e7y$<>d43jq$) = -1
+assert (121626=-64466) = 0
+assert ("GDEHSS">="CIG") = -1
+assert (-95645<>-195237) = -1
+assert ("C ILSFVZO">p$) = 0
+assert (x<>-124602) = -1
+assert (x694b$<=n9dj$(0)) = -1
+assert (-64466=80964) = 0
+assert (o3q$<c953$(5)) = 0
+assert (d2$=s1ge$) = 0
+assert (j7svk>-110265) = 0
+assert (1183=80964) = 0
+assert (191009<>-187) = -1
+assert (f$<>x4$(0)) = -1
+assert ("PDF">"V") = 0
+assert (f9mb<>n2ecq(4)) = -1
+assert ("">t93$) = 0
+assert (141969>=h0p) = -1
+assert (-90062<=98812) = -1
+assert (g4mfu(1)>=t3wgs) = -1
+assert (1183<=10) = 0
+assert (-130=a0bh) = 0
+assert (h2vv$<"UAIENLL") = -1
+assert (k01>=y) = -1
+assert (-195237<>-6721) = -1
+assert (s9<=q0g) = -1
+assert (150576<=l7blo) = -1
+assert (v=-24577) = 0
+assert (c0xd$<g8$) = 0
+assert ("OUFA"="QB B K") = 0
+assert (114950<>-45829) = -1
+assert (p0>w76) = -1
+assert (-155258<>n5xa) = -1
+assert ("GDEHSS"<>d5$) = -1
+assert (-80072=-40497) = 0
+assert (n$<>"M") = -1
+assert ("PC"<b4cl0$) = 0
+assert (-100>=n2ecq(4)) = 0
+assert (173066>=n5xa) = -1
+assert ("PMW"<>"GV") = -1
+assert (d3qq<>80964) = -1
+assert (y48wr=80964) = 0
+assert ("OBEZU">="SO XQ") = 0
+assert (i1$="HLE S") = 0
+assert (k46gh$<>"") = -1
+assert (n6u6$<"QAEAR") = -1
+assert (y1a<101845) = -1
+assert (a2yx$<=b8$) = 0
+assert (""="OBEZU") = 0
+assert ("PF  JQI">="QECBCPEM") = 0
+assert (a<>-158) = -1
+assert (k2p>=a) = 0
+assert (u7$>="ZE SV  J") = 0
+assert (o3q$<="PKGZT") = 0
+assert (y$<="M") = 0
+assert ("QW">="PF  JQI") = -1
+assert (p$>="K") = 0
+assert (v7<=q0g) = -1
+assert (y<k01) = -1
+assert (h6zw<>b5n) = -1
+assert ("F BJUSC"=b3$(0)) = 0
+assert (s8s$(2)>s4a$) = 0
+assert ("KCT Z  RYB">c3t3m$) = 0
+assert (121626<k01) = -1
+assert ("QW"<>"QW") = 0
+assert ("RW"<"YFGBFJ") = -1
+assert (r$<>d5$) = -1
+assert (o82<=c4n) = -1
+assert (187744>v7) = -1
+assert (y5eyh<=q0g) = -1
+assert (j12>a0bh) = 0
+assert ("KCT Z  RYB"<=p$) = 0
+assert (y7yg<191009) = -1
+assert (-64466<>191009) = -1
+assert (-195528<98812) = -1
+assert (""<="L") = -1
+assert (p0<80964) = 0
+assert (p0=v7) = 0
+assert (b7a$<>"K") = -1
+assert (n6u6$>f0$) = -1
+assert (141969=129) = 0
+assert (b=w8x) = 0
+assert (v362>-195528) = -1
+assert ("M"<"B") = 0
+assert (62=150576) = 0
+assert ("">="PC") = 0
+assert (v7<d) = 0
+assert ("MWTWLTNS SL"="P   A XNW") = 0
+assert (a17o$<>e95uz$) = -1
+assert (-80072=-63568) = 0
+assert (q$<>r8$) = -1
+assert (e=-128) = 0
+assert (a2yx$<>"XN JVFD") = -1
+assert (111921<k01) = -1
+assert (y3q<>111921) = -1
+assert (169441=1183) = 0
+assert (10<>-195237) = -1
+assert (150576<>b) = -1
+assert (-140005=w) = 0
+assert (-63568<-187) = -1
+assert (g4mfu(2)<>-87402) = -1
+assert (u6<-195237) = 0
+assert (b3>191009) = 0
+assert (o82<=150576) = -1
+assert (c4n=d3qq) = 0
+assert ("XU TZPNP"<"X") = 0
+assert ("UAIENLL">"RPF") = -1
+assert ("T PDLMW"<"BIRTNI") = 0
+assert ("YFGBFJ">s8s$(1)) = -1
+assert (""<z$) = -1
+assert ("FMKD QRKU"="UAIENLL") = 0
+assert (g4mfu(2)>y5eyh) = -1
+assert (""<=p33zr$) = -1
+assert (y72u6$=c0xd$) = 0
+assert (5814>x13l3(0)) = -1
+assert (h5fj9<101845) = -1
+assert (p0oa<=102890) = -1
+assert (x4$(2)<>"") = -1
+assert (157908>=m8) = -1
+assert ("EVBT">="SHX PZCZAZ") = 0
+assert (b$(0)>=b$(0)) = -1
+assert ("PDF">"BX ZDLN") = -1
+assert (a2yx$=a17o$) = 0
+assert (y<i45) = 0
+assert (d483j(3)<=141969) = -1
+assert ("PKGZT"<="UAIENLL") = -1
+assert (b7a$<>"EVBT") = -1
+assert (w>e) = -1
+assert ("SHX PZCZAZ">c0xd$) = -1
+assert ("QW">="D URVD") = -1
+assert (""=z$) = 0
+assert ("PKGZT">"UAIENLL") = 0
+assert ("MWTWLTNS SL"<>"PDF") = -1
+assert (t3kn9<>69253) = -1
+assert ("D URVD">=r8$) = -1
+assert (i1$<>"VHK R") = -1
+assert ("I LICXGQTWF">=z8g$) = 0
+assert (q0g>=-195528) = -1
+assert (-158>108251) = 0
+assert (o5$<=u7$) = 0
+assert (101845>=-64466) = -1
+assert (h6zw>-80873) = -1
+assert (n35<=e) = -1
+assert ("SHX PZCZAZ">"PA MEA Y") = -1
+assert (x45$<>"BX ZDLN") = -1
+assert ("VB YEM">p$) = -1
+assert (108251<-24577) = 0
+assert (o9wys<j3v) = -1
+assert (y48wr<-80873) = -1
+assert (p33zr$=c3t3m$) = 0
+assert (b5n=-24577) = 0
+assert (e7y$<>w$) = -1
+assert (-123=u6) = 0
+assert (k$>=c15$(4)) = 0
+assert (j7svk>y) = 0
+assert ("GV">="CIG") = -1
+assert (o5$<>"EQ") = -1
+assert (w$=q$) = 0
+assert (a=-158) = 0
+assert (-63568<=-26857) = -1
+assert (102890<>-110265) = -1
+assert (102890<=166) = 0
+assert (101845<>-43904) = -1
+assert ("BQQHWCS"<>"MMTTFPUXAG") = -1
+assert (174>=w8x) = 0
+assert ("T"<="XBXQLYL") = -1
+assert (r$<>d43jq$) = -1
+assert ("FMKD QRKU"<>y$) = -1
+assert (n8(1)<=-12354) = 0
+assert (174<=45347) = -1
+assert (-110265>80964) = 0
+assert (j7svk<>n4bm4(0)) = -1
+assert (g(1)>d3qq) = 0
+assert ("QW">r$) = -1
+assert ("">=j2zg$) = 0
+assert (p0<>y7yg) = -1
+assert (62<-165381) = 0
+assert ("FAMGUPJX"<="EXMB  QAX") = 0
+assert ("BX ZDLN"<=o4$) = 0
+assert ("FMKD QRKU">=q$) = -1
+assert (n35>=j3v) = 0
+assert (5814<>m3c) = -1
+assert (c953$(1)=k46gh$) = 0
+assert (j12>=-80072) = -1
+assert (b7j<>-80873) = -1
+assert ("QB B K">"PSITW") = -1
+assert ("T PRWOLQ"<="PF  JQI") = 0
+assert ("C ILSFVZO"<=n4u9$) = -1
+assert ("MWTWLTNS SL"<="") = 0
+assert (a<=-124602) = 0
+assert (""="EVBT") = 0
+assert ("EXMB  QAX"=n$) = 0
+assert (x694b$<"CIG") = 0
+assert ("SO XQ"<="GV") = 0
+assert (o5$>e8nb$) = -1
+assert (h4$(1)<>d2$) = -1
+assert (g4mfu(0)<102890) = -1
+assert (u$>=j2zg$) = -1
+assert (""<"QB B K") = -1
+assert (k46gh$<n71$) = -1
+assert (n4bm4(0)=-57209) = 0
+assert (j3nm$<="") = 0
+assert ("BX ZDLN"<>"CCLZH") = -1
+assert (k53$>o5$) = 0
+assert (e>-187) = -1
+assert ("X"<>"VB YEM") = -1
+assert (c3t3m$<m3tjw$(4)) = -1
+assert (141969<>166) = -1
+assert (b4cl0$<="SO XQ") = -1
+assert ("M"<>"OX D E Y") = -1
+assert (y5eyh<=a36) = -1
+assert (b8$>=k53$) = 0
+assert ("D URVD"="FAMGUPJX") = 0
+assert (-140457=-60673) = 0
+assert (-80873>l5) = 0
+assert (t26v<t26v) = 0
+assert ("FMAGW ON"<=m$) = 0
+assert (141969>-64466) = -1
+assert (t0b(2)<-171155) = 0
+assert (u$>"") = -1
+assert (s4er7$>="R  VO") = 0
+assert (s1ge$=p2$) = 0
+assert (-80072=-47) = 0
+assert (101845>=-165381) = -1
+assert (n4bm4(4)=-104) = 0
+assert ("GDEHSS"<=k46gh$) = 0
+assert (-140457<=-87402) = -1
+assert (e7y$<>"GDEHSS") = -1
+assert (-24577=y1a) = 0
+assert (v362>=-110010) = -1
+assert (-104<=i45) = 0
+assert (-128>=-45829) = -1
+assert (199495>1183) = -1
+assert (a17o$="I LICXGQTWF") = 0
+assert (116700>-80072) = -1
+assert (-64466<71499) = -1
+assert (-90062=-6721) = 0
+assert (h2vv$<="CIG") = 0
+assert (a<150576) = -1
+assert ("N HP JD"<>"T UEVAKLAD") = -1
+assert (a2yx$<=c15$(3)) = 0
+assert ("">=b4cl0$) = 0
+assert (w76<>i5a) = -1
+assert (t93$>="HE JV") = -1
+assert ("PSITW"="CIG") = 0
+assert ("SO XQ"<>c0xd$) = -1
+assert (v<=-195237) = 0
+assert (1183<55) = 0
+assert (w76<>n9kf) = -1
+assert (-110010=b3) = 0
+assert (y1a>=98) = 0
+assert ("XU TZPNP"<"QECBCPEM") = 0
+assert (g4mfu(0)>p0oa) = 0
+assert (n8(1)<=98) = 0
+assert (114950>-90062) = -1
+assert (p0=b5n) = 0
+assert (q2ndp(6)<a0bh) = -1
+assert (1183=110838) = 0
+assert (n9kf<>187744) = -1
+assert (f9mb>=r4) = -1
+assert (n6u6$<="T") = -1
+assert ("">="VB YEM") = 0
+assert (14801=-57209) = 0
+assert ("BX ZDLN">"EXMB  QAX") = 0
+assert (157908<y3q) = 0
+assert (p$<>"K V    WHK") = -1
+assert ("F BJUSC">l$) = -1
+assert (-168489=55) = 0
+assert (d3qq=101845) = 0
+assert (q2ndp(4)>=d483j(2)) = 0
+assert (a2yx$<>d2$) = -1
+assert (t93$<=n71$) = 0
+assert (-155258=8367) = 0
+assert (n4bm4(4)<>a) = -1
+assert ("QTKCCV"<>"OUFA") = -1
+assert ("YFGBFJ"<>"") = -1
+assert (o82=-47) = 0
+assert (n71$<>"VB YEM") = -1
+assert (c0xd$>n$) = -1
+assert ("QB B K">a17o$) = -1
+assert (z=t3wgs) = 0
+assert (s9<=62) = -1
+assert (n$>"X") = 0
+assert (-40497<p0) = -1
+assert (o3q$<>f0$) = -1
+assert (o82<=48) = -1
+assert (s1rs$<b7a$) = -1
+assert (-158=j3v) = 0
+assert (-187<g(5)) = -1
+assert ("HLE S"="MMTTFPUXAG") = 0
+assert ("HLE S"<=q$) = 0
+assert (58383>-6721) = -1
+assert (c953$(6)<b7a$) = 0
+assert (b5n>x) = 0
+assert (c0xd$<>"") = -1
+assert ("RW"<>z8g$) = -1
+assert (-196015<>-45829) = -1
+assert (-80873>q0g) = 0
+assert ("QB B K"<>w6$) = -1
+assert (s1rs$<>"WOI  N XW") = -1
+assert (55=157908) = 0
+assert (t26v<t26v) = 0
+assert (x45$="L") = 0
+assert (k53$>o5$) = 0
+assert (-158>b7j) = -1
+assert (s1ge$>"") = -1
+assert (i5a<n8(2)) = 0
+assert (157606<=y5eyh) = 0

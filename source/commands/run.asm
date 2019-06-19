@@ -190,12 +190,6 @@ ClearVariablesPointersAndStacks:
 		lda 	#$0000
 		sta 	(DBaseAddress),y
 		;
-		;		reset high pointer
-		;	
-		lda 	DHighAddress				; reset the end of memory pointer
-		ldy 	#Block_HighMemoryPtr
-		sta 	(DBaseAddress),y
-		;
 		;		reset low pointer
 		;
 		jsr 	FindCodeEnd 				; find where the program ends.
@@ -222,7 +216,11 @@ _FCLoop:
 		;
 		;		Force reset on temp string allocation
 		;
-		stz 	DTempStringPointer 					
+		stz 	DTempStringPointer 			
+		;
+		;		Reset permanent string pointer
+		;		
+		jsr 	StringResetPermanent
 		rts
 
 ; *******************************************************************************************

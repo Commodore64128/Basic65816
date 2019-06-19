@@ -23,7 +23,8 @@ StartOfBasicCode:
 
 		.include "utility/editline.asm"				; line insert/delete
 		.include "utility/utility.asm"				; utility stuff.
-		.include "utility/stringutils.asm"			; string utility stuff.
+		.include "utility/stringconcrete.asm"		; string (permanent)
+		.include "utility/stringtemp.asm" 			; string (temporary)
 		.include "utility/tokeniser.asm"			; ASCII -> Tokens converter
 
 		.include "binary/arithmetic.asm"			; binary operators
