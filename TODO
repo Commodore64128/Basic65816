@@ -1,7 +1,5 @@
 Main
 ----
-- analyse string usage ?
-- allocate more than required ?
 - Dog food !!
 - Parameters (not arrays)
 - Switchable environments.
@@ -19,7 +17,6 @@ Fixes
 
 - 	short cut, check still uses current one if string will fit in that space.
 
-
 (all check LowMem vs HighMem)
 
 - adding new lines, out of memory.
@@ -30,3 +27,23 @@ Fixes
 
 - when concreting, check that doesn't run out of memory. 
 
+Addressing Modes
+================
+
+op.a 	nnnn
+op.a 	nnnn,x
+op.a 	(nnnn)
+op.a 	(nnnn,x)
+op.d 	nn
+op.d 	nn,x
+op.d 	nn,y
+op.d 	(nn)
+op.d 	[nn]
+op.d 	(nn,x)
+op.d 	(nn),y
+op.d 	[nn],y
+op 		#
+op.l 	nnnnnn
+op.l 	nnnnnn,x
+op.s 	nnnn,s
+op.s 	(nnnn,s),y

@@ -8,11 +8,15 @@ rem call exec.bat basicblock.py
 rem call exec.bat test_creation.py
 rem python ..\scripts\showdump.py
 rem call exec.bat make_tokenise.py
+rem python ../scripts/showdump.py
+
 rem call exec.bat test_change.py
+rem python ../scripts/stringusage.py
 
 rem call exec.bat make_editor.py
 rem python ..\scripts\check_editor.py
 
 call exec.bat make_basic.py ../build/basic.bas
+
 
 

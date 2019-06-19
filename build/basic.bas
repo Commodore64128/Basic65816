@@ -1,4 +1,5 @@
 @run
+
 100 REM "Bomber"
 105 a$ = "Outer"
 106 x1=42

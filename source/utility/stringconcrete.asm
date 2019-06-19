@@ -43,7 +43,14 @@ StringResetPermanent:
 StringReassign:
 		phx 								; save X.
 		tyx 								; save the pointer to the current on X.
-		pha 								; save the new string address on stack
+
+		tay 								; get length of new string.
+		lda 	@w$0000,y
+		and 	#$00FF
+		bne 	_SRAContent
+		brl 	_SRAEmpty 					; if zero, return empty address.
+_SRAContent:
+		phy 								; save the new string address on stack
 
 		lda 	@w$0000,x 					; address of the old string in A
 		ldy 	#Block_HighMemoryPtr 		; compare it against the high memory pointer
@@ -108,6 +115,11 @@ _SRAAllocate:
 		lda 	$0000,y 					; get its length
 		and 	#$00FF 						; one more for the byte count.
 		inc 	a
+		clc  								; make it bigger than needed ; this allows a bit of
+		adc 	#4 							; space for expansion.
+		bcc 	_SRANoCarry
+		lda 	#255
+_SRANoCarry:		
 		jsr 	StringAllocateSpace 		; allocate A bytes from High Memory -> A
 		;
 		;		A points to the start of the allocated space, the target string address is on the stack.
@@ -132,6 +144,15 @@ _SRACopy:
 		bne 	_SRACopy
 		plx 								; restore X and exit.
 		rts
+		;
+_SRAEmpty:
+		lda 	#Block_EmptyString 			; otherwise fill with this address.
+		clc 								; which is guaranteed by have a 0 length.
+		adc 	DBaseAddress
+		sta 	@w$0000,x
+		stz 	@w$0002,x
+		plx
+		rts		
 
 StringAllocateSpace:
 		phx									; save XY
