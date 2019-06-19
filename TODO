@@ -1,5 +1,7 @@
 Main
 ----
+- analyse string usage ?
+- allocate more than required ?
 - Dog food !!
 - Parameters (not arrays)
 - Switchable environments.
@@ -14,6 +16,9 @@ Fixes
 - 	allocating stack for FOR REPEAT WHILE IF LOCAL PROC etc.
 
 - 	fewer bytes allocate in convert to string for bases >= 10 (say)
+
+- 	short cut, check still uses current one if string will fit in that space.
+
 
 (all check LowMem vs HighMem)
 

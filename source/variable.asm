@@ -282,8 +282,10 @@ _VCErase:
 _VCDontClone:		
 		sta 	$0002,y 					; save at offset +2
 		;
-		pla 								; restore count and store.
+		pla 								; restore count and store (if nonzero)
+		beq 	_VCNotArray2
 		sta 	$0004,y
+_VCNotArray2:		
 		;
 		tya 								; update the head link
 		sta 	(DHashTablePtr)

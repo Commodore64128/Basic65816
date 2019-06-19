@@ -86,11 +86,8 @@ _FLetNotArray:
 _FLetString:
 		jsr 	EvaluateString 				; get a string.
 		lda 	EXSValueL+0,x				; get the low word, the address
-		jsr 	StringAssignPermanent 		; make the string permanent.
-		ply 								; get address		
-		sta 	$0000,y 					; save in variable low.
-		lda 	#$0000 						; clear variable high
-		sta 	$0002,y
+		ply 								; get address we are overwriting.
+		jsr 	StringReassign 				; reassign that address
 		rts
 
 _FLetMissingEquals:
