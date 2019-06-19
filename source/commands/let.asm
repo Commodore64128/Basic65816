@@ -86,7 +86,7 @@ _FLetNotArray:
 _FLetString:
 		jsr 	EvaluateString 				; get a string.
 		lda 	EXSValueL+0,x				; get the low word, the address
-		jsr 	StringMakeConcrete 			; make a copy of it in permanent store.
+		jsr 	StringAssignPermanent 		; make the string permanent.
 		ply 								; get address		
 		sta 	$0000,y 					; save in variable low.
 		lda 	#$0000 						; clear variable high

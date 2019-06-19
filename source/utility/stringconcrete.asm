@@ -27,7 +27,7 @@ StringResetPermanent:
 ;
 ; *******************************************************************************************
 
-StringMakeConcrete:
+StringAssignPermanent:
 		ldy 	#Block_LowMemoryPtr 		; compare the address against low memory.
 		cmp 	(DBaseAddress),y 			; if the address is < this, then it doesn't need concreting.
 		bcc 	_SMCExit

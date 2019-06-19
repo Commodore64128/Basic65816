@@ -170,9 +170,9 @@ Function_STOP: ;; stop
 ;
 ;	(i) 	Basic stack
 ;	(ii)	Pointer used for NULL string
-;	(iii)	High memory pointer to top of memory
-;	(iv)	Low memory pointer to end of program
-;	(v)		Clear the Variable Hash Tables.
+;	(iii)	Low memory pointer to end of program
+;	(iv)	Clear the Variable Hash Tables.
+;	(v)		Reset the permanent string space (high memory).
 ;
 ; *******************************************************************************************
 

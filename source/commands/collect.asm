@@ -71,7 +71,7 @@ _FCO2:
 		lda 	(DSignCount)				; the address of the string text is the highest next time round.
 		sta 	DTemp2 						; store in DTemp2
 
-		jsr 	StringMakeConcrete 			; make the string concrete.
+		jsr 	StringAssignPermanent 		; make the string concrete.
 		ply 								; restore the string.
 		sta 	$0000,y 					; update the pointer.
 

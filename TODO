@@ -1,7 +1,7 @@
 Main
 ----
 - Dog food !!
-
+- Rewrite the string allocation stuff.
 - Parameters (not arrays)
 - Switchable environments.
 - 65816 assembler.
