@@ -42,6 +42,7 @@ StartOfBasicCode:
 		
 		.include "commands/let.asm" 				; assignment
 		.include "commands/procedure.asm"			; proc/endproc
+		.include "commands/local.asm" 				; local BASIC handler.
 		.include "commands/list.asm"				; list / detokenising code.
 		.include "commands/print.asm"				; print.
 		.include "commands/if.asm"					; conditional execution.

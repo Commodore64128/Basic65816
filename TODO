@@ -2,10 +2,10 @@ Main
 ----
 - Dog food !!
 
-- LOCALs 
 - Parameters (not arrays)
 - Switchable environments.
 - 65816 assembler.
+- Garbage collection, value on stack ???
 
 Fixes
 -----

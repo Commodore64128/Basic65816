@@ -102,13 +102,13 @@ _FPROUnknown:
 ; *******************************************************************************************
 
 Function_ENDPROC: ;; endproc
-		;
-		;		Pop locals ?
-		;
 		ldx 	DStack
 		lda 	$00,x
+		cmp 	#$C000 						; is it a local/parameter ?
+		bcs 	_FENPPopLocal
+		;
 		cmp 	#procTokenID 				; check top token.		
-		bne 	_FEnPFail
+		bne 	_FENPFail
 		txa 								; unpick stack.
 		sec
 		sbc 	#6
@@ -120,5 +120,19 @@ Function_ENDPROC: ;; endproc
 		sta 	DLineNumber
 		rts
 
-_FEnPFail:
+_FENPFail:
 		#error 	"EndProc without Proc"
+
+_FENPPopLocal:
+		lda 	DStack 						; wind stack down.
+		sec
+		sbc 	#8
+		sta 	DStack
+		tax
+		lda 	$02,x 						; get address
+		tay
+		lda 	$04,x 						; copy data
+		sta 	$0000,y
+		lda 	$06,x
+		sta 	$0002,y
+		bra 	Function_ENDPROC				

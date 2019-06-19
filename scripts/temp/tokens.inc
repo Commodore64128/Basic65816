@@ -69,7 +69,7 @@ CommandJumpTable:
 	.word Function_LINK            & $FFFF ; token $3e40 "link"
 	.word Function_NEW             & $FFFF ; token $3e41 "new"
 	.word Function_PROC            & $FFFF ; token $3e42 "proc"
-	.word IllegalToken             & $FFFF ; token $3e43 "local"
+	.word Command_LOCAL            & $FFFF ; token $3e43 "local"
 	.word Function_REPEAT          & $FFFF ; token $3c44 "repeat"
 	.word Function_WHILE           & $FFFF ; token $3c45 "while"
 	.word Function_IF              & $FFFF ; token $3c46 "if"
