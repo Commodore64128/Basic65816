@@ -22,13 +22,13 @@
 StringResetPermanent:
 		lda 	DHighAddress				; the end of memory
 		dec 	a 							; subtract 2 to add a null terminator.
-		dec 	a
+		dec 	a 							; at the top of memory.
 		tay
 		pha
 		lda 	#$0000
 		sta 	$0000,y						; reset that link to next to $0000.
 		pla
-		ldy 	#Block_HighMemoryPtr		; save the high memory pointer, which is the start of the link
+		ldy 	#Block_HighMemoryPtr		; save the high memory pointer, which is the first link.
 		sta 	(DBaseAddress),y
 		rts
 
@@ -41,61 +41,75 @@ StringResetPermanent:
 ; *******************************************************************************************
 
 StringReassign:
-		phx 								; save X.
-		tyx 								; save the pointer to the current on X.
-
-		tay 								; get length of new string.
+		phx 								; save X
+		tyx 								; save the pointer to the current value into X.
+		;
+		;		We don't need the old string any more, we're replacing it.
+		;
+		tay 								; put address of the new string in Y
 		lda 	@w$0000,x					; address of the old string in A
 		jsr 	StringRelease 				; release the old string
-
-		lda 	@w$0000,y
-		and 	#$00FF
+		;
+		;		If the new string is empty, we can store the standard NULL value there.
+		;
+		lda 	@w$0000,y 					; get length
+		and 	#$00FF 						; mask it off.
 		bne 	_SRAContent
 		brl 	_SRAEmpty 					; if zero, return empty address.
 _SRAContent:
 		phy 								; save the new string address on stack
 		;
-		;		Search for a string of suitable length that's available.
+		;		Search for a string of suitable length that's available. Work out how long
+		; 		we need this string space to be.
 		;
 		ply 								; restore and save the new string address
 		phy
 		lda 	$0000,y 					; get the length of this new string
 		and 	#$00FF 						; mask it off.
 		inc 	a 							; we want one more, for the length byte.
-		sta 	DTemp5
+		sta 	DTemp5 						; the length required is stored in DTemp5.
+		;
+		;		Work down the string chain looking for strings that aren't used.
+		;
 		ldy 	#Block_HighMemoryPtr		; start position in Y		
-		lda 	(DBaseAddress),y
+		lda 	(DBaseAddress),y 			
 		tay
 		;
-		;		Check blocks sequentially
+		;		Check blocks sequentially ; this is the search for unused blocks loop.
 		;
 _SRACheckUnused:
-		lda 	$0000,y 					; offset to next
+		lda 	$0000,y 					; this is the offset/size to the next (actually offset is 2 more)
 		beq 	_SRAAllocate 				; if zero, nothing fits, so allocate a new chunk.
-		bpl 	_SRACheckNext 				; if +ve then it is in use, so can't use that either.
-		and 	#$7FFF 						; it's available, get the actual size.
-		cmp 	DTemp5 						; compare against the required length
-		bcc 	_SRACheckNext 				; too small.
 		;
-		sta 	$0000,y 					; it's okay - write back with the bit cleared.
+		bpl 	_SRACheckNext 				; if +ve then it is in use, so can't use that either.
+		;
+		and 	#$7FFF 						; it's available, get the actual size of this bhunk.
+		cmp 	DTemp5 						; compare against the required length
+		bcc 	_SRACheckNext 				; too small, go and look at the next block.
+		;
+		;		We've found a block we can use for the new string.
+		;
+		sta 	$0000,y 					; it's okay - write back with bit 15 cleared.
 		tya 								; A is the address of the link
-		inc 	a 							; add 2, it's the data.
-		inc 	a
-		bra 	_SRACopyA 					; copy there.
+		inc 	a 							; add 2, to make this the address of the data space associated
+		inc 	a 							; with it.
+		bra 	_SRACopyA 					; go and copy it there.
 		;	
+		;		Try the next string block.
+		;
 _SRACheckNext:
-		lda 	$0000,y 					; get offset , mask bit 15
+		lda 	$0000,y 					; get offset , mask bit 15 out, this is the size of the block.
 		and 	#$7FFF
-		sta 	DTemp5+2 					; save it
-		tya 								; add to Y
+		sta 	DTemp5+2 					; save it in temporary space.
+		tya 								; add to the offset to the current address
 		clc
 		adc 	DTemp5+2						
-		inc 	a 							; add 2 more for the link itself
+		inc 	a 							; add 2 more for the link itself, the link is 2 less than the offset.
 		inc 	a
-		tay
+		tay 								; put it in Y, go check that one.
 		bra 	_SRACheckUnused
 		;
-		;		Allocate a string of the required space.
+		;		Allocate a string of the required space - couldn't find one in the string list.
 		;
 _SRAAllocate:
 		ply 								; get the new string address back.
@@ -105,7 +119,7 @@ _SRAAllocate:
 		inc 	a
 		clc  								; make it bigger than needed ; this allows a bit of
 		adc 	#4 							; space for expansion.
-		bcc 	_SRANoCarry
+		bcc 	_SRANoCarry 				; can't do more than this.
 		lda 	#255
 _SRANoCarry:		
 		jsr 	StringAllocateSpace 		; allocate A bytes from High Memory -> A
@@ -121,18 +135,20 @@ _SRACopyA:
 		and 	#$00FF 						; mask, add 1 for length byte.
 		inc 	a
 		sta 	DTemp5 						; save counter.
-_SRACopy:
 		sep 	#$20
+_SRACopy:
 		lda 	@w$0000,y 					; copy byte over
 		sta 	@W$0000,x 
-		rep 	#$20
 		iny
 		inx
 		dec 	DTemp5 						; do it this many times.
 		bne 	_SRACopy
+		rep 	#$20
 		plx 								; restore X and exit.
 		rts
 		;
+		;		Set up to point to empty string.
+		;		
 _SRAEmpty:
 		lda 	#Block_EmptyString 			; otherwise fill with this address.
 		clc 								; which is guaranteed by have a 0 length.
@@ -176,9 +192,9 @@ StringAllocateSpace:
 ; *******************************************************************************************
 
 StringRelease:		
-		phy
+		phy									; save Y
 		ldy 	#Block_HighMemoryPtr 		; compare it against the high memory pointer
-		cmp 	(DBaseAddress),y 			; if < this then we don't need to release it first.
+		cmp 	(DBaseAddress),y 			; if < this then we don't need to release it 
 		bcc 	_SASNoRelease
 		;
 		;		Release string from usage.

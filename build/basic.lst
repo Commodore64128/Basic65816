@@ -1,7 +1,7 @@
 
 ; 64tass Turbo Assembler Macro V1.54.1900 listing file
 ; 64tass --m65816 -f -q -o basic.bin -L basic.lst ..\source\start.asm
-; Thu Jun 20 13:59:09 2019
+; Thu Jun 20 19:29:07 2019
 
 ;Offset	;Hex		;Monitor	;Source
 
@@ -954,23 +954,23 @@
 .01067b					StringResetPermanent:
 .01067b	a5 04		lda $04				lda 	DHighAddress				; the end of memory
 .01067d	3a		dec a				dec 	a 							; subtract 2 to add a null terminator.
-.01067e	3a		dec a				dec 	a
+.01067e	3a		dec a				dec 	a 							; at the top of memory.
 .01067f	a8		tay				tay
 .010680	48		pha				pha
 .010681	a9 00 00	lda #$0000			lda 	#$0000
 .010684	99 00 00	sta $0000,y			sta 	$0000,y						; reset that link to next to $0000.
 .010687	68		pla				pla
-.010688	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr		; save the high memory pointer, which is the start of the link
+.010688	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr		; save the high memory pointer, which is the first link.
 .01068b	91 02		sta ($02),y			sta 	(DBaseAddress),y
 .01068d	60		rts				rts
 .01068e					StringReassign:
-.01068e	da		phx				phx 								; save X.
-.01068f	bb		tyx				tyx 								; save the pointer to the current on X.
-.010690	a8		tay				tay 								; get length of new string.
+.01068e	da		phx				phx 								; save X
+.01068f	bb		tyx				tyx 								; save the pointer to the current value into X.
+.010690	a8		tay				tay 								; put address of the new string in Y
 .010691	bd 00 00	lda $0000,x			lda 	@w$0000,x					; address of the old string in A
 .010694	20 3c 07	jsr $01073c			jsr 	StringRelease 				; release the old string
-.010697	b9 00 00	lda $0000,y			lda 	@w$0000,y
-.01069a	29 ff 00	and #$00ff			and 	#$00FF
+.010697	b9 00 00	lda $0000,y			lda 	@w$0000,y 					; get length
+.01069a	29 ff 00	and #$00ff			and 	#$00FF 						; mask it off.
 .01069d	d0 03		bne $0106a2			bne 	_SRAContent
 .01069f	82 71 00	brl $010713			brl 	_SRAEmpty 					; if zero, return empty address.
 .0106a2					_SRAContent:
@@ -980,32 +980,32 @@
 .0106a5	b9 00 00	lda $0000,y			lda 	$0000,y 					; get the length of this new string
 .0106a8	29 ff 00	and #$00ff			and 	#$00FF 						; mask it off.
 .0106ab	1a		inc a				inc 	a 							; we want one more, for the length byte.
-.0106ac	85 36		sta $36				sta 	DTemp5
+.0106ac	85 36		sta $36				sta 	DTemp5 						; the length required is stored in DTemp5.
 .0106ae	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr		; start position in Y
 .0106b1	b1 02		lda ($02),y			lda 	(DBaseAddress),y
 .0106b3	a8		tay				tay
 .0106b4					_SRACheckUnused:
-.0106b4	b9 00 00	lda $0000,y			lda 	$0000,y 					; offset to next
+.0106b4	b9 00 00	lda $0000,y			lda 	$0000,y 					; this is the offset/size to the next (actually offset is 2 more)
 .0106b7	f0 22		beq $0106db			beq 	_SRAAllocate 				; if zero, nothing fits, so allocate a new chunk.
 .0106b9	10 0f		bpl $0106ca			bpl 	_SRACheckNext 				; if +ve then it is in use, so can't use that either.
-.0106bb	29 ff 7f	and #$7fff			and 	#$7FFF 						; it's available, get the actual size.
+.0106bb	29 ff 7f	and #$7fff			and 	#$7FFF 						; it's available, get the actual size of this bhunk.
 .0106be	c5 36		cmp $36				cmp 	DTemp5 						; compare against the required length
-.0106c0	90 08		bcc $0106ca			bcc 	_SRACheckNext 				; too small.
-.0106c2	99 00 00	sta $0000,y			sta 	$0000,y 					; it's okay - write back with the bit cleared.
+.0106c0	90 08		bcc $0106ca			bcc 	_SRACheckNext 				; too small, go and look at the next block.
+.0106c2	99 00 00	sta $0000,y			sta 	$0000,y 					; it's okay - write back with bit 15 cleared.
 .0106c5	98		tya				tya 								; A is the address of the link
-.0106c6	1a		inc a				inc 	a 							; add 2, it's the data.
-.0106c7	1a		inc a				inc 	a
-.0106c8	80 26		bra $0106f0			bra 	_SRACopyA 					; copy there.
+.0106c6	1a		inc a				inc 	a 							; add 2, to make this the address of the data space associated
+.0106c7	1a		inc a				inc 	a 							; with it.
+.0106c8	80 26		bra $0106f0			bra 	_SRACopyA 					; go and copy it there.
 .0106ca					_SRACheckNext:
-.0106ca	b9 00 00	lda $0000,y			lda 	$0000,y 					; get offset , mask bit 15
+.0106ca	b9 00 00	lda $0000,y			lda 	$0000,y 					; get offset , mask bit 15 out, this is the size of the block.
 .0106cd	29 ff 7f	and #$7fff			and 	#$7FFF
-.0106d0	85 38		sta $38				sta 	DTemp5+2 					; save it
-.0106d2	98		tya				tya 								; add to Y
+.0106d0	85 38		sta $38				sta 	DTemp5+2 					; save it in temporary space.
+.0106d2	98		tya				tya 								; add to the offset to the current address
 .0106d3	18		clc				clc
 .0106d4	65 38		adc $38				adc 	DTemp5+2
-.0106d6	1a		inc a				inc 	a 							; add 2 more for the link itself
+.0106d6	1a		inc a				inc 	a 							; add 2 more for the link itself, the link is 2 less than the offset.
 .0106d7	1a		inc a				inc 	a
-.0106d8	a8		tay				tay
+.0106d8	a8		tay				tay 								; put it in Y, go check that one.
 .0106d9	80 d9		bra $0106b4			bra 	_SRACheckUnused
 .0106db					_SRAAllocate:
 .0106db	7a		ply				ply 								; get the new string address back.
@@ -1015,7 +1015,7 @@
 .0106e3	1a		inc a				inc 	a
 .0106e4	18		clc				clc  								; make it bigger than needed ; this allows a bit of
 .0106e5	69 04 00	adc #$0004			adc 	#4 							; space for expansion.
-.0106e8	90 03		bcc $0106ed			bcc 	_SRANoCarry
+.0106e8	90 03		bcc $0106ed			bcc 	_SRANoCarry 				; can't do more than this.
 .0106ea	a9 ff 00	lda #$00ff			lda 	#255
 .0106ed					_SRANoCarry:
 .0106ed	20 21 07	jsr $010721			jsr 	StringAllocateSpace 		; allocate A bytes from High Memory -> A
@@ -1028,15 +1028,15 @@
 .0106fb	29 ff 00	and #$00ff			and 	#$00FF 						; mask, add 1 for length byte.
 .0106fe	1a		inc a				inc 	a
 .0106ff	85 36		sta $36				sta 	DTemp5 						; save counter.
-.010701					_SRACopy:
 .010701	e2 20		sep #$20			sep 	#$20
+.010703					_SRACopy:
 .010703	b9 00 00	lda $0000,y			lda 	@w$0000,y 					; copy byte over
 .010706	9d 00 00	sta $0000,x			sta 	@W$0000,x
-.010709	c2 20		rep #$20			rep 	#$20
-.01070b	c8		iny				iny
-.01070c	e8		inx				inx
-.01070d	c6 36		dec $36				dec 	DTemp5 						; do it this many times.
-.01070f	d0 f0		bne $010701			bne 	_SRACopy
+.010709	c8		iny				iny
+.01070a	e8		inx				inx
+.01070b	c6 36		dec $36				dec 	DTemp5 						; do it this many times.
+.01070d	d0 f4		bne $010703			bne 	_SRACopy
+.01070f	c2 20		rep #$20			rep 	#$20
 .010711	fa		plx				plx 								; restore X and exit.
 .010712	60		rts				rts
 .010713					_SRAEmpty:
@@ -1068,9 +1068,9 @@
 .01073a	fa		plx				plx
 .01073b	60		rts				rts
 .01073c					StringRelease:
-.01073c	5a		phy				phy
+.01073c	5a		phy				phy									; save Y
 .01073d	a0 0a 00	ldy #$000a			ldy 	#Block_HighMemoryPtr 		; compare it against the high memory pointer
-.010740	d1 02		cmp ($02),y			cmp 	(DBaseAddress),y 			; if < this then we don't need to release it first.
+.010740	d1 02		cmp ($02),y			cmp 	(DBaseAddress),y 			; if < this then we don't need to release it
 .010742	90 0c		bcc $010750			bcc 	_SASNoRelease
 .010744	a8		tay				tay 								; the address of the old string
 .010745	88		dey				dey 								; point to the link.
