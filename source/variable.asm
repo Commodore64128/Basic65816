@@ -49,16 +49,22 @@ _VANNotArray:
 		pla 								; get the token back.
 		and 	#IDTypeMask 				; this is the integer/string bit. $2000 if string, $0000 if int
 		eor 	#IDTypeMask 				; now $0000 if string, $2000 if integer.
-		sec 								; set up return string.
-		beq 	_VANLoadLower 				; if zero, Y = 0 and just load the lower address with the variable (string)
+		beq 	_VANIsString 				; if zero, Y = 0 and just load the lower address with the variable (string)
 		clc 								; returning a number, read high data word
 		ldy 	#2
 		lda 	(DVariablePtr),y
-_VANLoadLower:
 		tay 								; put A into Y (this is the high byte)
 		lda 	(DVariablePtr)				; read the low data word
 		rts
+_VANIsString:
+		lda 	(DVariablePtr)
+		beq 	_VANNull
+		ldy 	#0
+		sec
+		rts
 
+_VANNull:
+		#error 	"String is NULL"
 _VANError:
 		#error	"Variable unknown"
 

@@ -80,7 +80,20 @@ _LPVFound:
 		lda 	$0002,y 					; offset 4 LSW
 		sta 	$06,x
 		pla 								; get the type header
-		sta 	$08,x 						; update the BASIC stack.
+		sta 	$08,x 						; update the BASIC stack.		
+		;
+		;		Reset the new local variable to 0 or "". If it maintains it's string
+		; 		value then it can be released on assignment.
+		;
+		and 	#IDTypeMask 				; zero if integer, non zero if string
+		beq 	_LPVClear
+		lda 	#Block_EmptyString 			; if string use this address.
+		clc 								; which is guaranteed by have a 0 length.
+		adc 	DBaseAddress
+_LPVClear:		
+		sta 	$0000,y
+		lda 	#$0000
+		sta 	$0002,y
 		;
 		;		Update the stack pointer.
 		;
@@ -89,11 +102,10 @@ _LPVFound:
 		adc 	#8
 		sta 	DStack
 		sec
+		tya 								; return address
 		rts
 
 _LPVFail:
 		clc
 		rts
-
-
 
