@@ -102,11 +102,10 @@ _FPROUnknown:
 ; *******************************************************************************************
 
 Function_ENDPROC: ;; endproc
-		ldx 	DStack
+		ldx 	DStack						; what's on the top of the stack.
 		lda 	$00,x
-		cmp 	#$C000 						; is it a local/parameter ?
-		bcs 	_FENPPopLocal
-		;
+		cmp 	#$C000 						; if local unstack a local
+		bcs 	_FENPUnstack
 		cmp 	#procTokenID 				; check top token.		
 		bne 	_FENPFail
 		txa 								; unpick stack.
@@ -123,17 +122,6 @@ Function_ENDPROC: ;; endproc
 _FENPFail:
 		#error 	"EndProc without Proc"
 
-_FENPPopLocal:
-		lda 	DStack 						; wind stack down.
-		sec
-		sbc 	#8
-		sta 	DStack
-		tax
-		lda 	$02,x 						; get address
-		tay
-		lda 	$04,x 						; copy data
-		sta 	$0000,y
-		lda 	$06,x
-		sta 	$0002,y
-		bra 	Function_ENDPROC				
-
+_FENPUnstack:
+		jsr 	LocalRestore 				; restore off the stack.
+		bra 	Function_ENDPROC

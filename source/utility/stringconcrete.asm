@@ -45,30 +45,18 @@ StringReassign:
 		tyx 								; save the pointer to the current on X.
 
 		tay 								; get length of new string.
+		lda 	@w$0000,x					; address of the old string in A
+		jsr 	StringRelease 				; release the old string
+
 		lda 	@w$0000,y
 		and 	#$00FF
 		bne 	_SRAContent
 		brl 	_SRAEmpty 					; if zero, return empty address.
 _SRAContent:
 		phy 								; save the new string address on stack
-
-		lda 	@w$0000,x 					; address of the old string in A
-		ldy 	#Block_HighMemoryPtr 		; compare it against the high memory pointer
-		cmp 	(DBaseAddress),y 			; if < this then we don't need to release it first.
-		bcc 	_SRANoRelease
-		;
-		;		Release string from usage.
-		;
-		ldy 	@w$0000,x 					; the address of the old string
-		dey 								; point to the link.
-		dey
-		lda 	@w$0000,y 					; and set the available bit.
-		ora 	#$8000 						
-		sta 	@w$0000,y
 		;
 		;		Search for a string of suitable length that's available.
 		;
-_SRANoRelease:		
 		ply 								; restore and save the new string address
 		phy
 		lda 	$0000,y 					; get the length of this new string
@@ -154,6 +142,12 @@ _SRAEmpty:
 		plx
 		rts		
 
+; *******************************************************************************************
+;
+;								Allocate space for strings
+;
+; *******************************************************************************************
+
 StringAllocateSpace:
 		phx									; save XY
 		phy
@@ -175,7 +169,29 @@ StringAllocateSpace:
 		plx
 		rts
 
+; *******************************************************************************************
+;
+;						Attempt to release the string at address A
+;
+; *******************************************************************************************
 
+StringRelease:		
+		phy
+		ldy 	#Block_HighMemoryPtr 		; compare it against the high memory pointer
+		cmp 	(DBaseAddress),y 			; if < this then we don't need to release it first.
+		bcc 	_SASNoRelease
+		;
+		;		Release string from usage.
+		;
+		tay 								; the address of the old string
+		dey 								; point to the link.
+		dey
+		lda 	@w$0000,y 					; and set the available bit.
+		ora 	#$8000 						
+		sta 	@w$0000,y
+_SASNoRelease:	
+		ply
+		rts
 
 
 

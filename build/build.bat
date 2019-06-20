@@ -17,6 +17,7 @@ rem call exec.bat make_editor.py
 rem python ..\scripts\check_editor.py
 
 call exec.bat make_basic.py ../build/basic.bas
+python ../scripts/stringusage.py
 
 
 

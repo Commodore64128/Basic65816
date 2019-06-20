@@ -1,5 +1,7 @@
 Main
 ----
+- Parameters reset tempstring with every parameter, concrete otherwise. 
+	(check calling multiple times doesn't create lots of strings)
 - Dog food !!
 - Parameters (not arrays)
 - Switchable environments.
@@ -7,6 +9,7 @@ Main
 
 Fixes
 -----
+
 - 	detokenising lines, too long ?
 
 - 	expressions stack sizes and spacing and testing. same for basic stack.
