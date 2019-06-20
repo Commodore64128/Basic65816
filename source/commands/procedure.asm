@@ -59,20 +59,34 @@ _FPROCompare: 								; check loop
 		and 	#IDContMask 				; while there's more to test
 		bne 	_FPROCompare
 		;
+		lda 	@w$0002,x 					; read the target line number
+		pha  								; push that on the stack.
+		;
 		tya 								; this is the offset to the next element
 		clc
-		adc 	DTemp1 			
-		pha 								; push the next command on the stack
-		phx 								; push the record address on the stack.
+		adc 	DTemp1 						; X now points to the address *AFTER* DEFPROC identifier[(]
+		tax 								; this is initially the return address
+		;
+		tya 								; Y now points to the address *AFTER* PROC identifier[()]
+		clc 								; e.g. the call address.
+		adc 	DCodePtr
+		tay 
+		;
+		lda 	(DTemp1) 					; read the first token
+		and 	#IDArrayMask 				; was it [DEF] PROC xxxx( e.g. parameters provided ?
+		beq 	_FPRONoParams
+		nop
+
+_FPRONoParams:
+		phx 								; save target address.
+		;
 		;
 		;		Identify target, skip name.
 		;
-		ldx 	DStack 						; point Y to the stack.
+		tya 								; copy return address into A.
+		ldx 	DStack 						; point X to the stack.
 		;
-		tya 								; work out the return address
-		clc
-		adc 	DCodePtr
-		sta 	$02,x 						; save pos at +2
+		sta 	$02,x 						; save return address at +2
 		lda 	DLineNumber 				; save line number at +4
 		sta 	$04,x
 		lda 	#procTokenID 				; save proc token at +6
@@ -85,11 +99,10 @@ _FPROCompare: 								; check loop
 		;
 		;		Update lineNumber and Code Pointer.
 		;
-		ply 								; line record address
-		lda 	$0002,y 					; get line number
-		sta 	DLineNumber
 		pla 								; next command
 		sta 	DCodePtr 
+		pla
+		sta 	DLineNumber
 		rts
 
 _FPROUnknown:

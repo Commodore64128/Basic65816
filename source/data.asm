@@ -71,6 +71,8 @@ DTemp5 = DPBaseAddress + 54 				; *** LONG *** Temporary Value
 
 DStack65816 = DPBaseAddress + 58 			; 65816 Stack pointer.
 
+DTarget = DPBaseAddress + 60 				; target address for PROC call.
+
 ; ********************************************************************************
 ;
 ;									BASIC stack.
