@@ -1,6 +1,6 @@
 Main
 ----
-- Parameters reset tempstring with every parameter, concrete otherwise. 
+- Parameters reset tempstring with every parameter, concrete strings copied in otherwise. 
 	(check calling multiple times doesn't create lots of strings)
 - Dog food !!
 - Parameters (not arrays)
