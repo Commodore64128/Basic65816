@@ -1,8 +1,7 @@
 Main
 ----
 - Parameters reset tempstring with every parameter, concrete strings copied in otherwise. 
-	(check calling multiple times doesn't create lots of strings)
-- check that all strings are marked correctly on exit.
+- local and parameter same ??
 - Dog food !!
 - Parameters (not arrays)
 - Switchable environments.

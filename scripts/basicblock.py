@@ -151,6 +151,7 @@ class BasicBlock(object):
 		if lineNumber is None or lineNumber == 0:								# default line number
 			lineNumber = self.lastProgramLineNumber + 1
 		assert lineNumber > self.lastProgramLineNumber and lineNumber <= 32767 	# check line number
+		#print(lineNumber,code)
 		pos = self.resetLowMemory()												# where does it go
 		self.lastProgramLineNumber = lineNumber 								# remember last
 		codeLine = self.tokeniser.tokenise(code) 								# convert to tokens
