@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Function_REPEAT: ;; repeat
+Command_REPEAT: ;; repeat
 		ldx 	DStack 						; point Y to the stack.
 		;
 		lda 	DCodePtr 					; save code ptr
@@ -38,7 +38,7 @@ Function_REPEAT: ;; repeat
 ;
 ; *******************************************************************************************
 
-Function_UNTIL: ;; until
+Command_UNTIL: ;; until
 		ldx 	DStack 						; check top token is REPEAT
 		lda 	$00,x
 		cmp 	#repeatTokenID 			

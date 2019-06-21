@@ -46,40 +46,41 @@ CommandJumpTable:
 	.word IllegalToken             & $FFFF ; token $3229 "'"
 	.word IllegalToken             & $FFFF ; token $382a "to"
 	.word IllegalToken             & $FFFF ; token $382b "step"
-	.word Function_REM             & $FFFF ; token $3e2c "rem"
-	.word Function_Let             & $FFFF ; token $3e2d "let"
-	.word Function_ASSERT          & $FFFF ; token $3e2e "assert"
-	.word Function_END             & $FFFF ; token $3e2f "end"
-	.word Function_RUN             & $FFFF ; token $3e30 "run"
-	.word Function_STOP            & $FFFF ; token $3e31 "stop"
-	.word Function_CLEAR           & $FFFF ; token $3e32 "clear"
+	.word Command_REM              & $FFFF ; token $3e2c "rem"
+	.word Command_Let              & $FFFF ; token $3e2d "let"
+	.word Command_ASSERT           & $FFFF ; token $3e2e "assert"
+	.word Command_END              & $FFFF ; token $3e2f "end"
+	.word Command_RUN              & $FFFF ; token $3e30 "run"
+	.word Command_STOP             & $FFFF ; token $3e31 "stop"
+	.word Command_CLEAR            & $FFFF ; token $3e32 "clear"
 	.word Function_Dim             & $FFFF ; token $3e33 "dim"
-	.word Function_CLS             & $FFFF ; token $3e34 "cls"
-	.word Function_PRINT           & $FFFF ; token $3e35 "print"
-	.word Function_GOTO            & $FFFF ; token $3e36 "goto"
-	.word Function_GOSUB           & $FFFF ; token $3e37 "gosub"
-	.word Function_RETURN          & $FFFF ; token $3e38 "return"
-	.word Function_ONGOTO          & $FFFF ; token $3e39 "on"
+	.word Command_CLS              & $FFFF ; token $3e34 "cls"
+	.word Command_PRINT            & $FFFF ; token $3e35 "print"
+	.word Command_GOTO             & $FFFF ; token $3e36 "goto"
+	.word Command_GOSUB            & $FFFF ; token $3e37 "gosub"
+	.word Command_RETURN           & $FFFF ; token $3e38 "return"
+	.word Command_ONGOTO           & $FFFF ; token $3e39 "on"
 	.word Handler_ELSE             & $FFFF ; token $3e3a "else"
 	.word Command_POKE             & $FFFF ; token $3e3b "poke"
 	.word Command_DOKE             & $FFFF ; token $3e3c "doke"
 	.word Command_LOKE             & $FFFF ; token $3e3d "loke"
 	.word Command_List             & $FFFF ; token $3e3e "list"
-	.word Function_LINK            & $FFFF ; token $3e3f "link"
-	.word Function_NEW             & $FFFF ; token $3e40 "new"
-	.word Function_PROC            & $FFFF ; token $3e41 "proc"
+	.word Command_LINK             & $FFFF ; token $3e3f "link"
+	.word Command_NEW              & $FFFF ; token $3e40 "new"
+	.word Command_PROC             & $FFFF ; token $3e41 "proc"
 	.word Command_LOCAL            & $FFFF ; token $3e42 "local"
-	.word Function_REPEAT          & $FFFF ; token $3c43 "repeat"
-	.word Function_WHILE           & $FFFF ; token $3c44 "while"
-	.word Function_IF              & $FFFF ; token $3c45 "if"
-	.word Command_FOR              & $FFFF ; token $3c46 "for"
-	.word IllegalToken             & $FFFF ; token $3c47 "defproc"
-	.word Function_WEND            & $FFFF ; token $3a48 "wend"
-	.word Function_UNTIL           & $FFFF ; token $3a49 "until"
-	.word IllegalToken             & $FFFF ; token $3a4a "then"
-	.word Handler_ENDIF            & $FFFF ; token $3a4b "endif"
-	.word Command_NEXT             & $FFFF ; token $3a4c "next"
-	.word Function_ENDPROC         & $FFFF ; token $3a4d "endproc"
+	.word Command_VDU              & $FFFF ; token $3e43 "vdu"
+	.word Command_REPEAT           & $FFFF ; token $3c44 "repeat"
+	.word Command_WHILE            & $FFFF ; token $3c45 "while"
+	.word Command_IF               & $FFFF ; token $3c46 "if"
+	.word Command_FOR              & $FFFF ; token $3c47 "for"
+	.word IllegalToken             & $FFFF ; token $3c48 "defproc"
+	.word Command_WEND             & $FFFF ; token $3a49 "wend"
+	.word Command_UNTIL            & $FFFF ; token $3a4a "until"
+	.word IllegalToken             & $FFFF ; token $3a4b "then"
+	.word Handler_ENDIF            & $FFFF ; token $3a4c "endif"
+	.word Command_NEXT             & $FFFF ; token $3a4d "next"
+	.word Command_ENDPROC          & $FFFF ; token $3a4e "endproc"
 
 ;
 ;	Token text table. Byte is typeID[7:4] length[3:0]
@@ -151,17 +152,18 @@ TokenText:
 	 .text $f4,"NEW"      ; token $3e40
 	 .text $f5,"PROC"     ; token $3e41
 	 .text $f6,"LOCAL"    ; token $3e42
-	 .text $e7,"REPEAT"   ; token $3c43
-	 .text $e6,"WHILE"    ; token $3c44
-	 .text $e3,"IF"       ; token $3c45
-	 .text $e4,"FOR"      ; token $3c46
-	 .text $e8,"DEFPROC"  ; token $3c47
-	 .text $d5,"WEND"     ; token $3a48
-	 .text $d6,"UNTIL"    ; token $3a49
-	 .text $d5,"THEN"     ; token $3a4a
-	 .text $d6,"ENDIF"    ; token $3a4b
-	 .text $d5,"NEXT"     ; token $3a4c
-	 .text $d8,"ENDPROC"  ; token $3a4d
+	 .text $f4,"VDU"      ; token $3e43
+	 .text $e7,"REPEAT"   ; token $3c44
+	 .text $e6,"WHILE"    ; token $3c45
+	 .text $e3,"IF"       ; token $3c46
+	 .text $e4,"FOR"      ; token $3c47
+	 .text $e8,"DEFPROC"  ; token $3c48
+	 .text $d5,"WEND"     ; token $3a49
+	 .text $d6,"UNTIL"    ; token $3a4a
+	 .text $d5,"THEN"     ; token $3a4b
+	 .text $d6,"ENDIF"    ; token $3a4c
+	 .text $d5,"NEXT"     ; token $3a4d
+	 .text $d8,"ENDPROC"  ; token $3a4e
 	.byte $00
 
 ;
@@ -233,14 +235,15 @@ linkTokenID                      = $3e3f
 newTokenID                       = $3e40
 procTokenID                      = $3e41
 localTokenID                     = $3e42
-repeatTokenID                    = $3c43
-whileTokenID                     = $3c44
-ifTokenID                        = $3c45
-forTokenID                       = $3c46
-defprocTokenID                   = $3c47
-wendTokenID                      = $3a48
-untilTokenID                     = $3a49
-thenTokenID                      = $3a4a
-endifTokenID                     = $3a4b
-nextTokenID                      = $3a4c
-endprocTokenID                   = $3a4d
+vduTokenID                       = $3e43
+repeatTokenID                    = $3c44
+whileTokenID                     = $3c45
+ifTokenID                        = $3c46
+forTokenID                       = $3c47
+defprocTokenID                   = $3c48
+wendTokenID                      = $3a49
+untilTokenID                     = $3a4a
+thenTokenID                      = $3a4b
+endifTokenID                     = $3a4c
+nextTokenID                      = $3a4d
+endprocTokenID                   = $3a4e

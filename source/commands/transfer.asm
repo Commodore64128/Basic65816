@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Function_ONGOTO: ;; on
+Command_ONGOTO: ;; on
 		jsr 	EvaluateInteger 			; on what GOTO :)
 		cpy 	#0 							; check range. ON x GOTO x1,x2,x3,x4. 0 is illegal.
 		bne 	_FOGoFail
@@ -34,7 +34,7 @@ _FOGoLoop:
 		bcs 	FGOFail
 		;
 		dex 								; subtract one, if done, call GOTO code
-		beq 	Function_GOTO
+		beq 	Command_GOTO
 		;
 		inc 	DCodePtr 					; step over the constant
 		inc 	DCodePtr
@@ -50,7 +50,7 @@ _FOGoFail:
 ;
 ; *******************************************************************************************
 
-Function_GOTO: ;; goto
+Command_GOTO: ;; goto
 		lda 	(DCodePtr) 					; look at the number
 		cmp 	#$4000						; range 4000-BFFF
 		bcc 	FGOFail 					; we don't do calculate line numbers.
@@ -99,7 +99,7 @@ FGOFail:
 ;
 ; *******************************************************************************************
 
-Function_GOSUB: ;; gosub
+Command_GOSUB: ;; gosub
 		ldx 	DStack 						; point Y to the stack.
 		;
 		lda 	DCodePtr 					; save code ptr at +0 , 2 added to skip line number
@@ -116,7 +116,7 @@ Function_GOSUB: ;; gosub
 		adc 	#6
 		sta 	DStack
 
-		bra 	Function_GOTO 				; and do a GOTO.
+		bra 	Command_GOTO 				; and do a GOTO.
 
 ; *******************************************************************************************
 ;
@@ -124,7 +124,7 @@ Function_GOSUB: ;; gosub
 ;
 ; *******************************************************************************************
 
-Function_RETURN: ;; return
+Command_RETURN: ;; return
 		ldx 	DStack
 		lda 	$00,x
 		cmp 	#gosubTokenID 				; check top token.		

@@ -104,7 +104,7 @@ Detokenise:
 	pha
 	phx
 	phy
-	sta 	DStartTempString 				; set the temp function pointers to this buffer
+	sta 	DStartTempString 				; set the temp Command pointers to this buffer
 	inc 	a
 	sta 	DCurrentTempString
 	stz		DConstantShift

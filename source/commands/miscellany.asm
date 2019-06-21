@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Function_ASSERT: ;; assert
+Command_ASSERT: ;; assert
 		jsr 	EvaluateInteger 			; something that returns an integer.
 		sty 	DTemp1 						; check if result is zero.
 		ora 	Dtemp1
@@ -30,7 +30,7 @@ _FAssFail:
 ;
 ; *******************************************************************************************
 
-Function_CLS: ;; cls
+Command_CLS: ;; cls
 		jsr 	HWClearScreen
 		rts
 
@@ -40,7 +40,7 @@ Function_CLS: ;; cls
 ;
 ; *******************************************************************************************
 
-Function_REM: ;; rem 
+Command_REM: ;; rem 
 		lda 	(DCodePtr) 					; get code ptr.
 		beq 	_FRemExit 					; no comment present
 		cmp 	#colonTokenID
@@ -63,7 +63,7 @@ _FRemSyntax:
 ;
 ; *******************************************************************************************
 
-Function_LINK: ;; link
+Command_LINK: ;; link
 		jsr 	EvaluateInteger 			; call address same page.
 		sta 	DTemp1 						; target address
 		sty 	DTemp1+2
@@ -102,3 +102,35 @@ Function_LINK: ;; link
 
 _FLIExecuteIt:
 		jmp 	[DTemp1]					; go wherever.
+
+; *******************************************************************************************
+;
+;									VDU <expr>[;,]<expr>
+;
+; *******************************************************************************************
+
+Command_VDU: 	;; vdu
+		jsr 	EvaluateInteger 			; get integer to YA.
+		tay 								; put into Y
+		and 	#$00FF 						; mask out LSB
+		jsr 	HWPrintChar 				; print the LSB.		
+		lda 	(DCodePtr)
+		cmp 	#commaTokenID 				; if , goto next
+		beq 	_CVDUNext
+		cmp 	#semicolonTokenID 			; if ; print MSB and goto next
+		beq 	_CVDUHighByte
+_CVDUExit:		
+		rts
+_CVDUHighByte:
+		tya 								; get back.
+		xba 								; byte swap
+		and 	#$00FF 						; mask and print
+		jsr 	HWPrintChar
+_CVDUNext:
+		inc 	DCodePtr 					; skip , ;
+		inc 	DCodePtr
+		lda 	(DCodePtr)					; continue ?
+		beq		_CVDUExit
+		cmp 	#colonTokenID
+		beq 	_CVDUExit
+		bra 	Command_VDU				

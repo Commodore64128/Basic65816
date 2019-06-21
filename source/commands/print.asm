@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Function_PRINT: 	;; print
+Command_PRINT: 	;; print
 		lda 	(DCodePtr) 					; look at first characteer
 		beq 	_FPRExitCR 					; if zero, then exit with CR, maybe.
 		cmp 	#colonTokenID 				; likewise if a colon.	
@@ -41,7 +41,7 @@ _FPRExpression:
 _FPRHaveString:
 		tay 								; print the basic String.
 		jsr 	PrintBASICString
-		bra 	Function_Print 				; and go round again.
+		bra 	Command_Print 				; and go round again.
 		;
 		;		Print TAB
 		;
@@ -56,7 +56,7 @@ _FPRNewLine:								; ; (newline)
 _FPRSkipLoop: 								; skip over token and go back
 		inc 	DCodePtr
 		inc 	DCodePtr
-		bra 	Function_Print
+		bra 	Command_Print
 
 _FPRExitCR:
 		ldy 	DCodePtr 					; was the previous token a ; or ,

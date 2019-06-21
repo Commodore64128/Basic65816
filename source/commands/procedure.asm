@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Function_PROC: ;; proc
+Command_PROC: ;; proc
 		lda 	#Block_ProgramStart 		; go to start of program
 		clc
 		adc 	DBaseAddress
@@ -101,7 +101,7 @@ _FPROUnknown:
 ;
 ; *******************************************************************************************
 
-Function_ENDPROC: ;; endproc
+Command_ENDPROC: ;; endproc
 		ldx 	DStack						; what's on the top of the stack.
 		lda 	$00,x
 		cmp 	#$C000 						; if local unstack a local
@@ -124,4 +124,4 @@ _FENPFail:
 
 _FENPUnstack:
 		jsr 	LocalRestore 				; restore off the stack.
-		bra 	Function_ENDPROC
+		bra 	Command_ENDPROC

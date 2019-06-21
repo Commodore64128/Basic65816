@@ -38,7 +38,7 @@
 ;
 ; *******************************************************************************************
 
-Function_IF: 	;; if
+Command_IF: 	;; if
 		jsr 	EvaluateInteger 			; check success.
 		sty 	DTemp1 						; work out if non-zero
 		ora 	DTemp1 						
@@ -64,7 +64,7 @@ Function_IF: 	;; if
 		bcc 	_FIFContinue 				; if not, just carry on exiting.
 		cmp 	#$C000
 		bcs 	_FIFContinue
-		jmp		Function_GOTO 				; we have IF <expr> THEN <number> so we do GOTO code.
+		jmp		Command_GOTO 				; we have IF <expr> THEN <number> so we do GOTO code.
 		;
 		;		Skip the whole rest of the line.
 		;

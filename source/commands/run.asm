@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Function_END: ;; end
+Command_END: ;; end
 		jmp 	WarmStart
 
 ; *******************************************************************************************
@@ -24,8 +24,8 @@ Function_END: ;; end
 ;
 ; *******************************************************************************************
 
-Function_RUN: ;; run
-		jsr 	Function_CLEAR 				; clear all variables.
+Command_RUN: ;; run
+		jsr 	Command_CLEAR 				; clear all variables.
 		lda 	DBaseAddress 				; work out the first instruction.
 		clc 
 		adc 	#Block_ProgramStart 		; so run from here.
@@ -54,7 +54,7 @@ RUNExecuteTokenBuffer:
 FRun_NextLineNumber:
 		tay 								; put in Y
 		lda 	$0000,y 					; read the link token.
-		beq 	Function_END 				; if zero, off the end of the program, so END the program
+		beq 	Command_END 				; if zero, off the end of the program, so END the program
 		lda 	$0002,y 					; read the line number
 		sta 	DLineNumber 				; and save it.
 
@@ -105,7 +105,7 @@ _FRun_TryLET:
 		lda 	(DCodePtr) 					; look to see if it's an identifier.
 		cmp 	#$C000
 		bcc		_FRunSyntax 				; no, must be syntax.
-		jsr 	Function_LET 				; try as a LET.
+		jsr 	Command_LET 				; try as a LET.
 		bra 	FRun_NextInstruction 		; if we get away with it, go to next instruction.
 _FRunSyntax:
 		brl 	SyntaxError		
@@ -136,14 +136,14 @@ _FRun_WarmStart:
 ;
 ; *******************************************************************************************
 		
-Function_NEW: ;; new
+Command_NEW: ;; new
 		lda	 	#Block_ProgramStart
 		clc
 		adc 	DBaseAddress
 		tay
 		lda 	#$0000
 		sta 	$0000,y
-		bra 	Function_Clear
+		bra 	Command_Clear
 				
 ; *******************************************************************************************
 ;
@@ -151,7 +151,7 @@ Function_NEW: ;; new
 ;
 ; *******************************************************************************************
 
-Function_CLEAR: ;; clear
+Command_CLEAR: ;; clear
 		jsr 	ClearVariablesPointersAndStacks
 		rts
 
@@ -161,7 +161,7 @@ Function_CLEAR: ;; clear
 ;
 ; *******************************************************************************************
 
-Function_STOP: ;; stop
+Command_STOP: ;; stop
 		#error 	"Stop"
 		
 ; *******************************************************************************************

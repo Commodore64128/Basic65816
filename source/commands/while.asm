@@ -15,7 +15,7 @@
 ;
 ; *******************************************************************************************
 
-Function_WHILE: ;; while
+Command_WHILE: ;; while
 		lda 	DCodePtr 					; get the current instruction
 		pha 								; save on stack
 
@@ -61,7 +61,7 @@ _FWHExecute:
 ;
 ; *******************************************************************************************
 
-Function_WEND: ;; wend
+Command_WEND: ;; wend
 		ldx 	DStack 						; check top token is WHILE
 		lda 	$00,x
 		cmp 	#whileTokenID 			

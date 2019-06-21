@@ -64,7 +64,8 @@ class TokenSource(object):
 	new 										## Erase program.
 	proc 										## Procedure invocation
 	local 										## define local variable (s)
-	
+	vdu 										## Display characters on console.
+		
 [keyword+]
 	repeat										## repeat loop test at bottom
 	while 										## repeat loop test at top
