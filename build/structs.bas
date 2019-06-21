@@ -1,7 +1,5 @@
 20 	x = 0
 50 	repeat
-60 		x = 0
-70 	until x = 0
 100	if (x & 1) = 0
 110		print x,"Even",
 112 	if x > 5
@@ -16,4 +14,5 @@
 140	endif
 150 x = x + 1
 160 until x > 10
+170 for i = 1 to 5 step 2:print i:next i
 180 stop	

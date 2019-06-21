@@ -13,4 +13,7 @@ call exec.bat make_tokenise.py
 call exec.bat make_editor.py
 python ..\scripts\check_editor.py
 
-rem composite-test
+call exec.bat test_strings.py
+python ../scripts/stringusage.py
+
+composite-test

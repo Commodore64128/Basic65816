@@ -52,16 +52,8 @@ LocalProcessVariable:
 		;
 		;		If not, create it.
 		;
-		ldy 	DCodePtr 					; Y is the address of the name
 		lda 	#0 							; A = 0 because it's just a single value.
-		jsr 	VariableCreate 				; create it.
-		;
-_LPVSkipToken:
-		lda 	(DCodePtr) 					; skip over the token
-		inc 	DCodePtr
-		inc 	DCodePtr
-		and 	#IDContMask 				; if there is a continuation 
-		bne 	_LPVSkipToken		
+		jsr 	VariableCreateNew			; create it.
 		;
 _LPVFound:				
 		tay 								; address in Y

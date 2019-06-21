@@ -16,25 +16,19 @@
 ; *******************************************************************************************
 
 Command_FOR:	;; for
+		;
+		;		Get the FOR variable, which must be a non array integer. Create if required.
+		;
 		lda 	(DCodePtr)					; look at first word
 		and 	#(IDTypeMask+IDArrayMask)	; check to see if it is type $00 e.g. integer variable
 		bne		_CFOBad
 		jsr 	VariableFind 				; try to find variable
 		bcs 	_CFOExists 					
 		;
-		ldy 	DCodePtr 					; Y is the address of the name
 		lda 	#0 							; A = 0 because it's not an array.
-		jsr 	VariableCreate 				; create it.
-		pha 								; save on stack
-_CFOSkipToken:
-		lda 	(DCodePtr) 					; skip over the token
-		inc 	DCodePtr
-		inc 	DCodePtr
-		and 	#IDContMask 				; if there is a continuation 
-		bne 	_CFOSkipToken
-		pla 								; restore address
+		jsr 	VariableCreateNew			; create it and skip token.
 		;
-		;		Now have the variable used as the index
+		;		Now have the variable used as the index in A
 		;
 _CFOExists:
 		pha 								; push variable address on stack
@@ -45,7 +39,7 @@ _CFOExists:
 		;
 		jsr 	EvaluateInteger 			; this is the start value
 		tyx 								; put high value in X
-		ply 								; address in Y
+		ply 								; address of for variable in Y
 		sta 	$0000,y
 		txa
 		sta 	$0002,y
@@ -55,7 +49,8 @@ _CFOExists:
 		lda 	#toTokenID 					; expect the TO
 		jsr 	ExpectToken
 		;
-		;		Save information on the stack for the loop.
+		;		Save information on the stack for the loop - evaluating the square bracket
+		;		part of FOR I = 1 TO [9 STEP 3] each time round.
 		;
 		ldx 	DStack 						; get the stack.
 		lda 	DCodePtr 					; save code ptr at +2 (after "TO")
@@ -73,7 +68,7 @@ _CFOExists:
 		sta 	DStack
 		;
 		;		We do not execute this here FOR I = 1 TO [22 STEP 3] it is just skipped over.
-		;
+		;		We could check it this time and not execute the FOR but most BASICs do not do this.
 		;									; skip over <n> [STEP <n>] for now.
 		jsr 	EvaluateInteger 			; the end value, which we don't want this time.
 		lda 	(DCodePtr)
@@ -96,6 +91,9 @@ _CFOBad:
 ; *******************************************************************************************
 
 Command_NEXT: ;; next
+		;
+		;		Check that the last thing was a FOR.
+		;
 		ldx 	DStack 						; look at TOS
 		lda 	$00,x 		
 		cmp 	#forTokenID 				; if not FOR then error

@@ -210,14 +210,15 @@ _VANSubscript:
 ;		*** VariableFind needs to have been called first so DHashPtr is set up ***
 ;
 ;		A contains the high index, or zero if the variable is a single item. 
-;		Y is the address of the token that is the  name of the variable. 
+;		DCodePtr points to the token.
 ;
 ;		On exit A contains the address of the data part of the record for non-arrays, 
-;		or the largest index for arrays, e.g. the record address + 4
+;		or the largest index for arrays, e.g. the record address + 4, and the token
+; 		has been skipped.
 ;
 ; *******************************************************************************************
 
-VariableCreate:			
+VariableCreateNew:			
 		pha 								; save count.
 		;
 		;		Work out space to allocate.
@@ -227,13 +228,12 @@ VariableCreate:
 		asl 	a 							; 4 x # items.
 _VCNotSingle:
 		sta 	DTemp1 						; save temporarily
-		lda 	$0000,y 					; get first token.
+		lda 	(DCodePtr) 					; get first token.
 		and 	#IDArrayMask 				; check array bit.
 		beq 	_VCNotArray
 		inc 	DTemp1 						; if set, add 2 to count, space stores the high index value.
 		inc 	DTemp1
 _VCNotArray:
-		phy 								; save address of first token on stack.
 		;
 		;		Allocate space (in DTemp1) + 4
 		;
@@ -268,7 +268,7 @@ _VCErase:
 		adc 	DBaseAddress
 		sta 	DTemp1
 		;
-		pla 								; restore the token address
+		lda 	DCodePtr 					; get the address of the token.
 		cmp 	DTemp1 						; if it is below the program start we need to clone it.
 		bcs 	_VCDontClone 				; because the variable being created has its identifier
 		jsr 	VCCloneIdentifier	 		; in the token workspace, done via the command line
@@ -284,6 +284,18 @@ _VCNotArray2:
 		sta 	(DHashTablePtr)
 		clc 								; advance pointer to the data bit.
 		adc 	#4
+		pha 								; save on stack.
+		;
+		;		Consume the identifier token
+		;
+_VCSkipToken:
+		lda 	(DCodePtr) 					; skip over the token
+		inc 	DCodePtr
+		inc 	DCodePtr
+		and 	#IDContMask 				; if there is a continuation 
+		bne 	_VCSkipToken
+		l
+		pla 								; restore data address
 		rts 								; and done.
 		;
 		;		Clone the identifier at A.

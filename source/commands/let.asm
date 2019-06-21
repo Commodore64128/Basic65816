@@ -10,6 +10,9 @@
 ; *******************************************************************************************
 
 Function_Let: ;; let
+		;
+		;		Find the variable that we are assigning to.
+		;
 		lda 	(DCodePtr)					; get the first token, for typing.
 		pha  								; save on stack for later.
 		jsr 	VariableFind 				; find the variable
@@ -17,23 +20,17 @@ Function_Let: ;; let
 		bcs 	_FLetFound 					; skip if found.
 		;
 		;		Couldn't find it, so create variable at this position
+		;		We cannot create arrays automagically.
 		;
 		pla 								; get and push the first token again.
 		pha
 		and 	#IDArrayMask 				; if it is an array, you can't autoinstantiate it, you have to DIM it.
 		bne 	_FLError					; arrays, so this causes an error.
 		;
-		ldy 	DCodePtr 					; Y is the address of the name
 		lda 	#0 							; A = 0 because it's not an array, just a single value.
-		jsr 	VariableCreate 				; create it.
+		jsr 	VariableCreateNew 			; create it.
 		sta 	DVariablePtr 				; save the data address.
 		;
-_FLSkipToken:
-		lda 	(DCodePtr) 					; skip over the token
-		inc 	DCodePtr
-		inc 	DCodePtr
-		and 	#IDContMask 				; if there is a continuation 
-		bne 	_FLSkipToken
 _FLetFound:	
 		;
 		;		Check to see if there is indexing by examining the first token of the identifier.
@@ -54,6 +51,9 @@ _FLetFound:
 		sta 	DVariablePtr 				; and write it back.
 		;		
 _FLetNotArray: 
+		;
+		;		Restore the first token, and push the target address on the stack.
+		;
 		ply 								; get the first token into Y
 		lda 	DVariablePtr 				; save the target address on the stack.
 		pha 
