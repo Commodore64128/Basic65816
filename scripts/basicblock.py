@@ -183,7 +183,7 @@ class BasicBlock(object):
 		self._export("Block_HashMask",BasicBlock.HASHMASK)
 		self._export("Block_LowMemoryPtr",BasicBlock.LOWPTR)
 		self._export("Block_HighMemoryPtr",BasicBlock.HIGHPTR)
-		self._export("Block_EmptyString",BasicBlock.EMPTYSTRING)
+		self._export("Block_NullString",BasicBlock.EMPTYSTRING)
 		self._export("Block_BootFlag",BasicBlock.BOOTFLAG)
 		self._export("Block_ProgramStart",BasicBlock.PROGRAM)
 		self._export("Block_TokenBuffer",BasicBlock.TOKENBUFFER)

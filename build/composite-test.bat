@@ -13,4 +13,4 @@ call exec.bat make_tokenise.py
 call exec.bat make_editor.py
 python ..\scripts\check_editor.py
 
-composite-test
+rem composite-test

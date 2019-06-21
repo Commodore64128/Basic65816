@@ -150,10 +150,7 @@ _SRACopy:
 		;		Set up to point to empty string.
 		;		
 _SRAEmpty:
-		lda 	#Block_EmptyString 			; otherwise fill with this address.
-		clc 								; which is guaranteed by have a 0 length.
-		adc 	DBaseAddress
-		sta 	@w$0000,x
+		stz 	@w$0000,x
 		stz 	@w$0002,x
 		plx
 		rts		

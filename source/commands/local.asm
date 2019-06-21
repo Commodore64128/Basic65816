@@ -82,10 +82,9 @@ _LPVFound:
 		cmp 	#$C000
 		beq 	_LPVNotString
 		;
-		lda 	#Block_EmptyString 			; otherwise fill with this address.
-		clc 								; which is guaranteed by have a 0 length.
-		adc 	DBaseAddress
+		lda 	#0
 		sta 	$0000,y 					; make it an empty string.
+		sta 	$0002,y
 _LPVNotString:
 		txa
 		clc

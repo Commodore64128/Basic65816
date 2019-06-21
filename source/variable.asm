@@ -57,14 +57,16 @@ _VANNotArray:
 		lda 	(DVariablePtr)				; read the low data word
 		rts
 _VANIsString:
-		lda 	(DVariablePtr)
-		beq 	_VANNull
-		ldy 	#0
+		ldy 	#0 							; load string into YA
+		lda 	(DVariablePtr) 				
+		bne 	_VANNotEmptyString
+		lda 	#Block_NullString 			; if value is $0000 then return the empty string
+		clc
+		adc 	DBaseAddress
+_VANNotEmptyString:		
 		sec
 		rts
 
-_VANNull:
-		#error 	"String is NULL"
 _VANError:
 		#error	"Variable unknown"
 
@@ -218,23 +220,8 @@ _VANSubscript:
 VariableCreate:			
 		pha 								; save count.
 		;
-		;		Get the word to fill the new variable with. For strings this the address of the NULL 
-		;		string stored at Block_EmptyString.
-		;
-		lda 	$0000,y 					; get first token
-		and 	#IDTypeMask 
-		beq 	_VCIsInteger 				; if this is zero ... use zero.
-		lda 	#Block_EmptyString 			; otherwise fill with this address.
-		clc 								; which is guaranteed by have a 0 length.
-		adc 	DBaseAddress
-		;
-_VCIsInteger:		
-		sta 	DSignCount 					; this is temporary for this
-		;
 		;		Work out space to allocate.
 		;
-		pla 								; restore count
-		pha 
 		inc 	a 							; need 1 more element. If zero, you need one. If high index,size is one more.	
 		asl 	a 							; 2 x # items.
 		asl 	a 							; 4 x # items.
@@ -262,7 +249,7 @@ _VCNotArray:
 		;
 		ldy 	DTemp2 						; put the address back in Y
 _VCErase:
-		lda 	DSignCount 					; clear that word to empty string/zero.
+		lda 	#$0000 						; clear that word to empty string/zero.
 		sta 	$0004,y 					; data from +4 onwards
 		iny 						
 		iny

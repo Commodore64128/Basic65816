@@ -1,26 +1,41 @@
 @run
+1000 	PROC Make:a$ = z$
+1010 	PROC Make:b$ = z$
+1020 	PROC Make:c$ = z$
+1030 	PROC Make:d$ = z$
+1040 	PROC Make:e$ = z$
+1050 	PROC Make:f$ = z$
+1060 	Print a$,b$,c$,d$,e$,f$
+1070	for i = 1 to 200
+1071 	PROC Make:a$ = z$
+1072 	PROC Make:b$ = z$
+1073 	PROC Make:c$ = z$
+1074 	PROC Make:d$ = z$
+1075 	PROC Make:e$ = z$
+1076 	PROC Make:f$ = z$
+1077    if i % 20 = 0 then print i
+1078 	PROC fiddle
+1080 	next 
+1090 	Print a$,b$,c$,d$,e$,f$
+2900 	end
+10000   DEFPROC fiddle
+10010 	LOCAL a$,b$,x$,y$
+11071 	PROC Make:a$ = z$
+11072 	PROC Make:b$ = z$
+11073 	PROC Make:c$ = z$
+11074 	PROC Make:a$ = z$
+11075 	PROC Make:b$ = z$
+11076 	PROC Make:c$ = z$
+11077 	PROC Make:w$ = z$
+11078 	PROC Make:x$ = z$
+11079 	PROC Make:y$ = z$
+11200 	ENDPROC
 
-1000 	a1$ = "Outer"
-1010	n1 = 42
-1020 	print 	"Outer",n1,a1$
-1024 	for i = 1 to 100
-1030 	PROC Inner1
-1040 	print 	"Outer",n1,a1$
-1045  	next i
-1050 	PROC Inner1
-1060 	print 	"Outer",n1,a1$
-1070 	end
-1080 	rem
-2000   	defproc inner1
-2010 	local n1,a1$
-2015 	n1 = 99:a1$ = "Inner1.."
-2020 	print 	"Inner1",n1,a1$
-2030 	proc inner2
-2035 	print 	"Inner1",n1,a1$
-2040 endproc
-2050 rem
-3000 defproc inner2
-3010 local n1,a1$
-3020 n1 = -1:a$ = "INNER 2 !"
-3030 print "inner2",n1,a$
-3040 endproc
+21100	DEFPROC Make
+21110 	z$ = ""
+21120  	c = (rnd() & 15)+2
+21130 	while c > 0
+21140 		z$ = z$ + chr$((rnd() & 15)+97)
+21150 		c = c - 1
+21160 	wend
+21170 endproc

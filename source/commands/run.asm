@@ -186,7 +186,7 @@ ClearVariablesPointersAndStacks:
 		;
 		;		Clear the value used to refer to an empty string.
 		;
-		ldy 	#Block_EmptyString 			
+		ldy 	#Block_NullString 			
 		lda 	#$0000
 		sta 	(DBaseAddress),y
 		;
