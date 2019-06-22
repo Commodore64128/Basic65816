@@ -34,7 +34,7 @@
 5130 IF c >= 0
 5140 POKE addr , c
 5150 ELSE
-5160 IF  PEEK( addr )  <> 32 THEN hit = 1
+5160 IF  PEEK( addr )  <> 32 UNTIL hit = 1
 5180 ENDIF
 5185 ENDIF
 5190 NEXT i
@@ -43,11 +43,11 @@
 5991 REM "Draw frame"
 5992 REM
 6000 xframe = 4 : yframe = 4
-6010 FOR y = yframe TO yframe + 20
+6010 IF y = yframe TO yframe + 20
 6020 POKE screen + y * width + xframe , 127
 6025 POKE screen + y * width + xframe + fwidth + 1 , 127
-6030 NEXT y
+6030 ENDIF
 6040 FOR i = 0 TO fwidth + 1
 6050 POKE screen +  ( yframe + 20 )  * width + xframe + i , 127
-6060 NEXT i
+6060 NEXT
 6070 RETURN

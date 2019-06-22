@@ -39,7 +39,8 @@ class StringAnalysisBlock(BasicBlock):
 			print("{0} used strings totalling {1} bytes averaging {2}".format(self.usedStrings,self.usedStringSize,self.usedStringSize/self.usedStrings))
 		if self.freeStrings != 0:				
 			print("{0} free strings totalling {1} bytes averaging {2}".format(self.freeStrings,self.freeStringSize,self.freeStringSize/self.freeStrings))
-		print("String usage {0}%".format(int(100*self.usedStringSize/(self.usedStringSize+self.freeStringSize))))
+		if self.usedStrings+self.freeStrings != 0:			
+			print("String usage {0}%".format(int(100*self.usedStringSize/(self.usedStringSize+self.freeStringSize))))
 
 if __name__ == "__main__":
 	blk = StringAnalysisBlock(0x4000,0x8000)
