@@ -87,7 +87,7 @@ _FLetString:
 		jsr 	EvaluateString 				; get a string.
 		lda 	EXSValueL+0,x				; get the low word, the address
 		ply 								; get address we are overwriting.
-		jsr 	StringReassign 				; reassign that address
+		jsr 	StringAssign 				; assign the string in memory.
 		rts
 
 _FLetMissingEquals:

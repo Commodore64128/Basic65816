@@ -8,10 +8,11 @@
 ;
 ; *******************************************************************************************
 ; *******************************************************************************************
+
+; *******************************************************************************************
 ;
-;		Strings are stored as a block of memory starting at the high memory pointer.
-;		the first two bytes are size of the block, with bit 15 being set if this is 
-; 		available for use.
+;		Strings are stored backwards in memory from the high memory pointer. The maximum
+;		length of any string is stored in the immediately preceding byte.
 ;
 ; *******************************************************************************************
 ;
@@ -21,13 +22,7 @@
 
 StringResetPermanent:
 		lda 	DHighAddress				; the end of memory
-		dec 	a 							; subtract 2 to add a null terminator.
-		dec 	a 							; at the top of memory.
 		tay
-		pha
-		lda 	#$0000
-		sta 	$0000,y						; reset that link to next to $0000.
-		pla
 		ldy 	#Block_HighMemoryPtr		; save the high memory pointer, which is the first link.
 		sta 	(DBaseAddress),y
 		rts
@@ -40,171 +35,118 @@ StringResetPermanent:
 ;
 ; *******************************************************************************************
 
-StringReassign:
+StringAssign:
 		phx 								; save X
-		tyx 								; save the pointer to the current value into X.
+		tax 								; new string to X.
 		;
-		;		We don't need the old string any more, we're replacing it.
+		lda 	$0000,y 					; does the string have an address yet.
+		beq 	_SAAllocate 				; if not , allocate space for it and copy the string.
 		;
-		tay 								; put address of the new string in Y
-		lda 	@w$0000,x					; address of the old string in A
-		jsr 	StringRelease 				; release the old string
+		;		Check to see if this string has memory allocated already.
 		;
-		;		If the new string is empty, we can store the standard NULL value there.
-		;
-		lda 	@w$0000,y 					; get length
-		and 	#$00FF 						; mask it off.
-		bne 	_SRAContent
-		brl 	_SRAEmpty 					; if zero, return empty address.
-_SRAContent:
-		phy 								; save the new string address on stack
-		;
-		;		Search for a string of suitable length that's available. Work out how long
-		; 		we need this string space to be.
-		;
-		ply 								; restore and save the new string address
 		phy
-		lda 	$0000,y 					; get the length of this new string
-		and 	#$00FF 						; mask it off.
-		inc 	a 							; we want one more, for the length byte.
-		sta 	DTemp5 						; the length required is stored in DTemp5.
+		lda 	$0000,y 					; compare calculate saved address - high memory pointer
+		cmp 	(DBaseAddress),y
+		tay 								; read the max available length of the old string
+		dey  								; CC still contains first allocation check
+		lda 	$0000,y
+		ply 								; restore Y
+		bcc 	_SAAllocate					; if < high memory pointer, first allocation.		
 		;
-		;		Work down the string chain looking for strings that aren't used.
+		; 		Compare max length of old string (A) vs length of new string. If it fits
+		;		copy it in.
 		;
-		ldy 	#Block_HighMemoryPtr		; start position in Y		
-		lda 	(DBaseAddress),y 			
-		tay
-		;
-		;		Check blocks sequentially ; this is the search for unused blocks loop.
-		;
-_SRACheckUnused:
-		lda 	$0000,y 					; this is the offset/size to the next (actually offset is 2 more)
-		beq 	_SRAAllocate 				; if zero, nothing fits, so allocate a new chunk.
-		;
-		bpl 	_SRACheckNext 				; if +ve then it is in use, so can't use that either.
-		;
-		and 	#$7FFF 						; it's available, get the actual size of this bhunk.
-		cmp 	DTemp5 						; compare against the required length
-		bcc 	_SRACheckNext 				; too small, go and look at the next block.
-		;
-		;		We've found a block we can use for the new string.
-		;
-		sta 	$0000,y 					; it's okay - write back with bit 15 cleared.
-		tya 								; A is the address of the link
-		inc 	a 							; add 2, to make this the address of the data space associated
-		inc 	a 							; with it.
-		bra 	_SRACopyA 					; go and copy it there.
-		;	
-		;		Try the next string block.
-		;
-_SRACheckNext:
-		lda 	$0000,y 					; get offset , mask bit 15 out, this is the size of the block.
-		and 	#$7FFF
-		sta 	DTemp5+2 					; save it in temporary space.
-		tya 								; add to the offset to the current address
-		clc
-		adc 	DTemp5+2						
-		inc 	a 							; add 2 more for the link itself, the link is 2 less than the offset.
-		inc 	a
-		tay 								; put it in Y, go check that one.
-		bra 	_SRACheckUnused
-		;
-		;		Allocate a string of the required space - couldn't find one in the string list.
-		;
-_SRAAllocate:
-		ply 								; get the new string address back.
-		phy 								; push it back on the stack.
-		lda 	$0000,y 					; get its length
-		and 	#$00FF 						; one more for the byte count.
-		inc 	a
-		clc  								; make it bigger than needed ; this allows a bit of
-		adc 	#4 							; space for expansion.
-		bcc 	_SRANoCarry 				; can't do more than this.
-		lda 	#255
-_SRANoCarry:		
-		jsr 	StringAllocateSpace 		; allocate A bytes from High Memory -> A
-		;
-		;		A points to the start of the allocated space, the target string address is on the stack.
-		;
-_SRACopyA:		
-		sta 	@w$0000,x 					; save the address of the new string.
-		stz 	@w$0002,x 					; zero the high byte.
-		tax 								; where we are copying to.
-		ply 								; where we're coming from.
-		lda 	$0000,y 					; bytes to copy.
-		and 	#$00FF 						; mask, add 1 for length byte.
-		inc 	a
-		sta 	DTemp5 						; save counter.
-		sep 	#$20
-_SRACopy:
-		lda 	@w$0000,y 					; copy byte over
-		sta 	@W$0000,x 
-		iny
-		inx
-		dec 	DTemp5 						; do it this many times.
-		bne 	_SRACopy
+		and 	#$00FF 						; max length of old string
+		sep 	#$20 						
+		cmp 	@w$0000,x 					; compare against length of new string
 		rep 	#$20
-		plx 								; restore X and exit.
-		rts
+		bcs 	_SACopyString 				; just copy it in if old max length >= new
 		;
-		;		Set up to point to empty string.
-		;		
-_SRAEmpty:
-		stz 	@w$0000,x
-		stz 	@w$0002,x
-		plx
-		rts		
-
-; *******************************************************************************************
-;
-;								Allocate space for strings
-;
-; *******************************************************************************************
-
-StringAllocateSpace:
-		phx									; save XY
-		phy
-		pha 								; save the length.
-		inc 	a 							; two extra bytes, for the offset pointer.
-		inc 	a
-		eor 	#$FFFF 						; make it -ve
-		sec 								; add 1 (2's complement)
-		ldy 	#Block_HighMemoryPtr 		
-		adc 	(DBaseAddress),y 	
-		sta 	(DBaseAddress),y 			; A is the address of the new storage.
-		tay 								; put in Y
-		pla 								; restore the length
-		sta 	$0000,y 					; store this as the "link"
-		tya 								; get the address back
-		inc 	a 							; skip over the link
-		inc 	a
-		ply									; restore YX and exit.
-		plx
-		rts
-
-; *******************************************************************************************
-;
-;						Attempt to release the string at address A
-;
-; *******************************************************************************************
-
-StringRelease:		
-		phy									; save Y
-		ldy 	#Block_HighMemoryPtr 		; compare it against the high memory pointer
-		cmp 	(DBaseAddress),y 			; if < this then we don't need to release it 
-		bcc 	_SASNoRelease
+		;		Is this the bottom-most string.
 		;
-		;		Release string from usage.
-		;
-		tay 								; the address of the old string
-		dey 								; point to the link.
-		dey
-		lda 	@w$0000,y 					; and set the available bit.
-		ora 	#$8000 						
-		sta 	@w$0000,y
-_SASNoRelease:	
+		lda 	$0000,y 					; get the address of the string.
+		dec 	a 							; if bottom, compare the previous byte address
+		phy 								; which is the max length.
+		ldy 	#Block_HighMemoryPtr
+		eor 	(DBaseAddress),y
 		ply
+		ora 	#$0000 						; if not, then allocate memory.
+		bne 	_SAAllocate
+		;
+		;		Restore the memory back. It will then be re-allocated.
+		;
+		phy
+		lda 	$0000,y 					; address of old string
+		tay 								; to Y
+		dey 								; get maximum length.
+		lda 	$0000,y 			
+		and 	#$00FF
+		inc 	a 							; add 2 (string,max)
+		inc 	a
+		ldy 	#Block_HighMemoryPtr 		; return memory back
+		clc
+		adc 	(DBaseAddress),y
+		sta 	(DBaseAddress),y
+		ply
+		;
+		;		Allocate memory for the string.
+		;
+_SAAllocate:
+		lda 	@w$0000,x 					; get the length of the string
+		and 	#$00FF
+		clc 
+		adc 	#8 							; allocate extra space if needed.
+		cmp 	#255 						; can't be larger than this.
+		bcc 	_SASizeOkay
+		lda 	#255
+_SASizeOkay:
+		;
+		;		Allocate A bytes of memory, at least for the new string
+		;
+		phy 								; push [string] on the stack.
+		pha 								; push largest string size on the stack.
+		inc 	a  							; one more for the string size byte
+		inc 	a 							; one more for the maximum size byte
+		;
+		eor 	#$FFFF 						; subtract from the high memory pointer
+		sec
+		ldy 	#Block_HighMemoryPtr
+		adc 	(DBaseAddress),y
+		sta 	(DBaseAddress),y
+		;
+		ldy 	#Block_LowMemoryPtr 		; out of memory ? - if below the lowmemorypointer
+		cmp 	(DBaseAddress),y
+		bcc 	_SAMemory
+		;
+		tay 								; address of start of space in Y.
+		pla 								; restore largest string size and save it
+		sta 	@w$0000,y 					; doesn't matter it's a word.
+		iny 								; Y now points to the first byte of the string we'll copy
+		tya 								; in A now
+		ply 								; Y is the address of the variable pointer.
+		sta 	@w$0000,y 					; make that pointer the first byte
+		;
+		;		Copy the string at X to the string at [Y].
+		;
+_SACopyString		
+		lda 	@w$0000,x 					; get length
+		and 	#$00FF
+		sta 	DTemp1 						; save it.
+		lda 	@w$0000,y 					; Y now contains the actual address of the string
+		tay 
+_SACopyStringLoop:
+		sep 	#$20
+		lda 	@w$0000,x				
+		sta 	@w$0000,y
+		rep 	#$20
+		inx
+		iny
+		dec 	DTemp1
+		bpl 	_SACopyStringLoop
+		plx 								; restore X
 		rts
 
+_SAMemory:		
+		brl 	OutOfMemoryError
 
 

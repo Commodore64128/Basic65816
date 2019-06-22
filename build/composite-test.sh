@@ -14,5 +14,5 @@ do
 	python ../scripts/check_editor.py
 
 	sh exec.sh test_strings.py
-	python ../scripts/stringusage.py
+	python ../scripts/string_usage.py
 done

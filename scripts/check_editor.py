@@ -19,7 +19,7 @@ block.importFile("basic.dump")
 #
 #		Read the code that should be there.
 #
-lines = [x.strip() for x in open("..\\scripts\\temp\\edit.final").readlines() if x.strip() != ""]
+lines = [x.strip() for x in open("../scripts/temp/edit.final").readlines() if x.strip() != ""]
 #
 #		Start Position
 #

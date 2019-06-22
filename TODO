@@ -1,9 +1,9 @@
 Main
 ----
-- Parameters reset tempstring with every parameter, concrete strings copied in otherwise. 
-- local and parameter same ??
-- Dog food !!
+- local (put locals back into test_strings)
 - Parameters (not arrays)
+- Optimise string copying.
+- Dog food !!
 - Switchable environments.
 - 65816 assembler.
 
@@ -27,8 +27,6 @@ Fixes
 - allocating new variable (memory error)
 
 - when allocating space for temporary variables, check there isn't a collision (memory error)
-
-- when concreting, check that doesn't run out of memory. 
 
 Addressing Modes
 ================

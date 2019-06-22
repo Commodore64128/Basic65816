@@ -48,9 +48,9 @@ if __name__ == "__main__":
 	#
 	for i in range(0,procCount):	
 		localVars = {}
-		for v in varNames:
-			if random.randint(0,1) == 0:
-				localVars[v] = True
+#		for v in varNames:
+#			if random.randint(0,1) == 0:
+#				localVars[v] = True
 		blk.addBASICLine("defproc modify{0}".format(i))
 		for v in localVars:
 			blk.addBASICLine("local "+v)
