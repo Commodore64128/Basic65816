@@ -73,6 +73,8 @@ DStack65816 = DPBaseAddress + 58 			; 65816 Stack pointer.
 
 DTarget = DPBaseAddress + 60 				; target address for PROC call.
 
+DArrayType = DPBaseAddress + 62 			; type of array being created.
+
 ; ********************************************************************************
 ;
 ;									BASIC stack.

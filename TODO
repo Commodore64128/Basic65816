@@ -1,5 +1,6 @@
 Main
 ----
+
 - local (put locals back into test_strings)
 - Parameters (not arrays)
 - Optimise string copying.
@@ -18,13 +19,10 @@ Fixes
 
 - 	fewer bytes allocate in convert to string for bases >= 10 (say)
 
-- 	short cut, check still uses current one if string will fit in that space.
 
 (all check LowMem vs HighMem)
 
 - adding new lines, out of memory.
-
-- allocating new variable (memory error)
 
 - when allocating space for temporary variables, check there isn't a collision (memory error)
 

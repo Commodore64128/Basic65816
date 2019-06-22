@@ -25,8 +25,7 @@ Command_FOR:	;; for
 		jsr 	VariableFind 				; try to find variable
 		bcs 	_CFOExists 					
 		;
-		lda 	#0 							; A = 0 because it's not an array.
-		jsr 	VariableCreateNew			; create it and skip token.
+		jsr 	VariableCreate				; create it and skip token.
 		;
 		;		Now have the variable used as the index in A
 		;

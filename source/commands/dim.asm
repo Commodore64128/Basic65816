@@ -24,19 +24,8 @@ Function_Dim: ;; dim
 		;
 		;		Push the address of the identifier token, and its hash pointer on the stack.
 		;
-		lda 	DCodePtr 					; push the variable identifier address on the stack
-		pha
-		lda 	DHashTablePtr 				; push the hash value on the stack as well, as evaluateinteger might change it
-		pha
-		;
-		;		Skip over the token, so we can calculate the array size
-		;
-_FDIMSkip:
-		lda 	(DCodePtr)					; skip over the token, so we can evaluate the array size.
-		inc 	DCodePtr
-		inc 	DCodePtr
-		and 	#IDContMask
-		bne 	_FDIMSkip 
+		jsr 	VariableCreate 				; create the empty variable.
+		pha 								; save array address on the stack.
 		;
 		;		Get and validate the array size
 		;
@@ -48,25 +37,11 @@ _FDIMSkip:
 		cmp 	#0 							; need at least one element.
 		beq 	_FDIMSize
 		;
-		;		Restore the hash pointer and the identifier token address
+		;		Create an array and store in the data structure.
 		;
-		ply 								; restore HashTablePtr for the array variable.
-		sty 	DHashTablePtr
-		ply 								; restore DCodePtr to point to the identifier.
-		sty 	DCodePtr 				
-		;
-		;		Now create the array
-		;
-		jsr 	VariableCreateNew 			; create the variable.
-		;
-		;		Skip over tokens until gone past the right bracket.
-		;
-_FDIMFindRight:
-		lda 	(DCodePtr)
-		inc 	DCodePtr
-		inc 	DCodePtr
-		cmp 	#rParenTokenID
-		bne 	_FDIMFindRight		
+		jsr 	DIMCreateArrayBlock 		; create and return empty array, size A+1.
+		ply 								; this is where it goes.
+		sta 	$0000,y 					; pointer to first array level block.
 		;
 		;		If followed by a comma, go round again.
 		;
@@ -89,3 +64,63 @@ _FDIMExists:
 _FDIMSize:
 		#error 	"DIM too large"
 		
+
+; *******************************************************************************************
+;
+;				Create an empty array of size A+1, and return address.
+;		
+; *******************************************************************************************
+
+DIMCreateArrayBlock:	
+		;
+		; 		Work out size.
+		;	
+		pha
+		inc 	a 							; work out size + 1 x 4
+		asl 	a
+		bcs 	_DCABFail
+		asl 	a
+		bcs 	_DCABFail
+		clc 								; 2 for size word.
+		adc 	#2
+		bcs 	_DCABFail
+
+		sta 	DTemp1
+		;
+		;		Allocate memory
+		;
+		ldy 	#Block_LowMemoryPtr 		; add to pointer.
+		lda 	(DBaseAddress),y 			
+		pha 								; save return address
+		clc
+		adc 	DTemp1
+		sta 	(DBaseAddress),y
+		;
+		;		Check out of memory.
+		;
+		ldy 	#Block_HighMemoryPtr
+		cmp 	(DBaseAddress),y
+		bcs 	_DCABFail
+		;
+		;		Clear it.
+		;
+		ldx 	DTemp1
+		ply
+		phy
+_DCABClear:
+		lda 	#0
+		sta 	$0000,y
+		iny
+		iny
+		dex
+		dex 	
+		bne 	_DCABClear
+		;
+		ply 								; restore start address
+		pla 								; restore high index
+		sta 	$0000,y 					; save high index
+		tya 								; return in A.
+		rts
+
+_DCABFail:
+		brl 	OutOfMemoryError

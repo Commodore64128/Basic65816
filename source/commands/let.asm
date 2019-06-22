@@ -27,8 +27,7 @@ Command_Let: ;; let
 		and 	#IDArrayMask 				; if it is an array, you can't autoinstantiate it, you have to DIM it.
 		bne 	_FLError					; arrays, so this causes an error.
 		;
-		lda 	#0 							; A = 0 because it's not an array, just a single value.
-		jsr 	VariableCreateNew 			; create it.
+		jsr 	VariableCreate 				; create it.
 		sta 	DVariablePtr 				; save the data address.
 		;
 _FLetFound:	
@@ -40,12 +39,12 @@ _FLetFound:
 		;
 		pla 								; get and save the first token.
 		pha
-		tay 								; put it in Y
 		and 	#IDArrayMask				; is it an array ?
 		beq 	_FLetNotArray
 		;
 		;		Do the indexing
 		;
+		ldx		#EXSBase 					; in LET, so do it from the base stack.
 		lda 	DVariablePtr 				; variable pointer into A, first token in A
 		jsr 	VariableSubscript			; index calculation
 		sta 	DVariablePtr 				; and write it back.

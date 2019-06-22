@@ -170,22 +170,23 @@ _VFError:
 
 ; *******************************************************************************************
 ;
-;		Subscript an Array Entry. On entry A points to the max-subscript for the index 
-;		(record +4 for arrays)
-;
-;		On exit A points to the respective data element which can be 2 or 4 bytes 
-;		depending.
+;	  Subscript an Array Entry. On entry A points to the link to the data, X is the level.
 ;
 ; *******************************************************************************************
 
 VariableSubscript:
+		phy
+		tay 								; put the link pointer into Y
+		lda 	$0000,y 					; read the link, this is the size word.
 		pha		 							; save variable address on stack.
+		;
 		jsr		EvaluateNextInteger 		; get the subscript
 		jsr 	ExpectRightBracket 			; skip right bracket.
 		cpy 	#0 							; msword must be zero
 		bne 	_VANSubscript
 		;
-		cmp 	(DVariablePtr)				; the subscript is at +4, so check against that.
+		ply 								; start of array memory block.
+		cmp 	$0000,y						; the max index is at the start, so check against that.
 		beq 	_VANSubOkay 				; fail if subscript > high subscript
 		bcs 	_VANSubscript 
 _VANSubOkay:
@@ -194,10 +195,12 @@ _VANSubOkay:
 		asl 	a 							; and again, also clears carry.
 		sta 	DTemp1	 					; 4 x subscript in DTemp1
 
-		pla 								; restore DVariablePtr
+		tya 								; restore DVariablePtr
 		inc 	a 							; add 2 to get it past the high subscript
 		inc 	a
+		clc
 		adc 	DTemp1 						; add the subscript
+		ply
 		rts
 
 _VANSubscript:
@@ -209,57 +212,37 @@ _VANSubscript:
 ;
 ;		*** VariableFind needs to have been called first so DHashPtr is set up ***
 ;
-;		A contains the high index, or zero if the variable is a single item. 
 ;		DCodePtr points to the token.
 ;
-;		On exit A contains the address of the data part of the record for non-arrays, 
-;		or the largest index for arrays, e.g. the record address + 4, and the token
-; 		has been skipped.
+;		On exit A contains the address of the data part of the record (e.g. at +4)
+;		
 ;
 ; *******************************************************************************************
 
-VariableCreateNew:			
-		pha 								; save count.
+VariableCreate:			
 		;
-		;		Work out space to allocate.
-		;
-		inc 	a 							; need 1 more element. If zero, you need one. If high index,size is one more.	
-		asl 	a 							; 2 x # items.
-		asl 	a 							; 4 x # items.
-_VCNotSingle:
-		sta 	DTemp1 						; save temporarily
-		lda 	(DCodePtr) 					; get first token.
-		and 	#IDArrayMask 				; check array bit.
-		beq 	_VCNotArray
-		inc 	DTemp1 						; if set, add 2 to count, space stores the high index value.
-		inc 	DTemp1
-_VCNotArray:
-		;
-		;		Allocate space (in DTemp1) + 4
+		;		Allocate space - 8 bytes.
 		;
 		ldy 	#Block_LowMemoryPtr 		; get low memory
 		lda 	(DBaseAddress),y 		
-		sta 	DTemp2 						; save in DTemp2
-		clc 								; add 4 for link and name words
-		adc 	#4 
-		adc 	DTemp1 						; add memory required. already calculate this.
+		pha 								; save it
+		clc 
+		adc 	#8 
 		sta 	(DBaseAddress),y 			; update low memory
+		;
+		ldy 	#Block_HighMemoryPtr 		; check allocation.
+		cmp 	(DBaseAddress),y
+		bcs 	_VCOutOfMemory
+		ply 								; restore new variable address to Y.
 		;
 		;		Clear the data space.	
 		;
-		ldy 	DTemp2 						; put the address back in Y
-_VCErase:
 		lda 	#$0000 						; clear that word to empty string/zero.
-		sta 	$0004,y 					; data from +4 onwards
-		iny 						
-		iny
-		dec 	DTemp1 						; do it DTemp1 times.
-		dec 	DTemp1 						; (this is the count of the data beyond link/name)
-		bne 	_VCErase
+		sta 	$0004,y 					; data from +4..+7 is zeroed.
+		sta 	$0006,y
 		;
 		;		Now set it up.
 		;
-		ldy 	DTemp2 						; Y is the variable address
 		lda 	(DHashTablePtr)				; get the link to next.
 		sta 	$0000,y 					; save at offset +0
 		;
@@ -275,11 +258,6 @@ _VCErase:
 _VCDontClone:		
 		sta 	$0002,y 					; save at offset +2
 		;
-		pla 								; restore count and store (if nonzero)
-		beq 	_VCNotArray2
-		sta 	$0004,y
-_VCNotArray2:		
-		;
 		tya 								; update the head link
 		sta 	(DHashTablePtr)
 		clc 								; advance pointer to the data bit.
@@ -294,9 +272,12 @@ _VCSkipToken:
 		inc 	DCodePtr
 		and 	#IDContMask 				; if there is a continuation 
 		bne 	_VCSkipToken
-		l
 		pla 								; restore data address
 		rts 								; and done.
+		;
+_VCOutOfMemory:
+		brl 	OutOfMemoryError
+
 		;
 		;		Clone the identifier at A.
 		;
@@ -327,4 +308,4 @@ _VCCloneLoop:
 		plx
 		rts
 
-		
+
