@@ -31,6 +31,7 @@ _CLOFail:
 ; *******************************************************************************************
 ;
 ;				Make the variable at (DCodePtr) local. Return data address in A.
+;				CS if string, CC if integer.
 ;
 ; *******************************************************************************************
 
@@ -66,14 +67,12 @@ _LPVFound:
 		lda 	#$C000 						; write $C000 marker.
 		sta 	$08,x
 		;
-		lda 	#$0000 						; clear the local variable to zero
-		sta 	$0000,y
-		sta 	$0002,y
-		;
 		txa 								; shift to top of stack.
 		clc
 		adc 	#8
 		sta 	DStack
+		tya 								; return address of variable data.
+		clc
 		rts
 		;
 		;		Push a string.
@@ -97,6 +96,7 @@ _LPVPushOut:
 		bpl 	_LPVPushOut 				; push one extra because of length byte.
 		;
 		pla 								; write out the address of the storage.
+		tay 								; save it in Y
 		sta 	$00,x 						; (e.g. this address has the physical string address)
 		lda 	#$E000 						; write $E000 out.
 		sta 	$02,x
@@ -104,6 +104,8 @@ _LPVPushOut:
 		inx
 		stx 	DStack 						; save $E000 marker
 _LPVExit:		
+		tya  								; return address of marker.
+		sec
 		rts
 
 _LPVFail:

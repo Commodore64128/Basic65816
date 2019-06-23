@@ -1,9 +1,8 @@
 @run
 100 	a1 = 99942
-110 	b1 = 38
 111 	s1$ = "Str#1"
-112 	s2$ = "Str#2"
-115 	print a1,b1,s1$,s2$
+117 	s2$ = "Str#2":b1 = 38
+119 	print a1,b1,s1$,s2$
 120 	proc test
 130 	print a1,b1,s1$,s2$
 140 	proc test
@@ -11,6 +10,7 @@
 160 	end
 
 1000 	defproc test
+
 1005 	local a1,b1,s1$,s2$
 1009 	print "In test#1 ",a1,b1,s1$,s2$
 1010	a1 = 1999
