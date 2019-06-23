@@ -1,9 +1,12 @@
 @run
 100 	a1 = 99942
 111 	s1$ = "Str#1"
-117 	s2$ = "Str#2":b1 = 38
-119 	print a1,b1,s1$,s2$
-120 	proc test
+116 	s2$ = "Str#2":b1 = 38
+117 	print a1,b1,s1$,s2$
+118     proc tparam(911,"Police !")
+119 	proc tparam(a1+10000,"<"+s1$+">")
+122 	print a1,b1,s1$,s2$
+123 	proc test
 130 	print a1,b1,s1$,s2$
 140 	proc test
 150 	print a1,b1,s1$,s2$
@@ -27,8 +30,8 @@
 1230 	print "Sublevel",a1,b1,s1$,s2$
 1240 	endproc
 
-1300 	defproc tparam(a1,s1$)
-1310 	print "In TParam ",a1,s1$
+1300 	defproc tparam(a12,s12$)
+1310 	print "In TParam ",a12,s12$
 1320  	endproc
 
 

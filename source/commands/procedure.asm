@@ -103,11 +103,122 @@ _FPROCompare: 								; check loop
 
 _FPROUnknown:
 		#error 	"Unknown procedure"
+
+; *******************************************************************************************
+;
+;									Handle Parameters
+;
+;	The parameters are stored in a table "PRMBuffer". 
+;
+;	In the first phase, the parameter values (from caller) are evaluated and stored in
+;	that buffer.
+;
+;	In the second phase, the parameter variables are localised and the buffer data is stored
+;	in those addresses.
+;
+; *******************************************************************************************
+
+_FPROParameter:		
 		;
-		;		Set up the parameters.
+		;		Save code pointer on the stack, and set up to scan return address.
 		;
-_FPROParameter:
-		brl 	SyntaxError 				; syntax error otherwise.
+		lda	 	DCodePtr 					; save code pointer
+		pha
+		lda 	DStack 						; get the stack.
+		sec
+		sbc 	#4 							; this is the address of that return value
+		pha 								; save that on the stack.
+		tax
+		lda 	$00,x 						; get that return address
+		sta 	DCodePtr 					; and set up the code pointer.
+		;
+		;		Now extract the parameter values, putting them in the buffer.
+		;
+		ldx 	#PRMBuffer 					; X points to the parameter buffer.
+_FPROGetValues:
+		phx 								; save X
+		jsr 	Evaluate 					; Evaluate into YA, type into CS.
+		plx 								; restore X
+		sta 	$00,x 						; save value 
+		tya
+		sta 	$10,x
+		lda 	#0 							; get the carry into A, so 0=int,1=string
+		rol 	a 
+		sta 	$20,x 						; write into type slot.
+		inx 								; next entry into parameter table.
+		inx 
+		lda 	(DCodePtr) 					; get next token and skip it
+		inc 	DCodePtr
+		inc 	DCodePtr
+		cmp 	#commaTokenID 				; if comma, another parameter.
+		beq 	_FPROGetValues
+		cmp 	#rParenTokenID 				; if not right bracket, then error.
+		bne 	_FPROSyntax
+		lda 	#$FFFF 						; store -1 in the next type slot.
+		sta 	$20,x 						; marks the end of the parameters.
+		;
+		plx 								; address of return address
+		lda 	DCodePtr 					; write return address back.
+		sta 	$00,x
+		;
+		pla 								; restore old code pointer (the parameter addresses)
+		sta 	DCodePtr
+		;
+		;		Now we localise the parameter variables, writing out the data to the target
+		;		address as we go.
+_FPROSetupParameters:
+		ldx 	#PRMBuffer 					; start of buffer.
+_FPROSetupLoop:
+		lda 	$20,x 						; get the type
+		bne 	_FPROSetupString
+		;
+		;		Set up an integer.
+		;
+		phx 								; localise variable, preserving X.
+		jsr 	LocalProcessVariable
+		plx 
+		bcs 	_FPROTypeError 				; must be integer variable.
+		tay  								; target address in Y.
+		;
+		lda 	$00,x 						; copy data
+		sta 	$0000,y
+		lda 	$10,x
+		sta 	$0002,y
+		bra 	_FPRONextParameterValue
+		;
+		;		Set up a string
+		;
+_FPROSetupString:		
+		phx 								; localise variable, preserving X.
+		jsr 	LocalProcessVariable
+		plx 
+		bcc 	_FPROTypeError 				; must be integer variable.
+		tay  								; target address in Y.
+		lda 	$00,x 						; address of new string in A
+		phx 								; preserve X. 
+		jsr 	StringAssign 				; assign the string using the function used by LET.
+		plx
+		;
+		;		Go to next entry.
+		;
+_FPRONextParameterValue:
+		inx 								; next parameter in parameter table.
+		inx
+		lda 	$20,x 						; type of next
+		bmi 	_FPROComplete 				; if -ve then we have assigned everything.
+		jsr 	ExpectComma 				; expect a comma
+		bra 	_FPROSetupLoop 				; and do the next one.
+
+_FPROComplete:
+		jsr 	ExpectRightBracket 			; the right bracket closing the parameter list		
+		rts
+
+_FPROTypeError:
+		#error 	"Bad parameter type"		
+
+
+_FPROSyntax:
+		brl 	SyntaxError
 
 ; *******************************************************************************************
 ;

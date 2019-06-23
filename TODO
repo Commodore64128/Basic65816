@@ -1,8 +1,5 @@
-
 Main
 ----
-
-- Parameters (not arrays)
 - rearrange data area.
 - the # option for hexadecimal constants (in, then out.)
 - Optimise string copying.
@@ -15,7 +12,7 @@ Fixes
 
 - 	detokenising lines, too long ?
 
-- 	expressions stack sizes and spacing and testing. same for basic stack.
+- 	expressions stack sizes and spacing and testing. same for basic stack, same for parameter buffer
 
 - 	allocating stack for FOR REPEAT WHILE IF LOCAL PROC etc.
 

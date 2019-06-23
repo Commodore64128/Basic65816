@@ -25,8 +25,6 @@ Command_LOCAL:	;; local
 		bra 	Command_Local
 _CLOExit:
 		rts
-_CLOFail:
-		#error 	"Bad Local Statement"
 
 ; *******************************************************************************************
 ;
