@@ -20,14 +20,14 @@ Command_Let: ;; let
 		bcs 	_FLetFound 					; skip if found.
 		;
 		;		Couldn't find it, so create variable at this position
-		;		We cannot create arrays automagically.
+		;		We cannot create arrays automagically (well we do not, we could !)
 		;
 		pla 								; get and push the first token again.
 		pha
 		and 	#IDArrayMask 				; if it is an array, you can't autoinstantiate it, you have to DIM it.
 		bne 	_FLError					; arrays, so this causes an error.
 		;
-		jsr 	VariableCreate 				; create it.
+		jsr 	VariableCreate 				; create it as a single variable.
 		sta 	DVariablePtr 				; save the data address.
 		;
 _FLetFound:	
@@ -51,7 +51,7 @@ _FLetFound:
 		;		
 _FLetNotArray: 
 		;
-		;		Restore the first token, and push the target address on the stack.
+		;		Restore the first token, and push the target address on the stack, then the token
 		;
 		ply 								; get the first token into Y
 		lda 	DVariablePtr 				; save the target address on the stack.
@@ -85,7 +85,8 @@ _FLetNotArray:
 _FLetString:
 		jsr 	EvaluateString 				; get a string.
 		lda 	EXSValueL+0,x				; get the low word, the address
-		ply 								; get address we are overwriting.
+		ply 								; get address we are overwriting in Y - this is the
+											; address in the variable space pointing to the string.
 		jsr 	StringAssign 				; assign the string in memory.
 		rts
 

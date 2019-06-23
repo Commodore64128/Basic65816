@@ -33,29 +33,44 @@ StringResetPermanent:
 ; 		old string. Update that address with the new string, concreting in memory if
 ;		required.
 ;
+;		For clarification ; the Y value is the address of the string storage area associated
+; 		with an array element or variable. This may contain $0000 when initialised, or a 
+;		current string storage address.
+;
+;		We reuse this storage address if we can, extend it if we can, and finally we reallocate
+;		it.
+;
 ; *******************************************************************************************
 
 StringAssign:
 		phx 								; save X
-		tax 								; new string to X.
+		tax 								; new string address to X.
 		;
-		lda 	$0000,y 					; does the string have an address yet.
-		beq 	_SAAllocate 				; if not , allocate space for it and copy the string.
 		;
 		;		Check to see if this string has memory allocated already.
 		;
+		lda 	$0000,y 					; does the string pointer we replace have an address yet.
+		beq 	_SAAllocate 				; if not , allocate space for it and copy the string.
+		;
+		;		If the current address < the high memory pointer - e.g. it is not stored
+		;		in the string area, then just allocate.
+		;
 		phy
 		lda 	$0000,y 					; compare calculate saved address - high memory pointer
+		ldy 	#Block_HighMemoryPtr
 		cmp 	(DBaseAddress),y
-		tay 								; read the max available length of the old string
-		dey  								; CC still contains first allocation check
-		lda 	$0000,y
-		ply 								; restore Y
+		ply
 		bcc 	_SAAllocate					; if < high memory pointer, first allocation.		
 		;
 		; 		Compare max length of old string (A) vs length of new string. If it fits
 		;		copy it in.
 		;
+		phy
+		lda 	$0000,y 					; address of the string
+		tay
+		dey 								; point to the max length of the old string.
+		lda 	$0000,y 					; length of string
+		ply 
 		and 	#$00FF 						; max length of old string
 		sep 	#$20 						
 		cmp 	@w$0000,x 					; compare against length of new string

@@ -39,11 +39,11 @@ _CFOExists:
 		jsr 	EvaluateInteger 			; this is the start value
 		tyx 								; put high value in X
 		ply 								; address of for variable in Y
-		sta 	$0000,y
+		sta 	$0000,y 					; copy into variable
 		txa
 		sta 	$0002,y
 		;
-		;		Skip TO
+		;		Skip TO keyword
 		;
 		lda 	#toTokenID 					; expect the TO
 		jsr 	ExpectToken
@@ -68,14 +68,16 @@ _CFOExists:
 		;
 		;		We do not execute this here FOR I = 1 TO [22 STEP 3] it is just skipped over.
 		;		We could check it this time and not execute the FOR but most BASICs do not do this.
-		;									; skip over <n> [STEP <n>] for now.
+		;
+		;		Skip over <n> [STEP <n>] for now.
+		;
 		jsr 	EvaluateInteger 			; the end value, which we don't want this time.
 		lda 	(DCodePtr)
 		cmp 	#stepTokenID 				; if STEP x is present.
 		bne 	_CFONoStep
 		lda 	#stepTokenID 				; skip STEP
 		jsr 	ExpectToken 
-		jsr 	EvaluateInteger 			; and whatever the step is.
+		jsr 	EvaluateInteger 			; and whatever the step is, throw away this time.
 		;
 _CFONoStep:
 		rts
@@ -100,7 +102,8 @@ Command_NEXT: ;; next
 		#error 	"Next without For"
 _CNXOk:				
 		;
-		;		If identifier present (optional) then check it.
+		;		If identifier present (optional) then check it is the same as 
+		;	 	the one on the stack.
 		;
 		lda 	(DCodePtr)					; if there's an identifier here.
 		cmp 	#$C000 						; e.g. NEXT <var>
@@ -116,7 +119,8 @@ _CNXOk:
 _CNXNextVar:
 		#error 	"Bad NEXT variable"
 		;
-		; 		Do the actual NEXT code.
+		; 		Do the actual NEXT code, wind the loop back so we are executing the
+		;		FOR I = 1 TO [9 STEP 2] bit - the bit in square brackets.
 		;
 _CNXNoVariable:
 		lda 	DCodePtr 					; save the following position on the stack in case we are done.
@@ -132,9 +136,12 @@ _CNXNoVariable:
 		;
 		;		Now evaluate <target> and optional STEP <step>
 		;
-		jsr 	EvaluateInteger 			; this is the target constant
+		jsr 	EvaluateInteger 			; this is the target constant 
 		phy 								; save the target on the stack
 		pha
+		;
+		;		Figure out the STEP, which defaults to 1.
+		;
 		lda 	#1 							; set DTemp1 (the count) to 1
 		sta 	DTemp1
 		stz 	DTemp1+2
@@ -142,7 +149,7 @@ _CNXNoVariable:
 		cmp 	#stepTokenID
 		bne 	_CNXNoStep 
 		;
-		inc 	DCodePtr 					; skip over the step
+		inc 	DCodePtr 					; skip over the step token.
 		inc 	DCodePtr 
 		jsr 	EvaluateInteger 			; work out the step.
 		sta 	DTemp1 						; and save in DTemp1
@@ -157,11 +164,13 @@ _CNXNoStep:
 		sta 	DTemp2+2		
 		;
 		ldx 	DStack 						; get the stack
-		lda 	$06,x 						; address of variable into Y
+		lda 	$06,x 						; address of the FOR variable into Y
 		tay
 		;
+		; 		Add the step (DTemp1) to the target (at $0000,y)
+		;
 		clc
-		lda 	$0000,y 					; add the step (DTemp1) to the target
+		lda 	$0000,y 					
 		adc 	DTemp1
 		sta 	$0000,y
 		lda 	$0002,y
@@ -201,5 +210,6 @@ _CNXLoopAgain:
 		adc 	#8
 		sta 	DStack
 		lda		$04,x 						; because we've jumped to the top, get the line number
-		sta 	DLineNumber
+		sta 	DLineNumber 				; and make that right again.
 		rts
+

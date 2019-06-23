@@ -17,6 +17,8 @@
 ;		Store the address of its data in DVariablePtr. Return this in YA with CS if it is
 ;		a string value, CC if it is an integer.
 ;
+;		This is only used by the Expression function, should not be called directly.
+;
 ; *******************************************************************************************
 
 VariableAccessExpression:
@@ -50,18 +52,24 @@ _VANNotArray:
 		and 	#IDTypeMask 				; this is the integer/string bit. $2000 if string, $0000 if int
 		eor 	#IDTypeMask 				; now $0000 if string, $2000 if integer.
 		beq 	_VANIsString 				; if zero, Y = 0 and just load the lower address with the variable (string)
+		;
+		;		Returning a number.
+		;
 		clc 								; returning a number, read high data word
 		ldy 	#2
 		lda 	(DVariablePtr),y
 		tay 								; put A into Y (this is the high byte)
 		lda 	(DVariablePtr)				; read the low data word
 		rts
+		;
+		;		Returning a string.
+		;
 _VANIsString:
 		ldy 	#0 							; load string into YA
 		lda 	(DVariablePtr) 				
 		bne 	_VANNotEmptyString
 		lda 	#Block_NullString 			; if value is $0000 then return the empty string
-		clc
+		clc 								; which is always maintained.
 		adc 	DBaseAddress
 _VANNotEmptyString:		
 		sec
@@ -82,11 +90,14 @@ _VANError:
 
 VariableFind:
 		;
-		; 		check it's an id token
+		; 		check it's an identifier token
 		;
 		lda 	(DCodePtr)					; look at the first token
 		cmp 	#$C000 						; must be $C000-$FFFF, an identifier.
 		bcc 	_VFError
+		;
+		;		check if it's a "fast variable" A-Z
+		;
 		cmp 	#$C01A+1					; C01A is identifier, no continuation Z
 		bcs 	_VFSlowVariable 			; < this it is the fast variable A-Z
 		;
@@ -108,36 +119,43 @@ VariableFind:
 		;
 _VFSlowVariable:
 		;
-		;		Figure out which hash table
+		;		Figure out which hash table to use, there are four integer/string
+		;		and single value/array.
 		;
 		lda 	(DCodePtr)					; get the token
 		and 	#(IDTypeMask+IDArrayMask) 	; get the type bits out --tt ---- ---- ----
 		xba 								; now this is 0000 0000 00tt 0000 e.g. tt x 16
-		asl 	a 							; there are 32 entries per table, also clc
+		;
+		asl 	a 							; 32 bytes (16 x 2 byteentries) per table, also clc
 		adc 	#Block_HashTable 			; now its the correct has table offset
 		adc 	DBaseAddress 				; now the actual address
-		sta 	DTemp1
+		sta 	DTemp1 						; so this is the base of the hash table for the type
 		;
 		;		Figure out which hash entry.
 		;
 		lda 	(DCodePtr) 					; get the token - building the hash code.
-		and 	#Block_HashMask 			; now a mask value.
+		and 	#Block_HashMask 			; now a mask value, very simple but okay I think.
 		asl 	a 							; double (word entries) and clear carry
-		adc 	DTemp1
+		adc 	DTemp1 						; add to the base hash table
 		sta 	DHashTablePtr 				; save pointer for later
 		sta 	DTemp1 						; save in DTemp1, which we will use to follow the chain.
 		;
-		;		Search the next element in the chain.
+		;		Search the next element in the chain, looking for a particular variable.
 		;
 _VFNext:
 		lda 	(DTemp1) 					; normally the link, first time will be the header.
 		beq 	_VFFail 					; if zero, then it's the end of the list.
 		;
+		;		Valid variable record, check if it's the one we want.
+		;
 		sta 	DTemp1 						; this is the new variable record to check
 		tay 								; read the address of the name at $0002,y
 		lda 	$0002,y
 		sta 	DTemp2 						; save in DTemp2
-		ldy 	#0 							; start matching lists of tokens
+		;
+		;		Check the name of this record (DTemp2)  against the one we're finding (CodePtr)
+		;
+		ldy 	#0 							; start matching lists of tokens, we can do it in words
 _VFCompare:
 		lda 	(DTemp2),y 					; see if they match
 		cmp 	(DCodePtr),y
@@ -147,16 +165,16 @@ _VFCompare:
 		and 	#IDContMask 				; if continuation bit set, keep going (if they match)
 		bne 	_VFCompare
 		;
-		;		Found it.
+		;		Found it - the token lists match.
 		;
 		tya 								; this is the length of the word.
 		clc 								; so we add it to the code pointer
 		adc 	DCodePtr
-		sta 	DCodePtr 					; now points to the following token.
+		sta 	DCodePtr 					; now points to the token after the identifier.
 		;
 		lda 	DTemp1 						; this is the variable record
 		clc 								; four on is the actual data
-		adc 	#4 							; or it's the index for indexes.
+		adc 	#4 							; or it's the reference for the data for arrays.
 		;
 		sec 								; return with CS indicating success
 		rts
@@ -175,32 +193,41 @@ _VFError:
 ; *******************************************************************************************
 
 VariableSubscript:
-		phy
+		;
+		;		Get the address of the data block for the array.
+		;
+		phy 								; save Y
 		tay 								; put the link pointer into Y
-		lda 	$0000,y 					; read the link, this is the size word.
-		pha		 							; save variable address on stack.
+		lda 	$0000,y 					; read the link, this is the array data block.
+		pha		 							; save array data block address on stack.
+		;
+		; 		Get the subscript and check it is 0-65535
 		;
 		jsr		EvaluateNextInteger 		; get the subscript
 		jsr 	ExpectRightBracket 			; skip right bracket.
 		cpy 	#0 							; msword must be zero
 		bne 	_VANSubscript
 		;
+		;		Compare the subscript against the max index at the start of the memory block.
+		;
 		ply 								; start of array memory block.
 		cmp 	$0000,y						; the max index is at the start, so check against that.
 		beq 	_VANSubOkay 				; fail if subscript > high subscript
 		bcs 	_VANSubscript 
 _VANSubOkay:
-
+		;
+		;		Convert to a data address
+		;
 		asl 	a 							; double lsword
 		asl 	a 							; and again, also clears carry.
 		sta 	DTemp1	 					; 4 x subscript in DTemp1
 
-		tya 								; restore DVariablePtr
+		tya 								; restore the address of the array memory block.
 		inc 	a 							; add 2 to get it past the high subscript
 		inc 	a
 		clc
-		adc 	DTemp1 						; add the subscript
-		ply
+		adc 	DTemp1 						; add the subscript x 4
+		ply 								; restore Y
 		rts
 
 _VANSubscript:
@@ -221,7 +248,7 @@ _VANSubscript:
 
 VariableCreate:			
 		;
-		;		Allocate space - 8 bytes.
+		;		Allocate space - 8 bytes always.
 		;
 		ldy 	#Block_LowMemoryPtr 		; get low memory
 		lda 	(DBaseAddress),y 		
@@ -229,6 +256,8 @@ VariableCreate:
 		clc 
 		adc 	#8 
 		sta 	(DBaseAddress),y 			; update low memory
+		;
+		;		Check we are okay on memory.
 		;
 		ldy 	#Block_HighMemoryPtr 		; check allocation.
 		cmp 	(DBaseAddress),y
@@ -241,26 +270,39 @@ VariableCreate:
 		sta 	$0004,y 					; data from +4..+7 is zeroed.
 		sta 	$0006,y
 		;
-		;		Now set it up.
+		;		Now set it up, put the original hash first link as this record's link
+		; 		e.g. insert it into the front of the linked list.
 		;
 		lda 	(DHashTablePtr)				; get the link to next.
 		sta 	$0000,y 					; save at offset +0
 		;
+		;		Set up the token. If the token is in the tokenised space used for typed in
+		; 		commands (e.g. we've typed a3 = 42 at the keyboard) that token needs to be
+		; 		copied, because the reference will disappear.
+		;
 		lda 	#Block_ProgramStart 		; work out the program start
-		clc
+		clc 								; in DTemp1. 
 		adc 	DBaseAddress
 		sta 	DTemp1
+		;
+		;		If the token address is < program start it's in the token buffer and needs
+		;		duplicating.
 		;
 		lda 	DCodePtr 					; get the address of the token.
 		cmp 	DTemp1 						; if it is below the program start we need to clone it.
 		bcs 	_VCDontClone 				; because the variable being created has its identifier
 		jsr 	VCCloneIdentifier	 		; in the token workspace, done via the command line
 _VCDontClone:		
+		;
+		;		Update the token address word in the new variable record.
+		;
 		sta 	$0002,y 					; save at offset +2
+		;
+		;		The record is now complete, so put it in the head of the hash table linked list.
 		;
 		tya 								; update the head link
 		sta 	(DHashTablePtr)
-		clc 								; advance pointer to the data bit.
+		clc 								; advance pointer to the data part.
 		adc 	#4
 		pha 								; save on stack.
 		;
@@ -277,9 +319,10 @@ _VCSkipToken:
 		;
 _VCOutOfMemory:
 		brl 	OutOfMemoryError
-
 		;
-		;		Clone the identifier at A.
+		;		Clone the identifier at A. Used when we can't use a program token to name
+		;		a new variable, because we did it at the keyboard. This will hardly ever 
+		;		be used :)
 		;
 VCCloneIdentifier:
 		phx 								; save XY
@@ -307,5 +350,4 @@ _VCCloneLoop:
 		ply 								; and the others
 		plx
 		rts
-
 

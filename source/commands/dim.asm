@@ -17,12 +17,13 @@ Function_Dim: ;; dim
 		and 	#IDArrayMask 				; is it an array ?
 		beq		_FDIMNotArray 				; no, error.
 		;
-		;		Check to see not redimensioning an array
+		;		Check to see not redimensioning an array that already exists.
 		;
 		jsr 	VariableFind 				; try to find it.
 		bcs 	_FDIMExists 				; if it does, that's an error.
 		;
-		;		Push the address of the identifier token, and its hash pointer on the stack.
+		;		Create the array, which will have no elements at this point, and
+		;		push its data address on the stack.
 		;
 		jsr 	VariableCreate 				; create the empty variable.
 		pha 								; save array address on the stack.
@@ -37,13 +38,13 @@ Function_Dim: ;; dim
 		cmp 	#0 							; need at least one element.
 		beq 	_FDIMSize
 		;
-		;		Create an array and store in the data structure.
+		;		Create an array data part and store a reference to it in the data structure.
 		;
 		jsr 	DIMCreateArrayBlock 		; create and return empty array, size A+1.
 		ply 								; this is where it goes.
 		sta 	$0000,y 					; pointer to first array level block.
 		;
-		;		If followed by a comma, go round again.
+		;		If followed by a comma, go round again (e.g. dim a(3),b(4) and so on)
 		;
 		lda 	(DCodePtr)					; look at next character
 		cmp 	#commaTokenID 				; if not a comma, exit
@@ -73,19 +74,18 @@ _FDIMSize:
 
 DIMCreateArrayBlock:	
 		;
-		; 		Work out size.
+		; 		Work out size in bytes from size in elements.
 		;	
-		pha
+		pha 								; save max index for later.
 		inc 	a 							; work out size + 1 x 4
-		asl 	a
+		asl 	a 							; array(7) has 8 elements indexed from zero.
 		bcs 	_DCABFail
 		asl 	a
 		bcs 	_DCABFail
-		clc 								; 2 for size word.
+		clc 								; 2 for size word, the first word is the max index.
 		adc 	#2
 		bcs 	_DCABFail
-
-		sta 	DTemp1
+		sta 	DTemp1 						; save this total size.
 		;
 		;		Allocate memory
 		;
@@ -96,13 +96,13 @@ DIMCreateArrayBlock:
 		adc 	DTemp1
 		sta 	(DBaseAddress),y
 		;
-		;		Check out of memory.
+		;		Check out of memory - have we crossed the high pointer coming down.
 		;
 		ldy 	#Block_HighMemoryPtr
 		cmp 	(DBaseAddress),y
 		bcs 	_DCABFail
 		;
-		;		Clear it.
+		;		Clear the whole structure to zeros.
 		;
 		ldx 	DTemp1
 		ply
@@ -124,3 +124,4 @@ _DCABClear:
 
 _DCABFail:
 		brl 	OutOfMemoryError
+		

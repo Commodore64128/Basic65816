@@ -1,6 +1,5 @@
 Main
 ----
-
 - local (put locals back into test_strings)
 - Parameters (not arrays)
 - Optimise string copying.
@@ -26,8 +25,8 @@ Fixes
 
 - when allocating space for temporary variables, check there isn't a collision (memory error)
 
-Addressing Modes
-================
+Addressing Modes - ideas for assembler stupidity
+================================================
 
 op.a 	nnnn
 op.a 	nnnn,x
@@ -46,4 +45,3 @@ op.l 	nnnnnn
 op.l 	nnnnnn,x
 op.s 	nnnn,s
 op.s 	(nnnn,s),y
-

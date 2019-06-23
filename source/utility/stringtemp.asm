@@ -17,15 +17,21 @@
 
 StringTempAllocate:
 		pha
-		lda 	DTempStringPointer 			; needs resetting ?
-		bne 	_STANoReset
-
+		lda 	DTempStringPointer 			; needs resetting ? we do this by zeroing this
+		bne 	_STANoReset 				; string pointer.
+		;
+		;		So if it is zero.reset the temporary string pointer.
+		;
 		phy 								; reset the temp string pointer.
-		ldy 	#Block_HighMemoryPtr
-		lda 	(DBaseAddress),y
+		ldy 	#Block_HighMemoryPtr 		; this is at high memory - 256, so we can
+		lda 	(DBaseAddress),y 			; create permanent strings if needed.
+		sec 	
+		sbc 	#256
 		sta 	DTempStringPointer
 		ply
-
+		;
+		;		Allocate A+1 bytes on the temporary string pointer ... pointer.
+		;
 _STANoReset:
 		pla 								; get length.
 		and 	#$00FF 						; check it's a byte size
@@ -34,11 +40,17 @@ _STANoReset:
 		adc 	DTempStringPointer
 		sta 	DTempStringPointer
 		;
+		;		Erase the new temporary string, set it's length to zero.
+		;
 		pha 								; save start address
 		lda 	#$0000
 		sep 	#$20 						; zero the length of this new string.
 		sta		(DTempStringPointer)
 		rep 	#$20
+		;
+		;		Set the start pointer and the current character pointer for this
+		;		string we are working on.
+		;
 		pla 								; restore start address
 		sta 	DStartTempString 			; start of new temporary string.
 		sta 	DCurrentTempString 			; save current temporary string
@@ -47,7 +59,7 @@ _STANoReset:
 
 ; *******************************************************************************************
 ;
-;								Write A to current temp string
+;							Write character A to current temp string
 ;
 ; *******************************************************************************************
 
@@ -64,6 +76,7 @@ StringWriteCharacter:
 ; *******************************************************************************************
 ;
 ;			  Copy String at A to the most recently allocated temporary storage.
+;					(We do not use the above routine to speed it up a bit)
 ;
 ; *******************************************************************************************
 
