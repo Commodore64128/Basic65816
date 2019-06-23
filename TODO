@@ -1,7 +1,10 @@
+
 Main
 ----
-- local (put locals back into test_strings)
+
 - Parameters (not arrays)
+- rearrange data area.
+- the # option for hexadecimal constants (in, then out.)
 - Optimise string copying.
 - Dog food !!
 - Switchable environments.
@@ -18,12 +21,10 @@ Fixes
 
 - 	fewer bytes allocate in convert to string for bases >= 10 (say)
 
+- 	adding new lines, out of memory.
 
-(all check LowMem vs HighMem)
+- 	when allocating space for temporary strings, check there isn't a collision (memory error)
 
-- adding new lines, out of memory.
-
-- when allocating space for temporary variables, check there isn't a collision (memory error)
 
 Addressing Modes - ideas for assembler stupidity
 ================================================

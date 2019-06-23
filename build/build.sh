@@ -15,11 +15,11 @@
 #sh exec.sh make_editor.py
 #python ../scripts/check_editor.py
 
-#sh exec.sh test_strings.py
-#python ../scripts/string_usage.py
-
-sh exec.sh make_basic.py ../build/basic.bas
+sh exec.sh test_strings.py
 python ../scripts/string_usage.py
+
+#sh exec.sh make_basic.py ../build/basic.bas
+#python ../scripts/string_usage.py
 
 
 

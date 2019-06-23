@@ -19,9 +19,12 @@ if __name__ == "__main__":
 	print("String bullying test code.")
 	blk = BasicBlock(0x4000,0x8000)
 	random.seed()
+	seed = random.randint(0,99999)
+	print("Seed is ",seed)
+	random.seed(seed)
 	strings = {}
-	stringCount = 40
-	procCount = 20
+	stringCount = 30
+	procCount = 10
 	modsPerProc = 15
 	#
 	#		create strings.
@@ -48,9 +51,9 @@ if __name__ == "__main__":
 	#
 	for i in range(0,procCount):	
 		localVars = {}
-#		for v in varNames:
-#			if random.randint(0,1) == 0:
-#				localVars[v] = True
+		for v in varNames:
+			if random.randint(0,1) != 0:
+				localVars[v] = True
 		blk.addBASICLine("defproc modify{0}".format(i))
 		for v in localVars:
 			blk.addBASICLine("local "+v)

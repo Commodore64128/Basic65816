@@ -1,19 +1,30 @@
 @run
-110 a1 = 42
-115 b2 = 422
-118 a$ = "Hello":b$ = "World"
-120 print a1,b2,a$,b$
-125 for i= 1 to 9
-130 print "I is ";i
-140 next i
-150 dim arr(10)
-160 for i = 0 to 10
-165 arr(i) = i*10+2000
-170 print i,arr(i)
-180 next
-190 for i = 10 to 0 step -1
-200 print i,arr(i)
-210 next i
+100 	a1 = 99942
+110 	b1 = 38
+111 	s1$ = "Str#1"
+112 	s2$ = "Str#2"
+115 	print a1,b1,s1$,s2$
+120 	proc test
+130 	print a1,b1,s1$,s2$
+140 	proc test
+150 	print a1,b1,s1$,s2$
+160 	end
 
+1000 	defproc test
+1005 	local a1,b1,s1$,s2$
+1009 	print "In test#1 ",a1,b1,s1$,s2$
+1010	a1 = 1999
+1020 	b1 = 666
+1021 	s1$ = "In1":s2$="Alternate String ....."
+1024 	print "In test#2 ",a1,b1,s1$,s2$
+1026 	proc sublevel
+1028 	print "In test#3 ",a1,b1,s1$,s2$
+1100 	endproc
+
+1200 	defproc sublevel
+1210 	local a1,b1
+1220 	a1 = 1:b1 = 2
+1230 	print "Sublevel",a1,b1,s1$,s2$
+1240 	endproc
 
 

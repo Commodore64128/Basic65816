@@ -102,10 +102,9 @@ _FPROUnknown:
 ; *******************************************************************************************
 
 Command_ENDPROC: ;; endproc
+		jsr 	LocalRestore 				; restore any local variables.
 		ldx 	DStack						; what's on the top of the stack.
 		lda 	$00,x
-		cmp 	#$C000 						; if local unstack a local
-		bcs 	_FENPUnstack
 		cmp 	#procTokenID 				; check top token.		
 		bne 	_FENPFail
 		txa 								; unpick stack.
@@ -121,7 +120,4 @@ Command_ENDPROC: ;; endproc
 
 _FENPFail:
 		#error 	"EndProc without Proc"
-
-_FENPUnstack:
-		jsr 	LocalRestore 				; restore off the stack.
-		bra 	Command_ENDPROC
+		
