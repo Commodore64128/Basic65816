@@ -27,4 +27,8 @@
 1230 	print "Sublevel",a1,b1,s1$,s2$
 1240 	endproc
 
+1300 	defproc tparam(a1,s1$)
+1310 	print "In TParam ",a1,s1$
+1320  	endproc
+
 

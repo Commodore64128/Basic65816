@@ -90,10 +90,24 @@ _FPROCompare: 								; check loop
 		sta 	DLineNumber
 		pla 								; next command
 		sta 	DCodePtr 
+		;
+		;		Parameters available ? - is the token for the DEFPROC an array (e.g. xxxx( )
+		;
+		ldy 	DCodePtr 					; get the new code address, the address after  DEFPROC x		
+		dey 								; get the previous token
+		dey
+		lda 	$0000,y 					; read the token
+		and 	#IDArrayMask 				; is it a function call - e.g. an array type ?
+		bne 	_FPROParameter				; if not, set up the parameters.
 		rts
 
 _FPROUnknown:
 		#error 	"Unknown procedure"
+		;
+		;		Set up the parameters.
+		;
+_FPROParameter:
+		brl 	SyntaxError 				; syntax error otherwise.
 
 ; *******************************************************************************************
 ;
