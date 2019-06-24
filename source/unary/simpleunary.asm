@@ -19,7 +19,7 @@ Function_Len: ;; len(
 		jsr 	ResetTypeInteger 			; returns an integer
 		jsr 	EvaluateNextString 			; get the value you are absoluting
 		jsr 	ExpectRightBracket 			; check )
-		ldy 	EXSValueL+2,x 				; address of string.
+		ldy 	EXSValueL+EXSNext,x 		; address of string.
 		lda 	$0000,y 					; get the string length
 		and 	#$00FF 						; as a byte
 		sta 	EXSValueL+0,x 				; and return it
@@ -36,19 +36,19 @@ Function_Abs: ;; abs(
 		jsr 	ResetTypeInteger 			; returns an integer
 		jsr 	EvaluateNextInteger 		; get the value you are absoluting
 		jsr 	ExpectRightBracket 			; check )
-		lda 	EXSValueH+2,x 				; get sign of result from the upper word.
+		lda 	EXSValueH+EXSNext,x 		; get sign of result from the upper word.
 		bmi 	_FAbsNegative 				; negate it if negative
 		sta 	EXSValueH+0,x 				; otherwise just copy it.
-		lda 	EXSValueL+2,x
+		lda 	EXSValueL+EXSNext,x
 		sta 	EXSValueL+0,x
 		rts		
 _FAbsNegative:
 		sec 								; copy 0 - 2nd stack => 1st stack.
 		lda 	#0
-		sbc 	EXSValueL+2,x
+		sbc 	EXSValueL+EXSNext,x
 		sta 	EXSValueL+0,x		
 		lda 	#0
-		sbc 	EXSValueH+2,x
+		sbc 	EXSValueH+EXSNext,x
 		sta 	EXSValueH+0,x		
 		rts
 
@@ -64,9 +64,9 @@ Function_Sgn: ;; sgn(
 		jsr 	ExpectRightBracket 			; check )
 		stz 	EXSValueL+0,x 				; zero the result
 		stz 	EXSValueH+0,x
-		lda 	EXSValueH+2,x 				; get sign of result from high bit of upper word.
+		lda 	EXSValueH+EXSNext,x 		; get sign of result from high bit of upper word.
 		bmi 	_FSgnNegative 				; set to -1 if signed
-		ora 	EXSValueL+2,x 				; exit if zero as we already reset it.
+		ora 	EXSValueL+EXSNext,x 		; exit if zero as we already reset it.
 		beq 	_FSgnExit
 		;
 		inc 	EXSValueL+0,x 				; > 0 so make result 1 if positive and non-zero

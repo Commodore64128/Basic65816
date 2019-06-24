@@ -32,6 +32,7 @@ ErrorHandler:
 		jsr 	PrintBASICString 
 _EHEndMessage:
 		jsr 	HWNewLine
+		nop
 		jmp 	NextCommand 				; get next command.
 
 _EHAt:	.text 	" at ",$00
@@ -102,7 +103,7 @@ ExpectComma:
 
 CheckBothNumeric:
 		lda 	EXSPrecType+0,x 			; OR together their prec/type
-		ora 	EXSPrecType+2,x
+		ora 	EXSPrecType+EXSNext,x
 		bmi 	_CBNFail 					; need to both be zero in bit 15
 		rts
 _CBNFail:

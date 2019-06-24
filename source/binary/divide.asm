@@ -18,8 +18,8 @@
 
 Binary_Divide: ;; / 
 	jsr 	CheckBothNumeric 					; check both values are numeric
-	lda 	EXSValueL+2,x						; check for division by zero
-	ora	 	EXSValueH+2,x
+	lda 	EXSValueL+EXSNext,x						; check for division by zero
+	ora	 	EXSValueH+EXSNext,x
 	bne 	_BinaryDivide_Ok
 	#error	"Division by zero"
 
@@ -30,13 +30,17 @@ _BinaryDivide_Ok:
 
 	phy 										; save Y (bit counter)
 
-	lda 	EXSValueH+2,x 						; check sign of H+2 (right)
+	lda 	EXSValueH+EXSNext,x 				; check sign of H+2 (right)
 	bpl 	_BinaryDivide_RightDone
+	phx
+	inx 
+	inx
+	inx 
+	inx
 	inx 
 	inx
 	jsr 	Binary_DivNegate 					
-	dex
-	dex
+	plx
 _BinaryDivide_RightDone:
 
 	lda 	EXSValueH+0,x 				 		; check sign of H+0 (left)
@@ -54,10 +58,10 @@ _BinaryDivide_Loop:
 
 	sec											; calculate A-M
 	lda 	DTemp1+0 							; but don't save it.
-	sbc 	EXSValueL+2,x
+	sbc 	EXSValueL+EXSNext,x
 	sta 	DTemp2
 	lda 	DTemp1+2
-	sbc 	EXSValueH+2,x
+	sbc 	EXSValueH+EXSNext,x
 
 	bcc 	_Binary_NoSubract 					; if A < M skip this
 

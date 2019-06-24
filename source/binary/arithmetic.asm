@@ -17,17 +17,17 @@
 
 Binary_Add: ;; + 
 	lda 	EXSPrecType+0,x 					; check both same type
-	eor 	EXSPrecType+2,x
+	eor 	EXSPrecType+EXSNext,x
 	bmi 	_BATypeError
 	lda 	EXSPrecType+0,x 					; see if they are strings
 	bmi 	_BAConcatenateString 				; if so , do the concatenation code.
 	;
 	clc 										; add the results
 	lda		EXSValueL+0,x
-	adc 	EXSValueL+2,x
+	adc 	EXSValueL+EXSNext,x
 	sta 	EXSValueL+0,x
 	lda		EXSValueH+0,x
-	adc 	EXSValueH+2,x
+	adc 	EXSValueH+EXSNext,x
 	sta 	EXSValueH+0,x
 	rts
 	;
@@ -42,7 +42,7 @@ _BALengthError:
 _BAConcatenateString:
 	lda 	EXSValueL+0,x 						; save pointers in DTemp1/DTemp2
 	sta 	DTemp1 								; they are the first and second strings.
-	lda 	EXSValueL+2,x
+	lda 	EXSValueL+EXSNext,x
 	sta 	DTemp2
 	sep 	#$20								; switch into byte mode.
 	clc 										; work out the total length
@@ -74,10 +74,10 @@ Binary_Subtract: ;; -
 	jsr 	CheckBothNumeric 					; check both values are numeric
 	sec
 	lda		EXSValueL+0,x
-	sbc 	EXSValueL+2,x
+	sbc 	EXSValueL+EXSNext,x
 	sta 	EXSValueL+0,x
 	lda		EXSValueH+0,x
-	sbc 	EXSValueH+2,x
+	sbc 	EXSValueH+EXSNext,x
 	sta 	EXSValueH+0,x
 	rts
 
@@ -89,7 +89,7 @@ Binary_Subtract: ;; -
 
 Binary_ShiftRight: ;; >>
 	jsr 	CheckBothNumeric 					; check both values are numeric
-	lda 	EXSValueL+2,x
+	lda 	EXSValueL+EXSNext,x
 	and 	#63
 	beq		_Binary_SRExit
 _Binary_SRLoop:
@@ -108,7 +108,7 @@ _Binary_SRExit:
 
 Binary_ShiftLeft: ;; << 
 	jsr 	CheckBothNumeric 					; check both values are numeric
-	lda 	EXSValueL+2,x
+	lda 	EXSValueL+EXSNext,x
 	and 	#63
 	beq		_Binary_SLExit
 _Binary_SLLoop:

@@ -18,10 +18,10 @@
 Binary_And: ;; &
 	jsr 	CheckBothNumeric 					; check both values are numeric
 	lda		EXSValueL+0,x
-	and 	EXSValueL+2,x
+	and 	EXSValueL+EXSNext,x
 	sta 	EXSValueL+0,x
 	lda		EXSValueH+0,x
-	and 	EXSValueH+2,x
+	and 	EXSValueH+EXSNext,x
 	sta 	EXSValueH+0,x
 	rts
 	
@@ -34,10 +34,10 @@ Binary_And: ;; &
 Binary_Or: ;; |
 	jsr 	CheckBothNumeric 					; check both values are numeric
 	lda		EXSValueL+0,x
-	ora 	EXSValueL+2,x
+	ora 	EXSValueL+EXSNext,x
 	sta 	EXSValueL+0,x
 	lda		EXSValueH+0,x
-	ora 	EXSValueH+2,x
+	ora 	EXSValueH+EXSNext,x
 	sta 	EXSValueH+0,x
 	rts
 
@@ -50,9 +50,9 @@ Binary_Or: ;; |
 Binary_Xor: ;; ^
 	jsr 	CheckBothNumeric 					; check both values are numeric
 	lda		EXSValueL+0,x
-	eor 	EXSValueL+2,x
+	eor 	EXSValueL+EXSNext,x
 	sta 	EXSValueL+0,x
 	lda		EXSValueH+0,x
-	eor 	EXSValueH+2,x
+	eor 	EXSValueH+EXSNext,x
 	sta 	EXSValueH+0,x
 	rts

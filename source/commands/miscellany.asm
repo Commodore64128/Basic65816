@@ -22,7 +22,6 @@ Command_ASSERT: ;; assert
 		beq 	_FAssFail
 		rts
 _FAssFail:
-		nop
 		#error 	"assert failed"
 
 ; *******************************************************************************************

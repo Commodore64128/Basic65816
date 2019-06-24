@@ -33,17 +33,17 @@ _BinaryMultiply_Loop:
 
 	clc 										; add multiplicand to result.
 	lda 	EXSValueL+0,x
-	adc 	EXSValueL+2,x
+	adc 	EXSValueL+EXSNext,x
 	sta 	EXSValueL+0,x
 	lda 	EXSValueH+0,x
-	adc 	EXSValueH+2,x
+	adc 	EXSValueH+EXSNext,x
 	sta 	EXSValueH+0,x
 
 _BinaryMultiply_NoAdd:
 	lsr 	DTemp1+2 							; halve multiplier
 	ror 	DTemp1
-	asl 	EXSValueL+2,x 						; double multiplicand
-	rol 	EXSValueH+2,x
+	asl 	EXSValueL+EXSNext,x					; double multiplicand
+	rol 	EXSValueH+EXSNext,x
 	bra 	_BinaryMultiply_Loop 				; go round again.
 
 _BinaryMultiply_Exit:

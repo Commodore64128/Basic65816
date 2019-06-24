@@ -108,7 +108,7 @@ FNStringEmpty:
 FNStringY:
 		tya
 		sta 	EXSValueL+0,x
-		stz 	EXSValueH+2,x
+		stz 	EXSValueH+EXSNext,x
 		rts
 
 FNStringParameter:

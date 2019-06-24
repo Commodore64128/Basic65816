@@ -94,11 +94,12 @@ BASStackSize = $180 						; maximum size of BASIC stack.
 EXSBase = $200 								; Initial value of X at lowest stack level.
 
 EXSStackElements = 16 						; depth of stack.
-
+	
 											; offsets from stack base (each stack element = 2 bytes)
 EXSValueL = 0 								; Low word
-EXSValueH = EXSStackElements*2  			; High word
-EXSPrecType = EXSStackElements*2*2			; Precedence level / type is in bit 15, 1 = string.
+EXSValueH = 2  								; High word
+EXSPrecType = 4								; Precedence level / type is in bit 15, 1 = string.
+EXSNext = 6 								; offset to next level.
 
 ; ********************************************************************************
 ;

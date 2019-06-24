@@ -102,11 +102,7 @@ _ELGotAtom:
 		inc 	DCodePtr
 		clc 								; try the next level up
 		adc 	#1 << TokenShift
-		inx 								; calculate the RHS at the next stack level.
-		inx
-		jsr 	EvaluateLevel 
-		dex
-		dex
+		jsr 	EvaluateNextGivenLevel
 		ply 								; get operator token back into Y
 		;
 		;		Execute code associated with the token, which is in Y
@@ -186,9 +182,9 @@ _ELUnaryKeyword:
 		jsr 	EvaluateNext 				; evaluate the expression
 		jsr 	ExpectRightBracket 			; consume the right bracket.
 _ELCopy:
-		lda 	EXSValueL+2,x 				; just copy the value 
+		lda 	EXSValueL+EXSNext,x 		; just copy the value 
 		sta 	EXSValueL+0,x
-		lda 	EXSValueH+2,x
+		lda 	EXSValueH+EXSNext,x
 		sta 	EXSValueH+0,x
 		brl 	_ELGotAtom 					; and continue.
 		;
@@ -200,12 +196,7 @@ _ELCopy:
 		;
 _ELUnaryOperator:
 		phy 								; save the operator on the stack.
-		inx 								; this is like evaluate next
-		inx
-		lda 	#7<<TokenShift 				; except we use a very high precedence to make it atomic
-		jsr 	EvaluateLevel 	
-		dex 								; unwind the stack.						
-		dex 		
+		jsr 	EvaluateNextAtomic 			; evaluate atom to be operated on.
 		pla 								; restore the unary operator.
 		;
 		cmp 	#minusTokenID				; -xxx is unary negation
@@ -217,10 +208,10 @@ _ELUnaryOperator:
 _ELMinus:
 		sec 								; do the negation calculation.
 		lda 	#0
-		sbc 	EXSValueL+2,x
+		sbc 	EXSValueL+EXSNext,x
 		sta 	EXSValueL+0,x
 		lda 	#0
-		sbc 	EXSValueH+2,x
+		sbc 	EXSValueH+EXSNext,x
 		sta 	EXSValueH+0,x
 		brl 	_ELGotAtom					; and continue.
 
@@ -230,13 +221,21 @@ _ELMinus:
 ;
 ; *******************************************************************************************
 
+EvaluateNextAtomic:
+		lda 	#7<<TokenShift
+		bra 	EvaluateNextGivenLevel
 EvaluateNext:
-		inx
-		inx
 		lda 	#0<<TokenShift
+EvaluateNextGivenLevel:		
+		phx
+		inx
+		inx
+		inx
+		inx
+		inx
+		inx
 		jsr 	EvaluateLevel
-		dex
-		dex
+		plx
 		rts
 
 ; *******************************************************************************************

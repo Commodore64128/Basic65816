@@ -14,7 +14,7 @@ from variables import *
 
 def calculate(op,a,b):
 	if op == "+":
-		return a + b
+		return a + b 
 	if op == "-":
 		return a - b
 	if op == "*":
@@ -34,7 +34,6 @@ def calculate(op,a,b):
 if __name__ == "__main__":
 	print("Arithmetic/Bitwise test code.")
 	operators = "+,-,*,/,&,|,^".split(",")
-
 	eb = EntityBucket(-1,60,0,10,0)
 	#
 	bs = BasicSource()

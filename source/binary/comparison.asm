@@ -19,10 +19,10 @@ Binary_Equals: ;; =
 	jsr 	CompareTypeCheck 				; which types are we comparing ?
 	bcs 	_BEString
 	lda 	EXSValueL,x 					; numeric comparison
-	cmp 	EXSValueL+2,x
+	cmp 	EXSValueL+EXSNext,x
 	bne 	Compare_Fail
 	lda 	EXSValueH,x
-	cmp 	EXSValueH+2,x
+	cmp 	EXSValueH+EXSNext,x
 	bne 	Compare_Fail
 	bra 	Compare_Succeed
 
@@ -41,10 +41,10 @@ Binary_NotEquals: ;; <>
 	jsr 	CompareTypeCheck 				; which types are we comparing ?
 	bcs 	_BNEString
 	lda 	EXSValueL,x 					; numeric comparison
-	cmp 	EXSValueL+2,x
+	cmp 	EXSValueL+EXSNext,x
 	bne 	Compare_Succeed
 	lda 	EXSValueH,x
-	cmp 	EXSValueH+2,x
+	cmp 	EXSValueH+EXSNext,x
 	bne 	Compare_Succeed
 	bra 	Compare_Fail
 
@@ -64,9 +64,9 @@ Binary_Less: ;; <
 	bcs 	_BLString
 	sec
 	lda 	EXSValueL,x 					; signed numeric <
-	sbc 	EXSValueL+2,x
+	sbc 	EXSValueL+EXSNext,x
 	lda 	EXSValueH,x
-	sbc 	EXSValueH+2,x
+	sbc 	EXSValueH+EXSNext,x
 	bvc 	*+5
 	eor 	#$8000
 	bmi 	Compare_Succeed
@@ -104,9 +104,9 @@ Binary_GreaterEqual: ;; >=
 	bcs 	_BGEString
 	sec
 	lda 	EXSValueL,x 					; numeric >= signed
-	sbc 	EXSValueL+2,x
+	sbc 	EXSValueL+EXSNext,x
 	lda 	EXSValueH,x
-	sbc 	EXSValueH+2,x
+	sbc 	EXSValueH+EXSNext,x
 	bvc 	*+5
 	eor 	#$8000
 	bpl 	Compare_Succeed
@@ -128,9 +128,9 @@ Binary_LessEqual: ;; <=
 	bcs 	_BLEString
 	clc 									; numeric <= signed
 	lda 	EXSValueL,x
-	sbc 	EXSValueL+2,x
+	sbc 	EXSValueL+EXSNext,x
 	lda 	EXSValueH,x
-	sbc 	EXSValueH+2,x
+	sbc 	EXSValueH+EXSNext,x
 	bvc 	*+5
 	eor 	#$8000
 	bmi 	Compare_Succeed
@@ -152,9 +152,9 @@ Binary_Greater: ;; >
 	bcs 	_BGString
 	clc 									; numeric > signed
 	lda 	EXSValueL,x
-	sbc 	EXSValueL+2,x
+	sbc 	EXSValueL+EXSNext,x
 	lda 	EXSValueH,x
-	sbc 	EXSValueH+2,x
+	sbc 	EXSValueH+EXSNext,x
 	bvc 	*+5
 	eor 	#$8000
 	bpl 	Compare_Succeed
@@ -175,7 +175,7 @@ _BGString: 									; string
 
 CompareTypeCheck:
 	lda 	EXSPrecType+0,x 				; xor the type bits (bit 15)
-	eor 	EXSPrecType+2,x 		
+	eor 	EXSPrecType+EXSNext,x 		
 	bmi 	_CTCFail 						; if different types cannot be compared, must be the same !
 	;
 	lda 	EXSPrecType+0,x 				; get the type they (both) are.
@@ -191,7 +191,7 @@ _CTCStringCompare:
 
 	lda 	EXSValueL+0,x 					; copy address of string 1 -> DTemp1
 	sta 	DTemp1
-	lda 	EXSValueL+2,x 					; copy address of string 2 -> DTemp2
+	lda 	EXSValueL+EXSNext,x 					; copy address of string 2 -> DTemp2
 	sta 	DTemp2
 
 	lda 	#$0000 							; clear AY
