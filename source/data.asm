@@ -36,44 +36,54 @@ DHighAddress = DPBaseAddress+4 				; high memory for workspace area
 
 DCodePtr = DPBaseAddress+6 					; address of code - current token.
 
-DTemp1 = DPBaseAddress + 8 					; *** LONG *** Temporary value
-DTemp2 = DPBaseAddress + 12 				; *** LONG *** Temporary value
+DTempStringPointer = DPBaseAddress + 8	 	; memory allocated to temp string pointer, going down.
 
-DRandom = DPBaseAddress + 16 				; *** LONG *** Random Seed
+DStartTempString = DPBaseAddress + 10 		; start of current temporary string
 
-DSignCount = DPBaseAddress + 20 			; Sign count in division.
+DCurrentTempString = DPBaseAddress + 12 	; current position in temporary string.
 
-DTempStringPointer = DPBaseAddress + 22 	; memory allocated to temp string pointer, going down.
-DStartTempString = DPBaseAddress + 24 		; start of current temporary string
-DCurrentTempString = DPBaseAddress + 26 	; current position in temporary string.
+DConstantShift = DPBaseAddress + 14 		; constant shift store.
 
-DConstantShift = DPBaseAddress + 28 		; constant shift store.
+DVariablePtr = DPBaseAddress + 16			; address of found variable.
 
-DVariablePtr = DPBaseAddress + 30 			; address of found variable.
+DHashTablePtr = DPBaseAddress + 18 			; address of hash entry of searched variable.
 
-DHashTablePtr = DPBaseAddress + 32 			; address of hash entry of searched variable.
+DLineNumber = DPBaseAddress + 20 			; current line number.
 
-DLineNumber = DPBaseAddress + 34 			; current line number.
+DSignCount = DPBaseAddress + 22				; Sign count in division.
 
-DTemp3 = DPBaseAddress + 36 				; *** LONG *** Temporary Value.
+DCursor = DPBaseAddress + 24 				; cursor (for external routines, not used by BASIC)
 
-DCursor = DPBaseAddress + 40 				; cursor (for external routines, not used by BASIC)
+DStack = DPBaseAddress + 26					; BASIC stack pointer.
 
-DStack = DPBaseAddress + 42 				; BASIC stack pointer.
+DIndent = DPBaseAddress + 28 				; indent for LIST
 
-DIndent = DPBaseAddress + 44 				; indent for LIST
-DIndent2 = DPBaseAddress + 46 				; previous indent.
-DListBuffer = DPBaseAddress + 48 			; list buffer address.
+DIndent2 = DPBaseAddress + 30 				; previous indent.
 
-DTemp4 = DPBaseAddress + 50 				; *** LONG *** Temporary Value
+DListBuffer = DPBaseAddress + 32 			; list buffer address.
 
-DTemp5 = DPBaseAddress + 54 				; *** LONG *** Temporary Value
+DStack65816 = DPBaseAddress + 34 			; 65816 Stack pointer.
 
-DStack65816 = DPBaseAddress + 58 			; 65816 Stack pointer.
+; ********************************************************************************
 
-DTarget = DPBaseAddress + 60 				; target address for PROC call.
+DLongVars = DPBaseAddress + $40 			; 4 byte variables.
 
-DArrayType = DPBaseAddress + 62 			; type of array being created.
+DTemp1 = DLongVars + 0 						; general temporary variables.
+DTemp2 = DLongVars + 4
+DTemp3 = DLongVars + 8 	
+DTemp4 = DLongVars + 12 	
+DTemp5 = DLongVars + 16	
+
+DRandom = DLongVars + 20 					; random seed
+
+
+; ********************************************************************************
+;
+;								Parameter Buffer area
+;
+; ********************************************************************************
+
+PRMBuffer = $80							 	; buffer for parameter values.
 
 ; ********************************************************************************
 ;
@@ -81,8 +91,7 @@ DArrayType = DPBaseAddress + 62 			; type of array being created.
 ;
 ; ********************************************************************************
 
-BASStack = $80 								; start of Basic stack.
-BASStackSize = $180 						; maximum size of BASIC stack.
+BASStack = $C0 								; start of Basic stack.
 
 ; ********************************************************************************
 ;
@@ -91,11 +100,6 @@ BASStackSize = $180 						; maximum size of BASIC stack.
 ;
 ; ********************************************************************************
 
-EXSBase = $200 								; Initial value of X at lowest stack level.
-
-EXSStackElements = 16 						; depth of stack.
-	
-											; offsets from stack base (each stack element = 2 bytes)
 EXSValueL = 0 								; Low word
 EXSValueH = 2  								; High word
 EXSPrecType = 4								; Precedence level / type is in bit 15, 1 = string.
@@ -103,17 +107,9 @@ EXSNext = 6 								; offset to next level.
 
 ; ********************************************************************************
 ;
-;								Parameter Buffer area
-;
-; ********************************************************************************
-
-PRMBuffer = EXSBase+EXSStackElements*3*2 	; buffer for parameter values.
-
-; ********************************************************************************
-;
 ;								65816 Stack Starts Here.
 ;
 ; ********************************************************************************
 
-CPUStack = EXSBase+$200-2 					; CPU Stack initial value.
+CPUStack = $400-2 							; CPU Stack initial value.
 

@@ -1,7 +1,5 @@
 Main
 ----
-- use basic stack for expressions.
-- rearrange data area.
 - the # option for hexadecimal constants (in, then out.)
 - Optimise string copying.
 - Dog food !!

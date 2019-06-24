@@ -44,7 +44,9 @@ _FLetFound:
 		;
 		;		Do the indexing
 		;
-		ldx		#EXSBase 					; in LET, so do it from the base stack.
+		ldx		DStack 						; in LET, so do it from the base stack.
+		inx
+		inx
 		lda 	DVariablePtr 				; variable pointer into A, first token in A
 		jsr 	VariableSubscript			; index calculation
 		sta 	DVariablePtr 				; and write it back.

@@ -22,7 +22,10 @@
 ; *******************************************************************************************
 
 Evaluate:
-		ldx		#EXSBase 					; reset the stack
+		lda		DStack 						; reset the stack
+		clc
+		adc 	#16
+		tax
 		lda 	#0<<TokenShift 				; start at the lowest precedence level.
 											; fall through.
 

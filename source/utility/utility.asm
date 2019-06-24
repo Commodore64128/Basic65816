@@ -32,7 +32,6 @@ ErrorHandler:
 		jsr 	PrintBASICString 
 _EHEndMessage:
 		jsr 	HWNewLine
-		nop
 		jmp 	NextCommand 				; get next command.
 
 _EHAt:	.text 	" at ",$00
@@ -40,7 +39,7 @@ _EHAt:	.text 	" at ",$00
 ; *******************************************************************************************
 ;
 ;				Default handler for keywords, produces error if not implemented
-;
+;	
 ; *******************************************************************************************
 
 IllegalToken:
